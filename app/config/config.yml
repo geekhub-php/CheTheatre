@@ -92,8 +92,8 @@ swiftmailer:
      encryption: ssl
      auth_mode:  login
      host:       smtp.gmail.com
-     username:   myroslavazel
-     password:   ladymacbeth1990
+     username:
+     password:
      disable_delivery: false
 
 knp_paginator:
