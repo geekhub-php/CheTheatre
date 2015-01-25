@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -41,6 +42,20 @@ class Media
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="medias", cascade={"persist"})
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -139,4 +154,27 @@ class Media
         $this->createdAt = $createdAt;
         return $this;
     }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return media
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
 }
