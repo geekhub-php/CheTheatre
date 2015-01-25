@@ -5,6 +5,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Performance;
 
 /**
  * @ORM\Entity
@@ -50,11 +51,18 @@ class Media
     private $user;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="medias", cascade={"persist"})
+     */
+    private $performance;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -174,6 +182,28 @@ class Media
     public function setUser(User $user = null)
     {
         $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get performance
+     *
+     * @return Performance
+     */
+    public function getPerformance()
+    {
+        return $this->performance;
+    }
+
+    /**
+     * Set performance
+     *
+     * @param Performance $performance
+     * @return media
+     */
+    public function setPerformance(Performance $performance = null)
+    {
+        $this->performance = $performance;
         return $this;
     }
 
