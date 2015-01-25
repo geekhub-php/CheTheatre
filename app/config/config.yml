@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -33,6 +33,8 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
+    read_from:      %kernel.root_dir%/web/uploads/images
+    write_to:       %kernel.root_dir%/web/uploads/images
     use_controller: false
     bundles:        [ ]
     #java: /usr/bin/java
@@ -64,6 +66,27 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+#alice faker configuration
+hautelook_alice:
+    locale: en_US   # default
+    seed: 1         # default
+#    do_flush: true                              # default
+#    schema_tool: null                           # default
+#    doctrine: orm                               # default
+
+sensio_framework_extra:
+    request:
+        converters: true
+        auto_convert: false
+
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            softdeleteable: true
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -71,3 +94,17 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    disable_delivery: false
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+nelmio_api_doc: ~
