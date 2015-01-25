@@ -87,14 +87,14 @@ stof_doctrine_extensions:
             sluggable: true
             softdeleteable: true
 
+# Swiftmailer Configuration
 swiftmailer:
-     transport:  smtp
-     encryption: ssl
-     auth_mode:  login
-     host:       smtp.gmail.com
-     username:
-     password:
-     disable_delivery: false
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+    disable_delivery: false
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
