@@ -108,3 +108,14 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 nelmio_api_doc: ~
+
+sonata_admin:
+   title: CheTheatre Admin
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        # Your other blocks
