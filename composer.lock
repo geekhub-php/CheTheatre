@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1a6e42503500f15fa3ed4b683aa3917c",
+    "hash": "e315a178fe85b4b91c27e9a99a807b6d",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2302,16 +2302,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "dev-master",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "4cd443ea68e59453f4b0687b1d8334f6876eabcd"
+                "reference": "1f08176f996a325e3bf5ccebeaf7c76be7f3d472"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/4cd443ea68e59453f4b0687b1d8334f6876eabcd",
-                "reference": "4cd443ea68e59453f4b0687b1d8334f6876eabcd",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/1f08176f996a325e3bf5ccebeaf7c76be7f3d472",
+                "reference": "1f08176f996a325e3bf5ccebeaf7c76be7f3d472",
                 "shasum": ""
             },
             "require": {
@@ -2329,7 +2329,6 @@
                 "symfony/http-foundation": "~2.3",
                 "symfony/routing": "~2.3",
                 "symfony/security-bundle": "~2.3",
-                "symfony/translation": "~2.3",
                 "symfony/twig-bridge": "~2.3",
                 "symfony/validator": "~2.3",
                 "twig/extensions": "~1.0",
@@ -2347,7 +2346,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.3.x-dev"
                 }
             },
             "autoload": {
@@ -2378,7 +2377,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2015-01-23 17:04:17"
+            "time": "2015-01-05 10:15:28"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3804,7 +3803,6 @@
         "stof/doctrine-extensions-bundle": 20,
         "symfony/event-dispatcher": 20,
         "knplabs/knp-paginator-bundle": 20,
-        "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20
     },
     "prefer-stable": false,
