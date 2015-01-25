@@ -1,21 +1,3 @@
-app:
-    resource: @AppBundle/Controller/
-    prefix:   /{_locale}/
-    defaults: { _locale: en }
-
-app_homepage:
-    path: /{_locale}
-    methods: [GET, POST]
-    defaults: { _controller: AppBundle:Default:index, _locale: en }
-    requirements:
-        _locale: en|ua|ru
-    options:
-        expose: true
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
-
+    prefix:   /
