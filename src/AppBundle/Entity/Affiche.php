@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="affiches")
  * @ORM\Entity
- *
  */
 class Affiche
 {
@@ -33,7 +32,7 @@ class Affiche
      * @var /Datetime
      *
      * @Assert\NotBlank()
-     * @ORM\Column(type="datetime"
+     * @ORM\Column(type="datetime")
      */
     private $dateTime;
 

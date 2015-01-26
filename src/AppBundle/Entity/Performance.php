@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
- *
  */
 class Performance
 {

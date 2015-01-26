@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="roles")
  * @ORM\Entity
- *
  */
 class Role
 {
@@ -45,11 +44,11 @@ class Role
     private $performance;
 
     /**
-     * @var User
+     * @var Employee
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
      */
-    private $user;
+    private $employee;
 
     /**
      * Constructor
@@ -142,22 +141,22 @@ class Role
     /**
      * Get user
      *
-     * @return User
+     * @return Employee
      */
-    public function getUser()
+    public function getEmployee()
     {
-        return $this->user;
+        return $this->employee;
     }
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param Employee $employee
      * @return Role
      */
-    public function setUser(User $user = null)
+    public function setUser(Employee $employee = null)
     {
-        $this->user = $user;
+        $this->employee = $employee;
 
         return $this;
     }

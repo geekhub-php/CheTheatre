@@ -7,11 +7,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="theatre_users")
+ * @ORM\Table(name="employees")
  * @ORM\Entity
  *
  */
-class User
+class Employee
 {
     /**
      * @var integer
@@ -66,7 +66,7 @@ class User
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"})
      */
     private $roles;
 
