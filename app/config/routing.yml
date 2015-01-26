@@ -4,7 +4,7 @@ NelmioApiDocBundle:
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
+    prefix: "%admin_dashboard_base_url%"
 
 _sonata_admin:
     resource: .
