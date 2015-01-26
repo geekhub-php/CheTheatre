@@ -1,0 +1,3 @@
+imports:
+    - { resource: sonata/sonata_block.yml }
+    - { resource: sonata/sonata_admin.yml }
