@@ -7,8 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
- * @ORM\Table(name="User")
+ * @ORM\Table(name="theatre_users")
  * @ORM\Entity
  *
  */
@@ -25,28 +24,32 @@ class User
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=45, nullable=true)
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $middleName;
 
     /**
      * @var /Datetime
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      */
     private $dob;
@@ -54,14 +57,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $position;
 
 //    add private $medias when MediaBundle is installed;
 
     /**
-     * @var
+     * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
      */
@@ -104,6 +107,7 @@ class User
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -126,6 +130,7 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -148,6 +153,7 @@ class User
     public function setMiddleName($middleName)
     {
         $this->middleName = $middleName;
+
         return $this;
     }
 
@@ -170,6 +176,7 @@ class User
     public function setDob($dob)
     {
         $this->dob = $dob;
+
         return $this;
     }
 
@@ -192,6 +199,7 @@ class User
     public function setPosition($position)
     {
         $this->position = $position;
+
         return $this;
     }
 
@@ -203,6 +211,8 @@ class User
     public function setRole(Role $role)
     {
         $this->roles[] = $role;
+
+        return $this;
     }
 
     /**

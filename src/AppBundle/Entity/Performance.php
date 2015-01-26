@@ -7,8 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
- * @ORM\Table(name="Performance")
+ * @ORM\Table(name="performances")
  * @ORM\Entity
  *
  */
@@ -25,36 +24,38 @@ class Performance
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=45, nullable=true)
+     *
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var /Datetime
+     *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     *
      */
     private $premiere;
 
 //    add private $medias when MediaBundle is installed;
 
     /**
-     * @var
+     * @var Affiche[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Affiche", mappedBy="performance", cascade={"persist"})
      */
     private $affiches;
 
     /**
-     * @var
+     * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
      */
@@ -98,6 +99,7 @@ class Performance
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -120,6 +122,7 @@ class Performance
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -142,6 +145,7 @@ class Performance
     public function setPremiere($premiere)
     {
         $this->premiere = $premiere;
+
         return $this;
     }
 
@@ -153,6 +157,8 @@ class Performance
     public function setAffiche(Affiche $affiche)
     {
         $this->affiches[] = $affiche;
+
+        return $this;
     }
 
     /**
@@ -173,6 +179,8 @@ class Performance
     public function setRole(Role $role)
     {
         $this->roles[] = $role;
+
+        return $this;
     }
 
     /**

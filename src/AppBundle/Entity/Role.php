@@ -7,8 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
- * @ORM\Table(name="Role")
+ * @ORM\Table(name="roles")
  * @ORM\Entity
  *
  */
@@ -25,25 +24,29 @@ class Role
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $role;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=45, nullable=true)
+     *
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
+     * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
      */
     private $performance;
 
     /**
-     * @var
+     * @var User
+     *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles", cascade={"persist"})
      */
     private $user;
@@ -86,6 +89,7 @@ class Role
     public function setRole($role)
     {
         $this->role = $role;
+
         return $this;
     }
 
@@ -108,6 +112,7 @@ class Role
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -130,6 +135,7 @@ class Role
     public function setPerformance(Performance $performance = null)
     {
         $this->performance = $performance;
+
         return $this;
     }
 
@@ -152,6 +158,7 @@ class Role
     public function setUser(User $user = null)
     {
         $this->user = $user;
+
         return $this;
     }
 }
