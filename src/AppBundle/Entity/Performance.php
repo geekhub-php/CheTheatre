@@ -61,12 +61,20 @@ class Performance
     private $affiches;
 
     /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
+     */
+    private $roles;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
         $this->affiches = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -183,5 +191,25 @@ class Performance
     public function getAffiches()
     {
         return $this->affiches;
+    }
+
+    /**
+     * Set role
+     * @param role $role
+     * @return Performance
+     */
+    public function setRole(Role $role)
+    {
+        $this->roles[] = $role;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }

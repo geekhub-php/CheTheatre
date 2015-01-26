@@ -67,11 +67,19 @@ class User
     private $medias;
 
     /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
+     */
+    private $roles;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -212,5 +220,25 @@ class User
     public function getMedias()
     {
         return $this->medias;
+    }
+
+    /**
+     * Set role
+     * @param role $role
+     * @return User
+     */
+    public function setRole(Role $role)
+    {
+        $this->roles[] = $role;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }

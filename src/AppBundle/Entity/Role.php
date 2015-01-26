@@ -1,0 +1,160 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Performance;
+use AppBundle\Entity\User;
+
+/**
+ *
+ * @ORM\Table(name="Role")
+ * @ORM\Entity
+ *
+ */
+class Role
+
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=45)
+     */
+    private $role;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=45, nullable=true)
+     */
+    private $description;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
+     */
+    private $performance;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles", cascade={"persist"})
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return Role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Performance
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Get performance
+     *
+     * @return Performance
+     */
+    public function getPerformance()
+    {
+        return $this->performance;
+    }
+
+    /**
+     * Set performance
+     *
+     * @param Performance $performance
+     * @return Role
+     */
+    public function setPerformance(Performance $performance = null)
+    {
+        $this->performance = $performance;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return Role
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+}
