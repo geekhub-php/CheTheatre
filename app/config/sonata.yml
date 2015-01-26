@@ -1,0 +1,6 @@
+imports:
+# Sonata Core Bundles
+    - { resource: sonata/sonata_block.yml }
+
+    # Sonata Feature Bundles
+    - { resource: sonata/sonata_admin.yml }
