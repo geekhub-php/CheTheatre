@@ -20,3 +20,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     admin_dashboard_base_url: /admin
+    sonata_admin.title: 'CheTheatre Project'
+    sonata_admin.logo_title: bundles/sonataadmin/logo_title.png
