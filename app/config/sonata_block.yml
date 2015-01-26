@@ -1,4 +1,3 @@
-
 sonata_block:
     default_contexts: [cms]
 
@@ -22,4 +21,3 @@ sonata_block:
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:
-
