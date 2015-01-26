@@ -1,0 +1,39 @@
+AppBundle\Entity\Affiche:
+  affiches{1..4}:
+    performance: @performance*
+    dateTime: <dateTime()>
+
+AppBundle\Entity\Media:
+  medias{1..9}:
+    type: <mediaTypeName()>
+    title: <realText()>
+    description: <realText()>
+    createdAt: <dateTime()>
+    user: @user*
+    performance: @performance*
+
+AppBundle\Entity\Performance:
+  performances{1..3}:
+    title: <performanceName()>
+    description: <realText()>
+    premiere: <dateTime()>
+    media: @medias*
+    affiche: @affiches*
+    role: @roles*
+
+AppBundle\Entity\Role:
+  roles{1..6}:
+    role: <roleName()>
+    description: <realText()>
+    performance: @performance*
+    user: @user*
+
+AppBundle\Entity\User:
+  users{1..5}:
+    firstName: <firstName()>
+    LastName: <lastName()>
+    MiddleName: <firstName()>
+    dob: <dateTime()>
+    position: <positionName()>
+    media: @medias*
+    role: @roles*

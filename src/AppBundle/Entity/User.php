@@ -29,20 +29,20 @@ class User
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
      */
-    private $firstname;
+    private $firstName;
 
     /**
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
      */
-    private $Lastname;
+    private $LastName;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private $Middlename;
+    private $MiddleName;
 
     /**
      * @var /Datetime
@@ -93,68 +93,68 @@ class User
     }
 
     /**
-     * Get firstname
+     * Get firstName
      *
      * @return string
      */
     public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * Set firstname
+     * Set firstName
      *
-     * @param string $firstname
+     * @param string $firstName
      * @return User
      */
-    public function setFirstName($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * Get Lastname
+     * Get LastName
      *
      * @return string
      */
     public function getLastName()
     {
-        return $this->Lastname;
+        return $this->LastName;
     }
 
     /**
-     * Set Lastname
+     * Set LastName
      *
-     * @param string $Lastname
+     * @param string $LastName
      * @return User
      */
-    public function setLastName($Lastname)
+    public function setLastName($LastName)
     {
-        $this->Lastname = $Lastname;
+        $this->LastName = $LastName;
         return $this;
     }
 
     /**
-     * Get Middlename
+     * Get MiddleName
      *
      * @return string
      */
     public function getMiddleName()
     {
-        return $this->Middlename;
+        return $this->MiddleName;
     }
 
     /**
-     * Set Middlename
+     * Set MiddleName
      *
-     * @param string $Middlename
+     * @param string $MiddleName
      * @return User
      */
-    public function setMiddleName($Middlename)
+    public function setMiddleName($MiddleName)
     {
-        $this->Middlename = $Middlename;
+        $this->MiddleName = $MiddleName;
         return $this;
     }
 
