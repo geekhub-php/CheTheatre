@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Media;
 
 /**
  *
@@ -14,7 +13,6 @@ use AppBundle\Entity\Media;
  *
  */
 class Performance
-
 {
     /**
      * @var integer
@@ -46,12 +44,7 @@ class Performance
      */
     private $premiere;
 
-    /**
-     * @var
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Media", mappedBy="performance", cascade={"persist"})
-     */
-    private $medias;
+//    add private $medias when MediaBundle is installed;
 
     /**
      * @var
@@ -72,7 +65,6 @@ class Performance
      */
     public function __construct()
     {
-        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
         $this->affiches = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -151,26 +143,6 @@ class Performance
     {
         $this->premiere = $premiere;
         return $this;
-    }
-
-    /**
-     * Set media
-     * @param media $media
-     * @return Performance
-     */
-    public function setMedia(Media $media)
-    {
-        $this->medias[] = $media;
-    }
-
-    /**
-     * Get medias
-     *
-     * @return array
-     */
-    public function getMedias()
-    {
-        return $this->medias;
     }
 
     /**

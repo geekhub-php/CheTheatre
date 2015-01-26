@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Media;
 
 /**
  *
@@ -29,20 +28,20 @@ class User
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
      */
-    private $firstname;
+    private $firstName;
 
     /**
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=45)
      */
-    private $Lastname;
+    private $lastName;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private $Middlename;
+    private $middleName;
 
     /**
      * @var /Datetime
@@ -59,12 +58,7 @@ class User
      */
     private $position;
 
-    /**
-     * @var
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Media", mappedBy="user", cascade={"persist"})
-     */
-    private $medias;
+//    add private $medias when MediaBundle is installed;
 
     /**
      * @var
@@ -78,7 +72,6 @@ class User
      */
     public function __construct()
     {
-        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -93,68 +86,68 @@ class User
     }
 
     /**
-     * Get firstname
+     * Get firstName
      *
      * @return string
      */
     public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * Set firstname
+     * Set firstName
      *
-     * @param string $firstname
+     * @param string $firstName
      * @return User
      */
-    public function setFirstName($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * Get Lastname
+     * Get lastName
      *
      * @return string
      */
     public function getLastName()
     {
-        return $this->Lastname;
+        return $this->lastName;
     }
 
     /**
-     * Set Lastname
+     * Set lastName
      *
-     * @param string $Lastname
+     * @param string $lastName
      * @return User
      */
-    public function setLastName($Lastname)
+    public function setLastName($lastName)
     {
-        $this->Lastname = $Lastname;
+        $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * Get Middlename
+     * Get middleName
      *
      * @return string
      */
     public function getMiddleName()
     {
-        return $this->Middlename;
+        return $this->middleName;
     }
 
     /**
-     * Set Middlename
+     * Set middleName
      *
-     * @param string $Middlename
+     * @param string $middleName
      * @return User
      */
-    public function setMiddleName($Middlename)
+    public function setMiddleName($middleName)
     {
-        $this->Middlename = $Middlename;
+        $this->middleName = $middleName;
         return $this;
     }
 
@@ -200,26 +193,6 @@ class User
     {
         $this->position = $position;
         return $this;
-    }
-
-    /**
-     * Set media
-     * @param media $media
-     * @return User
-     */
-    public function setMedia(Media $media)
-    {
-        $this->medias[] = $media;
-    }
-
-    /**
-     * Get medias
-     *
-     * @return array
-     */
-    public function getMedias()
-    {
-        return $this->medias;
     }
 
     /**

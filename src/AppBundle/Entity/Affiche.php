@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Performance;
 
 /**
  *
@@ -14,7 +13,6 @@ use AppBundle\Entity\Performance;
  *
  */
 class Affiche
-
 {
     /**
      * @var integer
@@ -30,6 +28,7 @@ class Affiche
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="affiches", cascade={"persist"})
      */
     private $performance;
+
     /**
      * @var /Datetime
      * @Assert\NotBlank()
