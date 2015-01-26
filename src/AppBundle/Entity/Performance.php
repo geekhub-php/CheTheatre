@@ -41,7 +41,7 @@ class Performance
     /**
      * @var /Datetime
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      */
     private $premiere;
@@ -54,11 +54,19 @@ class Performance
     private $medias;
 
     /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Affiche", mappedBy="performance", cascade={"persist"})
+     */
+    private $affiches;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->affiches = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -155,5 +163,25 @@ class Performance
     public function getMedias()
     {
         return $this->medias;
+    }
+
+    /**
+     * Set affiche
+     * @param affiche $affiche
+     * @return Performance
+     */
+    public function setAffiche(Affiche $affiche)
+    {
+        $this->affiches[] = $affiche;
+    }
+
+    /**
+     * Get affiches
+     *
+     * @return array
+     */
+    public function getAffiches()
+    {
+        return $this->affiches;
     }
 }
