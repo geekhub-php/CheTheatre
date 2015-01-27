@@ -7,10 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
- * @ORM\Table(name="affiche")
+ * @ORM\Table(name="affiches")
  * @ORM\Entity
- *
  */
 class Affiche
 {
@@ -24,6 +22,7 @@ class Affiche
     private $id;
 
     /**
+     * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="affiches", cascade={"persist"})
      */
@@ -31,9 +30,9 @@ class Affiche
 
     /**
      * @var /Datetime
+     *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     *
      */
     private $dateTime;
 
@@ -74,6 +73,7 @@ class Affiche
     public function setPerformance(Performance $performance = null)
     {
         $this->performance = $performance;
+
         return $this;
     }
 
@@ -96,6 +96,7 @@ class Affiche
     public function setDateTime($dateTime)
     {
         $this->dateTime = $dateTime;
+
         return $this;
     }
 }

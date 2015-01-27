@@ -7,10 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- *
- * @ORM\Table(name="Role")
+ * @ORM\Table(name="roles")
  * @ORM\Entity
- *
  */
 class Role
 {
@@ -25,28 +23,32 @@ class Role
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $role;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=45, nullable=true)
+     *
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
+     * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
      */
     private $performance;
 
     /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles", cascade={"persist"})
+     * @var Employee
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
      */
-    private $user;
+    private $employee;
 
     /**
      * Constructor
@@ -86,6 +88,7 @@ class Role
     public function setRole($role)
     {
         $this->role = $role;
+
         return $this;
     }
 
@@ -108,6 +111,7 @@ class Role
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -130,28 +134,30 @@ class Role
     public function setPerformance(Performance $performance = null)
     {
         $this->performance = $performance;
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return User
+     * @return Employee
      */
-    public function getUser()
+    public function getEmployee()
     {
-        return $this->user;
+        return $this->employee;
     }
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param Employee $employee
      * @return Role
      */
-    public function setUser(User $user = null)
+    public function setUser(Employee $employee = null)
     {
-        $this->user = $user;
+        $this->employee = $employee;
+
         return $this;
     }
 }
