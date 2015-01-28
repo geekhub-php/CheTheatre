@@ -1,5 +1,5 @@
 AppBundle\Entity\Affiche:
-  affiches{1..4}:
+  affiches{1..6}:
     performance: @performance*
     dateTime: <dateTime()>
 
@@ -12,7 +12,7 @@ AppBundle\Entity\Performance:
     role: @roles*
 
 AppBundle\Entity\Role:
-  roles{1..4}:
+  roles{1..5}:
     role: <roleName()>
     description: <roleDescription()>
     performance: @performance*
