@@ -27,7 +27,8 @@
         "twig/extensions": "~1.0",
         "nelmio/api-doc-bundle": "~2.7",
         "sonata-project/admin-bundle": "~2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/media-bundle": "~2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
