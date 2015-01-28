@@ -102,7 +102,7 @@ class Employee
      * Set firstName
      *
      * @param string $firstName
-     * @return User
+     * @return Employee
      */
     public function setFirstName($firstName)
     {
@@ -125,7 +125,7 @@ class Employee
      * Set lastName
      *
      * @param string $lastName
-     * @return User
+     * @return Employee
      */
     public function setLastName($lastName)
     {
@@ -148,7 +148,7 @@ class Employee
      * Set middleName
      *
      * @param string $middleName
-     * @return User
+     * @return Employee
      */
     public function setMiddleName($middleName)
     {
@@ -171,7 +171,7 @@ class Employee
      * Set dob
      *
      * @param \DateTime $dob
-     * @return User
+     * @return Employee
      */
     public function setDob($dob)
     {
@@ -194,7 +194,7 @@ class Employee
      * Set position
      *
      * @param string $position
-     * @return User
+     * @return Employee
      */
     public function setPosition($position)
     {
@@ -206,7 +206,7 @@ class Employee
     /**
      * Set role
      * @param role $role
-     * @return User
+     * @return Employee
      */
     public function setRole(Role $role)
     {
