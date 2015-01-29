@@ -5,14 +5,21 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
- *
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Employee
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
     /**
      * @var integer
      *
@@ -61,14 +68,17 @@ class Employee
      */
     private $position;
 
-//    add private $medias when MediaBundle is installed;
-
     /**
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"})
      */
     private $roles;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true, name="deletedAt")
+     */
+    private $deletedAt;
 
     /**
      * Constructor
@@ -223,5 +233,28 @@ class Employee
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Employee
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
     }
 }

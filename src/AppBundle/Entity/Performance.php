@@ -5,13 +5,21 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Performance
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
     /**
      * @var integer
      *
@@ -44,8 +52,6 @@ class Performance
      */
     private $premiere;
 
-//    add private $medias when MediaBundle is installed;
-
     /**
      * @var Affiche[]
      *
@@ -59,6 +65,11 @@ class Performance
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
      */
     private $roles;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true, name="deletedAt")
+     */
+    private $deletedAt;
 
     /**
      * Constructor
@@ -190,5 +201,28 @@ class Performance
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Performance
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
     }
 }

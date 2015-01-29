@@ -5,13 +5,21 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Table(name="affiches")
  * @ORM\Entity
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Affiche
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
     /**
      * @var integer
      *
@@ -35,6 +43,11 @@ class Affiche
      * @ORM\Column(type="datetime")
      */
     private $dateTime;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true, name="deletedAt")
+     */
+    private $deletedAt;
 
     /**
      * Constructor
@@ -96,6 +109,29 @@ class Affiche
     public function setDateTime($dateTime)
     {
         $this->dateTime = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Affiche
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
 
         return $this;
     }
