@@ -7,10 +7,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="affiches")
+ * @ORM\Table(name="perfomance_schedule")
  * @ORM\Entity
  */
-class Affiche
+class PerfomanceEvent
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class Affiche
     /**
      * @var Performance
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="affiches", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="perfomanceEvents", cascade={"persist"})
      */
     private $performance;
 
@@ -47,7 +47,7 @@ class Affiche
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -55,24 +55,14 @@ class Affiche
     }
 
     /**
-     * Get performance
+     * Set dateTime
      *
-     * @return Performance
+     * @param \DateTime $dateTime
+     * @return PerfomanceEvent
      */
-    public function getPerformance()
+    public function setDateTime($dateTime)
     {
-        return $this->performance;
-    }
-
-    /**
-     * Set performance
-     *
-     * @param Performance $performance
-     * @return affiche
-     */
-    public function setPerformance(Performance $performance = null)
-    {
-        $this->performance = $performance;
+        $this->dateTime = $dateTime;
 
         return $this;
     }
@@ -80,7 +70,7 @@ class Affiche
     /**
      * Get dateTime
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateTime()
     {
@@ -88,15 +78,25 @@ class Affiche
     }
 
     /**
-     * Set dateTime
+     * Set performance
      *
-     * @param \DateTime $dateTime
-     * @return affiche
+     * @param \AppBundle\Entity\Performance $performance
+     * @return PerfomanceEvent
      */
-    public function setDateTime($dateTime)
+    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
     {
-        $this->dateTime = $dateTime;
+        $this->performance = $performance;
 
         return $this;
+    }
+
+    /**
+     * Get performance
+     *
+     * @return \AppBundle\Entity\Performance 
+     */
+    public function getPerformance()
+    {
+        return $this->performance;
     }
 }
