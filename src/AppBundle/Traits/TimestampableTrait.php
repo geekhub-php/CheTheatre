@@ -8,21 +8,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait TimestampableTrait
 {
     /**
-     * @var \DateTime $createdAt Created at
-     * @Assert\Type("\DateTime")
-     * @ORM\Column(type="datetime", nullable=false)
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", name="createdAt")
      */
     protected $createdAt;
 
     /**
-     * @var \DateTime $updatedAt Updated at
-     * @Assert\Type("\DateTime")
-     * @ORM\Column(type="datetime", nullable=false)
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true, name="updatedAt")
      */
     protected $updatedAt;
 
     /**
-     * @var \DateTime $deletedAt Deleted at
      * @ORM\Column(type="datetime", nullable=true, name="deletedAt")
      */
     protected $deletedAt;
