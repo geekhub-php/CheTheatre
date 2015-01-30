@@ -61,14 +61,20 @@ class Employee
      */
     private $position;
 
-//    add private $medias when MediaBundle is installed;
-
     /**
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"})
      */
     private $roles;
+
+    /**
+     * @Gedmo\Slug(fields={"firstName", "lastName"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+//    add private $medias when MediaBundle is installed;
 
     /**
      * Constructor
@@ -81,7 +87,7 @@ class Employee
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -89,20 +95,10 @@ class Employee
     }
 
     /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
      * Set firstName
      *
      * @param string $firstName
-     * @return User
+     * @return Employee
      */
     public function setFirstName($firstName)
     {
@@ -112,20 +108,20 @@ class Employee
     }
 
     /**
-     * Get lastName
+     * Get firstName
      *
-     * @return string
+     * @return string 
      */
-    public function getLastName()
+    public function getFirstName()
     {
-        return $this->lastName;
+        return $this->firstName;
     }
 
     /**
      * Set lastName
      *
      * @param string $lastName
-     * @return User
+     * @return Employee
      */
     public function setLastName($lastName)
     {
@@ -135,20 +131,20 @@ class Employee
     }
 
     /**
-     * Get middleName
+     * Get lastName
      *
-     * @return string
+     * @return string 
      */
-    public function getMiddleName()
+    public function getLastName()
     {
-        return $this->middleName;
+        return $this->lastName;
     }
 
     /**
      * Set middleName
      *
      * @param string $middleName
-     * @return User
+     * @return Employee
      */
     public function setMiddleName($middleName)
     {
@@ -158,20 +154,20 @@ class Employee
     }
 
     /**
-     * Get dob
+     * Get middleName
      *
-     * @return \DateTime
+     * @return string 
      */
-    public function getDob()
+    public function getMiddleName()
     {
-        return $this->dob;
+        return $this->middleName;
     }
 
     /**
      * Set dob
      *
      * @param \DateTime $dob
-     * @return User
+     * @return Employee
      */
     public function setDob($dob)
     {
@@ -181,20 +177,20 @@ class Employee
     }
 
     /**
-     * Get position
+     * Get dob
      *
-     * @return string
+     * @return \DateTime 
      */
-    public function getPosition()
+    public function getDob()
     {
-        return $this->position;
+        return $this->dob;
     }
 
     /**
      * Set position
      *
      * @param string $position
-     * @return User
+     * @return Employee
      */
     public function setPosition($position)
     {
@@ -204,21 +200,65 @@ class Employee
     }
 
     /**
-     * Set role
-     * @param role $role
-     * @return User
+     * Get position
+     *
+     * @return string 
      */
-    public function setRole(Role $role)
+    public function getPosition()
     {
-        $this->roles[] = $role;
+        return $this->position;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Employee
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     * @return Employee
+     */
+    public function addRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     */
+    public function removeRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
      * Get roles
      *
-     * @return array
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRoles()
     {

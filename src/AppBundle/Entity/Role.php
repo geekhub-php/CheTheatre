@@ -27,7 +27,7 @@ class Role
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $title;
 
     /**
      * @var string
@@ -51,6 +51,12 @@ class Role
     private $employee;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -62,7 +68,7 @@ class Role
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -70,43 +76,33 @@ class Role
     }
 
     /**
-     * Get role
+     * Set title
      *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
+     * @param string $title
      * @return Role
      */
-    public function setRole($role)
+    public function setTitle($title)
     {
-        $this->role = $role;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get title
      *
-     * @return string
+     * @return string 
      */
-    public function getDescription()
+    public function getTitle()
     {
-        return $this->description;
+        return $this->title;
     }
 
     /**
      * Set description
      *
      * @param string $description
-     * @return Performance
+     * @return Role
      */
     public function setDescription($description)
     {
@@ -116,22 +112,45 @@ class Role
     }
 
     /**
-     * Get performance
+     * Get description
      *
-     * @return Performance
+     * @return string 
      */
-    public function getPerformance()
+    public function getDescription()
     {
-        return $this->performance;
+        return $this->description;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Role
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
      * Set performance
      *
-     * @param Performance $performance
+     * @param \AppBundle\Entity\Performance $performance
      * @return Role
      */
-    public function setPerformance(Performance $performance = null)
+    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
     {
         $this->performance = $performance;
 
@@ -139,25 +158,35 @@ class Role
     }
 
     /**
-     * Get user
+     * Get performance
      *
-     * @return Employee
+     * @return \AppBundle\Entity\Performance 
      */
-    public function getEmployee()
+    public function getPerformance()
     {
-        return $this->employee;
+        return $this->performance;
     }
 
     /**
-     * Set user
+     * Set employee
      *
-     * @param Employee $employee
+     * @param \AppBundle\Entity\Employee $employee
      * @return Role
      */
-    public function setUser(Employee $employee = null)
+    public function setEmployee(\AppBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
 
         return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \AppBundle\Entity\Employee 
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
     }
 }

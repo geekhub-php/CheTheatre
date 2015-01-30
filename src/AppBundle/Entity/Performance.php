@@ -47,11 +47,11 @@ class Performance
 //    add private $medias when MediaBundle is installed;
 
     /**
-     * @var Affiche[]
+     * @var PerfomanceEvent[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Affiche", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performance", cascade={"persist"})
      */
-    private $affiches;
+    private $perfomanceEvents;
 
     /**
      * @var Role[]
@@ -59,6 +59,12 @@ class Performance
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
      */
     private $roles;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -72,21 +78,11 @@ class Performance
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -103,13 +99,13 @@ class Performance
     }
 
     /**
-     * Get description
+     * Get title
      *
-     * @return string
+     * @return string 
      */
-    public function getDescription()
+    public function getTitle()
     {
-        return $this->description;
+        return $this->title;
     }
 
     /**
@@ -126,13 +122,13 @@ class Performance
     }
 
     /**
-     * Get premiere
+     * Get description
      *
-     * @return \DateTime
+     * @return string 
      */
-    public function getPremiere()
+    public function getDescription()
     {
-        return $this->premiere;
+        return $this->description;
     }
 
     /**
@@ -149,43 +145,98 @@ class Performance
     }
 
     /**
-     * Set affiche
-     * @param affiche $affiche
-     * @return Performance
-     */
-    public function setAffiche(Affiche $affiche)
-    {
-        $this->affiches[] = $affiche;
-
-        return $this;
-    }
-
-    /**
-     * Get affiches
+     * Get premiere
      *
-     * @return array
+     * @return \DateTime 
      */
-    public function getAffiches()
+    public function getPremiere()
     {
-        return $this->affiches;
+        return $this->premiere;
     }
 
     /**
-     * Set role
-     * @param role $role
+     * Set slug
+     *
+     * @param string $slug
      * @return Performance
      */
-    public function setRole(Role $role)
+    public function setSlug($slug)
     {
-        $this->roles[] = $role;
+        $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add perfomanceEvents
+     *
+     * @param \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
+     * @return Performance
+     */
+    public function addPerfomanceEvent(\AppBundle\Entity\PerfomanceEvent $perfomanceEvents)
+    {
+        $this->perfomanceEvents[] = $perfomanceEvents;
+
+        return $this;
+    }
+
+    /**
+     * Remove perfomanceEvents
+     *
+     * @param \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
+     */
+    public function removePerfomanceEvent(\AppBundle\Entity\PerfomanceEvent $perfomanceEvents)
+    {
+        $this->perfomanceEvents->removeElement($perfomanceEvents);
+    }
+
+    /**
+     * Get perfomanceEvents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPerfomanceEvents()
+    {
+        return $this->perfomanceEvents;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     * @return Performance
+     */
+    public function addRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     */
+    public function removeRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
     }
 
     /**
      * Get roles
      *
-     * @return array
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRoles()
     {
