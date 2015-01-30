@@ -1,4 +1,4 @@
-CheTheatre
+CheTheatre [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/?branch=develop)
 ==========
 
 Please add description of the project
