@@ -71,7 +71,7 @@ class Performance
      */
     public function __construct()
     {
-        $this->affiches = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->perfomanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
