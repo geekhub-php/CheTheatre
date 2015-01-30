@@ -62,8 +62,6 @@ class Employee
     private $position;
 
     /**
-     * @var Role[]
-     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"})
      */
     private $roles;

@@ -47,15 +47,11 @@ class Performance
 //    add private $medias when MediaBundle is installed;
 
     /**
-     * @var PerfomanceEvent[]
-     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performance", cascade={"persist"})
      */
     private $perfomanceEvents;
 
     /**
-     * @var Role[]
-     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
      */
     private $roles;

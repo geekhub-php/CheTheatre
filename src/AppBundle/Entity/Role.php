@@ -61,8 +61,8 @@ class Role
      */
     public function __construct()
     {
-        $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performance = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
