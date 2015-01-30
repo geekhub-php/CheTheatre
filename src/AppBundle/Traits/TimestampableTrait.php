@@ -4,7 +4,6 @@ namespace AppBundle\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 trait TimestampableTrait
 {
@@ -28,7 +27,7 @@ trait TimestampableTrait
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime Created at
      */
     public function getCreatedAt()
     {
@@ -38,7 +37,7 @@ trait TimestampableTrait
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param \DateTime $createdAt Created at
      * @return $this
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -51,7 +50,7 @@ trait TimestampableTrait
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime Updated at
      */
     public function getUpdatedAt()
     {
@@ -59,9 +58,9 @@ trait TimestampableTrait
     }
 
     /**
-     * Set updatedAt
+     * Set updated At
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTime $updatedAt Updated at
      * @return $this
      */
     public function setUpdatedAt(\DateTime $updatedAt)
@@ -74,7 +73,7 @@ trait TimestampableTrait
     /**
      * Get deletedAt
      *
-     * @return \DateTime
+     * @return \DateTime Deleted at
      */
     public function getDeletedAt()
     {
@@ -84,7 +83,7 @@ trait TimestampableTrait
     /**
      * Set deletedAt
      *
-     * @param \DateTime $deletedAt
+     * @param \DateTime $deletedAt Deleted at
      * @return $this
      */
     public function setDeletedAt(\DateTime $deletedAt)
