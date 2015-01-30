@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
+use AppBundle\Traits\TimestampableTrait;
 
 /**
  * @ORM\Table(name="roles")
@@ -14,11 +14,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Role
 {
-    /**
-     * Hook timestampable behavior
-     * updates createdAt, updatedAt fields
-     */
-    use TimestampableEntity;
+    use TimestampableTrait;
 
     /**
      * @var integer
@@ -57,11 +53,6 @@ class Role
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
      */
     private $employee;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true, name="deletedAt")
-     */
-    private $deletedAt;
 
     /**
      * Constructor
@@ -170,29 +161,6 @@ class Role
     public function setUser(Employee $employee = null)
     {
         $this->employee = $employee;
-
-        return $this;
-    }
-
-    /**
-     * Get deletedAt
-     *
-     * @return \DateTime
-     */
-    public function getDeletedAt()
-    {
-        return $this->deletedAt;
-    }
-
-    /**
-     * Set deletedAt
-     *
-     * @param \DateTime $deletedAt
-     * @return Role
-     */
-    public function setDeletedAt($deletedAt)
-    {
-        $this->deletedAt = $deletedAt;
 
         return $this;
     }
