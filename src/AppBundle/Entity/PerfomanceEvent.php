@@ -41,7 +41,7 @@ class PerfomanceEvent
      */
     public function __construct()
     {
-        $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performance = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
