@@ -26,7 +26,7 @@ class PerfomanceEvent
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="perfomanceEvents", cascade={"persist"})
      */
-    private $performance;
+    private $performances;
 
     /**
      * @var /Datetime

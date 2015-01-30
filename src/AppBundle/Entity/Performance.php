@@ -49,14 +49,14 @@ class Performance
     /**
      * @var PerfomanceEvent[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performances", cascade={"persist"})
      */
     private $perfomanceEvents;
 
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performances", cascade={"persist"})
      */
     private $roles;
 

@@ -41,14 +41,14 @@ class Role
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
      */
-    private $performance;
+    private $performances;
 
     /**
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
      */
-    private $employee;
+    private $employees;
 
     /**
      * @Gedmo\Slug(fields={"title"})
@@ -62,7 +62,7 @@ class Role
     public function __construct()
     {
         $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
