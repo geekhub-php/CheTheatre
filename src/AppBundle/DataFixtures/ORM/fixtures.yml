@@ -1,121 +1,27 @@
 AppBundle\Entity\Affiche:
-  affiches{1..4}:
-    performance: @performance*
-    dateTime: <dateTime()>
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
+  affiche1{1..20}:
+    dateTime: <dateTimeBetween('-61 days', '-31 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+    deletedAt: <dateTimeBetween($createdAt, 'now')>
 
-AppBundle\Entity\Performance:
-  performance1:
-    title: Хто в домі господар?
-    description: За комедією «Фараони» Олексія Коломійця про реалії життя в невеликому містечку з його колгоспом, проблемами і прагненням до покращення та сподіванням на механізацію процесу господарювання. Музична вистава, де не зрозуміло в деякі моменти – чи жартують із вами зі сцени, чи абсолютно серйозно виголошують ідеологічні лозунги. Історія про те, як чоловіки з жінками помінялися своїми «професійними» обов’язками, зрозуміли усі «переваги» життя протилежної статі, виявилася лише сном головного героя Миколи Тарана (Юрій Берлінський). Сном, але не без моралі. Чоловіки зрозуміли, що потрібно берегти своїх жінок, адже домашні справи, виявляється, переробити не так то й легко. Обурює чоловіків у нових амплуа і те, що жінки перебрали на себе їхню місію гуляти до пізньої ночі та пити горілку
-    premiere: <dateTime('2015-01-31 17:00')>
-    affiche: @affiches*
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  performance2:
-    title: Кайдашева сім'я
-    description: Повість «Кайдашева сім\'я» написана нашим земляком Іваном Нечуєм-Левицьким понад 100 років тому. Але чи знайдуться і сьогодні байдужі до родинних пристрастей, що раз по раз вибухають у боротьбі за сімейне верховенство між свекрухою та невісткою? Та ще коли одна варта другої, замість сподіваного спочинку мати змушена всьому дати лад.
-    premiere: <dateTime('2015-01-29 18:30')>
-    affiche: @affiches*
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  performance3:
-    title: Сад Гетсиманський
-    description: Боже духів і всякої плоті, Ти смерть подолав і диявола знищив, і життя світові Твоєму дарував; Сам, Господи, упокой душі усопших рабів Твоїх, у місці світлім, у місці квітучім, у місці спокійнім, де нема ні хвороби, ні печалі, ні зітхання. Всяке гріхопадіння вчинене нами словом, або ділом, або помислом, як благий і чоловіколюбець Бог, прости, бо немає чоловіка, що жив би, а не згрішив; бо Ти один без гріха, правда Твоя – правда во віки, і слово Твоє - Істина. Амінь.
-    premiere: <dateTime('2015-01-25 17:00')>
-    affiche: @affiches*
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  performance4:
-    title: Шельменко-денщик
-    description: О, добре б, братику, було, якби ми так говорили, як у книжках пишуть, а якби ще так і робили, так би й не було на світі нічого луччого!
-    premiere: <dateTime('2015-01-18 17:00')>
-    affiche: @affiches*
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
+AppBundle\Entity\Affiche:
+  affiche2{1..20}:
+    dateTime: <dateTimeBetween(@affiche1-> dateTime, 'now')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+    deletedAt: <dateTimeBetween($createdAt, 'now')>
 
-AppBundle\Entity\Role:
-  role1:
-    role: Фенна Степанівна
-    description: Жінка Кирила Петровича Шпака, поміщика. Мама Прісіньки. У заможного Шпака є красива донька, якій він знайшов, на його думку, достойного і відповідного нареченого. Та дівчина покохала іншого, на шлюб з яким Шпак не може погодитися. Не може, поки у справу не втручається виверткий денщик Шельменко
-    performance: @performance*
-    employee: @employee*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  role2:
-    role: Стецько
-    description: Стецько не дурний… Його батько каже, що просто, у нього, не всі вдома. Але Стецько впевнений, що до вечора вони позбираються. А ще, у його батька, є ГРОШІ!!! І ця обставина дає право Стецькові свататись до любої дівчини у Гончарівці. Але дивакуваті дівчата іншої думки… Вони мріють про якесь КОХАННЯ
-    performance: @performance*
-    employee: @employee*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  role3:
-    role: Андрій Чумак
-    description: Андрій Чумак, головний герой твору, піднімається на Голгофу власного життя, намагаючись зберегти свої принципи, погляди, переконання, пройти всі кола пекла радянської в’язниці й залишитися людиною
-    performance: @performance*
-    employee: @employee*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  role4:
-    role: Варя
-    description: Варвара Михайлівна - одна з головних героїнь у постановці «Вишневий сад», прийомна дочка поміщиці Раневської. Їй 24 роки і вона веде все господарство Раневських, виступаючи одночасно і прийомною дочкою, і економкою. За вдачею Варя дуже скромна і благочестива дівчина, сумлінно відноситься до своїх завдань. Мрія Варі - мати хоча б сто рублів і поїхати по святих місцях або піти у монашки
-    performance: @performance*
-    employee: @employee*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
+AppBundle\Entity\Affiche:
+  affiche3{1..20}:
+    dateTime: dateTime: <dateTimeBetween('now', '+30 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+    deletedAt: <dateTimeBetween($createdAt, 'now')>
 
-AppBundle\Entity\Employee:
-  employee1:
-    firstName: Наталія
-    LastName: Вігран
-    MiddleName: <firstName()>
-    dob: <dateTime()>
-    position: Заслужена артистка України
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  employee2:
-    firstName: Марія
-    LastName: Марущак
-    MiddleName: <firstName()>
-    dob: <dateTime()>
-    position: Актриса
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  employee3:
-    firstName: Юрій
-    LastName: Берлінський
-    MiddleName: <firstName()>
-    dob: <dateTime()>
-    position: Заслужений артист України
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
-  employee4:
-    firstName: Сергій
-    LastName: Бобров
-    MiddleName: <firstName()>
-    dob: <dateTime()>
-    position: Актор
-    role: @role*
-    createdAt: <dateTime()>
-    updatedAt: <dateTime()>
-    deletedAt: <dateTime()>
+AppBundle\Entity\Affiche:
+  affiche4{1..20}:
+    dateTime: dateTime: <dateTimeBetween(@affiche1-> dateTime, '+31 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+    deletedAt: <dateTimeBetween($createdAt, 'now')>
