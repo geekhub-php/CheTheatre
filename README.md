@@ -1,4 +1,4 @@
-CheTheatre [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/?branch=develop)
+CheTheatre [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/?branch=develop) [![Build Status](https://travis-ci.org/geekhub-php/CheTheatre.svg?branch=develop)](https://travis-ci.org/geekhub-php/CheTheatre)
 ==========
 
 Please add description of the project
