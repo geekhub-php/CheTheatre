@@ -9,7 +9,7 @@ env:
 
 before_script:
     - composer self-update
-    - php bin/reload
 
 script:
+  - php bin/reload
   - phpunit -c app/
