@@ -11,6 +11,8 @@
 /build/
 /vendor/
 /bin/
+!/bin/base_script.php
+!/bin/reload
 /composer.phar
 .idea/
 *~
