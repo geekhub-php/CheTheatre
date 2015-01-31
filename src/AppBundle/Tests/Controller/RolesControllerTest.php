@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RolesControllerTest extends WebTestCase
 {
-
     public function testGetRoles()
     {
         $client = static::createClient();

@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-
     public function testGet()
     {
         $client = static::createClient();
@@ -20,5 +19,4 @@ class DefaultControllerTest extends WebTestCase
         $client->request('GET', '/');
         $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
-
 }

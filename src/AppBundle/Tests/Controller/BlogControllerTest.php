@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BlogControllerTest extends WebTestCase
 {
-
     public function testGetBlogArticles()
     {
         $client = static::createClient();

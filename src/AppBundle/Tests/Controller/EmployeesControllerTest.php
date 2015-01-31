@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class EmployeesControllerTest extends WebTestCase
 {
-
     public function testGetEmployees()
     {
         $client = static::createClient();
@@ -62,5 +61,4 @@ class EmployeesControllerTest extends WebTestCase
         $client->request('GET', '/employees/{slug}/roles/{slug}');
         $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
-
 }

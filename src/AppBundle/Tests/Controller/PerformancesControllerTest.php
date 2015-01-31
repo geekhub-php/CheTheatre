@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PerformancesControllerTest extends WebTestCase
 {
-
     public function testGetPerformances()
     {
         $client = static::createClient();
