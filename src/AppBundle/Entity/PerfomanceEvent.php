@@ -77,25 +77,25 @@ class PerfomanceEvent
     }
 
     /**
-     * Set performance
+     * Set performances
      *
-     * @param  \AppBundle\Entity\Performance $performance
+     * @param  \AppBundle\Entity\Performance $performances
      * @return PerfomanceEvent
      */
-    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
+    public function setPerformances(\AppBundle\Entity\Performance $performances = null)
     {
-        $this->performance = $performance;
+        $this->performances = $performances;
 
         return $this;
     }
 
     /**
-     * Get performance
+     * Get performances
      *
      * @return \AppBundle\Entity\Performance
      */
-    public function getPerformance()
+    public function getPerformances()
     {
-        return $this->performance;
+        return $this->performances;
     }
 }

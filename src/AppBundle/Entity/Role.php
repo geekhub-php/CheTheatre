@@ -145,48 +145,48 @@ class Role
     }
 
     /**
-     * Set performance
+     * Set performances
      *
-     * @param  \AppBundle\Entity\Performance $performance
+     * @param  \AppBundle\Entity\Performance $performances
      * @return Role
      */
-    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
+    public function setPerformances(\AppBundle\Entity\Performance $performances = null)
     {
-        $this->performance = $performance;
+        $this->performances = $performances;
 
         return $this;
     }
 
     /**
-     * Get performance
+     * Get performances
      *
      * @return \AppBundle\Entity\Performance
      */
-    public function getPerformance()
+    public function getPerformances()
     {
-        return $this->performance;
+        return $this->performances;
     }
 
     /**
-     * Set employee
+     * Set employees
      *
-     * @param  \AppBundle\Entity\Employee $employee
+     * @param  \AppBundle\Entity\Employee $employees
      * @return Role
      */
-    public function setEmployee(\AppBundle\Entity\Employee $employee = null)
+    public function setEmployees(\AppBundle\Entity\Employee $employees = null)
     {
-        $this->employee = $employee;
+        $this->employees = $employees;
 
         return $this;
     }
 
     /**
-     * Get employee
+     * Get employees
      *
      * @return \AppBundle\Entity\Employee
      */
-    public function getEmployee()
+    public function getEmployees()
     {
-        return $this->employee;
+        return $this->employees;
     }
 }
