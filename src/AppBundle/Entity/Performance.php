@@ -49,14 +49,14 @@ class Performance
     /**
      * @var PerfomanceEvent[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performances", cascade={"persist"})
      */
     private $perfomanceEvents;
 
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performances", cascade={"persist"})
      */
     private $roles;
 
@@ -78,7 +78,7 @@ class Performance
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,7 +88,7 @@ class Performance
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string      $title
      * @return Performance
      */
     public function setTitle($title)
@@ -101,7 +101,7 @@ class Performance
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -111,7 +111,7 @@ class Performance
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string      $description
      * @return Performance
      */
     public function setDescription($description)
@@ -124,7 +124,7 @@ class Performance
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -134,7 +134,7 @@ class Performance
     /**
      * Set premiere
      *
-     * @param \DateTime $premiere
+     * @param  \DateTime   $premiere
      * @return Performance
      */
     public function setPremiere($premiere)
@@ -147,7 +147,7 @@ class Performance
     /**
      * Get premiere
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPremiere()
     {
@@ -157,7 +157,7 @@ class Performance
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string      $slug
      * @return Performance
      */
     public function setSlug($slug)
@@ -170,7 +170,7 @@ class Performance
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -180,7 +180,7 @@ class Performance
     /**
      * Add perfomanceEvents
      *
-     * @param \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
+     * @param  \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
      * @return Performance
      */
     public function addPerfomanceEvent(\AppBundle\Entity\PerfomanceEvent $perfomanceEvents)
@@ -203,7 +203,7 @@ class Performance
     /**
      * Get perfomanceEvents
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPerfomanceEvents()
     {
@@ -213,7 +213,7 @@ class Performance
     /**
      * Add roles
      *
-     * @param \AppBundle\Entity\Role $roles
+     * @param  \AppBundle\Entity\Role $roles
      * @return Performance
      */
     public function addRole(\AppBundle\Entity\Role $roles)
@@ -236,7 +236,7 @@ class Performance
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
