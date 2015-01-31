@@ -6,7 +6,7 @@ show_run("composer install", "composer install --no-interaction");
 
 build_bootstrap();
 
-show_run("database:drop", "app/console doctrine:database:drop --force", true);
+show_run("database:drop", "app/console doctrine:database:drop --force -q", true);
 show_run("database:create", "app/console doctrine:database:create");
 
 show_run("schema:create", "app/console doctrine:schema:create");
