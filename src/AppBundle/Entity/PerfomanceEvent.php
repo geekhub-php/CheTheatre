@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -47,7 +46,7 @@ class PerfomanceEvent
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +56,7 @@ class PerfomanceEvent
     /**
      * Set dateTime
      *
-     * @param \DateTime $dateTime
+     * @param  \DateTime       $dateTime
      * @return PerfomanceEvent
      */
     public function setDateTime($dateTime)
@@ -70,7 +69,7 @@ class PerfomanceEvent
     /**
      * Get dateTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateTime()
     {
@@ -80,7 +79,7 @@ class PerfomanceEvent
     /**
      * Set performance
      *
-     * @param \AppBundle\Entity\Performance $performance
+     * @param  \AppBundle\Entity\Performance $performance
      * @return PerfomanceEvent
      */
     public function setPerformance(\AppBundle\Entity\Performance $performance = null)
@@ -93,7 +92,7 @@ class PerfomanceEvent
     /**
      * Get performance
      *
-     * @return \AppBundle\Entity\Performance 
+     * @return \AppBundle\Entity\Performance
      */
     public function getPerformance()
     {

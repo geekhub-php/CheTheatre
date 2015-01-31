@@ -87,7 +87,7 @@ class Employee
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,7 +97,7 @@ class Employee
     /**
      * Set firstName
      *
-     * @param string $firstName
+     * @param  string   $firstName
      * @return Employee
      */
     public function setFirstName($firstName)
@@ -110,7 +110,7 @@ class Employee
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -120,7 +120,7 @@ class Employee
     /**
      * Set lastName
      *
-     * @param string $lastName
+     * @param  string   $lastName
      * @return Employee
      */
     public function setLastName($lastName)
@@ -133,7 +133,7 @@ class Employee
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -143,7 +143,7 @@ class Employee
     /**
      * Set middleName
      *
-     * @param string $middleName
+     * @param  string   $middleName
      * @return Employee
      */
     public function setMiddleName($middleName)
@@ -156,7 +156,7 @@ class Employee
     /**
      * Get middleName
      *
-     * @return string 
+     * @return string
      */
     public function getMiddleName()
     {
@@ -166,7 +166,7 @@ class Employee
     /**
      * Set dob
      *
-     * @param \DateTime $dob
+     * @param  \DateTime $dob
      * @return Employee
      */
     public function setDob($dob)
@@ -179,7 +179,7 @@ class Employee
     /**
      * Get dob
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDob()
     {
@@ -189,7 +189,7 @@ class Employee
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string   $position
      * @return Employee
      */
     public function setPosition($position)
@@ -202,7 +202,7 @@ class Employee
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
@@ -212,7 +212,7 @@ class Employee
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string   $slug
      * @return Employee
      */
     public function setSlug($slug)
@@ -225,7 +225,7 @@ class Employee
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -235,7 +235,7 @@ class Employee
     /**
      * Add roles
      *
-     * @param \AppBundle\Entity\Role $roles
+     * @param  \AppBundle\Entity\Role $roles
      * @return Employee
      */
     public function addRole(\AppBundle\Entity\Role $roles)
@@ -258,7 +258,7 @@ class Employee
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {

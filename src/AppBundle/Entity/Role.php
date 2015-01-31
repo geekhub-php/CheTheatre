@@ -68,7 +68,7 @@ class Role
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class Role
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Role
      */
     public function setTitle($title)
@@ -91,7 +91,7 @@ class Role
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -101,7 +101,7 @@ class Role
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Role
      */
     public function setDescription($description)
@@ -114,7 +114,7 @@ class Role
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -124,7 +124,7 @@ class Role
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Role
      */
     public function setSlug($slug)
@@ -137,7 +137,7 @@ class Role
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -147,7 +147,7 @@ class Role
     /**
      * Set performance
      *
-     * @param \AppBundle\Entity\Performance $performance
+     * @param  \AppBundle\Entity\Performance $performance
      * @return Role
      */
     public function setPerformance(\AppBundle\Entity\Performance $performance = null)
@@ -160,7 +160,7 @@ class Role
     /**
      * Get performance
      *
-     * @return \AppBundle\Entity\Performance 
+     * @return \AppBundle\Entity\Performance
      */
     public function getPerformance()
     {
@@ -170,7 +170,7 @@ class Role
     /**
      * Set employee
      *
-     * @param \AppBundle\Entity\Employee $employee
+     * @param  \AppBundle\Entity\Employee $employee
      * @return Role
      */
     public function setEmployee(\AppBundle\Entity\Employee $employee = null)
@@ -183,7 +183,7 @@ class Role
     /**
      * Get employee
      *
-     * @return \AppBundle\Entity\Employee 
+     * @return \AppBundle\Entity\Employee
      */
     public function getEmployee()
     {
