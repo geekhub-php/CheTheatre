@@ -17,8 +17,8 @@ class PerfomanceEventsControllerTest extends WebTestCase
     public function testGetErrorPerfomanceEvents()
     {
         $client = static::createClient();
-        $client->request('GET', '/perfomance-events/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/perfomance-events');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetPerfomanceEventsId()
@@ -31,7 +31,7 @@ class PerfomanceEventsControllerTest extends WebTestCase
     public function testGetErrorPerfomanceEventsId()
     {
         $client = static::createClient();
-        $client->request('GET', '/perfomance-events/{id}/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/perfomance-events/{id}');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 }

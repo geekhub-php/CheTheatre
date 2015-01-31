@@ -17,8 +17,8 @@ class EmployeesControllerTest extends WebTestCase
     public function testGetErrorEmployees()
     {
         $client = static::createClient();
-        $client->request('GET', '/employees/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/employees');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetEmployeesSlug()
@@ -31,8 +31,8 @@ class EmployeesControllerTest extends WebTestCase
     public function testGetErrorEmployeesSlug()
     {
         $client = static::createClient();
-        $client->request('GET', '/employees/{slug}/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/employees/{slug}');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetEmployeesSlugRoles()
@@ -45,8 +45,8 @@ class EmployeesControllerTest extends WebTestCase
     public function testGetErrorEmployeesSlugRoles()
     {
         $client = static::createClient();
-        $client->request('GET', '/employees/{slug}/roles/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/employees/{slug}/roles');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetEmployeesSlugRolesSlug()
@@ -59,8 +59,8 @@ class EmployeesControllerTest extends WebTestCase
     public function testGetErrorEmployeesSlugRolesSlug()
     {
         $client = static::createClient();
-        $client->request('GET', '/employees/{slug}/roles/error/{slug}');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/employees/{slug}/roles/{slug}');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
 }

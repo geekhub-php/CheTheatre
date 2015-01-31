@@ -17,8 +17,8 @@ class RolesControllerTest extends WebTestCase
     public function testGetErrorRoles()
     {
         $client = static::createClient();
-        $client->request('GET', '/roles/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/roles');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetRolesSlug()
@@ -31,7 +31,7 @@ class RolesControllerTest extends WebTestCase
     public function testGetErrorRolesSlug()
     {
         $client = static::createClient();
-        $client->request('GET', '/roles/{slug}/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/roles/{slug}');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 }

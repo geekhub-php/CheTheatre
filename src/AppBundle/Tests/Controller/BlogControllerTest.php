@@ -17,8 +17,8 @@ class BlogControllerTest extends WebTestCase
     public function testGetErrorBlogArticles()
     {
         $client = static::createClient();
-        $client->request('GET', '/blog/articles/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/blog/articles');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetBlogArticlesSlug()
@@ -31,7 +31,7 @@ class BlogControllerTest extends WebTestCase
     public function testGetErrorBlogArticlesSlug()
     {
         $client = static::createClient();
-        $client->request('GET', '/blog/articles/{slug}/error');
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/blog/articles/{slug}');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 }
