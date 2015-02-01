@@ -143,7 +143,7 @@ class Role
     }
 
     /**
-     * Get user
+     * Get employee
      *
      * @return Employee
      */
@@ -153,12 +153,12 @@ class Role
     }
 
     /**
-     * Set user
+     * Set employee
      *
      * @param Employee $employee
      * @return Role
      */
-    public function setUser(Employee $employee = null)
+    public function setEmployee(Employee $employee = null)
     {
         $this->employee = $employee;
 
