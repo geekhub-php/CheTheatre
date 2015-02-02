@@ -31,7 +31,7 @@ class Role
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $title;
 
     /**
      * @var string
@@ -45,14 +45,20 @@ class Role
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
      */
-    private $performance;
+    private $performances;
 
     /**
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
      */
-    private $employee;
+    private $employees;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -60,7 +66,7 @@ class Role
     public function __construct()
     {
         $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -74,24 +80,37 @@ class Role
     }
 
     /**
-     * Get role
+     * Set title
      *
-     * @return string
+     * @param  string $title
+     * @return Role
      */
-    public function getRole()
+    public function setTitle($title)
     {
-        return $this->role;
+        $this->title = $title;
+
+        return $this;
     }
 
     /**
-     * Set role
+     * Get title
      *
-     * @param string $role
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param  string $description
      * @return Role
      */
-    public function setRole($role)
+    public function setDescription($description)
     {
-        $this->role = $role;
+        $this->description = $description;
 
         return $this;
     }
@@ -107,61 +126,71 @@ class Role
     }
 
     /**
-     * Set description
+     * Set slug
      *
-     * @param string $description
-     * @return Performance
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get performance
-     *
-     * @return Performance
-     */
-    public function getPerformance()
-    {
-        return $this->performance;
-    }
-
-    /**
-     * Set performance
-     *
-     * @param Performance $performance
+     * @param  string $slug
      * @return Role
      */
-    public function setPerformance(Performance $performance = null)
+    public function setSlug($slug)
     {
-        $this->performance = $performance;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get slug
      *
-     * @return Employee
+     * @return string
      */
-    public function getEmployee()
+    public function getSlug()
     {
-        return $this->employee;
+        return $this->slug;
     }
 
     /**
-     * Set user
+     * Set performances
      *
-     * @param Employee $employee
+     * @param  \AppBundle\Entity\Performance $performances
      * @return Role
      */
-    public function setUser(Employee $employee = null)
+    public function setPerformances(\AppBundle\Entity\Performance $performances = null)
     {
-        $this->employee = $employee;
+        $this->performances = $performances;
 
         return $this;
+    }
+
+    /**
+     * Get performances
+     *
+     * @return \AppBundle\Entity\Performance
+     */
+    public function getPerformances()
+    {
+        return $this->performances;
+    }
+
+    /**
+     * Set employees
+     *
+     * @param  \AppBundle\Entity\Employee $employees
+     * @return Role
+     */
+    public function setEmployees(\AppBundle\Entity\Employee $employees = null)
+    {
+        $this->employees = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \AppBundle\Entity\Employee
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

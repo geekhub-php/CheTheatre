@@ -5,17 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Traits\TimestampableTrait;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ *
  */
 class Employee
 {
-    use TimestampableTrait;
-
     /**
      * @var integer
      *
@@ -67,9 +64,17 @@ class Employee
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employees", cascade={"persist"})
      */
     private $roles;
+
+    /**
+     * @Gedmo\Slug(fields={"firstName", "lastName"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+//    add private $medias when MediaBundle is installed;
 
     /**
      * Constructor
@@ -90,6 +95,19 @@ class Employee
     }
 
     /**
+     * Set firstName
+     *
+     * @param  string   $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
      * Get firstName
      *
      * @return string
@@ -100,14 +118,14 @@ class Employee
     }
 
     /**
-     * Set firstName
+     * Set lastName
      *
-     * @param string $firstName
+     * @param  string   $lastName
      * @return Employee
      */
-    public function setFirstName($firstName)
+    public function setLastName($lastName)
     {
-        $this->firstName = $firstName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -123,14 +141,14 @@ class Employee
     }
 
     /**
-     * Set lastName
+     * Set middleName
      *
-     * @param string $lastName
+     * @param  string   $middleName
      * @return Employee
      */
-    public function setLastName($lastName)
+    public function setMiddleName($middleName)
     {
-        $this->lastName = $lastName;
+        $this->middleName = $middleName;
 
         return $this;
     }
@@ -146,14 +164,14 @@ class Employee
     }
 
     /**
-     * Set middleName
+     * Set dob
      *
-     * @param string $middleName
+     * @param  \DateTime $dob
      * @return Employee
      */
-    public function setMiddleName($middleName)
+    public function setDob($dob)
     {
-        $this->middleName = $middleName;
+        $this->dob = $dob;
 
         return $this;
     }
@@ -169,14 +187,14 @@ class Employee
     }
 
     /**
-     * Set dob
+     * Set position
      *
-     * @param \DateTime $dob
+     * @param  string   $position
      * @return Employee
      */
-    public function setDob($dob)
+    public function setPosition($position)
     {
-        $this->dob = $dob;
+        $this->position = $position;
 
         return $this;
     }
@@ -192,60 +210,58 @@ class Employee
     }
 
     /**
-     * Set position
+     * Set slug
      *
-     * @param string $position
+     * @param  string   $slug
      * @return Employee
      */
-    public function setPosition($position)
+    public function setSlug($slug)
     {
-        $this->position = $position;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Set role
-     * @param role $role
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param  \AppBundle\Entity\Role $roles
      * @return Employee
      */
-    public function setRole(Role $role)
+    public function addRole(\AppBundle\Entity\Role $roles)
     {
-        $this->roles[] = $role;
+        $this->roles[] = $roles;
 
         return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     */
+    public function removeRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
     }
 
     /**
      * Get roles
      *
-     * @return array
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
         return $this->roles;
-    }
-
-    /**
-     * Get deletedAt
-     *
-     * @return \DateTime
-     */
-    public function getDeletedAt()
-    {
-        return $this->deletedAt;
-    }
-
-    /**
-     * Set deletedAt
-     *
-     * @param \DateTime $deletedAt
-     * @return Employee
-     */
-    public function setDeletedAt($deletedAt)
-    {
-        $this->deletedAt = $deletedAt;
-
-        return $this;
     }
 }
