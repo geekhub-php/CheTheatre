@@ -5,13 +5,17 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Traits\TimestampableTrait;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Performance
 {
+    use TimestampableTrait;
+
     /**
      * @var integer
      *
@@ -43,8 +47,6 @@ class Performance
      * @ORM\Column(type="datetime")
      */
     private $premiere;
-
-//    add private $medias when MediaBundle is installed;
 
     /**
      * @var PerfomanceEvent[]

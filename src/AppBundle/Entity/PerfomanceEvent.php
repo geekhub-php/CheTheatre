@@ -4,13 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Traits\TimestampableTrait;
 
 /**
  * @ORM\Table(name="perfomance_schedule")
  * @ORM\Entity
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class PerfomanceEvent
 {
+    use TimestampableTrait;
+
     /**
      * @var integer
      *
