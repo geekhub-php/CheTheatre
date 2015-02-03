@@ -80,6 +80,16 @@ class Role
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set title
      *
      * @param  string $title
@@ -93,13 +103,13 @@ class Role
     }
 
     /**
-     * Get title
+     * Get description
      *
      * @return string
      */
-    public function getTitle()
+    public function getDescription()
     {
-        return $this->title;
+        return $this->description;
     }
 
     /**
@@ -116,13 +126,13 @@ class Role
     }
 
     /**
-     * Get description
+     * Get slug
      *
      * @return string
      */
-    public function getDescription()
+    public function getSlug()
     {
-        return $this->description;
+        return $this->slug;
     }
 
     /**
@@ -139,13 +149,13 @@ class Role
     }
 
     /**
-     * Get slug
+     * Get performances
      *
-     * @return string
+     * @return \AppBundle\Entity\Performance
      */
-    public function getSlug()
+    public function getPerformances()
     {
-        return $this->slug;
+        return $this->performances;
     }
 
     /**
@@ -162,13 +172,13 @@ class Role
     }
 
     /**
-     * Get performances
+     * Get employees
      *
-     * @return \AppBundle\Entity\Performance
+     * @return \AppBundle\Entity\Employee
      */
-    public function getPerformances()
+    public function getEmployees()
     {
-        return $this->performances;
+        return $this->employees;
     }
 
     /**
@@ -182,15 +192,5 @@ class Role
         $this->employees = $employees;
 
         return $this;
-    }
-
-    /**
-     * Get employees
-     *
-     * @return \AppBundle\Entity\Employee
-     */
-    public function getEmployees()
-    {
-        return $this->employees;
     }
 }
