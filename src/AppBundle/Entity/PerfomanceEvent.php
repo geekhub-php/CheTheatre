@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 
@@ -58,9 +59,19 @@ class PerfomanceEvent
     }
 
     /**
+     * Get dateTime
+     *
+     * @return \DateTime
+     */
+    public function getDateTime()
+    {
+        return $this->dateTime;
+    }
+
+    /**
      * Set dateTime
      *
-     * @param  \DateTime       $dateTime
+     * @param  \DateTime $dateTime
      * @return PerfomanceEvent
      */
     public function setDateTime($dateTime)
@@ -71,13 +82,13 @@ class PerfomanceEvent
     }
 
     /**
-     * Get dateTime
+     * Get performances
      *
-     * @return \DateTime
+     * @return \AppBundle\Entity\Performance
      */
-    public function getDateTime()
+    public function getPerformances()
     {
-        return $this->dateTime;
+        return $this->performances;
     }
 
     /**
@@ -91,15 +102,5 @@ class PerfomanceEvent
         $this->performances = $performances;
 
         return $this;
-    }
-
-    /**
-     * Get performances
-     *
-     * @return \AppBundle\Entity\Performance
-     */
-    public function getPerformances()
-    {
-        return $this->performances;
     }
 }

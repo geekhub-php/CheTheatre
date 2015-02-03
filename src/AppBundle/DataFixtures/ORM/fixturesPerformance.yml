@@ -3,7 +3,7 @@ AppBundle\Entity\Performance:
     title: Серед грому і тиші
     description: Вистава присвячена 80-річчю від дня народження Василя Симоненка. Сергій Проскурня. документальна історія
     premiere: <dateTime('2015-01-08 16:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -12,7 +12,7 @@ AppBundle\Entity\Performance:
     title: Кайдашева сім'я
     description: Іван Нечуй-Левицький. Трагікомедія на 3 дії. Тривалість вистави 2 год. 35 хв.
     premiere: <dateTime('2015-01-25 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -21,7 +21,7 @@ AppBundle\Entity\Performance:
     title: Сад Гетсиманський
     description: Народна трагедія на 2 дії. Тривалість вистави 2 год. 20 хв. Тривалість вистави 1 год. 50 хв.
     premiere: <dateTime('2015-01-29 18:30')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -30,7 +30,7 @@ AppBundle\Entity\Performance:
     title: Шельменко-денщик
     description: Григорій Квітка-Основ’яненко. Музика Василя Соловйова-Сєдого. Музична комедія на 3 дії.
     premiere: <dateTime('2015-01-31 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -39,7 +39,7 @@ AppBundle\Entity\Performance:
     title: Хто в домі господар?
     description: Олексій Коломієць. Травестія на 2 дії за п’єсою «Фараони». Тривалість вистави 2 год. 05 хв.
     premiere: <dateTime('2015-01-18 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -48,7 +48,7 @@ AppBundle\Entity\Performance:
     title: За двома зайцями
     description: Михайло Старицький. Комедія на 2 дії. Тривалість вистави 2 год. 15 хв.
     premiere: <dateTime('2015-01-11 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -57,7 +57,7 @@ AppBundle\Entity\Performance:
     title: Сватання на Гончарівці
     description: Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.
     premiere: <dateTime('2015-01-14 18:30')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -66,7 +66,7 @@ AppBundle\Entity\Performance:
     title: Натюрморт з товстим небожем
     description: Іон Сапдару. Трагікомедія на 2 дії про красу чудовиськ і любов. Тривалість вистави 1 год. 40 хв.
     premiere: <dateTime('2015-01-16 18:30')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -75,7 +75,7 @@ AppBundle\Entity\Performance:
     title: Мізантроп
     description: Жан-Батіст Мольєр. Маніакальна комедія
     premiere: <dateTime('2015-01-17 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -84,7 +84,7 @@ AppBundle\Entity\Performance:
     title: Дуже проста історія
     description: Марія Ладо. Притча (вистава йде з одним антрактом). Тривалість вистави 2 год.
     premiere: <dateTime('2015-01-24 17:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -93,7 +93,7 @@ AppBundle\Entity\Performance:
     title: Сканінг
     description: Євген Марковський. Антиутопія
     premiere: <dateTime('2015-01-28 18:30')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -102,7 +102,7 @@ AppBundle\Entity\Performance:
     title: Назар Стодоля
     description: Тарас Шевченко. Різдвяна містерія-бурлеск. Тривалість вистави 2 год.
     premiere: <dateTime('2015-01-30 18:30')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -111,7 +111,7 @@ AppBundle\Entity\Performance:
     title: Дванадцять місяців або хранителі року
     description: Самуіл Маршак. Музична казка. Тривалість вистави 1 год.
     premiere: <dateTime('2015-01-05 11:00', '2015-01-06 13:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -120,7 +120,7 @@ AppBundle\Entity\Performance:
     title: Золоте курча
     description: Володимир Орлов. Музична казка на 1 дію. Тривалість вистави 50 хв.
     premiere: <dateTime('2015-01-18 12:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -129,7 +129,7 @@ AppBundle\Entity\Performance:
     title: Король Дроздобород
     description: Богдан Стельмах. Музична казка на 1 дію. Тривалість вистави 1 год. 10 хв.
     premiere: <dateTime('2015-01-25 12:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -138,7 +138,7 @@ AppBundle\Entity\Performance:
     title: Дорога до сонця
     description: Аркадій Горін, Едуард Яворський. Музична казка на 1 дію. Тривалість вистави 1 год. 15 хв.
     premiere: <dateTime('2015-01-07 11:00', '2015-01-07 13:00', '2015-01-11 12:00')>
-    affiche: @affiches*
+    perfomanceEvent: @aperfomanceEvents*
     role: @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>

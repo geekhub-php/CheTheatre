@@ -1,24 +1,20 @@
-AppBundle\Entity\Affiche:
-  affiche1{1..20}:
-    performance: @performance*
+AppBundle\Entity\PerfomanceEvent:
+  perfomanceEvent1{1..20}:
     dateTime: <dateTimeBetween('-61 days', '-31 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
-  affiche2{1..20}:
-    performance: @performance*
+  perfomanceEvent2{1..20}:
     dateTime: <dateTimeBetween('-30 days', 'now')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
-  affiche3{1..20}:
-    performance: @performance*
+  perfomanceEvent3{1..20}:
     dateTime: <dateTimeBetween('now', '+30 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
-  affiche4{1..20}:
-    performance: @performance*
+  perfomanceEvent4{1..20}:
     dateTime: <dateTimeBetween('+31 days', '+61 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
