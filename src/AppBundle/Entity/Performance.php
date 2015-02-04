@@ -51,14 +51,14 @@ class Performance
     /**
      * @var PerfomanceEvent[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerfomanceEvent", mappedBy="performances", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerformanceEvent", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
      */
-    private $perfomanceEvents;
+    private $performanceEvents;
 
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performances", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
      */
     private $roles;
 
@@ -73,7 +73,7 @@ class Performance
      */
     public function __construct()
     {
-        $this->perfomanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -88,6 +88,19 @@ class Performance
     }
 
     /**
+     * Set title
+     *
+     * @param  string      $title
+     * @return Performance
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
      * Get title
      *
      * @return string
@@ -98,14 +111,14 @@ class Performance
     }
 
     /**
-     * Set title
+     * Set description
      *
-     * @param  string $title
+     * @param  string      $description
      * @return Performance
      */
-    public function setTitle($title)
+    public function setDescription($description)
     {
-        $this->title = $title;
+        $this->description = $description;
 
         return $this;
     }
@@ -121,14 +134,14 @@ class Performance
     }
 
     /**
-     * Set description
+     * Set premiere
      *
-     * @param  string $description
+     * @param  \DateTime   $premiere
      * @return Performance
      */
-    public function setDescription($description)
+    public function setPremiere($premiere)
     {
-        $this->description = $description;
+        $this->premiere = $premiere;
 
         return $this;
     }
@@ -144,14 +157,14 @@ class Performance
     }
 
     /**
-     * Set premiere
+     * Set slug
      *
-     * @param  \DateTime $premiere
+     * @param  string      $slug
      * @return Performance
      */
-    public function setPremiere($premiere)
+    public function setSlug($slug)
     {
-        $this->premiere = $premiere;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -167,72 +180,59 @@ class Performance
     }
 
     /**
-     * Set slug
+     * Add performanceEvent
      *
-     * @param  string $slug
+     * @param  \AppBundle\Entity\PerformanceEvent $performanceEvent
      * @return Performance
      */
-    public function setSlug($slug)
+    public function addPerformanceEvent(\AppBundle\Entity\PerformanceEvent $performanceEvent)
     {
-        $this->slug = $slug;
+        $this->performanceEvents[] = $performanceEvent;
 
         return $this;
     }
 
     /**
-     * Add perfomanceEvents
+     * Remove performanceEvent
      *
-     * @param  \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
-     * @return Performance
+     * @param \AppBundle\Entity\PerformanceEvent $performanceEvent
      */
-    public function addPerfomanceEvent(\AppBundle\Entity\PerfomanceEvent $perfomanceEvents)
+    public function removePerformanceEvent(\AppBundle\Entity\PerformanceEvent $performanceEvent)
     {
-        $this->perfomanceEvents[] = $perfomanceEvents;
-
-        return $this;
+        $this->performanceEvents->removeElement($performanceEvent);
     }
 
     /**
-     * Remove perfomanceEvents
-     *
-     * @param \AppBundle\Entity\PerfomanceEvent $perfomanceEvents
-     */
-    public function removePerfomanceEvent(\AppBundle\Entity\PerfomanceEvent $perfomanceEvents)
-    {
-        $this->perfomanceEvents->removeElement($perfomanceEvents);
-    }
-
-    /**
-     * Get perfomanceEvents
+     * Get performanceEvents
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPerfomanceEvents()
+    public function getPerformanceEvents()
     {
-        return $this->perfomanceEvents;
+        return $this->performanceEvents;
     }
 
     /**
-     * Add roles
+     * Add role
      *
-     * @param  \AppBundle\Entity\Role $roles
+     * @param  \AppBundle\Entity\Role $role
      * @return Performance
      */
-    public function addRole(\AppBundle\Entity\Role $roles)
+    public function addRole(\AppBundle\Entity\Role $role)
     {
-        $this->roles[] = $roles;
+        $this->roles[] = $role;
 
         return $this;
     }
 
     /**
-     * Remove roles
+     * Remove role
      *
-     * @param \AppBundle\Entity\Role $roles
+     * @param \AppBundle\Entity\Role $role
      */
-    public function removeRole(\AppBundle\Entity\Role $roles)
+    public function removeRole(\AppBundle\Entity\Role $role)
     {
-        $this->roles->removeElement($roles);
+        $this->roles->removeElement($role);
     }
 
     /**

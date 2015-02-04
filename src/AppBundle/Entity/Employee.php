@@ -67,7 +67,7 @@ class Employee
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employees", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $roles;
 
@@ -76,8 +76,6 @@ class Employee
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
-
-//    add private $medias when MediaBundle is installed;
 
     /**
      * Constructor
@@ -98,6 +96,19 @@ class Employee
     }
 
     /**
+     * Set firstName
+     *
+     * @param  string   $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
      * Get firstName
      *
      * @return string
@@ -108,14 +119,14 @@ class Employee
     }
 
     /**
-     * Set firstName
+     * Set lastName
      *
-     * @param  string $firstName
+     * @param  string   $lastName
      * @return Employee
      */
-    public function setFirstName($firstName)
+    public function setLastName($lastName)
     {
-        $this->firstName = $firstName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -131,14 +142,14 @@ class Employee
     }
 
     /**
-     * Set lastName
+     * Set middleName
      *
-     * @param  string $lastName
+     * @param  string   $middleName
      * @return Employee
      */
-    public function setLastName($lastName)
+    public function setMiddleName($middleName)
     {
-        $this->lastName = $lastName;
+        $this->middleName = $middleName;
 
         return $this;
     }
@@ -151,29 +162,6 @@ class Employee
     public function getMiddleName()
     {
         return $this->middleName;
-    }
-
-    /**
-     * Set middleName
-     *
-     * @param  string $middleName
-     * @return Employee
-     */
-    public function setMiddleName($middleName)
-    {
-        $this->middleName = $middleName;
-
-        return $this;
-    }
-
-    /**
-     * Get dob
-     *
-     * @return \DateTime
-     */
-    public function getDob()
-    {
-        return $this->dob;
     }
 
     /**
@@ -190,6 +178,29 @@ class Employee
     }
 
     /**
+     * Get dob
+     *
+     * @return \DateTime
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    /**
+     * Set position
+     *
+     * @param  string   $position
+     * @return Employee
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
      * Get position
      *
      * @return string
@@ -200,14 +211,14 @@ class Employee
     }
 
     /**
-     * Set position
+     * Set slug
      *
-     * @param  string $position
+     * @param  string   $slug
      * @return Employee
      */
-    public function setPosition($position)
+    public function setSlug($slug)
     {
-        $this->position = $position;
+        $this->slug = $slug;
 
         return $this;
     }
@@ -223,39 +234,26 @@ class Employee
     }
 
     /**
-     * Set slug
+     * Add role
      *
-     * @param  string $slug
+     * @param  \AppBundle\Entity\Role $role
      * @return Employee
      */
-    public function setSlug($slug)
+    public function addRole(\AppBundle\Entity\Role $role)
     {
-        $this->slug = $slug;
+        $this->roles[] = $role;
 
         return $this;
     }
 
     /**
-     * Add roles
+     * Remove role
      *
-     * @param  \AppBundle\Entity\Role $roles
-     * @return Employee
+     * @param \AppBundle\Entity\Role $role
      */
-    public function addRole(\AppBundle\Entity\Role $roles)
+    public function removeRole(\AppBundle\Entity\Role $role)
     {
-        $this->roles[] = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Remove roles
-     *
-     * @param \AppBundle\Entity\Role $roles
-     */
-    public function removeRole(\AppBundle\Entity\Role $roles)
-    {
-        $this->roles->removeElement($roles);
+        $this->roles->removeElement($role);
     }
 
     /**

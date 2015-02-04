@@ -3,7 +3,6 @@
 namespace AppBundle\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 trait TimestampableTrait
 {
@@ -37,7 +36,7 @@ trait TimestampableTrait
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt Created at
+     * @param  \DateTime $createdAt Created at
      * @return $this
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -60,7 +59,7 @@ trait TimestampableTrait
     /**
      * Set updated At
      *
-     * @param \DateTime $updatedAt Updated at
+     * @param  \DateTime $updatedAt Updated at
      * @return $this
      */
     public function setUpdatedAt(\DateTime $updatedAt)
@@ -83,7 +82,7 @@ trait TimestampableTrait
     /**
      * Set deletedAt
      *
-     * @param \DateTime $deletedAt Deleted at
+     * @param  \DateTime $deletedAt Deleted at
      * @return $this
      */
     public function setDeletedAt(\DateTime $deletedAt)

@@ -43,31 +43,22 @@ class Role
     /**
      * @var Performance
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles")
      */
-    private $performances;
+    private $performance;
 
     /**
      * @var Employee
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles")
      */
-    private $employees;
+    private $employee;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -77,16 +68,6 @@ class Role
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -103,13 +84,13 @@ class Role
     }
 
     /**
-     * Get description
+     * Get title
      *
      * @return string
      */
-    public function getDescription()
+    public function getTitle()
     {
-        return $this->description;
+        return $this->title;
     }
 
     /**
@@ -126,13 +107,13 @@ class Role
     }
 
     /**
-     * Get slug
+     * Get description
      *
      * @return string
      */
-    public function getSlug()
+    public function getDescription()
     {
-        return $this->slug;
+        return $this->description;
     }
 
     /**
@@ -149,48 +130,58 @@ class Role
     }
 
     /**
-     * Get performances
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set performance
+     *
+     * @param  \AppBundle\Entity\Performance $performance
+     * @return Role
+     */
+    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
+    {
+        $this->performance = $performance;
+
+        return $this;
+    }
+
+    /**
+     * Get performance
      *
      * @return \AppBundle\Entity\Performance
      */
-    public function getPerformances()
+    public function getPerformance()
     {
-        return $this->performances;
+        return $this->performance;
     }
 
     /**
-     * Set performances
+     * Set employee
      *
-     * @param  \AppBundle\Entity\Performance $performances
+     * @param  \AppBundle\Entity\Employee $employee
      * @return Role
      */
-    public function setPerformances(\AppBundle\Entity\Performance $performances = null)
+    public function setEmployee(\AppBundle\Entity\Employee $employee = null)
     {
-        $this->performances = $performances;
+        $this->employee = $employee;
 
         return $this;
     }
 
     /**
-     * Get employees
+     * Get employee
      *
      * @return \AppBundle\Entity\Employee
      */
-    public function getEmployees()
+    public function getEmployee()
     {
-        return $this->employees;
-    }
-
-    /**
-     * Set employees
-     *
-     * @param  \AppBundle\Entity\Employee $employees
-     * @return Role
-     */
-    public function setEmployees(\AppBundle\Entity\Employee $employees = null)
-    {
-        $this->employees = $employees;
-
-        return $this;
+        return $this->employee;
     }
 }
