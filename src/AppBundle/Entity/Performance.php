@@ -49,7 +49,7 @@ class Performance
     private $premiere;
 
     /**
-     * @var PerfomanceEvent[]
+     * @var PerformanceEvent[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerformanceEvent", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
      */
