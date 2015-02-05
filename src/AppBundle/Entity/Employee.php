@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="employees")
@@ -27,7 +28,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -35,7 +36,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -43,7 +44,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $middleName;
@@ -59,10 +60,17 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $position;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * @var Role[]
@@ -96,19 +104,6 @@ class Employee
     }
 
     /**
-     * Set firstName
-     *
-     * @param  string   $firstName
-     * @return Employee
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
      * Get firstName
      *
      * @return string
@@ -119,14 +114,14 @@ class Employee
     }
 
     /**
-     * Set lastName
+     * Set firstName
      *
-     * @param  string   $lastName
+     * @param  string $firstName
      * @return Employee
      */
-    public function setLastName($lastName)
+    public function setFirstName($firstName)
     {
-        $this->lastName = $lastName;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -142,14 +137,14 @@ class Employee
     }
 
     /**
-     * Set middleName
+     * Set lastName
      *
-     * @param  string   $middleName
+     * @param  string $lastName
      * @return Employee
      */
-    public function setMiddleName($middleName)
+    public function setLastName($lastName)
     {
-        $this->middleName = $middleName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -162,6 +157,29 @@ class Employee
     public function getMiddleName()
     {
         return $this->middleName;
+    }
+
+    /**
+     * Set middleName
+     *
+     * @param  string $middleName
+     * @return Employee
+     */
+    public function setMiddleName($middleName)
+    {
+        $this->middleName = $middleName;
+
+        return $this;
+    }
+
+    /**
+     * Get dob
+     *
+     * @return \DateTime
+     */
+    public function getDob()
+    {
+        return $this->dob;
     }
 
     /**
@@ -178,29 +196,6 @@ class Employee
     }
 
     /**
-     * Get dob
-     *
-     * @return \DateTime
-     */
-    public function getDob()
-    {
-        return $this->dob;
-    }
-
-    /**
-     * Set position
-     *
-     * @param  string   $position
-     * @return Employee
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
      * Get position
      *
      * @return string
@@ -211,16 +206,21 @@ class Employee
     }
 
     /**
-     * Set slug
+     * Set position
      *
-     * @param  string   $slug
+     * @param  string $position
      * @return Employee
      */
-    public function setSlug($slug)
+    public function setPosition($position)
     {
-        $this->slug = $slug;
+        $this->position = $position;
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**
@@ -231,6 +231,19 @@ class Employee
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string $slug
+     * @return Employee
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**
