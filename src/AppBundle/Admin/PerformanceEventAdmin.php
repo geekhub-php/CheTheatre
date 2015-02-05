@@ -44,10 +44,12 @@ class PerformanceEventAdmin extends Admin
     {
         $formMapper
             ->add('performance', 'sonata_type_model')
-            ->add('dateTime', 'date',
+            ->add('dateTime', 'sonata_type_datetime_picker',
                 array(
-                    'widget' => 'single_text',
-                    'attr' => array('class'=>'datepicker', 'style'=>'width: 150px')
+                    'dp_side_by_side'       => true,
+                    'dp_use_current'        => false,
+                    'dp_use_seconds'        => false,
+                    'format' => "dd/MM/yyyy HH:mm",
                 )
             )
         ;

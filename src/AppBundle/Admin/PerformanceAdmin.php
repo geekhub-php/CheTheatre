@@ -48,13 +48,14 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('premiere', 'date',
+            ->add('premiere', 'sonata_type_datetime_picker',
                 array(
-                    'widget' => 'single_text',
-                    'attr' => array('class'=>'datepicker', 'style'=>'width: 150px')
+                    'dp_side_by_side'       => true,
+                    'dp_use_current'        => false,
+                    'dp_use_seconds'        => false,
+                    'format' => "dd/MM/yyyy HH:mm",
                 )
             )
-
             ->add('roles', 'sonata_type_collection',
                 array(
                     'by_reference' => false,
