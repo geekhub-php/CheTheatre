@@ -33,8 +33,8 @@ class RoleAdmin extends Admin
         $showMapper
             ->add('title')
             ->add('description')
-            ->add('performances')
-            ->add('employees')
+            ->add('performance')
+            ->add('employee')
         ;
     }
 
@@ -48,12 +48,7 @@ class RoleAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('performance', 'sonata_type_model', array('label' => 'Performance'))
-            ->add('employee', 'sonata_type_model', array('label' => 'Employee'))
-//            ->add('employees', 'sonata_type_model_hidden')
-//            ->add('performances', 'sonata_type_model_hidden')
-//            ->add('performances','hidden',array('attr'=>array("hidden" => true)))
-//            ->add('employees','hidden',array('attr'=>array("hidden" => true)))
+            ->add('employee', 'sonata_type_model')
         ;
     }
 
@@ -67,8 +62,8 @@ class RoleAdmin extends Admin
         $listMapper
             ->addIdentifier('title')
             ->add('description')
-            ->add('performances')
-            ->add('employees')
+            ->add('performance')
+            ->add('employee')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -90,8 +85,8 @@ class RoleAdmin extends Admin
         $datagridMapper
             ->add('title')
             ->add('description')
-            ->add('performances')
-            ->add('employees')
+            ->add('performance')
+            ->add('employee')
         ;
     }
 }

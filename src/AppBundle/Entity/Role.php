@@ -184,4 +184,9 @@ class Role
     {
         return $this->employee;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

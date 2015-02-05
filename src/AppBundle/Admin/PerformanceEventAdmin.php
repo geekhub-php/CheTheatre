@@ -30,7 +30,7 @@ class PerformanceEventAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('performances')
+            ->add('performance')
             ->add('dateTime')
         ;
     }
@@ -43,8 +43,13 @@ class PerformanceEventAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('performances', 'sonata_type_model', array('expanded' => true))
-            ->add('dateTime')
+            ->add('performance', 'sonata_type_model')
+            ->add('dateTime', 'date',
+                array(
+                    'widget' => 'single_text',
+                    'attr' => array('class'=>'datepicker', 'style'=>'width: 150px')
+                )
+            )
         ;
     }
 
@@ -56,7 +61,7 @@ class PerformanceEventAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('performances')
+            ->addIdentifier('performance')
             ->add('dateTime')
         ;
     }
@@ -70,7 +75,7 @@ class PerformanceEventAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('performances')
+            ->add('performance')
             ->add('dateTime')
         ;
     }

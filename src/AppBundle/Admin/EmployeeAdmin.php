@@ -50,9 +50,13 @@ class EmployeeAdmin extends Admin
             ->add('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('dob', 'birthday', array(
+            ->add('dob', 'birthday',
+                array(
                 'years' => range(date('Y') - 90, date('Y')),
-            ))
+                'widget' => 'single_text',
+                'attr' => array('class'=>'datepicker', 'style'=>'width: 150px')
+                )
+            )
             ->add('position')
         ;
     }
