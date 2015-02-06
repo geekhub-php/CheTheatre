@@ -7,10 +7,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PerformanceAdmin extends Admin
+class RoleAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Performance';
-    protected $baseRoutePattern = 'performance';
+    protected $baseRouteName = 'AppBundle\Entity\Role';
+    protected $baseRoutePattern = 'role';
+    protected $parentAssociationMapping = 'performance';
     protected $datagridValues = array(
         '_sort_order' => 'ASC',
         '_sort_by' => 'name',
@@ -24,14 +25,7 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('premiere')
-            ->add('roles', 'sonata_type_collection', array(
-                'by_reference' => false,
-            ), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable' => 'position',
-            ))
+            ->add('employee', 'sonata_type_model')
         ;
     }
 
@@ -43,9 +37,8 @@ class PerformanceAdmin extends Admin
         $datagridMapper
             ->add('title')
             ->add('description')
-            ->add('premiere')
-            ->add('performanceEvents')
-            ->add('roles')
+            ->add('performance')
+            ->add('employee')
         ;
     }
 
@@ -57,9 +50,8 @@ class PerformanceAdmin extends Admin
         $listMapper
             ->addIdentifier('title')
             ->add('description')
-            ->add('premiere')
-            ->add('performanceEvents')
-            ->add('roles')
+            ->add('performance')
+            ->add('employee')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

@@ -9,3 +9,15 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppBundle] ]
+            - [ addChild, [@app.admin.role] ]
+
+    app.admin.role:
+        class: AppBundle\Admin\RoleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Role" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Role
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
