@@ -130,3 +130,20 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 nelmio_api_doc: ~
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: true
+            yml: true
+
+sensio_framework_extra:
+    view:
+        annotations: false

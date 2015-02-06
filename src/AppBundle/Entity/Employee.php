@@ -7,11 +7,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class Employee
 {
@@ -31,6 +34,7 @@ class Employee
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Expose
      */
     private $firstName;
 
@@ -39,6 +43,7 @@ class Employee
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Expose
      */
     private $lastName;
 
@@ -46,6 +51,7 @@ class Employee
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Expose
      */
     private $middleName;
 
@@ -54,7 +60,7 @@ class Employee
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     *
+     * @Expose
      */
     private $dob;
 
@@ -62,6 +68,7 @@ class Employee
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
+     * @Expose
      */
     private $position;
 
@@ -69,6 +76,7 @@ class Employee
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
+     * @Expose
      */
     private $locale;
 
@@ -82,6 +90,7 @@ class Employee
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Expose
      */
     private $slug;
 
