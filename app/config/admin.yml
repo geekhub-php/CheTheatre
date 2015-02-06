@@ -32,3 +32,14 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppBundle] ]
+
+    app.admin.performanceEvent:
+        class: AppBundle\Admin\PerformanceEventAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "PerformanceEvent" }
+        arguments:
+            - ~
+            - AppBundle\Entity\PerformanceEvent
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
