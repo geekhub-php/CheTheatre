@@ -21,3 +21,14 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppBundle] ]
+
+    app.admin.employee:
+        class: AppBundle\Admin\EmployeeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Employee" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Employee
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
