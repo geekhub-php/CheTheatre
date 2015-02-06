@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations\NoRoute;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * @RouteResource("PerformanceEvent")
@@ -15,6 +16,18 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 class PerformanceEventsController extends Controller
 {
     /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns a collection of PerformancesEvents",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the user is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     }
+     * )
+     *
      * Collection get action
      * @return Response
      *
@@ -38,6 +51,27 @@ class PerformanceEventsController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns PerformancesEvent by Id",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Id", "dataType"="string", "required"=true, "description"="PerformanceEvent Id"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getAction($id)
     {
         $em = $this->getDoctrine()->getManager();

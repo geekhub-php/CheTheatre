@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations\NoRoute;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * @RouteResource("Performance")
@@ -15,6 +16,18 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 class PerformancesController extends Controller
 {
     /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns a collection of Performances",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the user is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     }
+     * )
+     *
      * Collection get action
      * @return Response
      *
@@ -38,6 +51,27 @@ class PerformancesController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns Performance by Slug",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
@@ -60,6 +94,27 @@ class PerformancesController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns Performance by Slug and its Roles",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getRolesAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
@@ -84,6 +139,27 @@ class PerformancesController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns Performance by Slug and its Performance Events",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getPerformanceeventsAction($slug)
     {
         $em = $this->getDoctrine()->getManager();

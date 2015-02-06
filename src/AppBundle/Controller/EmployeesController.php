@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations\NoRoute;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * @RouteResource("Employee")
@@ -15,16 +16,34 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 class EmployeesController extends Controller
 {
     /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns a collection of Employees",
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     }
+     * )
+     *
      * Collection get action
      * @return Response
      *
      * @RestView
      */
-    public function cgetAction()
+    public function cgetAction(Request $request)
     {
+        $limit = $request->get('limit');
+        $offset = $request->get('offset');
         $em = $this->getDoctrine()->getManager();
 
         $employees = $em->getRepository('AppBundle:Employee')->findAll();
+        $result = null;
+        for ($i = 1; $i <= count($employees); $i++) {
+            ;
+        }
 
         $restView = View::create();
         $restView
@@ -38,6 +57,27 @@ class EmployeesController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns an Employee by slug",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
@@ -60,6 +100,27 @@ class EmployeesController extends Controller
         return $restView;
     }
 
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="Returns an Employee by slug and his roles",
+     *
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         404={
+     *           "Returned when the entity is not found",
+     *           "Returned when something else is not found"
+     *         }
+     *     },
+     *  parameters={
+     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *  }
+     * )
+     *
+     * @return Response
+     *
+     * @RestView
+     */
     public function getRolesAction($slug)
     {
         $em = $this->getDoctrine()->getManager();

@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Table(name="employees")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\EmployeeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
