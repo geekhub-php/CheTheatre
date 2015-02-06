@@ -29,8 +29,11 @@ class PerformanceEventsController extends Controller
         $restView = View::create();
         $restView
             ->setData($performanceEvents)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performanceevents')
+                )
+            )
         ;
         return $restView;
     }
@@ -48,8 +51,11 @@ class PerformanceEventsController extends Controller
         $restView = View::create();
         $restView
             ->setData($performanceEvent)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performanceevents').'/'.$performanceEvent->getId()
+                )
+            )
         ;
         return $restView;
     }

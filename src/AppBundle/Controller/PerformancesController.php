@@ -29,8 +29,11 @@ class PerformancesController extends Controller
         $restView = View::create();
         $restView
             ->setData($performances)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performances')
+                )
+            )
         ;
         return $restView;
     }
@@ -48,8 +51,11 @@ class PerformancesController extends Controller
         $restView = View::create();
         $restView
             ->setData($performance)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug()
+                )
+            )
         ;
         return $restView;
     }
@@ -69,8 +75,11 @@ class PerformancesController extends Controller
         $restView = View::create();
         $restView
             ->setData($roles)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug().'/roles'
+                )
+            )
         ;
         return $restView;
     }
@@ -90,8 +99,11 @@ class PerformancesController extends Controller
         $restView = View::create();
         $restView
             ->setData($performanceEvents)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                    "Content-Type" => "application/json",
+                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug().'/performanceevents'
+                )
+            )
         ;
         return $restView;
     }

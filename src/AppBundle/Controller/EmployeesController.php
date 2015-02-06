@@ -29,8 +29,11 @@ class EmployeesController extends Controller
         $restView = View::create();
         $restView
             ->setData($employees)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                "Content-Type" => "application/json",
+                "Location" => $this->generateUrl('get_employees')
+                )
+            )
         ;
         return $restView;
     }
@@ -48,8 +51,11 @@ class EmployeesController extends Controller
         $restView = View::create();
         $restView
             ->setData($employee)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                "Content-Type" => "application/json",
+                "Location" => $this->generateUrl('get_employees').'/'.$employee->getSlug()
+                )
+            )
         ;
         return $restView;
     }
@@ -69,11 +75,12 @@ class EmployeesController extends Controller
         $restView = View::create();
         $restView
             ->setData($roles)
-            ->setStatusCode('200')
-            ->setHeaders(array("Content-Type" => "application/json"))
+            ->setHeaders(array(
+                "Content-Type" => "application/json",
+                "Location" => $this->generateUrl('get_employees').'/'.$employee->getSlug().'/roles'
+                )
+            )
         ;
         return $restView;
     }
-
-//    public function getRoleAction($slug, $role_slug){}
 }
