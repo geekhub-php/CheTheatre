@@ -1,0 +1,11 @@
+services:
+    app.admin.performance:
+        class: AppBundle\Admin\PerformanceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Performance" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Performance
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
