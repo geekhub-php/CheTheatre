@@ -257,4 +257,9 @@ class Performance
     {
         return $this->roles;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
