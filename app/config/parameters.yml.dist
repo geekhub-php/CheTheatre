@@ -22,3 +22,7 @@ parameters:
     admin_dashboard_base_url: /admin
     sonata_admin.title: 'CheTheatre Project'
     sonata_admin.logo_title: bundles/sonataadmin/logo_title.png
+    prod_server_pass: ~
+    https_github_repository_url: ~
+    domain: ~
+    prod_server_ip: ~
