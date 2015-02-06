@@ -1,0 +1,45 @@
+services:
+    app.admin.performance:
+        class: AppBundle\Admin\PerformanceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Performance" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Performance
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
+            - [ addChild, [@app.admin.role] ]
+
+    app.admin.role:
+        class: AppBundle\Admin\RoleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Role" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Role
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
+
+    app.admin.employee:
+        class: AppBundle\Admin\EmployeeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Employee" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Employee
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]
+
+    app.admin.performanceEvent:
+        class: AppBundle\Admin\PerformanceEventAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "PerformanceEvent" }
+        arguments:
+            - ~
+            - AppBundle\Entity\PerformanceEvent
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle] ]

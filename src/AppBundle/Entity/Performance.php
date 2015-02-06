@@ -233,6 +233,7 @@ class Performance
      */
     public function addRole(\AppBundle\Entity\Role $role)
     {
+        $role->setPerformance($this);
         $this->roles[] = $role;
 
         return $this;
@@ -256,5 +257,10 @@ class Performance
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

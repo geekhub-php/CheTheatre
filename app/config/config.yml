@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: sonata.yml }
+    - { resource: admin.yml }
 
 framework:
     #esi:             ~
@@ -79,8 +80,10 @@ doctrine:
                     dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
                     alias: GedmoTranslatable
                     is_bundle: false
-
-                    # add your own bundles here
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
 
 #alice faker configuration
 hautelook_alice:
