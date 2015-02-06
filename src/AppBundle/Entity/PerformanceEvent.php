@@ -95,4 +95,9 @@ class PerformanceEvent
     {
         return $this->performance;
     }
+
+    public function __toString()
+    {
+        return $this->getDateTime()->format('Y-m-d H:i:s');
+    }
 }
