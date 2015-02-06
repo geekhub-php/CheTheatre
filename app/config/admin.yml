@@ -31,7 +31,6 @@ services:
            - ~
        calls:
            - [ setTranslationDomain, [AppBundle]]
-           - [ addChild, [ @sonata.admin.role ] ]
 
    sonata.admin.performanceEvent:
        class: AppBundle\Admin\PerformanceEventAdmin

@@ -21,7 +21,6 @@ class RoleAdmin extends Admin
         '_sort_order' => 'ASC',
         '_sort_by'    => 'name'
     ];
-    protected $parentAssociationMapping = 'performance';
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
@@ -48,8 +47,7 @@ class RoleAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('employee', 'sonata_type_model')
-        ;
+            ->add('employee', 'sonata_type_model', array('required' => false));
     }
 
     /**
