@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="employees")
@@ -27,7 +28,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -35,7 +36,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -43,7 +44,7 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $middleName;
@@ -59,10 +60,17 @@ class Employee
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $position;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * @var Role[]
@@ -96,6 +104,16 @@ class Employee
     }
 
     /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
      * Set firstName
      *
      * @param  string   $firstName
@@ -109,13 +127,13 @@ class Employee
     }
 
     /**
-     * Get firstName
+     * Get lastName
      *
      * @return string
      */
-    public function getFirstName()
+    public function getLastName()
     {
-        return $this->firstName;
+        return $this->lastName;
     }
 
     /**
@@ -132,13 +150,13 @@ class Employee
     }
 
     /**
-     * Get lastName
+     * Get middleName
      *
      * @return string
      */
-    public function getLastName()
+    public function getMiddleName()
     {
-        return $this->lastName;
+        return $this->middleName;
     }
 
     /**
@@ -155,13 +173,13 @@ class Employee
     }
 
     /**
-     * Get middleName
+     * Get dob
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getMiddleName()
+    public function getDob()
     {
-        return $this->middleName;
+        return $this->dob;
     }
 
     /**
@@ -178,13 +196,13 @@ class Employee
     }
 
     /**
-     * Get dob
+     * Get position
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDob()
+    public function getPosition()
     {
-        return $this->dob;
+        return $this->position;
     }
 
     /**
@@ -200,14 +218,19 @@ class Employee
         return $this;
     }
 
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
     /**
-     * Get position
+     * Get slug
      *
      * @return string
      */
-    public function getPosition()
+    public function getSlug()
     {
-        return $this->position;
+        return $this->slug;
     }
 
     /**
@@ -221,16 +244,6 @@ class Employee
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**

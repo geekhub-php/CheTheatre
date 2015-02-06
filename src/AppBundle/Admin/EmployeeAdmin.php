@@ -5,12 +5,8 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-use Knp\Menu\ItemInterface as MenuItemInterface;
-
 use AppBundle\Entity\Employee;
 
 class EmployeeAdmin extends Admin
@@ -19,7 +15,7 @@ class EmployeeAdmin extends Admin
     protected $baseRoutePattern = 'Employee';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name'
+        '_sort_by'    => 'name',
     ];
 
     /**
@@ -33,7 +29,7 @@ class EmployeeAdmin extends Admin
             ->add('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('dob')
+            ->add('dob', 'date')
             ->add('position')
             ->add('roles')
         ;
@@ -66,16 +62,9 @@ class EmployeeAdmin extends Admin
             ->addIdentifier('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('dob')
+            ->add('dob', 'date')
             ->add('position')
             ->add('roles')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                )
-            ))
         ;
     }
 

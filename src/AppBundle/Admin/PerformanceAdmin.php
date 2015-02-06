@@ -5,13 +5,8 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-use Knp\Menu\ItemInterface as MenuItemInterface;
-
-use AppBundle\Entity\Role;
 
 class PerformanceAdmin extends Admin
 {
@@ -19,7 +14,7 @@ class PerformanceAdmin extends Admin
     protected $baseRoutePattern = 'Performance';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name'
+        '_sort_by'    => 'name',
     ];
 
     /**
@@ -63,7 +58,7 @@ class PerformanceAdmin extends Admin
                 array(
                     'edit' => 'inline',
                     'inline' => 'table',
-                    'sortable'  => 'position'
+                    'sortable'  => 'position',
                 )
             )
         ;
@@ -84,7 +79,6 @@ class PerformanceAdmin extends Admin
             ->add('roles')
         ;
     }
-
 
     /**
      * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper

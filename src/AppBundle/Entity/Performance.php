@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="performances")
@@ -27,7 +28,7 @@ class Performance
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -35,7 +36,7 @@ class Performance
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
@@ -47,6 +48,13 @@ class Performance
      * @ORM\Column(type="datetime")
      */
     private $premiere;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * @var PerformanceEvent[]
@@ -88,6 +96,16 @@ class Performance
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set title
      *
      * @param  string      $title
@@ -101,13 +119,13 @@ class Performance
     }
 
     /**
-     * Get title
+     * Get description
      *
      * @return string
      */
-    public function getTitle()
+    public function getDescription()
     {
-        return $this->title;
+        return $this->description;
     }
 
     /**
@@ -124,13 +142,13 @@ class Performance
     }
 
     /**
-     * Get description
+     * Get premiere
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getDescription()
+    public function getPremiere()
     {
-        return $this->description;
+        return $this->premiere;
     }
 
     /**
@@ -146,14 +164,19 @@ class Performance
         return $this;
     }
 
-    /**
-     * Get premiere
-     *
-     * @return \DateTime
-     */
-    public function getPremiere()
+    public function setTranslatableLocale($locale)
     {
-        return $this->premiere;
+        $this->locale = $locale;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -167,16 +190,6 @@ class Performance
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**

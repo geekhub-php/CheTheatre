@@ -5,13 +5,8 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-use Knp\Menu\ItemInterface as MenuItemInterface;
-
-use AppBundle\Entity\Role;
 
 class PerformanceEventAdmin extends Admin
 {
@@ -19,7 +14,7 @@ class PerformanceEventAdmin extends Admin
     protected $baseRoutePattern = 'PerformanceEvent';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name'
+        '_sort_by'    => 'name',
     ];
 
     /**
@@ -67,7 +62,6 @@ class PerformanceEventAdmin extends Admin
             ->add('dateTime')
         ;
     }
-
 
     /**
      * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper

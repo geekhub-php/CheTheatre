@@ -98,8 +98,10 @@ class PerformanceEvent
 
     public function __toString()
     {
-        if($this->getDateTime())
+        if ($this->getDateTime()) {
             return $this->getDateTime()->format('d-m-Y H:i');
-        else return date("F j, Y, g:i a");
+        } else {
+            return date("F j, Y, g:i a");
+        }
     }
 }

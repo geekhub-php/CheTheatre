@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="roles")
@@ -27,7 +28,7 @@ class Role
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -35,10 +36,17 @@ class Role
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * @var Performance
@@ -71,6 +79,16 @@ class Role
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set title
      *
      * @param  string $title
@@ -84,13 +102,13 @@ class Role
     }
 
     /**
-     * Get title
+     * Get description
      *
      * @return string
      */
-    public function getTitle()
+    public function getDescription()
     {
-        return $this->title;
+        return $this->description;
     }
 
     /**
@@ -106,14 +124,19 @@ class Role
         return $this;
     }
 
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
     /**
-     * Get description
+     * Get slug
      *
      * @return string
      */
-    public function getDescription()
+    public function getSlug()
     {
-        return $this->description;
+        return $this->slug;
     }
 
     /**
@@ -130,13 +153,13 @@ class Role
     }
 
     /**
-     * Get slug
+     * Get performance
      *
-     * @return string
+     * @return \AppBundle\Entity\Performance
      */
-    public function getSlug()
+    public function getPerformance()
     {
-        return $this->slug;
+        return $this->performance;
     }
 
     /**
@@ -153,13 +176,13 @@ class Role
     }
 
     /**
-     * Get performance
+     * Get employee
      *
-     * @return \AppBundle\Entity\Performance
+     * @return \AppBundle\Entity\Employee
      */
-    public function getPerformance()
+    public function getEmployee()
     {
-        return $this->performance;
+        return $this->employee;
     }
 
     /**
@@ -173,16 +196,6 @@ class Role
         $this->employee = $employee;
 
         return $this;
-    }
-
-    /**
-     * Get employee
-     *
-     * @return \AppBundle\Entity\Employee
-     */
-    public function getEmployee()
-    {
-        return $this->employee;
     }
 
     public function __toString()

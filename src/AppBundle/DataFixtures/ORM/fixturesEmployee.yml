@@ -5,7 +5,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Директор театру
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -15,7 +15,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Виконуючий обов’язки художнього керівника
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -25,7 +25,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Режисер-постановник
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -35,7 +35,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Головний художник
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -45,7 +45,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Художник по костюмах
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -55,7 +55,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Художник-постановник
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -65,7 +65,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Головний балетмейстер
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -75,7 +75,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Керівник літературно-драматичною частиною
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -85,7 +85,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Диригент
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -95,7 +95,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Концертмейстр
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -105,7 +105,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Концертмейстр
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -115,7 +115,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -125,7 +125,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Заслужена артистка України
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -135,7 +135,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -145,7 +145,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Заслужений артист України
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -155,7 +155,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -165,7 +165,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -175,7 +175,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -185,7 +185,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -195,7 +195,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -205,7 +205,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -215,7 +215,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -225,7 +225,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -235,7 +235,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -245,7 +245,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -255,7 +255,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -265,7 +265,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -275,7 +275,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -285,7 +285,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -295,7 +295,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -305,7 +305,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -315,7 +315,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -325,7 +325,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -335,7 +335,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -345,7 +345,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -355,7 +355,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -365,7 +365,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -375,7 +375,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -385,7 +385,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -395,7 +395,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актриса
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -405,7 +405,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: Актор
-    role: @roles*
+    roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -415,7 +415,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -425,7 +425,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -435,7 +435,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -445,7 +445,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -455,7 +455,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -465,7 +465,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -475,7 +475,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -485,7 +485,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -495,7 +495,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -505,7 +505,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -515,7 +515,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -525,7 +525,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -535,7 +535,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -545,7 +545,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -555,7 +555,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -565,7 +565,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -575,7 +575,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -585,7 +585,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -595,7 +595,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -605,7 +605,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -615,7 +615,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актор
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
@@ -625,7 +625,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: Актриса
-     role: @roles*
+     roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
      deletedAt: <dateTimeBetween($createdAt, 'now')>
