@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="performances")
@@ -27,7 +28,7 @@ class Performance
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
@@ -35,7 +36,7 @@ class Performance
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
      */
     private $description;
@@ -47,6 +48,13 @@ class Performance
      * @ORM\Column(type="datetime")
      */
     private $premiere;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * @var PerformanceEvent[]
@@ -88,19 +96,6 @@ class Performance
     }
 
     /**
-     * Set title
-     *
-     * @param  string      $title
-     * @return Performance
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * Get title
      *
      * @return string
@@ -111,14 +106,14 @@ class Performance
     }
 
     /**
-     * Set description
+     * Set title
      *
-     * @param  string      $description
+     * @param  string $title
      * @return Performance
      */
-    public function setDescription($description)
+    public function setTitle($title)
     {
-        $this->description = $description;
+        $this->title = $title;
 
         return $this;
     }
@@ -134,14 +129,14 @@ class Performance
     }
 
     /**
-     * Set premiere
+     * Set description
      *
-     * @param  \DateTime   $premiere
+     * @param  string $description
      * @return Performance
      */
-    public function setPremiere($premiere)
+    public function setDescription($description)
     {
-        $this->premiere = $premiere;
+        $this->description = $description;
 
         return $this;
     }
@@ -157,16 +152,21 @@ class Performance
     }
 
     /**
-     * Set slug
+     * Set premiere
      *
-     * @param  string      $slug
+     * @param  \DateTime $premiere
      * @return Performance
      */
-    public function setSlug($slug)
+    public function setPremiere($premiere)
     {
-        $this->slug = $slug;
+        $this->premiere = $premiere;
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**
@@ -177,6 +177,19 @@ class Performance
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string $slug
+     * @return Performance
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**

@@ -71,8 +71,15 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
-                    ApplicationSonataMediaBundle: ~
-                    SonataMediaBundle: ~
+                  ApplicationSonataMediaBundle: ~
+                  SonataMediaBundle: ~
+                  gedmo_translatable:
+                    type: annotation
+                    prefix: Gedmo\Translatable\Entity
+                    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                    alias: GedmoTranslatable
+                    is_bundle: false
+
                     # add your own bundles here
 
 #alice faker configuration
@@ -90,11 +97,13 @@ sensio_framework_extra:
 
 stof_doctrine_extensions:
     default_locale: en
+    translation_fallback: true
     orm:
         default:
             timestampable: true
             sluggable: true
             softdeleteable: true
+            translatable: true
 
 # Swiftmailer Configuration
 swiftmailer:
