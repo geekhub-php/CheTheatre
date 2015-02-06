@@ -4,4 +4,3 @@ AppBundle\Entity\Role:
     description: <realText()>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>

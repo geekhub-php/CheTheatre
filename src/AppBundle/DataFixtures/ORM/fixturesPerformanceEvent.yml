@@ -3,19 +3,15 @@ AppBundle\Entity\PerformanceEvent:
     dateTime: <dateTimeBetween('-61 days', '-31 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   performanceEvent2{1..20}:
     dateTime: <dateTimeBetween('-30 days', 'now')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   performanceEvent3{1..20}:
     dateTime: <dateTimeBetween('now', '+30 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   performanceEvent4{1..20}:
     dateTime: <dateTimeBetween('+31 days', '+61 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
