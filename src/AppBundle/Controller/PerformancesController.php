@@ -75,7 +75,7 @@ class PerformancesController extends Controller
         return $restView;
     }
 
-    public function getEventsAction($slug)
+    public function getPerformanceeventsAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
