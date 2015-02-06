@@ -6,11 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Table(name="performance_schedule")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class PerformanceEvent
 {
@@ -22,6 +25,7 @@ class PerformanceEvent
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -29,6 +33,7 @@ class PerformanceEvent
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="performanceEvents")
+     * @Expose
      */
     private $performance;
 
@@ -37,6 +42,7 @@ class PerformanceEvent
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
+     * @Expose
      */
     private $dateTime;
 
