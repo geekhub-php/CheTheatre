@@ -116,7 +116,7 @@ class Employee
     /**
      * Set firstName
      *
-     * @param  string $firstName
+     * @param  string   $firstName
      * @return Employee
      */
     public function setFirstName($firstName)
@@ -139,7 +139,7 @@ class Employee
     /**
      * Set lastName
      *
-     * @param  string $lastName
+     * @param  string   $lastName
      * @return Employee
      */
     public function setLastName($lastName)
@@ -162,7 +162,7 @@ class Employee
     /**
      * Set middleName
      *
-     * @param  string $middleName
+     * @param  string   $middleName
      * @return Employee
      */
     public function setMiddleName($middleName)
@@ -208,7 +208,7 @@ class Employee
     /**
      * Set position
      *
-     * @param  string $position
+     * @param  string   $position
      * @return Employee
      */
     public function setPosition($position)
@@ -236,7 +236,7 @@ class Employee
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string   $slug
      * @return Employee
      */
     public function setSlug($slug)
@@ -277,5 +277,10 @@ class Employee
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function __toString()
+    {
+        return $this->getSlug();
     }
 }

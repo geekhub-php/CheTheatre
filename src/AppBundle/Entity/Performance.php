@@ -108,7 +108,7 @@ class Performance
     /**
      * Set title
      *
-     * @param  string $title
+     * @param  string      $title
      * @return Performance
      */
     public function setTitle($title)
@@ -131,7 +131,7 @@ class Performance
     /**
      * Set description
      *
-     * @param  string $description
+     * @param  string      $description
      * @return Performance
      */
     public function setDescription($description)
@@ -154,7 +154,7 @@ class Performance
     /**
      * Set premiere
      *
-     * @param  \DateTime $premiere
+     * @param  \DateTime   $premiere
      * @return Performance
      */
     public function setPremiere($premiere)
@@ -182,7 +182,7 @@ class Performance
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string      $slug
      * @return Performance
      */
     public function setSlug($slug)
@@ -233,6 +233,7 @@ class Performance
      */
     public function addRole(\AppBundle\Entity\Role $role)
     {
+        $role->setPerformance($this);
         $this->roles[] = $role;
 
         return $this;
@@ -256,5 +257,10 @@ class Performance
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }
