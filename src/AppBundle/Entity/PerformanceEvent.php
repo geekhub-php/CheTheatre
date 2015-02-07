@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="performance_schedule")
@@ -25,6 +26,7 @@ class PerformanceEvent
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Type("integer")
      * @Expose
      */
     private $id;
@@ -33,6 +35,7 @@ class PerformanceEvent
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="performanceEvents")
+     * @Type("AppBundle\Entity\Performance")
      * @Expose
      */
     private $performance;
@@ -42,6 +45,7 @@ class PerformanceEvent
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
+     * @Type("DateTime")
      * @Expose
      */
     private $dateTime;

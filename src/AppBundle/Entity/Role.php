@@ -9,6 +9,7 @@ use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="roles")
@@ -34,6 +35,7 @@ class Role
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Type("string")
      * @Expose
      */
     private $title;
@@ -42,6 +44,7 @@ class Role
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
+     * @Type("string")
      * @Expose
      */
     private $description;
@@ -64,6 +67,7 @@ class Role
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles")
+     * @Type("AppBundle\Entity\Employee")
      * @Expose
      */
     private $employee;
@@ -71,6 +75,7 @@ class Role
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
      * @Expose
      */
     private $slug;
