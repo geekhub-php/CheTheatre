@@ -26,6 +26,10 @@ class EmployeesController extends Controller
      *           "Returned when something else is not found"
      *         }
      *     },
+     *  parameters={
+     *      {"name"="limit", "dataType"="integer", "required"=false, "description"="limit quantity of Employees to be showen. Example:/employees?limit=10&offset=30"},
+     *      {"name"="offset", "dataType"="integer", "required"=false, "description"="offset quantity of Employees from beginnig to be showen. Example:/employees?limit=10&offset=30"}
+     *  },
      * output = { "class" = "AppBundle\Entity\Employee", "collection" = true, "collectionName" = "Employees" }
      * )
      *
@@ -35,11 +39,18 @@ class EmployeesController extends Controller
      *
      * @RestView
      */
-    public function cgetAction()
+    public function cgetAction(Request $request)
     {
+        $limit = $request->get('limit');
+        $offset = $request->get('offset');
+
         $em = $this->getDoctrine()->getManager();
 
-        $employees = $em->getRepository('AppBundle:Employee')->findAll();
+        if(!$limit && !$offset) {
+            $employees = $em->getRepository('AppBundle:Employee')->findAll();
+        } else {
+            $employees = $em->getRepository('AppBundle:Employee')->findLimitEmployees($limit, $offset);
+        }
 
         $restView = View::create();
         $restView
