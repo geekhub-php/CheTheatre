@@ -25,7 +25,8 @@ class PerformancesController extends Controller
      *           "Returned when the user is not found",
      *           "Returned when something else is not found"
      *         }
-     *     }
+     *     },
+     * output = { "class" = "AppBundle\Entity\Performance", "collection" = true, "collectionName" = "Performances" }
      * )
      *
      * Collection get action
@@ -65,7 +66,8 @@ class PerformancesController extends Controller
      *     },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\Performance" }
      * )
      *
      * @return Response
@@ -108,7 +110,8 @@ class PerformancesController extends Controller
      *     },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\Role", "collection" = true, "collectionName" = "Roles" }
      * )
      *
      * @return Response
@@ -153,7 +156,8 @@ class PerformancesController extends Controller
      *     },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\PerformanceEvent", "collection" = true, "collectionName" = "PerformanceEvents" }
      * )
      *
      * @return Response

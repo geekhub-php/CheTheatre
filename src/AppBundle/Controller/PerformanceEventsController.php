@@ -25,7 +25,8 @@ class PerformanceEventsController extends Controller
      *           "Returned when the user is not found",
      *           "Returned when something else is not found"
      *         }
-     *     }
+     *     },
+     * output = { "class" = "AppBundle\Entity\PerformanceEvent", "collection" = true, "collectionName" = "PerformanceEvents" }
      * )
      *
      * Collection get action
@@ -65,7 +66,8 @@ class PerformanceEventsController extends Controller
      *     },
      *  parameters={
      *      {"name"="Id", "dataType"="string", "required"=true, "description"="PerformanceEvent Id"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\PerformanceEvent" }
      * )
      *
      * @return Response

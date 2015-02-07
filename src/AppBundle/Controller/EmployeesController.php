@@ -25,25 +25,21 @@ class EmployeesController extends Controller
      *           "Returned when the entity is not found",
      *           "Returned when something else is not found"
      *         }
-     *     }
+     *     },
+     * output = { "class" = "AppBundle\Entity\Employee", "collection" = true, "collectionName" = "Employees" }
      * )
+     *
      *
      * Collection get action
      * @return Response
      *
      * @RestView
      */
-    public function cgetAction(Request $request)
+    public function cgetAction()
     {
-        $limit = $request->get('limit');
-        $offset = $request->get('offset');
         $em = $this->getDoctrine()->getManager();
 
         $employees = $em->getRepository('AppBundle:Employee')->findAll();
-        $result = null;
-        for ($i = 1; $i <= count($employees); $i++) {
-            ;
-        }
 
         $restView = View::create();
         $restView
@@ -71,7 +67,8 @@ class EmployeesController extends Controller
      *     },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\Employee" }
      * )
      *
      * @return Response
@@ -114,7 +111,8 @@ class EmployeesController extends Controller
      *     },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
-     *  }
+     *  },
+     * output = { "class" = "AppBundle\Entity\Role", "collection" = true, "collectionName" = "Roles" }
      * )
      *
      * @return Response
