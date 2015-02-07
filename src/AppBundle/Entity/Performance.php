@@ -54,7 +54,7 @@ class Performance
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     * @Type("DatwTime")
+     * @Type("DateTime")
      * @Expose
      */
     private $premiere;
