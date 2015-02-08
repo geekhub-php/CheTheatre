@@ -23,7 +23,6 @@ class EmployeesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={
@@ -73,7 +72,6 @@ class EmployeesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={
@@ -117,7 +115,6 @@ class EmployeesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={

@@ -18,12 +18,11 @@ class PerformanceEventsController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns a collection of PerformancesEvents",
+     *  description="Returns a collection of PerformanceEvents",
      *     statusCodes={
      *         200="Returned when successful",
      *         404={
-     *           "Returned when the user is not found",
-     *           "Returned when something else is not found"
+     *           "Returned when the entity is not found",
      *         }
      *     },
      * output = { "class" = "AppBundle\Entity\PerformanceEvent", "collection" = true, "collectionName" = "PerformanceEvents" }
@@ -55,13 +54,12 @@ class PerformanceEventsController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns PerformancesEvent by Id",
+     *  description="Returns one PerformanceEvent by Id",
      *
      *     statusCodes={
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={

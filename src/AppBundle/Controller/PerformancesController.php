@@ -22,8 +22,7 @@ class PerformancesController extends Controller
      *     statusCodes={
      *         200="Returned when successful",
      *         404={
-     *           "Returned when the user is not found",
-     *           "Returned when something else is not found"
+     *           "Returned when the entity is not found",
      *         }
      *     },
      * output = { "class" = "AppBundle\Entity\Performance", "collection" = true, "collectionName" = "Performances" }
@@ -61,7 +60,6 @@ class PerformancesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={
@@ -105,7 +103,6 @@ class PerformancesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={
@@ -151,7 +148,6 @@ class PerformancesController extends Controller
      *         200="Returned when successful",
      *         404={
      *           "Returned when the entity is not found",
-     *           "Returned when something else is not found"
      *         }
      *     },
      *  parameters={
