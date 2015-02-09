@@ -1,17 +1,17 @@
 <?php
 
 namespace AppBundle\Controller;
+
+use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations\NoRoute;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use AppBundle\Entity\Employee;
 
 /**
  * @RouteResource("Employee")
@@ -20,53 +20,31 @@ class EmployeesController extends Controller
 {
     /**
      * @ApiDoc(
-     * resource=true,
+     *  resource=true,
      *  description="Returns a collection of Employees",
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
-     *  parameters={
-     *      {"name"="limit", "dataType"="integer", "required"=false, "description"="limit quantity of Employees to be showen. Example:/employees?limit=10&offset=30"},
-     *      {"name"="offset", "dataType"="integer", "required"=false, "description"="offset quantity of Employees from beginnig to be showen. Example:/employees?limit=10&offset=30"}
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
      *  },
-     * output = { "class" = "AppBundle\Entity\Employee", "collection" = true, "collectionName" = "Employees" }
+     * output = { "class" = "AppBundle\Entity\Employee", "collection" = true }
      * )
      *
-     *
-     * Collection get action
-     * @return Response
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Page of the overview.")
+     * @QueryParam(name="offset", requirements="\d+", default="1", description="Page of the overview.")
      *
      * @RestView
      */
-    public function cgetAction(Request $request)
+    public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $limit = $request->get('limit')?$request->get('limit'):10;
-        $offset = $request->get('offset')?$request->get('offset'):1;
+        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->createQueryBuilder('e')->getQuery();
 
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->createQueryBuilder()
-            ->select('u')
-            ->from('AppBundle:Employee', 'u');
-        $adapter = new DoctrineORMAdapter($queryBuilder);
-
-        $employees = new Pagerfanta($adapter);
-
-        $employees->setMaxPerPage($limit);
-        $employees->setCurrentPage($offset); // 1 by default
-
-        $restView = View::create();
-        $restView
-            ->setData($employees)
-            ->setHeaders(array(
-                "Content-Type" => "application/json",
-                "Location" => $this->generateUrl('get_employees')
-                )
-            )
+        $paginater = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
+        $paginater
+            ->setMaxPerPage($paramFetcher->get('limit'))
+            ->setCurrentPage($paramFetcher->get('offset'))
         ;
-        return $restView;
+
+        return $paginater->getCurrentPageResults()->getArrayCopy();
     }
 
     /**

@@ -95,6 +95,7 @@ hautelook_alice:
 #    doctrine: orm                               # default
 
 sensio_framework_extra:
+    view:    { annotations: false }
     request:
         converters: true
         auto_convert: false
@@ -149,10 +150,15 @@ fos_rest:
         view_response_listener: 'force'
         formats:
             json: true
-            xml: false
+            xml: true
             yml: false
             html: false
 
 sensio_framework_extra:
     view:
         annotations: false
+
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        to_http_not_found
+        not_valid_current_page:   to_http_not_found
