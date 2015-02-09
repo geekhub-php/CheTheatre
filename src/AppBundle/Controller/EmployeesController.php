@@ -9,6 +9,9 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use AppBundle\Entity\Employee;
 
 /**
  * @RouteResource("Employee")
@@ -40,16 +43,19 @@ class EmployeesController extends Controller
      */
     public function cgetAction(Request $request)
     {
-        $limit = $request->get('limit');
-        $offset = $request->get('offset');
+        $limit = $request->get('limit')?$request->get('limit'):10;
+        $offset = $request->get('offset')?$request->get('offset'):1;
 
         $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->createQueryBuilder()
+            ->select('u')
+            ->from('AppBundle:Employee', 'u');
+        $adapter = new DoctrineORMAdapter($queryBuilder);
 
-        if(!$limit && !$offset) {
-            $employees = $em->getRepository('AppBundle:Employee')->findAll();
-        } else {
-            $employees = $em->getRepository('AppBundle:Employee')->findLimitEmployees($limit, $offset);
-        }
+        $employees = new Pagerfanta($adapter);
+
+        $employees->setMaxPerPage($limit);
+        $employees->setCurrentPage($offset); // 1 by default
 
         $restView = View::create();
         $restView
