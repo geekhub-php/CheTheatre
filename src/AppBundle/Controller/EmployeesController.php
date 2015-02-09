@@ -26,11 +26,11 @@ class EmployeesController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entity is not found",
      *  },
-     * output = { "class" = "AppBundle\Entity\Employee", "collection" = true }
+     *  output = "array<AppBundle\Entity\Employee>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Page of the overview.")
-     * @QueryParam(name="offset", requirements="\d+", default="1", description="Page of the overview.")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="offset", requirements="\d+", default="1", description="Count entries for offset")
      *
      * @RestView
      */
