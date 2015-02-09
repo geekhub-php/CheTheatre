@@ -24,7 +24,7 @@ class EmployeesController extends Controller
      *  description="Returns a collection of Employees",
      *  statusCodes={
      *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      404="Returned when the entities with given limit and offset is not found",
      *  },
      *  output = "array<AppBundle\Entity\Employee>"
      * )
