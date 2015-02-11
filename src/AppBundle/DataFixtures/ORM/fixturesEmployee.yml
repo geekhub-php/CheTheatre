@@ -8,7 +8,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee2:
     firstName: Сергій
     LastName: Проскурня
@@ -18,7 +17,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee3:
     firstName: Олександр
     LastName: Павлютін
@@ -28,7 +26,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee4:
     firstName: Сергій
     LastName: Ридванецький
@@ -38,7 +35,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee5:
     firstName: Наталія
     LastName: Ридванецька
@@ -48,7 +44,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee6:
     firstName: Надія
     LastName: Нікіфорова
@@ -58,7 +53,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee7:
     firstName: Володимир
     LastName: Татарінов
@@ -68,7 +62,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee8:
     firstName: Варвара
     LastName: Присяжненко
@@ -78,7 +71,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee9:
     firstName: Олена
     LastName: Бєлкіна
@@ -88,7 +80,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee10:
     firstName: Світлана
     LastName: Лежненко
@@ -98,7 +89,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee11:
     firstName: Галина
     LastName: Кириченко
@@ -108,7 +98,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee12:
     firstName: Сергій
     LastName: Бобров
@@ -118,7 +107,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee13:
     firstName: Наталія
     LastName: Вігран
@@ -128,7 +116,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee14:
     firstName: Марія
     LastName: Марущак
@@ -138,7 +125,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee15:
     firstName: Юрій
     LastName: Берлінський
@@ -148,7 +134,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee16:
     firstName: Світлана
     LastName: Амеліна
@@ -158,7 +143,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee17:
     firstName: Анна
     LastName: Боброва
@@ -168,7 +152,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee18:
     firstName: Олена
     LastName: Брехаря
@@ -178,7 +161,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee19:
     firstName: Лілія
     LastName: Бурлакова
@@ -188,7 +170,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee20:
     firstName: Оксана
     LastName: Вовкостріл
@@ -198,7 +179,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee21:
     firstName: Олександр
     LastName: Гелеверя
@@ -208,7 +188,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee22:
     firstName: Микола
     LastName: Глазов
@@ -218,7 +197,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee23:
     firstName: Ірина
     LastName: Глазова
@@ -228,7 +206,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee24:
     firstName: Наталія
     LastName: Глазова
@@ -238,7 +215,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee25:
     firstName: Павло
     LastName: Гончаров
@@ -248,7 +224,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee26:
     firstName: Юлія
     LastName: Гребень
@@ -258,7 +233,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee27:
     firstName: Наталія
     LastName: Гребень
@@ -268,7 +242,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee28:
     firstName: Олександр
     LastName: Гуменний
@@ -278,7 +251,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee29:
     firstName: Юлія
     LastName: Донська-Гуменна
@@ -288,7 +260,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee30:
     firstName: Микола
     LastName: Зайнчківський
@@ -298,7 +269,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee31:
     firstName: Анжеліна
     LastName: Іванова
@@ -308,7 +278,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee32:
     firstName: Валерій
     LastName: Кириченко
@@ -318,7 +287,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee33:
     firstName: Олексій
     LastName: Клименко
@@ -328,7 +296,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee34:
     firstName: Сергій
     LastName: Коваленко
@@ -338,7 +305,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee35:
     firstName: Вікторія
     LastName: Ковальова
@@ -348,7 +314,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee36:
     firstName: Віктор
     LastName: Коломієць
@@ -358,7 +323,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee37:
     firstName: Михайло
     LastName: Кондратський
@@ -368,7 +332,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee38:
     firstName: Надія
     LastName: Корбут
@@ -378,7 +341,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee39:
     firstName: Тетяна
     LastName: Крижанівська
@@ -388,7 +350,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee40:
     firstName: Олександр
     LastName: Кузьменко
@@ -398,7 +359,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee41:
     firstName: Олександр
     LastName: Кузьмин
@@ -408,7 +368,6 @@ AppBundle\Entity\Employee:
     roles: 5x @roles*
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
-    deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee42:
      firstName: Анна
      LastName: Куриленко
@@ -418,7 +377,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee43:
      firstName: Наталія
      LastName: Мамалига
@@ -428,7 +386,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee44:
      firstName: Ірина
      LastName: Маслова
@@ -438,7 +395,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee45:
      firstName: Світлана
      LastName: Москаленко
@@ -448,7 +404,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee46:
      firstName: Наталія
      LastName: Панекіна
@@ -458,7 +413,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee47:
      firstName: Наталія
      LastName: Науменко
@@ -468,7 +422,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee48:
      firstName: Сергій
      LastName: Пономаренко
@@ -478,7 +431,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee49:
      firstName: Олена
      LastName: Пономаренко
@@ -488,7 +440,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee50:
      firstName: Лідія
      LastName: Попова
@@ -498,7 +449,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee51:
      firstName: Дмитро
      LastName: Потапчук
@@ -508,7 +458,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee52:
      firstName: Олександр
      LastName: Приз
@@ -518,7 +467,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee53:
      firstName: Юрій
      LastName: Прокопчук
@@ -528,7 +476,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee54:
      firstName: Олександр
      LastName: Пятківський
@@ -538,7 +485,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee55:
      firstName: Ольга
      LastName: Ромодан
@@ -548,7 +494,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee56:
      firstName: Любов
      LastName: Скобель
@@ -558,7 +503,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee57:
      firstName: Євген
      LastName: Скрипніченко
@@ -568,7 +512,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee58:
      firstName: Людмила
      LastName: Талах
@@ -578,7 +521,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee59:
      firstName: Олег
      LastName: Телятник
@@ -588,7 +530,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee60:
      firstName: Світлана
      LastName: Терещенко
@@ -598,7 +539,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee61:
      firstName: Лілія
      LastName: Харченко
@@ -608,7 +548,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee62:
      firstName: Костянтин
      LastName: Шаєнко
@@ -618,7 +557,6 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
   employee63:
      firstName: Катерина
      LastName: Шакалова
@@ -628,4 +566,3 @@ AppBundle\Entity\Employee:
      roles: 5x @roles*
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
-     deletedAt: <dateTimeBetween($createdAt, 'now')>
