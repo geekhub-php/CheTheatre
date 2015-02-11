@@ -55,6 +55,7 @@ class EmployeesController extends Controller
                 )
             ):
             'false';
+
         $previsiousPage = $paginater->hasPreviousPage()?
             $this->generateUrl('get_employees', array(
                     'limit' => $paramFetcher->get('limit'),
@@ -62,6 +63,7 @@ class EmployeesController extends Controller
                 )
             ):
             'false';
+
         $employeesResponse->setNextPage($nextPage);
         $employeesResponse->setPreviousPage($previsiousPage);
 
@@ -91,24 +93,14 @@ class EmployeesController extends Controller
      */
     public function getAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $employee = $em->getRepository('AppBundle:Employee')->findOneByslug($slug);
+        $employee = $this->getDoctrine()->getManager()->
+            getRepository('AppBundle:Employee')->findOneByslug($slug);
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
-        $restView = View::create();
-        $restView
-            ->setData($employee)
-            ->setHeaders(array(
-                "Content-Type" => "application/json",
-                "Location" => $this->generateUrl('get_employees').'/'.$employee->getSlug()
-                )
-            )
-        ;
-        return $restView;
+        return $employee;
     }
 
     /**
@@ -134,9 +126,9 @@ class EmployeesController extends Controller
      */
     public function getRolesAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $employee = $em->getRepository('AppBundle:Employee')->findOneByslug($slug);
+        $employee = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Employee')->findOneByslug($slug);
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -144,15 +136,6 @@ class EmployeesController extends Controller
 
         $roles = $employee->getRoles();
 
-        $restView = View::create();
-        $restView
-            ->setData($roles)
-            ->setHeaders(array(
-                "Content-Type" => "application/json",
-                "Location" => $this->generateUrl('get_employees').'/'.$employee->getSlug().'/roles'
-                )
-            )
-        ;
-        return $restView;
+        return $roles;
     }
 }

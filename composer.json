@@ -27,7 +27,7 @@
         "twig/extensions": "~1.0",
         "nelmio/api-doc-bundle": "dev-master",
         "sonata-project/admin-bundle": "~2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/media-bundle": "~2.3",
         "white-october/pagerfanta-bundle": "~1.0"
     },

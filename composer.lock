@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b70579e2a0bc4717398f7cfc49b48089",
+    "hash": "01244f9dfc68786724cafaf413e6ac59",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2873,16 +2873,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "dev-master",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "a05f52d457eb4b8bb97163820651579a963e92ae"
+                "reference": "1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/a05f52d457eb4b8bb97163820651579a963e92ae",
-                "reference": "a05f52d457eb4b8bb97163820651579a963e92ae",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9",
+                "reference": "1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9",
                 "shasum": ""
             },
             "require": {
@@ -2907,7 +2907,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.3.x-dev"
                 }
             },
             "autoload": {
@@ -2939,7 +2939,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2015-02-10 16:51:03"
+            "time": "2014-09-01 20:21:38"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -4439,8 +4439,7 @@
         "stof/doctrine-extensions-bundle": 20,
         "symfony/event-dispatcher": 20,
         "knplabs/knp-paginator-bundle": 20,
-        "nelmio/api-doc-bundle": 20,
-        "sonata-project/doctrine-orm-admin-bundle": 20
+        "nelmio/api-doc-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
