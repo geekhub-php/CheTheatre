@@ -1,14 +1,16 @@
 <?php
 
 namespace AppBundle\Controller;
+
+use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations\NoRoute;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use AppBundle\Model\PerformanceEventsResponse;
 
 /**
  * @RouteResource("PerformanceEvent")
@@ -19,78 +21,79 @@ class PerformanceEventsController extends Controller
      * @ApiDoc(
      * resource=true,
      *  description="Returns a collection of PerformanceEvents",
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
-     * output = { "class" = "AppBundle\Entity\PerformanceEvent", "collection" = true, "collectionName" = "PerformanceEvents" }
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entities with given limit and offset are not found",
+     * },
+     *  output = "array<AppBundle\Entity\PerformanceEvent>"
      * )
      *
-     * Collection get action
-     * @return Response
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
-    public function cgetAction()
+    public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')->createQueryBuilder('e')->getQuery();
 
-        $performanceEvents = $em->getRepository('AppBundle:PerformanceEvent')->findAll();
-
-        $restView = View::create();
-        $restView
-            ->setData($performanceEvents)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performanceevents')
-                )
-            )
+        $paginater = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
+        $paginater
+            ->setMaxPerPage($paramFetcher->get('limit'))
+            ->setCurrentPage($paramFetcher->get('page'))
         ;
-        return $restView;
+        $performanceEventsResponse = new PerformanceEventsResponse();
+        $performanceEventsResponse->setPerformanceEvents($paginater->getCurrentPageResults()->getArrayCopy());
+        $performanceEventsResponse->setPageCount($paginater->getNbPages());
+
+        $nextPage = $paginater->hasNextPage()?
+            $this->generateUrl('get_performanceevents', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ):
+            'false';
+
+        $previsiousPage = $paginater->hasPreviousPage()?
+            $this->generateUrl('get_performanceevents', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ):
+            'false';
+
+        $performanceEventsResponse->setNextPage($nextPage);
+        $performanceEventsResponse->setPreviousPage($previsiousPage);
+
+        return $performanceEventsResponse;
     }
 
     /**
      * @ApiDoc(
      * resource=true,
      *  description="Returns one PerformanceEvent by Id",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Id", "dataType"="string", "required"=true, "description"="PerformanceEvent Id"}
      *  },
-     * output = { "class" = "AppBundle\Entity\PerformanceEvent" }
+     *  output = "array<AppBundle\Entity\PerformanceEvent>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */
     public function getAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->findOneById($id);
+        $performanceEvent = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:PerformanceEvent')->findOneById($id);
 
         if (!$performanceEvent) {
             throw $this->createNotFoundException('Unable to find '.$id.' entity');
         }
 
-        $restView = View::create();
-        $restView
-            ->setData($performanceEvent)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performanceevents').'/'.$performanceEvent->getId()
-                )
-            )
-        ;
-        return $restView;
+        return $performanceEvent;
     }
 }

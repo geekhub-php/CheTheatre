@@ -4,8 +4,6 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -74,20 +72,15 @@ class EmployeesController extends Controller
      * @ApiDoc(
      * resource=true,
      *  description="Returns an Employee by slug",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
      *  },
-     * output = { "class" = "AppBundle\Entity\Employee" }
+     *  output = "array<AppBundle\Entity\Employee>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */
@@ -107,20 +100,15 @@ class EmployeesController extends Controller
      * @ApiDoc(
      * resource=true,
      *  description="Returns an Employee by slug and his roles",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
      *  },
-     * output = { "class" = "AppBundle\Entity\Role", "collection" = true, "collectionName" = "Roles" }
+     *  output = "array<AppBundle\Entity\Employee>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */

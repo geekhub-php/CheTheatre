@@ -1,14 +1,16 @@
 <?php
 
 namespace AppBundle\Controller;
+
+use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations\NoRoute;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use AppBundle\Model\PerformancesResponse;
 
 /**
  * @RouteResource("Performance")
@@ -19,107 +21,101 @@ class PerformancesController extends Controller
      * @ApiDoc(
      * resource=true,
      *  description="Returns a collection of Performances",
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
      *     },
-     * output = { "class" = "AppBundle\Entity\Performance", "collection" = true, "collectionName" = "Performances" }
+     *  output = "array<AppBundle\Entity\Performance>"
      * )
      *
-     * Collection get action
-     * @return Response
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
-    public function cgetAction()
+    public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->createQueryBuilder('e')->getQuery();
 
-        $performances = $em->getRepository('AppBundle:Performance')->findAll();
-
-        $restView = View::create();
-        $restView
-            ->setData($performances)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performances')
-                )
-            )
+        $paginater = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
+        $paginater
+            ->setMaxPerPage($paramFetcher->get('limit'))
+            ->setCurrentPage($paramFetcher->get('page'))
         ;
-        return $restView;
+        $performancesResponse = new PerformancesResponse();
+        $performancesResponse->setPerformances($paginater->getCurrentPageResults()->getArrayCopy());
+        $performancesResponse->setPageCount($paginater->getNbPages());
+
+        $nextPage = $paginater->hasNextPage()?
+            $this->generateUrl('get_performances', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ):
+            'false';
+
+        $previsiousPage = $paginater->hasPreviousPage()?
+            $this->generateUrl('get_performances', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ):
+            'false';
+
+        $performancesResponse->setNextPage($nextPage);
+        $performancesResponse->setPreviousPage($previsiousPage);
+
+        return $performancesResponse;
     }
 
     /**
      * @ApiDoc(
      * resource=true,
      *  description="Returns Performance by Slug",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
-     * output = { "class" = "AppBundle\Entity\Performance" }
+     *  output = "array<AppBundle\Entity\Performance>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */
     public function getAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $performance = $em->getRepository('AppBundle:Performance')->findOneByslug($slug);
+        $performance = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
-        $restView = View::create();
-        $restView
-            ->setData($performance)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug()
-                )
-            )
-        ;
-        return $restView;
+        return $performance;
     }
 
     /**
      * @ApiDoc(
      * resource=true,
      *  description="Returns Performance by Slug and its Roles",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
-     * output = { "class" = "AppBundle\Entity\Role", "collection" = true, "collectionName" = "Roles" }
+     *  output = "array<AppBundle\Entity\Role>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */
     public function getRolesAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $performance = $em->getRepository('AppBundle:Performance')->findOneByslug($slug);
+        $performance = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -127,44 +123,29 @@ class PerformancesController extends Controller
 
         $roles = $performance->getRoles();
 
-        $restView = View::create();
-        $restView
-            ->setData($roles)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug().'/roles'
-                )
-            )
-        ;
-        return $restView;
+        return $roles;
     }
 
     /**
      * @ApiDoc(
      * resource=true,
      *  description="Returns Performance by Slug and its Performance Events",
-     *
-     *     statusCodes={
-     *         200="Returned when successful",
-     *         404={
-     *           "Returned when the entity is not found",
-     *         }
-     *     },
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the entity is not found",
+     *  },
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
-     * output = { "class" = "AppBundle\Entity\PerformanceEvent", "collection" = true, "collectionName" = "PerformanceEvents" }
+     *  output = "array<AppBundle\Entity\PerformanceEvent>"
      * )
-     *
-     * @return Response
      *
      * @RestView
      */
     public function getPerformanceeventsAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $performance = $em->getRepository('AppBundle:Performance')->findOneByslug($slug);
+        $performance = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -172,15 +153,6 @@ class PerformancesController extends Controller
 
         $performanceEvents = $performance->getPerformanceEvents();
 
-        $restView = View::create();
-        $restView
-            ->setData($performanceEvents)
-            ->setHeaders(array(
-                    "Content-Type" => "application/json",
-                    "Location" => $this->generateUrl('get_performances').'/'.$performance->getSlug().'/performanceevents'
-                )
-            )
-        ;
-        return $restView;
+        return $performanceEvents;
     }
 }

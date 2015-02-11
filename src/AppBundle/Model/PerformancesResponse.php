@@ -2,9 +2,9 @@
 
 namespace AppBundle\Model;
 
-class EmployeesResponse
+class PerformancesResponse
 {
-    protected $employees;
+    protected $performances;
 
     protected $nextPage;
 
@@ -15,17 +15,17 @@ class EmployeesResponse
     /**
      * @return mixed
      */
-    public function getEmployees()
+    public function getPerformances()
     {
-        return $this->employees;
+        return $this->performances;
     }
 
     /**
-     * @param mixed $employees
+     * @param mixed $performances
      */
-    public function setEmployees($employees)
+    public function setPerformances($performances)
     {
-        $this->employees = $employees;
+        $this->performances = $performances;
     }
 
     /**
