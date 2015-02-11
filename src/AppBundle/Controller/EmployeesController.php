@@ -12,6 +12,7 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use AppBundle\Model\EmployeesResponse;
 
 /**
  * @RouteResource("Employee")
@@ -30,7 +31,7 @@ class EmployeesController extends Controller
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
-     * @QueryParam(name="offset", requirements="\d+", default="1", description="Count entries for offset")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
@@ -41,10 +42,30 @@ class EmployeesController extends Controller
         $paginater = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
         $paginater
             ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('offset'))
+            ->setCurrentPage($paramFetcher->get('page'))
         ;
+        $employeesResponse = new EmployeesResponse();
+        $employeesResponse->setEmployees($paginater->getCurrentPageResults()->getArrayCopy());
+        $employeesResponse->setPageCount($paginater->getNbPages());
 
-        return $paginater->getCurrentPageResults()->getArrayCopy();
+        $nextPage = $paginater->hasNextPage()?
+            $this->generateUrl('get_employees', array(
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')+1,
+                )
+            ):
+            'false';
+        $previsiousPage = $paginater->hasPreviousPage()?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ):
+            'false';
+        $employeesResponse->setNextPage($nextPage);
+        $employeesResponse->setPreviousPage($previsiousPage);
+
+        return $employeesResponse;
     }
 
     /**
