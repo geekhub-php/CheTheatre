@@ -46,20 +46,20 @@ class EmployeesController extends Controller
         $employeesResponse->setEmployees($paginater->getCurrentPageResults()->getArrayCopy());
         $employeesResponse->setPageCount($paginater->getNbPages());
 
-        $nextPage = $paginater->hasNextPage()?
+        $nextPage = $paginater->hasNextPage() ?
             $this->generateUrl('get_employees', array(
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
                 )
-            ):
+            ) :
             'false';
 
-        $previsiousPage = $paginater->hasPreviousPage()?
+        $previsiousPage = $paginater->hasPreviousPage() ?
             $this->generateUrl('get_employees', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 )
-            ):
+            ) :
             'false';
 
         $employeesResponse->setNextPage($nextPage);
@@ -114,7 +114,6 @@ class EmployeesController extends Controller
      */
     public function getRolesAction($slug)
     {
-
         $employee = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Employee')->findOneByslug($slug);
 

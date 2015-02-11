@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="performance_schedule")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\PerformanceEventRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */

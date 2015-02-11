@@ -46,20 +46,20 @@ class PerformancesController extends Controller
         $performancesResponse->setPerformances($paginater->getCurrentPageResults()->getArrayCopy());
         $performancesResponse->setPageCount($paginater->getNbPages());
 
-        $nextPage = $paginater->hasNextPage()?
+        $nextPage = $paginater->hasNextPage() ?
             $this->generateUrl('get_performances', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')+1,
                 )
-            ):
+            ) :
             'false';
 
-        $previsiousPage = $paginater->hasPreviousPage()?
+        $previsiousPage = $paginater->hasPreviousPage() ?
             $this->generateUrl('get_performances', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 )
-            ):
+            ) :
             'false';
 
         $performancesResponse->setNextPage($nextPage);
