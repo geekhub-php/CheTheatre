@@ -97,6 +97,7 @@ hautelook_alice:
 #    doctrine: orm                               # default
 
 sensio_framework_extra:
+    view:    { annotations: false }
     request:
         converters: true
         auto_convert: false
@@ -131,4 +132,35 @@ knp_paginator:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
-nelmio_api_doc: ~
+nelmio_api_doc:
+    sandbox:
+        accept_type: application/json
+        body_format:
+            formats: [ json ]
+        request_format:
+            formats:
+                json: application/json
+            default_format: json
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: true
+            yml: false
+            html: false
+
+sensio_framework_extra:
+    view:
+        annotations: false
+
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        to_http_not_found
+        not_valid_current_page:   to_http_not_found

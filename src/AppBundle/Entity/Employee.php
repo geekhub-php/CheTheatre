@@ -7,11 +7,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class Employee
 {
@@ -19,7 +23,6 @@ class Employee
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -31,6 +34,8 @@ class Employee
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $firstName;
 
@@ -39,6 +44,8 @@ class Employee
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $lastName;
 
@@ -46,15 +53,17 @@ class Employee
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Type("string")
+     * @Expose
      */
     private $middleName;
 
     /**
      * @var /Datetime
-     *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     *
+     * @Type("DateTime")
+     * @Expose
      */
     private $dob;
 
@@ -62,6 +71,8 @@ class Employee
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $position;
 
@@ -82,6 +93,8 @@ class Employee
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $slug;
 

@@ -18,3 +18,15 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
+
+employees:
+    type: rest
+    resource: AppBundle\Controller\EmployeesController
+
+performances:
+    type: rest
+    resource: AppBundle\Controller\PerformancesController
+
+performance-events:
+    type: rest
+    resource: AppBundle\Controller\PerformanceEventsController

@@ -7,11 +7,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class Performance
 {
@@ -31,6 +35,8 @@ class Performance
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $title;
 
@@ -38,6 +44,8 @@ class Performance
      * @var string
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
+     * @Type("string")
+     * @Expose
      */
     private $description;
 
@@ -46,6 +54,8 @@ class Performance
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
+     * @Type("DateTime")
+     * @Expose
      */
     private $premiere;
 
@@ -73,6 +83,8 @@ class Performance
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
     private $slug;
 

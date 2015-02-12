@@ -6,6 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PerformancesControllerTest extends WebTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $em;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUp()
+    {
+        self::bootKernel();
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager()
+        ;
+    }
+
     public function testGetPerformances()
     {
         $client = static::createClient();
@@ -22,71 +39,58 @@ class PerformancesControllerTest extends WebTestCase
 
     public function testGetPerformancesSlug()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}');
+        $client->request('GET', '/performances/'.$slug);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testGetErrorPerformancesSlug()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}');
+        $client->request('GET', '/performances/'.$slug);
         $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetPerformancesSlugRoles()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/roles');
+        $client->request('GET', '/performances/'.$slug.'/roles');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testGetErrorPerformancesSlugRoles()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/roles');
+        $client->request('GET', '/performances/'.$slug.'/roles');
         $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
-    public function testGetPerformancesSlugRolesSlug()
+    public function testGetPerformancesSlugPerformanceEvents()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/roles/{slug}');
+        $client->request('GET', '/performances/'.$slug.'/performanceevents');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testGetErrorPerformancesSlugRolesSlug()
+    public function testGetErrorPerformancesSlugPerformanceEvents()
     {
+        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
         $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/roles/{slug}');
+        $client->request('GET', '/performances/'.$slug.'/performanceevents');
         $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
-    public function testGetPerformancesSlugPerfomanceEvents()
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
     {
-        $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/perfomance-events');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformancesSlugPerfomanceEvents()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/perfomance-events');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetPerformancesSlugPerfomanceEventsSlug()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/perfomance-events/{slug}');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformancesSlugPerfomanceEventsSlug()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/performances/{slug}/perfomance-events/{slug}');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        parent::tearDown();
+        $this->em->close();
     }
 }
