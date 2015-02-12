@@ -15,7 +15,7 @@ class EmployeesResponse
 {
     /**
      * @var Array[]
-     * @Type("array")
+     * @Type("array<AppBundle\Entity\Employee>")
      * @Expose
      */
     protected $employees;
