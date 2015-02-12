@@ -2,14 +2,43 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+
+/**
+ * Class EmployeesResponse
+ * @package AppBundle\Model
+ * @ExclusionPolicy("all")
+ */
 class EmployeesResponse
 {
+    /**
+     * @var Array[]
+     * @Type("array")
+     * @Expose
+     */
     protected $employees;
 
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
     protected $nextPage;
 
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
     protected $previousPage;
 
+    /**
+     * @var integer
+     * @Type("integer")
+     * @Expose
+     */
     protected $pageCount;
 
     /**

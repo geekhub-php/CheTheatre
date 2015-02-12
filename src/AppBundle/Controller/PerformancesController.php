@@ -8,9 +8,9 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use AppBundle\Model\PerformancesResponse;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Performance")
@@ -25,7 +25,7 @@ class PerformancesController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entity is not found",
      *     },
-     *  output = "array<AppBundle\Entity\Performance>"
+     *  output = "AppBundle\Model\PerformancesResponse"
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
@@ -35,15 +35,15 @@ class PerformancesController extends Controller
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->createQueryBuilder('e')->getQuery();
+        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->findAll();
 
-        $paginater = new Pagerfanta(new DoctrineORMAdapter($queryBuilder));
+        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
         $paginater
             ->setMaxPerPage($paramFetcher->get('limit'))
             ->setCurrentPage($paramFetcher->get('page'))
         ;
         $performancesResponse = new PerformancesResponse();
-        $performancesResponse->setPerformances($paginater->getCurrentPageResults()->getArrayCopy());
+        $performancesResponse->setPerformances($paginater->getCurrentPageResults());
         $performancesResponse->setPageCount($paginater->getNbPages());
 
         $nextPage = $paginater->hasNextPage() ?
@@ -79,7 +79,7 @@ class PerformancesController extends Controller
      *  parameters={
      *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
-     *  output = "array<AppBundle\Entity\Performance>"
+     *  output = "AppBundle\Entity\Performance"
      * )
      *
      * @RestView

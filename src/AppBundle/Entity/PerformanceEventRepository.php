@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class PerformanceEventRepository extends EntityRepository
 {
-    public function findByDateRangeEmployees(\DateTime $fromDate, \DateTime $toDate)
+    public function findByDateRange(\DateTime $fromDate, \DateTime $toDate)
     {
         $qb = $this->createQueryBuilder('u');
 

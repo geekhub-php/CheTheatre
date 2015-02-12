@@ -2,14 +2,43 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+
+/**
+ * Class PerformanceEventsResponse
+ * @package AppBundle\Model
+ * @ExclusionPolicy("all")
+ */
 class PerformanceEventsResponse
 {
+    /**
+     * @var Array[]
+     * @Type("array")
+     * @Expose
+     */
     protected $performanceEvents;
 
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
     protected $nextPage;
 
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
     protected $previousPage;
 
+    /**
+     * @var integer
+     * @Type("integer")
+     * @Expose
+     */
     protected $pageCount;
 
     /**

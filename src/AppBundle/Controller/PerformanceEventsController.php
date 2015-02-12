@@ -25,7 +25,7 @@ class PerformanceEventsController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entities with given limit and offset are not found",
      * },
-     *  output = "array<AppBundle\Entity\PerformanceEvent>"
+     *  output = "AppBundle\Model\PerformanceEventsResponse"
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
@@ -38,7 +38,7 @@ class PerformanceEventsController extends Controller
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')
-            ->findByDateRangeEmployees(
+            ->findByDateRange(
                 new \DateTime($paramFetcher->get('fromDate')),
                 new \DateTime($paramFetcher->get('toDate'))
             )
@@ -52,9 +52,7 @@ class PerformanceEventsController extends Controller
         ;
 
         $performanceEventsResponse = new PerformanceEventsResponse();
-
         $performanceEventsResponse->setPerformanceEvents($paginater->getCurrentPageResults());
-
         $performanceEventsResponse->setPageCount($paginater->getNbPages());
 
         $nextPage = $paginater->hasNextPage() ?
@@ -90,7 +88,7 @@ class PerformanceEventsController extends Controller
      *  parameters={
      *      {"name"="Id", "dataType"="string", "required"=true, "description"="PerformanceEvent Id"}
      *  },
-     *  output = "array<AppBundle\Entity\PerformanceEvent>"
+     *  output = "AppBundle\Entity\PerformanceEvent"
      * )
      *
      * @RestView
