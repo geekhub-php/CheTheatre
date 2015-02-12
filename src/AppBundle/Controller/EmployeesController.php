@@ -25,7 +25,7 @@ class EmployeesController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
-     *  output = "AppBundle\Model\EmployeesResponse"
+     *  output = "array<AppBundle\Model\EmployeesResponse>"
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
@@ -77,7 +77,7 @@ class EmployeesController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
      *  },
      *  output = "AppBundle\Entity\Employee"
      * )
@@ -105,7 +105,7 @@ class EmployeesController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )

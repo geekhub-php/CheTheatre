@@ -25,7 +25,7 @@ class PerformancesController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entity is not found",
      *     },
-     *  output = "AppBundle\Model\PerformancesResponse"
+     *  output = "array<AppBundle\Model\PerformancesResponse>"
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
@@ -77,7 +77,7 @@ class PerformancesController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
      *  output = "AppBundle\Entity\Performance"
      * )
@@ -105,7 +105,7 @@ class PerformancesController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
@@ -135,7 +135,7 @@ class PerformancesController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
      *  output = "array<AppBundle\Entity\PerformanceEvent>"
      * )

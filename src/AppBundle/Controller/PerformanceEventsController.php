@@ -25,7 +25,7 @@ class PerformanceEventsController extends Controller
      *      200="Returned when successful",
      *      404="Returned when the entities with given limit and offset are not found",
      * },
-     *  output = "AppBundle\Model\PerformanceEventsResponse"
+     *  output = "array<AppBundle\Model\PerformanceEventsResponse>"
      * )
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
@@ -86,7 +86,7 @@ class PerformanceEventsController extends Controller
      *      404="Returned when the entity is not found",
      *  },
      *  parameters={
-     *      {"name"="Id", "dataType"="string", "required"=true, "description"="PerformanceEvent Id"}
+     *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}
      *  },
      *  output = "AppBundle\Entity\PerformanceEvent"
      * )
