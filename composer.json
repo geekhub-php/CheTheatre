@@ -17,7 +17,7 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "symfony/yaml": "2.7.*@dev",
+        "symfony/yaml": "2.6.*@dev",
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
         "symfony/event-dispatcher": "2.6.*@dev",
         "friendsofsymfony/rest-bundle": "~1.4",
