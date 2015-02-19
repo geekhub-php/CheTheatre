@@ -26,3 +26,4 @@ parameters:
     https_github_repository_url: ~
     domain: ~
     prod_server_ip: ~
+    nelmio_cors.origin: ['*']
