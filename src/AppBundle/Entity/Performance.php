@@ -89,6 +89,16 @@ class Performance
     private $slug;
 
     /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
+     * @Expose
+     * @Type("array")
+     */
+    private $avatar;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -108,6 +118,29 @@ class Performance
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string      $title
+     * @return Performance
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
      * Get description
      *
      * @return string
@@ -120,7 +153,7 @@ class Performance
     /**
      * Set description
      *
-     * @param  string $description
+     * @param  string      $description
      * @return Performance
      */
     public function setDescription($description)
@@ -143,7 +176,7 @@ class Performance
     /**
      * Set premiere
      *
-     * @param  \DateTime $premiere
+     * @param  \DateTime   $premiere
      * @return Performance
      */
     public function setPremiere($premiere)
@@ -171,7 +204,7 @@ class Performance
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string      $slug
      * @return Performance
      */
     public function setSlug($slug)
@@ -254,25 +287,20 @@ class Performance
     }
 
     /**
-     * Get title
-     *
-     * @return string
+     * @return mixed
      */
-    public function getTitle()
+    public function getAvatar()
     {
-        return $this->title;
+        return $this->avatar;
     }
 
     /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Performance
+     * @param mixed $avatar
+     * @return $this
      */
-    public function setTitle($title)
+    public function setAvatar($avatar)
     {
-        $this->title = $title;
-
+        $this->avatar = $avatar;
         return $this;
     }
 }
