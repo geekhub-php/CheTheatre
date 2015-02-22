@@ -28,10 +28,11 @@ class SerializerSubscriber implements EventSubscriberInterface
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
-        $avatarId = $event->getObject()->getAvatar()->getId();
+        if (!$avatar = $event->getObject()->getAvatar()) {
+            return;
+        }
 
-        $avatarLinks = $this->mediaController->getMediumFormatsAction($avatarId);
-
+        $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
         $event->getObject()->setAvatar($avatarLinks);
     }
 }
