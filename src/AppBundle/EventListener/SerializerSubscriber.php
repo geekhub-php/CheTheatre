@@ -23,21 +23,10 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         return array(
             array('event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'),
-            array('event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Performance', 'method' => 'onPrePerformanceSerialize'),
         );
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
-    {
-        if (!$avatar = $event->getObject()->getAvatar()) {
-            return;
-        }
-
-        $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
-        $event->getObject()->setAvatar($avatarLinks);
-    }
-
-    public function onPrePerformanceSerialize(ObjectEvent $event)
     {
         if (!$avatar = $event->getObject()->getAvatar()) {
             return;
