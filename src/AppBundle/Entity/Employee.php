@@ -91,6 +91,13 @@ class Employee
     private $roles;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\Gallery
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist"})
+     */
+    private $gallery;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -290,6 +297,29 @@ class Employee
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     * @return Employee
+     */
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
     }
 
     public function __toString()
