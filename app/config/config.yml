@@ -133,6 +133,7 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 nelmio_api_doc:
+    name: Cherkassy Theatre API documentation
     sandbox:
         accept_type: application/json
         body_format:
