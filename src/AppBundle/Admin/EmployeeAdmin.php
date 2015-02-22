@@ -48,6 +48,12 @@ class EmployeeAdmin extends Admin
             ->add('lastName')
             ->add('dob', 'sonata_type_date_picker')
             ->add('position')
+            ->add('gallery', 'sonata_type_model_list', array(
+                'required' => false,
+                'btn_list' => false,
+            ), array(
+                'link_parameters' => array('context' => 'employees'),
+            ))
         ;
     }
 
