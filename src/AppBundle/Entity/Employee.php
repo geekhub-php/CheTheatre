@@ -106,6 +106,16 @@ class Employee
     private $slug;
 
     /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
+     * @Expose
+     * @Type("array")
+     */
+    private $avatar;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -325,5 +335,24 @@ class Employee
     public function __toString()
     {
         return $this->getSlug();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param mixed $avatar
+     * @return $this
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
     }
 }
