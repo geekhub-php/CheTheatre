@@ -1,6 +1,6 @@
 /web/bundles/
 web/uploads/*
-!web/uploads/.gitkeep
+!web/uploads/media/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
