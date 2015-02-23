@@ -4,6 +4,7 @@ AppBundle\Entity\Employee:
     LastName: Осипов
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('vladimir-osipov.jpg')>
     position: Директор театру
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
