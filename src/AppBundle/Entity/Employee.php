@@ -77,6 +77,15 @@ class Employee
     private $position;
 
     /**
+     * @var string
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", length=255, nullable=true)
+     * @Type("string")
+     * @Expose
+     */
+    private $biography;
+
+    /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
@@ -241,32 +250,32 @@ class Employee
         return $this;
     }
 
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
     /**
-     * Get slug
+     * Get biography
      *
      * @return string
      */
-    public function getSlug()
+    public function getBiography()
     {
-        return $this->slug;
+        return $this->biography;
     }
 
     /**
-     * Set slug
+     * Set biography
      *
-     * @param  string   $slug
+     * @param  string $biography
      * @return Employee
      */
-    public function setSlug($slug)
+    public function setBiography($biography)
     {
-        $this->slug = $slug;
+        $this->biography = $biography;
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**
@@ -305,6 +314,29 @@ class Employee
     public function __toString()
     {
         return $this->getSlug();
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string $slug
+     * @return Employee
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**
