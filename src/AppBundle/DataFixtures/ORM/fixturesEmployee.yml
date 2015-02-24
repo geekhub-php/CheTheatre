@@ -234,7 +234,7 @@ AppBundle\Entity\Employee:
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
   employee27:
-   firstName: Тетяна
+    firstName: Тетяна
     LastName: Гребень
     MiddleName: <firstName()>
     dob: <dateTime()>
