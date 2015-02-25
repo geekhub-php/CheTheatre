@@ -4,6 +4,7 @@ AppBundle\Entity\Employee:
     LastName: Осипов
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('vladimir-osipov.jpg')>
     position: Директор театру
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -12,6 +13,7 @@ AppBundle\Entity\Employee:
     LastName: Проскурня
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('serhiy-proskurnja.jpg')>
     position: Виконуючий обов’язки художнього керівника
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -20,6 +22,7 @@ AppBundle\Entity\Employee:
     LastName: Павлютін
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksandr-pavlutin.jpg')>
     position: Режисер-постановник
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -28,6 +31,7 @@ AppBundle\Entity\Employee:
     LastName: Ридванецький
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('serhiy-ridvaneckij.jpg')>
     position: Головний художник
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -36,6 +40,7 @@ AppBundle\Entity\Employee:
     LastName: Ридванецька
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('nataliya-ridvanetska.jpg')>
     position: Художник по костюмах
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -44,6 +49,7 @@ AppBundle\Entity\Employee:
     LastName: Нікіфорова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('nadiya-nikifirova.jpg')>
     position: Художник-постановник
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -52,6 +58,7 @@ AppBundle\Entity\Employee:
     LastName: Татарінов
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('volodymyr-tatarinov.jpg')>
     position: Головний балетмейстер
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -60,6 +67,7 @@ AppBundle\Entity\Employee:
     LastName: Присяжненко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('varvara-prisagnenko.jpg')>
     position: Керівник літературно-драматичною частиною
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -68,6 +76,7 @@ AppBundle\Entity\Employee:
     LastName: Бєлкіна
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('olene-belkina.jpg')>
     position: Диригент
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -76,6 +85,7 @@ AppBundle\Entity\Employee:
     LastName: Лежненко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('svitlana-lezhnenko.jpg')>
     position: Концертмейстр
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -84,6 +94,7 @@ AppBundle\Entity\Employee:
     LastName: Кириченко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('galyna-kuruchenko.jpg')>
     position: Концертмейстр
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -92,6 +103,7 @@ AppBundle\Entity\Employee:
     LastName: Бобров
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('serhiy-bobrov.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -100,6 +112,7 @@ AppBundle\Entity\Employee:
     LastName: Вігран
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('nataliya-vigran.jpg')>
     position: Заслужена артистка України
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -108,6 +121,7 @@ AppBundle\Entity\Employee:
     LastName: Марущак
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('mariya-maryshchak.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -116,6 +130,7 @@ AppBundle\Entity\Employee:
     LastName: Берлінський
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('yuriy-berlinskij.jpg')>
     position: Заслужений артист України
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -124,6 +139,7 @@ AppBundle\Entity\Employee:
     LastName: Амеліна
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('svitlana-amelina.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -132,6 +148,7 @@ AppBundle\Entity\Employee:
     LastName: Боброва
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('anna-bobrova.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -140,6 +157,7 @@ AppBundle\Entity\Employee:
     LastName: Брехаря
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('olena-brehara.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -148,6 +166,7 @@ AppBundle\Entity\Employee:
     LastName: Бурлакова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('liliya-byrlakova.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -156,6 +175,7 @@ AppBundle\Entity\Employee:
     LastName: Вовкостріл
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oksana-vovkostril.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -164,6 +184,7 @@ AppBundle\Entity\Employee:
     LastName: Гелеверя
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksandr-gelevera.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -172,6 +193,7 @@ AppBundle\Entity\Employee:
     LastName: Глазов
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('mykola-glazov.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -180,6 +202,7 @@ AppBundle\Entity\Employee:
     LastName: Глазова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('iryna-glazova.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -188,6 +211,7 @@ AppBundle\Entity\Employee:
     LastName: Глазова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('nataliya-glazova.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -196,6 +220,7 @@ AppBundle\Entity\Employee:
     LastName: Гончаров
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('pavlo-goncharov.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -204,14 +229,16 @@ AppBundle\Entity\Employee:
     LastName: Гребень
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('yuliya-greben.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
   employee27:
-    firstName: Наталія
+    firstName: Тетяна
     LastName: Гребень
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('tetyana-greben.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -220,6 +247,7 @@ AppBundle\Entity\Employee:
     LastName: Гуменний
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksandr-gymennuj.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -228,6 +256,7 @@ AppBundle\Entity\Employee:
     LastName: Донська-Гуменна
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('yuliya-gymenna.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -236,6 +265,7 @@ AppBundle\Entity\Employee:
     LastName: Зайнчківський
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('mykola-zajnchkivskij.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -244,6 +274,7 @@ AppBundle\Entity\Employee:
     LastName: Іванова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('anzhelina-ivanova.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -252,6 +283,7 @@ AppBundle\Entity\Employee:
     LastName: Кириченко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('valeriy-kirichenko.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -260,6 +292,7 @@ AppBundle\Entity\Employee:
     LastName: Клименко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksiy-klimenko.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -268,6 +301,7 @@ AppBundle\Entity\Employee:
     LastName: Коваленко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('serhiy-kovalenko.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -276,6 +310,7 @@ AppBundle\Entity\Employee:
     LastName: Ковальова
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('viktoriya-kovaleva.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -284,6 +319,7 @@ AppBundle\Entity\Employee:
     LastName: Коломієць
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('viktor-kolomiec.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -292,6 +328,7 @@ AppBundle\Entity\Employee:
     LastName: Кондратський
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('mykhaylo-kondratskij.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -300,6 +337,7 @@ AppBundle\Entity\Employee:
     LastName: Корбут
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('nadiya-korbut.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -308,6 +346,7 @@ AppBundle\Entity\Employee:
     LastName: Крижанівська
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('tetyana-krizhanivska.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -316,6 +355,7 @@ AppBundle\Entity\Employee:
     LastName: Кузьменко
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksandr-kuzmenko.jpg')>
     position: Актриса
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -324,6 +364,7 @@ AppBundle\Entity\Employee:
     LastName: Кузьмин
     MiddleName: <firstName()>
     dob: <dateTime()>
+    avatar: <getAvatar('oleksandr-kyzmun.jpg')>
     position: Актор
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -332,6 +373,7 @@ AppBundle\Entity\Employee:
      LastName: Куриленко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('anna-kyrulenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -340,6 +382,7 @@ AppBundle\Entity\Employee:
      LastName: Мамалига
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('nataliya-mamalyga.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -348,6 +391,7 @@ AppBundle\Entity\Employee:
      LastName: Маслова
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('iryna-maslova.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -356,6 +400,7 @@ AppBundle\Entity\Employee:
      LastName: Москаленко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('svitlana-moskalenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -364,6 +409,7 @@ AppBundle\Entity\Employee:
      LastName: Панекіна
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('nataliya-panekina.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -372,6 +418,7 @@ AppBundle\Entity\Employee:
      LastName: Науменко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('nataliya-naumenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -380,6 +427,7 @@ AppBundle\Entity\Employee:
      LastName: Пономаренко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('serhiy-ponomarenko.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -388,6 +436,7 @@ AppBundle\Entity\Employee:
      LastName: Пономаренко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('olena-ponomarenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -396,6 +445,7 @@ AppBundle\Entity\Employee:
      LastName: Попова
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('lidiya-popova.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -404,6 +454,7 @@ AppBundle\Entity\Employee:
      LastName: Потапчук
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('dmytro-potapchyk.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -412,6 +463,7 @@ AppBundle\Entity\Employee:
      LastName: Приз
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('oleksandr-pruz.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -420,6 +472,7 @@ AppBundle\Entity\Employee:
      LastName: Прокопчук
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('yuriy-prokopchuk.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -428,6 +481,7 @@ AppBundle\Entity\Employee:
      LastName: Пятківський
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('oleksandr-pjatkivskij.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -436,6 +490,7 @@ AppBundle\Entity\Employee:
      LastName: Ромодан
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('olha-romodan.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -444,6 +499,7 @@ AppBundle\Entity\Employee:
      LastName: Скобель
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('lyubov-skobel.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -452,6 +508,7 @@ AppBundle\Entity\Employee:
      LastName: Скрипніченко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('evhen-skrupnichenko.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -460,6 +517,7 @@ AppBundle\Entity\Employee:
      LastName: Талах
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('lydmyla-talah.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -468,6 +526,7 @@ AppBundle\Entity\Employee:
      LastName: Телятник
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('oleh-telatnik.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -476,6 +535,7 @@ AppBundle\Entity\Employee:
      LastName: Терещенко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('svitlana-tereshchenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -484,6 +544,7 @@ AppBundle\Entity\Employee:
      LastName: Харченко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('liliya-harchenko.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -492,6 +553,7 @@ AppBundle\Entity\Employee:
      LastName: Шаєнко
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('kostyantyn-shaenko.jpg')>
      position: Актор
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -500,6 +562,7 @@ AppBundle\Entity\Employee:
      LastName: Шакалова
      MiddleName: <firstName()>
      dob: <dateTime()>
+     avatar: <getAvatar('kateryna-shakalova.jpg')>
      position: Актриса
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
