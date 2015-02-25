@@ -16,3 +16,9 @@ _errors:
 
 _main:
     resource: routing.yml
+
+#_admin:
+#    resource: routing_admin.yml
+
+_api:
+    resource: routing_api.yml
