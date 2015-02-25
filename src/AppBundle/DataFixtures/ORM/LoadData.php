@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\DataFixtures\ORM;
 
+use Application\Sonata\MediaBundle\Entity\Media;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 
 class LoadData extends DataFixtureLoader
@@ -13,5 +14,18 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesRole.yml',
             __DIR__.'/fixturesPerformanceEvent.yml',
         );
+    }
+
+    public function getAvatar($name)
+    {
+        $avatar = new Media();
+
+        $avatar->setBinaryContent(__DIR__ . '/../data/avatars/' . $name);
+        $avatar->setContext('default');
+        $avatar->setProviderName('sonata.media.provider.image');
+
+        $this->container->get('sonata.media.manager.media')->save($avatar, $andFlush = true);
+
+        return $avatar;
     }
 }

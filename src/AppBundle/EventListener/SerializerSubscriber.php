@@ -33,6 +33,6 @@ class SerializerSubscriber implements EventSubscriberInterface
         }
 
         $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
-        $event->getObject()->setAvatar($avatarLinks);
+        $event->getObject()->avatarThumbnails = $avatarLinks;
     }
 }

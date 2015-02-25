@@ -10,6 +10,7 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Table(name="employees")
@@ -112,10 +113,16 @@ class Employee
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
-     * @Expose
-     * @Type("array")
      */
     private $avatar;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("avatar")
+     */
+    public $avatarThumbnails;
 
     /**
      * Constructor
