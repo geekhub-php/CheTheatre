@@ -2,13 +2,15 @@
 
 namespace AppBundle\Routing;
 
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader;
+use Psr\Log\LoggerInterface;
 
 class DomainLoader extends DelegatingLoader implements LoaderInterface
 {
@@ -18,12 +20,18 @@ class DomainLoader extends DelegatingLoader implements LoaderInterface
     /** @var  string */
     protected $kernelRootDir;
 
-    public function __construct(RequestStack $requestStack, LoaderResolver $routingLoader, $kernelRootDir)
+    public function __construct(
+        RequestStack $requestStack,
+        ControllerNameParser $parser,
+        LoggerInterface $logger = null,
+        LoaderResolver $routingLoader,
+        $kernelRootDir
+    )
     {
         $this->requestStack = $requestStack;
         $this->kernelRootDir = $kernelRootDir;
 
-        parent::__construct($routingLoader);
+        parent::__construct($parser, $logger, $routingLoader);
     }
 
     public $config = [
@@ -37,28 +45,21 @@ class DomainLoader extends DelegatingLoader implements LoaderInterface
     public function load($file, $type = null)
     {
         $domain = $this->requestStack->getMasterRequest()->getHttpHost();
+        $domainSpecificRoutes = new RouteCollection();
 
         if (!array_key_exists($domain, $this->config)) {
-            return new RouteCollection();
+            return $domainSpecificRoutes;
         }
 
         foreach ($this->config[$domain] as $routeResource) {
             $collection = parent::load($this->kernelRootDir . '/' . $routeResource);
 
-            foreach ($collection->all() as $route) {
-                if ($controller = $route->getDefault('_controller')) {
-                    try {
-                        $controller = $this->parser->parse($controller);
-                    } catch (\Exception $e) {
-                        // unable to optimize unknown notation
-                    }
-
-                    $route->setDefault('_controller', $controller);
-                }
+            foreach ($collection as $name => $route) {
+                $domainSpecificRoutes->add($name, $route);
             }
         }
 
-        return $collection;
+        return $domainSpecificRoutes;
     }
 
     /**

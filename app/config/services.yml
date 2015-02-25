@@ -12,7 +12,7 @@ services:
 
     app.routing.domain_loader:
         class: AppBundle\Routing\DomainLoader
-        arguments: ["@request_stack", "@routing.resolver", %kernel.root_dir%]
+        arguments: ["@request_stack", "@controller_name_converter", "@?logger", "@routing.resolver", %kernel.root_dir%]
         calls:
             - [setRoutingLoader, ["@routing.resolver"]]
         tags:
