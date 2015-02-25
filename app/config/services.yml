@@ -9,3 +9,11 @@ services:
         arguments: ["@sonata.media.controller.api.media"]
         tags:
             - { name: jms_serializer.event_subscriber }
+
+    app.routing.domain_loader:
+        class: AppBundle\Routing\DomainLoader
+        arguments: ["@request_stack", "@routing.resolver", %kernel.root_dir%]
+        calls:
+            - [setRoutingLoader, ["@routing.resolver"]]
+        tags:
+            - { name: routing.loader }
