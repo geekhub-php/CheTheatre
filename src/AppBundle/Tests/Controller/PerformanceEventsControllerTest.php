@@ -2,17 +2,63 @@
 
 namespace AppBundle\Tests\Controller;
 
-class PerformanceEventsControllerTest extends AbstractController
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class PerformanceEventsControllerTest extends WebTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $em;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUp()
+    {
+        self::bootKernel();
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager()
+        ;
+    }
+
     public function testGetPerformanceEvents()
     {
-        $this->request('/performanceevents');
+        $client = static::createClient();
+        $client->request('GET', '/performanceevents');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testGetErrorPerformanceEvents()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/performanceevents');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 
     public function testGetPerformanceEventsId()
     {
-        $id = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
-        $this->request('/performanceevents/' . $id);
-        $this->request('/performanceevents/' . base_convert(md5(uniqid()),11,10), 'GET', 404);
+        $id = $this->em->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
+        $client = static::createClient();
+        $client->request('GET', '/performanceevents/'.$id);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testGetErrorPerformanceEventsId()
+    {
+        $id = $this->em->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
+        $client = static::createClient();
+        $client->request('GET', '/performanceevents/'.$id);
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        $this->em->close();
     }
 }

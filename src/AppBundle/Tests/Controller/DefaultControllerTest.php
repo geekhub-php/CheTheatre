@@ -2,11 +2,21 @@
 
 namespace AppBundle\Tests\Controller;
 
-class DefaultControllerTest extends AbstractController
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class DefaultControllerTest extends WebTestCase
 {
     public function testGet()
     {
-        $this->request('/');
-        $this->request('/' . base_convert(md5(uniqid()),11,10), 'GET', 404);
+        $client = static::createClient();
+        $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testGetError()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/');
+        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
     }
 }
