@@ -2,43 +2,21 @@
 
 namespace AppBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class BlogControllerTest extends WebTestCase
+class BlogControllerTest extends AbstractController
 {
     public function testGetBlogArticles()
     {
         $this->markTestSkipped();
 
-        $client = static::createClient();
-        $client->request('GET', '/blog/articles');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorBlogArticles()
-    {
-        $this->markTestSkipped();
-
-        $client = static::createClient();
-        $client->request('GET', '/blog/articles');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        $this->request('/blog/articles');
     }
 
     public function testGetBlogArticlesSlug()
     {
         $this->markTestSkipped();
 
-        $client = static::createClient();
-        $client->request('GET', '/blog/articles/{slug}');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorBlogArticlesSlug()
-    {
-        $this->markTestSkipped();
-
-        $client = static::createClient();
-        $client->request('GET', '/blog/articles/{slug}');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        $slug = null; // get it from DB
+        $this->request('/blog/articles/' . $slug);
+        $this->request('/blog/articles/' . base_convert(md5(uniqid()),11,10), 'GET', 404);
     }
 }
