@@ -14,3 +14,7 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+domain_routing:
+    include_routes:
+        localhost: ['config/routing_api.yml', 'config/routing_admin.yml']
