@@ -1,13 +1,12 @@
 <?php
 
-namespace AppBundle\Routing;
+namespace GeekHub\DomainRoutingBundle\Routing;
 
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader;
 use Psr\Log\LoggerInterface;
@@ -20,38 +19,43 @@ class DomainLoader extends DelegatingLoader implements LoaderInterface
     /** @var  string */
     protected $kernelRootDir;
 
+    /** @var  string */
+    protected $domainRoutingRelations;
+
     public function __construct(
         RequestStack $requestStack,
         ControllerNameParser $parser,
         LoggerInterface $logger = null,
         LoaderResolver $routingLoader,
-        $kernelRootDir
+        $kernelRootDir,
+        $domainRoutingRelations
     )
     {
         $this->requestStack = $requestStack;
         $this->kernelRootDir = $kernelRootDir;
+        $this->domainRoutingRelations = $domainRoutingRelations;
 
         parent::__construct($parser, $logger, $routingLoader);
     }
-
-    public $config = [
-        'chetheatre.local' => ['config/routing_admin.yml'],
-        'api.chetheatre.pp.ua' => ['config/routing_api.yml'],
-    ];
 
     /**
      * {@inheritdoc}
      */
     public function load($file, $type = null)
     {
-        $domain = $this->requestStack->getMasterRequest()->getHttpHost();
         $domainSpecificRoutes = new RouteCollection();
 
-        if (!array_key_exists($domain, $this->config)) {
+        if (!$request = $this->requestStack->getMasterRequest()) {
             return $domainSpecificRoutes;
         }
 
-        foreach ($this->config[$domain] as $routeResource) {
+        $domain = $request->getHttpHost();
+
+        if (!array_key_exists($domain, $this->domainRoutingRelations)) {
+            return $domainSpecificRoutes;
+        }
+
+        foreach ($this->domainRoutingRelations[$domain] as $routeResource) {
             $collection = parent::load($this->kernelRootDir . '/' . $routeResource);
 
             foreach ($collection as $name => $route) {
