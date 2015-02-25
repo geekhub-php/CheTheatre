@@ -71,6 +71,6 @@ class DomainLoader extends DelegatingLoader implements LoaderInterface
      */
     public function supports($resource, $type = null)
     {
-        return 'domain_resolver' === $type;
+        return 'domain_routing' === $type;
     }
 }
