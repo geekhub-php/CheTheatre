@@ -2,95 +2,31 @@
 
 namespace AppBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class PerformancesControllerTest extends WebTestCase
+class PerformancesControllerTest extends AbstractController
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUp()
-    {
-        self::bootKernel();
-        $this->em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager()
-        ;
-    }
-
     public function testGetPerformances()
     {
-        $client = static::createClient();
-        $client->request('GET', '/performances');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformances()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/performances');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        $this->request('/performances');
     }
 
     public function testGetPerformancesSlug()
     {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformancesSlug()
-    {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug);
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        $slug = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
+        $this->request('/performances/' . $slug);
+        $this->request('/performances/' . base_convert(md5(uniqid()),11,10), 'GET', 404);
     }
 
     public function testGetPerformancesSlugRoles()
     {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug.'/roles');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformancesSlugRoles()
-    {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug.'/roles');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
+        $slug = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
+        $this->request('/performances/' . $slug . '/roles');
+        $this->request('/performances/' . base_convert(md5(uniqid()),11,10) . '/roles', 'GET', 404);
     }
 
     public function testGetPerformancesSlugPerformanceEvents()
     {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug.'/performanceevents');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
-    public function testGetErrorPerformancesSlugPerformanceEvents()
-    {
-        $slug = $this->em->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $client = static::createClient();
-        $client->request('GET', '/performances/'.$slug.'/performanceevents');
-        $this->assertNotEquals(404, $client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        $this->em->close();
+        $slug = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
+        $this->request('/performances/' . $slug . '/performanceevents');
+        $this->request('/performances/' . base_convert(md5(uniqid()),11,10) . '/performanceevents' , 'GET', 404);
     }
 }
