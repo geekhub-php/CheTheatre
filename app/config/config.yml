@@ -182,8 +182,3 @@ nelmio_cors:
             allow_origin: %nelmio_cors.origin%
             allow_headers: ['Access-Control-Allow-Origin']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
-
-domain_routing:
-    include_routes:
-        '%admin_domain%': ['config/routing_api.yml']
-        '%api_domain%': ['config/routing_admin.yml']
