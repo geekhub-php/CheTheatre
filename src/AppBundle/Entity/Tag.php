@@ -71,7 +71,7 @@ class Tag
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +81,7 @@ class Tag
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Tag
      */
     public function setTitle($title)
@@ -94,7 +94,7 @@ class Tag
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -104,7 +104,7 @@ class Tag
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Tag
      */
     public function setSlug($slug)
@@ -117,7 +117,7 @@ class Tag
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -127,7 +127,7 @@ class Tag
     /**
      * Add post
      *
-     * @param \AppBundle\Entity\Post $post
+     * @param  \AppBundle\Entity\Post $post
      * @return Tag
      */
     public function addPost(\AppBundle\Entity\Post $post)
@@ -150,7 +150,7 @@ class Tag
     /**
      * Get posts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {

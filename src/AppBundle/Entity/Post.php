@@ -103,7 +103,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -113,7 +113,7 @@ class Post
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Post
      */
     public function setTitle($title)
@@ -126,7 +126,7 @@ class Post
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -136,7 +136,7 @@ class Post
     /**
      * Set shortDescription
      *
-     * @param string $shortDescription
+     * @param  string $shortDescription
      * @return Post
      */
     public function setShortDescription($shortDescription)
@@ -149,7 +149,7 @@ class Post
     /**
      * Get shortDescription
      *
-     * @return string 
+     * @return string
      */
     public function getShortDescription()
     {
@@ -159,7 +159,7 @@ class Post
     /**
      * Set text
      *
-     * @param string $text
+     * @param  string $text
      * @return Post
      */
     public function setText($text)
@@ -172,7 +172,7 @@ class Post
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -182,7 +182,7 @@ class Post
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Post
      */
     public function setSlug($slug)
@@ -195,7 +195,7 @@ class Post
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -205,7 +205,7 @@ class Post
     /**
      * Set mainPicture
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $mainPicture
+     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
      * @return Post
      */
     public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
@@ -218,7 +218,7 @@ class Post
     /**
      * Get mainPicture
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMainPicture()
     {
@@ -228,7 +228,7 @@ class Post
     /**
      * Add tag
      *
-     * @param \AppBundle\Entity\Tag $tag
+     * @param  \AppBundle\Entity\Tag $tag
      * @return Post
      */
     public function addTag(\AppBundle\Entity\Tag $tag)
@@ -252,7 +252,7 @@ class Post
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
