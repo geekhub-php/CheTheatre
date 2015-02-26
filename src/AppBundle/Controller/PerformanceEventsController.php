@@ -88,7 +88,8 @@ class PerformanceEventsController extends Controller
      *  parameters={
      *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}
      *  },
-     *  output = "AppBundle\Entity\PerformanceEvent"
+     *  output = "AppBundle\Entity\PerformanceEvent",
+     * deprecated = true
      * )
      *
      * @RestView
