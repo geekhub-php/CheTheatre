@@ -27,7 +27,3 @@ parameters:
     domain: ~
     prod_server_ip: ~
     nelmio_cors.origin: ['*']
-
-    admin_domain: admin.chetheatre.pp.ua
-    api_domain: api.chetheatre.pp.ua
-    local_domain: chetheatre.local
