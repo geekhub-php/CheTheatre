@@ -46,3 +46,7 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+domain_routing:
+    include_routes:
+        '%local_domain%': ['config/routing_api.yml', 'config/routing_admin.yml']
