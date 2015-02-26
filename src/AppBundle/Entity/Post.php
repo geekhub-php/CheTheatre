@@ -56,7 +56,7 @@ class Post
      * @Type("string")
      * @Expose
      */
-    private $description;
+    private $text;
 
     /**
      * @var
@@ -82,7 +82,7 @@ class Post
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinTable(name="post_tag")
      */
     private $tags;
@@ -157,26 +157,26 @@ class Post
     }
 
     /**
-     * Set description
+     * Set text
      *
-     * @param string $description
+     * @param string $text
      * @return Post
      */
-    public function setDescription($description)
+    public function setText($text)
     {
-        $this->description = $description;
+        $this->text = $text;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get text
      *
      * @return string 
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->text;
     }
 
     /**
@@ -234,6 +234,7 @@ class Post
     public function addTag(\AppBundle\Entity\Tag $tag)
     {
         $this->tags[] = $tag;
+        $tag->addPost($this);
 
         return $this;
     }
