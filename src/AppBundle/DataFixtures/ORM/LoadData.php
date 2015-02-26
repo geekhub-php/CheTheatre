@@ -18,7 +18,7 @@ class LoadData extends DataFixtureLoader
         );
     }
 
-    public function getAvatar($name)
+    public function getMedia($name)
     {
         $avatar = new Media();
 
