@@ -19,7 +19,7 @@ class SerializerSubscriber implements EventSubscriberInterface
     /**
      * @inheritdoc
      */
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(
             array('event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'),

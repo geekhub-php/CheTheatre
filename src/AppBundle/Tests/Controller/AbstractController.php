@@ -25,9 +25,9 @@ abstract class AbstractController extends WebTestCase
     }
 
     /**
-     * @param string $path
-     * @param string $method
-     * @param int $expectedStatusCode
+     * @param  string                                $path
+     * @param  string                                $method
+     * @param  int                                   $expectedStatusCode
      * @return \Symfony\Component\DomCrawler\Crawler
      */
     protected function request($path, $method = 'GET', $expectedStatusCode = 200)

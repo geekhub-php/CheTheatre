@@ -270,7 +270,7 @@ class Employee
     /**
      * Set biography
      *
-     * @param  string $biography
+     * @param  string   $biography
      * @return Employee
      */
     public function setBiography($biography)
@@ -336,7 +336,7 @@ class Employee
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string   $slug
      * @return Employee
      */
     public function setSlug($slug)
@@ -355,7 +355,7 @@ class Employee
     }
 
     /**
-     * @param mixed $avatar
+     * @param  mixed $avatar
      * @return $this
      */
     public function setAvatar($avatar)

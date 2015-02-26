@@ -13,14 +13,16 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesPerformance.yml',
             __DIR__.'/fixturesRole.yml',
             __DIR__.'/fixturesPerformanceEvent.yml',
+            __DIR__.'/fixturesTag.yml',
+            __DIR__.'/fixturesPost.yml',
         );
     }
 
-    public function getAvatar($name)
+    public function getMedia($name)
     {
         $avatar = new Media();
 
-        $avatar->setBinaryContent(__DIR__ . '/../data/avatars/' . $name);
+        $avatar->setBinaryContent(__DIR__.'/../data/avatars/'.$name);
         $avatar->setContext('default');
         $avatar->setProviderName('sonata.media.provider.image');
 

@@ -16,7 +16,7 @@ class BlogControllerTest extends AbstractController
         $this->markTestSkipped();
 
         $slug = null; // get it from DB
-        $this->request('/blog/articles/' . $slug);
-        $this->request('/blog/articles/' . base_convert(md5(uniqid()),11,10), 'GET', 404);
+        $this->request('/blog/articles/'.$slug);
+        $this->request('/blog/articles/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
     }
 }
