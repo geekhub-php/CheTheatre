@@ -60,6 +60,14 @@ class Performance
     private $premiere;
 
     /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
+     */
+    private $mainPicture;
+
+    /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
@@ -108,29 +116,6 @@ class Performance
     }
 
     /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string      $title
-     * @return Performance
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * Get description
      *
      * @return string
@@ -143,7 +128,7 @@ class Performance
     /**
      * Set description
      *
-     * @param  string      $description
+     * @param  string $description
      * @return Performance
      */
     public function setDescription($description)
@@ -166,12 +151,35 @@ class Performance
     /**
      * Set premiere
      *
-     * @param  \DateTime   $premiere
+     * @param  \DateTime $premiere
      * @return Performance
      */
     public function setPremiere($premiere)
     {
         $this->premiere = $premiere;
+
+        return $this;
+    }
+
+    /**
+     * Get mainPicture
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getMainPicture()
+    {
+        return $this->mainPicture;
+    }
+
+    /**
+     * Set mainPicture
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
+     * @return Performance
+     */
+    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
+    {
+        $this->mainPicture = $mainPicture;
 
         return $this;
     }
@@ -194,7 +202,7 @@ class Performance
     /**
      * Set slug
      *
-     * @param  string      $slug
+     * @param  string $slug
      * @return Performance
      */
     public function setSlug($slug)
@@ -274,5 +282,28 @@ class Performance
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string $title
+     * @return Performance
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }
