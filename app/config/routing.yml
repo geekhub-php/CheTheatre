@@ -30,3 +30,7 @@ performances:
 performance-events:
     type: rest
     resource: AppBundle\Controller\PerformanceEventsController
+
+posts:
+    type: rest
+    resource: AppBundle\Controller\PostsController
