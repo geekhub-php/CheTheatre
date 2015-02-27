@@ -87,11 +87,6 @@ class Post
      */
     private $tags;
 
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
-
     /**
      * Constructor
      */
@@ -100,14 +95,19 @@ class Post
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function __toString()
     {
-        return $this->id;
+        return $this->getTitle();
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -124,13 +124,23 @@ class Post
     }
 
     /**
-     * Get title
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get shortDescription
      *
      * @return string
      */
-    public function getTitle()
+    public function getShortDescription()
     {
-        return $this->title;
+        return $this->shortDescription;
     }
 
     /**
@@ -144,16 +154,6 @@ class Post
         $this->shortDescription = $shortDescription;
 
         return $this;
-    }
-
-    /**
-     * Get shortDescription
-     *
-     * @return string
-     */
-    public function getShortDescription()
-    {
-        return $this->shortDescription;
     }
 
     /**
@@ -179,6 +179,21 @@ class Post
         return $this->text;
     }
 
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
     /**
      * Set slug
      *
@@ -193,13 +208,13 @@ class Post
     }
 
     /**
-     * Get slug
+     * Get mainPicture
      *
-     * @return string
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
-    public function getSlug()
+    public function getMainPicture()
     {
-        return $this->slug;
+        return $this->mainPicture;
     }
 
     /**
@@ -213,16 +228,6 @@ class Post
         $this->mainPicture = $mainPicture;
 
         return $this;
-    }
-
-    /**
-     * Get mainPicture
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getMainPicture()
-    {
-        return $this->mainPicture;
     }
 
     /**
