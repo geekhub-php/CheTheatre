@@ -22,6 +22,25 @@ class Employee
 {
     use TimestampableTrait;
 
+    const POSITION_ACTOR = 'actor';
+    const POSITION_ACTRESS = 'actress';
+    const POSITION_THEATRE_DIRECTOR = 'theatre director';
+    const POSITION_ACTING_ARTISTIC_DIRECTOR = 'acting artistic director';
+    const POSITION_PRODUCTION_DIRECTOR = 'production director';
+    const POSITION_MAIN_ARTIST = 'main artist';
+    const POSITION_COSTUMER = 'costumer';
+    const POSITION_ART_DIRECTOR = 'art director';
+    const POSITION_MAIN_CHOREOGPAPHER = 'main choreographer';
+    const POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART = 'head of the literary and dramatic part';
+    const POSITION_CONDUCTOR = 'conductor';
+    const POSITION_ACCOMPANIST = 'accompanist';
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("avatar")
+     */
+    public $avatarThumbnails;
     /**
      * @var integer
      * @ORM\Column(name="id", type="integer")
@@ -29,7 +48,6 @@ class Employee
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -39,7 +57,6 @@ class Employee
      * @Expose
      */
     private $firstName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -49,7 +66,6 @@ class Employee
      * @Expose
      */
     private $lastName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -58,7 +74,6 @@ class Employee
      * @Expose
      */
     private $middleName;
-
     /**
      * @var /Datetime
      * @Assert\NotBlank()
@@ -67,7 +82,6 @@ class Employee
      * @Expose
      */
     private $dob;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -76,7 +90,6 @@ class Employee
      * @Expose
      */
     private $position;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -85,21 +98,18 @@ class Employee
      * @Expose
      */
     private $biography;
-
     /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
     private $locale;
-
     /**
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $roles;
-
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
@@ -107,7 +117,6 @@ class Employee
      * @Expose
      */
     private $slug;
-
     /**
      * @var
      *
@@ -115,14 +124,6 @@ class Employee
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
      */
     private $avatar;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("avatar")
-     */
-    public $avatarThumbnails;
 
     /**
      * Constructor

@@ -56,8 +56,23 @@ class EmployeeAdmin extends Admin
                 ],
             ])
             ->add('dob', 'sonata_type_date_picker')
-            ->add('position')
-        ;
+            ->add(
+                'position',
+                'choice',
+                array('choices' => array(
+                    'POSITION_ACTOR' => 'actor',
+                    'POSITION_ACTRESS' => 'actress',
+                    'POSITION_THEATRE_DIRECTOR' => 'theatre director',
+                    'POSITION_ACTING_ARTISTIC_DIRECTOR' => 'acting artistic director',
+                    'POSITION_PRODUCTION_DIRECTOR' => 'production director',
+                    'POSITION_MAIN_ARTIST' => 'main artist',
+                    'POSITION_COSTUMER' => 'costumer',
+                    'POSITION_ART_DIRECTOR' => 'art director',
+                    'POSITION_MAIN_CHOREOGPAPHER' => 'main choreographer',
+                    'POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART' => 'head of the literary and dramatic part',
+                    'POSITION_CONDUCTOR' => 'conductor',
+                    'POSITION_ACCOMPANIST' => 'accompanist',
+                )));
     }
 
     /**
