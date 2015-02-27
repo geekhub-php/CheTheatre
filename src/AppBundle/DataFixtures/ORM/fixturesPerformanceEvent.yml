@@ -438,7 +438,7 @@ AppBundle\Entity\PerformanceEvent:
     performance: @performance8
     dateTime: <dateTimeBetween('-91 days', '-62 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween('-61 days', '-91 days')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
   performanceEvent89:
     performance: @performance9
     dateTime: <dateTimeBetween('-91 days', '-62 days')>
@@ -498,7 +498,7 @@ AppBundle\Entity\PerformanceEvent:
     performance: @performance4
     dateTime: <dateTimeBetween('-91 days', '-62 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now'
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
   performanceEvent101:
     performance: @performance5
     dateTime: <dateTimeBetween('+62 days', '+91 days')>
