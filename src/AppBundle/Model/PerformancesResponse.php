@@ -3,6 +3,7 @@
 namespace AppBundle\Model;
 
 use AppBundle\Model\AbstractPaginatedModel;
+use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -22,6 +23,15 @@ class PerformancesResponse extends AbstractPaginatedModel
     protected $performances;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Accessor(getter="getCount")
+     * @Expose
+     */
+    protected $count;
+
+    /**
      * @return mixed
      */
     public function getPerformances()
@@ -35,5 +45,13 @@ class PerformancesResponse extends AbstractPaginatedModel
     public function setPerformances($performances)
     {
         $this->performances = $performances;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return count($this->getPerformances());
     }
 }
