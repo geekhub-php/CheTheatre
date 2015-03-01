@@ -16,7 +16,7 @@ class PerformanceEventsResponse extends AbstractPaginatedModel
 {
     /**
      * @var Array[]
-     * @Type("array")
+     * @Type("array<AppBundle\Entity\Performance>")
      * @Expose
      */
     protected $performanceEvents;
