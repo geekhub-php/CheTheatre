@@ -64,7 +64,6 @@ class PerformancesController extends Controller
 
         $performancesResponse->setNextPage($nextPage);
         $performancesResponse->setPreviousPage($previsiousPage);
-        $performancesResponse->setCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
 
         return $performancesResponse;
     }

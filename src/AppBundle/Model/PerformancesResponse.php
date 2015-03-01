@@ -26,6 +26,7 @@ class PerformancesResponse extends AbstractPaginatedModel
      * @var int
      *
      * @Type("integer")
+     * @Accessor(getter="getCount")
      * @Expose
      */
     protected $count;
@@ -52,16 +53,5 @@ class PerformancesResponse extends AbstractPaginatedModel
     public function getCount()
     {
         return count($this->getPerformances());
-    }
-
-    /**
-     * @param int $count
-     * @return $this
-     */
-    public function setCount($count)
-    {
-        $this->count = $count;
-
-        return $this;
     }
 }

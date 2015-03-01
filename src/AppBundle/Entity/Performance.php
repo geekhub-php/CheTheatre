@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="performances")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceRepository")
+ * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
