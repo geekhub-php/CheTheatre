@@ -2,6 +2,9 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+
 class Link
 {
     /**
@@ -16,11 +19,17 @@ class Link
 
     /**
      * @var string
+     *
+     * @Expose()
+     * @Type("string")
      */
     protected $rel;
 
     /**
      * @var string
+     *
+     * @Expose()
+     * @Type("string")
      */
     protected $href;
 

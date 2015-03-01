@@ -2,7 +2,9 @@
 
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Performance;
 use AppBundle\Model\AbstractPaginatedModel;
+use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -12,17 +14,27 @@ use JMS\Serializer\Annotation\Type;
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class PerformanceEventsResponse extends AbstractPaginatedModel
+class PerformanceEventsResponse
 {
     /**
-     * @var Array[]
-     * @Type("array<AppBundle\Entity\Performance>")
+     * @var Performance[]
+     *
+     * @Type("array<AppBundle\Entity\PerformanceEvent>")
      * @Expose
      */
     protected $performanceEvents;
 
     /**
-     * @return mixed
+     * @var int
+     *
+     * @Type("integer")
+     * @Accessor(getter="getCount")
+     * @Expose
+     */
+    protected $count;
+
+    /**
+     * @return Performance[]
      */
     public function getPerformanceEvents()
     {
@@ -36,6 +48,15 @@ class PerformanceEventsResponse extends AbstractPaginatedModel
     public function setPerformanceEvents($performanceEvents)
     {
         $this->performanceEvents = $performanceEvents;
+
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return count($this->getPerformanceEvents());
     }
 }
