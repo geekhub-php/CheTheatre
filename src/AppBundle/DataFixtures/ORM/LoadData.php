@@ -22,7 +22,7 @@ class LoadData extends DataFixtureLoader
     {
         $avatar = new Media();
 
-        $avatar->setBinaryContent(__DIR__.'/../data/avatars/'.$name);
+        $avatar->setBinaryContent(__DIR__.'/../data/'.$name);
         $avatar->setContext('default');
         $avatar->setProviderName('sonata.media.provider.image');
 
