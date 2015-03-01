@@ -180,5 +180,5 @@ nelmio_cors:
         '^/':
             origin_regex: true
             allow_origin: %nelmio_cors.origin%
-            allow_headers: ['Access-Control-Allow-Origin', 'Locate']
+            allow_headers: ['Access-Control-Allow-Origin', 'Locale']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
