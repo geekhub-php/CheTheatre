@@ -2,18 +2,25 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\Performance;
+use AppBundle\Model\Link;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
+use Symfony\Component\Routing\Router;
 
 class SerializerSubscriber implements EventSubscriberInterface
 {
     /** @var MediaController  */
     protected $mediaController;
 
-    public function __construct(MediaController $mediaController)
+    /** @var Router */
+    protected $router;
+
+    public function __construct(MediaController $mediaController, Router $router)
     {
         $this->mediaController = $mediaController;
+        $this->router = $router;
     }
 
     /**
@@ -21,9 +28,11 @@ class SerializerSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            array('event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'),
-        );
+        return [
+            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'],
+            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\PerformanceEvent', 'method' => 'onPrePerformanceEventSerialize'],
+            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Performance', 'method' => 'onPrePerformanceSerialize'],
+        ];
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
@@ -34,5 +43,22 @@ class SerializerSubscriber implements EventSubscriberInterface
 
         $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
         $event->getObject()->avatarThumbnails = $avatarLinks;
+    }
+
+    public function onPrePerformanceEventSerialize(ObjectEvent $event)
+    {
+
+    }
+
+    public function onPrePerformanceSerialize(ObjectEvent $event)
+    {
+        /** @var Performance $performance */
+        $performance = $avatar = $event->getObject();
+
+        $performance->setLinks([
+            new Link('self', $this->router->generate('get_performance', ['slug' => $performance->getSlug()], true)),
+            new Link('self.roles', $this->router->generate('get_performance_roles', ['slug' => $performance->getSlug()], true)),
+            new Link('self.events', $this->router->generate('get_performance_performanceevents', ['slug' => $performance->getSlug()], true)),
+        ]);
     }
 }
