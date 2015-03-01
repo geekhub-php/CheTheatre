@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Model\LinksTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
@@ -67,6 +68,14 @@ class Performance
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      */
     private $mainPicture;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("mainPicture")
+     */
+    public $mainPictureThumbnails;
 
     /**
      * @Gedmo\Locale
