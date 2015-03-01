@@ -21,27 +21,6 @@ class PerformanceEventsResponse
     protected $performanceEvents;
 
     /**
-     * @var string
-     * @Type("string")
-     * @Expose
-     */
-    protected $nextPage;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @Expose
-     */
-    protected $previousPage;
-
-    /**
-     * @var integer
-     * @Type("integer")
-     * @Expose
-     */
-    protected $pageCount;
-
-    /**
      * @return mixed
      */
     public function getPerformanceEvents()
@@ -51,57 +30,12 @@ class PerformanceEventsResponse
 
     /**
      * @param mixed $performanceEvents
+     * @return $this
      */
     public function setPerformanceEvents($performanceEvents)
     {
         $this->performanceEvents = $performanceEvents;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getNextPage()
-    {
-        return $this->nextPage;
-    }
-
-    /**
-     * @param mixed $nextPage
-     */
-    public function setNextPage($nextPage)
-    {
-        $this->nextPage = $nextPage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPreviousPage()
-    {
-        return $this->previousPage;
-    }
-
-    /**
-     * @param mixed $previousPage
-     */
-    public function setPreviousPage($previousPage)
-    {
-        $this->previousPage = $previousPage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPageCount()
-    {
-        return $this->pageCount;
-    }
-
-    /**
-     * @param mixed $pageCount
-     */
-    public function setPageCount($pageCount)
-    {
-        $this->pageCount = $pageCount;
+        return $this;
     }
 }
