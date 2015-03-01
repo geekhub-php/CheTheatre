@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Model\LinksTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,7 +20,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class Performance
 {
-    use TimestampableTrait;
+    use TimestampableTrait, LinksTrait;
 
     /**
      * @var integer
