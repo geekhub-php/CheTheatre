@@ -8,32 +8,32 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 
 /**
- * Class EmployeesResponse
+ * Class PostsResponse
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class EmployeesResponse extends AbstractPaginatedModel
+class PostsResponse extends AbstractPaginatedModel
 {
     /**
      * @var Array[]
-     * @Type("array<AppBundle\Entity\Employee>")
+     * @Type("array<AppBundle\Entity\Post>")
      * @Expose
      */
-    protected $employees;
+    protected $posts;
 
     /**
      * @return mixed
      */
-    public function getEmployees()
+    public function getPosts()
     {
-        return $this->employees;
+        return $this->posts;
     }
 
     /**
-     * @param mixed $employees
+     * @param mixed $posts
      */
-    public function setEmployees($employees)
+    public function setPosts($posts)
     {
-        $this->employees = $employees;
+        $this->posts = $posts;
     }
 }

@@ -399,3 +399,203 @@ AppBundle\Entity\PerformanceEvent:
     dateTime: <dateTimeBetween('+31 days', '+61 days')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent81:
+    performance: @performance1
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent82:
+    performance: @performance2
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent83:
+    performance: @performance3
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent84:
+    performance: @performance4
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent85:
+    performance: @performance5
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent86:
+    performance: @performance6
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent87:
+    performance: @performance7
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent88:
+    performance: @performance8
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent89:
+    performance: @performance9
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent90:
+    performance: @performance10
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent91:
+    performance: @performance11
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent92:
+    performance: @performance12
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent93:
+    performance: @performance13
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent94:
+    performance: @performance14
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent95:
+    performance: @performance15
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent96:
+    performance: @performance16
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent97:
+    performance: @performance1
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent98:
+    performance: @performance2
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent99:
+    performance: @performance3
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent100:
+    performance: @performance4
+    dateTime: <dateTimeBetween('-91 days', '-62 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent101:
+    performance: @performance5
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent102:
+    performance: @performance6
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent103:
+    performance: @performance7
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent104:
+    performance: @performance8
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent105:
+    performance: @performance9
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent106:
+    performance: @performance10
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent107:
+    performance: @performance11
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent108:
+    performance: @performance12
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent109:
+    performance: @performance13
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent110:
+    performance: @performance14
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent111:
+    performance: @performance15
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent112:
+    performance: @performance16
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent113:
+    performance: @performance1
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent114:
+    performance: @performance2
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent115:
+    performance: @performance3
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent116:
+    performance: @performance4
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent117:
+    performance: @performance5
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent118:
+    performance: @performance6
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent119:
+    performance: @performance7
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>
+  performanceEvent120:
+    performance: @performance8
+    dateTime: <dateTimeBetween('+62 days', '+91 days')>
+    createdAt: <dateTimeBetween('-200 days', 'now')>
+    updatedAt: <dateTimeBetween($createdAt, 'now')>

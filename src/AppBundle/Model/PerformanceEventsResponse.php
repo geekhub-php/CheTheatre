@@ -2,6 +2,7 @@
 
 namespace AppBundle\Model;
 
+use AppBundle\Model\AbstractPaginatedModel;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class PerformanceEventsResponse
+class PerformanceEventsResponse extends AbstractPaginatedModel
 {
     /**
      * @var Array[]
@@ -35,7 +36,6 @@ class PerformanceEventsResponse
     public function setPerformanceEvents($performanceEvents)
     {
         $this->performanceEvents = $performanceEvents;
-
         return $this;
     }
 }
