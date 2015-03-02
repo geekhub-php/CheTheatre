@@ -45,21 +45,12 @@ class PerformanceEventsController extends Controller
         }
 
         $result = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')
-            ->findByDateRange(
+            ->findByDateRangeAndSlug(
                 new \DateTime($paramFetcher->get('fromDate')),
-                new \DateTime($paramFetcher->get('toDate'))
+                new \DateTime($paramFetcher->get('toDate')),
+                $paramFetcher->get('performance')
             )
         ;
-
-        if ($paramFetcher->get('performance')) {
-            $result = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')
-                ->findBySlugAndDateRange(
-                    new \DateTime($paramFetcher->get('fromDate')),
-                    new \DateTime($paramFetcher->get('toDate')),
-                    $paramFetcher->get('performance')
-                )
-            ;
-        }
 
         if ('all' != $paramFetcher->get('limit')) {
             $result = array_slice($result, 0, $paramFetcher->get('limit'));
