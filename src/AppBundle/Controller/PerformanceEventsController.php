@@ -32,6 +32,7 @@ class PerformanceEventsController extends Controller
      * @QueryParam(name="fromDate", default="today", requirements="\d{2}-\d{2}-\d{4}|today" , description="Find entries from this date, fromat=dd-mm-yyyy")
      * @QueryParam(name="toDate", default="+1 Year", requirements="\d{2}-\d{2}-\d{4}|\+1 Year" , description="Find entries to this date, fromat=dd-mm-yyyy")
      * @QueryParam(name="limit", default="all", requirements="\d+|all" , description="Count of entities in collection")
+     * @QueryParam(name="performance", description="Performance slug")
      *
      * @RestView
      */
@@ -49,6 +50,16 @@ class PerformanceEventsController extends Controller
                 new \DateTime($paramFetcher->get('toDate'))
             )
         ;
+
+        if ($paramFetcher->get('performance')) {
+            $result = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')
+                ->findBySlugAndDateRange(
+                    new \DateTime($paramFetcher->get('fromDate')),
+                    new \DateTime($paramFetcher->get('toDate')),
+                    $paramFetcher->get('performance')
+                )
+            ;
+        }
 
         if ('all' != $paramFetcher->get('limit')) {
             $result = array_slice($result, 0, $paramFetcher->get('limit'));
