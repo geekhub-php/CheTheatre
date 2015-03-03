@@ -137,7 +137,8 @@ class PerformancesController extends Controller
      *  parameters={
      *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
      *  },
-     *  output = "array<AppBundle\Entity\PerformanceEvent>"
+     *  output = "array<AppBundle\Entity\PerformanceEvent>",
+     * deprecated = true
      * )
      *
      * @RestView
