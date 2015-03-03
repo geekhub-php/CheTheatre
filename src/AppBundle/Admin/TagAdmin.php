@@ -1,11 +1,11 @@
 <?php
+
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 class TagAdmin extends Admin
 {
@@ -15,19 +15,6 @@ class TagAdmin extends Admin
         '_sort_order' => 'ASC',
         '_sort_by' => 'name',
     ];
-
-    /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('title')
-            ->add('posts');
-    }
-
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
      *
@@ -37,7 +24,6 @@ class TagAdmin extends Admin
     {
         $formMapper->add('title');
     }
-
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
      *
@@ -45,7 +31,14 @@ class TagAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('title');
+        $listMapper->addIdentifier('title')
+        ->add('_action', 'actions', array(
+        'actions' => array(
+            'show' => array(),
+            'edit' => array(),
+            'delete' => array(),
+        ),
+    ));
     }
 
     /**
@@ -56,7 +49,6 @@ class TagAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('posts');
+            ->add('title');
     }
 }

@@ -1,11 +1,11 @@
 <?php
+
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 class PostAdmin extends Admin
 {
@@ -17,20 +17,6 @@ class PostAdmin extends Admin
     ];
 
     /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('title')
-            ->add('shortDescription')
-            ->add('text')
-            ->add('tags');
-    }
-
-    /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
      *
      * @return void
@@ -39,7 +25,7 @@ class PostAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add(' shortDescription ')
+            ->add('shortDescription')
             ->add('text')
             ->add('mainPicture', 'sonata_type_model_list', [
                 'required' => false,
@@ -50,19 +36,16 @@ class PostAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('tags', 'sonata_type_collection',
+            ->add('tags', 'sonata_type_model_list',
                 array(
-                    'by_reference' => false,
-                ),
-                array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'position',
-                    'multiple' => true,
-                    'delimiter' => ' | ',
+                    'by_reference' => true,
+                    'multiple'     => true,
+                    'property'     => 'title',
+                    'btn_add'       => false,
+                    'btn_edit'      => 'Edit tag',
+                    'btn_delete'    => 'false',
                 ));
     }
-
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
      *
@@ -72,8 +55,22 @@ class PostAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('shortDescription')
-            ->add('text');
+            ->add('mainPicture', 'sonata_type_model_list', [
+                'required' => false,
+                'btn_list' => false,
+            ], [
+                'link_parameters' => [
+                    'context' => 'default',
+                    'provider' => 'sonata.media.provider.image',
+                ],
+            ])
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                ),
+            ));
     }
 
     /**
@@ -85,8 +82,6 @@ class PostAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('shortDescription')
-            ->add('text')
-            ->add('tags');
+            ->add('tags', null, array(), null, array('expanded' => true, 'multiple' => true));
     }
 }
