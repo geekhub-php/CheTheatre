@@ -58,7 +58,7 @@ class SerializerSubscriber implements EventSubscriberInterface
         $performance->setLinks([
             new Link('self', $this->router->generate('get_performance', ['slug' => $performance->getSlug()], true)),
             new Link('self.roles', $this->router->generate('get_performance_roles', ['slug' => $performance->getSlug()], true)),
-            new Link('self.events', $this->router->generate('get_performance_performanceevents', ['slug' => $performance->getSlug()], true)),
+            new Link('self.events', $this->router->generate('get_performanceevents', ['performance' => $performance->getSlug()], true)),
         ]);
 
         if ($performance->getMainPicture()) {
