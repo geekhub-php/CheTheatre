@@ -2,6 +2,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
+use AppBundle\Form\DataTransformer\TagTransformer;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -36,12 +38,11 @@ class PostAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('tags', 'sonata_type_model',
-                array(
-                    'by_reference' => true,
-                    'multiple'     => true,
-                    'property'     => 'title',
-                ));
+            ->add(
+                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
+                    ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
+            )
+        ;
     }
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
