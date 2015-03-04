@@ -47,7 +47,6 @@ class SerializerSubscriber implements EventSubscriberInterface
 
     public function onPrePerformanceEventSerialize(ObjectEvent $event)
     {
-
     }
 
     public function onPrePerformanceSerialize(ObjectEvent $event)
