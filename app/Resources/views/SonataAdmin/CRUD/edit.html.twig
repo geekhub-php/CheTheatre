@@ -1,0 +1,20 @@
+{% extends "SonataAdminBundle:CRUD:base_edit.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link href="http://cdn.imnjb.me/libs/tag-it/2.0/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://cdn.imnjb.me/libs/tag-it/2.0/js/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".posts-tags").tagit({
+                availableTags: [{{ allTagsAsString()|raw }}],
+                allowSpaces: true
+            });
+        });
+    </script>
+{% endblock %}
