@@ -35,7 +35,8 @@ class PostsController extends Controller
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->findAll();
+        $queryBuilder = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Post')->findBy([], ['createdAt' => 'DESC']);
 
         $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
         $paginater
