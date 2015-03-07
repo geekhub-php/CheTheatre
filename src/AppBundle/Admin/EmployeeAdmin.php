@@ -68,6 +68,15 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('avatar', 'sonata_type_model_list', [
+                'required' => false,
+                'btn_list' => false,
+            ], [
+                'link_parameters' => [
+                    'context'  => 'employee',
+                    'provider' => 'sonata.media.provider.image',
+                ],
+            ])
             ->addIdentifier('firstName')
             ->add('middleName')
             ->add('lastName')

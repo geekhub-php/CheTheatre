@@ -52,7 +52,6 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
             ->add('mainPicture', 'sonata_type_model_list', [
                 'required' => false,
                 'btn_list' => false,
@@ -62,12 +61,15 @@ class PostAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
+            ->addIdentifier('title')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
                     'delete' => array(),
                 ),
-            ));
+            ))
+
+        ;
     }
 
     /**
