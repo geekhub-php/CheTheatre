@@ -4,10 +4,36 @@
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link href="http://cdn.imnjb.me/libs/tag-it/2.0/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap3-wysihtml5.min.css') }}" />
+
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap-wysihtml5.ua-UA.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.wysihtml5').wysihtml5({
+                        fa: true,
+                        locale: 'ua-UA',
+                        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true, //Italics, bold, etc. Default true
+                        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "html": true, //Button which allows you to edit the generated HTML. Default false
+                        "link": true, //Button to insert a link. Default true
+                        "image": true, //Button to insert an image. Default true,
+                        "color": true, //Button to change color of font
+                        "blockquote": true, //Blockquote
+                        "size": '<buttonsize>' //default: none, other options are xs, sm, lg
+                    }
+            );
+        });
+    </script>
+
     {{ parent() }}
+
     <script src="http://cdn.imnjb.me/libs/tag-it/2.0/js/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).ready(function() {
