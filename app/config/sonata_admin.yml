@@ -4,6 +4,8 @@ sonata_admin:
 
     templates:
         edit: ::SonataAdmin/CRUD/edit.html.twig
+        layout: :SonataAdmin:base_layout.html.twig
+
     dashboard:
         groups:
             CheTheatre:
