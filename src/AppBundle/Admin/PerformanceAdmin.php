@@ -43,15 +43,6 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('mainPicture', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context'  => 'performance',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
             ->add('premiere', 'sonata_type_datetime_picker',
                 array(
                     'dp_side_by_side'       => true,
