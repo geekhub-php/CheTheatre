@@ -44,4 +44,3 @@ after('deploy:staging', function () {
     $host = config()->getHost();
     writeln("<info>Successfully deployed on</info> <fg=cyan>$host</fg=cyan>");
 });
-
