@@ -22,6 +22,19 @@ class Employee
 {
     use TimestampableTrait;
 
+    const POSITION_ACTOR = 'actor';
+    const POSITION_ACTRESS = 'actress';
+    const POSITION_THEATRE_DIRECTOR = 'theatre_director';
+    const POSITION_ACTING_ARTISTIC_DIRECTOR = 'acting_artistic_director';
+    const POSITION_PRODUCTION_DIRECTOR = 'production_director';
+    const POSITION_MAIN_ARTIST = 'main_artist';
+    const POSITION_COSTUMER = 'costumer';
+    const POSITION_ART_DIRECTOR = 'art_director';
+    const POSITION_MAIN_CHOREOGPAPHER = 'main_choreographer';
+    const POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART = 'head_of_the_literary_and_dramatic_part';
+    const POSITION_CONDUCTOR = 'conductor';
+    const POSITION_ACCOMPANIST = 'accompanist';
+
     /**
      * @var integer
      * @ORM\Column(name="id", type="integer")
