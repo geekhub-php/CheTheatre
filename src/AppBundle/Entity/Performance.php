@@ -49,6 +49,15 @@ class Performance
      * @Type("string")
      * @Expose
      */
+    private $type;
+
+    /**
+     * @var string
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", length=255, nullable=true)
+     * @Type("string")
+     * @Expose
+     */
     private $description;
 
     /**
@@ -123,6 +132,29 @@ class Performance
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $ type
+     * @return Performance
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     /**

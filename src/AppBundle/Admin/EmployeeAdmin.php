@@ -51,7 +51,7 @@ class EmployeeAdmin extends Admin
                 'btn_list' => false,
             ], [
                 'link_parameters' => [
-                    'context'  => 'default',
+                    'context'  => 'employee',
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])

@@ -17,6 +17,24 @@ sonata_media:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
+        employee:
+            providers:
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+        performance:
+            providers:
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
     cdn:
         server:
             path: /uploads/media # http://media.sonata-project.org/
