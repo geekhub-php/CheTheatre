@@ -2,38 +2,21 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
+use AppBundle\Form\DataTransformer\TagTransformer;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-use AppBundle\Entity\Employee;
 
-class EmployeeAdmin extends Admin
+class PostAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Employee';
-    protected $baseRoutePattern = 'Employee';
+    protected $baseRouteName = 'AppBundle\Entity\Post';
+    protected $baseRoutePattern = 'Post';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_by' => 'name',
     ];
-
-    /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob', 'date')
-            ->add('position')
-            ->add('roles')
-        ;
-    }
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -43,23 +26,24 @@ class EmployeeAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('avatar', 'sonata_type_model_list', [
+            ->add('title')
+            ->add('shortDescription')
+            ->add('text', 'textarea', array('attr' => array('class' => 'wysihtml5','style' => 'height:300px')))
+            ->add('mainPicture', 'sonata_type_model_list', [
                 'required' => false,
                 'btn_list' => false,
             ], [
                 'link_parameters' => [
-                    'context'  => 'default',
+                    'context' => 'default',
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('dob', 'sonata_type_date_picker')
-            ->add('position')
+            ->add(
+                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
+                    ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
+            )
         ;
     }
-
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
      *
@@ -68,21 +52,23 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('avatar', 'sonata_type_model_list', [
+            ->add('mainPicture', 'sonata_type_model_list', [
                 'required' => false,
                 'btn_list' => false,
             ], [
                 'link_parameters' => [
-                    'context'  => 'employee',
+                    'context' => 'default',
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->addIdentifier('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob', 'date')
-            ->add('position')
-            ->add('roles')
+            ->addIdentifier('title')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                ),
+            ))
+
         ;
     }
 
@@ -94,12 +80,7 @@ class EmployeeAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob')
-            ->add('position')
-            ->add('roles')
-        ;
+            ->add('title')
+            ->add('tags', null, array(), null, array('expanded' => true, 'multiple' => true));
     }
 }

@@ -138,7 +138,7 @@ class Performance
     /**
      * Set description
      *
-     * @param  string $description
+     * @param  string      $description
      * @return Performance
      */
     public function setDescription($description)
@@ -161,7 +161,7 @@ class Performance
     /**
      * Set premiere
      *
-     * @param  \DateTime $premiere
+     * @param  \DateTime   $premiere
      * @return Performance
      */
     public function setPremiere($premiere)
@@ -212,7 +212,7 @@ class Performance
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string      $slug
      * @return Performance
      */
     public function setSlug($slug)
@@ -307,7 +307,7 @@ class Performance
     /**
      * Set title
      *
-     * @param  string $title
+     * @param  string      $title
      * @return Performance
      */
     public function setTitle($title)
