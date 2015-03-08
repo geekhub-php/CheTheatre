@@ -52,15 +52,7 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context' => 'default',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
+            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
             ->add('_action', 'actions', array(
                 'actions' => array(
