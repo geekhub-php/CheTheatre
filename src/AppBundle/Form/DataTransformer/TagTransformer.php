@@ -25,7 +25,7 @@ class TagTransformer implements DataTransformerInterface
     public function transform($collection)
     {
         if (null === $collection) {
-            return null;
+            return;
         }
 
         return implode(',', $collection->map(
@@ -36,7 +36,7 @@ class TagTransformer implements DataTransformerInterface
     public function reverseTransform($string)
     {
         if (!$string) {
-            return null;
+            return;
         }
 
         $tags = new ArrayCollection();

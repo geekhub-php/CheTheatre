@@ -34,7 +34,7 @@ class AppExtension extends \Twig_Extension
             $tagsAsString .= sprintf('"%s",', $tag->getTitle());
         }
 
-        return trim($tagsAsString,',');
+        return trim($tagsAsString, ',');
     }
 
     /**

@@ -46,7 +46,15 @@ class EmployeeAdmin extends Admin
             ->add('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('avatar', 'string', ['template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'])
+            ->add('avatar', 'sonata_type_model_list', [
+                'required' => false,
+                'btn_list' => false,
+            ], [
+                'link_parameters' => [
+                    'context'  => 'employee',
+                    'provider' => 'sonata.media.provider.image',
+                ],
+            ])
             ->add('dob', 'sonata_type_date_picker')
             ->add('position')
         ;
@@ -60,15 +68,7 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('avatar', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context'  => 'employee',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
+            ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('firstName')
             ->add('middleName')
             ->add('lastName')
