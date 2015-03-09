@@ -83,6 +83,7 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('firstName')
             ->add('middleName')
             ->add('lastName')

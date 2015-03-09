@@ -9,3 +9,10 @@ services:
         arguments: ["@sonata.media.controller.api.media", "@router"]
         tags:
             - { name: jms_serializer.event_subscriber }
+
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }

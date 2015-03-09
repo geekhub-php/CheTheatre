@@ -3,7 +3,6 @@
 namespace AppBundle\Model;
 
 use AppBundle\Entity\Performance;
-use AppBundle\Model\AbstractPaginatedModel;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -42,7 +41,7 @@ class PerformanceEventsResponse
     }
 
     /**
-     * @param mixed $performanceEvents
+     * @param  mixed $performanceEvents
      * @return $this
      */
     public function setPerformanceEvents($performanceEvents)

@@ -2,36 +2,21 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
+use AppBundle\Form\DataTransformer\TagTransformer;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
-class PerformanceAdmin extends Admin
+class PostAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Performance';
-    protected $baseRoutePattern = 'Performance';
+    protected $baseRouteName = 'AppBundle\Entity\Post';
+    protected $baseRoutePattern = 'Post';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_by' => 'name',
     ];
-
-    /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('title')
-            ->add('description')
-            ->add('premiere')
-            ->add('performanceEvents')
-            ->add('roles')
-        ;
-    }
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -42,37 +27,23 @@ class PerformanceAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('description')
+            ->add('shortDescription')
+            ->add('text', 'textarea', array('attr' => array('class' => 'wysihtml5', 'style' => 'height:300px')))
             ->add('mainPicture', 'sonata_type_model_list', [
                 'required' => false,
                 'btn_list' => false,
             ], [
                 'link_parameters' => [
-                    'context'  => 'performance',
+                    'context' => 'default',
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('premiere', 'sonata_type_datetime_picker',
-                array(
-                    'dp_side_by_side'       => true,
-                    'dp_use_current'        => false,
-                    'dp_use_seconds'        => false,
-                    'format' => "dd/MM/yyyy HH:mm",
-                )
-            )
-            ->add('roles', 'sonata_type_collection',
-                array(
-                    'by_reference' => false,
-                ),
-                array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable'  => 'position',
-                )
+            ->add(
+                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
+                    ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
             )
         ;
     }
-
     /**
      * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
      *
@@ -83,7 +54,13 @@ class PerformanceAdmin extends Admin
         $listMapper
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
-            ->add('premiere')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                ),
+            ))
+
         ;
     }
 
@@ -96,6 +73,6 @@ class PerformanceAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-        ;
+            ->add('tags', null, array(), null, array('expanded' => true, 'multiple' => true));
     }
 }

@@ -174,7 +174,7 @@ class Post
      *
      * @return string
      */
-    public function getDescription()
+    public function getText()
     {
         return $this->text;
     }
