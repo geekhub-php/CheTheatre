@@ -46,15 +46,7 @@ class EmployeeAdmin extends Admin
             ->add('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('avatar', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context'  => 'default',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
+            ->add('avatar', 'string', ['template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'])
             ->add('dob', 'sonata_type_date_picker')
             ->add('position')
         ;
