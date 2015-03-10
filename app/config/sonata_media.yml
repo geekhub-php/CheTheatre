@@ -17,23 +17,29 @@ sonata_media:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
-        employee:
-            providers:
-                - sonata.media.provider.image
-                - sonata.media.provider.file
+        employee:  # the employee context is mandatory
+                    providers:
+                        - sonata.media.provider.image
 
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                    formats:
+                        small: { width: 100 , quality: 70}
+                        big:   { width: 500 , quality: 70}
 
-        performance:
-            providers:
-                - sonata.media.provider.image
-                - sonata.media.provider.file
+        performance:  # the performance context is mandatory
+                    providers:
+                        - sonata.media.provider.image
 
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                    formats:
+                        small: { width: 100 , quality: 70}
+                        big:   { width: 500 , quality: 70}
+
+        post:  # the post context is mandatory
+                    providers:
+                        - sonata.media.provider.image
+
+                    formats:
+                        small: { width: 100 , quality: 70}
+                        big:   { width: 500 , quality: 70}
 
     cdn:
         server:

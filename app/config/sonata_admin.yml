@@ -2,6 +2,9 @@ sonata_admin:
     title:      %sonata_admin.title%
     title_logo: %sonata_admin.logo_title%
 
+    templates:
+        edit: ::SonataAdmin/CRUD/edit.html.twig
+
     dashboard:
         groups:
             CheTheatre:
@@ -10,7 +13,6 @@ sonata_admin:
             sonata_media:
                 label: Media.Library
                 label_catalogue: AppBundle
-#            Hidden:
 
         blocks:
             -
@@ -23,6 +25,22 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 settings:
                     groups: [sonata_media, Hidden]
+
+    assets:
+        javascripts: # changed order of js assets loading
+            - js/jquery-2.1.0.min.js
+            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
+            - bundles/sonatacore/vendor/moment/min/moment.min.js
+            - bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
+            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
+            - bundles/sonataadmin/jquery/jquery.form.js
+            - bundles/sonataadmin/jquery/jquery.confirmExit.js
+            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
+            - bundles/sonataadmin/vendor/select2/select2.min.js
+            - bundles/sonataadmin/App.js
+            - bundles/sonataadmin/Admin.js
 
 sonata_doctrine_orm_admin:
     templates:

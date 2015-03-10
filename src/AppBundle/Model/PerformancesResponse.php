@@ -2,7 +2,6 @@
 
 namespace AppBundle\Model;
 
-use AppBundle\Model\AbstractPaginatedModel;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;

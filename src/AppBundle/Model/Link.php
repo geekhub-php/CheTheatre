@@ -42,7 +42,7 @@ class Link
     }
 
     /**
-     * @param string $rel
+     * @param  string $rel
      * @return $this
      */
     public function setRel($rel)
@@ -61,7 +61,7 @@ class Link
     }
 
     /**
-     * @param string $href
+     * @param  string $href
      * @return $this
      */
     public function setHref($href)

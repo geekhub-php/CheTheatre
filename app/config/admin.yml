@@ -42,3 +42,14 @@ services:
            - ~
        calls:
            - [ setTranslationDomain, [AppBundle]]
+
+   sonata.admin.post:
+       class: AppBundle\Admin\PostAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Posts" }
+       arguments:
+           - ~
+           - AppBundle\Entity\Post
+           - ~
+       calls:
+       - [ setTranslationDomain, [AppBundle]]
