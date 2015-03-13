@@ -43,7 +43,7 @@ class RoleAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('employee', 'sonata_type_model', array('required' => false));
+            ->add('employee', 'sonata_type_model', ['required' => false]);
     }
 
     /**
@@ -58,13 +58,15 @@ class RoleAdmin extends Admin
             ->add('description')
             ->add('performance')
             ->add('employee')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
-            ))
+            ->add('_action', 'actions',
+                [
+                    'actions' => [
+                        'show' => [],
+                        'edit' => [],
+                        'delete' => [],
+                    ],
+                ]
+            )
         ;
     }
 

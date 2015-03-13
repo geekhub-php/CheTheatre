@@ -56,11 +56,11 @@ class EmployeeAdmin extends Admin
                 ],
             ])
             ->add('dob', 'sonata_type_date_picker')
-            ->add('position','sonata_type_translatable_choice',array('choices' => employee::getPositions()))
-            ->add('galleryHasMedia', 'sonata_type_collection', array(
+            ->add('position', 'sonata_type_translatable_choice', ['choices' => employee::getPositions()])
+            ->add('galleryHasMedia', 'sonata_type_collection', [
                 'required' => false,
                 'label' => 'Gallery',
-                ), array(
+                ], [
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
@@ -70,7 +70,8 @@ class EmployeeAdmin extends Admin
                     'context'  => 'employee',
                     'provider' => 'sonata.media.provider.image',
                 ],
-            ));
+            ])
+        ;
     }
 
     /**

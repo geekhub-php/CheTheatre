@@ -390,8 +390,9 @@ class Employee
         return $this;
     }
 
-    public static function getPositions(){
-        $getPositions[] = [
+    public static function getPositions()
+    {
+        return [
             employee::POSITION_ACTOR => 'actor',
             employee::POSITION_ACTRESS => 'actress',
             employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
@@ -403,9 +404,8 @@ class Employee
             employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
             employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
             employee::POSITION_CONDUCTOR => 'conductor',
-            employee::POSITION_ACCOMPANIST => 'accompanist'
+            employee::POSITION_ACCOMPANIST => 'accompanist',
         ];
-        return $getPositions;
     }
 
     /**
