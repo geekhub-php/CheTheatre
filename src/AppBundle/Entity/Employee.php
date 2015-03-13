@@ -114,6 +114,20 @@ class Employee
     private $roles;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\Gallery
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist"})
+     */
+    private $gallery;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", mappedBy="gallery", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $galleryHasMedia;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -143,6 +157,7 @@ class Employee
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -331,6 +346,29 @@ class Employee
         return $this->roles;
     }
 
+    /**
+     * Get gallery
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     * @return Employee
+     */
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->getSlug();
@@ -376,5 +414,53 @@ class Employee
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+//    /**
+//     * Set galleryHasMedia
+//     *
+//     * @param $galleryHasMedias
+//     * @return Employee
+//     */
+//    public function setGalleryHasMedia($galleryHasMedias)
+//    {
+//        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+//
+//        foreach ($galleryHasMedias as $galleryHasMedia) {
+//            $this->addGalleryHasMedia($galleryHasMedia);
+//        }
+//    }
+
+    /**
+     * Add galleryHasMedia
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @return Employee
+     */
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia[] = $galleryHasMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia->removeElement($galleryHasMedia);
+    }
+
+    /**
+     * Get galleryHasMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasMedia()
+    {
+        return $this->galleryHasMedia;
     }
 }

@@ -72,7 +72,29 @@ class EmployeeAdmin extends Admin
                     'POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART' => 'head_of_the_literary_and_dramatic_part',
                     'POSITION_CONDUCTOR' => 'conductor',
                     'POSITION_ACCOMPANIST' => 'accompanist',
-                )));
+                )))
+            ->add('gallery','sonata_type_model_list', [
+                'required' => false,
+                'btn_list' => false,
+            ], [
+                'link_parameters' => [
+                    'context'  => 'employee',
+                    'provider' => 'sonata.media.provider.image',
+                ],
+            ])
+            ->add('galleryHasMedia', 'sonata_type_collection', array(
+                'required' => false,
+                ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position',
+                'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                'admin_code' => 'sonata.media.admin.gallery_has_media',
+                'link_parameters' => [
+                    'context'  => 'employee',
+                    'provider' => 'sonata.media.provider.image',
+                ]
+            ));
     }
 
     /**
