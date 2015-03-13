@@ -77,7 +77,6 @@ class EmployeeAdmin extends Admin
                 'required' => false,
                 'label' => 'Gallery',
                 ), array(
-                'btn_delete' => false,
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
@@ -86,7 +85,7 @@ class EmployeeAdmin extends Admin
                 'link_parameters' => [
                     'context'  => 'employee',
                     'provider' => 'sonata.media.provider.image',
-                ]
+                ],
             ));
     }
 
