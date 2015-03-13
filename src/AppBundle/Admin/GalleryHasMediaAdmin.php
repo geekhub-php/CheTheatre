@@ -15,7 +15,15 @@ class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
-        $formMapper->remove('enabled');
-        $formMapper->remove('position');
+
+        $mediaField = $field = $formMapper->get('media');
+        $options    = $mediaField->getFormConfig()->getOptions();
+        $options['btn_delete'] = $options['btn_list'] = false;
+
+        $formMapper
+            ->remove('enabled')
+            ->remove('position')
+            ->add('media', $mediaField->getType()->getName(), $options)
+        ;
     }
 }
