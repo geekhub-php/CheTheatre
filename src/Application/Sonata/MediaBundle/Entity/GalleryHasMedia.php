@@ -28,7 +28,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia
 
     /**
      * @var string
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
