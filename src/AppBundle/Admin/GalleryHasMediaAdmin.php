@@ -23,6 +23,8 @@ class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
         $formMapper
             ->remove('enabled')
             ->remove('position')
+            ->add('title', null, ['label' => 'Title'])
+            ->add('description')
             ->add('media', $mediaField->getType()->getName(), $options)
         ;
     }

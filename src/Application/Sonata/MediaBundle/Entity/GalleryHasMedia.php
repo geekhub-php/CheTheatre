@@ -21,6 +21,18 @@ class GalleryHasMedia extends BaseGalleryHasMedia
     protected $id;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
      * Get id
      *
      * @return integer
@@ -28,5 +40,51 @@ class GalleryHasMedia extends BaseGalleryHasMedia
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string          $title
+     * @return GalleryHasMedia
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param  string          $description
+     * @return GalleryHasMedia
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }
