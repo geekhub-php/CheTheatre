@@ -73,18 +73,11 @@ class EmployeeAdmin extends Admin
                     'POSITION_CONDUCTOR' => 'conductor',
                     'POSITION_ACCOMPANIST' => 'accompanist',
                 )))
-            ->add('gallery','sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context'  => 'employee',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
             ->add('galleryHasMedia', 'sonata_type_collection', array(
                 'required' => false,
+                'label' => 'Gallery',
                 ), array(
+                'btn_delete' => false,
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',

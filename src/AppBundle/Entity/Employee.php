@@ -114,16 +114,13 @@ class Employee
     private $roles;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\Gallery
-     *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist"})
-     */
-    private $gallery;
-
-    /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
-     * @ORM\OneToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", mappedBy="gallery", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="employee_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="employee_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     *     )
      */
     private $galleryHasMedia;
 
@@ -346,29 +343,6 @@ class Employee
         return $this->roles;
     }
 
-    /**
-     * Get gallery
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery
-     */
-    public function getGallery()
-    {
-        return $this->gallery;
-    }
-
-    /**
-     * Set gallery
-     *
-     * @param  \Application\Sonata\MediaBundle\Entity\Gallery $gallery
-     * @return Employee
-     */
-    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
-    {
-        $this->gallery = $gallery;
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getSlug();
@@ -415,21 +389,6 @@ class Employee
 
         return $this;
     }
-
-//    /**
-//     * Set galleryHasMedia
-//     *
-//     * @param $galleryHasMedias
-//     * @return Employee
-//     */
-//    public function setGalleryHasMedia($galleryHasMedias)
-//    {
-//        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
-//
-//        foreach ($galleryHasMedias as $galleryHasMedia) {
-//            $this->addGalleryHasMedia($galleryHasMedia);
-//        }
-//    }
 
     /**
      * Add galleryHasMedia
