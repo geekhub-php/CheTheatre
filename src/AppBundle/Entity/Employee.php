@@ -389,6 +389,24 @@ class Employee
 
         return $this;
     }
+    
+    public static function getPositions(){
+        $getPositions[] = [
+            employee::POSITION_ACTOR => 'actor',
+            employee::POSITION_ACTRESS => 'actress',
+            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            employee::POSITION_MAIN_ARTIST => 'main_artist',
+            employee::POSITION_COSTUMER => 'costumer',
+            employee::POSITION_ART_DIRECTOR => 'art_director',
+            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            employee::POSITION_CONDUCTOR => 'conductor',
+            employee::POSITION_ACCOMPANIST => 'accompanist'
+        ];
+        return $getPositions;
+    }
 
     /**
      * Add galleryHasMedia
