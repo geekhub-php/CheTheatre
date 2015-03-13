@@ -108,6 +108,17 @@ class Performance
     private $roles;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="performance_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="performance_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     *     )
+     */
+    private $galleryHasMedia;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -122,6 +133,7 @@ class Performance
     {
         $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -347,5 +359,38 @@ class Performance
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * Add galleryHasMedia
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @return Performance
+     */
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia[] = $galleryHasMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia->removeElement($galleryHasMedia);
+    }
+
+    /**
+     * Get galleryHasMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasMedia()
+    {
+        return $this->galleryHasMedia;
     }
 }

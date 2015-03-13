@@ -28,19 +28,44 @@ class PostAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('shortDescription')
-            ->add('text', 'textarea', array('attr' => array('class' => 'wysihtml5', 'style' => 'height:300px')))
-            ->add('mainPicture', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context' => 'default',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
+            ->add('text', 'textarea',
+                [
+                    'attr' => [
+                            'class' => 'wysihtml5',
+                            'style' => 'height:300px',
+                    ],
+                ]
+            )
+            ->add('mainPicture', 'sonata_type_model_list',
+                [
+                    'required' => false,
+                    'btn_list' => false,
+                ], [
+                    'link_parameters' => [
+                        'context' => 'default',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
             ->add(
                 $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
                     ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
+            )
+            ->add('galleryHasMedia', 'sonata_type_collection',
+                [
+                    'required' => false,
+                    'label' => 'Gallery',
+                ], [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
+                    'link_parameters' => [
+                        'context'  => 'employee',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
             )
         ;
     }
@@ -54,12 +79,14 @@ class PostAdmin extends Admin
         $listMapper
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'delete' => array(),
-                ),
-            ))
+            ->add('_action', 'actions',
+                [
+                    'actions' => [
+                        'edit' => [],
+                        'delete' => [],
+                    ],
+                ]
+            )
 
         ;
     }
@@ -73,6 +100,6 @@ class PostAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('tags', null, array(), null, array('expanded' => true, 'multiple' => true));
+            ->add('tags', null, [], null, ['expanded' => true, 'multiple' => true]);
     }
 }

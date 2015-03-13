@@ -114,6 +114,17 @@ class Employee
     private $roles;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="employee_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="employee_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     *     )
+     */
+    private $galleryHasMedia;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -143,6 +154,7 @@ class Employee
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -376,5 +388,56 @@ class Employee
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+    public static function getPositions()
+    {
+        return [
+            employee::POSITION_ACTOR => 'actor',
+            employee::POSITION_ACTRESS => 'actress',
+            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            employee::POSITION_MAIN_ARTIST => 'main_artist',
+            employee::POSITION_COSTUMER => 'costumer',
+            employee::POSITION_ART_DIRECTOR => 'art_director',
+            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            employee::POSITION_CONDUCTOR => 'conductor',
+            employee::POSITION_ACCOMPANIST => 'accompanist',
+        ];
+    }
+
+    /**
+     * Add galleryHasMedia
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @return Employee
+     */
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia[] = $galleryHasMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia->removeElement($galleryHasMedia);
+    }
+
+    /**
+     * Get galleryHasMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasMedia()
+    {
+        return $this->galleryHasMedia;
     }
 }

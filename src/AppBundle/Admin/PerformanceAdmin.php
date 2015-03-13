@@ -43,32 +43,49 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('mainPicture', 'sonata_type_model_list', [
-                'required' => false,
-                'btn_list' => false,
-            ], [
-                'link_parameters' => [
-                    'context'  => 'performance',
-                    'provider' => 'sonata.media.provider.image',
-                ],
-            ])
+            ->add('mainPicture', 'sonata_type_model_list',
+                [
+                    'required' => false,
+                    'btn_list' => false,
+                ], [
+                    'link_parameters' => [
+                        'context'  => 'performance',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
             ->add('premiere', 'sonata_type_datetime_picker',
-                array(
+                [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,
                     'dp_use_seconds'        => false,
                     'format' => "dd/MM/yyyy HH:mm",
-                )
+                ]
             )
             ->add('roles', 'sonata_type_collection',
-                array(
+                [
                     'by_reference' => false,
-                ),
-                array(
+                ], [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable'  => 'position',
-                )
+                ]
+            )
+            ->add('galleryHasMedia', 'sonata_type_collection',
+                [
+                    'required' => false,
+                    'label' => 'Gallery',
+                ], [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
+                    'link_parameters' => [
+                        'context'  => 'employee',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
             )
         ;
     }

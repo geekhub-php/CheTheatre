@@ -74,6 +74,17 @@ class Post
     private $locale;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="post_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     *     )
+     */
+    private $galleryHasMedia;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -92,6 +103,7 @@ class Post
      */
     public function __construct()
     {
+        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -262,5 +274,38 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Add galleryHasMedia
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @return Post
+     */
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia[] = $galleryHasMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia->removeElement($galleryHasMedia);
+    }
+
+    /**
+     * Get galleryHasMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasMedia()
+    {
+        return $this->galleryHasMedia;
     }
 }
