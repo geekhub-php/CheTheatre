@@ -14,30 +14,8 @@ class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $link_parameters = array();
-
-        if ($this->hasParentFieldDescription()) {
-            $link_parameters = $this->getParentFieldDescription()->getOption('link_parameters', array());
-        }
-
-        if ($this->hasRequest()) {
-            $context = $this->getRequest()->get('context', null);
-
-            if (null !== $context) {
-                $link_parameters['context'] = $context;
-            }
-        }
-
-        $formMapper
-            ->add('media', 'sonata_type_model_list', array(
-                'required' => false,
-                'btn_delete' => false
-            ),
-                array(
-                'link_parameters' => $link_parameters
-                )
-            )
-
-        ;
+        parent::configureFormFields($formMapper);
+        $formMapper->remove('enabled');
+        $formMapper->remove('position');
     }
 }
