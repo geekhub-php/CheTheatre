@@ -389,7 +389,7 @@ class Employee
 
         return $this;
     }
-    
+
     public static function getPositions(){
         $getPositions[] = [
             employee::POSITION_ACTOR => 'actor',

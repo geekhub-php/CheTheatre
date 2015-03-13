@@ -70,7 +70,20 @@ class PerformanceAdmin extends Admin
                     'sortable'  => 'position',
                 )
             )
-        ;
+            ->add('galleryHasMedia', 'sonata_type_collection', array(
+                'required' => false,
+                'label' => 'Gallery',
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position',
+                'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                'admin_code' => 'sonata.media.admin.gallery_has_media',
+                'link_parameters' => [
+                    'context'  => 'employee',
+                    'provider' => 'sonata.media.provider.image',
+                ],
+            ));
     }
 
     /**
