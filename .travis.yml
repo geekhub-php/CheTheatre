@@ -10,7 +10,7 @@ env:
 
 before_script:
     - composer self-update
-    - php bin/reload
+    - php bin/reload --domain=localhost
 
 script:
   - phpunit -c app/
