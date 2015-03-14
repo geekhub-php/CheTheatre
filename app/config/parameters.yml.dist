@@ -23,6 +23,7 @@ parameters:
     sonata_admin.title: 'CheTheatre Project'
     sonata_admin.logo_title: bundles/sonataadmin/logo_title.png
     prod_server_pass: ~
+    prod_server_path: ~
     https_github_repository_url: ~
     api_domain: api.chetheatre.local
     admin_domain: admin.chetheatre.local

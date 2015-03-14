@@ -7,7 +7,7 @@ $yaml = new \Symfony\Component\Yaml\Yaml();
 $parameters = $yaml->parse(__DIR__ . '/app/config/parameters.yml');
 
 server('theatre', $parameters['parameters']['prod_server_ip'])
-    ->path('/var/www/' . $parameters['parameters']['domain'])
+    ->path('/var/www/' . $parameters['parameters']['prod_server_path'])
     ->user('root', $parameters['parameters']['prod_server_pass'])
 ;
 
