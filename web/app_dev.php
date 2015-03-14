@@ -22,9 +22,10 @@ Debug::enable();
 
 require_once __DIR__.'/../app/AppKernel.php';
 
-$kernel = new AppKernel('dev', true);
-$kernel->loadClassCache();
 $request = Request::createFromGlobals();
+$kernel = new AppKernel('dev', true);
+$kernel->setDomain($request->getHttpHost());
+$kernel->loadClassCache();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2cc6e2c382efe79968592109a07234ac",
+    "hash": "6e87190cb0e443dd8a4b239258583ed4",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -913,6 +913,43 @@
                 "uploadable"
             ],
             "time": "2015-01-28 09:12:46"
+        },
+        {
+            "name": "geek-hub/domain-routing-bundle",
+            "version": "dev-master",
+            "target-dir": "GeekHub/DomainRoutingBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geekhub-php/DomainRoutingBundle.git",
+                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
+                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/framework-bundle": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "GeekHub\\DomainRoutingBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This bundle include routing appropriately to domain specified in configuration",
+            "homepage": "https://github.com/geekhub-php/DomainRoutingBundle",
+            "keywords": [
+                "domain",
+                "routing"
+            ],
+            "time": "2015-03-14 08:15:36"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -4389,7 +4426,8 @@
         "stof/doctrine-extensions-bundle": 20,
         "symfony/event-dispatcher": 20,
         "knplabs/knp-paginator-bundle": 20,
-        "nelmio/api-doc-bundle": 20
+        "nelmio/api-doc-bundle": 20,
+        "geek-hub/domain-routing-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

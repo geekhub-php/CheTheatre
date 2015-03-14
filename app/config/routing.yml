@@ -1,15 +1,6 @@
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /
-
-admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: "%admin_dashboard_base_url%"
-
-_sonata_admin:
+_domain_routing:
     resource: .
-    type: sonata_admin
-    prefix: "%admin_dashboard_base_url%"
+    type: domain_routing
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
@@ -19,18 +10,4 @@ media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
-employees:
-    type: rest
-    resource: AppBundle\Controller\EmployeesController
 
-performances:
-    type: rest
-    resource: AppBundle\Controller\PerformancesController
-
-performance-events:
-    type: rest
-    resource: AppBundle\Controller\PerformanceEventsController
-
-posts:
-    type: rest
-    resource: AppBundle\Controller\PostsController
