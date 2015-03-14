@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "236d345665816cdd783ae031465abb27",
+    "hash": "6e87190cb0e443dd8a4b239258583ed4",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -921,12 +921,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/geekhub-php/DomainRoutingBundle.git",
-                "reference": "3945029595c9e43f4e5d94a700ce574b2834a3a3"
+                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/3945029595c9e43f4e5d94a700ce574b2834a3a3",
-                "reference": "3945029595c9e43f4e5d94a700ce574b2834a3a3",
+                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
+                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
                 "shasum": ""
             },
             "require": {
@@ -949,7 +949,7 @@
                 "domain",
                 "routing"
             ],
-            "time": "2015-03-02 14:27:47"
+            "time": "2015-03-14 08:15:36"
         },
         {
             "name": "guzzlehttp/guzzle",
