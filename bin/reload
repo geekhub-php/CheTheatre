@@ -2,29 +2,29 @@
 
 require_once __DIR__.'/base_script.php';
 
-$options = getopt("", ['domain:']);
+$options = getopt("", ['domain:', 'env:']);
 
-//if (!$options['domain']) {
-//    throw new RuntimeException('You must specify domain argument.');
-//}
+$stringOptions = '';
+$stringOptions .= array_key_exists('env', $options) ? ' --env=' . $options['env'] : ' --env=dev';
+$stringOptions .= array_key_exists('domain', $options) ? ' --domain=' . $options['domain'] : '';
 
 show_run("composer install", "composer install --no-interaction");
 
 build_bootstrap();
 
-show_run("database:drop", "app/console doctrine:database:drop --force -q --domain=" . $options['domain'], true);
-show_run("database:create", "app/console doctrine:database:create --domain=" . $options['domain']);
+show_run("Delete database", "app/console doctrine:database:drop --force -q " . $stringOptions, true);
+show_run("Create database", "app/console doctrine:database:create " . $stringOptions);
 
-show_run("schema:create", "app/console doctrine:schema:create --domain=" . $options['domain']);
+show_run("Create schema", "app/console doctrine:schema:create " . $stringOptions);
 
-show_run("Destroying cache dir manually", "rm -rf app/cache/" . $options['domain'] . "/*");
+show_run("Cache clear", "php app/console cache:clear " . $stringOptions);
 
 show_run("Changing permissions", "chmod -R 777 app/cache app/logs web/uploads");
-show_run("fixtures:load", "app/console doctrine:fixtures:load --no-interaction --domain=" . $options['domain']);
+show_run("Load Fixtures", "app/console doctrine:fixtures:load --no-interaction " . $stringOptions);
 
-show_run("assets:install", "app/console assets:install --symlink --domain=" . $options['domain']);
-show_run("assets:dump", "app/console assetic:dump --domain=" . $options['domain']);
-//fix
-show_run("Warming up dev cache", "php app/console --env=dev cache:warmup --domain=" . $options['domain']);
+show_run("Assets install", "app/console assets:install --symlink " . $stringOptions);
+show_run("Assetic dump", "app/console assetic:dump " . $stringOptions);
+
+show_run("Warming up cache", "php app/console cache:warmup " . $stringOptions);
 
 exit(0);
