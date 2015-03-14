@@ -8,9 +8,7 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Pagerfanta;
 use AppBundle\Model\PerformancesResponse;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Performance")
@@ -28,42 +26,20 @@ class PerformancesController extends Controller
      *  output = "array<AppBundle\Model\PerformancesResponse>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries")
+     * @QueryParam(name="offset", requirements="\d+", default="0", description="Offset from which to start listing")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->findAll();
+        $performances = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Performance')
+            ->findBy([], null, $paramFetcher->get('limit'), $paramFetcher->get('offset'));
 
-        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
-        $paginater
-            ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('page'))
-        ;
         $performancesResponse = new PerformancesResponse();
-        $performancesResponse->setPerformances($paginater->getCurrentPageResults());
-        $performancesResponse->setPageCount($paginater->getNbPages());
-
-        $nextPage = $paginater->hasNextPage() ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
-            ) :
-            'false';
-
-        $previsiousPage = $paginater->hasPreviousPage() ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
-            ) :
-            'false';
-
-        $performancesResponse->setNextPage($nextPage);
-        $performancesResponse->setPreviousPage($previsiousPage);
+        $performancesResponse->setPerformances($performances);
+        $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
 
         return $performancesResponse;
     }
