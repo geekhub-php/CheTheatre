@@ -23,7 +23,7 @@ require_once __DIR__.'/../app/AppKernel.php';
 $request = Request::createFromGlobals();
 
 $kernel = new AppKernel('prod', false);
-$kernel->setDomain($domain);
+$kernel->setDomain($request->getHttpHost());
 $kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 
