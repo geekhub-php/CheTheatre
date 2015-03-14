@@ -2,9 +2,12 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use GeekHub\DomainRoutingBundle\DomainTrait;
 
 class AppKernel extends Kernel
 {
+    use DomainTrait;
+
     public function registerBundles()
     {
         $bundles = array(

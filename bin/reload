@@ -2,28 +2,29 @@
 
 require_once __DIR__.'/base_script.php';
 
+$options = getopt("", ['domain:']);
+
+//if (!$options['domain']) {
+//    throw new RuntimeException('You must specify domain argument.');
+//}
+
 show_run("composer install", "composer install --no-interaction");
 
 build_bootstrap();
 
-show_run("database:drop", "app/console doctrine:database:drop --force -q", true);
-show_run("database:create", "app/console doctrine:database:create");
+show_run("database:drop", "app/console doctrine:database:drop --force -q --domain=" . $options['domain'], true);
+show_run("database:create", "app/console doctrine:database:create --domain=" . $options['domain']);
 
-show_run("schema:create", "app/console doctrine:schema:create");
+show_run("schema:create", "app/console doctrine:schema:create --domain=" . $options['domain']);
 
-show_run("Destroying cache dir manually", "rm -rf app/cache/*");
-
-show_run("Creating directories for app kernel", "mkdir -p app/cache/dev app/cache/test app/logs");
-
-show_run("Warming up dev cache", "php app/console --env=dev cache:clear");
-//show_run("Warming up test cache", "php app/console --env=test cache:clear");
+show_run("Destroying cache dir manually", "rm -rf app/cache/" . $options['domain'] . "/*");
 
 show_run("Changing permissions", "chmod -R 777 app/cache app/logs web/uploads");
-show_run("fixtures:load", "app/console doctrine:fixtures:load --no-interaction");
+show_run("fixtures:load", "app/console doctrine:fixtures:load --no-interaction --domain=" . $options['domain']);
 
-show_run("assets:install", "app/console assets:install --symlink");
-show_run("assets:dump", "app/console assetic:dump");
+show_run("assets:install", "app/console assets:install --symlink --domain=" . $options['domain']);
+show_run("assets:dump", "app/console assetic:dump --domain=" . $options['domain']);
 //fix
-show_run("Warming up dev cache", "php app/console --env=dev cache:clear --no-warmup");
+show_run("Warming up dev cache", "php app/console --env=dev cache:warmup --domain=" . $options['domain']);
 
 exit(0);

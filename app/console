@@ -16,6 +16,7 @@ use Symfony\Component\Debug\Debug;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
+$domain = $input->getParameterOption(array('--domain', '-d'));
 $debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
 
 if ($debug) {
@@ -23,5 +24,6 @@ if ($debug) {
 }
 
 $kernel = new AppKernel($env, $debug);
+$kernel->setDomain($domain);
 $application = new Application($kernel);
 $application->run($input);
