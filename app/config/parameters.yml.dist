@@ -24,6 +24,7 @@ parameters:
     sonata_admin.logo_title: bundles/sonataadmin/logo_title.png
     prod_server_pass: ~
     https_github_repository_url: ~
-    domain: ~
+    api_domain: api.chetheatre.local
+    admin_domain: admin.chetheatre.local
     prod_server_ip: ~
     nelmio_cors.origin: ['*']

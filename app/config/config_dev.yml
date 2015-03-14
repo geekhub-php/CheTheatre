@@ -44,5 +44,9 @@ monolog:
 assetic:
     use_controller: true
 
+#domain_routing:
+#    include_routes:
+#        chetheatre.local: ['config/routing_api.yml', 'config/routing_sonata_admin.yml']
+
 #swiftmailer:
 #    delivery_address: me@example.com

@@ -182,3 +182,8 @@ nelmio_cors:
             allow_origin: %nelmio_cors.origin%
             allow_headers: ['Access-Control-Allow-Origin', 'Locale']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
+
+domain_routing:
+    include_routes:
+        %api_domain%: ['config/routing_api.yml']
+        %admin_domain%: ['config/routing_sonata_admin.yml']
