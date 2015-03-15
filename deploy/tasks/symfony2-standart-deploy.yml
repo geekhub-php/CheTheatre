@@ -1,0 +1,53 @@
+---
+- name: Create the release {{release_dir}} directory.
+  file: state=directory path={{project_root}}/releases/{{release_dir}} owner={{ user }} group={{ user }}
+
+- name: Create the shared directory.
+  file: state=directory path={{project_root}}/shared owner={{ user }} group={{ user }}
+
+- name: Create the shared/app/config directory.
+  file: state=directory path={{project_root}}/shared/app/config owner={{ user }} group={{ user }}
+
+- name: Create the shared/web/uploads directory.
+  file: state=directory path={{project_root}}/shared/web/uploads owner={{ user }} group={{ user }}
+
+- name: Create the shared/app/logs directory.
+  file: state=directory path={{project_root}}/shared/app/logs owner={{ user }} group={{ user }}
+
+- name: Create the shared/vendor directory.
+  file: state=directory path={{project_root}}/shared/vendor owner={{ user }} group={{ user }}
+
+- name: Pull sources from the repository.
+  git: repo={{git_repository}} dest={{project_root}}/releases/{{release_dir}} version={{git_branch}}
+
+- name: Check if shared/app/config/parameters.yml exists
+  stat: path={{project_root}}/shared/app/config/parameters.yml
+  register: parameters_yml
+
+- name: Create symlink for app/config/parameters.yml from shared directory
+  shell: ln -s {{project_root}}/shared/app/config/parameters.yml {{project_root}}/releases/{{release_dir}}/app/config/parameters.yml creates={{project_root}}/releases/{{release_dir}}/app/config/parameters.yml
+  when: parameters_yml.stat.exists
+
+- name: Remove empty directories
+  shell: rm -rf {{project_root}}/releases/{{release_dir}}/app/logs {{project_root}}/releases/{{release_dir}}/web/uploads
+
+- name: Create app/vendor symlink
+  file: state=link src={{project_root}}/shared/vendor path={{project_root}}/releases/{{release_dir}}/vendor owner={{ user }} group={{ user }}
+
+- name: Create app/logs symlink
+  file: state=link src={{project_root}}/shared/app/logs path={{project_root}}/releases/{{release_dir}}/app/logs owner={{ user }} group={{ user }}
+
+- name: Create web/uploads symlink
+  file: state=link src={{project_root}}/shared/web/uploads path={{project_root}}/releases/{{release_dir}}/web/uploads owner={{ user }} group={{ user }}
+
+- name: Run composer install
+  composer: command=install working_dir={{project_root}}/releases/{{release_dir}}
+
+#- name: Dump assets
+#  shell: cd {{project_root}}/releases/{{release_dir}} && {{symfony2_project_php_path}} app/console assetic:dump --env={{symfony2_project_env}} {{symfony2_project_console_opts}}
+#
+#- name: Run migrations
+#  shell: cd {{project_root}}/releases/{{release_dir}} && if $(grep doctrine-migrations-bundle composer.json); then {{symfony2_project_php_path}} app/console doctrine:migrations:migrate -n; fi
+
+#- name: Create symlink
+#  file: state=link src={{project_root}}/releases/{{release_dir}} path={{project_root}}/current owner={{ user }} group={{ user }}

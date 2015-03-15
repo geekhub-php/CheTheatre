@@ -1,0 +1,37 @@
+---
+- hosts: chedream2
+  remote_user: root
+  vars:
+    project_root: /var/www/backend.theatre.pp.ua
+    git_repository: https://github.com/geekhub-php/CheTheatre.git
+    git_branch: develop
+#    domains: [admin.chetheatre.local, api.chetheatre.local]
+    domains: [admin.theatre.pp.ua, api.theatre.pp.ua]
+    user: www-data
+    keep_releases: 3
+    project_env: prod
+
+  tasks:
+    - name: Get timestamp
+      command: date +%Y%m%d%H%M%S
+      register: timestamp
+
+    - name: Get release dir name
+      set_fact:
+        release_dir: "{{timestamp.stdout}}"
+
+    - include: tasks/symfony2-standart-deploy.yml
+
+    - name: Dump assets
+      shell: app/console assetic:dump --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      with_items: domains
+
+    - name: Copy assets
+      shell: app/console assets:install --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      with_items: domains
+
+    - name: Fix htaccess
+      shell: sed -i -e 's,app_dev.php,app.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
+
+    - include: tasks/cleanup.yml
+    - include: tasks/symlink.yml
