@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Table(name="employees")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
