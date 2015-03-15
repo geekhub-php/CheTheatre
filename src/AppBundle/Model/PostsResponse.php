@@ -2,6 +2,7 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class PostsResponse extends AbstractPaginatedModel
+class PostsResponse
 {
     /**
      * @var Array[]
@@ -19,6 +20,15 @@ class PostsResponse extends AbstractPaginatedModel
      * @Expose
      */
     protected $posts;
+
+    /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Accessor(getter="getCount")
+     * @Expose
+     */
+    protected $count;
 
     /**
      * @return mixed
@@ -34,5 +44,13 @@ class PostsResponse extends AbstractPaginatedModel
     public function setPosts($posts)
     {
         $this->posts = $posts;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return count($this->getPosts());
     }
 }
