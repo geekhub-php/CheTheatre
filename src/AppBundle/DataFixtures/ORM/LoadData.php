@@ -9,12 +9,17 @@ class LoadData extends DataFixtureLoader
     protected function getFixtures()
     {
         return array(
-            __DIR__.'/fixturesEmployee.yml',
-            __DIR__.'/fixturesPerformance.yml',
-            __DIR__.'/fixturesRole.yml',
+            __DIR__.'/fixturesEmployee_ua.yml',
+            __DIR__.'/fixturesPerformance_ua.yml',
+            __DIR__.'/fixturesRole_ua.yml',
+            __DIR__.'/fixturesTag_ua.yml',
+            __DIR__.'/fixturesPost_ua.yml',
+            __DIR__.'/fixturesEmployee_en.yml',
+            __DIR__.'/fixturesPerformance_en.yml',
+            __DIR__.'/fixturesRole_en.yml',
+            __DIR__.'/fixturesTag_en.yml',
+            __DIR__.'/fixturesPost_en.yml',
             __DIR__.'/fixturesPerformanceEvent.yml',
-            __DIR__.'/fixturesTag.yml',
-            __DIR__.'/fixturesPost.yml',
         );
     }
 
