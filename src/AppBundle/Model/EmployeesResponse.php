@@ -31,6 +31,14 @@ class EmployeesResponse
     protected $count;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
+     */
+    protected $totalCount;
+
+    /**
      * @return mixed
      */
     public function getEmployees()
@@ -52,5 +60,24 @@ class EmployeesResponse
     public function getCount()
     {
         return count($this->getEmployees());
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param $totalCount
+     * @return PerformancesResponse
+     */
+    public function setTotalCount($totalCount)
+    {
+        $this->totalCount = $totalCount;
+
+        return $this;
     }
 }
