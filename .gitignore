@@ -1,11 +1,6 @@
 /web/bundles/
-web/uploads/performance
-web/uploads/employee
-web/uploads/post
-web/uploads/media/employee
-web/uploads/media/performance
-web/uploads/media/post
-!web/uploads/media/.gitkeep
+web/uploads/*
+!web/uploads/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -23,3 +18,4 @@ web/uploads/media/post
 /composer.phar
 .idea/
 *~
+
