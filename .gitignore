@@ -1,5 +1,10 @@
 /web/bundles/
-web/uploads/*
+web/uploads/performance
+web/uploads/employee
+web/uploads/post
+web/uploads/media/employee
+web/uploads/media/performance
+web/uploads/media/post
 !web/uploads/media/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
