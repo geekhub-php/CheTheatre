@@ -1,0 +1,4 @@
+---
+# Performs symlink exchange
+- name: Change softlink to new release
+  file: state=link src={{project_root}}/releases/{{release_dir}} path={{project_root}}/current

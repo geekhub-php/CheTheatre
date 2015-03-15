@@ -1,0 +1,11 @@
+---
+# Clean up releases
+- name: Clean up releases
+  shell: ls -1dt {{project_root}}/releases/* | tail -n +$(({{ keep_releases }} + 1)) | xargs rm -rf
+  when: keep_releases > 0
+
+- name: Remove dev front controller
+  shell: rm web/app_dev.php chdir={{project_root}}/releases/{{release_dir}}
+
+- name: Make cahce writeable
+  file: path={{project_root}}/releases/{{release_dir}}/app/cache owner={{ user }} group={{ user }} mode=0777 recurse=yes
