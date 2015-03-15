@@ -18,32 +18,32 @@ sonata_media:
                 big:   { width: 500 , quality: 70}
 
         employee:  # the employee context is mandatory
-                    providers:
-                        - sonata.media.provider.image
+            providers:
+                - sonata.media.provider.image
 
-                    formats:
-                        small: { width: 100 , quality: 70}
-                        big:   { width: 500 , quality: 70}
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
 
         performance:  # the performance context is mandatory
-                    providers:
-                        - sonata.media.provider.image
+            providers:
+                - sonata.media.provider.image
 
-                    formats:
-                        small: { width: 100 , quality: 70}
-                        big:   { width: 500 , quality: 70}
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
 
         post:  # the post context is mandatory
-                    providers:
-                        - sonata.media.provider.image
+            providers:
+                - sonata.media.provider.image
 
-                    formats:
-                        small: { width: 100 , quality: 70}
-                        big:   { width: 500 , quality: 70}
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
 
     cdn:
         server:
-            path: /uploads/media # http://media.sonata-project.org/
+            path: /uploads # http://media.sonata-project.org/
 
     filesystem:
         local:
