@@ -8,9 +8,7 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Pagerfanta;
 use AppBundle\Model\PostsResponse;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Post")
@@ -28,43 +26,20 @@ class PostsController extends Controller
      *  output = "array<AppBundle\Model\PostsResponse>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries")
+     * @QueryParam(name="offset", requirements="\d+", default="0", description="Offset from which to start listing")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:Post')->findBy([], ['createdAt' => 'DESC']);
+        $posts = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Post')
+            ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), $paramFetcher->get('offset'));
 
-        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
-        $paginater
-            ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('page'))
-        ;
         $postsResponse = new PostsResponse();
-        $postsResponse->setPosts($paginater->getCurrentPageResults());
-        $postsResponse->setPageCount($paginater->getNbPages());
-
-        $nextPage = $paginater->hasNextPage() ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
-            ) :
-            'false';
-
-        $previsiousPage = $paginater->hasPreviousPage() ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
-            ) :
-            'false';
-
-        $postsResponse->setNextPage($nextPage);
-        $postsResponse->setPreviousPage($previsiousPage);
+        $postsResponse->setPosts($posts);
+        $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount());
 
         return $postsResponse;
     }
