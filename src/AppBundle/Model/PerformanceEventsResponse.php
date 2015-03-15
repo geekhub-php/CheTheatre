@@ -33,6 +33,14 @@ class PerformanceEventsResponse
     protected $count;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
+     */
+    protected $totalCount;
+
+    /**
      * @return Performance[]
      */
     public function getPerformanceEvents()
@@ -57,5 +65,24 @@ class PerformanceEventsResponse
     public function getCount()
     {
         return count($this->getPerformanceEvents());
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param $totalCount
+     * @return PerformanceEventsResponse
+     */
+    public function setTotalCount($totalCount)
+    {
+        $this->totalCount = $totalCount;
+
+        return $this;
     }
 }
