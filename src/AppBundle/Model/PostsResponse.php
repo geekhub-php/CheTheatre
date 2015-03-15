@@ -31,6 +31,14 @@ class PostsResponse
     protected $count;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
+     */
+    protected $totalCount;
+
+    /**
      * @return mixed
      */
     public function getPosts()
@@ -52,5 +60,24 @@ class PostsResponse
     public function getCount()
     {
         return count($this->getPosts());
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param $totalCount
+     * @return PostsResponse
+     */
+    public function setTotalCount($totalCount)
+    {
+        $this->totalCount = $totalCount;
+
+        return $this;
     }
 }
