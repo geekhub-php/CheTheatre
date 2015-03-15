@@ -23,4 +23,12 @@ class PerformanceEventRepository extends EntityRepository
 
         return $query->execute();
     }
+
+    public function getCount()
+    {
+        $qb = $this->createQueryBuilder('p');
+        $query = $qb->select($qb->expr()->count('p'))->getQuery();
+
+        return $query->getSingleScalarResult();
+    }
 }
