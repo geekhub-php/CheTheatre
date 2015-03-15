@@ -72,7 +72,7 @@ class EmployeesResponse
 
     /**
      * @param $totalCount
-     * @return PerformancesResponse
+     * @return EmployeesResponse
      */
     public function setTotalCount($totalCount)
     {
