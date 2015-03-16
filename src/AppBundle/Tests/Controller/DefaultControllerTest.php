@@ -12,9 +12,4 @@ class DefaultControllerTest extends AbstractController
         $this->request('/');
         $this->request('/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
     }
-
-    public function testDashboardAccess()
-    {
-        $this->request('/dashboard', 'GET', 401);
-    }
 }
