@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class PostsResponse
+class PostsResponse extends AbstractPaginatedModel
 {
     /**
      * @var Array[]
@@ -29,14 +29,6 @@ class PostsResponse
      * @Expose
      */
     protected $count;
-
-    /**
-     * @var int
-     *
-     * @Type("integer")
-     * @Expose
-     */
-    protected $totalCount;
 
     /**
      * @return mixed
@@ -60,24 +52,5 @@ class PostsResponse
     public function getCount()
     {
         return count($this->getPosts());
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotalCount()
-    {
-        return $this->totalCount;
-    }
-
-    /**
-     * @param $totalCount
-     * @return PostsResponse
-     */
-    public function setTotalCount($totalCount)
-    {
-        $this->totalCount = $totalCount;
-
-        return $this;
     }
 }

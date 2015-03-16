@@ -35,6 +35,14 @@ abstract class AbstractPaginatedModel
     protected $pageCount;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
+     */
+    protected $totalCount;
+
+    /**
      * @return mixed
      */
     public function getNextPage()
@@ -80,5 +88,21 @@ abstract class AbstractPaginatedModel
     public function setPageCount($pageCount)
     {
         $this->pageCount = $pageCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param $totalCount
+     */
+    public function setTotalCount($totalCount)
+    {
+        $this->totalCount = $totalCount;
     }
 }

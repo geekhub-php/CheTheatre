@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation\Type;
  * @package AppBundle\Model
  * @ExclusionPolicy("all")
  */
-class PerformanceEventsResponse
+class PerformanceEventsResponse extends AbstractPaginatedModel
 {
     /**
      * @var Performance[]
@@ -31,14 +31,6 @@ class PerformanceEventsResponse
      * @Expose
      */
     protected $count;
-
-    /**
-     * @var int
-     *
-     * @Type("integer")
-     * @Expose
-     */
-    protected $totalCount;
 
     /**
      * @return Performance[]
@@ -65,24 +57,5 @@ class PerformanceEventsResponse
     public function getCount()
     {
         return count($this->getPerformanceEvents());
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotalCount()
-    {
-        return $this->totalCount;
-    }
-
-    /**
-     * @param $totalCount
-     * @return PerformanceEventsResponse
-     */
-    public function setTotalCount($totalCount)
-    {
-        $this->totalCount = $totalCount;
-
-        return $this;
     }
 }
