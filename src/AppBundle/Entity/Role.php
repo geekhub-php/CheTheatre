@@ -10,16 +10,19 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 
 /**
  * @ORM\Table(name="roles")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Role\Translation")
  */
-class Role
+class Role implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, PersonalTranslatable;
 
     /**
      * @var integer
@@ -48,13 +51,6 @@ class Role
      * @Expose
      */
     private $description;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
 
     /**
      * @var Performance
@@ -91,29 +87,6 @@ class Role
     }
 
     /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Role
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * Get description
      *
      * @return string
@@ -134,11 +107,6 @@ class Role
         $this->description = $description;
 
         return $this;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**
@@ -213,5 +181,28 @@ class Role
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string $title
+     * @return Role
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }

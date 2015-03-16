@@ -12,17 +12,27 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Performance\Translation")
  */
-class Performance
+class Performance implements TranslatableInterface
 {
-    use TimestampableTrait, LinksTrait;
+    use TimestampableTrait, LinksTrait, PersonalTranslatable;
 
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("mainPicture")
+     */
+    public $mainPictureThumbnails;
     /**
      * @var integer
      *
@@ -31,7 +41,6 @@ class Performance
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -41,7 +50,6 @@ class Performance
      * @Expose
      */
     private $title;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -50,7 +58,6 @@ class Performance
      * @Expose
      */
     private $type;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -59,7 +66,6 @@ class Performance
      * @Expose
      */
     private $description;
-
     /**
      * @var /Datetime
      *
@@ -69,7 +75,6 @@ class Performance
      * @Expose
      */
     private $premiere;
-
     /**
      * @var
      *
@@ -77,22 +82,6 @@ class Performance
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      */
     private $mainPicture;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("mainPicture")
-     */
-    public $mainPictureThumbnails;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
     /**
      * @var PerformanceEvent[]
      *
@@ -236,11 +225,6 @@ class Performance
         $this->mainPicture = $mainPicture;
 
         return $this;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**
