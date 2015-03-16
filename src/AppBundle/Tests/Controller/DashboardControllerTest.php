@@ -1,9 +1,6 @@
 <?php
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\Tests\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DashboardControllerTest extends AbstractController
 {
