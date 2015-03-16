@@ -10,12 +10,9 @@ security:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
-        secured_area:
-            pattern:    ^%admin_domain%/
-            form_login:
-                login_path:  admin_login
-                check_path:  login_check
+        default:
             anonymous: ~
+            http_basic: ~
 
 
 
@@ -32,8 +29,7 @@ security:
             ROLE_SUPER_ADMIN: [ROLE_SONATA_FOO_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
-            - { path: ^%admin_domain%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: ^%admin_domain%/dashboard, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/dashboard, roles: ROLE_SUPER_ADMIN }
 
     encoders:
           Symfony\Component\Security\Core\User\User: plaintext
