@@ -23,4 +23,13 @@ class PerformanceEventRepository extends EntityRepository
 
         return $query->execute();
     }
+
+    public function FindAllByDate(\DateTime $date)
+    {
+        $query = $this->createQueryBuilder('u')->where('u.dateTime LIKE :date')
+            ->setParameter('date', $date->format('Y-m-d').'%')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
