@@ -5,10 +5,3 @@ _sonata_admin:
     resource: .
     type: sonata_admin
 
-admin_login:
-    pattern: /login
-    methods: [GET]
-    defaults: { _controller: AppBundle:Default:login }
-
-#admin_login_check:
-#    pattern: /login_check
