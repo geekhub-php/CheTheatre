@@ -1,1 +1,1 @@
-twoPerformanceEventsValidError: There is already two preformance events at this date!
+you_cant_set_more_events_per_day: It cant be more then %count% performances per one day!
