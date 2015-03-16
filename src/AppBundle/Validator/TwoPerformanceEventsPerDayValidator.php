@@ -7,9 +7,22 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * Class TwoPerformanceEventsPerDayValidator
+ * @package AppBundle\Validator
+ */
 class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 {
+    const MAX_PERFORMANCE_EVENTS_PER_ONE_DAY = 2;
+
+    /**
+     * @var EntityRepository
+     */
     private $repository;
+
+    /**
+     * @var TranslatorInterface
+     */
     private $translator;
 
     public function __construct(EntityRepository $repository, TranslatorInterface $translator)
@@ -18,12 +31,25 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
         $this->translator = $translator;
     }
 
+    /**
+     * @param mixed $object
+     * @param Constraint $constraint
+     */
     public function validate($object, Constraint $constraint)
     {
-        $conflicts = $this->repository->findAllByDate($object->getDateTime());
+        $from = clone $object->getDateTime();
+        $from->setTime(00,00,00);
 
-        if (count($conflicts) > 1) {
-            $this->context->addViolationAt('dateTime', $this->translator->trans('twoPerformanceEventsValidError'));
+        $to = clone $object->getDateTime();
+        $to->setTime(23,59,59);
+
+        $countPerformanceEventsPerDate = count($this->repository->findByDateRangeAndSlug($from, $to));
+        if ($countPerformanceEventsPerDate >= TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY) {
+            $this->context->addViolationAt(
+                'dateTime',
+                $this->translator->trans('you_cant_set_more_events_per_day', ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY])
+                )
+            ;
         }
     }
 }
