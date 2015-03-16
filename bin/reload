@@ -19,6 +19,8 @@ show_run("Create schema", "app/console doctrine:schema:create " . $stringOptions
 
 show_run("Cache clear", "php app/console cache:clear " . $stringOptions);
 
+show_run("Create uploads dir", "mkdir web/uploads");
+
 show_run("Changing permissions", "chmod -R 777 app/cache app/logs web/uploads");
 show_run("Load Fixtures", "app/console doctrine:fixtures:load --no-interaction " . $stringOptions);
 
