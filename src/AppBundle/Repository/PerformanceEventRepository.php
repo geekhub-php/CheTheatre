@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class PerformanceEventRepository extends EntityRepository
+class PerformanceEventRepository extends AbstractRepository
 {
     public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null)
     {
@@ -22,13 +20,5 @@ class PerformanceEventRepository extends EntityRepository
         $query = $qb->getQuery();
 
         return $query->execute();
-    }
-
-    public function getCount()
-    {
-        $qb = $this->createQueryBuilder('p');
-        $query = $qb->select($qb->expr()->count('p'))->getQuery();
-
-        return $query->getSingleScalarResult();
     }
 }
