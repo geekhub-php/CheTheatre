@@ -12,12 +12,14 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use AppBundle\Validator\TwoPerformancePerDay;
 
 /**
  * @ORM\Table(name="performances")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @TwoPerformancePerDay()
  */
 class Performance
 {
