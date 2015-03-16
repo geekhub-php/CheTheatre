@@ -18,7 +18,7 @@ security:
                 check_path:  /login_check
             logout:
                 path:   /logout
-                target: /
+                target: /login
 
     role_hierarchy:
             ROLE_SONATA_FOO_ADMIN:
@@ -34,7 +34,12 @@ security:
 
     access_control:
             - { path: %admin_domain%/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-            - { path: %admin_domain%/, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/dashboard, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/Employee, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/Perfomance, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/PerfomanceEvent, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/Post, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/sonata, roles: ROLE_SUPER_ADMIN }
 
     encoders:
           Symfony\Component\Security\Core\User\User: plaintext
