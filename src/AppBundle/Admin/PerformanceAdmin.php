@@ -26,6 +26,7 @@ class PerformanceAdmin extends Admin
     {
         $showMapper
             ->add('title')
+            ->add('type')
             ->add('description')
             ->add('premiere')
             ->add('performanceEvents')
@@ -42,6 +43,7 @@ class PerformanceAdmin extends Admin
     {
         $formMapper
             ->add('title')
+            ->add('type')
             ->add('description')
             ->add('mainPicture', 'sonata_type_model_list',
                 [
@@ -100,6 +102,7 @@ class PerformanceAdmin extends Admin
         $listMapper
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
+            ->add('type')
             ->add('premiere')
         ;
     }
@@ -113,6 +116,7 @@ class PerformanceAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
+            ->add('type')
         ;
     }
 }

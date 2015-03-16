@@ -115,6 +115,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actor
+    avatar: <getMedia('avatars/serhiy-bobrov.jpg', 'employee')>
     biography: Заслужений артист України з 2009 року. У театрі працює з 1996 року. Закінчив Дніпропетровське державне театральне училище у 1996 році.
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -254,6 +255,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actor
+    avatar: <getMedia('avatars/yuriy-greben.jpg', 'employee')>
     biography: в театрі працює з 1998 року. Закінчив Канівське училище культури у 1997 році.
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -263,6 +265,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actress
+    avatar: <getMedia('avatars/yuriy-greben.jpg', 'employee')>
     avatar: <getMedia('avatars/tetyana-greben.jpg', 'employee')>
     biography: У театрі працює з 1996 року. Закінчила Дніпропетровське державне театральне училище у 1996 році.
     createdAt: <dateTimeBetween('-200 days', 'now')>
@@ -393,6 +396,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actor
+    avatar: <getMedia('avatars/oleksandr-kuzmenko.jpg', 'employee')>
     biography:   У театрі працює з 1997 року. Закінчив Дніпропетровське державне театральне училище у 1997 році.
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -423,7 +427,7 @@ AppBundle\Entity\Employee:
      dob: <dateTime()>
      position: actress
      avatar: <getMedia('avatars/nataliya-mamalyga.jpg', 'employee')>
-     biography: у театрі з 2011 року.Черкаське музичне училище ім. С.С. Гулака - Артемовського 2008р. продовжує навчання в Київському національному універститеті театру, кіно і телебачення ім. І. Карпенка - Карого
+     biography: Заслужена артистка України з 2009 року.У театрі працює з 1994 року. Закінчила Київську державну консерваторію ім. Чайковського у 1992 році.
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
   employee44:
@@ -511,6 +515,7 @@ AppBundle\Entity\Employee:
      MiddleName: <firstName()>
      dob: <dateTime()>
      position: actor
+     avatar: <getMedia('avatars/oleksandr-pruz.jpg', 'employee')>
      biography: У театрі працює з 2005 року
      createdAt: <dateTimeBetween('-200 days', 'now')>
      updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -630,6 +635,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actor
+    avatar: <getMedia('avatars/petro-golybchenko.jpg', 'employee')>
     biography: В театрі з 2014 року
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -639,6 +645,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actress
+    avatar: <getMedia('avatars/kateryna-olejnikova.jpg', 'employee')>
     biography: В театрі з 2014 року
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -648,6 +655,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actress
+    avatar: <getMedia('avatars/olena-peredriy.jpg', 'employee')>
     biography: В театрі з 2014 року
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
@@ -657,6 +665,7 @@ AppBundle\Entity\Employee:
     MiddleName: <firstName()>
     dob: <dateTime()>
     position: actor
+    avatar: <getMedia('avatars/maksym-ruzhevol.jpg', 'employee')>
     biography: В театрі з 2014 року
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>

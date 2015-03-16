@@ -1,6 +1,6 @@
 /web/bundles/
 web/uploads/*
-!web/uploads/media/.gitkeep
+!web/uploads/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -18,3 +18,4 @@ web/uploads/*
 /composer.phar
 .idea/
 *~
+
