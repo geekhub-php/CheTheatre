@@ -12,7 +12,7 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
-Use AppBundle\Validator\TwoPerformancePerDay;
+use AppBundle\Validator\TwoPerformancePerDay;
 
 /**
  * @ORM\Table(name="performances")

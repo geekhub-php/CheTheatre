@@ -9,11 +9,11 @@ class TwoPerformancePerDay extends Constraint
 {
 public function validatedBy()
 {
-return 'two_performance_per_day';
+    return 'two_performance_per_day';
 }
 
-public function getTargets()
-{
-return self::CLASS_CONSTRAINT;
-}
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
+    }
 }

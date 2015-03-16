@@ -8,10 +8,10 @@ class PerformanceRepository extends EntityRepository
 {
     public function getCount()
     {
-                $qb = $this->createQueryBuilder('p');
-                $query = $qb->select($qb->expr()->count('p'))->getQuery();
-        
-                return $query->getSingleScalarResult();
+        $qb = $this->createQueryBuilder('p');
+        $query = $qb->select($qb->expr()->count('p'))->getQuery();
+
+        return $query->getSingleScalarResult();
     }
 
     public function FindByDate($date)
