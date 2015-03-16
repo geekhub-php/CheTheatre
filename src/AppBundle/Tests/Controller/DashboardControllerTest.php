@@ -2,29 +2,39 @@
 namespace AppBundle\Tests\Controller;
 
 
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+
 class DashboardControllerTest extends AbstractController
 {
     public function testAccesDeniedDasboardAction()
     {
-        $this->request('/dashboard', 'GET', 401);
+        $this->request('/dashboard', 'GET', 302);
 
-        $statusCode = $this->logIn();
+        $client = $this->logIn();
 
-        $this->assertEquals(200, $statusCode);
+        $crawler = $client->request('GET', '/dashboard');
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     private function logIn()
     {
-        $client = static::createClient(array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => '111111',
-        ));
+        $session = $this->getContainer()->get('session');
 
-        $client->request('GET', '/dashboard', array(), array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => '111111',
-        ));
+        $firewall = 'secured_area';
+        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_SUPER_ADMIN'));
+        $session->set('_security_'.$firewall, serialize($token));
+        $session->save();
 
-        return $client->getResponse()->getStatusCode();
+        $this->getContainer()->get('security.token_storage')->setToken($token);
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $client = $this->getClient();
+
+        $client->getCookieJar()->set($cookie);
+
+        return $client;
     }
 }
