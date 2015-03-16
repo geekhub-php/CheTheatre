@@ -11,9 +11,10 @@ security:
             security: false
 
         default:
+            pattern: ^/
             http_basic: ~
-            logout:
-                 path: logout
+            anonymous: ~
+            logout: true
 
 
     role_hierarchy:
@@ -29,7 +30,7 @@ security:
             ROLE_SUPER_ADMIN: [ROLE_SONATA_FOO_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
-            - { path: ^%admin_domain%/*, roles: ROLE_SUPER_ADMIN }
+            - { path: ^/dashboard, roles: ROLE_SUPER_ADMIN }
 
     encoders:
           Symfony\Component\Security\Core\User\User: plaintext
