@@ -34,7 +34,6 @@ security:
             ROLE_SUPER_ADMIN: [ROLE_SONATA_FOO_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
-            - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
             - { path: ^%admin_dashboard_base_url%/, roles: ROLE_SUPER_ADMIN }
 
     encoders:
