@@ -6,10 +6,10 @@
 
 
     <form action="{{ path('login_check') }}" method="POST">
-        <label for="username">Логин:</label>
+        <label for="username">{{ 'login'|trans }}:</label>
         <input type="text" id="username" name="_username"/>
-        <label for="password">Пароль:</label>
+        <label for="password">{{ 'password'|trans }}:</label>
         <input type="password" id="password" name="_password" />
-        <button type="submit">войти</button>
+        <button type="submit" name="btnSubmit">{{ 'submit'|trans }}</button>
     </form>
 {% endblock %}
