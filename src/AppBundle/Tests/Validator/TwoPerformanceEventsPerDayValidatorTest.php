@@ -21,7 +21,6 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
             $this
                 ->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')
                 ->disableOriginalConstructor()
-                ->setMethods(array('findByDateRangeAndSlug'))
                 ->getMock();
     }
 
@@ -46,8 +45,8 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $validator->initialize($this->context);
 
         $this->context->expects($this->once())
-            ->method('addViolation')
-            ->with('dateTime', $this->constraint->message, array());
+            ->method('addViolationAt')
+            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
 
         $validator->validate($object, $this->constraint);
     }
