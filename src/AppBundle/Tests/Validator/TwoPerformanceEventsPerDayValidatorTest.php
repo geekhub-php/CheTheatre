@@ -19,22 +19,14 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
-     * @dataProvider ValidateDataProvider
+     * @dataProvider InvalidDataProvider
      */
-    public function testValidData($date, $newPerformanceEvent, $performanceEvent1, $performanceEvent2)
+    public function testInvalidData($InvalidDataProvider)
     {
-        $newPerformanceEvent->setDateTime($date);
-        $performanceEvent1->setDateTime($date);
-        $performanceEvent2->setDateTime($date);
+        $newPerformanceEvent = new PerformanceEvent();
+        $newPerformanceEvent->setDateTime(new \DateTime('27-12-1983 06:00'));
 
-        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
-
-        $repository
-            ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$performanceEvent1, $performanceEvent2]))
-        ;
-
-        $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($InvalidDataProvider), $this->translator);
         $validator->initialize($this->context);
 
         $this
@@ -48,21 +40,14 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
-     * @dataProvider ValidateDataProvider
+     * @dataProvider ValidDataProvider
      */
-    public function testinValidData($date, $newPerformanceEvent, $performanceEvent1)
+    public function testValidData($ValidDataProvider)
     {
-        $newPerformanceEvent->setDateTime($date);
-        $performanceEvent1->setDateTime($date);
+        $newPerformanceEvent = new PerformanceEvent();
+        $newPerformanceEvent->setDateTime(new \DateTime('27-12-1983 06:00'));
 
-        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
-
-        $repository
-            ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$performanceEvent1]))
-        ;
-
-        $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($ValidDataProvider), $this->translator);
         $validator->initialize($this->context);
 
         $this
@@ -75,10 +60,35 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $validator->validate($newPerformanceEvent, $this->constraint);
     }
 
-    public function ValidateDataProvider()
+    public function InvalidDataProvider()
     {
-        return array(
-            array(new \DateTime('27-12-1983 6:00'), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()), );
+        return [
+            [[new PerformanceEvent(), new PerformanceEvent()]],
+            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
+            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
+            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
+            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
+        ];
+    }
+
+    public function ValidDataProvider()
+    {
+        return [
+            [[]],
+            [[new PerformanceEvent()]],
+        ];
+    }
+
+    public function getPerformanceEventRepositoryMock(array $perfomanceEvents)
+    {
+        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
+
+        $repository
+            ->method('findByDateRangeAndSlug')
+            ->will($this->returnValue($perfomanceEvents))
+        ;
+
+        return $repository;
     }
 
     public function tearDown()
