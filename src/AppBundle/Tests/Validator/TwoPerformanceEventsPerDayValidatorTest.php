@@ -10,31 +10,20 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     private $constraint;
     private $context;
     private $translator;
-    private $repository;
 
     public function setUp()
     {
         $this->constraint = new TwoPerformanceEventsPerDay();
         $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')->disableOriginalConstructor()->getMock();
         $this->translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
-        $this->repository =
-            $this
-                ->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')
-                ->disableOriginalConstructor()
-                ->getMock();
     }
 
     /**
      * @dataProvider ValidateDataProvider
      */
-    public function testValidate($object, $objectFromRepository1, $objectFromRepository2)
+    public function testValidate($object, $repository)
     {
-        $this->repository
-            ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
-        ;
-
-        $validator = new TwoPerformanceEventsPerDayValidator($this->repository, $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
         $validator->initialize($this->context);
 
         $this->context->expects($this->once())
@@ -55,13 +44,25 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $objectFromRepository2 = new PerformanceEvent();
         $objectFromRepository2->setDateTime(new \DateTime('27-12-1983 6:00'));
 
+        $repository =
+            $this
+                ->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')
+                ->disableOriginalConstructor()
+                ->getMock();
+
+        $repository
+            ->method('findByDateRangeAndSlug')
+            ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
+        ;
+
         return array(
-            array($object, $objectFromRepository1, $objectFromRepository2));
+            array($object, $repository), );
     }
 
     public function tearDown()
     {
         $this->constraint = null;
         $this->context = null;
+        $this->translator = null;
     }
 }
