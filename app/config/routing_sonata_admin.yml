@@ -8,7 +8,7 @@ _sonata_admin:
     prefix: %admin_dashboard_base_url%/
 
 login:
-  pattern:  %admin_dashboard_base_url%/login
+  pattern:  /login
   defaults: { _controller: AppBundle:Default:login }
 
 login_check:
