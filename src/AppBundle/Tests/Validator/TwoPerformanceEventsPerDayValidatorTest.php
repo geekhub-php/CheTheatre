@@ -24,18 +24,11 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
                 ->getMock();
     }
 
-    public function testValidate()
+    /**
+     * @dataProvider ValidateDataProvider
+     */
+    public function testValidate($object, $objectFromRepository1, $objectFromRepository2)
     {
-        $object = new PerformanceEvent();
-        $object->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-        $objectFromRepository1 = new PerformanceEvent();
-        $objectFromRepository1->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-        $objectFromRepository2 = new PerformanceEvent();
-        $objectFromRepository2->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-
         $this->repository
             ->method('findByDateRangeAndSlug')
             ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
@@ -49,6 +42,21 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
             ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
 
         $validator->validate($object, $this->constraint);
+    }
+
+    public function ValidateDataProvider()
+    {
+        $object = new PerformanceEvent();
+        $object->setDateTime(new \DateTime('27-12-1983 6:00'));
+
+        $objectFromRepository1 = new PerformanceEvent();
+        $objectFromRepository1->setDateTime(new \DateTime('27-12-1983 6:00'));
+
+        $objectFromRepository2 = new PerformanceEvent();
+        $objectFromRepository2->setDateTime(new \DateTime('27-12-1983 6:00'));
+
+        return array(
+            array($object, $objectFromRepository1, $objectFromRepository2));
     }
 
     public function tearDown()
