@@ -26,8 +26,8 @@ class EmployeesController extends Controller
      *  output = "array<AppBundle\Model\EmployeesResponse>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries")
-     * @QueryParam(name="offset", requirements="\d+", default="0", description="Offset from which to start listing")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
@@ -35,11 +35,31 @@ class EmployeesController extends Controller
     {
         $employees = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Employee')
-            ->findBy([], null, $paramFetcher->get('limit'), $paramFetcher->get('offset'));
+            ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
         $employeesResponse = new EmployeesResponse();
         $employeesResponse->setEmployees($employees);
         $employeesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->getCount());
+        $employeesResponse->setPageCount(ceil($employeesResponse->getTotalCount() / $paramFetcher->get('limit')));
+
+        $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ) :
+            'false';
+
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ) :
+            'false';
+
+        $employeesResponse->setNextPage($nextPage);
+        $employeesResponse->setPreviousPage($previsiousPage);
 
         return $employeesResponse;
     }

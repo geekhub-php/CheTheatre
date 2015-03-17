@@ -26,8 +26,8 @@ class PostsController extends Controller
      *  output = "array<AppBundle\Model\PostsResponse>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries")
-     * @QueryParam(name="offset", requirements="\d+", default="0", description="Offset from which to start listing")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
@@ -35,11 +35,31 @@ class PostsController extends Controller
     {
         $posts = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Post')
-            ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), $paramFetcher->get('offset'));
+            ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
         $postsResponse = new PostsResponse();
         $postsResponse->setPosts($posts);
         $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount());
+        $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
+
+        $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ) :
+            'false';
+
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ) :
+            'false';
+
+        $postsResponse->setNextPage($nextPage);
+        $postsResponse->setPreviousPage($previsiousPage);
 
         return $postsResponse;
     }

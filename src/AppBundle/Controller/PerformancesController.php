@@ -22,12 +22,12 @@ class PerformancesController extends Controller
      *  statusCodes={
      *      200="Returned when successful",
      *      404="Returned when the entity is not found",
-     *     },
+     *  },
      *  output = "array<AppBundle\Model\PerformancesResponse>"
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries")
-     * @QueryParam(name="offset", requirements="\d+", default="0", description="Offset from which to start listing")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
      */
@@ -35,11 +35,32 @@ class PerformancesController extends Controller
     {
         $performances = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Performance')
-            ->findBy([], null, $paramFetcher->get('limit'), $paramFetcher->get('offset'));
+            ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
         $performancesResponse = new PerformancesResponse();
         $performancesResponse->setPerformances($performances);
         $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
+        $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
+
+        $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ) :
+            'false';
+
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_employees', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ) :
+            'false';
+
+        $performancesResponse->setNextPage($nextPage);
+        $performancesResponse->setPreviousPage($previsiousPage);
+
 
         return $performancesResponse;
     }
