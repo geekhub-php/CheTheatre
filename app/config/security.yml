@@ -13,10 +13,7 @@ security:
         secured_area:
             pattern:  ^%admin_dashboard_base_url%/
             anonymous: ~
-            form_login:
-                login_path:  /login
-                check_path:  %admin_dashboard_base_url%/login_check
-                default_target_path: sonata_admin_dashboard
+            http_basic: ~
             logout:
                 path:   %admin_dashboard_base_url%/logout
                 target: /login

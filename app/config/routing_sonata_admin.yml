@@ -7,12 +7,5 @@ _sonata_admin:
     type: sonata_admin
     prefix: %admin_dashboard_base_url%/
 
-login:
-  pattern:  /login
-  defaults: { _controller: AppBundle:Default:login }
-
-login_check:
-  pattern: %admin_dashboard_base_url%/login_check
-
 logout:
   pattern: %admin_dashboard_base_url%/logout
