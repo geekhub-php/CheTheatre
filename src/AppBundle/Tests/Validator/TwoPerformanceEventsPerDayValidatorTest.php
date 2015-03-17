@@ -21,12 +21,37 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     /**
      * @dataProvider ValidateDataProvider
      */
-    public function testValidate($object, $repository)
+    public function testValidateAddViolation($object, $repository, $objectFromRepository1, $objectFromRepository2)
     {
+        $repository
+            ->method('findByDateRangeAndSlug')
+            ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
+        ;
+
         $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
         $validator->initialize($this->context);
 
         $this->context->expects($this->once())
+            ->method('addViolationAt')
+            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
+
+        $validator->validate($object, $this->constraint);
+    }
+
+    /**
+     * @dataProvider ValidateDataProvider
+     */
+    public function testValidateDontAddViolation($object, $repository, $objectFromRepository1)
+    {
+        $repository
+            ->method('findByDateRangeAndSlug')
+            ->will($this->returnValue([$objectFromRepository1]))
+        ;
+
+        $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
+        $validator->initialize($this->context);
+
+        $this->context->expects($this->exactly(0))
             ->method('addViolationAt')
             ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
 
@@ -50,13 +75,8 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
                 ->disableOriginalConstructor()
                 ->getMock();
 
-        $repository
-            ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
-        ;
-
         return array(
-            array($object, $repository), );
+            array($object, $repository, $objectFromRepository1, $objectFromRepository2), );
     }
 
     public function tearDown()
