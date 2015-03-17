@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Tests\Controller;
 
-
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
