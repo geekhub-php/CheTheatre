@@ -33,15 +33,15 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 
     /**
      * @param \AppBundle\Entity\PerformanceEvent $object
-     * @param Constraint $constraint
+     * @param Constraint                         $constraint
      */
     public function validate($object, Constraint $constraint)
     {
         $from = clone $object->getDateTime();
-        $from->setTime(00,00,00);
+        $from->setTime(00, 00, 00);
 
         $to = clone $object->getDateTime();
-        $to->setTime(23,59,59);
+        $to->setTime(23, 59, 59);
 
         $countPerformanceEventsPerDate = count($this->repository->findByDateRangeAndSlug($from, $to));
 
