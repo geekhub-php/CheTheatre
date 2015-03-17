@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Tests\Controller;
 
 use Symfony\Component\BrowserKit\Cookie;
