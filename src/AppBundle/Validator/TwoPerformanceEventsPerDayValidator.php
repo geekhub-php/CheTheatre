@@ -32,7 +32,7 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
     }
 
     /**
-     * @param mixed $object
+     * @param \AppBundle\Entity\PerformanceEvent $object
      * @param Constraint $constraint
      */
     public function validate($object, Constraint $constraint)
@@ -44,10 +44,11 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
         $to->setTime(23,59,59);
 
         $countPerformanceEventsPerDate = count($this->repository->findByDateRangeAndSlug($from, $to));
-        if ($countPerformanceEventsPerDate >= TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY) {
+
+        if ($countPerformanceEventsPerDate >= self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY) {
             $this->context->addViolationAt(
                 'dateTime',
-                $this->translator->trans('you_cant_set_more_events_per_day', ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY])
+                $this->translator->trans($constraint->message, ['%count%' => self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY])
                 )
             ;
         }
