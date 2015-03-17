@@ -21,62 +21,64 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     /**
      * @dataProvider ValidateDataProvider
      */
-    public function testValidateAddViolation($object, $repository, $objectFromRepository1, $objectFromRepository2)
+    public function testValidData($date, $newPerformanceEvent, $performanceEvent1, $performanceEvent2)
     {
+        $newPerformanceEvent->setDateTime($date);
+        $performanceEvent1->setDateTime($date);
+        $performanceEvent2->setDateTime($date);
+
+        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
+
         $repository
             ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$objectFromRepository1, $objectFromRepository2]))
+            ->will($this->returnValue([$performanceEvent1, $performanceEvent2]))
         ;
 
         $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
         $validator->initialize($this->context);
 
-        $this->context->expects($this->once())
+        $this
+            ->context
+            ->expects($this->once())
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
+            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
+        ;
 
-        $validator->validate($object, $this->constraint);
+        $validator->validate($newPerformanceEvent, $this->constraint);
     }
 
     /**
      * @dataProvider ValidateDataProvider
      */
-    public function testValidateDontAddViolation($object, $repository, $objectFromRepository1)
+    public function testinValidData($date, $newPerformanceEvent, $performanceEvent1)
     {
+        $newPerformanceEvent->setDateTime($date);
+        $performanceEvent1->setDateTime($date);
+
+        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
+
         $repository
             ->method('findByDateRangeAndSlug')
-            ->will($this->returnValue([$objectFromRepository1]))
+            ->will($this->returnValue([$performanceEvent1]))
         ;
 
         $validator = new TwoPerformanceEventsPerDayValidator($repository, $this->translator);
         $validator->initialize($this->context);
 
-        $this->context->expects($this->exactly(0))
+        $this
+            ->context
+            ->expects($this->exactly(0))
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]));
+            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
+        ;
 
-        $validator->validate($object, $this->constraint);
+        $validator->validate($newPerformanceEvent, $this->constraint);
     }
 
     public function ValidateDataProvider()
     {
-        $object = new PerformanceEvent();
-        $object->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-        $objectFromRepository1 = new PerformanceEvent();
-        $objectFromRepository1->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-        $objectFromRepository2 = new PerformanceEvent();
-        $objectFromRepository2->setDateTime(new \DateTime('27-12-1983 6:00'));
-
-        $repository =
-            $this
-                ->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')
-                ->disableOriginalConstructor()
-                ->getMock();
-
         return array(
-            array($object, $repository, $objectFromRepository1, $objectFromRepository2), );
+            array(new \DateTime('27-12-1983 6:00'), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()), );
     }
 
     public function tearDown()
