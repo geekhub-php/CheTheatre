@@ -3,14 +3,20 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
-    public function loginAction()
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function loginAction(Request $request)
     {
-        $request = $this->get('request');
         $session = $this->get('session');
+
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {
@@ -19,7 +25,6 @@ class DefaultController extends Controller
         }
 
         return $this->render(':default:login.html.twig', array(
-            'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         ));
     }
