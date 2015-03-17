@@ -1,7 +1,6 @@
 <?php
 
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintValidator;
 use AppBundle\Validator\TwoPerformanceEventsPerDayValidator;
 use AppBundle\Entity\PerformanceEvent;
 
@@ -32,15 +31,15 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
 
         $this->repository
             ->method('findByDateRangeAndSlug')
-            ->will(2)
+            ->will($this->returnValue(TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY))
         ;
 
         $validator = new TwoPerformanceEventsPerDayValidator($this->repository, $this->translator);
-        $validator->initialize( $this->context);
+        $validator->initialize($this->context);
 
         $this->context->expects($this->once())
             ->method('addViolation')
-            ->with($this->constraint->message,array());
+            ->with($this->constraint->message, array());
         $validator->validate($object, $this->constraint);
     }
 
