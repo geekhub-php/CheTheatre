@@ -43,7 +43,7 @@ class PostsController extends Controller
         $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
-            $this->generateUrl('get_employees', array(
+            $this->generateUrl('get_posts', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')+1,
                 )
@@ -51,7 +51,7 @@ class PostsController extends Controller
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_employees', array(
+            $this->generateUrl('get_posts', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 )

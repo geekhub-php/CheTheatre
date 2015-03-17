@@ -43,7 +43,7 @@ class PerformancesController extends Controller
         $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
-            $this->generateUrl('get_employees', array(
+            $this->generateUrl('get_performances', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')+1,
                 )
@@ -51,7 +51,7 @@ class PerformancesController extends Controller
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_employees', array(
+            $this->generateUrl('get_performances', array(
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 )
