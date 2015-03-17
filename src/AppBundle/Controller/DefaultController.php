@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\FormLoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -17,6 +18,8 @@ class DefaultController extends Controller
     {
         $session = $this->get('session');
 
+        $form = $this->createForm(new FormLoginType());
+
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {
@@ -26,6 +29,7 @@ class DefaultController extends Controller
 
         return $this->render(':default:login.html.twig', array(
             'error'         => $error,
+            'form'          => $form->createView(),
         ));
     }
 }

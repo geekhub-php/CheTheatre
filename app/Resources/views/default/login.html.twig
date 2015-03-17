@@ -7,9 +7,9 @@
 
     <form action="{{ path('login_check') }}" method="POST">
         <label for="username">{{ 'login'|trans }}:</label>
-        <input type="text" id="username" name="_username"/>
+        {{ form_widget(form._username) }}
         <label for="password">{{ 'password'|trans }}:</label>
-        <input type="password" id="password" name="_password" />
+        {{ form_widget(form._password) }}
         <button type="submit" name="btnSubmit">{{ 'submit'|trans }}</button>
     </form>
 {% endblock %}
