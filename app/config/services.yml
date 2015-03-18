@@ -16,3 +16,12 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
+
+    monitor.check.php_extensions:
+        class: AppBundle\Check\TravisCheck
+        arguments:
+            - "geekhub-php"
+            - "CheTheatre"
+            - "AddPermisionForDashboard"
+        tags:
+            - { name: liip_monitor.check, alias: monitor_travis }
