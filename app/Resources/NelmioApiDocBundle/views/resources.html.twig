@@ -1,0 +1,89 @@
+{% extends "NelmioApiDocBundle::layout.html.twig" %}
+
+{% block content %}
+
+
+    <script type="text/javascript" charset="utf-8">var api = {};
+        api.liip_monitor_run_all_checks = "/monitor/health/run";
+        api.liip_monitor_run_single_check = "/monitor/health/run/replaceme";
+    </script>
+
+    <script src="{{ asset('bundles/liipmonitor/javascript/ember-0.9.5.min.js') }}"></script>
+    <script src="{{ asset('bundles/liipmonitor/javascript/app.js') }}"></script>
+
+    <div id="container">
+        <h1>System Health Status</h1>
+        <script type="text/x-handlebars" data-template-name="result-template">
+        {% raw %}
+        {{#if Health.healthController.content.length}}
+            <table class="table table-bordered table-condensed test-result">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Message</th>
+                        <th>Repeat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Health.healthController.content}}
+                        {{#view Health.itemRowView contentBinding="this" tagName="tr" classBinding="content.status_name"}}
+                            <td>
+                                <i {{bindAttr class="content.icon"}}></i>&nbsp;&nbsp;{{content.checkName}}
+                            </td>
+                            <td>{{content.message}}</td>
+                            <td><button class=".btn" {{action "repeatCheck"}}>GO</button></td>
+                        {{/view}}
+                    {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <div>
+                <h4>No Health Checks Registered</h4>
+                <p>
+                    To register health checks you need to tag your services in the service container definition by using the following tag: <code>liip_monitor.check</code>.
+                </p>
+            </div>
+        {{/if}}
+
+        {% endraw %}
+    </script>
+    </div>
+
+    {% for section, sections in resources  %}
+        {% if section != '_others' %}
+            <li class="section{{ defaultSectionsOpened? ' active':'' }}">
+            <div class="actions">
+                <a class="action-show-hide">Show/hide</a>
+                <a class="action-list">List Operations</a>
+                <a class="action-expand">Expand Operations</a>
+            </div>
+            <h1>{{ section }}</h1>
+            <ul class="section-list" {% if not defaultSectionsOpened %}style="display: none"{% endif %}>
+        {% endif %}
+        {% for resource, methods in sections %}
+            <li class="resource">
+                <div class="heading">
+                    {% if section == '_others' and resource != 'others' %}
+                        <h2>{{ resource }}</h2>
+                    {% elseif resource != 'others' %}
+                        <h2>{{ resource }}</h2>
+                    {% endif %}
+                </div>
+                <ul class="endpoints">
+                    <li class="endpoint">
+                        <ul class="operations">
+                            {% for data in methods %}
+                                {% include 'NelmioApiDocBundle::method.html.twig' %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+        {% if section != '_others' %}
+            </ul>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+{% endblock content %}
