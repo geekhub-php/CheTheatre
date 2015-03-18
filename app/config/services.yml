@@ -17,12 +17,12 @@ services:
         tags:
             - { name: twig.extension }
 
-    monitor.check.php_extensions:
+    monitor.check.travis_check:
         class: AppBundle\Check\TravisCheck
         arguments:
             - "geekhub-php"
             - "CheTheatre"
-            - "AddPermisionForDashboard"
+            - "master"
         tags:
             - { name: liip_monitor.check, alias: monitor_travis }
 
