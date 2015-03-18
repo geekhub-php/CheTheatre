@@ -1,5 +1,7 @@
 <?php
 
+namespace AppBundle\Tests\Validator;
+
 use Symfony\Component\Validator\Constraint;
 use AppBundle\Validator\TwoPerformanceEventsPerDayValidator;
 use AppBundle\Validator\TwoPerformanceEventsPerDay;
@@ -19,14 +21,14 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
-     * @dataProvider InvalidDataProvider
+     * @dataProvider invalidDataProvider
      */
-    public function testInvalidData($InvalidDataProvider)
+    public function testInvalidData(array $perfomanceEvents)
     {
         $newPerformanceEvent = new PerformanceEvent();
-        $newPerformanceEvent->setDateTime(new \DateTime('27-12-1983 06:00'));
+        $newPerformanceEvent->setDateTime(new \DateTime());
 
-        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($InvalidDataProvider), $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($perfomanceEvents), $this->translator);
         $validator->initialize($this->context);
 
         $this
@@ -40,14 +42,14 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
-     * @dataProvider ValidDataProvider
+     * @dataProvider validDataProvider
      */
-    public function testValidData($ValidDataProvider)
+    public function testValidData(array $perfomanceEvents)
     {
         $newPerformanceEvent = new PerformanceEvent();
-        $newPerformanceEvent->setDateTime(new \DateTime('27-12-1983 06:00'));
+        $newPerformanceEvent->setDateTime(new \DateTime());
 
-        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($ValidDataProvider), $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($perfomanceEvents), $this->translator);
         $validator->initialize($this->context);
 
         $this
@@ -60,7 +62,7 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $validator->validate($newPerformanceEvent, $this->constraint);
     }
 
-    public function InvalidDataProvider()
+    public function invalidDataProvider()
     {
         return [
             [[new PerformanceEvent(), new PerformanceEvent()]],
@@ -71,7 +73,7 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         ];
     }
 
-    public function ValidDataProvider()
+    public function validDataProvider()
     {
         return [
             [[]],
