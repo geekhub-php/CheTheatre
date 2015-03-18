@@ -7,6 +7,10 @@ use GuzzleHttp\Client as Guzzle;
 use ZendDiagnostics\Result\Failure;
 use ZendDiagnostics\Result\Success;
 
+/**
+ * Class TravisCheck
+ * @package AppBundle\Check
+ */
 class TravisCheck implements CheckInterface
 {
     private $account;
@@ -15,6 +19,11 @@ class TravisCheck implements CheckInterface
 
     private $branch;
 
+    /**
+     * @param $account
+     * @param $repository
+     * @param $branch
+     */
     public function __construct($account, $repository, $branch)
     {
         $this->account = $account;
@@ -22,6 +31,9 @@ class TravisCheck implements CheckInterface
         $this->branch = $branch;
     }
 
+    /**
+     * @return Failure|\ZendDiagnostics\Result\ResultInterface|Success
+     */
     public function check()
     {
         $client = new Guzzle();
@@ -49,6 +61,9 @@ class TravisCheck implements CheckInterface
         return $result;
     }
 
+    /**
+     * @return string
+     */
     public function getLabel()
     {
         return 'Travis';
