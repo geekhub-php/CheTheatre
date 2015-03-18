@@ -1,49 +1,39 @@
-<!Doctype html>
-<html>
-    <head>
-        <link href="{{ asset('bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('bundles/app/css/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('/bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css') }}" rel="stylesheet">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <body>
+    <title>{{ sing_in_title|trans }}</title>
 
-        <div class="container col-lg-8 col-lg-offset-3">
-            <div class="col-lg-12">
-                <h3 class="text-center">Авторизація</h3>
-            </div>
+    <link href="{{ asset('bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/signin.css') }}" rel="stylesheet">
+</head>
 
-            {% if error %}
-                <div>{{ error.message }}</div>
-            {% endif %}
+<body>
 
-            <div class="col-lg-12 thumbnail">
-                <form action="{{ path('login_check') }}" method="POST">
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <label for="username">{{ 'login'|trans }}:</label>
-                        </div>
+<div class="container">
 
-                        <div class="col-lg-6">
-                            {{ form_widget(form._username) }}
-                        </div>
-                    </div>
+    <form class="form-signin">
+        <h2 class="form-signin-heading">{{ sing_in_message|trans }}</h2>
+        <label for="username" class="sr-only">{{ 'login'|trans }}:</label>
+        {{ form_widget(form._username) }}
 
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <label for="password">{{ 'password'|trans }}:</label>
-                        </div>
+        <label for="password" class="sr-only">{{ 'password'|trans }}:</label>
+        {{ form_widget(form._password) }}
 
-                        <div class="col-lg-6">
-                            {{ form_widget(form._password) }}
-                        </div>
-                    </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'submit'|trans }}</button>
+    </form>
 
-                    <div class="col-lg-12">
-                        <button type="submit" class="btn btn-success col-lg-offset-3 col-lg-6" name="btnSubmit">{{ 'submit'|trans }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </body>
+</div> <!-- /container -->
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
 </html>
