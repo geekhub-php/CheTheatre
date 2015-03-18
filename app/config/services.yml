@@ -25,3 +25,10 @@ services:
             - "AddPermisionForDashboard"
         tags:
             - { name: liip_monitor.check, alias: monitor_travis }
+
+    two_performance_events_per_day_validator:
+        class: AppBundle\Validator\TwoPerformanceEventsPerDayValidator
+        arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
+        tags:
+            - { name: validator.constraint_validator, alias: two_performance_events_per_day }
+
