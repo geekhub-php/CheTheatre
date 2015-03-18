@@ -16,3 +16,9 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
+
+    two_performance_events_per_day_validator:
+        class: AppBundle\Validator\TwoPerformanceEventsPerDayValidator
+        arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
+        tags:
+            - { name: validator.constraint_validator, alias: two_performance_events_per_day }

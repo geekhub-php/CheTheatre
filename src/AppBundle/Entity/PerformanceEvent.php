@@ -10,12 +10,14 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
+use AppBundle\Validator\TwoPerformanceEventsPerDay;
 
 /**
  * @ORM\Table(name="performance_schedule")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceEventRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @TwoPerformanceEventsPerDay()
  */
 class PerformanceEvent
 {
