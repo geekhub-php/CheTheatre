@@ -13,10 +13,19 @@ use ZendDiagnostics\Result\Success;
  */
 class TravisCheck implements CheckInterface
 {
+    /**
+     * @var string
+     */
     private $account;
 
+    /**
+     * @var string
+     */
     private $repository;
 
+    /**
+     * @var string
+     */
     private $branch;
 
     /**
@@ -69,3 +78,4 @@ class TravisCheck implements CheckInterface
         return 'Travis';
     }
 }
+
