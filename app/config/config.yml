@@ -245,3 +245,9 @@ liip_monitor:
                 status_code:          200
                 content:              null
 
+         apc_memory:
+              warning:              70
+              critical:             90
+
+         security_advisory:
+              lock_file:            '%kernel.root_dir%/../composer.lock'
