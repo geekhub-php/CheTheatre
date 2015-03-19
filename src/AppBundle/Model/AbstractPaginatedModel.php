@@ -14,6 +14,13 @@ use JMS\Serializer\Annotation\Type;
 abstract class AbstractPaginatedModel
 {
     /**
+     * @var string
+     * @Type("AppBundle\Model\PaginationLinks")
+     * @Expose
+     */
+    protected $_links;
+
+    /**
      * @var integer
      * @Type("integer")
      */
@@ -81,5 +88,24 @@ abstract class AbstractPaginatedModel
     public function setTotalCount($totalCount)
     {
         $this->totalCount = $totalCount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinks()
+    {
+        return $this->_links;
+    }
+
+    /**
+     * @param mixed $_links
+     * @return $this
+     */
+    public function setLinks(PaginationLinks $_links)
+    {
+        $this->_links = $_links;
+
+        return $this;
     }
 }
