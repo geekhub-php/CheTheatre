@@ -21,9 +21,9 @@ class PerformanceEventsController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns a collection of PerformanceEvents",
+     *  description="Returns a collection of theatre performanceEvents",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters was correct",
      *      400="Returned when date diff more than 1 year",
      * },
      *  output = "array<AppBundle\Model\PerformanceEventsResponse>"
@@ -64,11 +64,11 @@ class PerformanceEventsController extends Controller
 
     /**
      * @ApiDoc(
-     * resource=true,
+     *  resource=true,
      *  description="Returns one PerformanceEvent by Id",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when PerformanceEvent by id found in database",
+     *      404="Returned when PerformanceEvent by id not found id database",
      *  },
      *  parameters={
      *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}
