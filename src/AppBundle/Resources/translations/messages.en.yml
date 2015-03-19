@@ -1,1 +1,6 @@
 you_cant_set_more_events_per_day: It cant be more then %count% performances per one day!
+login: Login
+password: Password
+submit: Sign in
+sing_in_message: Please sign in
+sing_in_title: Authorithation
