@@ -9,7 +9,7 @@
 */
 namespace AppBundle\Tests\Sonata;
 
-class SonataMediaAddEmployeeCommandTest extends CommandTestCase
+class SonataMediaAddPerformanceCommandTest extends CommandTestCase
 {
     /**
      * @expectedException \RuntimeException
@@ -26,10 +26,10 @@ class SonataMediaAddEmployeeCommandTest extends CommandTestCase
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
         $output = $this->runCommand($client, sprintf("sonata:media:add %s %s %s",
             'sonata.media.provider.image',
-            'employee',
-            sprintf("%s/../src/AppBundle/DataFixtures/data/avatars/vladimir-osipov.jpg", $baseFolder)
+            'performance',
+            sprintf("%s/../src/AppBundle/DataFixtures/data/perfomance-posters/perf_12night.jpg", $baseFolder)
         ));
-        $this->assertContains("Add a new media - context: employee, provider: sonata.media.provider.image, content: ", $output);
+        $this->assertContains("Add a new media - context: performance, provider: sonata.media.provider.image, content: ", $output);
         $this->assertContains("done!", $output);
     }
 }

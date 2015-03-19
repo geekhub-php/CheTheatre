@@ -27,3 +27,4 @@ class SonataAdminListEmployeeCommandTest extends CommandTestCase
         }
     }
 }
+
