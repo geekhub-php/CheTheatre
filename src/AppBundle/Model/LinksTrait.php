@@ -2,33 +2,33 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 
+/**
+ * @ExclusionPolicy("all")
+ */
 trait LinksTrait
 {
     /**
-     * @var Link[]
-     * @Type("array<AppBundle\Model\Link>")
+     * @var Array[]
+     *
+     * @Type("array")
      * @Expose
      */
     protected $links;
 
     /**
-     * @return Link[]
+     * @return \Array[]
      */
     public function getLinks()
     {
         return $this->links;
     }
 
-    public function addLink(Link $link)
-    {
-        $this->links = $link;
-    }
-
     /**
-     * @param  Link[] $links
+     * @param mixed $links
      * @return $this
      */
     public function setLinks($links)
