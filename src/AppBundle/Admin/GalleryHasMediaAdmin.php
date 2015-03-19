@@ -7,6 +7,9 @@ use Sonata\MediaBundle\Admin\GalleryHasMediaAdmin as BaseGalleryHasMediaAdmin;
 
 class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
 {
+    protected $baseRouteName = 'AppBundle\Entity\GalleryHasMedia';
+    protected $baseRoutePattern = 'GalleryHasMedia';
+
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
      *
