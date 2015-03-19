@@ -46,29 +46,33 @@ class PerformancesController extends Controller
         $performancesResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_performances', [
-                'page' => $paramFetcher->get('page'),
-            ], true
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $paramFetcher->get('page'),
+        ], true
         );
 
         $first = $this->generateUrl('get_performances', [], true);
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
             $this->generateUrl('get_performances', [
-                    'page' => $paramFetcher->get('page')+1,
-                ], true
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')+1,
+            ], true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
             $this->generateUrl('get_performances', [
-                    'page' => $paramFetcher->get('page')-1,
-                ], true
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
         $last = $this->generateUrl('get_performances', [
-                'page' => $performancesResponse->getPageCount(),
-            ], true
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $performancesResponse->getPageCount(),
+        ], true
         );
 
         $links = new PaginationLinks();

@@ -46,6 +46,7 @@ class EmployeesController extends Controller
         $employeesResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_employees', [
+            'limit' => $paramFetcher->get('limit'),
             'page' => $paramFetcher->get('page'),
         ], true
         );
@@ -54,6 +55,7 @@ class EmployeesController extends Controller
 
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
             $this->generateUrl('get_employees', [
+                'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
             ], true
             ) :
@@ -61,12 +63,14 @@ class EmployeesController extends Controller
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
             $this->generateUrl('get_employees', [
+                'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')-1,
             ], true
             ) :
             'false';
 
         $last = $this->generateUrl('get_employees', [
+            'limit' => $paramFetcher->get('limit'),
             'page' => $employeesResponse->getPageCount(),
         ], true
         );
