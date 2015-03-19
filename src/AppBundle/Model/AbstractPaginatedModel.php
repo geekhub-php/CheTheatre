@@ -30,7 +30,6 @@ abstract class AbstractPaginatedModel
     /**
      * @var integer
      * @Type("integer")
-     * @Expose
      */
     protected $pageCount;
 
