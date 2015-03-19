@@ -8,12 +8,10 @@ use JMS\Serializer\Annotation\Type;
 class Link
 {
     /**
-     * @param $rel
      * @param $href
      */
-    public function __construct($rel, $href)
+    public function __construct($href)
     {
-        $this->rel = $rel;
         $this->href = $href;
     }
 
@@ -23,34 +21,7 @@ class Link
      * @Expose()
      * @Type("string")
      */
-    protected $rel;
-
-    /**
-     * @var string
-     *
-     * @Expose()
-     * @Type("string")
-     */
     protected $href;
-
-    /**
-     * @return string
-     */
-    public function getRel()
-    {
-        return $this->rel;
-    }
-
-    /**
-     * @param  string $rel
-     * @return $this
-     */
-    public function setRel($rel)
-    {
-        $this->rel = $rel;
-
-        return $this;
-    }
 
     /**
      * @return string
