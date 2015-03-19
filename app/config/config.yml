@@ -188,6 +188,13 @@ liip_monitor:
                  critical:             90
                  path:                 '%kernel.cache_dir%'
 
+         apc_memory:
+             warning:              70
+             critical:             90
+
+        security_advisory:
+             lock_file:            '%kernel.root_dir%/../composer.lock'
+
          http_service:
             employees:
                 host:                 %api_domain%
@@ -245,9 +252,3 @@ liip_monitor:
                 status_code:          200
                 content:              null
 
-         apc_memory:
-              warning:              70
-              critical:             90
-
-         security_advisory:
-              lock_file:            '%kernel.root_dir%/../composer.lock'
