@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -43,24 +45,39 @@ class PostsController extends Controller
         $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
         $postsResponse->setPage($paramFetcher->get('page'));
 
+        $self = $this->generateUrl('get_posts', [
+            'page' => $paramFetcher->get('page'),
+        ], true
+        );
+
+        $first = $this->generateUrl('get_posts', [], true);
+
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
+            $this->generateUrl('get_posts', [
+                'page' => $paramFetcher->get('page')+1,
+            ], true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
+            $this->generateUrl('get_posts', [
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
-        $postsResponse->setNextPage($nextPage);
-        $postsResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_posts', [
+            'page' => $postsResponse->getPageCount(),
+        ], true
+        );
+
+        $links = new PaginationLinks();
+
+        $postsResponse->setLinks($links->setSelf(new Link($self)));
+        $postsResponse->setLinks($links->setFirst(new Link($first)));
+        $postsResponse->setLinks($links->setNext(new Link($nextPage)));
+        $postsResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $postsResponse->setLinks($links->setLast(new Link($last)));
 
         return $postsResponse;
     }

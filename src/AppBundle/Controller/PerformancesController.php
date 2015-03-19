@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -43,25 +45,39 @@ class PerformancesController extends Controller
         $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
         $performancesResponse->setPage($paramFetcher->get('page'));
 
+        $self = $this->generateUrl('get_performances', [
+                'page' => $paramFetcher->get('page'),
+            ], true
+        );
+
+        $first = $this->generateUrl('get_performances', [], true);
+
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
+            $this->generateUrl('get_performances', [
                     'page' => $paramFetcher->get('page')+1,
-                )
+                ], true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
+            $this->generateUrl('get_performances', [
                     'page' => $paramFetcher->get('page')-1,
-                )
+                ], true
             ) :
             'false';
 
-        $performancesResponse->setNextPage($nextPage);
-        $performancesResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_performances', [
+                'page' => $performancesResponse->getPageCount(),
+            ], true
+        );
 
+        $links = new PaginationLinks();
+
+        $performancesResponse->setLinks($links->setSelf(new Link($self)));
+        $performancesResponse->setLinks($links->setFirst(new Link($first)));
+        $performancesResponse->setLinks($links->setNext(new Link($nextPage)));
+        $performancesResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $performancesResponse->setLinks($links->setLast(new Link($last)));
 
         return $performancesResponse;
     }

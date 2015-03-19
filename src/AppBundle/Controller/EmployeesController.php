@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -43,24 +45,39 @@ class EmployeesController extends Controller
         $employeesResponse->setPageCount(ceil($employeesResponse->getTotalCount() / $paramFetcher->get('limit')));
         $employeesResponse->setPage($paramFetcher->get('page'));
 
+        $self = $this->generateUrl('get_employees', [
+            'page' => $paramFetcher->get('page'),
+        ], true
+        );
+
+        $first = $this->generateUrl('get_employees', [], true);
+
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
-            $this->generateUrl('get_employees', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
+            $this->generateUrl('get_employees', [
+                'page' => $paramFetcher->get('page')+1,
+            ], true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_employees', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
+            $this->generateUrl('get_employees', [
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
-        $employeesResponse->setNextPage($nextPage);
-        $employeesResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_employees', [
+            'page' => $employeesResponse->getPageCount(),
+        ], true
+        );
+
+        $links = new PaginationLinks();
+
+        $employeesResponse->setLinks($links->setSelf(new Link($self)));
+        $employeesResponse->setLinks($links->setFirst(new Link($first)));
+        $employeesResponse->setLinks($links->setNext(new Link($nextPage)));
+        $employeesResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $employeesResponse->setLinks($links->setLast(new Link($last)));
 
         return $employeesResponse;
     }
