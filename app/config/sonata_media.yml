@@ -1,9 +1,9 @@
 sonata_media:
     # if you don't use default namespace configuration
-    #class:
-    #    media: MyVendor\MediaBundle\Entity\Media
-    #    gallery: MyVendor\MediaBundle\Entity\Gallery
-    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+    class:
+        media: AppBundle\Entity\Media
+        gallery: AppBundle\Entity\Gallery
+        gallery_has_media: AppBundle\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
