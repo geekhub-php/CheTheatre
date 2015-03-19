@@ -11,16 +11,19 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Employee\Translation")
  */
-class Employee
+class Employee implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, PersonalTranslatable;
 
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
@@ -34,7 +37,13 @@ class Employee
     const POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART = 'head_of_the_literary_and_dramatic_part';
     const POSITION_CONDUCTOR = 'conductor';
     const POSITION_ACCOMPANIST = 'accompanist';
-
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("avatar")
+     */
+    public $avatarThumbnails;
     /**
      * @var integer
      * @ORM\Column(name="id", type="integer")
@@ -42,7 +51,6 @@ class Employee
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -52,7 +60,6 @@ class Employee
      * @Expose
      */
     private $firstName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -62,7 +69,6 @@ class Employee
      * @Expose
      */
     private $lastName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -71,7 +77,6 @@ class Employee
      * @Expose
      */
     private $middleName;
-
     /**
      * @var /Datetime
      * @Assert\NotBlank()
@@ -80,7 +85,6 @@ class Employee
      * @Expose
      */
     private $dob;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -89,7 +93,6 @@ class Employee
      * @Expose
      */
     private $position;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -98,21 +101,12 @@ class Employee
      * @Expose
      */
     private $biography;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
     /**
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $roles;
-
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
@@ -123,7 +117,6 @@ class Employee
      *     )
      */
     private $galleryHasMedia;
-
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
@@ -131,7 +124,6 @@ class Employee
      * @Expose
      */
     private $slug;
-
     /**
      * @var
      *
@@ -141,20 +133,30 @@ class Employee
     private $avatar;
 
     /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("avatar")
-     */
-    public $avatarThumbnails;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public static function getPositions()
+    {
+        return [
+            employee::POSITION_ACTOR => 'actor',
+            employee::POSITION_ACTRESS => 'actress',
+            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            employee::POSITION_MAIN_ARTIST => 'main_artist',
+            employee::POSITION_COSTUMER => 'costumer',
+            employee::POSITION_ART_DIRECTOR => 'art_director',
+            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            employee::POSITION_CONDUCTOR => 'conductor',
+            employee::POSITION_ACCOMPANIST => 'accompanist',
+        ];
     }
 
     /**
@@ -305,11 +307,6 @@ class Employee
         return $this;
     }
 
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
     /**
      * Add role
      *
@@ -388,24 +385,6 @@ class Employee
         $this->avatar = $avatar;
 
         return $this;
-    }
-
-    public static function getPositions()
-    {
-        return [
-            employee::POSITION_ACTOR => 'actor',
-            employee::POSITION_ACTRESS => 'actress',
-            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
-            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
-            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
-            employee::POSITION_MAIN_ARTIST => 'main_artist',
-            employee::POSITION_COSTUMER => 'costumer',
-            employee::POSITION_ART_DIRECTOR => 'art_director',
-            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
-            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
-            employee::POSITION_CONDUCTOR => 'conductor',
-            employee::POSITION_ACCOMPANIST => 'accompanist',
-        ];
     }
 
     /**

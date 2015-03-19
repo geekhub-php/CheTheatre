@@ -1,0 +1,9 @@
+{% extends "SonataAdminBundle::standard_layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    '@SonataTranslationBundle/Resources/public/css/sonata-translation.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}

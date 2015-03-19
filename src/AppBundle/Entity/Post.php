@@ -10,16 +10,19 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 
 /**
  * @ORM\Table(name="posts")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Post\Translation")
  */
-class Post
+class Post implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, PersonalTranslatable;
 
     /**
      * @var integer
@@ -65,13 +68,6 @@ class Post
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
      */
     private $mainPicture;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
@@ -169,6 +165,16 @@ class Post
     }
 
     /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
      * Set text
      *
      * @param  string $text
@@ -179,21 +185,6 @@ class Post
         $this->text = $text;
 
         return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**

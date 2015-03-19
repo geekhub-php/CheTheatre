@@ -9,16 +9,19 @@ use AppBundle\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 
 /**
  * @ORM\Table(name="tags")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Tag\Translation")
  */
-class Tag
+class Tag implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, PersonalTranslatable;
 
     /**
      * @var integer
@@ -55,11 +58,6 @@ class Tag
      */
     private $posts;
 
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
-
     /**
      * Constructor
      */
@@ -68,14 +66,19 @@ class Tag
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function __toString()
     {
-        return $this->id;
+        return $this->getTitle();
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -92,13 +95,23 @@ class Tag
     }
 
     /**
-     * Get title
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get slug
      *
      * @return string
      */
-    public function getTitle()
+    public function getSlug()
     {
-        return $this->title;
+        return $this->slug;
     }
 
     /**
@@ -112,16 +125,6 @@ class Tag
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
