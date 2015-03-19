@@ -61,7 +61,7 @@ class Post
     /**
      * @var
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
      */
     private $mainPicture;
@@ -74,9 +74,9 @@ class Post
     private $locale;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var \AppBundle\Entity\GalleryHasMedia
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="post_galleryHasMedia",
      *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
@@ -222,7 +222,7 @@ class Post
     /**
      * Get mainPicture
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
+     * @return \AppBundle\Entity\Media
      */
     public function getMainPicture()
     {
@@ -232,10 +232,10 @@ class Post
     /**
      * Set mainPicture
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
+     * @param  \AppBundle\Entity\Media $mainPicture
      * @return Post
      */
-    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
+    public function setMainPicture(\AppBundle\Entity\Media $mainPicture = null)
     {
         $this->mainPicture = $mainPicture;
 
@@ -279,10 +279,10 @@ class Post
     /**
      * Add galleryHasMedia
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param  \AppBundle\Entity\GalleryHasMedia $galleryHasMedia
      * @return Post
      */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedia(\AppBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -292,9 +292,9 @@ class Post
     /**
      * Remove galleryHasMedia
      *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \AppBundle\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedia(\AppBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }
