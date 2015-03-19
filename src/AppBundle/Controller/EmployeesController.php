@@ -41,6 +41,7 @@ class EmployeesController extends Controller
         $employeesResponse->setEmployees($employees);
         $employeesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->getCount());
         $employeesResponse->setPageCount(ceil($employeesResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $employeesResponse->setPage($paramFetcher->get('page'));
 
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
             $this->generateUrl('get_employees', array(

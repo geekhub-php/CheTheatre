@@ -41,6 +41,7 @@ class PerformancesController extends Controller
         $performancesResponse->setPerformances($performances);
         $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
         $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $performancesResponse->setPage($paramFetcher->get('page'));
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
             $this->generateUrl('get_performances', array(

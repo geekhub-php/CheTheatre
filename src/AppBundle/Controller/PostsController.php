@@ -41,6 +41,7 @@ class PostsController extends Controller
         $postsResponse->setPosts($posts);
         $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount());
         $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $postsResponse->setPage($paramFetcher->get('page'));
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
             $this->generateUrl('get_posts', array(
