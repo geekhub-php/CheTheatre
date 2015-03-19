@@ -135,6 +135,7 @@ nelmio_api_doc:
             formats:
                 json: application/json
             default_format: json
+    html_template: NelmioApiDocBundle::monitors.html.twig
 
 fos_rest:
     param_fetcher_listener: true
@@ -185,15 +186,15 @@ liip_monitor:
     enable_controller: true
     checks:
          disk_usage:
-                 warning:              70
-                 critical:             90
-                 path:                 '%kernel.cache_dir%'
+             warning:              70
+             critical:             90
+             path:                 '%kernel.cache_dir%'
 
          apc_memory:
              warning:              70
              critical:             90
 
-        security_advisory:
+         security_advisory:
              lock_file:            '%kernel.root_dir%/../composer.lock'
 
          http_service:
