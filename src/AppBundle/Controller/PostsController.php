@@ -22,7 +22,7 @@ class PostsController extends Controller
      *  resource=true,
      *  description="Returns a collection of Posts",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters was correct",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
      *  output = "array<AppBundle\Model\PostsResponse>"
@@ -72,10 +72,10 @@ class PostsController extends Controller
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Returns an Post by slug",
+     *  description="Returns an Post by unique property {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Post by {slug} was found",
+     *      404="Returned when Post by {slug} was not found",
      *  },
      *  parameters={
      *      {"name"="slug", "dataType"="string", "required"=true, "description"="Post slug"}
