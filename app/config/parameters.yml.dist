@@ -29,3 +29,4 @@ parameters:
     admin_domain: admin.chetheatre.local
     prod_server_ip: ~
     nelmio_cors.origin: ['*']
+    admin_password: 111111
