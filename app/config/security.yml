@@ -11,13 +11,14 @@ security:
             security: false
 
         secured_area:
-            pattern:  ^/
+            pattern:  ^%admin_dashboard_base_url%/
             anonymous: ~
             form_login:
                 login_path:  /login
-                check_path:  /login_check
+                check_path:  %admin_dashboard_base_url%/login_check
+                default_target_path: sonata_admin_dashboard
             logout:
-                path:   /logout
+                path:   %admin_dashboard_base_url%/logout
                 target: /login
 
     role_hierarchy:
@@ -28,18 +29,10 @@ security:
                 - ROLE_SONATA_ADMIN_DEMO_FOO_EDIT
                 - ROLE_SONATA_ADMIN_DEMO_FOO_LIST
                 - ROLE_SONATA_ADMIN_DEMO_FOO_VIEW
-
-            # those are the roles I will use (less verbose)
             ROLE_SUPER_ADMIN: [ROLE_SONATA_FOO_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
-            - { path: %admin_domain%/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-            - { path: ^/dashboard, roles: ROLE_SUPER_ADMIN }
-            - { path: ^/Employee, roles: ROLE_SUPER_ADMIN }
-            - { path: ^/Perfomance, roles: ROLE_SUPER_ADMIN }
-            - { path: ^/PerfomanceEvent, roles: ROLE_SUPER_ADMIN }
-            - { path: ^/Post, roles: ROLE_SUPER_ADMIN }
-            - { path: ^/sonata, roles: ROLE_SUPER_ADMIN }
+            - { path: ^%admin_dashboard_base_url%/, roles: ROLE_SUPER_ADMIN }
 
     encoders:
           Symfony\Component\Security\Core\User\User: plaintext

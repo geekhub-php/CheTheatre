@@ -1,16 +1,18 @@
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: %admin_dashboard_base_url%/
 
 _sonata_admin:
     resource: .
     type: sonata_admin
+    prefix: %admin_dashboard_base_url%/
 
 login:
-  pattern:   /login
-  defaults:  { _controller: AppBundle:Default:login }
+  pattern:  /login
+  defaults: { _controller: AppBundle:Default:login }
 
 login_check:
-  pattern:   /login_check
+  pattern: %admin_dashboard_base_url%/login_check
 
 logout:
-  pattern: /logout
+  pattern: %admin_dashboard_base_url%/logout

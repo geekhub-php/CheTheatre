@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Tests\Controller;
 
 use Symfony\Component\BrowserKit\Cookie;
@@ -8,11 +9,11 @@ class DashboardControllerTest extends AbstractController
 {
     public function testAccesDeniedDasboardAction()
     {
-        $this->request('/dashboard', 'GET', 302);
+        $this->request('/admin/dashboard', 'GET', 302);
 
         $client = $this->logIn();
 
-        $crawler = $client->request('GET', '/dashboard');
+        $crawler = $client->request('GET', '/admin/dashboard');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertTrue($client->getResponse()->isSuccessful());
