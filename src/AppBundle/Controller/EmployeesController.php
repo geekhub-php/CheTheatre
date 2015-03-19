@@ -20,9 +20,9 @@ class EmployeesController extends Controller
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Returns a collection of Employees",
+     *  description="Returns a collection of theatre employees.",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters was true",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
      *  output = "array<AppBundle\Model\EmployeesResponse>"
@@ -71,13 +71,13 @@ class EmployeesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns an Employee by slug",
+     *  description="Returns an Employee by unique property {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when employee by {slug} found in database" ,
+     *      404="Returned when employee by {slug} not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
      *  },
      *  output = "AppBundle\Entity\Employee"
      * )
@@ -99,13 +99,13 @@ class EmployeesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns an Employee by slug and his roles",
+     *  description="Returns Employee roles by his slug",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when employee by {slug} found in database" ,
+     *      404="Returned when employee by {slug} not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
