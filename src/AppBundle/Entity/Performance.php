@@ -97,6 +97,14 @@ class Performance
     public $mainPictureThumbnails;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("sliderImage")
+     */
+    public $sliderImageThumbnails;
+
+    /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
@@ -264,7 +272,7 @@ class Performance
      * @param  \Application\Sonata\MediaBundle\Entity\Media $sliderImage
      * @return Performance
      */
-    public function setsliderImage(\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
+    public function setSliderImage(\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
     {
         $this->sliderImage = $sliderImage;
 
