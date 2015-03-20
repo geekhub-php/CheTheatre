@@ -25,14 +25,14 @@ class LoadData extends DataFixtureLoader
 
     public function getMedia($name, $context = 'default')
     {
-        $avatar = new Media();
+        $media = new Media();
 
-        $avatar->setBinaryContent(__DIR__.'/../data/'.$name);
-        $avatar->setContext($context);
-        $avatar->setProviderName('sonata.media.provider.image');
+        $media->setBinaryContent(__DIR__.'/../data/'.$name);
+        $media->setContext($context);
+        $media->setProviderName('sonata.media.provider.image');
 
-        $this->container->get('sonata.media.manager.media')->save($avatar, $andFlush = true);
+        $this->container->get('sonata.media.manager.media')->save($media, $andFlush = true);
 
-        return $avatar;
+        return $media;
     }
 }

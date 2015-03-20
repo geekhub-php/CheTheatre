@@ -4,3 +4,4 @@ password: Password
 submit: Sign in
 sing_in_message: Please sign in
 sing_in_title: Authorithation
+Image_must_be_minimum_size: Image size must have minimum %width% px width and %height% px height!
