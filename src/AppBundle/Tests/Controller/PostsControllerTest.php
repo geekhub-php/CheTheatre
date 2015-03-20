@@ -15,4 +15,39 @@ class PostsControllerTest extends AbstractController
         $this->request('/posts/'.$slug);
         $this->request('/posts/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
     }
+
+    /**
+     * @dataProvider providerPostsResponseFields
+     */
+    public function testPostsResponseFields($field)
+    {
+        $client = $this->getClient();
+
+        $crawler = $client->request('GET', '/posts');
+
+        $this->assertContains($field, $client->getResponse()->getContent());
+    }
+
+    public function providerPostsResponseFields()
+    {
+        return [
+            ['posts'],
+            ['title'],
+            ['short_description'],
+            ['text'],
+            ['slug'],
+            ['created_at'],
+            ['updated_at'],
+            ['page'],
+            ['count'],
+            ['total_count'],
+            ['_links'],
+            ['self'],
+            ['first'],
+            ['prev'],
+            ['next'],
+            ['last'],
+            ['href'],
+        ];
+    }
 }
