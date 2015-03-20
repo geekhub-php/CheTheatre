@@ -15,4 +15,49 @@ class PerformanceEventsControllerTest extends AbstractController
         $this->request('/performanceevents/'.$id);
         $this->request('/performanceevents/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
     }
+
+    /**
+     * @dataProvider providerPerformanceEventsResponseFields
+     */
+    public function testPerformanceEventsResponseFields($field)
+    {
+        $client = $this->getClient();
+
+        $crawler = $client->request('GET', '/performanceevents');
+
+        $this->assertContains($field, $client->getResponse()->getContent());
+    }
+
+    public function providerPerformanceEventsResponseFields()
+    {
+        return [
+            ['performance_events'],
+            ['id'],
+            ['performance'],
+            ['title'],
+            ['type'],
+            ['description'],
+            ['premiere'],
+            ['mainPicture'],
+            ['reference'],
+            ['performance_small'],
+            ['performance_big'],
+            ['url'],
+            ['properties'],
+            ['alt'],
+            ['title'],
+            ['src'],
+            ['width'],
+            ['height'],
+            ['slug'],
+            ['created_at'],
+            ['updated_at'],
+            ['date_time'],
+            ['year'],
+            ['month'],
+            ['day'],
+            ['time'],
+            ['total_count']
+        ];
+    }
 }
