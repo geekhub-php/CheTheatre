@@ -54,12 +54,6 @@ class SerializerSubscriber implements EventSubscriberInterface
         /** @var Performance $performance */
         $performance = $avatar = $event->getObject();
 
-        $performance->setLinks([
-            ['rel' => 'self', 'href' => $this->router->generate('get_performance', ['slug' => $performance->getSlug()], true)],
-            ['rel' => 'self.roles', 'href' => $this->router->generate('get_performance_roles', ['slug' => $performance->getSlug()], true)],
-            ['rel' => 'self.events', 'href' => $this->router->generate('get_performanceevents', ['performance' => $performance->getSlug()], true)],
-        ]);
-
         if ($performance->getMainPicture()) {
             $mainImageLinks = $this->mediaController->getMediumFormatsAction($performance->getMainPicture());
             $performance->mainPictureThumbnails = $mainImageLinks;

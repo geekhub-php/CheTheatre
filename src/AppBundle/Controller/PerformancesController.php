@@ -83,6 +83,14 @@ class PerformancesController extends Controller
         $performancesResponse->setLinks($links->setPrev(new Link($previsiousPage)));
         $performancesResponse->setLinks($links->setLast(new Link($last)));
 
+        foreach ($performances as $performance) {
+            $performance->setLinks([
+                ['rel' => 'self', 'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)],
+                ['rel' => 'self.roles', 'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)],
+                ['rel' => 'self.events', 'href' => $this->generateUrl('get_performanceevents', ['performance' => $performance->getSlug()], true)],
+            ]);
+        }
+
         return $performancesResponse;
     }
 
