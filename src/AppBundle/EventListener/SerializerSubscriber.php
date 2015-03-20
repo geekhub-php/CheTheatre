@@ -3,7 +3,6 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Performance;
-use AppBundle\Model\Link;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
