@@ -22,7 +22,7 @@ class EmployeesController extends Controller
      *  resource=true,
      *  description="Returns a collection of theatre employees.",
      *  statusCodes={
-     *      200="Returned when all parameters was true",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
      *  output = "array<AppBundle\Model\EmployeesResponse>"

@@ -23,7 +23,7 @@ class PerformanceEventsController extends Controller
      * resource=true,
      *  description="Returns a collection of theatre performanceEvents",
      *  statusCodes={
-     *      200="Returned when all parameters was correct",
+     *      200="Returned when all parameters were correct",
      *      400="Returned when date diff more than 1 year",
      * },
      *  output = "array<AppBundle\Model\PerformanceEventsResponse>"
@@ -67,8 +67,8 @@ class PerformanceEventsController extends Controller
      *  resource=true,
      *  description="Returns one PerformanceEvent by Id",
      *  statusCodes={
-     *      200="Returned when PerformanceEvent by id found in database",
-     *      404="Returned when PerformanceEvent by id not found id database",
+     *      200="Returned when PerformanceEvent by id was found in database",
+     *      404="Returned when PerformanceEvent by id was not found id database",
      *  },
      *  parameters={
      *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}

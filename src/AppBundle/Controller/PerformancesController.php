@@ -22,7 +22,7 @@ class PerformancesController extends Controller
      * resource=true,
      *  description="Returns a collection of Performances",
      *  statusCodes={
-     *      200="Returned when all parameters was correct",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entity is not found",
      *     },
      *  output = "array<AppBundle\Model\PerformancesResponse>"

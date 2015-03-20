@@ -22,7 +22,7 @@ class PostsController extends Controller
      *  resource=true,
      *  description="Returns a collection of Posts",
      *  statusCodes={
-     *      200="Returned when all parameters was correct",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
      *  output = "array<AppBundle\Model\PostsResponse>"
