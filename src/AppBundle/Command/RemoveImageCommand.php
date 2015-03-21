@@ -33,7 +33,8 @@ class RemoveImageCommand extends ContainerAwareCommand
         $medias = $mm->findAll();
 
         foreach ($medias as $media) {
-            $entity = "AppBundle\\Entity\\".ucfirst($media->getContext());
+            $context = $media->getContext() == "slider" ? "performance" : $media->getContext();
+            $entity = "AppBundle\\Entity\\".ucfirst($context);
 
             switch ($media->getContext()) {
                 case 'employee':
@@ -42,6 +43,10 @@ class RemoveImageCommand extends ContainerAwareCommand
                 case 'performance':
                 case 'post':
                     $property = "mainPicture";
+                    break;
+                case 'slider':
+                    $property = "sliderImage";
+                    break;
             }
 
             $objects = $em
