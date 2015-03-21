@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class RemoveImageCommand extends ContainerAwareCommand
 {
@@ -29,25 +30,41 @@ class RemoveImageCommand extends ContainerAwareCommand
         $medias = $mm->findAll();
 
         foreach ($medias as $media){
-            $entity = "AppBundle\\Entity\\".ucfirst($media->getContext)."s";
+            $entity = "AppBundle\\Entity\\".ucfirst($media->getContext());
 
-            switch ($media->getContext) {
+            switch ($media->getContext()) {
                 case 'employee':
-                    $property = "avatar_id";
+                    $property = "avatar";
                     break;
-                case 'perfomance':
+                case 'performance':
                 case 'post':
-                    $property = "mainPicture_id";
+                    $property = "mainPicture";
             }
 
-            $object = $em->geRepository($entity)
-                         ->findOneBy([$property => $media->getId()]);
+            $objects = $em->getRepository($entity)
+                         ->findAll();
 
-            if (!$object) {
-                $provider = $this->getContainer($media->getProviderName());
-                $provider->removeThumbnails($media);
+            $propertyAccessor = new PropertyAccessor();
+            $counter = 0;
+
+            foreach ($objects as $object) {
+                $value = $propertyAccessor->getValue($object, $property);
+
+                if (!is_null($value) && $value->getId() == $media->getId()) {
+                    break;
+                } else {
+                    $counter++;
+                }
+            }
+
+            if (count($objects) == $counter) {
+                $message = sprintf('Remove media with id: %s and context: %s', $media->getId(), $media->getContext());
+                $output->writeln($message);
+
                 $mm->delete($media);
             }
         }
+
+        $output->writeln('Delete media without reference object successful removed');
     }
 }
