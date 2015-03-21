@@ -12,12 +12,14 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use AppBundle\Validator\MinSizeSliderImage;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @MinSizeSliderImage()
  */
 class Performance
 {
@@ -79,12 +81,28 @@ class Performance
     private $mainPicture;
 
     /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
+     */
+    private $sliderImage;
+
+    /**
      * @var array
      * @Expose
      * @Type("array")
      * @SerializedName("mainPicture")
      */
     public $mainPictureThumbnails;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("sliderImage")
+     */
+    public $sliderImageThumbnails;
 
     /**
      * @Gedmo\Locale
@@ -234,6 +252,29 @@ class Performance
     public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
     {
         $this->mainPicture = $mainPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderImage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getSliderImage()
+    {
+        return $this->sliderImage;
+    }
+
+    /**
+     * Set sliderImage
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\Media $sliderImage
+     * @return Performance
+     */
+    public function setSliderImage(\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
+    {
+        $this->sliderImage = $sliderImage;
 
         return $this;
     }

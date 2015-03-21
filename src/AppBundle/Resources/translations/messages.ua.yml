@@ -4,3 +4,4 @@ password: Пароль
 submit: Увійти
 sing_in_message: Будь-ласка, авторизуйтеся
 sing_in_title: Авторизація
+Image_must_be_minimum_size: Розмір зображення повиннен не перевищувати %width% пікселів по довжині та %height% пікслеів по висоті!
