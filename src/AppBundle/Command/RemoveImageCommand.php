@@ -13,23 +13,26 @@ class RemoveImageCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:remove-image')
-            ->setDescription('Remove image that not relation to media');
+            ->setDescription('Remove image that not relation to media')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $mm = $this
             ->getContainer()
-            ->get('sonata.media.manager.media');
+            ->get('sonata.media.manager.media')
+        ;
 
         $em = $this
             ->getContainer()
             ->get('doctrine')
-            ->getManager();
+            ->getManager()
+        ;
 
         $medias = $mm->findAll();
 
-        foreach ($medias as $media){
+        foreach ($medias as $media) {
             $entity = "AppBundle\\Entity\\".ucfirst($media->getContext());
 
             switch ($media->getContext()) {
@@ -41,8 +44,10 @@ class RemoveImageCommand extends ContainerAwareCommand
                     $property = "mainPicture";
             }
 
-            $objects = $em->getRepository($entity)
-                         ->findAll();
+            $objects = $em
+                        ->getRepository($entity)
+                        ->findAll()
+            ;
 
             $propertyAccessor = new PropertyAccessor();
             $counter = 0;
