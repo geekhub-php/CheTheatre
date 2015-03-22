@@ -26,6 +26,8 @@ class RemoveImageCommandTest extends AbstractController
 
         $this->assertContains("Delete media without reference object successful removed", $commandTester->getDisplay());
 
+        $commandTester->execute([]);
+
         $this->assertNotContains("Remove media with", $commandTester->getDisplay());
 
         $media = new Media();
