@@ -31,6 +31,7 @@ class EmployeeAdmin extends Admin
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
+            ->add('biography')
             ->add('roles')
         ;
     }
@@ -57,6 +58,7 @@ class EmployeeAdmin extends Admin
             ])
             ->add('dob', 'sonata_type_date_picker')
             ->add('position', 'sonata_type_translatable_choice', ['choices' => employee::getPositions()])
+            ->add('biography')
             ->add('galleryHasMedia', 'sonata_type_collection', [
                 'required' => false,
                 'label' => 'Gallery',
@@ -88,6 +90,7 @@ class EmployeeAdmin extends Admin
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
+            ->add('biography')
             ->add('roles')
         ;
     }
