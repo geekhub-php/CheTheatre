@@ -26,10 +26,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $mm = $this
-            ->getContainer()
-            ->get('sonata.media.manager.media')
-        ;
+        $mediaManager = $this->getContainer()->get('sonata.media.manager.media');
 
         $associatedMediaMappings = $this->getAssociationMediaMappings();
         $associatedMediaObjects = $this->getAssociatedMediaObjects($associatedMediaMappings);
@@ -37,9 +34,9 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
             return $media->getId();
         }, $associatedMediaObjects);
 
-        foreach ($mm->findAll() as $media) {
+        foreach ($mediaManager->findAll() as $media) {
             if (false == in_array($media->getId(), $associatedMediaObjectsIds)) {
-                $mm->delete($media);
+                $mediaManager->delete($media);
                 $output->writeln(sprintf('Removed media with id "%s"', $media->getId()));
             }
         }
