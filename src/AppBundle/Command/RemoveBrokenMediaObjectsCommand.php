@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Sonata\MediaBundle\Entity\BaseMedia as SonataEntityMedia;
 
 class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
 {
@@ -30,85 +31,55 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
             ->get('sonata.media.manager.media')
         ;
 
-        $em = $this
-            ->getContainer()
-            ->get('doctrine')
-            ->getManager()
-        ;
+        $associatedMediaMappings = $this->getAssociationMediaMappings();
+        $associatedMediaObjects = $this->getAssociatedMediaObjects($associatedMediaMappings);
+        $associatedMediaObjectsIds = array_map(function (SonataEntityMedia $media) {
+            return $media->getId();
+        }, $associatedMediaObjects);
 
-        $medias = $mm->findAll();
-
-        foreach ($medias as $media) {
-            $context = $media->getContext() == "slider" ? "performance" : $media->getContext();
-            $entity = "AppBundle\\Entity\\".ucfirst($context);
-
-            $objects = $em
-                ->getRepository($entity)
-                ->findAll()
-            ;
-
-            $counter = $this->proccessMediaObject($media, $objects);
-
-            $this->removeMedia($output, $mm, $media, count($objects), $counter);
-        }
-
-        $output->writeln('Delete media without reference object successful removed');
-    }
-
-    /**
-     * @param $media
-     * @return string
-     */
-    protected function getContext($media)
-    {
-        switch ($media) {
-            case 'employee':
-                $property = "avatar";
-                break;
-            case 'performance':
-            case 'post':
-                $property = "mainPicture";
-                break;
-            case 'slider':
-                $property = "sliderImage";
-                break;
-        }
-
-        return $property;
-    }
-
-    /**
-     * @param $media
-     * @param $objects
-     * @return int
-     */
-    protected function proccessMediaObject($media, $objects)
-    {
-        $property = $this->getContext($media->getContext());
-
-        $propertyAccessor = new PropertyAccessor();
-        $counter = 0;
-
-        foreach ($objects as $object) {
-            $value = $propertyAccessor->getValue($object, $property);
-
-            if (!is_null($value) && $value->getId() == $media->getId()) {
-                break;
-            } else {
-                $counter++;
+        foreach ($mm->findAll() as $media) {
+            if (false == in_array($media->getId(), $associatedMediaObjectsIds)) {
+                $mm->delete($media);
+                $output->writeln(sprintf('Removed media with id "%s"', $media->getId()));
             }
         }
 
-        return $counter;
+        $output->writeln('Deleted media without reference object was successful');
     }
 
-    protected function removeMedia(OutputInterface $output, $mm, $media, $objectCount, $counter)
-    {
-        if ($objectCount == $counter) {
-            $message = sprintf('Remove media with id: %s and context: %s', $media->getId(), $media->getContext());
-            $output->writeln($message);
 
-            $mm->delete($media);
+    /**
+     * @param array $associationMappings
+     * @return array SonataEntityMedia[]
+     */
+    protected function associatedMediaObjects(array $associationMappings)
+    {
+        // ToDo implement it
+    }
+
+    /**
+     * @return array associationMappings[className][propertyName][metadata]
+     */
+    protected function getAssociationMediaMappings()
+    {
+        $appClassMetadata = $this
+            ->getContainer()
+            ->get('sonata.media.manager.media')
+            ->getEntityManager()
+            ->getMetadataFactory()
+            ->getAllMetadata()
+        ;
+
+        $mediaAssociationMappings = [];
+
+        foreach ($appClassMetadata as $classMetadata) {
+            foreach ($classMetadata->associationMappings as $propertyName => $associationMapping) {
+                if ('Application\Sonata\MediaBundle\Entity\Media' == $associationMapping['targetEntity']) {
+                    $mediaAssociationMappings[$classMetadata->name][$propertyName] = $associationMapping;
+                }
+            }
         }
+
+        return $mediaAssociationMappings;
     }
 }
