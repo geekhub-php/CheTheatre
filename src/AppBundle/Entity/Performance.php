@@ -16,7 +16,7 @@ use AppBundle\Validator\MinSizeSliderImage;
 
 /**
  * @ORM\Table(name="performances")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()

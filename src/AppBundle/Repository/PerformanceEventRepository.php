@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class PerformanceEventRepository extends EntityRepository
+class PerformanceEventRepository extends AbstractRepository
 {
     public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null)
     {
