@@ -1,0 +1,12 @@
+AppBundle\Entity\Tag,,
+title,createdAt,updatedAt
+Podsekalnikov,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Isaak Mendosa,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Antonio,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Stetsko,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Eduardo Palumbo,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Leonid Andriyovycjh Gaev,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Herod,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Kryvyi,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Othello,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
+Mamaev,"<dateTimeBetween('-200 days', 'now')>","<dateTimeBetween($createdAt, 'now')>"
