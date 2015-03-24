@@ -44,7 +44,7 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('type')
-            ->add('description')
+            ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
             ->add('mainPicture', 'sonata_type_model_list',
                 [
                     'required' => false,
