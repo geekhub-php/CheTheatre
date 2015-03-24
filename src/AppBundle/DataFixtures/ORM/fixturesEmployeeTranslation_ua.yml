@@ -1,0 +1,1341 @@
+AppBundle\Entity\Translations\EmployeeTranslation:
+    employeeTranslation1:
+        object: '@employee1'
+        locale: ua
+        field: firstName
+        content: Володимир
+    employeeTranslation2:
+        object: '@employee1'
+        locale: ua
+        field: lastName
+        content: Осипов
+    employeeTranslation3:
+        object: '@employee1'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation4:
+        object: '@employee1'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation5:
+        object: '@employee2'
+        locale: ua
+        field: firstName
+        content: Сергій
+    employeeTranslation6:
+        object: '@employee2'
+        locale: ua
+        field: lastName
+        content: Проскурня
+    employeeTranslation7:
+        object: '@employee2'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation8:
+        object: '@employee2'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation9:
+        object: '@employee3'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation10:
+        object: '@employee3'
+        locale: ua
+        field: lastName
+        content: Павлютін
+    employeeTranslation11:
+        object: '@employee3'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation12:
+        object: '@employee3'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation13:
+        object: '@employee4'
+        locale: ua
+        field: firstName
+        content: Сергій
+    employeeTranslation14:
+        object: '@employee4'
+        locale: ua
+        field: lastName
+        content: Ридванецький
+    employeeTranslation15:
+        object: '@employee4'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation16:
+        object: '@employee4'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation17:
+        object: '@employee5'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation18:
+        object: '@employee5'
+        locale: ua
+        field: lastName
+        content: Ридванецька
+    employeeTranslation19:
+        object: '@employee5'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation20:
+        object: '@employee5'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation21:
+        object: '@employee6'
+        locale: ua
+        field: firstName
+        content: Надія
+    employeeTranslation22:
+        object: '@employee6'
+        locale: ua
+        field: lastName
+        content: Нікіфорова
+    employeeTranslation23:
+        object: '@employee6'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation24:
+        object: '@employee6'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation25:
+        object: '@employee7'
+        locale: ua
+        field: firstName
+        content: Володимир
+    employeeTranslation26:
+        object: '@employee7'
+        locale: ua
+        field: lastName
+        content: Татарінов
+    employeeTranslation27:
+        object: '@employee7'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation28:
+        object: '@employee7'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation29:
+        object: '@employee8'
+        locale: ua
+        field: firstName
+        content: Варвара
+    employeeTranslation30:
+        object: '@employee8'
+        locale: ua
+        field: lastName
+        content: Присяжненко
+    employeeTranslation31:
+        object: '@employee8'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation32:
+        object: '@employee8'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation33:
+        object: '@employee9'
+        locale: ua
+        field: firstName
+        content: Олена
+    employeeTranslation34:
+        object: '@employee9'
+        locale: ua
+        field: lastName
+        content: Бєлкіна
+    employeeTranslation35:
+        object: '@employee9'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation36:
+        object: '@employee9'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation37:
+        object: '@employee10'
+        locale: ua
+        field: firstName
+        content: Світлана
+    employeeTranslation38:
+        object: '@employee10'
+        locale: ua
+        field: lastName
+        content: Лежненко
+    employeeTranslation39:
+        object: '@employee10'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation40:
+        object: '@employee10'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation41:
+        object: '@employee11'
+        locale: ua
+        field: firstName
+        content: Галина
+    employeeTranslation42:
+        object: '@employee11'
+        locale: ua
+        field: lastName
+        content: Кириченко
+    employeeTranslation43:
+        object: '@employee11'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation44:
+        object: '@employee11'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation45:
+        object: '@employee12'
+        locale: ua
+        field: firstName
+        content: Сергій
+    employeeTranslation46:
+        object: '@employee12'
+        locale: ua
+        field: lastName
+        content: Бобров
+    employeeTranslation47:
+        object: '@employee12'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation48:
+        object: '@employee12'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation49:
+        object: '@employee13'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation50:
+        object: '@employee13'
+        locale: ua
+        field: lastName
+        content: Вігран
+    employeeTranslation51:
+        object: '@employee13'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation52:
+        object: '@employee13'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation53:
+        object: '@employee14'
+        locale: ua
+        field: firstName
+        content: Марія
+    employeeTranslation54:
+        object: '@employee14'
+        locale: ua
+        field: lastName
+        content: Марущак
+    employeeTranslation55:
+        object: '@employee14'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation56:
+        object: '@employee14'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation57:
+        object: '@employee15'
+        locale: ua
+        field: firstName
+        content: Юрій
+    employeeTranslation58:
+        object: '@employee15'
+        locale: ua
+        field: lastName
+        content: Берлінський
+    employeeTranslation59:
+        object: '@employee15'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation60:
+        object: '@employee15'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation61:
+        object: '@employee16'
+        locale: ua
+        field: firstName
+        content: Світлана
+    employeeTranslation62:
+        object: '@employee16'
+        locale: ua
+        field: lastName
+        content: Амеліна
+    employeeTranslation63:
+        object: '@employee16'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation64:
+        object: '@employee16'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation65:
+        object: '@employee17'
+        locale: ua
+        field: firstName
+        content: Анна
+    employeeTranslation66:
+        object: '@employee17'
+        locale: ua
+        field: lastName
+        content: Боброва
+    employeeTranslation67:
+        object: '@employee17'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation68:
+        object: '@employee17'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation69:
+        object: '@employee18'
+        locale: ua
+        field: firstName
+        content: Олена
+    employeeTranslation70:
+        object: '@employee18'
+        locale: ua
+        field: lastName
+        content: Брехаря
+    employeeTranslation71:
+        object: '@employee18'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation72:
+        object: '@employee18'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation73:
+        object: '@employee19'
+        locale: ua
+        field: firstName
+        content: Лілія
+    employeeTranslation74:
+        object: '@employee19'
+        locale: ua
+        field: lastName
+        content: Бурлакова
+    employeeTranslation75:
+        object: '@employee19'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation76:
+        object: '@employee19'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation77:
+        object: '@employee20'
+        locale: ua
+        field: firstName
+        content: Оксана
+    employeeTranslation78:
+        object: '@employee20'
+        locale: ua
+        field: lastName
+        content: Вовкостріл
+    employeeTranslation79:
+        object: '@employee20'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation80:
+        object: '@employee20'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation81:
+        object: '@employee21'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation82:
+        object: '@employee21'
+        locale: ua
+        field: lastName
+        content: Гелеверя
+    employeeTranslation83:
+        object: '@employee21'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation84:
+        object: '@employee21'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation85:
+        object: '@employee22'
+        locale: ua
+        field: firstName
+        content: Микола
+    employeeTranslation86:
+        object: '@employee22'
+        locale: ua
+        field: lastName
+        content: Глазов
+    employeeTranslation87:
+        object: '@employee22'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation88:
+        object: '@employee22'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation89:
+        object: '@employee23'
+        locale: ua
+        field: firstName
+        content: Ірина
+    employeeTranslation90:
+        object: '@employee23'
+        locale: ua
+        field: lastName
+        content: Глазова
+    employeeTranslation91:
+        object: '@employee23'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation92:
+        object: '@employee23'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation93:
+        object: '@employee24'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation94:
+        object: '@employee24'
+        locale: ua
+        field: lastName
+        content: Глазова
+    employeeTranslation95:
+        object: '@employee24'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation96:
+        object: '@employee24'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation97:
+        object: '@employee25'
+        locale: ua
+        field: firstName
+        content: Павло
+    employeeTranslation98:
+        object: '@employee25'
+        locale: ua
+        field: lastName
+        content: Гончаров
+    employeeTranslation99:
+        object: '@employee25'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation100:
+        object: '@employee25'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation101:
+        object: '@employee26'
+        locale: ua
+        field: firstName
+        content: Юрій
+    employeeTranslation102:
+        object: '@employee26'
+        locale: ua
+        field: lastName
+        content: Гребень
+    employeeTranslation103:
+        object: '@employee26'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation104:
+        object: '@employee26'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation105:
+        object: '@employee27'
+        locale: ua
+        field: firstName
+        content: Юрій
+    employeeTranslation106:
+        object: '@employee27'
+        locale: ua
+        field: lastName
+        content: Гребень
+    employeeTranslation107:
+        object: '@employee27'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation108:
+        object: '@employee27'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation109:
+        object: '@employee28'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation110:
+        object: '@employee28'
+        locale: ua
+        field: lastName
+        content: Гуменний
+    employeeTranslation111:
+        object: '@employee28'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation112:
+        object: '@employee28'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation113:
+        object: '@employee29'
+        locale: ua
+        field: firstName
+        content: Юлія
+    employeeTranslation114:
+        object: '@employee29'
+        locale: ua
+        field: lastName
+        content: Донська-Гуменна
+    employeeTranslation115:
+        object: '@employee29'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation116:
+        object: '@employee29'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation117:
+        object: '@employee30'
+        locale: ua
+        field: firstName
+        content: Микола
+    employeeTranslation118:
+        object: '@employee30'
+        locale: ua
+        field: lastName
+        content: Зайнчківський
+    employeeTranslation119:
+        object: '@employee30'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation120:
+        object: '@employee30'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation121:
+        object: '@employee31'
+        locale: ua
+        field: firstName
+        content: Анжеліна
+    employeeTranslation122:
+        object: '@employee31'
+        locale: ua
+        field: lastName
+        content: Іванова
+    employeeTranslation123:
+        object: '@employee31'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation124:
+        object: '@employee31'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation125:
+        object: '@employee32'
+        locale: ua
+        field: firstName
+        content: Валерій
+    employeeTranslation126:
+        object: '@employee32'
+        locale: ua
+        field: lastName
+        content: Кириченко
+    employeeTranslation127:
+        object: '@employee32'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation128:
+        object: '@employee32'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation129:
+        object: '@employee33'
+        locale: ua
+        field: firstName
+        content: Олексій
+    employeeTranslation130:
+        object: '@employee33'
+        locale: ua
+        field: lastName
+        content: Клименко
+    employeeTranslation131:
+        object: '@employee33'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation132:
+        object: '@employee33'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation133:
+        object: '@employee34'
+        locale: ua
+        field: firstName
+        content: Сергій
+    employeeTranslation134:
+        object: '@employee34'
+        locale: ua
+        field: lastName
+        content: Коваленко
+    employeeTranslation135:
+        object: '@employee34'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation136:
+        object: '@employee34'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation137:
+        object: '@employee35'
+        locale: ua
+        field: firstName
+        content: Вікторія
+    employeeTranslation138:
+        object: '@employee35'
+        locale: ua
+        field: lastName
+        content: Ковальова
+    employeeTranslation139:
+        object: '@employee35'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation140:
+        object: '@employee35'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation141:
+        object: '@employee36'
+        locale: ua
+        field: firstName
+        content: Віктор
+    employeeTranslation142:
+        object: '@employee36'
+        locale: ua
+        field: lastName
+        content: Коломієць
+    employeeTranslation143:
+        object: '@employee36'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation144:
+        object: '@employee36'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation145:
+        object: '@employee37'
+        locale: ua
+        field: firstName
+        content: Михайло
+    employeeTranslation146:
+        object: '@employee37'
+        locale: ua
+        field: lastName
+        content: Кондратський
+    employeeTranslation147:
+        object: '@employee37'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation148:
+        object: '@employee37'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation149:
+        object: '@employee38'
+        locale: ua
+        field: firstName
+        content: Надія
+    employeeTranslation150:
+        object: '@employee38'
+        locale: ua
+        field: lastName
+        content: Корбут
+    employeeTranslation151:
+        object: '@employee38'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation152:
+        object: '@employee38'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation153:
+        object: '@employee39'
+        locale: ua
+        field: firstName
+        content: Тетяна
+    employeeTranslation154:
+        object: '@employee39'
+        locale: ua
+        field: lastName
+        content: Крижанівська
+    employeeTranslation155:
+        object: '@employee39'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation156:
+        object: '@employee39'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation157:
+        object: '@employee40'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation158:
+        object: '@employee40'
+        locale: ua
+        field: lastName
+        content: Кузьменко
+    employeeTranslation159:
+        object: '@employee40'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation160:
+        object: '@employee40'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation161:
+        object: '@employee41'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation162:
+        object: '@employee41'
+        locale: ua
+        field: lastName
+        content: Кузьмин
+    employeeTranslation163:
+        object: '@employee41'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation164:
+        object: '@employee41'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation165:
+        object: '@employee42'
+        locale: ua
+        field: firstName
+        content: Анна
+    employeeTranslation166:
+        object: '@employee42'
+        locale: ua
+        field: lastName
+        content: Куриленко
+    employeeTranslation167:
+        object: '@employee42'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation168:
+        object: '@employee42'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation169:
+        object: '@employee43'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation170:
+        object: '@employee43'
+        locale: ua
+        field: lastName
+        content: Мамалига
+    employeeTranslation171:
+        object: '@employee43'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation172:
+        object: '@employee43'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation173:
+        object: '@employee44'
+        locale: ua
+        field: firstName
+        content: Ірина
+    employeeTranslation174:
+        object: '@employee44'
+        locale: ua
+        field: lastName
+        content: Маслова
+    employeeTranslation175:
+        object: '@employee44'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation176:
+        object: '@employee44'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation177:
+        object: '@employee45'
+        locale: ua
+        field: firstName
+        content: Світлана
+    employeeTranslation178:
+        object: '@employee45'
+        locale: ua
+        field: lastName
+        content: Москаленко
+    employeeTranslation179:
+        object: '@employee45'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation180:
+        object: '@employee45'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation181:
+        object: '@employee46'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation182:
+        object: '@employee46'
+        locale: ua
+        field: lastName
+        content: Панекіна
+    employeeTranslation183:
+        object: '@employee46'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation184:
+        object: '@employee46'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation185:
+        object: '@employee47'
+        locale: ua
+        field: firstName
+        content: Наталія
+    employeeTranslation186:
+        object: '@employee47'
+        locale: ua
+        field: lastName
+        content: Науменко
+    employeeTranslation187:
+        object: '@employee47'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation188:
+        object: '@employee47'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation189:
+        object: '@employee48'
+        locale: ua
+        field: firstName
+        content: Сергій
+    employeeTranslation190:
+        object: '@employee48'
+        locale: ua
+        field: lastName
+        content: Пономаренко
+    employeeTranslation191:
+        object: '@employee48'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation192:
+        object: '@employee48'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation193:
+        object: '@employee49'
+        locale: ua
+        field: firstName
+        content: Олена
+    employeeTranslation194:
+        object: '@employee49'
+        locale: ua
+        field: lastName
+        content: Пономаренко
+    employeeTranslation195:
+        object: '@employee49'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation196:
+        object: '@employee49'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation197:
+        object: '@employee50'
+        locale: ua
+        field: firstName
+        content: Лідія
+    employeeTranslation198:
+        object: '@employee50'
+        locale: ua
+        field: lastName
+        content: Попова
+    employeeTranslation199:
+        object: '@employee50'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation200:
+        object: '@employee50'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation201:
+        object: '@employee51'
+        locale: ua
+        field: firstName
+        content: Дмитро
+    employeeTranslation202:
+        object: '@employee51'
+        locale: ua
+        field: lastName
+        content: Потапчук
+    employeeTranslation203:
+        object: '@employee51'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation204:
+        object: '@employee51'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation205:
+        object: '@employee52'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation206:
+        object: '@employee52'
+        locale: ua
+        field: lastName
+        content: Приз
+    employeeTranslation207:
+        object: '@employee52'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation208:
+        object: '@employee52'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation209:
+        object: '@employee53'
+        locale: ua
+        field: firstName
+        content: Юрій
+    employeeTranslation210:
+        object: '@employee53'
+        locale: ua
+        field: lastName
+        content: Прокопчук
+    employeeTranslation211:
+        object: '@employee53'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation212:
+        object: '@employee53'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation213:
+        object: '@employee54'
+        locale: ua
+        field: firstName
+        content: Олександр
+    employeeTranslation214:
+        object: '@employee54'
+        locale: ua
+        field: lastName
+        content: Пятківський
+    employeeTranslation215:
+        object: '@employee54'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation216:
+        object: '@employee54'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation217:
+        object: '@employee55'
+        locale: ua
+        field: firstName
+        content: Ольга
+    employeeTranslation218:
+        object: '@employee55'
+        locale: ua
+        field: lastName
+        content: Ромодан
+    employeeTranslation219:
+        object: '@employee55'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation220:
+        object: '@employee55'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation221:
+        object: '@employee56'
+        locale: ua
+        field: firstName
+        content: Любов
+    employeeTranslation222:
+        object: '@employee56'
+        locale: ua
+        field: lastName
+        content: Скобель
+    employeeTranslation223:
+        object: '@employee56'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation224:
+        object: '@employee56'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation225:
+        object: '@employee57'
+        locale: ua
+        field: firstName
+        content: Євген
+    employeeTranslation226:
+        object: '@employee57'
+        locale: ua
+        field: lastName
+        content: Скрипніченко
+    employeeTranslation227:
+        object: '@employee57'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation228:
+        object: '@employee57'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation229:
+        object: '@employee58'
+        locale: ua
+        field: firstName
+        content: Людмила
+    employeeTranslation230:
+        object: '@employee58'
+        locale: ua
+        field: lastName
+        content: Талах
+    employeeTranslation231:
+        object: '@employee58'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation232:
+        object: '@employee58'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation233:
+        object: '@employee59'
+        locale: ua
+        field: firstName
+        content: Олег
+    employeeTranslation234:
+        object: '@employee59'
+        locale: ua
+        field: lastName
+        content: Телятник
+    employeeTranslation235:
+        object: '@employee59'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation236:
+        object: '@employee59'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation237:
+        object: '@employee60'
+        locale: ua
+        field: firstName
+        content: Світлана
+    employeeTranslation238:
+        object: '@employee60'
+        locale: ua
+        field: lastName
+        content: Терещенко
+    employeeTranslation239:
+        object: '@employee60'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation240:
+        object: '@employee60'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation241:
+        object: '@employee61'
+        locale: ua
+        field: firstName
+        content: Лілія
+    employeeTranslation242:
+        object: '@employee61'
+        locale: ua
+        field: lastName
+        content: Харченко
+    employeeTranslation243:
+        object: '@employee61'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation244:
+        object: '@employee61'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation245:
+        object: '@employee62'
+        locale: ua
+        field: firstName
+        content: Костянтин
+    employeeTranslation246:
+        object: '@employee62'
+        locale: ua
+        field: lastName
+        content: Шаєнко
+    employeeTranslation247:
+        object: '@employee62'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation248:
+        object: '@employee62'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation249:
+        object: '@employee63'
+        locale: ua
+        field: firstName
+        content: Катерина
+    employeeTranslation250:
+        object: '@employee63'
+        locale: ua
+        field: lastName
+        content: Шакалова
+    employeeTranslation251:
+        object: '@employee63'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation252:
+        object: '@employee63'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation253:
+        object: '@employee64'
+        locale: ua
+        field: firstName
+        content: Петро
+    employeeTranslation254:
+        object: '@employee64'
+        locale: ua
+        field: lastName
+        content: Голубченко
+    employeeTranslation255:
+        object: '@employee64'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation256:
+        object: '@employee64'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation257:
+        object: '@employee65'
+        locale: ua
+        field: firstName
+        content: Катерина
+    employeeTranslation258:
+        object: '@employee65'
+        locale: ua
+        field: lastName
+        content: Олейнікова
+    employeeTranslation259:
+        object: '@employee65'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation260:
+        object: '@employee65'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation261:
+        object: '@employee66'
+        locale: ua
+        field: firstName
+        content: Олена
+    employeeTranslation262:
+        object: '@employee66'
+        locale: ua
+        field: lastName
+        content: Передрій
+    employeeTranslation263:
+        object: '@employee66'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation264:
+        object: '@employee66'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
+    employeeTranslation265:
+        object: '@employee67'
+        locale: ua
+        field: firstName
+        content: Максим
+    employeeTranslation266:
+        object: '@employee67'
+        locale: ua
+        field: lastName
+        content: Рижевол
+    employeeTranslation267:
+        object: '@employee67'
+        locale: ua
+        field: middleName
+        content: <firstName()>
+    employeeTranslation268:
+        object: '@employee67'
+        locale: ua
+        field: biography
+        content: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'

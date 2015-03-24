@@ -1,0 +1,51 @@
+AppBundle\Entity\Translations\TagTranslation:
+    tagTranslation1:
+        object: '@tag1'
+        locale: ua
+        field: title
+        content: Подсекальніков
+    tagTranslation2:
+        object: '@tag2'
+        locale: ua
+        field: title
+        content: 'Ісааск Мендоса'
+    tagTranslation3:
+        object: '@tag3'
+        locale: ua
+        field: title
+        content: Антоніо
+    tagTranslation4:
+        object: '@tag4'
+        locale: ua
+        field: title
+        content: Стецько
+    tagTranslation5:
+        object: '@tag5'
+        locale: ua
+        field: title
+        content: 'Едуардо Палумбо'
+    tagTranslation6:
+        object: '@tag6'
+        locale: ua
+        field: title
+        content: 'Леонід Андрійович Гаєв'
+    tagTranslation7:
+        object: '@tag7'
+        locale: ua
+        field: title
+        content: Ірод
+    tagTranslation8:
+        object: '@tag8'
+        locale: ua
+        field: title
+        content: Кривий
+    tagTranslation9:
+        object: '@tag9'
+        locale: ua
+        field: title
+        content: Отелло
+    tagTranslation10:
+        object: '@tag10'
+        locale: ua
+        field: title
+        content: Мамаєв

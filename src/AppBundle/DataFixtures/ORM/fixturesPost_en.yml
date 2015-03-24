@@ -1,128 +1,129 @@
 AppBundle\Entity\Post:
-  post1:
-    title: Among the Thunder and Silence
-    shortDescription: The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History
-    text: The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post2:
-    title: Kaydash Family
-    shortDescription: Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.
-    text: Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post3:
-    title: Garden of Gethsemane
-    shortDescription: People tragedy in 2 acts. Duration: 2 hours. 20 min.
-    text: People tragedy in 2 acts. Duration: 2 hours. 20 min. Running time: 1 hour. 50 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post4:
-    title: Shelmenko-servant
-    shortDescription: Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.
-    text: Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post5:
-    title: Who's the Boss at Home?
-    shortDescription: Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.
-    text: Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post6:
-    title: Chasing Two Hares
-    shortDescription: Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.
-    text: Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post7:
-    title: Matchmaking in Goncharivka
-    shortDescription: Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.
-    text: Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post8:
-    title: Still Life with Thick Nephew
-    shortDescription: Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.
-    text: Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post9:
-    title: Misanthrope
-    shortDescription: Jean-Baptiste Moliere. Manic comedy
-    text: Jean-Baptiste Moliere. Manic comedy
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post10:
-    title: Very Simple Story
-    shortDescription: Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.
-    text: Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post11:
-    title: Skanning
-    shortDescription: Eugene Markowski. Dystopia
-    text: Eugene Markowski. Dystopia
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post12:
-    title: Nazar Stodolya
-    shortDescription: Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.
-    text: Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post13:
-    title: Twelve Months or Guardians of the Year
-    shortDescription: Samuil Marshak. The musical tale. Duration: 1 hour.
-    text: Samuil Marshak. The musical tale. Duration: 1 hour.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post14:
-    title: Golden Chicken
-    shortDescription: Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.
-    text: Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post15:
-    title: King Drozdoborod
-    shortDescription: Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.
-    text: Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
-  post16:
-    title: Road to the Sun
-    shortDescription: Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.
-    text: Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.
-    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
-    createdAt: <dateTimeBetween('-200 days', 'now')>
-    updatedAt: <dateTimeBetween($createdAt, 'now')>
-    tags: 5x @tag*
+    post1:
+        title: 'Among the Thunder and Silence'
+        shortDescription: 'The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History'
+        text: 'The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post2:
+        title: 'Kaydash Family'
+        shortDescription: 'Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.'
+        text: 'Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post3:
+        title: 'Garden of Gethsemane'
+        shortDescription: 'People tragedy in 2 acts. Duration: 2 hours. 20 min.'
+        text: 'People tragedy in 2 acts. Duration: 2 hours. 20 min. Running time: 1 hour. 50 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post4:
+        title: Shelmenko-servant
+        shortDescription: 'Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.'
+        text: 'Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post5:
+        title: 'Whos the Boss at Home?'
+        shortDescription: 'Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.'
+        text: 'Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post6:
+        title: 'Chasing Two Hares'
+        shortDescription: 'Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.'
+        text: 'Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post7:
+        title: 'Matchmaking in Goncharivka'
+        shortDescription: 'Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.'
+        text: 'Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post8:
+        title: 'Still Life with Thick Nephew'
+        shortDescription: 'Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.'
+        text: 'Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post9:
+        title: Misanthrope
+        shortDescription: 'Jean-Baptiste Moliere. Manic comedy'
+        text: 'Jean-Baptiste Moliere. Manic comedy'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post10:
+        title: 'Very Simple Story'
+        shortDescription: 'Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.'
+        text: 'Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post11:
+        title: Skanning
+        shortDescription: 'Eugene Markowski. Dystopia'
+        text: 'Eugene Markowski. Dystopia'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post12:
+        title: 'Nazar Stodolya'
+        shortDescription: 'Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.'
+        text: 'Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post13:
+        title: 'Twelve Months or Guardians of the Year'
+        shortDescription: 'Samuil Marshak. The musical tale. Duration: 1 hour.'
+        text: 'Samuil Marshak. The musical tale. Duration: 1 hour.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post14:
+        title: 'Golden Chicken'
+        shortDescription: 'Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.'
+        text: 'Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post15:
+        title: 'King Drozdoborod'
+        shortDescription: 'Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.'
+        text: 'Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
+    post16:
+        title: 'Road to the Sun'
+        shortDescription: 'Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.'
+        text: 'Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.'
+        mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>
+        tags: '5x @tag*'
