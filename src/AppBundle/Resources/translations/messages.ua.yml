@@ -5,3 +5,16 @@ submit: Увійти
 sing_in_message: Будь-ласка, авторизуйтеся
 sing_in_title: Авторизація
 Image_must_be_minimum_size: Розмір зображення повиннен не перевищувати %width% пікселів по довжині та %height% пікслеів по висоті!
+employee.edit.position.label: Посада
+actor: Актор
+actress: Актриса
+theatre_director: Директор Театру
+acting_artistic_director: Виконуючий обовязки художнього керівника
+production_director: Режисер-постановник
+main_artist: Головний художник
+costumer: Костюмер
+art_director: Художній керівник
+main_choreographer: Головний хорегограф
+head_of_the_literary_and_dramatic_part: Завідуючий літературно-драматичною частиною
+conductor: Диригент
+accompanist: Концертмейстер

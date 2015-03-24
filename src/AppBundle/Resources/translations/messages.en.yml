@@ -5,3 +5,16 @@ submit: Sign in
 sing_in_message: Please sign in
 sing_in_title: Authorithation
 Image_must_be_minimum_size: Image size must have minimum %width% px width and %height% px height!
+employee.edit.position.label: Position
+actor: actor
+actress: actress
+theatre_director: theatre director
+acting_artistic_director: acting artistic director
+production_director: production director
+main_artist: main artist
+costumer: costumer
+art_director: art director
+main_choreographer: main choreographer
+head_of_the_literary_and_dramatic_part: head of the literary and dramatic part
+conductor: conductor
+accompanist: accompanist
