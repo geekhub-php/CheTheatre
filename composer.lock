@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6e87190cb0e443dd8a4b239258583ed4",
+    "hash": "4d0c17022a50f981d87f10eda5b37625",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3369,6 +3369,66 @@
                 "sonata"
             ],
             "time": "2014-09-11 12:33:15"
+        },
+        {
+            "name": "sonata-project/translation-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataTranslationBundle.git",
+                "reference": "9e51b13d4751172e8e5638df97e3884b72020419"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataTranslationBundle/zipball/9e51b13d4751172e8e5638df97e3884b72020419",
+                "reference": "9e51b13d4751172e8e5638df97e3884b72020419",
+                "shasum": ""
+            },
+            "require": {
+                "sonata-project/core-bundle": "~2.2",
+                "symfony/symfony": "~2.2"
+            },
+            "require-dev": {
+                "stof/doctrine-extensions-bundle": "1.1.*"
+            },
+            "suggest": {
+                "sonata-project/doctrine-orm-admin-bundle": "2.2.*",
+                "sonata-project/doctrine-phpcr-admin-bundle": "1.*",
+                "stof/doctrine-extensions-bundle": "1.1.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\TranslationBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Bastien",
+                    "email": "nbastien.pro@gmail.com",
+                    "homepage": "https://github.com/nicolas-bastien"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataTranslationBundle/contributors"
+                }
+            ],
+            "description": "SonataTranslationBundle",
+            "homepage": "http://sonata-project.org/bundles/translation",
+            "keywords": [
+                "i18n",
+                "translation"
+            ],
+            "time": "2015-03-17 12:13:01"
         },
         {
             "name": "stof/doctrine-extensions-bundle",

@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new \GeekHub\DomainRoutingBundle\DomainRoutingBundle(),
+            new Sonata\TranslationBundle\SonataTranslationBundle(),
         );
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
