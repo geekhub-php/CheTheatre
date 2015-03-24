@@ -13,15 +13,18 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use AppBundle\Validator\MinSizeSliderImage;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
  */
-class Performance
+class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait, LinksTrait;
 
@@ -103,13 +106,6 @@ class Performance
      * @SerializedName("sliderImage")
      */
     public $sliderImageThumbnails;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
 
     /**
      * @var PerformanceEvent[]
@@ -277,11 +273,6 @@ class Performance
         $this->sliderImage = $sliderImage;
 
         return $this;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**
