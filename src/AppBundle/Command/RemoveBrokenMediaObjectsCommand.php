@@ -2,7 +2,6 @@
 
 namespace AppBundle\Command;
 
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,8 +19,8 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param  InputInterface  $input
+     * @param  OutputInterface $output
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -29,6 +28,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
         $mediaManager = $this->getContainer()->get('sonata.media.manager.media');
 
         $associatedMediaMappings = $this->getAssociationMediaMappings();
+
         $associatedMediaObjects = $this->getAssociatedMediaObjects($associatedMediaMappings);
         $associatedMediaObjectsIds = array_map(function (SonataEntityMedia $media) {
             return $media->getId();
@@ -36,22 +36,39 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
 
         foreach ($mediaManager->findAll() as $media) {
             if (false == in_array($media->getId(), $associatedMediaObjectsIds)) {
-                $mediaManager->delete($media);
                 $output->writeln(sprintf('Removed media with id "%s"', $media->getId()));
+                $mediaManager->delete($media);
             }
         }
 
         $output->writeln('Deleted media without reference object was successful');
     }
 
-
     /**
      * @param array $associationMappings
      * @return array SonataEntityMedia[]
      */
-    protected function associatedMediaObjects(array $associationMappings)
+    protected function getAssociatedMediaObjects(array $associationMappings)
     {
-        // ToDo implement it
+        $em = $this->getContainer()->get('doctrine')->getManager();
+
+        $accessor = new PropertyAccessor();
+
+        $mediaObjects = [];
+
+        foreach ($associationMappings as $repositoryName => $properties) {
+            foreach ($properties as $property) {
+                $objects = $em->getRepository($repositoryName)->findAll();
+
+                foreach ($objects as $object) {
+                    if (!is_null($accessor->getValue($object, $property))) {
+                        $mediaObjects[] = $accessor->getValue($object, $property);
+                    }
+                }
+            }
+        }
+
+        return $mediaObjects;
     }
 
     /**
@@ -72,7 +89,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
         foreach ($appClassMetadata as $classMetadata) {
             foreach ($classMetadata->associationMappings as $propertyName => $associationMapping) {
                 if ('Application\Sonata\MediaBundle\Entity\Media' == $associationMapping['targetEntity']) {
-                    $mediaAssociationMappings[$classMetadata->name][$propertyName] = $associationMapping;
+                    $mediaAssociationMappings[$classMetadata->name][] = $propertyName;
                 }
             }
         }

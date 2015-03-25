@@ -4,13 +4,11 @@ namespace AppBundle\Tests\Command;
 
 use AppBundle\Command\RemoveBrokenMediaObjectsCommand;
 use AppBundle\Tests\Controller\AbstractController;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\SecurityBundle\Tests\Functional\WebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Application\Sonata\MediaBundle\Entity\Media;
 
-class RemoveImageCommandTest extends AbstractController
+class RemoveBrokenMediaObjectsCommandTest extends AbstractController
 {
     public function testExecuteCommand()
     {
@@ -24,7 +22,7 @@ class RemoveImageCommandTest extends AbstractController
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
-        $this->assertContains("Delete media without reference object successful removed", $commandTester->getDisplay());
+        $this->assertContains("Deleted media without reference object was successful", $commandTester->getDisplay());
 
         $commandTester->execute([]);
 
@@ -42,6 +40,6 @@ class RemoveImageCommandTest extends AbstractController
         $this->getEm()->flush();
 
         $commandTester->execute([]);
-        $this->assertContains("employee", $commandTester->getDisplay());
+        $this->assertContains("Removed media with id", $commandTester->getDisplay());
     }
 }
