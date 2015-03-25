@@ -50,14 +50,12 @@ class TagTransformer implements DataTransformerInterface
         $tags = new ArrayCollection();
 
         foreach (explode(',', $string) as $tagTitle) {
-
             $tag = $this->om->getRepository('AppBundle:Tag')->findOneByTitle($tagTitle);
 
             if (
                 !$tag &&
                 $tagTranslation = $this->om->getRepository('AppBundle:Translations\TagTranslation')->findOneByContent($tagTitle)
             ) {
-
                 $tag = $tagTranslation->getObject();
             }
 
