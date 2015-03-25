@@ -46,7 +46,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
 
     /**
      * @param array $associationMappings
-     * @return array SonataEntityMedia[]
+     * @return array
      */
     protected function getAssociatedMediaObjects(array $associationMappings)
     {
