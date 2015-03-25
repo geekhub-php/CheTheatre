@@ -56,6 +56,17 @@ class PerformanceAdmin extends Admin
                     ],
                 ]
             )
+            ->add('sliderImage', 'sonata_type_model_list',
+                [
+                    'required' => false,
+                    'btn_list' => false,
+                ], [
+                    'link_parameters' => [
+                        'context'  => 'slider',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
             ->add('premiere', 'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => true,

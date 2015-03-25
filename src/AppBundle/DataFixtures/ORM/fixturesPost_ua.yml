@@ -3,7 +3,7 @@ AppBundle\Entity\Post:
     title: Серед грому і тиші
     shortDescription: Вистава присвячена 80-річчю від дня народження Василя Симоненка. Сергій Проскурня. документальна історія
     text: Вистава присвячена 80-річчю від дня народження Василя Симоненка. Сергій Проскурня. документальна історія
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -11,7 +11,7 @@ AppBundle\Entity\Post:
     title: Кайдашева сім'я
     shortDescription: Іван Нечуй-Левицький. Трагікомедія на 3 дії. Тривалість вистави 2 год. 35 хв.
     text: Іван Нечуй-Левицький. Трагікомедія на 3 дії. Тривалість вистави 2 год. 35 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -19,7 +19,7 @@ AppBundle\Entity\Post:
     title: Сад Гетсиманський
     shortDescription: Народна трагедія на 2 дії. Тривалість вистави 2 год. 20 хв. Тривалість вистави 1 год. 50 хв.
     text: Народна трагедія на 2 дії. Тривалість вистави 2 год. 20 хв. Тривалість вистави 1 год. 50 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -27,7 +27,7 @@ AppBundle\Entity\Post:
     title: Шельменко-денщик
     shortDescription: Григорій Квітка-Основ’яненко. Музика Василя Соловйова-Сєдого. Музична комедія на 3 дії.
     text: Григорій Квітка-Основ’яненко. Музика Василя Соловйова-Сєдого. Музична комедія на 3 дії.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -35,7 +35,7 @@ AppBundle\Entity\Post:
     title: Хто в домі господар?
     shortDescription: Олексій Коломієць. Травестія на 2 дії за п’єсою «Фараони». Тривалість вистави 2 год. 05 хв.
     text: Олексій Коломієць. Травестія на 2 дії за п’єсою «Фараони». Тривалість вистави 2 год. 05 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -43,7 +43,7 @@ AppBundle\Entity\Post:
     title: За двома зайцями
     shortDescription: Михайло Старицький. Комедія на 2 дії. Тривалість вистави 2 год. 15 хв.
     text: Михайло Старицький. Комедія на 2 дії. Тривалість вистави 2 год. 15 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -51,7 +51,7 @@ AppBundle\Entity\Post:
     title: Сватання на Гончарівці
     shortDescription: Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.
     text: Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -59,7 +59,7 @@ AppBundle\Entity\Post:
     title: Натюрморт з товстим небожем
     shortDescription: Іон Сапдару. Трагікомедія на 2 дії про красу чудовиськ і любов. Тривалість вистави 1 год. 40 хв.
     text: Іон Сапдару. Трагікомедія на 2 дії про красу чудовиськ і любов. Тривалість вистави 1 год. 40 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -67,7 +67,7 @@ AppBundle\Entity\Post:
     title: Мізантроп
     shortDescription: Жан-Батіст Мольєр. Маніакальна комедія
     text: Жан-Батіст Мольєр. Маніакальна комедія
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -75,7 +75,7 @@ AppBundle\Entity\Post:
     title: Дуже проста історія
     shortDescription: Марія Ладо. Притча (вистава йде з одним антрактом). Тривалість вистави 2 год.
     text: Марія Ладо. Притча (вистава йде з одним антрактом). Тривалість вистави 2 год.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -83,7 +83,7 @@ AppBundle\Entity\Post:
     title: Сканінг
     shortDescription: Євген Марковський. Антиутопія
     text: Євген Марковський. Антиутопія
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -91,7 +91,7 @@ AppBundle\Entity\Post:
     title: Назар Стодоля
     shortDescription: Тарас Шевченко. Різдвяна містерія-бурлеск. Тривалість вистави 2 год.
     text: Тарас Шевченко. Різдвяна містерія-бурлеск. Тривалість вистави 2 год.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -99,7 +99,7 @@ AppBundle\Entity\Post:
     title: Дванадцять місяців або хранителі року
     shortDescription: Самуіл Маршак. Музична казка. Тривалість вистави 1 год.
     text: Самуіл Маршак. Музична казка. Тривалість вистави 1 год.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -107,7 +107,7 @@ AppBundle\Entity\Post:
     title: Золоте курча
     shortDescription: Володимир Орлов. Музична казка на 1 дію. Тривалість вистави 50 хв.
     text: Володимир Орлов. Музична казка на 1 дію. Тривалість вистави 50 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -115,7 +115,7 @@ AppBundle\Entity\Post:
     title: Король Дроздобород
     shortDescription: Богдан Стельмах. Музична казка на 1 дію. Тривалість вистави 1 год. 10 хв.
     text: Богдан Стельмах. Музична казка на 1 дію. Тривалість вистави 1 год. 10 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*
@@ -123,7 +123,7 @@ AppBundle\Entity\Post:
     title: Дорога до сонця
     shortDescription: Аркадій Горін, Едуард Яворський. Музична казка на 1 дію. Тривалість вистави 1 год. 15 хв.
     text: Аркадій Горін, Едуард Яворський. Музична казка на 1 дію. Тривалість вистави 1 год. 15 хв.
-    mainPicture: <getMedia('perfomance-posters/default.jpg', 'post')>
+    mainPicture: <getMedia('performance-posters/default.jpg', 'post')>
     createdAt: <dateTimeBetween('-200 days', 'now')>
     updatedAt: <dateTimeBetween($createdAt, 'now')>
     tags: 5x @tag*

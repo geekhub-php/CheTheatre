@@ -31,3 +31,9 @@ services:
         arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
         tags:
             - { name: validator.constraint_validator, alias: two_performance_events_per_day }
+
+    min_size_slider_image_validator:
+        class: AppBundle\Validator\MinSizeSliderImageValidator
+        arguments: ["@translator"]
+        tags:
+            - { name: validator.constraint_validator, alias: min_size_slider_image }
