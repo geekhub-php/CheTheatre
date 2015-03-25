@@ -28,27 +28,25 @@ class LoadCsvFixturesCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param  InputInterface  $input
+     * @param  InputInterface $input
      * @param  OutputInterface $output
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $entityName = $input->getArgument('isTranslation') ?
-            $input->getArgument('entity').'Translation' :
-            $input->getArgument('entity')
-        ;
+            $input->getArgument('entity') . 'Translation' :
+            $input->getArgument('entity');
 
         $fileName = $input->getArgument('isTranslation') ?
-            'fixtures'.ucfirst($entityName).'_ua' :
-            'fixtures'.ucfirst($entityName).'_en'
-        ;
+            'fixtures' . ucfirst($entityName) . '_ua' :
+            'fixtures' . ucfirst($entityName) . '_en';
 
-        $csvDir = __DIR__.'/../DataFixtures/data/csv/';
-        $csvFile = $csvDir.$fileName.'.csv';
+        $csvDir = __DIR__ . '/../DataFixtures/data/csv/';
+        $csvFile = $csvDir . $fileName . '.csv';
 
-        $ymlDir = __DIR__.'/../DataFixtures/ORM/';
-        $ymlFile = $ymlDir.$fileName.'.yml';
+        $ymlDir = __DIR__ . '/../DataFixtures/ORM/';
+        $ymlFile = $ymlDir . $fileName . '.yml';
 
         if ($yamlArray = $this->csvToArray($entityName, $csvFile)) {
             $yaml = Yaml::dump($yamlArray, 3);
@@ -80,7 +78,7 @@ class LoadCsvFixturesCommand extends ContainerAwareCommand
 
             for ($i = 2; $i < (count($allData)); $i++) {
                 for ($c = 0; $c < $number; $c++) {
-                    $yamlArray[$entityPath][$entityName.($i - 1)][$allData[1][$c]] = $allData[$i][$c];
+                    $yamlArray[$entityPath][$entityName . ($i - 1)][$allData[1][$c]] = $allData[$i][$c];
                 }
             }
 

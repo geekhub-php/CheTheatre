@@ -19,7 +19,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\TagTranslation")
  * @ExclusionPolicy("all")
  */
-class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Tag extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -58,28 +58,27 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      */
     private $posts;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function __toString()
     {
         return $this->getTitle();
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Get id
+     * Get title
      *
-     * @return integer
+     * @return string
      */
-    public function getId()
+    public function getTitle()
     {
-        return $this->id;
+        return $this->title;
     }
 
     /**
@@ -96,13 +95,23 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     }
 
     /**
-     * Get title
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get slug
      *
      * @return string
      */
-    public function getTitle()
+    public function getSlug()
     {
-        return $this->title;
+        return $this->slug;
     }
 
     /**
@@ -116,16 +125,6 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**

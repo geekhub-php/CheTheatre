@@ -8,6 +8,7 @@ sonata_admin:
     templates:
         layout: ::SonataAdmin/standard_layout.html.twig
         edit: ::SonataAdmin/CRUD/edit.html.twig
+        layout: ::SonataAdmin/sonata_translation.html.twig
 
     dashboard:
         groups:

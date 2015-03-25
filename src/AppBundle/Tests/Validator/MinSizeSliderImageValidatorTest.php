@@ -33,10 +33,30 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
             ->context
             ->expects($this->once())
             ->method('addViolationAt')
-            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]))
-        ;
+            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]));
 
         $validator->validate($newPerformance, $this->constraint);
+    }
+
+    public function getPerformanceEntityMock(array $performanceSliderImageSize)
+    {
+        $sliderImage = $this->getMockBuilder('Application\Sonata\MediaBundle\Entity\Media')->disableOriginalConstructor()->getMock();
+
+        $sliderImage
+            ->method('getWidth')
+            ->will($this->returnValue($performanceSliderImageSize['width']));
+
+        $sliderImage
+            ->method('getHeight')
+            ->will($this->returnValue($performanceSliderImageSize['height']));
+
+        $performance = $this->getMockBuilder('AppBundle\Entity\Performance')->disableOriginalConstructor()->getMock();
+
+        $performance
+            ->method('getSliderImage')
+            ->will($this->returnValue($sliderImage));
+
+        return $performance;
     }
 
     /**
@@ -53,8 +73,7 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
             ->context
             ->expects($this->exactly(0))
             ->method('addViolationAt')
-            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]))
-        ;
+            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]));
 
         $validator->validate($newPerformance, $this->constraint);
     }
@@ -76,30 +95,6 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
             [['width' => 1000, 'height' => 500]],
             [['width' => 1100, 'height' => 600]],
         ];
-    }
-
-    public function getPerformanceEntityMock(array $performanceSliderImageSize)
-    {
-        $sliderImage = $this->getMockBuilder('Application\Sonata\MediaBundle\Entity\Media')->disableOriginalConstructor()->getMock();
-
-        $sliderImage
-            ->method('getWidth')
-            ->will($this->returnValue($performanceSliderImageSize['width']))
-        ;
-
-        $sliderImage
-            ->method('getHeight')
-            ->will($this->returnValue($performanceSliderImageSize['height']))
-        ;
-
-        $performance = $this->getMockBuilder('AppBundle\Entity\Performance')->disableOriginalConstructor()->getMock();
-
-        $performance
-            ->method('getSliderImage')
-            ->will($this->returnValue($sliderImage))
-        ;
-
-        return $performance;
     }
 
     public function tearDown()

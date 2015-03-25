@@ -27,7 +27,7 @@ class MinSizeSliderImageValidator extends ConstraintValidator
 
     /**
      * @param \AppBundle\Entity\Performance $object
-     * @param Constraint                    $constraint
+     * @param Constraint $constraint
      */
     public function validate($object, Constraint $constraint)
     {
@@ -35,8 +35,7 @@ class MinSizeSliderImageValidator extends ConstraintValidator
             $this->context->addViolationAt(
                 'sliderImage',
                 $this->translator->trans($constraint->message, ['%height%' => self::MIN_HEIGHT, '%width%' => self::MIN_WIDTH])
-                )
-            ;
+            );
         }
     }
 }

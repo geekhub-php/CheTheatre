@@ -97,26 +97,13 @@ class PerformanceEvent
     }
 
     /**
-     * Set dateTime
+     * Get performance
      *
-     * @param  \DateTime        $dateTime
-     * @return PerformanceEvent
+     * @return \AppBundle\Entity\Performance
      */
-    public function setDateTime($dateTime)
+    public function getPerformance()
     {
-        $this->dateTime = $dateTime;
-
-        return $this;
-    }
-
-    /**
-     * Get dateTime
-     *
-     * @return \DateTime
-     */
-    public function getDateTime()
-    {
-        return $this->dateTime;
+        return $this->performance;
     }
 
     /**
@@ -132,16 +119,6 @@ class PerformanceEvent
         return $this;
     }
 
-    /**
-     * Get performance
-     *
-     * @return \AppBundle\Entity\Performance
-     */
-    public function getPerformance()
-    {
-        return $this->performance;
-    }
-
     public function __toString()
     {
         if ($this->getDateTime()) {
@@ -149,6 +126,29 @@ class PerformanceEvent
         } else {
             return date("F j, Y, g:i a");
         }
+    }
+
+    /**
+     * Get dateTime
+     *
+     * @return \DateTime
+     */
+    public function getDateTime()
+    {
+        return $this->dateTime;
+    }
+
+    /**
+     * Set dateTime
+     *
+     * @param  \DateTime $dateTime
+     * @return PerformanceEvent
+     */
+    public function setDateTime($dateTime)
+    {
+        $this->dateTime = $dateTime;
+
+        return $this;
     }
 
     /**

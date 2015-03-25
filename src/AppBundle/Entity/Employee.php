@@ -21,7 +21,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")
  */
-class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Employee extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -37,7 +37,13 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     const POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART = 'head_of_the_literary_and_dramatic_part';
     const POSITION_CONDUCTOR = 'conductor';
     const POSITION_ACCOMPANIST = 'accompanist';
-
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("avatar")
+     */
+    public $avatarThumbnails;
     /**
      * @var integer
      * @ORM\Column(name="id", type="integer")
@@ -45,7 +51,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -55,7 +60,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $firstName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -65,7 +69,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $lastName;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -74,7 +77,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $middleName;
-
     /**
      * @var /Datetime
      * @Assert\NotBlank()
@@ -83,7 +85,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $dob;
-
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
@@ -91,7 +92,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $position;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -100,14 +100,12 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $biography;
-
     /**
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $roles;
-
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
@@ -118,7 +116,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      *     )
      */
     private $galleryHasMedia;
-
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
@@ -126,7 +123,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Expose
      */
     private $slug;
-
     /**
      * @var
      *
@@ -136,21 +132,30 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private $avatar;
 
     /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("avatar")
-     */
-    public $avatarThumbnails;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public static function getPositions()
+    {
+        return [
+            self::POSITION_ACTOR => 'actor',
+            self::POSITION_ACTRESS => 'actress',
+            self::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            self::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            self::POSITION_MAIN_ARTIST => 'main_artist',
+            self::POSITION_COSTUMER => 'costumer',
+            self::POSITION_ART_DIRECTOR => 'art_director',
+            self::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            self::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            self::POSITION_CONDUCTOR => 'conductor',
+            self::POSITION_ACCOMPANIST => 'accompanist',
+        ];
     }
 
     /**
@@ -161,52 +166,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param  string   $firstName
-     * @return Employee
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param  string   $lastName
-     * @return Employee
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     /**
@@ -336,7 +295,53 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
 
     public function __toString()
     {
-        return $this->getFirstName().' '.$this->getLastName();
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param  string $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param  string $lastName
+     * @return Employee
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -379,24 +384,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
         $this->avatar = $avatar;
 
         return $this;
-    }
-
-    public static function getPositions()
-    {
-        return [
-            self::POSITION_ACTOR => 'actor',
-            self::POSITION_ACTRESS => 'actress',
-            self::POSITION_THEATRE_DIRECTOR => 'theatre_director',
-            self::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
-            self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
-            self::POSITION_MAIN_ARTIST => 'main_artist',
-            self::POSITION_COSTUMER => 'costumer',
-            self::POSITION_ART_DIRECTOR => 'art_director',
-            self::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
-            self::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
-            self::POSITION_CONDUCTOR => 'conductor',
-            self::POSITION_ACCOMPANIST => 'accompanist',
-        ];
     }
 
     /**

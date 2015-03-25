@@ -24,10 +24,24 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
  */
-class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Performance extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, LinksTrait;
 
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("mainPicture")
+     */
+    public $mainPictureThumbnails;
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("sliderImage")
+     */
+    public $sliderImageThumbnails;
     /**
      * @var integer
      *
@@ -36,7 +50,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -46,7 +59,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      */
     private $title;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -55,7 +67,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      */
     private $type;
-
     /**
      * @var string
      * @Gedmo\Translatable
@@ -64,7 +75,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      */
     private $description;
-
     /**
      * @var /Datetime
      *
@@ -74,7 +84,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      */
     private $premiere;
-
     /**
      * @var
      *
@@ -82,7 +91,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      */
     private $mainPicture;
-
     /**
      * @var
      *
@@ -90,23 +98,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
      */
     private $sliderImage;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("mainPicture")
-     */
-    public $mainPictureThumbnails;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("sliderImage")
-     */
-    public $sliderImageThumbnails;
-
     /**
      * @var PerformanceEvent[]
      *
@@ -145,7 +136,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      */
     public function __construct()
     {
-        parent::__construct();
         $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();

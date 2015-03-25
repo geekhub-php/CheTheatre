@@ -31,8 +31,8 @@
         "sonata-project/media-bundle": "~2.3",
         "white-october/pagerfanta-bundle": "~1.0",
         "nelmio/cors-bundle": "~1.4",
-        "geek-hub/domain-routing-bundle": "dev-master",
-        "sonata-project/translation-bundle": "~1.0"
+      "geek-hub/domain-routing-bundle": "dev-master",
+      "sonata-project/translation-bundle": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

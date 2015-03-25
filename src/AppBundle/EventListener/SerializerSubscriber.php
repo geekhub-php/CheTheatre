@@ -67,7 +67,7 @@ class SerializerSubscriber implements EventSubscriberInterface
 
         if ($performance->getSliderImage()) {
             $sliderImageLinks = $this->mediaController->getMediumFormatsAction($performance->getSliderImage());
-            $performance->sliderImageThumbnails = $sliderImageLinks;
+            $performance->$sliderImageThumbnails = $sliderImageLinks;
         }
     }
 }

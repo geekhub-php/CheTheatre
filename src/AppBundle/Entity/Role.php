@@ -20,7 +20,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\RoleTranslation")
  * @ExclusionPolicy("all")
  */
-class Role extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Role extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -84,29 +84,6 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Role
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     /**
@@ -204,5 +181,28 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string $title
+     * @return Role
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }

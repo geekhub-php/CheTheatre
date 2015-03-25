@@ -20,7 +20,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PostTranslation")
  * @ExclusionPolicy("all")
  */
-class Post extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Post extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -99,7 +99,6 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      */
     public function __construct()
     {
-        parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -166,6 +165,16 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     }
 
     /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
      * Set text
      *
      * @param  string $text
@@ -176,16 +185,6 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
         $this->text = $text;
 
         return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
     }
 
     /**

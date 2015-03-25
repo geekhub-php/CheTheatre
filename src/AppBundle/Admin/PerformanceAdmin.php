@@ -62,7 +62,7 @@ class PerformanceAdmin extends Admin
                     'btn_list' => false,
                 ], [
                     'link_parameters' => [
-                        'context'  => 'slider',
+                        'context' => 'slider',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
