@@ -44,7 +44,7 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('type')
-            ->add('description')
+            ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
             ->add('mainPicture', 'sonata_type_model_list',
                 [
                     'required' => false,
@@ -52,6 +52,17 @@ class PerformanceAdmin extends Admin
                 ], [
                     'link_parameters' => [
                         'context'  => 'performance',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
+            ->add('sliderImage', 'sonata_type_model_list',
+                [
+                    'required' => false,
+                    'btn_list' => false,
+                ], [
+                    'link_parameters' => [
+                        'context' => 'slider',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]

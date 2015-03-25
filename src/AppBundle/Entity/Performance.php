@@ -12,19 +12,21 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use AppBundle\Validator\MinSizeSliderImage;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
- * @Gedmo\TranslationEntity(class="AppBundle\Entity\Performance\Translation")
+ * @MinSizeSliderImage()
  */
-class Performance implements TranslatableInterface
+class Performance extends AbstractPersonalTranslatable implements TranslatableInterface
 {
-    use TimestampableTrait, LinksTrait, PersonalTranslatable;
+    use TimestampableTrait, LinksTrait;
 
     /**
      * @var array
@@ -33,6 +35,13 @@ class Performance implements TranslatableInterface
      * @SerializedName("mainPicture")
      */
     public $mainPictureThumbnails;
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("sliderImage")
+     */
+    public $sliderImageThumbnails;
     /**
      * @var integer
      *
@@ -82,6 +91,13 @@ class Performance implements TranslatableInterface
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      */
     private $mainPicture;
+    /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
+     */
+    private $sliderImage;
     /**
      * @var PerformanceEvent[]
      *
@@ -223,6 +239,29 @@ class Performance implements TranslatableInterface
     public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
     {
         $this->mainPicture = $mainPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderImage
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getSliderImage()
+    {
+        return $this->sliderImage;
+    }
+
+    /**
+     * Set sliderImage
+     *
+     * @param  \Application\Sonata\MediaBundle\Entity\Media $sliderImage
+     * @return Performance
+     */
+    public function setSliderImage(\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
+    {
+        $this->sliderImage = $sliderImage;
 
         return $this;
     }

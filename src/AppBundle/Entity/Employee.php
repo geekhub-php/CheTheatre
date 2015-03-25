@@ -12,18 +12,18 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")
- * @Gedmo\TranslationEntity(class="AppBundle\Entity\Employee\Translation")
  */
-class Employee implements TranslatableInterface
+class Employee extends AbstractPersonalTranslatable implements TranslatableInterface
 {
-    use TimestampableTrait, PersonalTranslatable;
+    use TimestampableTrait;
 
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
@@ -87,7 +87,6 @@ class Employee implements TranslatableInterface
     private $dob;
     /**
      * @var string
-     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose
@@ -144,18 +143,18 @@ class Employee implements TranslatableInterface
     public static function getPositions()
     {
         return [
-            employee::POSITION_ACTOR => 'actor',
-            employee::POSITION_ACTRESS => 'actress',
-            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
-            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
-            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
-            employee::POSITION_MAIN_ARTIST => 'main_artist',
-            employee::POSITION_COSTUMER => 'costumer',
-            employee::POSITION_ART_DIRECTOR => 'art_director',
-            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
-            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
-            employee::POSITION_CONDUCTOR => 'conductor',
-            employee::POSITION_ACCOMPANIST => 'accompanist',
+            self::POSITION_ACTOR => 'actor',
+            self::POSITION_ACTRESS => 'actress',
+            self::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            self::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            self::POSITION_MAIN_ARTIST => 'main_artist',
+            self::POSITION_COSTUMER => 'costumer',
+            self::POSITION_ART_DIRECTOR => 'art_director',
+            self::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            self::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            self::POSITION_CONDUCTOR => 'conductor',
+            self::POSITION_ACCOMPANIST => 'accompanist',
         ];
     }
 
@@ -167,52 +166,6 @@ class Employee implements TranslatableInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param  string   $firstName
-     * @return Employee
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param  string   $lastName
-     * @return Employee
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     /**
@@ -342,7 +295,53 @@ class Employee implements TranslatableInterface
 
     public function __toString()
     {
-        return $this->getSlug();
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param  string $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param  string $lastName
+     * @return Employee
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**

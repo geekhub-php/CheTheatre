@@ -11,18 +11,18 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="posts")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PostTranslation")
  * @ExclusionPolicy("all")
- * @Gedmo\TranslationEntity(class="AppBundle\Entity\Post\Translation")
  */
-class Post implements TranslatableInterface
+class Post extends AbstractPersonalTranslatable implements TranslatableInterface
 {
-    use TimestampableTrait, PersonalTranslatable;
+    use TimestampableTrait;
 
     /**
      * @var integer
