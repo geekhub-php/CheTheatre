@@ -49,7 +49,7 @@ class PostAdmin extends Admin
             )
             ->add(
                 $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
+                    ->addModelTransformer(new TagTransformer($this->getRequest()->get('tl'), $this->modelManager->getEntityManager(new Tag())))
             )
             ->add('galleryHasMedia', 'sonata_type_collection',
                 [
