@@ -99,6 +99,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      */
     public function __construct()
     {
+        parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }

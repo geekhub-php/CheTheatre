@@ -148,6 +148,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      */
     public function __construct()
     {
+        parent::__construct();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }

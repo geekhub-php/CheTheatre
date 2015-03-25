@@ -68,6 +68,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      */
     public function __construct()
     {
+        parent::__construct();
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
