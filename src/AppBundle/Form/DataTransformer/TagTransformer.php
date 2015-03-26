@@ -71,7 +71,7 @@ class TagTransformer implements DataTransformerInterface
                 $tag->setTitle($tagTitle);
 
                 foreach ($this->localeCollection as $locale) {
-                    if($locale !== $this->defaultLocale) {
+                    if ($locale !== $this->defaultLocale) {
                         $tagTranslation = new TagTranslation();
                         $tagTranslation->setLocale($locale);
                         $tagTranslation->setField('title');
