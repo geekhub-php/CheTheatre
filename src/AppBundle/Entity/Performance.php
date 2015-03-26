@@ -85,6 +85,7 @@ class Performance
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
+     * @Expose
      */
     private $sliderImage;
 
