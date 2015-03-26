@@ -23,9 +23,9 @@ class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
         $formMapper
             ->remove('enabled')
             ->remove('position')
-            ->add('title', 'textarea', ['label' => 'Title', 'attr' => ['style' => 'height: 150px']])
-            ->add('description', 'textarea', ['attr' => ['style' => 'height: 150px; width: 400px']])
-            ->add('media', $mediaField->getType()->getName(), $options)
+            ->add('title', 'textarea', ['label' => 'label.label_title', 'attr' => ['style' => 'height: 150px']])
+            ->add('description', 'textarea', ['label' => 'label.label_description', 'attr' => ['style' => 'height: 150px; width: 400px']])
+            ->add('media', ['label' => 'label.label_media'], $mediaField->getType()->getName(), $options)
         ;
     }
 }

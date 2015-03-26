@@ -5,3 +5,30 @@ submit: Увійти
 sing_in_message: Будь-ласка, авторизуйтеся
 sing_in_title: Авторизація
 Image_must_be_minimum_size: Розмір зображення повиннен не перевищувати %width% пікселів по довжині та %height% пікслеів по висоті!
+
+label:
+    label_firstName: Ім'я
+    label_middleName: По батькові
+    label_lastName: Прізвище
+    label_dob: Дата народження
+    label_position: Посада
+    label_roles: Ролі
+    label_avatar: Аватар
+    label_gallery: Галерея
+    label_title: Назва
+    label_description: Опис
+    label_media: Медіа
+    label_type: Жанр
+    label_premiere: Прем'єра
+    label_performanceEvents: Афіші
+    label_mainPicture: Головна картинка
+    label_sliderImage: Картинка для слайдеру
+    label_performance: Вистава
+    label_datetime: Дата та час
+    label_shortDescription: Стислий опис
+    label_text: Текст
+    label_edit: Відредагувати
+    label_delete: Видалити
+    label_show: Показати
+    label_tags: Теги
+    label_employee: Працівник

@@ -26,12 +26,12 @@ class EmployeeAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob', 'date')
-            ->add('position')
-            ->add('roles')
+            ->add('firstName', ['label' => 'label.label_firstName'])
+            ->add('middleName', ['label' => 'label.label_middleName'])
+            ->add('lastName', ['label' => 'label.label_lastName'])
+            ->add('dob', 'date', ['label' => 'label.label_dob'])
+            ->add('position', ['label' => 'label.label_position'])
+            ->add('roles', ['label' => 'label.label_roles'])
         ;
     }
 
@@ -43,23 +43,29 @@ class EmployeeAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
+            ->add('firstName', ['label' => 'label.label_firstName'])
+            ->add('middleName', ['label' => 'label.label_middleName'])
+            ->add('lastName', ['label' => 'label.label_lastName'])
             ->add('avatar', 'sonata_type_model_list', [
                 'required' => false,
                 'btn_list' => false,
+                'label' => 'label.label_avatar'
             ], [
                 'link_parameters' => [
                     'context'  => 'employee',
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('dob', 'sonata_type_date_picker')
-            ->add('position', 'sonata_type_translatable_choice', ['choices' => employee::getPositions()])
+            ->add('dob', 'sonata_type_date_picker', ['label' => 'label.label_dob'])
+            ->add('position', 'choice', [
+                    'choices' => employee::getPositions(),
+                    'translation_domain' => 'messages',
+                    'label' => 'label.label_position',
+                ]
+            )
             ->add('galleryHasMedia', 'sonata_type_collection', [
                 'required' => false,
-                'label' => 'Gallery',
+                'label' => 'label.label_gallery',
                 ], [
                 'edit' => 'inline',
                 'inline' => 'table',
@@ -83,12 +89,12 @@ class EmployeeAdmin extends Admin
     {
         $listMapper
             ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
-            ->addIdentifier('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob', 'date')
-            ->add('position')
-            ->add('roles')
+            ->addIdentifier('firstName', ['label' => 'label.label_firstName'])
+            ->add('middleName', ['label' => 'label.label_middleName'])
+            ->add('lastName', ['label' => 'label.label_lastName'])
+            ->add('dob', 'date', ['label' => 'label.label_dob'])
+            ->add('position', ['label' => 'label.label_position'])
+            ->add('roles', ['label' => 'label.label_roles'])
         ;
     }
 
@@ -100,12 +106,12 @@ class EmployeeAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('dob')
-            ->add('position')
-            ->add('roles')
+            ->add('firstName', ['label' => 'label.label_firstName'])
+            ->add('middleName', ['label' => 'label.label_middleName'])
+            ->add('lastName', ['label' => 'label.label_lastName'])
+            ->add('dob', ['label' => 'label.label_dob'])
+            ->add('position', ['label' => 'label.label_position'])
+            ->add('roles', ['label' => 'label.label_roles'])
         ;
     }
 }

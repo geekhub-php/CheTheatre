@@ -41,9 +41,9 @@ class RoleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('description')
-            ->add('employee', 'sonata_type_model', ['required' => false]);
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('description', ['label' => 'label.label_description'])
+            ->add('employee', 'sonata_type_model', ['label' => 'label.label_employee', 'required' => false]);
     }
 
     /**
@@ -54,16 +54,16 @@ class RoleAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('description')
-            ->add('performance')
-            ->add('employee')
+            ->addIdentifier('title', ['label' => 'label.label_title'])
+            ->add('description', ['label' => 'label.label_description'])
+            ->add('performance', ['label' => 'label.label_performance'])
+            ->add('employee', ['label' => 'label.label_employee'])
             ->add('_action', 'actions',
                 [
                     'actions' => [
-                        'show' => [],
-                        'edit' => [],
-                        'delete' => [],
+                        'show' => ['label' => 'label.label_show'],
+                        'edit' => ['label' => 'label.label_edit'],
+                        'delete' => ['label' => 'label.label_delete'],
                     ],
                 ]
             )
@@ -78,10 +78,10 @@ class RoleAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('description')
-            ->add('performance')
-            ->add('employee')
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('description', ['label' => 'label.label_description'])
+            ->add('performance', ['label' => 'label.label_performance'])
+            ->add('employee', ['label' => 'label.label_employee'])
         ;
     }
 }

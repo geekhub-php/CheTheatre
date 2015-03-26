@@ -25,8 +25,8 @@ class PerformanceEventAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('performance')
-            ->add('dateTime')
+            ->add('performance', ['label' => 'label.label_performance'])
+            ->add('dateTime', ['label' => 'label.label_datetime'])
         ;
     }
 
@@ -38,13 +38,14 @@ class PerformanceEventAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('performance', 'sonata_type_model')
+            ->add('performance', 'sonata_type_model', ['label' => 'label.label_performance'])
             ->add('dateTime', 'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,
                     'dp_use_seconds'        => false,
                     'format' => "dd/MM/yyyy HH:mm",
+                    'label' => 'label.label_datetime',
                 ]
             )
         ;
@@ -58,8 +59,8 @@ class PerformanceEventAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('performance')
-            ->add('dateTime')
+            ->addIdentifier('performance', ['label' => 'label.label_performance'])
+            ->add('dateTime', ['label' => 'label.label_datetime'])
         ;
     }
 
@@ -71,8 +72,8 @@ class PerformanceEventAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('performance')
-            ->add('dateTime')
+            ->add('performance', ['label' => 'label.label_performance'])
+            ->add('dateTime', ['label' => 'label.label_datetime'])
         ;
     }
 }

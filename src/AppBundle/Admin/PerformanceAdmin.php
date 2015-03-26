@@ -25,12 +25,12 @@ class PerformanceAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('title')
-            ->add('type')
-            ->add('description')
-            ->add('premiere')
-            ->add('performanceEvents')
-            ->add('roles')
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('type', ['label' => 'label.label_type'])
+            ->add('description', ['label' => 'label.label_description'])
+            ->add('premiere', ['label' => 'label.label_premiere'])
+            ->add('performanceEvents', ['label' => 'label.label_performanceEvents'])
+            ->add('roles', ['label' => 'label.label_roles'])
         ;
     }
 
@@ -42,13 +42,14 @@ class PerformanceAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('type')
-            ->add('description')
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('type', ['label' => 'label.label_type'])
+            ->add('description', ['label' => 'label.label_description'])
             ->add('mainPicture', 'sonata_type_model_list',
                 [
                     'required' => false,
                     'btn_list' => false,
+                    'label' => 'label.label_mainPicture'
                 ], [
                     'link_parameters' => [
                         'context'  => 'performance',
@@ -60,6 +61,7 @@ class PerformanceAdmin extends Admin
                 [
                     'required' => false,
                     'btn_list' => false,
+                    'label' => 'label.label_sliderImage'
                 ], [
                     'link_parameters' => [
                         'context'  => 'slider',
@@ -73,11 +75,14 @@ class PerformanceAdmin extends Admin
                     'dp_use_current'        => false,
                     'dp_use_seconds'        => false,
                     'format' => "dd/MM/yyyy HH:mm",
+                    'label' => 'label.label_premiere'
                 ]
             )
             ->add('roles', 'sonata_type_collection',
                 [
                     'by_reference' => false,
+                    'label' => 'label.label_roles'
+
                 ], [
                     'edit' => 'inline',
                     'inline' => 'table',
@@ -87,7 +92,7 @@ class PerformanceAdmin extends Admin
             ->add('galleryHasMedia', 'sonata_type_collection',
                 [
                     'required' => false,
-                    'label' => 'Gallery',
+                    'label' => 'label.label_gallery',
                 ], [
                     'edit' => 'inline',
                     'inline' => 'table',
@@ -111,10 +116,13 @@ class PerformanceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
-            ->addIdentifier('title')
-            ->add('type')
-            ->add('premiere')
+            ->add('mainPicture', 'string', [
+                'template' => '::SonataAdmin/thumbnail.html.twig',
+                'label' => 'label.label_mainPicture'
+            ])
+            ->addIdentifier('title', ['label' => 'label.label_title'])
+            ->add('type', ['label' => 'label.label_type'])
+            ->add('premiere', ['label' => 'label.label_premiere'])
         ;
     }
 
@@ -126,8 +134,8 @@ class PerformanceAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('type')
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('type', ['label' => 'label.label_type'])
         ;
     }
 }
