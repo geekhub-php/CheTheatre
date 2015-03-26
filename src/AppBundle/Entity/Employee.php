@@ -144,6 +144,17 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public $avatarThumbnails;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\EmployeeTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
      * Constructor
      */
     public function __construct()

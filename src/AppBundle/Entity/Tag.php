@@ -58,6 +58,17 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      */
     private $posts;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\TagTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
     public function __toString()
     {
         return $this->getTitle();

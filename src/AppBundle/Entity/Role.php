@@ -77,6 +77,17 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     private $slug;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\RoleTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
      * Get id
      *
      * @return integer
