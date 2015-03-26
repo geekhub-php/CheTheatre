@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: sonata.yml }
     - { resource: admin.yml }
+    - { resource: monitors.yml }
 
 framework:
     #esi:             ~
