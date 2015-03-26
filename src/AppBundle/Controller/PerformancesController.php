@@ -22,7 +22,7 @@ class PerformancesController extends Controller
      * resource=true,
      *  description="Returns a collection of Performances",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entity is not found",
      *  },
      *  output = "array<AppBundle\Model\PerformancesResponse>"
@@ -97,13 +97,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug",
+     *  description="Returns Performance by unique property {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance was found in database",
+     *      404="Returned when Performance was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance by unique name"}
      *  },
      *  output = "AppBundle\Entity\Performance"
      * )
@@ -125,13 +125,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug and its Roles",
+     *  description="Returns Performance roles by his unique {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance by slug was found in database",
+     *      404="Returned when Performance by slug was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
@@ -155,13 +155,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug and its Performance Events",
+     *  description="Returns Performance events by Performance {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance by {slug} was found in database",
+     *      404="Returned when Performance by {slug} was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
      *  },
      *  output = "array<AppBundle\Entity\PerformanceEvent>",
      * deprecated = true
