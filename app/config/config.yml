@@ -135,7 +135,6 @@ nelmio_api_doc:
             formats:
                 json: application/json
             default_format: json
-    html_template: NelmioApiDocBundle::monitors.html.twig
 
 fos_rest:
     param_fetcher_listener: true
