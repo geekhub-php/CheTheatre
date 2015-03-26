@@ -37,7 +37,7 @@ class EmployeesController extends Controller
     {
         $employees = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Employee')
-            ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+            ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
         $employeesResponse = new EmployeesResponse();
         $employeesResponse->setEmployees($employees);
