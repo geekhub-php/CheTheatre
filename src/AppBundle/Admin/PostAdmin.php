@@ -26,10 +26,11 @@ class PostAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('shortDescription')
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('shortDescription', ['label' => 'label.label_shortDescription'])
             ->add('text', 'textarea',
                 [
+                    'label' => 'label.label_text',
                     'attr' => [
                             'class' => 'wysihtml5',
                             'style' => 'height:300px',
@@ -40,6 +41,7 @@ class PostAdmin extends Admin
                 [
                     'required' => false,
                     'btn_list' => false,
+                    'label' => 'label.label_mainPicture'
                 ], [
                     'link_parameters' => [
                         'context' => 'default',
@@ -48,13 +50,16 @@ class PostAdmin extends Admin
                 ]
             )
             ->add(
-                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
+                $formMapper->create('tags', 'text', [
+                    'label' => 'label.label_tags',
+                    'attr' => ['class' => 'posts-tags']
+                ])
                     ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
             )
             ->add('galleryHasMedia', 'sonata_type_collection',
                 [
                     'required' => false,
-                    'label' => 'Gallery',
+                    'label' => 'label.label_gallery',
                 ], [
                     'edit' => 'inline',
                     'inline' => 'table',
@@ -77,13 +82,16 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
-            ->addIdentifier('title')
+            ->add('mainPicture', 'string', [
+                'template' => '::SonataAdmin/thumbnail.html.twig',
+                'label' => 'label.label_mainPicture'
+            ])
+            ->addIdentifier('title', ['label' => 'label.label_title'])
             ->add('_action', 'actions',
                 [
                     'actions' => [
-                        'edit' => [],
-                        'delete' => [],
+                        'edit' => ['label' => 'label.label_edit'],
+                        'delete' => ['label' => 'label.label_delete'],
                     ],
                 ]
             )
@@ -99,7 +107,7 @@ class PostAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('tags', null, [], null, ['expanded' => true, 'multiple' => true]);
+            ->add('title', ['label' => 'label.label_title'])
+            ->add('tags', ['label' => 'label.label_tags'], null, [], null, ['expanded' => true, 'multiple' => true]);
     }
 }
