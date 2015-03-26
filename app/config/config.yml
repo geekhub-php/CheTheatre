@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: sonata.yml }
     - { resource: admin.yml }
+    - { resource: monitors.yml }
 
 framework:
     #esi:             ~
@@ -175,76 +176,3 @@ domain_routing:
     include_routes:
         %api_domain%: ['config/routing_api.yml']
         %admin_domain%: ['config/routing_sonata_admin.yml']
-
-liip_monitor:
-    enable_controller: true
-    checks:
-         disk_usage:
-             warning:              70
-             critical:             90
-             path:                 '%kernel.cache_dir%'
-
-         apc_memory:
-             warning:              70
-             critical:             90
-
-         security_advisory:
-             lock_file:            '%kernel.root_dir%/../composer.lock'
-
-         http_service:
-            employees:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /employees
-                status_code:          200
-                content:              null
-
-            employees_by_slug:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /employees/volodimir-osipov
-                status_code:          200
-                content:              null
-
-            employees_by_slug_roles:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /employees/volodimir-osipov/roles
-                status_code:          200
-                content:              null
-
-            performanceevents:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /performanceevents
-                status_code:          200
-                content:              null
-
-            performances:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /performances
-                status_code:          200
-                content:              null
-
-            performances_by_slug:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /performances/sieried-ghromu-i-tishi
-                status_code:          200
-                content:              null
-
-            posts:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /posts
-                status_code:          200
-                content:              null
-
-            posts_by_slug:
-                host:                 %api_domain%
-                port:                 80
-                path:                 /posts/duzhie-prosta-istoriia
-                status_code:          200
-                content:              null
-
