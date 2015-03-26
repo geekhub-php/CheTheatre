@@ -53,6 +53,7 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [AppBundle]]
+        - [ setContainer, [@service_container]]
 
     sonata.admin.tag:
         class: AppBundle\Admin\TagAdmin

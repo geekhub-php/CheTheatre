@@ -18,15 +18,22 @@ class TagTransformer implements DataTransformerInterface
     /**
      * @var
      */
-    private $locale;
+    private $defaultLocale;
 
     /**
-     * @param $locale
+     * @var array
+     */
+    private $localeCollection;
+
+    /**
+     * @param $defaultLocale
+     * @param array         $localeCollection
      * @param ObjectManager $om
      */
-    public function __construct($locale, ObjectManager $om)
+    public function __construct($defaultLocale, Array $localeCollection, ObjectManager $om)
     {
-        $this->locale = $locale;
+        $this->defaultLocale = $defaultLocale;
+        $this->localeCollection = $localeCollection;
         $this->om = $om;
     }
 
@@ -63,15 +70,18 @@ class TagTransformer implements DataTransformerInterface
                 $tag = new Tag();
                 $tag->setTitle($tagTitle);
 
-                $tagTranslation = new TagTranslation();
-                $tagTranslation->setLocale('ua');
-                $tagTranslation->setField('title');
-                $tagTranslation->setContent($tagTitle);
-                $tagTranslation->setObject($tag);
+                foreach ($this->localeCollection as $locale) {
+                    if($locale !== $this->defaultLocale) {
+                        $tagTranslation = new TagTranslation();
+                        $tagTranslation->setLocale($locale);
+                        $tagTranslation->setField('title');
+                        $tagTranslation->setContent($tagTitle);
+                        $tagTranslation->setObject($tag);
 
-                $tag->addTranslation($tagTranslation);
-
-                $this->om->persist($tagTranslation);
+                        $tag->addTranslation($tagTranslation);
+                        $this->om->persist($tagTranslation);
+                    }
+                }
 
                 $this->om->persist($tag);
             }

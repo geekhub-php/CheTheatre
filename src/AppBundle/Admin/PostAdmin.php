@@ -18,6 +18,14 @@ class PostAdmin extends Admin
         '_sort_by' => 'name',
     ];
 
+    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
+    private $container;
+
+    public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
      *
@@ -49,7 +57,13 @@ class PostAdmin extends Admin
             )
             ->add(
                 $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(new TagTransformer($this->getRequest()->get('tl'), $this->modelManager->getEntityManager(new Tag())))
+                    ->addModelTransformer(
+                        new TagTransformer(
+                            $this->container->getParameter('sonata_translation.default_locale'),
+                            $this->container->getParameter('sonata_translation.locales'),
+                            $this->modelManager->getEntityManager(new Tag())
+                        )
+                    )
             )
             ->add('galleryHasMedia', 'sonata_type_collection',
                 [
