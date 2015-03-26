@@ -2,15 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Pagerfanta;
 use AppBundle\Model\PostsResponse;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Post")
@@ -35,36 +35,53 @@ class PostsController extends Controller
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:Post')->findBy([], ['createdAt' => 'DESC']);
+        $posts = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Post')
+            ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
-        $paginater
-            ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('page'))
-        ;
         $postsResponse = new PostsResponse();
-        $postsResponse->setPosts($paginater->getCurrentPageResults());
-        $postsResponse->setPageCount($paginater->getNbPages());
+        $postsResponse->setPosts($posts);
+        $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount());
+        $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $postsResponse->setPage($paramFetcher->get('page'));
 
-        $nextPage = $paginater->hasNextPage() ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
+        $self = $this->generateUrl('get_posts', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $paramFetcher->get('page'),
+        ], true
+        );
+
+        $first = $this->generateUrl('get_posts', [], true);
+
+        $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
+            $this->generateUrl('get_posts', [
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')+1,
+            ], true
             ) :
             'false';
 
-        $previsiousPage = $paginater->hasPreviousPage() ?
-            $this->generateUrl('get_posts', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_posts', [
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
-        $postsResponse->setNextPage($nextPage);
-        $postsResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_posts', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $postsResponse->getPageCount(),
+        ], true
+        );
+
+        $links = new PaginationLinks();
+
+        $postsResponse->setLinks($links->setSelf(new Link($self)));
+        $postsResponse->setLinks($links->setFirst(new Link($first)));
+        $postsResponse->setLinks($links->setNext(new Link($nextPage)));
+        $postsResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $postsResponse->setLinks($links->setLast(new Link($last)));
 
         return $postsResponse;
     }

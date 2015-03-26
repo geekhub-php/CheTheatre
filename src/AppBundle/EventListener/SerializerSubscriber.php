@@ -3,7 +3,6 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Performance;
-use AppBundle\Model\Link;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
@@ -53,12 +52,6 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         /** @var Performance $performance */
         $performance = $avatar = $event->getObject();
-
-        $performance->setLinks([
-            new Link('self', $this->router->generate('get_performance', ['slug' => $performance->getSlug()], true)),
-            new Link('self.roles', $this->router->generate('get_performance_roles', ['slug' => $performance->getSlug()], true)),
-            new Link('self.events', $this->router->generate('get_performanceevents', ['performance' => $performance->getSlug()], true)),
-        ]);
 
         if ($performance->getMainPicture()) {
             $mainImageLinks = $this->mediaController->getMediumFormatsAction($performance->getMainPicture());

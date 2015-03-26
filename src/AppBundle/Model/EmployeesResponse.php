@@ -2,6 +2,7 @@
 
 namespace AppBundle\Model;
 
+use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -21,6 +22,15 @@ class EmployeesResponse extends AbstractPaginatedModel
     protected $employees;
 
     /**
+     * @var int
+     *
+     * @Type("integer")
+     * @Accessor(getter="getCount")
+     * @Expose
+     */
+    protected $count;
+
+    /**
      * @return mixed
      */
     public function getEmployees()
@@ -30,9 +40,20 @@ class EmployeesResponse extends AbstractPaginatedModel
 
     /**
      * @param mixed $employees
+     * @return $this
      */
     public function setEmployees($employees)
     {
         $this->employees = $employees;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return count($this->getEmployees());
     }
 }
