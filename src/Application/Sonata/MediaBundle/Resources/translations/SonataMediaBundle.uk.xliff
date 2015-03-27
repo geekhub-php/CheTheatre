@@ -2,9 +2,25 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-        	<trans-unit id="default">
+        	<trans-unit id="employee">
+                <source>employee</source>
+                <target>Працівники</target>
+            </trans-unit>
+        	<trans-unit id="performance">
+                <source>performance</source>
+                <target>Вистави</target>
+            </trans-unit>
+        	<trans-unit id="post">
+                <source>post</source>
+                <target>Новини</target>
+            </trans-unit>
+        	<trans-unit id="slider">
+                <source>slider</source>
+                <target>Слайдер</target>
+            </trans-unit>
+            <trans-unit id="default">
                 <source>default</source>
-                <target>По Умолчанию</target>
+                <target>За Замовчуванням</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_media">
                 <source>sidemenu.link_edit_media</source>
@@ -120,7 +136,7 @@
             </trans-unit>
             <trans-unit id="label.name">
                 <source>label.name</source>
-                <target>Имя</target>
+                <target>Назва</target>
             </trans-unit>
             <trans-unit id="label.file">
                 <source>label.file</source>
@@ -132,7 +148,7 @@
             </trans-unit>
             <trans-unit id="label.enabled">
                 <source>label.enabled</source>
-                <target>Включить</target>
+                <target>Увімкнути</target>
             </trans-unit>
             <trans-unit id="label.cdn_is_flushable">
                 <source>label.cdn_is_flushable</source>
@@ -176,11 +192,11 @@
             </trans-unit>
             <trans-unit id="sonata.media.provider.image">
                 <source>sonata.media.provider.image</source>
-                <target>Изображение</target>
+                <target>Зображення</target>
             </trans-unit>
             <trans-unit id="sonata.media.provider.file">
                 <source>sonata.media.provider.file</source>
-                <target>Файлы</target>
+                <target>Файли</target>
             </trans-unit>
             <trans-unit id="label.protected_download_url">
                 <source>label.protected_download_url</source>
@@ -188,7 +204,7 @@
             </trans-unit>
             <trans-unit id="description.roles_download_strategy">
                 <source>description.roles_download_strategy</source>
-                <target>Медиа файлы могу быть добавленны пользователями с ролями : %roles%.</target>
+                <target>Медиа Файли могу быть добавленны пользователями с ролями : %roles%.</target>
             </trans-unit>
             <trans-unit id="label.protected_download_url_notice">
                 <source>label.protected_download_url_notice</source>
@@ -196,11 +212,11 @@
             </trans-unit>
             <trans-unit id="description.public_download_strategy">
                 <source>description.public_download_strategy</source>
-                <target>Медиа файлы могут быть добавлены кем угодно.</target>
+                <target>Медиа Файли могут быть добавлены кем угодно.</target>
             </trans-unit>
             <trans-unit id="description.forbidden_download_strategy">
                 <source>description.forbidden_download_strategy</source>
-                <target>Медиа файлы не могут быть добавленны никем.</target>
+                <target>Медиа Файли не могут быть добавленны никем.</target>
             </trans-unit>
             <trans-unit id="link.test_protected_url">
                 <source>link.test_protected_url</source>
@@ -208,7 +224,7 @@
             </trans-unit>
             <trans-unit id="label.edit_with_pixlr">
                 <source>label.edit_with_pixlr</source>
-                <target>Редактировать файлы с помощью Pixlr</target>
+                <target>Редактировать Файли с помощью Pixlr</target>
             </trans-unit>
             <trans-unit id="label.pixlr_warning">
                 <source>label.pixlr_warning</source>
@@ -239,12 +255,34 @@
             </trans-unit>
             <trans-unit id="form.label_enabled">
                 <source>form.label_enabled</source>
-                <target>Включить</target>
+                <target>Увімкнені</target>
             </trans-unit>
             <trans-unit id="form.label_media">
                 <source>form.label_media</source>
-                <target>Средняя</target>
+                <target>Медія</target>
             </trans-unit>
+            <trans-unit id="Title">
+                <source>Title</source>
+                <target>Назва</target>
+            </trans-unit>
+            <trans-unit id="form.label_binary_content">
+                <source>form.label_binary_content</source>
+                <target>Оберіть файл</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Опис</target>
+            </trans-unit>
+            <trans-unit id="list.label_size">
+                <source>list.label_size</source>
+                <target>Розмір</target>
+            </trans-unit>
+            <trans-unit id="filter.label_provider_name">
+                <source>filter.label_provider_name</source>
+                <target>Провайдер</target>
+            </trans-unit>
+
+
             <trans-unit id="form.label_position">
                 <source>form.label_position</source>
                 <target>Позиция</target>
@@ -255,7 +293,7 @@
             </trans-unit>
             <trans-unit id="form.label_name">
                 <source>form.label_name</source>
-                <target>Имя</target>
+                <target>Назва</target>
             </trans-unit>
             <trans-unit id="form.label_default_format">
                 <source>form.label_default_format</source>
@@ -275,7 +313,7 @@
             </trans-unit>
             <trans-unit id="form.label_description">
                 <source>form.label_description</source>
-                <target>Описание</target>
+                <target>Опис</target>
             </trans-unit>
             <trans-unit id="form.label_copyright">
                 <source>form.label_copyright</source>
@@ -283,11 +321,11 @@
             </trans-unit>
             <trans-unit id="list.label_enabled">
                 <source>list.label_enabled</source>
-                <target>Включить</target>
+                <target>Увімкнути</target>
             </trans-unit>
             <trans-unit id="list.label_name">
                 <source>list.label_name</source>
-                <target>Имя</target>
+                <target>Назва</target>
             </trans-unit>
             <trans-unit id="list.label_context">
                 <source>list.label_context</source>
@@ -307,16 +345,16 @@
             </trans-unit>
             <trans-unit id="filter.label_name">
                 <source>filter.label_name</source>
-                <target>Имя</target>
+                <target>Назва</target>
             </trans-unit>
             <trans-unit id="filter.label_provider_reference">
                 <source>filter.label_provider_reference</source>
-                <target>Ссылка на поставщика</target>
+                <target>Посилання на провайдера</target>
             </trans-unit>
 
             <trans-unit id="filter.label_enabled">
                 <source>filter.label_enabled</source>
-                <target>Включить</target>
+                <target>Увімкнути</target>
             </trans-unit>
 
             <trans-unit id="filter.label_context">

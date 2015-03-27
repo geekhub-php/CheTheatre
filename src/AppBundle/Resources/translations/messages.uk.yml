@@ -33,7 +33,7 @@ Type: Жанр
 Premiere: Прем’єра
 Performance List: Перелік Вистав
 Description: Опис
-Slider Image: Зображення для Слаідера на головній сторінці
+Slider Image: Зображення для Слайдера на головній сторінці
 Performance: Вистава
 Date Time: Дата та Час
 Performance Event List: Розклад Вистав
@@ -44,3 +44,6 @@ Short Description: Стислий Опис
 Text: Текст
 Posts: Новини
 Tag List: Перелік Тегів
+link_actions: Можливі Дії
+Employee: Працівник
+Role List: Перелік Ролей

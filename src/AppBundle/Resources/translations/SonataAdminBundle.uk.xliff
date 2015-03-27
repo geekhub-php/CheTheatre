@@ -10,10 +10,6 @@
                 <source>Dashboard</source>
                 <target>Головна Панель</target>
             </trans-unit>
-             <trans-unit id="title_search_results">
-                <source>title_search_results</source>
-                <target>Результати пошуку(шукає тільки на англійскій мові): %query%</target>
-             </trans-unit>
         </body>
     </file>
 </xliff>
