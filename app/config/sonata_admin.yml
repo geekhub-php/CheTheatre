@@ -14,21 +14,32 @@ sonata_admin:
             CheTheatre:
                 label: Головна панель
                 label_catalogue: AppBundle
-            sonata_media:
-                label: Медіа (сховати в майбутньому)
-                label_catalogue: AppBundle
+#            sonata_media:
+#                label: Медіа (сховати в майбутньому)
+#                label_catalogue: AppBundle
 
         blocks:
             -
                 position: left
+                class: col-md-10
                 type: sonata.admin.block.admin_list
                 settings:
                     groups: [CheTheatre]
             -
                 position: right
-                type: sonata.admin.block.admin_list
+                class: col-md-6
+                type: sonata.block.service.text
                 settings:
-                    groups: [sonata_media, Hidden]
+                    content: >
+                        <h3>Вітаємо Вас в Адміністративній Панелі</h3>
+                        <h4>Черкаського академічного обласного українського</h4>
+                        <h4>музично-драматичного театру ім. Т.Г.Шевченка</h4>
+                        <p>Здесь возможно оставить какие нибудь <code>Серегины контакты</code>???</p>
+#            -
+#                position: right
+#                type: sonata.admin.block.admin_list
+#                settings:
+#                    groups: [sonata_media, Hidden]
 
     assets:
         javascripts: # changed order of js assets loading
