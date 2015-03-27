@@ -8,7 +8,7 @@ services:
            - AppBundle\Entity\Employee
            - ~
         calls:
-           - [ setTranslationDomain, [AppBundle]]
+           - [ setTranslationDomain, [messages]]
 
     sonata.admin.role:
         class: AppBundle\Admin\RoleAdmin
@@ -19,7 +19,7 @@ services:
            - AppBundle\Entity\Role
            - ~
         calls:
-           - [ setTranslationDomain, [AppBundle]]
+           - [ setTranslationDomain, [messages]]
 
     sonata.admin.performance:
         class: AppBundle\Admin\PerformanceAdmin
@@ -30,7 +30,7 @@ services:
            - AppBundle\Entity\Performance
            - ~
         calls:
-           - [ setTranslationDomain, [AppBundle]]
+           - [ setTranslationDomain, [messages]]
 
     sonata.admin.performanceEvent:
         class: AppBundle\Admin\PerformanceEventAdmin
@@ -41,7 +41,7 @@ services:
            - AppBundle\Entity\PerformanceEvent
            - ~
         calls:
-           - [ setTranslationDomain, [AppBundle]]
+           - [ setTranslationDomain, [messages]]
 
     sonata.admin.post:
         class: AppBundle\Admin\PostAdmin
@@ -52,7 +52,7 @@ services:
            - AppBundle\Entity\Post
            - ~
         calls:
-        - [ setTranslationDomain, [AppBundle]]
+        - [ setTranslationDomain, [messages]]
         - [ setContainer, [@service_container]]
 
     sonata.admin.tag:
@@ -64,4 +64,4 @@ services:
             - AppBundle\Entity\Tag
             - ~
         calls:
-        - [ setTranslationDomain, [AppBundle]]
+        - [ setTranslationDomain, [messages]]
