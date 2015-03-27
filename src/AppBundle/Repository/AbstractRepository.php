@@ -11,6 +11,8 @@ abstract class AbstractRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u');
         $query = $qb->select($qb->expr()->count('u'))->getQuery();
 
+        $query->useResultCache(true, 3600);
+
         return $query->getSingleScalarResult();
     }
 }
