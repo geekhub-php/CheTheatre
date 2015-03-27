@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="SonataAdminBundle.en.xliff" >
+        <body>
+            <trans-unit id="link_actions">
+                <source>link_actions</source>
+                <target>Додаткові дії</target>
+            </trans-unit>
+            <trans-unit id="Dashboard">
+                <source>Dashboard</source>
+                <target>Головна Панель</target>
+            </trans-unit>
+             <trans-unit id="title_search_results">
+                <source>title_search_results</source>
+                <target>Результати пошуку(шукає тільки на англійскій мові): %query%</target>
+             </trans-unit>
+        </body>
+    </file>
+</xliff>
