@@ -151,7 +151,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      */
     protected $translations;
 
-
     /**
      * Constructor
      */

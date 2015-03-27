@@ -10,7 +10,6 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
-use Gedmo\Translatable\Translatable;
 use AppBundle\Validator\TwoPerformanceEventsPerDay;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
