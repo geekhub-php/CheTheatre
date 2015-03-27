@@ -12,10 +12,10 @@ sonata_admin:
     dashboard:
         groups:
             CheTheatre:
-                label: Main.Panel
+                label: Головна панель
                 label_catalogue: AppBundle
             sonata_media:
-                label: Media.Library
+                label: Медіа (сховати в майбутньому)
                 label_catalogue: AppBundle
 
         blocks:

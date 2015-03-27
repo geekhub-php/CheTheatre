@@ -2,7 +2,7 @@ services:
     sonata.admin.employee:
         class: AppBundle\Admin\EmployeeAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Employees" }
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Працівники" }
         arguments:
            - ~
            - AppBundle\Entity\Employee
@@ -13,7 +13,7 @@ services:
     sonata.admin.role:
         class: AppBundle\Admin\RoleAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "Hidden", label: "Roles" }
+           - { name: sonata.admin, manager_type: orm, group: "Hidden", label: "Ролі" }
         arguments:
            - ~
            - AppBundle\Entity\Role
@@ -24,7 +24,7 @@ services:
     sonata.admin.performance:
         class: AppBundle\Admin\PerformanceAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Performances" }
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Вистави" }
         arguments:
            - ~
            - AppBundle\Entity\Performance
@@ -35,7 +35,7 @@ services:
     sonata.admin.performanceEvent:
         class: AppBundle\Admin\PerformanceEventAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "PerformanceEvents" }
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Розклад вистав" }
         arguments:
            - ~
            - AppBundle\Entity\PerformanceEvent
@@ -46,7 +46,7 @@ services:
     sonata.admin.post:
         class: AppBundle\Admin\PostAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Posts" }
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Новини" }
         arguments:
            - ~
            - AppBundle\Entity\Post
@@ -58,7 +58,7 @@ services:
     sonata.admin.tag:
         class: AppBundle\Admin\TagAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Tags" }
+            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Теги" }
         arguments:
             - ~
             - AppBundle\Entity\Tag
