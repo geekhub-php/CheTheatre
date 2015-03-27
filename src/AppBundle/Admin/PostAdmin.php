@@ -34,6 +34,7 @@ class PostAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('Posts')
             ->add('title')
             ->add('shortDescription')
             ->add('text', 'textarea',
@@ -55,6 +56,8 @@ class PostAdmin extends Admin
                     ],
                 ]
             )
+            ->end()
+            ->with('Tags', ['description' => '* Тег "Історія" використовуйте виключно для тих статей які повинні відображатись в розділі "Історія Театру"'])
             ->add(
                 $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
                     ->addModelTransformer(
@@ -65,22 +68,25 @@ class PostAdmin extends Admin
                         )
                     )
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
-                [
-                    'required' => false,
-                    'label' => 'Gallery',
-                ], [
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable'  => 'position',
-                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                    'admin_code' => 'sonata.media.admin.gallery_has_media',
-                    'link_parameters' => [
-                        'context'  => 'employee',
-                        'provider' => 'sonata.media.provider.image',
-                    ],
-                ]
-            )
+            ->end()
+            ->with('Gallery')
+                ->add('galleryHasMedia', 'sonata_type_collection',
+                    [
+                        'required' => false,
+                        'label' => false,
+                    ], [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable'  => 'position',
+                        'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                        'admin_code' => 'sonata.media.admin.gallery_has_media',
+                        'link_parameters' => [
+                            'context'  => 'employee',
+                            'provider' => 'sonata.media.provider.image',
+                        ],
+                    ]
+                )
+            ->end()
         ;
     }
     /**
