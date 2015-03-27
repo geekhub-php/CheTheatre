@@ -27,7 +27,8 @@ class EmployeeAdmin extends Admin
     {
         $showMapper
             ->add('firstName')
-            ->add('middleName')
+//*For now middleName field is deprecated*
+//            ->add('middleName')
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
@@ -44,7 +45,8 @@ class EmployeeAdmin extends Admin
     {
         $formMapper
             ->add('firstName')
-            ->add('middleName')
+//*For now middleName field is deprecated*
+//            ->add('middleName')
             ->add('lastName')
             ->add('avatar', 'sonata_type_model_list', [
                 'required' => false,
@@ -96,7 +98,8 @@ class EmployeeAdmin extends Admin
         $listMapper
             ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('firstName')
-            ->add('middleName')
+//*For now middleName field is deprecated*
+//            ->add('middleName')
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position', 'choice', [
@@ -117,7 +120,8 @@ class EmployeeAdmin extends Admin
     {
         $datagridMapper
             ->add('firstName')
-            ->add('middleName')
+//*For now middleName field is deprecated*
+//            ->add('middleName')
             ->add('lastName')
             ->add('dob')
             ->add('position')
