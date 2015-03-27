@@ -106,6 +106,11 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     protected $translations;
 
     /**
+     * @Gedmo\Locale
+     */
+    protected $locale='ua';
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -113,6 +118,14 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
         parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @param $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     public function __toString()

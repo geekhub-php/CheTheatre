@@ -69,10 +69,10 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      */
     protected $translations;
 
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
+    /**
+     * @Gedmo\Locale
+     */
+    protected $locale='ua';
 
     /**
      * Constructor
@@ -81,6 +81,19 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     {
         parent::__construct();
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @param $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**

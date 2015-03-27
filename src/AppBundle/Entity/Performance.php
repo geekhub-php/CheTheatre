@@ -152,6 +152,11 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     protected $translations;
 
     /**
+     * @Gedmo\Locale
+     */
+    protected $locale='ua';
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -160,6 +165,14 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
         $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @param $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**
