@@ -89,6 +89,9 @@ doctrine:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
+                metadata_cache_driver: apc
+                query_cache_driver: apc
+                result_cache_driver: apc
 
 sensio_framework_extra:
     view:    { annotations: false }
