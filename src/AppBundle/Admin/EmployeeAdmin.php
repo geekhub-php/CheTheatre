@@ -99,7 +99,11 @@ class EmployeeAdmin extends Admin
             ->add('middleName')
             ->add('lastName')
             ->add('dob', 'date')
-            ->add('position')
+            ->add('position', 'choice', [
+                    'choices' => employee::getPositions(),
+                    'catalogue' => 'messages',
+                ]
+            )
             ->add('roles')
         ;
     }
