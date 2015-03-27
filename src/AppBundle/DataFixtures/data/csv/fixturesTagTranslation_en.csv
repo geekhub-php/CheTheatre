@@ -1,0 +1,12 @@
+AppBundle\Entity\Translations\TagTranslation,,,
+object,locale,field,content
+@tag1,en,title,Podsekalnikov
+@tag2,en,title,Isaak Mendosa
+@tag3,en,title,Antonio
+@tag4,en,title,Stetsko
+@tag5,en,title,Eduardo Palumbo
+@tag6,en,title,Leonid Andriyovycjh Gaev
+@tag7,en,title,Herod
+@tag8,en,title,Kryvyi
+@tag9,en,title,Othello
+@tag10,en,title,Mamaev
