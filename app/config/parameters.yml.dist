@@ -30,3 +30,4 @@ parameters:
     prod_server_ip: ~
     nelmio_cors.origin: ['*']
     admin_password: 111111
+    cdn_domain: http://%api_domain%

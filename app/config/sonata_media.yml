@@ -50,7 +50,7 @@ sonata_media:
                 slider: { height: 500 , quality: 70}
     cdn:
         server:
-            path: %api_domain%/uploads # http://media.sonata-project.org/
+            path: %cdn_domain%/uploads # http://media.sonata-project.org/
 
     filesystem:
         local:
