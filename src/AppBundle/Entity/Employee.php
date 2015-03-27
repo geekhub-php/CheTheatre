@@ -155,11 +155,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     protected $translations;
 
     /**
-     * @Gedmo\Locale
-     */
-    protected $locale='ua';
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -169,13 +164,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * @param $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
 
     /**
      * Get id

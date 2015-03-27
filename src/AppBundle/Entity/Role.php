@@ -88,19 +88,6 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     protected $translations;
 
     /**
-     * @Gedmo\Locale
-     */
-    protected $locale='ua';
-
-    /**
-     * @param $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
      * Get id
      *
      * @return integer

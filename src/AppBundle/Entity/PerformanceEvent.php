@@ -102,19 +102,6 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     protected $translations;
 
     /**
-     * @Gedmo\Locale
-     */
-    protected $locale='ua';
-
-    /**
-     * @param $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
      * Get id
      *
      * @return integer
