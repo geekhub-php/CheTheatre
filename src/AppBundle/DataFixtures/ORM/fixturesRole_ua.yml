@@ -1,0 +1,722 @@
+AppBundle\Entity\Role:
+    role1:
+        title: 'Молода мати'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role2:
+        title: Марійка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role3:
+        title: Таня
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role4:
+        title: Ліда
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role5:
+        title: Люда
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role6:
+        title: Ніна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role7:
+        title: Ліля
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role8:
+        title: Буфетниця
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance1'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role9:
+        title: Марія
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee18'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role10:
+        title: 'Пан Тобіас Рич'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee12'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role11:
+        title: Мальволіо
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee25'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role12:
+        title: Орсіно
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee30'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role13:
+        title: Віола
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee38'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role14:
+        title: Олівія
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee39'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role15:
+        title: Себастьян
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee59'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role16:
+        title: 'Блазнева помічниця'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance2'
+        employee: '@employee63'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role17:
+        title: Катерина
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance3'
+        employee: '@employee63'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role18:
+        title: 'Галя Чумак'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance3'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role19:
+        title: 'Андрій Чумак'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance3'
+        employee: '@employee12'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role20:
+        title: Шпак
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee15'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role21:
+        title: Шельменко
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee12'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role22:
+        title: Мотря
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee13'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role23:
+        title: Прісенька
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee31'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role24:
+        title: Евжені
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee27'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role25:
+        title: Евжені
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee38'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role26:
+        title: Евжені
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role27:
+        title: 'Іван Семенович Скворцов'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee30'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role28:
+        title: 'Фенна Степанівна'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee45'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role29:
+        title: 'Аграфена Семенівна'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee50'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role30:
+        title: Лопуцьковський
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance4'
+        employee: '@employee59'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role31:
+        title: Ганна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee18'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role32:
+        title: Онисько
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee12'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role33:
+        title: Грицько
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee28'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role34:
+        title: Корній
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee30'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role35:
+        title: Устимівна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee24'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role36:
+        title: Катерина
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee42'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role37:
+        title: Аристарх
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee40'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role38:
+        title: Одарка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee39'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role39:
+        title: Уляна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee46'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role40:
+        title: Шахтарочка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance5'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role41:
+        title: Оксана
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee13'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role42:
+        title: Руслан
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee28'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role43:
+        title: Маша
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee42'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role44:
+        title: Віктор
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee37'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role45:
+        title: Лєна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee38'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role46:
+        title: Віра
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee39'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role47:
+        title: Надя
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee60'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role48:
+        title: Максим
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance6'
+        employee: '@employee59'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role49:
+        title: Стецько
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee15'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role50:
+        title: Прокіп
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee22'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role51:
+        title: Скорик
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee28'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role52:
+        title: Олексій
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee25'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role53:
+        title: Уляна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee60'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role54:
+        title: Уляна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee42'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role55:
+        title: Уляна
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee43'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role56:
+        title: Олексій
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee53'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role57:
+        title: Одарка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance7'
+        employee: '@employee60'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role58:
+        title: Чезонія
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance8'
+        employee: '@employee13'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role59:
+        title: Помпіліу
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance8'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role60:
+        title: Лілі
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance8'
+        employee: '@employee46'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role61:
+        title: Чезонія
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance8'
+        employee: '@employee58'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role62:
+        title: Ванда
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance8'
+        employee: '@employee56'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role63:
+        title: Еліанта
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee18'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role64:
+        title: Філінт
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee12'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role65:
+        title: Акаст
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee25'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role66:
+        title: Альцест
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee30'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role67:
+        title: Клітандр
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role68:
+        title: Оронт
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee40'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role69:
+        title: Арсіноя
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee60'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role70:
+        title: Селімена
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance9'
+        employee: '@employee63'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role71:
+        title: Чоловік
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance10'
+        employee: '@employee64'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role72:
+        title: Сусід
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance10'
+        employee: '@employee41'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role73:
+        title: 'Сусідка з дитиною'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance10'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role74:
+        title: Златохрест
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee64'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role75:
+        title: Міцносвят
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee28'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role76:
+        title: Стрічечка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee63'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role77:
+        title: Спеціаліст
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role78:
+        title: Спеціаліст
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee65'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role79:
+        title: Спеціаліст
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance11'
+        employee: '@employee67'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role80:
+        title: 'Хома Кичатий'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee15'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role81:
+        title: Галя
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee23'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role82:
+        title: Ангел
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee28'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role83:
+        title: Полковник
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role84:
+        title: Козовода
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role85:
+        title: Жид
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role86:
+        title: '2-га дівчина'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee11'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role87:
+        title: Бурсак
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee67'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role88:
+        title: '1-ша дівчина'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance12'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role89:
+        title: Дочка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance13'
+        employee: '@employee18'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role90:
+        title: Принцеса
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance13'
+        employee: '@employee27'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role91:
+        title: Принцеса
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance13'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role92:
+        title: Мачуха
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance13'
+        employee: '@employee45'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role93:
+        title: Падчерка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance13'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role94:
+        title: Вовк
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee33'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role95:
+        title: Вовк
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee41'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role96:
+        title: Лисиця
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee13'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role97:
+        title: Курча
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee42'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role98:
+        title: Сорока
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee14'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role99:
+        title: Сорока
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance14'
+        employee: '@employee63'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role100:
+        title: Лелека
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance15'
+        employee: '@employee64'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role101:
+        title: Ромашка
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance15'
+        employee: '@employee66'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role102:
+        title: Редиска
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance15'
+        employee: '@employee65'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    role103:
+        title: 'Гидке каченя'
+        description: 'Опис образу, втілюваного актором;'
+        performance: '@performance16'
+        employee: '@employee11'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>

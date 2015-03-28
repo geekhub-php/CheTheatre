@@ -1,0 +1,996 @@
+AppBundle\Entity\Translations\EmployeeTranslation:
+    employeeTranslation1:
+        object: '@employee1'
+        locale: en
+        field: firstName
+        content: Volodymyr
+    employeeTranslation2:
+        object: '@employee1'
+        locale: en
+        field: lastName
+        content: Osipov
+    employeeTranslation3:
+        object: '@employee1'
+        locale: en
+        field: biography
+        content: 'Works in the theatre on the position of a director till 1999. Honoured Art Worker of Ukraine since 2009. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1993. Specialist in theatre study, organizer of theatrical business.'
+    employeeTranslation4:
+        object: '@employee2'
+        locale: en
+        field: firstName
+        content: Serhiy
+    employeeTranslation5:
+        object: '@employee2'
+        locale: en
+        field: lastName
+        content: Proskurnja
+    employeeTranslation6:
+        object: '@employee2'
+        locale: en
+        field: biography
+        content: '-'
+    employeeTranslation7:
+        object: '@employee3'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation8:
+        object: '@employee3'
+        locale: en
+        field: lastName
+        content: Pavlutin
+    employeeTranslation9:
+        object: '@employee3'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2002. Acting artistic director of the theatre since 2010. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 2002.'
+    employeeTranslation10:
+        object: '@employee4'
+        locale: en
+        field: firstName
+        content: Serhiy
+    employeeTranslation11:
+        object: '@employee4'
+        locale: en
+        field: lastName
+        content: Ridvaneckij
+    employeeTranslation12:
+        object: '@employee4'
+        locale: en
+        field: biography
+        content: 'Main artist in the theatre since 2003. Graduated from Lviv State Institute of Applied and Decorative Arts in 1991. Got up 39 performances, 8 of them in Cherkasy theatre.'
+    employeeTranslation13:
+        object: '@employee5'
+        locale: en
+        field: firstName
+        content: Nataliya
+    employeeTranslation14:
+        object: '@employee5'
+        locale: en
+        field: lastName
+        content: Ridvanetska
+    employeeTranslation15:
+        object: '@employee5'
+        locale: en
+        field: biography
+        content: 'Costumer. Works in the theatre since 2003. Graduated from Lviv State Institute of Applied and Decorative Arts in 1992. Artist-technologist. Got up 43 performances, 12 of them in Cherkasy theatre.'
+    employeeTranslation16:
+        object: '@employee6'
+        locale: en
+        field: firstName
+        content: Nadiya
+    employeeTranslation17:
+        object: '@employee6'
+        locale: en
+        field: lastName
+        content: Nikifirova
+    employeeTranslation18:
+        object: '@employee6'
+        locale: en
+        field: biography
+        content: 'Art director in the theatre since 1980. Graduated from Leningrad State Institute of  Drama, Music and Cinematography in 1980. Got up 70 performances, 55 of them in Cherkasy theatre.'
+    employeeTranslation19:
+        object: '@employee7'
+        locale: en
+        field: firstName
+        content: Volodymyr
+    employeeTranslation20:
+        object: '@employee7'
+        locale: en
+        field: lastName
+        content: Tatarinov
+    employeeTranslation21:
+        object: '@employee7'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2007. Main choreographer. Works in the theatre since 1984. Graduated from Dnepropetrovsk State Theatre School in 1972. Director of choreographic collective.'
+    employeeTranslation22:
+        object: '@employee8'
+        locale: en
+        field: firstName
+        content: Varvara
+    employeeTranslation23:
+        object: '@employee8'
+        locale: en
+        field: lastName
+        content: Prisagnenko
+    employeeTranslation24:
+        object: '@employee8'
+        locale: en
+        field: biography
+        content: 'Honored Worker of  culture of Ukraine since 2007. Head of the literary and dramatic part. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1975. In the theatre since 1975.'
+    employeeTranslation25:
+        object: '@employee9'
+        locale: en
+        field: firstName
+        content: Olena
+    employeeTranslation26:
+        object: '@employee9'
+        locale: en
+        field: lastName
+        content: Belkina
+    employeeTranslation27:
+        object: '@employee9'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1995 as accompanist, since 2008 as conductor. Graduated from Cherkasy Music School n.a. Gulak-Artemowski.'
+    employeeTranslation28:
+        object: '@employee10'
+        locale: en
+        field: firstName
+        content: Svitlana
+    employeeTranslation29:
+        object: '@employee10'
+        locale: en
+        field: lastName
+        content: Lezhnenko
+    employeeTranslation30:
+        object: '@employee10'
+        locale: en
+        field: biography
+        content: _
+    employeeTranslation31:
+        object: '@employee11'
+        locale: en
+        field: firstName
+        content: Galyna
+    employeeTranslation32:
+        object: '@employee11'
+        locale: en
+        field: lastName
+        content: Kuruchenko
+    employeeTranslation33:
+        object: '@employee11'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1997. Graduated from Cherkasy Music School n.a. Gulak-Artemowski.'
+    employeeTranslation34:
+        object: '@employee12'
+        locale: en
+        field: firstName
+        content: Serhiy
+    employeeTranslation35:
+        object: '@employee12'
+        locale: en
+        field: lastName
+        content: Bobrov
+    employeeTranslation36:
+        object: '@employee12'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2009. Works in the theatre since 1996.  Graduated from Dnepropetrovsk State Theatre School in 1996.'
+    employeeTranslation37:
+        object: '@employee13'
+        locale: en
+        field: lastName
+        content: Vigran
+    employeeTranslation38:
+        object: '@employee13'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2009. Works in the theatre since 1994.'
+    employeeTranslation39:
+        object: '@employee14'
+        locale: en
+        field: firstName
+        content: Mariya
+    employeeTranslation40:
+        object: '@employee14'
+        locale: en
+        field: lastName
+        content: Maryshchak
+    employeeTranslation41:
+        object: '@employee14'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008. Graduated from Vinnytsia School of Culture and Arts.'
+    employeeTranslation42:
+        object: '@employee15'
+        locale: en
+        field: firstName
+        content: Yuriy
+    employeeTranslation43:
+        object: '@employee15'
+        locale: en
+        field: lastName
+        content: Berlinskij
+    employeeTranslation44:
+        object: '@employee16'
+        locale: en
+        field: firstName
+        content: Svitlana
+    employeeTranslation45:
+        object: '@employee16'
+        locale: en
+        field: lastName
+        content: Amelina
+    employeeTranslation46:
+        object: '@employee16'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008'
+    employeeTranslation47:
+        object: '@employee17'
+        locale: en
+        field: firstName
+        content: Anna
+    employeeTranslation48:
+        object: '@employee17'
+        locale: en
+        field: lastName
+        content: Bobrova
+    employeeTranslation49:
+        object: '@employee17'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2007. Graduated from Kaniv School of Culture and Arts in 2007.'
+    employeeTranslation50:
+        object: '@employee18'
+        locale: en
+        field: firstName
+        content: Olena
+    employeeTranslation51:
+        object: '@employee18'
+        locale: en
+        field: lastName
+        content: Breharya
+    employeeTranslation52:
+        object: '@employee18'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008'
+    employeeTranslation53:
+        object: '@employee19'
+        locale: en
+        field: firstName
+        content: Liliya
+    employeeTranslation54:
+        object: '@employee19'
+        locale: en
+        field: lastName
+        content: Byrlakova
+    employeeTranslation55:
+        object: '@employee19'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003. Graduated from Rivne State Humanitarian University in 2004.'
+    employeeTranslation56:
+        object: '@employee20'
+        locale: en
+        field: firstName
+        content: Oksana
+    employeeTranslation57:
+        object: '@employee20'
+        locale: en
+        field: lastName
+        content: Vovkostril
+    employeeTranslation58:
+        object: '@employee20'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2009'
+    employeeTranslation59:
+        object: '@employee21'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation60:
+        object: '@employee21'
+        locale: en
+        field: lastName
+        content: Gelevera
+    employeeTranslation61:
+        object: '@employee21'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2009'
+    employeeTranslation62:
+        object: '@employee22'
+        locale: en
+        field: firstName
+        content: Mykola
+    employeeTranslation63:
+        object: '@employee22'
+        locale: en
+        field: lastName
+        content: Glazov
+    employeeTranslation64:
+        object: '@employee22'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1977 till 1986, since 1996 till 2000, since 2002 till 2003 and since 2006. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary'
+    employeeTranslation65:
+        object: '@employee23'
+        locale: en
+        field: firstName
+        content: Iryna
+    employeeTranslation66:
+        object: '@employee23'
+        locale: en
+        field: lastName
+        content: Glazova
+    employeeTranslation67:
+        object: '@employee23'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2000 till 2006 and since 2010. Graduated from Dnipropetrovsk State Regional Theatre and Art College'
+    employeeTranslation68:
+        object: '@employee24'
+        locale: en
+        field: firstName
+        content: Nataliya
+    employeeTranslation69:
+        object: '@employee24'
+        locale: en
+        field: lastName
+        content: Glazova
+    employeeTranslation70:
+        object: '@employee24'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1976. Graduated from Kaniv Cultural and Educational College'
+    employeeTranslation71:
+        object: '@employee25'
+        locale: en
+        field: firstName
+        content: Pavlo
+    employeeTranslation72:
+        object: '@employee25'
+        locale: en
+        field: lastName
+        content: Goncharov
+    employeeTranslation73:
+        object: '@employee25'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008. Graduated from Dnepropetrovsk State Regional Theatre and Art College in 1998.'
+    employeeTranslation74:
+        object: '@employee26'
+        locale: en
+        field: firstName
+        content: Yuriy
+    employeeTranslation75:
+        object: '@employee26'
+        locale: en
+        field: lastName
+        content: Greben
+    employeeTranslation76:
+        object: '@employee26'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1998. Graduated from Kaniv School of Culture in 1997.'
+    employeeTranslation77:
+        object: '@employee27'
+        locale: en
+        field: firstName
+        content: Tetyana
+    employeeTranslation78:
+        object: '@employee27'
+        locale: en
+        field: lastName
+        content: Greben
+    employeeTranslation79:
+        object: '@employee27'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1996. Graduated from Dnepropetrovsk State Theatre College in 1996.'
+    employeeTranslation80:
+        object: '@employee28'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation81:
+        object: '@employee28'
+        locale: en
+        field: lastName
+        content: Gymennuj
+    employeeTranslation82:
+        object: '@employee28'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008. Graduated from the Kyiv Mining and Transport College in 1996.'
+    employeeTranslation83:
+        object: '@employee29'
+        locale: en
+        field: firstName
+        content: Yuliya
+    employeeTranslation84:
+        object: '@employee29'
+        locale: en
+        field: lastName
+        content: 'Donska- Gymenna'
+    employeeTranslation85:
+        object: '@employee29'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008. Graduated from the Mykolayiv State Higher School of Culture in 2008.'
+    employeeTranslation86:
+        object: '@employee30'
+        locale: en
+        field: firstName
+        content: Mykola
+    employeeTranslation87:
+        object: '@employee30'
+        locale: en
+        field: lastName
+        content: Zajnchkivskij
+    employeeTranslation88:
+        object: '@employee30'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2010. Works in the theatre since 1986. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1986.'
+    employeeTranslation89:
+        object: '@employee31'
+        locale: en
+        field: firstName
+        content: Anzhelina
+    employeeTranslation90:
+        object: '@employee31'
+        locale: en
+        field: lastName
+        content: Ivanova
+    employeeTranslation91:
+        object: '@employee31'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1996. Graduated from Dnepropetrovsk State Theatre School in 1996.'
+    employeeTranslation92:
+        object: '@employee32'
+        locale: en
+        field: firstName
+        content: Valeriy
+    employeeTranslation93:
+        object: '@employee32'
+        locale: en
+        field: lastName
+        content: Kirichenko
+    employeeTranslation94:
+        object: '@employee32'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003'
+    employeeTranslation95:
+        object: '@employee33'
+        locale: en
+        field: firstName
+        content: Oleksiy
+    employeeTranslation96:
+        object: '@employee33'
+        locale: en
+        field: lastName
+        content: Klimenko
+    employeeTranslation97:
+        object: '@employee33'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2012. Graduated from Kharkov State University of Arts n.a. I.M. Kotlyarevskyy in 2012.'
+    employeeTranslation98:
+        object: '@employee34'
+        locale: en
+        field: firstName
+        content: Serhiy
+    employeeTranslation99:
+        object: '@employee34'
+        locale: en
+        field: lastName
+        content: Kovalenko
+    employeeTranslation100:
+        object: '@employee34'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2012. Graduated from Cherkasy National University n.a. Bohdan Khmelnytsky.'
+    employeeTranslation101:
+        object: '@employee35'
+        locale: en
+        field: firstName
+        content: Viktoriya
+    employeeTranslation102:
+        object: '@employee35'
+        locale: en
+        field: lastName
+        content: Kovaleva
+    employeeTranslation103:
+        object: '@employee35'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1989'
+    employeeTranslation104:
+        object: '@employee36'
+        locale: en
+        field: firstName
+        content: Viktor
+    employeeTranslation105:
+        object: '@employee36'
+        locale: en
+        field: lastName
+        content: Kolomiec
+    employeeTranslation106:
+        object: '@employee36'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine. Works in the theatre since 1976. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1976.'
+    employeeTranslation107:
+        object: '@employee37'
+        locale: en
+        field: firstName
+        content: Mykhaylo
+    employeeTranslation108:
+        object: '@employee37'
+        locale: en
+        field: lastName
+        content: Kondratskij
+    employeeTranslation109:
+        object: '@employee37'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1988. Graduated from Kyiv National University of Culture and Arts in 2002.'
+    employeeTranslation110:
+        object: '@employee38'
+        locale: en
+        field: firstName
+        content: Nadiya
+    employeeTranslation111:
+        object: '@employee38'
+        locale: en
+        field: lastName
+        content: Korbut
+    employeeTranslation112:
+        object: '@employee38'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2005. Graduated from Uzhgorod School of Culture in 2002.'
+    employeeTranslation113:
+        object: '@employee39'
+        locale: en
+        field: firstName
+        content: Tetyana
+    employeeTranslation114:
+        object: '@employee39'
+        locale: en
+        field: lastName
+        content: Krizhanivska
+    employeeTranslation115:
+        object: '@employee39'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine. Works in the theatre since 1979. Graduated from the State Institute of Theatrical Arts n.a. Lunacharsky in 1984.'
+    employeeTranslation116:
+        object: '@employee40'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation117:
+        object: '@employee40'
+        locale: en
+        field: lastName
+        content: Kuzmenko
+    employeeTranslation118:
+        object: '@employee40'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1997. Graduated from Dnepropetrovsk State Theatre School in 1997.'
+    employeeTranslation119:
+        object: '@employee41'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation120:
+        object: '@employee41'
+        locale: en
+        field: lastName
+        content: Kyzmun
+    employeeTranslation121:
+        object: '@employee41'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine - 2009'
+    employeeTranslation122:
+        object: '@employee42'
+        locale: en
+        field: firstName
+        content: Anna
+    employeeTranslation123:
+        object: '@employee42'
+        locale: en
+        field: lastName
+        content: Kyrulenko
+    employeeTranslation124:
+        object: '@employee42'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2011. Graduated from the Cherkasy Music School n.a. Gulak - Artemowski in 2008. Continues her studies at the Kyiv National University of Theatre, Film and Television n.a. Karpenko – Kary'
+    employeeTranslation125:
+        object: '@employee43'
+        locale: en
+        field: firstName
+        content: Nataliya
+    employeeTranslation126:
+        object: '@employee43'
+        locale: en
+        field: lastName
+        content: Mamalyga
+    employeeTranslation127:
+        object: '@employee43'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2009. Works in the theatre since 1994. Graduated from the Kiev State Conservatoire n.a. Tchaikovsky in 1992.'
+    employeeTranslation128:
+        object: '@employee44'
+        locale: en
+        field: firstName
+        content: Iryna
+    employeeTranslation129:
+        object: '@employee44'
+        locale: en
+        field: lastName
+        content: Maslova
+    employeeTranslation130:
+        object: '@employee44'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1998'
+    employeeTranslation131:
+        object: '@employee45'
+        locale: en
+        field: firstName
+        content: Svitlana
+    employeeTranslation132:
+        object: '@employee45'
+        locale: en
+        field: lastName
+        content: Moskalenko
+    employeeTranslation133:
+        object: '@employee45'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine. Works in the theatre since 2012. Graduated from the Drama Studio at the Franko Theater in 1975.'
+    employeeTranslation134:
+        object: '@employee46'
+        locale: en
+        field: firstName
+        content: Nataliya
+    employeeTranslation135:
+        object: '@employee46'
+        locale: en
+        field: lastName
+        content: Panekina
+    employeeTranslation136:
+        object: '@employee46'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2012. Graduated from Kharkov State University of Arts n.a. I.M. Kotlyarevskyy in 2011'
+    employeeTranslation137:
+        object: '@employee47'
+        locale: en
+        field: firstName
+        content: Nataliya
+    employeeTranslation138:
+        object: '@employee47'
+        locale: en
+        field: lastName
+        content: Naumenko
+    employeeTranslation139:
+        object: '@employee47'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2002'
+    employeeTranslation140:
+        object: '@employee48'
+        locale: en
+        field: firstName
+        content: Serhiy
+    employeeTranslation141:
+        object: '@employee48'
+        locale: en
+        field: lastName
+        content: Ponomarenko
+    employeeTranslation142:
+        object: '@employee48'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003'
+    employeeTranslation143:
+        object: '@employee49'
+        locale: en
+        field: firstName
+        content: Olena
+    employeeTranslation144:
+        object: '@employee49'
+        locale: en
+        field: lastName
+        content: Ponomarenko
+    employeeTranslation145:
+        object: '@employee49'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003'
+    employeeTranslation146:
+        object: '@employee50'
+        locale: en
+        field: firstName
+        content: Lidiya
+    employeeTranslation147:
+        object: '@employee50'
+        locale: en
+        field: lastName
+        content: Popova
+    employeeTranslation148:
+        object: '@employee50'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 1978. Works in the theatre since 1973. Graduated from Dnipropetrovsk State Theatre School in 1962.'
+    employeeTranslation149:
+        object: '@employee51'
+        locale: en
+        field: firstName
+        content: Dmytro
+    employeeTranslation150:
+        object: '@employee51'
+        locale: en
+        field: lastName
+        content: Potapchyk
+    employeeTranslation151:
+        object: '@employee51'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2010. Graduated from Rivne State Humanitarian University'
+    employeeTranslation152:
+        object: '@employee52'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation153:
+        object: '@employee52'
+        locale: en
+        field: lastName
+        content: Pryz
+    employeeTranslation154:
+        object: '@employee52'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2005'
+    employeeTranslation155:
+        object: '@employee53'
+        locale: en
+        field: firstName
+        content: Yuriy
+    employeeTranslation156:
+        object: '@employee53'
+        locale: en
+        field: lastName
+        content: Prokopchuk
+    employeeTranslation157:
+        object: '@employee53'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1998 . Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary'
+    employeeTranslation158:
+        object: '@employee54'
+        locale: en
+        field: firstName
+        content: Oleksandr
+    employeeTranslation159:
+        object: '@employee54'
+        locale: en
+        field: lastName
+        content: Pjatkivskij
+    employeeTranslation160:
+        object: '@employee54'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1977'
+    employeeTranslation161:
+        object: '@employee55'
+        locale: en
+        field: firstName
+        content: Olha
+    employeeTranslation162:
+        object: '@employee55'
+        locale: en
+        field: lastName
+        content: Romodan
+    employeeTranslation163:
+        object: '@employee55'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1990'
+    employeeTranslation164:
+        object: '@employee56'
+        locale: en
+        field: firstName
+        content: Lyubov
+    employeeTranslation165:
+        object: '@employee56'
+        locale: en
+        field: lastName
+        content: Skobel
+    employeeTranslation166:
+        object: '@employee56'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine since 2006. Works in the theatre since 1977. Graduated from the Drama Studio at the Franko Theater in 1977.'
+    employeeTranslation167:
+        object: '@employee57'
+        locale: en
+        field: firstName
+        content: Evhen
+    employeeTranslation168:
+        object: '@employee57'
+        locale: en
+        field: lastName
+        content: Skrupnichenko
+    employeeTranslation169:
+        object: '@employee57'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2008'
+    employeeTranslation170:
+        object: '@employee58'
+        locale: en
+        field: firstName
+        content: Lydmyla
+    employeeTranslation171:
+        object: '@employee58'
+        locale: en
+        field: lastName
+        content: Talah
+    employeeTranslation172:
+        object: '@employee58'
+        locale: en
+        field: biography
+        content: 'Honored Artist of Ukraine. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1967. Works in the theatre since 1967'
+    employeeTranslation173:
+        object: '@employee59'
+        locale: en
+        field: firstName
+        content: Oleh
+    employeeTranslation174:
+        object: '@employee59'
+        locale: en
+        field: lastName
+        content: Telatnik
+    employeeTranslation175:
+        object: '@employee59'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2005 року. Graduated from the Kharkov State Institute of Culture in 1995.'
+    employeeTranslation176:
+        object: '@employee60'
+        locale: en
+        field: firstName
+        content: Svitlana
+    employeeTranslation177:
+        object: '@employee60'
+        locale: en
+        field: lastName
+        content: Tereshchenko
+    employeeTranslation178:
+        object: '@employee60'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2009. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary'
+    employeeTranslation179:
+        object: '@employee61'
+        locale: en
+        field: firstName
+        content: Liliya
+    employeeTranslation180:
+        object: '@employee61'
+        locale: en
+        field: lastName
+        content: Kharchenko
+    employeeTranslation181:
+        object: '@employee61'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 1998'
+    employeeTranslation182:
+        object: '@employee62'
+        locale: en
+        field: firstName
+        content: Kostyantyn
+    employeeTranslation183:
+        object: '@employee62'
+        locale: en
+        field: lastName
+        content: Shaenko
+    employeeTranslation184:
+        object: '@employee62'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003'
+    employeeTranslation185:
+        object: '@employee63'
+        locale: en
+        field: firstName
+        content: Kateryna
+    employeeTranslation186:
+        object: '@employee63'
+        locale: en
+        field: lastName
+        content: Shakalova
+    employeeTranslation187:
+        object: '@employee63'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2003. Graduated from Dnepropetrovsk Theatre and Art College.'
+    employeeTranslation188:
+        object: '@employee64'
+        locale: en
+        field: firstName
+        content: Petro
+    employeeTranslation189:
+        object: '@employee64'
+        locale: en
+        field: lastName
+        content: Golybchehko
+    employeeTranslation190:
+        object: '@employee64'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2014'
+    employeeTranslation191:
+        object: '@employee65'
+        locale: en
+        field: firstName
+        content: Kateryna
+    employeeTranslation192:
+        object: '@employee65'
+        locale: en
+        field: lastName
+        content: Olejnikova
+    employeeTranslation193:
+        object: '@employee65'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2014'
+    employeeTranslation194:
+        object: '@employee66'
+        locale: en
+        field: firstName
+        content: Olena
+    employeeTranslation195:
+        object: '@employee66'
+        locale: en
+        field: lastName
+        content: Peredriy
+    employeeTranslation196:
+        object: '@employee66'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2014'
+    employeeTranslation197:
+        object: '@employee67'
+        locale: en
+        field: firstName
+        content: Maksym
+    employeeTranslation198:
+        object: '@employee67'
+        locale: en
+        field: lastName
+        content: Ruzhevol
+    employeeTranslation199:
+        object: '@employee67'
+        locale: en
+        field: biography
+        content: 'Works in the theatre since 2014'
