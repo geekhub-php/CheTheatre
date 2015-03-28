@@ -10,10 +10,12 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use AppBundle\Model\EmployeesResponse;
 
 /**
  * @RouteResource("Employee")
+ * @Cache(smaxage="604800", public=true)
  */
 class EmployeesController extends Controller
 {
