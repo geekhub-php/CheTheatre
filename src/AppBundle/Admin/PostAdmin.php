@@ -59,7 +59,7 @@ class PostAdmin extends Admin
             ->end()
             ->with('Tags', ['description' => '* Тег "Історія" використовуйте виключно для тих статей які повинні відображатись в розділі "Історія Театру"'])
             ->add(
-                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
+                $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
                     ->addModelTransformer(
                         new TagTransformer(
                             $this->container->getParameter('sonata_translation.default_locale'),
