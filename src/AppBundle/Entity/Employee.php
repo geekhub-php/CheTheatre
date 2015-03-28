@@ -67,15 +67,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private $lastName;
 
     /**
-     * @var string
-     * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Type("string")
-     * @Expose
-     */
-    private $middleName;
-
-    /**
      * @var /Datetime
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
@@ -216,29 +207,6 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get middleName
-     *
-     * @return string
-     */
-    public function getMiddleName()
-    {
-        return $this->middleName;
-    }
-
-    /**
-     * Set middleName
-     *
-     * @param  string   $middleName
-     * @return Employee
-     */
-    public function setMiddleName($middleName)
-    {
-        $this->middleName = $middleName;
 
         return $this;
     }
