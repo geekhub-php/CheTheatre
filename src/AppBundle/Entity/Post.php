@@ -63,6 +63,7 @@ class Post
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
+     * @Expose
      */
     private $mainPicture;
 
