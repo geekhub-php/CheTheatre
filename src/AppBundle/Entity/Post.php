@@ -95,6 +95,7 @@ class Post
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinTable(name="post_tag")
+     * @Expose
      */
     private $tags;
 
