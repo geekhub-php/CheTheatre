@@ -10,10 +10,12 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use AppBundle\Model\PerformancesResponse;
 
 /**
  * @RouteResource("Performance")
+ * @Cache(smaxage="86400", public=true)
  */
 class PerformancesController extends Controller
 {
