@@ -41,7 +41,6 @@ class EmployeesControllerTest extends AbstractController
             ['employees'],
             ['first_name'],
             ['last_name'],
-            ['middle_name'],
             ['dob'],
             ['position'],
             ['biography'],
