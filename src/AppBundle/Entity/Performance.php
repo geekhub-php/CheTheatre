@@ -18,7 +18,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performances")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
@@ -88,6 +88,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
+     * @Expose
      */
     private $sliderImage;
 

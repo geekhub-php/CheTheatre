@@ -16,7 +16,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="employees")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")

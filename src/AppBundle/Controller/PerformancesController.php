@@ -2,18 +2,20 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Pagerfanta;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use AppBundle\Model\PerformancesResponse;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Performance")
+ * @Cache(smaxage="86400", public=true)
  */
 class PerformancesController extends Controller
 {
@@ -22,9 +24,9 @@ class PerformancesController extends Controller
      * resource=true,
      *  description="Returns a collection of Performances",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entity is not found",
-     *     },
+     *  },
      *  output = "array<AppBundle\Model\PerformancesResponse>"
      * )
      *
@@ -35,35 +37,61 @@ class PerformancesController extends Controller
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->findAll();
+        $performances = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Performance')
+            ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
-        $paginater
-            ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('page'))
-        ;
         $performancesResponse = new PerformancesResponse();
-        $performancesResponse->setPerformances($paginater->getCurrentPageResults());
-        $performancesResponse->setPageCount($paginater->getNbPages());
+        $performancesResponse->setPerformances($performances);
+        $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
+        $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $performancesResponse->setPage($paramFetcher->get('page'));
 
-        $nextPage = $paginater->hasNextPage() ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')+1,
-                )
+        $self = $this->generateUrl('get_performances', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $paramFetcher->get('page'),
+        ], true
+        );
+
+        $first = $this->generateUrl('get_performances', [], true);
+
+        $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
+            $this->generateUrl('get_performances', [
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')+1,
+            ], true
             ) :
             'false';
 
-        $previsiousPage = $paginater->hasPreviousPage() ?
-            $this->generateUrl('get_performances', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_performances', [
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
-        $performancesResponse->setNextPage($nextPage);
-        $performancesResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_performances', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $performancesResponse->getPageCount(),
+        ], true
+        );
+
+        $links = new PaginationLinks();
+
+        $performancesResponse->setLinks($links->setSelf(new Link($self)));
+        $performancesResponse->setLinks($links->setFirst(new Link($first)));
+        $performancesResponse->setLinks($links->setNext(new Link($nextPage)));
+        $performancesResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $performancesResponse->setLinks($links->setLast(new Link($last)));
+
+        foreach ($performances as $performance) {
+            $performance->setLinks([
+                ['rel' => 'self', 'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)],
+                ['rel' => 'self.roles', 'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)],
+                ['rel' => 'self.events', 'href' => $this->generateUrl('get_performanceevents', ['performance' => $performance->getSlug()], true)],
+            ]);
+        }
 
         return $performancesResponse;
     }
@@ -71,13 +99,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug",
+     *  description="Returns Performance by unique property {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance was found in database",
+     *      404="Returned when Performance was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance by unique name"}
      *  },
      *  output = "AppBundle\Entity\Performance"
      * )
@@ -99,13 +127,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug and its Roles",
+     *  description="Returns Performance roles by his unique {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance by slug was found in database",
+     *      404="Returned when Performance by slug was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
@@ -129,13 +157,13 @@ class PerformancesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns Performance by Slug and its Performance Events",
+     *  description="Returns Performance events by Performance {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when Performance by {slug} was found in database",
+     *      404="Returned when Performance by {slug} was not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
      *  },
      *  output = "array<AppBundle\Entity\PerformanceEvent>",
      * deprecated = true

@@ -2,27 +2,29 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Link;
+use AppBundle\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Pagerfanta\Pagerfanta;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use AppBundle\Model\EmployeesResponse;
-use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * @RouteResource("Employee")
+ * @Cache(smaxage="604800", public=true)
  */
 class EmployeesController extends Controller
 {
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Returns a collection of Employees",
+     *  description="Returns a collection of theatre employees.",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters were correct",
      *      404="Returned when the entities with given limit and offset are not found",
      *  },
      *  output = "array<AppBundle\Model\EmployeesResponse>"
@@ -35,35 +37,53 @@ class EmployeesController extends Controller
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $queryBuilder = $this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->findAll();
+        $employees = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Employee')
+            ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        $paginater = new Pagerfanta(new ArrayAdapter($queryBuilder));
-        $paginater
-            ->setMaxPerPage($paramFetcher->get('limit'))
-            ->setCurrentPage($paramFetcher->get('page'))
-        ;
         $employeesResponse = new EmployeesResponse();
-        $employeesResponse->setEmployees($paginater->getCurrentPageResults());
-        $employeesResponse->setPageCount($paginater->getNbPages());
+        $employeesResponse->setEmployees($employees);
+        $employeesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->getCount());
+        $employeesResponse->setPageCount(ceil($employeesResponse->getTotalCount() / $paramFetcher->get('limit')));
+        $employeesResponse->setPage($paramFetcher->get('page'));
 
-        $nextPage = $paginater->hasNextPage() ?
-            $this->generateUrl('get_employees', array(
+        $self = $this->generateUrl('get_employees', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $paramFetcher->get('page'),
+        ], true
+        );
+
+        $first = $this->generateUrl('get_employees', [], true);
+
+        $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
+            $this->generateUrl('get_employees', [
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
-                )
+            ], true
             ) :
             'false';
 
-        $previsiousPage = $paginater->hasPreviousPage() ?
-            $this->generateUrl('get_employees', array(
-                    'limit' => $paramFetcher->get('limit'),
-                    'page' => $paramFetcher->get('page')-1,
-                )
+        $previsiousPage = $paramFetcher->get('page') > 1 ?
+            $this->generateUrl('get_employees', [
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page')-1,
+            ], true
             ) :
             'false';
 
-        $employeesResponse->setNextPage($nextPage);
-        $employeesResponse->setPreviousPage($previsiousPage);
+        $last = $this->generateUrl('get_employees', [
+            'limit' => $paramFetcher->get('limit'),
+            'page' => $employeesResponse->getPageCount(),
+        ], true
+        );
+
+        $links = new PaginationLinks();
+
+        $employeesResponse->setLinks($links->setSelf(new Link($self)));
+        $employeesResponse->setLinks($links->setFirst(new Link($first)));
+        $employeesResponse->setLinks($links->setNext(new Link($nextPage)));
+        $employeesResponse->setLinks($links->setPrev(new Link($previsiousPage)));
+        $employeesResponse->setLinks($links->setLast(new Link($last)));
 
         return $employeesResponse;
     }
@@ -71,13 +91,13 @@ class EmployeesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns an Employee by slug",
+     *  description="Returns an Employee by unique property {slug}",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when employee by {slug} found in database" ,
+     *      404="Returned when employee by {slug} not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
      *  },
      *  output = "AppBundle\Entity\Employee"
      * )
@@ -99,13 +119,13 @@ class EmployeesController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns an Employee by slug and his roles",
+     *  description="Returns Employee roles by his slug",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when employee by {slug} found in database" ,
+     *      404="Returned when employee by {slug} not found in database",
      *  },
      *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Employee slug"}
+     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
      *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )

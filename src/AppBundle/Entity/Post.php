@@ -15,7 +15,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="posts")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PostTranslation")
  * @ExclusionPolicy("all")
@@ -66,6 +66,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
+     * @Expose
      */
     private $mainPicture;
 
@@ -91,6 +92,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinTable(name="post_tag")
+     * @Expose
      */
     private $tags;
 

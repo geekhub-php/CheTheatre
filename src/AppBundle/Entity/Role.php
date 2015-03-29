@@ -56,6 +56,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles")
+     * @Expose()
      */
     private $performance;
 

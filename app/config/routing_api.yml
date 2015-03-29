@@ -17,3 +17,12 @@ performance-events:
 posts:
     type: rest
     resource: AppBundle\Controller\PostsController
+
+tags:
+    type: rest
+    resource: AppBundle\Controller\TagsController
+
+_monitor:
+    resource: "@LiipMonitorBundle/Resources/config/routing.xml"
+    prefix: /monitor/health
+

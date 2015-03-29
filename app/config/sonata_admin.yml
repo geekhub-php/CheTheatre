@@ -31,10 +31,10 @@ sonata_admin:
                 type: sonata.block.service.text
                 settings:
                     content: >
-                        <h3>Вітаємо Вас в Адміністративній Панелі</h3>
-                        <h4>Черкаського академічного обласного українського</h4>
-                        <h4>музично-драматичного театру ім. Т.Г.Шевченка</h4>
-                        <p>Здесь возможно оставить какие нибудь <code>Серегины контакты</code>???</p>
+                        <h3 style="text-align: center"><code>Вітаємо Вас в Адміністративній Панелі</code></h3>
+                        <h4 style="text-align: center">Черкаського академічного обласного українського</h4>
+                        <h4 style="text-align: center">музично-драматичного театру ім. Т.Г.Шевченка</h4>
+                        <p style="text-align: center">Здесь возможно оставить какие нибудь <code>Серегины контакты</code>???</p>
 #            -
 #                position: right
 #                type: sonata.admin.block.admin_list

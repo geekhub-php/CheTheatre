@@ -8,11 +8,13 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use AppBundle\Model\PerformanceEventsResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * @RouteResource("PerformanceEvent")
+ * @Cache(smaxage="86400", public=true)
  */
 class PerformanceEventsController extends Controller
 {
@@ -21,9 +23,9 @@ class PerformanceEventsController extends Controller
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Returns a collection of PerformanceEvents",
+     *  description="Returns a collection of theatre performanceEvents",
      *  statusCodes={
-     *      200="Returned when successful",
+     *      200="Returned when all parameters were correct",
      *      400="Returned when date diff more than 1 year",
      * },
      *  output = "array<AppBundle\Model\PerformanceEventsResponse>"
@@ -31,7 +33,6 @@ class PerformanceEventsController extends Controller
      *
      * @QueryParam(name="fromDate", default="today", requirements="\d{2}-\d{2}-\d{4}|today" , description="Find entries from this date, fromat=dd-mm-yyyy")
      * @QueryParam(name="toDate", default="+1 Year", requirements="\d{2}-\d{2}-\d{4}|\+1 Year" , description="Find entries to this date, fromat=dd-mm-yyyy")
-     * @QueryParam(name="limit", default="all", requirements="\d+|all" , description="Count of entities in collection")
      * @QueryParam(name="performance", description="Performance slug")
      *
      * @RestView
@@ -52,23 +53,20 @@ class PerformanceEventsController extends Controller
             )
         ;
 
-        if ('all' != $paramFetcher->get('limit')) {
-            $result = array_slice($result, 0, $paramFetcher->get('limit'));
-        }
-
         $performanceEventsResponse = new PerformanceEventsResponse();
         $performanceEventsResponse->setPerformanceEvents($result);
+        $performanceEventsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')->getCount());
 
         return $performanceEventsResponse;
     }
 
     /**
      * @ApiDoc(
-     * resource=true,
+     *  resource=true,
      *  description="Returns one PerformanceEvent by Id",
      *  statusCodes={
-     *      200="Returned when successful",
-     *      404="Returned when the entity is not found",
+     *      200="Returned when PerformanceEvent by id was found in database",
+     *      404="Returned when PerformanceEvent by id was not found id database",
      *  },
      *  parameters={
      *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}

@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new AppBundle\AppBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -37,6 +36,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new \GeekHub\DomainRoutingBundle\DomainRoutingBundle(),
             new Sonata\TranslationBundle\SonataTranslationBundle(),
+            new Liip\MonitorBundle\LiipMonitorBundle(),
         );
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

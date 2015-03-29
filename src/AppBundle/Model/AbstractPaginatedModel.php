@@ -15,56 +15,32 @@ abstract class AbstractPaginatedModel
 {
     /**
      * @var string
-     * @Type("string")
+     * @Type("AppBundle\Model\PaginationLinks")
      * @Expose
      */
-    protected $nextPage;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @Expose
-     */
-    protected $previousPage;
+    protected $_links;
 
     /**
      * @var integer
      * @Type("integer")
-     * @Expose
      */
     protected $pageCount;
 
     /**
-     * @return mixed
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
      */
-    public function getNextPage()
-    {
-        return $this->nextPage;
-    }
+    protected $page;
 
     /**
-     * @param mixed $nextPage
+     * @var int
+     *
+     * @Type("integer")
+     * @Expose
      */
-    public function setNextPage($nextPage)
-    {
-        $this->nextPage = $nextPage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPreviousPage()
-    {
-        return $this->previousPage;
-    }
-
-    /**
-     * @param mixed $previousPage
-     */
-    public function setPreviousPage($previousPage)
-    {
-        $this->previousPage = $previousPage;
-    }
+    protected $totalCount;
 
     /**
      * @return mixed
@@ -80,5 +56,56 @@ abstract class AbstractPaginatedModel
     public function setPageCount($pageCount)
     {
         $this->pageCount = $pageCount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * @param mixed $page
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /**
+     * @param $totalCount
+     */
+    public function setTotalCount($totalCount)
+    {
+        $this->totalCount = $totalCount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinks()
+    {
+        return $this->_links;
+    }
+
+    /**
+     * @param mixed $_links
+     * @return $this
+     */
+    public function setLinks($_links)
+    {
+        $this->_links = $_links;
+
+        return $this;
     }
 }
