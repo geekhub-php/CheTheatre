@@ -15,7 +15,7 @@ use AppBundle\Model\PostsResponse;
 
 /**
  * @RouteResource("Post")
- * @Cache(smaxage="43200", public=true)
+ * @Cache(smaxage="129600", public=true)
  */
 class PostsController extends Controller
 {
