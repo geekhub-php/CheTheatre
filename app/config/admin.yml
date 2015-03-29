@@ -52,4 +52,15 @@ services:
            - AppBundle\Entity\Post
            - ~
        calls:
-       - [ setTranslationDomain, [AppBundle]]
+          - [ setTranslationDomain, [AppBundle]]
+
+   sonata.admin.media:
+      class: AppBundle\Admin\MediaAdmin
+      tags:
+          - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Media" }
+      arguments:
+           - ~
+           - AppBundle\Entity\Media
+           - ~
+      calls:
+          - [ setTranslationDomain, [AppBundle]]

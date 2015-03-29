@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\MediaBundle\Entity;
+namespace AppBundle\Entity;
 
 use Sonata\MediaBundle\Entity\BaseGalleryHasMedia as BaseGalleryHasMedia;
 use Doctrine\ORM\Mapping as ORM;

@@ -6,6 +6,10 @@ imports:
     - { resource: admin.yml }
     - { resource: monitors.yml }
 
+parameters:
+    sonata.media.admin.media.class: AppBundle\Admin\MediaAdmin
+    sonata.media.admin.gallery.class: AppBundle\Admin\GalleryAdmin
+
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
@@ -77,7 +81,7 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
-                  ApplicationSonataMediaBundle: ~
+                  AppBundle: ~
                   SonataMediaBundle: ~
                   gedmo_translatable:
                     type: annotation
