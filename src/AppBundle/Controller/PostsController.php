@@ -59,7 +59,11 @@ class PostsController extends Controller
         ], true
         );
 
-        $first = $this->generateUrl('get_posts', [], true);
+        $first = $this->generateUrl('get_posts', [
+            'limit' => $paramFetcher->get('limit'),
+            'tag' => $paramFetcher->get('tag'),
+        ], true
+        );
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
             $this->generateUrl('get_posts', [
