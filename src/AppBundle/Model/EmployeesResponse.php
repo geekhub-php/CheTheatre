@@ -39,7 +39,7 @@ class EmployeesResponse extends AbstractPaginatedModel
     }
 
     /**
-     * @param mixed $employees
+     * @param  mixed $employees
      * @return $this
      */
     public function setEmployees($employees)
