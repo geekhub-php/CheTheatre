@@ -39,6 +39,7 @@ class EmployeesController extends Controller
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+
         $employees = $em
             ->getRepository('AppBundle:Employee')
             ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'))
@@ -161,12 +162,19 @@ class EmployeesController extends Controller
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $employee->setLocale($paramFetcher->get('locale'));
-            $em->refresh($employee);
-        }
-
         $roles = $employee->getRoles();
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $rolesTranslated = [];
+
+            foreach ($roles as $role) {
+                $role->setLocale($paramFetcher->get('locale'));
+                $em->refresh($role);
+                $rolesTranslated[] = $role;
+            }
+
+            $roles = $rolesTranslated;
+        }
 
         return $roles;
     }
