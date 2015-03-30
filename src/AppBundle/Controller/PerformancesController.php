@@ -32,14 +32,27 @@ class PerformancesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $performances = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:Performance')
-            ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+        $em = $this->getDoctrine()->getManager();
+
+        $performances = $em
+                        ->getRepository('AppBundle:Performance')
+                        ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $performancesTranslated = array();
+            foreach ($performances as $performance) {
+                $performance->setLocale($paramFetcher->get('locale'));
+                $em->refresh($performance);
+                $performancesTranslated[] = $performance;
+            }
+            $performances = $performancesTranslated;
+        }
 
         $performancesResponse = new PerformancesResponse();
         $performancesResponse->setPerformances($performances);
@@ -104,21 +117,27 @@ class PerformancesController extends Controller
      *      200="Returned when Performance was found in database",
      *      404="Returned when Performance was not found in database",
      *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance by unique name"}
-     *  },
      *  output = "AppBundle\Entity\Performance"
      * )
      *
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getAction($slug)
+    public function getAction(ParamFetcher $paramFetcher, $slug)
     {
-        $performance = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $performance = $em
             ->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
+        }
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $performance->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performance);
         }
 
         return $performance;
@@ -132,21 +151,27 @@ class PerformancesController extends Controller
      *      200="Returned when Performance by slug was found in database",
      *      404="Returned when Performance by slug was not found in database",
      *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
-     *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
      *
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getRolesAction($slug)
+    public function getRolesAction(ParamFetcher $paramFetcher, $slug)
     {
-        $performance = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $performance = $em
             ->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
+        }
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $performance->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performance);
         }
 
         $roles = $performance->getRoles();
