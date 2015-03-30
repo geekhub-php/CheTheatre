@@ -32,14 +32,27 @@ class EmployeesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want ro recieve")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $employees = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+        $employees = $em
             ->getRepository('AppBundle:Employee')
-            ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+            ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'))
+        ;
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default){
+            $employeesTranslated = null;
+            foreach ($employees as $employee) {
+                $employee->setLocale($paramFetcher->get('locale'));
+                $em->refresh($employee);
+                $employeesTranslated[] = $employee;
+            }
+            $employees = $employeesTranslated;
+        }
 
         $employeesResponse = new EmployeesResponse();
         $employeesResponse->setEmployees($employees);
