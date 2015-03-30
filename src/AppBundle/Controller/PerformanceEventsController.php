@@ -34,18 +34,21 @@ class PerformanceEventsController extends Controller
      * @QueryParam(name="fromDate", default="today", requirements="\d{2}-\d{2}-\d{4}|today" , description="Find entries from this date, fromat=dd-mm-yyyy")
      * @QueryParam(name="toDate", default="+1 Year", requirements="\d{2}-\d{2}-\d{4}|\+1 Year" , description="Find entries to this date, fromat=dd-mm-yyyy")
      * @QueryParam(name="performance", description="Performance slug")
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $dateDiff = strtotime($paramFetcher->get('toDate')) - strtotime($paramFetcher->get('fromDate'));
 
         if (self::MAX_DAYS_PER_GET < abs(floor($dateDiff/(60*60*24)))) {
             throw new BadRequestHttpException(sprintf('You can\'t get more than "%s" days', self::MAX_DAYS_PER_GET));
         }
 
-        $result = $this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')
+        $performanceEvents = $em->getRepository('AppBundle:PerformanceEvent')
             ->findByDateRangeAndSlug(
                 new \DateTime($paramFetcher->get('fromDate')),
                 new \DateTime($paramFetcher->get('toDate')),
@@ -53,8 +56,18 @@ class PerformanceEventsController extends Controller
             )
         ;
 
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $performanceEventsTranslated = array();
+            foreach ($performanceEvents as $performanceEvent) {
+                $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
+                $em->refresh($performanceEvent->getPerformance());
+                $performanceEventsTranslated[] = $performanceEvent;
+            }
+            $performanceEvents = $performanceEventsTranslated;
+        }
+
         $performanceEventsResponse = new PerformanceEventsResponse();
-        $performanceEventsResponse->setPerformanceEvents($result);
+        $performanceEventsResponse->setPerformanceEvents($performanceEvents);
         $performanceEventsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')->getCount());
 
         return $performanceEventsResponse;
