@@ -36,6 +36,7 @@ object,locale,field,content
 @employee12,en,firstName,Serhiy
 @employee12,en,lastName,Bobrov
 @employee12,en,biography,Honored Artist of Ukraine since 2009. Works in the theatre since 1996.  Graduated from Dnepropetrovsk State Theatre School in 1996.
+@employee13,en,firstName,Nataliya
 @employee13,en,lastName,Vigran
 @employee13,en,biography,Honored Artist of Ukraine since 2009. Works in the theatre since 1994.
 @employee14,en,firstName,Mariya
@@ -43,6 +44,7 @@ object,locale,field,content
 @employee14,en,biography,Works in the theatre since 2008. Graduated from Vinnytsia School of Culture and Arts.
 @employee15,en,firstName,Yuriy
 @employee15,en,lastName,Berlinskij
+@employee15,en,biography,People's Artist of Ukraine since 2007. Works in the theater since 1980. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary.
 @employee16,en,firstName,Svitlana
 @employee16,en,lastName,Amelina
 @employee16,en,biography,Works in the theatre since 2008
