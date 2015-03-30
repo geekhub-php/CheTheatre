@@ -22,4 +22,18 @@ class PostRepository extends AbstractRepository
 
         return $query->execute();
     }
+
+    public function getCount($tagSlug = null)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $query = $qb->select($qb->expr()->count('u'));
+
+        if ($tagSlug) {
+            $qb->join('u.tags', 't')->andWhere('t.slug = :slug')->setParameter('slug', $tagSlug);
+        }
+
+        $query = $qb->getQuery();
+
+        return $query->getSingleScalarResult();
+    }
 }
