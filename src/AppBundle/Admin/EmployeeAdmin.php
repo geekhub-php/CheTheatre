@@ -55,6 +55,7 @@ class EmployeeAdmin extends Admin
             ])
             ->add('dob', 'sonata_type_date_picker')
             ->add('position', 'choice', [
+                'label' => 'employee.position',
                 'choices' => employee::getPositions(),
                 'translation_domain' => 'messages',
                 ]
