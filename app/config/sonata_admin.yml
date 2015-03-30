@@ -34,7 +34,9 @@ sonata_admin:
                         <h3 style="text-align: center"><code>Вітаємо Вас в Адміністративній Панелі</code></h3>
                         <h4 style="text-align: center">Черкаського академічного обласного українського</h4>
                         <h4 style="text-align: center">музично-драматичного театру ім. Т.Г.Шевченка</h4>
-                        <p style="text-align: center">Здесь возможно оставить какие нибудь <code>Серегины контакты</code>???</p>
+                        <p style="text-align: center"><code>Контакти розробників:</code></p>
+                        <p style="text-align: center">Сергій <code>spolischook@gmail.com</code></p>
+                        <p style="text-align: center"> Світлана <code>+38(093)-702-06-44</code></p>
 #            -
 #                position: right
 #                type: sonata.admin.block.admin_list
