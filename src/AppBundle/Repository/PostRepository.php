@@ -18,6 +18,8 @@ class PostRepository extends AbstractRepository
 
         $query = $qb->getQuery();
 
+        $query->useResultCache(true, 3600);
+
         return $query->execute();
     }
 }
