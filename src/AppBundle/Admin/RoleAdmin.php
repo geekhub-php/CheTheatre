@@ -41,7 +41,7 @@ class RoleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', null, ['required' => false])
+            ->add('title')
             ->add('description', null, ['required' => false])
             ->add('employee', 'sonata_type_model', ['required' => false]);
     }
