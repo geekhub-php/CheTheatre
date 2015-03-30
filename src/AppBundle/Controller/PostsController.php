@@ -32,14 +32,27 @@ class PostsController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $posts = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em
             ->getRepository('AppBundle:Post')
             ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $postsTranslated = array();
+            foreach ($posts as $post) {
+                $post->setLocale($paramFetcher->get('locale'));
+                $em->refresh($post);
+                $postsTranslated[] = $post;
+            }
+            $posts = $postsTranslated;
+        }
 
         $postsResponse = new PostsResponse();
         $postsResponse->setPosts($posts);
@@ -96,21 +109,27 @@ class PostsController extends Controller
      *      200="Returned when Post by {slug} was found",
      *      404="Returned when Post by {slug} was not found",
      *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Post slug"}
-     *  },
      *  output = "AppBundle\Entity\Post"
      * )
      *
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getAction($slug)
+    public function getAction(ParamFetcher $paramFetcher, $slug)
     {
-        $post = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $post = $em
             ->getRepository('AppBundle:Post')->findOneByslug($slug);
 
         if (!$post) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
+        }
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+                $post->setLocale($paramFetcher->get('locale'));
+                $em->refresh($post);
         }
 
         return $post;
