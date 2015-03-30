@@ -4,4 +4,20 @@ namespace AppBundle\Repository;
 
 class PostRepository extends AbstractRepository
 {
+    public function findAllOrByTag($limit, $page, $tagSlug = null)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->setMaxResults($limit)
+            ->setFirstResult($page)
+            ->orderBy('u.createdAt', 'DESC')
+        ;
+
+        if ($tagSlug) {
+            $qb->join('u.tags', 't')->andWhere('t.slug = :slug')->setParameter('slug', $tagSlug);
+        }
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }
