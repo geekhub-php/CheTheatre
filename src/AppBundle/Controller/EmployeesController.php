@@ -32,7 +32,7 @@ class EmployeesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want ro recieve")
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      *
      * @RestView
      */
@@ -44,8 +44,8 @@ class EmployeesController extends Controller
             ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'))
         ;
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default){
-            $employeesTranslated = null;
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $employeesTranslated = array();
             foreach ($employees as $employee) {
                 $employee->setLocale($paramFetcher->get('locale'));
                 $em->refresh($employee);
@@ -109,18 +109,24 @@ class EmployeesController extends Controller
      *      200="Returned when employee by {slug} found in database" ,
      *      404="Returned when employee by {slug} not found in database",
      *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
-     *  },
      *  output = "AppBundle\Entity\Employee"
      * )
      *
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getAction($slug)
+    public function getAction(ParamFetcher $paramFetcher, $slug)
     {
-        $employee = $this->getDoctrine()->getManager()->
-            getRepository('AppBundle:Employee')->findOneByslug($slug);
+        $em = $this->getDoctrine()->getManager();
+
+        $employee = $em->
+                        getRepository('AppBundle:Employee')->findOneByslug($slug);
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $employee->setLocale($paramFetcher->get('locale'));
+            $em->refresh($employee);
+        }
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -137,21 +143,27 @@ class EmployeesController extends Controller
      *      200="Returned when employee by {slug} found in database" ,
      *      404="Returned when employee by {slug} not found in database",
      *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every employee"}
-     *  },
      *  output = "array<AppBundle\Entity\Role>"
      * )
      *
+     *  @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getRolesAction($slug)
+    public function getRolesAction(ParamFetcher $paramFetcher, $slug)
     {
-        $employee = $this->getDoctrine()->getManager()
+        $em = $this->getDoctrine()->getManager();
+
+        $employee = $em
             ->getRepository('AppBundle:Employee')->findOneByslug($slug);
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
+        }
+
+        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
+            $employee->setLocale($paramFetcher->get('locale'));
+            $em->refresh($employee);
         }
 
         $roles = $employee->getRoles();
