@@ -26,7 +26,7 @@ class PostRepository extends AbstractRepository
     public function getCount($tagSlug = null)
     {
         $qb = $this->createQueryBuilder('u');
-        $query = $qb->select($qb->expr()->count('u'));
+        $qb->select($qb->expr()->count('u'));
 
         if ($tagSlug) {
             $qb->join('u.tags', 't')->andWhere('t.slug = :slug')->setParameter('slug', $tagSlug);
