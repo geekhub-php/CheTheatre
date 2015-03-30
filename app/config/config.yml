@@ -97,7 +97,7 @@ sensio_framework_extra:
         auto_convert: false
 
 stof_doctrine_extensions:
-    default_locale: ua
+    default_locale: uk
     translation_fallback: true
     orm:
         default:

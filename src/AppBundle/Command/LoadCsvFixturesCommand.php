@@ -41,7 +41,7 @@ class LoadCsvFixturesCommand extends ContainerAwareCommand
 
         $fileName = $input->getArgument('isTranslation') ?
             'fixtures'.ucfirst($entityName).'_en' :
-            'fixtures'.ucfirst($entityName).'_ua'
+            'fixtures'.ucfirst($entityName).'_uk'
         ;
 
         $csvDir = __DIR__.'/../DataFixtures/data/csv/';
