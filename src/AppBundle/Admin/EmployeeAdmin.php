@@ -27,7 +27,6 @@ class EmployeeAdmin extends Admin
     {
         $showMapper
             ->add('firstName')
-            ->add('middleName')
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
@@ -44,7 +43,6 @@ class EmployeeAdmin extends Admin
     {
         $formMapper
             ->add('firstName')
-            ->add('middleName')
             ->add('lastName')
             ->add('avatar', 'sonata_type_model_list', [
                 'required' => false,
@@ -56,7 +54,20 @@ class EmployeeAdmin extends Admin
                 ],
             ])
             ->add('dob', 'sonata_type_date_picker')
-            ->add('position', 'sonata_type_translatable_choice', ['choices' => employee::getPositions()])
+            ->add('position', 'choice', [
+                'label' => 'employee.position',
+                'choices' => employee::getPositions(),
+                'translation_domain' => 'messages',
+                ]
+            )
+            ->add('biography', 'textarea',
+                [
+                    'attr' => [
+                        'class' => 'wysihtml5',
+                        'style' => 'height:200px',
+                    ],
+                ]
+            )
             ->add('galleryHasMedia', 'sonata_type_collection', [
                 'required' => false,
                 'label' => 'Gallery',
@@ -84,10 +95,13 @@ class EmployeeAdmin extends Admin
         $listMapper
             ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('firstName')
-            ->add('middleName')
             ->add('lastName')
             ->add('dob', 'date')
-            ->add('position')
+            ->add('position', 'choice', [
+                    'choices' => employee::getPositions(),
+                    'catalogue' => 'messages',
+                ]
+            )
             ->add('roles')
         ;
     }
@@ -101,7 +115,6 @@ class EmployeeAdmin extends Admin
     {
         $datagridMapper
             ->add('firstName')
-            ->add('middleName')
             ->add('lastName')
             ->add('dob')
             ->add('position')

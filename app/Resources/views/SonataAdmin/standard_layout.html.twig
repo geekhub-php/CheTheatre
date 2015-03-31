@@ -1,0 +1,21 @@
+{% extends "SonataAdminBundle::standard_layout.html.twig" %}
+
+{% block side_bar_after_nav %}
+    <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px"><a href="http://geekhub.ck.ua/" rel="noreferrer" target="_blank">GeekHub project</a></p>
+{% endblock %}
+
+{% block sonata_sidebar_search %}
+{% endblock %}
+
+{% block sonata_page_content_nav %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    {% stylesheets
+    '@SonataTranslationBundle/Resources/public/css/sonata-translation.css'
+    %}
+
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}

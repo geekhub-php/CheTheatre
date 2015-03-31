@@ -11,14 +11,17 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="employees")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")
  */
-class Employee
+class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -64,15 +67,6 @@ class Employee
     private $lastName;
 
     /**
-     * @var string
-     * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Type("string")
-     * @Expose
-     */
-    private $middleName;
-
-    /**
      * @var /Datetime
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
@@ -83,7 +77,6 @@ class Employee
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose
@@ -98,13 +91,6 @@ class Employee
      * @Expose
      */
     private $biography;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
 
     /**
      * @var Role[]
@@ -157,12 +143,36 @@ class Employee
     public $avatarThumbnails;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\EmployeeTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Employee
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     /**
@@ -217,29 +227,6 @@ class Employee
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get middleName
-     *
-     * @return string
-     */
-    public function getMiddleName()
-    {
-        return $this->middleName;
-    }
-
-    /**
-     * Set middleName
-     *
-     * @param  string   $middleName
-     * @return Employee
-     */
-    public function setMiddleName($middleName)
-    {
-        $this->middleName = $middleName;
 
         return $this;
     }
@@ -313,11 +300,6 @@ class Employee
         return $this;
     }
 
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
     /**
      * Add role
      *
@@ -353,7 +335,7 @@ class Employee
 
     public function __toString()
     {
-        return $this->getSlug();
+        return $this->getFirstName().' '.$this->getLastName();
     }
 
     /**
@@ -401,18 +383,18 @@ class Employee
     public static function getPositions()
     {
         return [
-            employee::POSITION_ACTOR => 'actor',
-            employee::POSITION_ACTRESS => 'actress',
-            employee::POSITION_THEATRE_DIRECTOR => 'theatre_director',
-            employee::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
-            employee::POSITION_PRODUCTION_DIRECTOR => 'production_director',
-            employee::POSITION_MAIN_ARTIST => 'main_artist',
-            employee::POSITION_COSTUMER => 'costumer',
-            employee::POSITION_ART_DIRECTOR => 'art_director',
-            employee::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
-            employee::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
-            employee::POSITION_CONDUCTOR => 'conductor',
-            employee::POSITION_ACCOMPANIST => 'accompanist',
+            self::POSITION_ACTOR => 'actor',
+            self::POSITION_ACTRESS => 'actress',
+            self::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            self::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
+            self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
+            self::POSITION_MAIN_ARTIST => 'main_artist',
+            self::POSITION_COSTUMER => 'costumer',
+            self::POSITION_ART_DIRECTOR => 'art_director',
+            self::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
+            self::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
+            self::POSITION_CONDUCTOR => 'conductor',
+            self::POSITION_ACCOMPANIST => 'accompanist',
         ];
     }
 

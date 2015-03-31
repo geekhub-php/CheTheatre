@@ -18,6 +18,16 @@ class PostAdmin extends Admin
         '_sort_by' => 'name',
     ];
 
+    private $default_locale;
+
+    private $locales;
+
+    public function setParameters($default_locale, $locales)
+    {
+        $this->default_locale = $default_locale;
+        $this->locales = $locales;
+    }
+
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
      *
@@ -26,6 +36,7 @@ class PostAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('Posts')
             ->add('title')
             ->add('shortDescription')
             ->add('text', 'textarea',
@@ -47,26 +58,37 @@ class PostAdmin extends Admin
                     ],
                 ]
             )
+            ->end()
+            ->with('Tags', ['description' => '* Тег "Історія" використовуйте виключно для тих статей які повинні відображатись в розділі "Історія Театру"'])
             ->add(
-                $formMapper->create('tags', 'text', ['attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(new TagTransformer($this->modelManager->getEntityManager(new Tag())))
+                $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
+                    ->addModelTransformer(
+                        new TagTransformer(
+                            $this->default_locale,
+                            $this->locales,
+                            $this->modelManager->getEntityManager(new Tag())
+                        )
+                    )
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
-                [
-                    'required' => false,
-                    'label' => 'Gallery',
-                ], [
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable'  => 'position',
-                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                    'admin_code' => 'sonata.media.admin.gallery_has_media',
-                    'link_parameters' => [
-                        'context'  => 'post',
-                        'provider' => 'sonata.media.provider.image',
-                    ],
-                ]
-            )
+            ->end()
+            ->with('Gallery')
+                ->add('galleryHasMedia', 'sonata_type_collection',
+                    [
+                        'required' => false,
+                        'label' => false,
+                    ], [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable'  => 'position',
+                        'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                        'admin_code' => 'sonata.media.admin.gallery_has_media',
+                        'link_parameters' => [
+                            'context'  => 'post',
+                            'provider' => 'sonata.media.provider.image',
+                        ],
+                    ]
+                )
+            ->end()
         ;
     }
     /**

@@ -13,15 +13,18 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use AppBundle\Validator\MinSizeSliderImage;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performances")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
  */
-class Performance
+class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait, LinksTrait;
 
@@ -105,13 +108,6 @@ class Performance
     public $sliderImageThumbnails;
 
     /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
      * @var PerformanceEvent[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerformanceEvent", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
@@ -153,13 +149,37 @@ class Performance
     private $slug;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\PerformanceTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Performance
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     /**
@@ -285,11 +305,6 @@ class Performance
         $this->sliderImage = $sliderImage;
 
         return $this;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**

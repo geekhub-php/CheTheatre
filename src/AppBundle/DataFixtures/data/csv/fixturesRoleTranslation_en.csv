@@ -1,0 +1,208 @@
+AppBundle\Entity\Translations\RoleTranslation,,,
+object,locale,field,content
+@role1,en,title,Young mother
+@role1,en,description,"Description of image, embodied by an actor;"
+@role2,en,title,Mary
+@role2,en,description,"Description of image, embodied by an actor;"
+@role3,en,title,Tanya
+@role3,en,description,"Description of image, embodied by an actor;"
+@role4,en,title,Lydia
+@role4,en,description,"Description of image, embodied by an actor;"
+@role5,en,title,Luda
+@role5,en,description,"Description of image, embodied by an actor;"
+@role6,en,title,Nina
+@role6,en,description,"Description of image, embodied by an actor;"
+@role7,en,title,Lily
+@role7,en,description,"Description of image, embodied by an actor;"
+@role8,en,title,Waitress
+@role8,en,description,"Description of image, embodied by an actor;"
+@role9,en,title,Maria
+@role9,en,description,"Description of image, embodied by an actor;"
+@role10,en,title,Mr Tobias Rich
+@role10,en,description,"Description of image, embodied by an actor;"
+@role11,en,title,Malvolio
+@role11,en,description,"Description of image, embodied by an actor;"
+@role12,en,title,Orsino
+@role12,en,description,"Description of image, embodied by an actor;"
+@role13,en,title,Viola
+@role13,en,description,"Description of image, embodied by an actor;"
+@role14,en,title,Olivia
+@role14,en,description,"Description of image, embodied by an actor;"
+@role15,en,title,Sebastian
+@role15,en,description,"Description of image, embodied by an actor;"
+@role16,en,title,Joker assistant
+@role16,en,description,"Description of image, embodied by an actor;"
+@role17,en,title,Catherine
+@role17,en,description,"Description of image, embodied by an actor;"
+@role18,en,title,Galya Chumak
+@role18,en,description,"Description of image, embodied by an actor;"
+@role19,en,title,Andrei Chumak
+@role19,en,description,"Description of image, embodied by an actor;"
+@role20,en,title,Shpak
+@role20,en,description,"Description of image, embodied by an actor;"
+@role21,en,title,Shelmenko
+@role21,en,description,"Description of image, embodied by an actor;"
+@role22,en,title,Motrya
+@role22,en,description,"Description of image, embodied by an actor;"
+@role23,en,title,Prisenka
+@role23,en,description,"Description of image, embodied by an actor;"
+@role24,en,title,Evzheni
+@role24,en,description,"Description of image, embodied by an actor;"
+@role25,en,title,Evzheni
+@role25,en,description,"Description of image, embodied by an actor;"
+@role26,en,title,Evzheni
+@role26,en,description,"Description of image, embodied by an actor;"
+@role27,en,title,Ivan Semenovuch Skvortsov
+@role27,en,description,"Description of image, embodied by an actor;"
+@role28,en,title,Fenna Stepanivna
+@role28,en,description,"Description of image, embodied by an actor;"
+@role29,en,title,Agrafena Semenivna
+@role29,en,description,"Description of image, embodied by an actor;"
+@role30,en,title,Loputskovskyy
+@role30,en,description,"Description of image, embodied by an actor;"
+@role31,en,title,Anna
+@role31,en,description,"Description of image, embodied by an actor;"
+@role32,en,title,Onys'ko
+@role32,en,description,"Description of image, embodied by an actor;"
+@role33,en,title,Hrytsko
+@role33,en,description,"Description of image, embodied by an actor;"
+@role34,en,title,Korniy
+@role34,en,description,"Description of image, embodied by an actor;"
+@role35,en,title,Ustymivna
+@role35,en,description,"Description of image, embodied by an actor;"
+@role36,en,title,Catherine
+@role36,en,description,"Description of image, embodied by an actor;"
+@role37,en,title,Aristarchus
+@role37,en,description,"Description of image, embodied by an actor;"
+@role38,en,title,Odarka
+@role38,en,description,"Description of image, embodied by an actor;"
+@role39,en,title,Uljana
+@role39,en,description,"Description of image, embodied by an actor;"
+@role40,en,title,Minerie
+@role40,en,description,"Description of image, embodied by an actor;"
+@role41,en,title,Oksana
+@role41,en,description,"Description of image, embodied by an actor;"
+@role42,en,title,Ruslan
+@role42,en,description,"Description of image, embodied by an actor;"
+@role43,en,title,Masha
+@role43,en,description,"Description of image, embodied by an actor;"
+@role44,en,title,Victor
+@role44,en,description,"Description of image, embodied by an actor;"
+@role45,en,title,Lena
+@role45,en,description,"Description of image, embodied by an actor;"
+@role46,en,title,Vira
+@role46,en,description,"Description of image, embodied by an actor;"
+@role47,en,title,Nadia
+@role47,en,description,"Description of image, embodied by an actor;"
+@role48,en,title,Maxim
+@role48,en,description,"Description of image, embodied by an actor;"
+@role49,en,title,Stetsko
+@role49,en,description,"Description of image, embodied by an actor;"
+@role50,en,title,Prokip
+@role50,en,description,"Description of image, embodied by an actor;"
+@role51,en,title,Skoryk
+@role51,en,description,"Description of image, embodied by an actor;"
+@role52,en,title,Oleksij
+@role52,en,description,"Description of image, embodied by an actor;"
+@role53,en,title,Uljana
+@role53,en,description,"Description of image, embodied by an actor;"
+@role54,en,title,Uljana
+@role54,en,description,"Description of image, embodied by an actor;"
+@role55,en,title,Uljana
+@role55,en,description,"Description of image, embodied by an actor;"
+@role56,en,title,Oleksij
+@role56,en,description,"Description of image, embodied by an actor;"
+@role57,en,title,Odarka
+@role57,en,description,"Description of image, embodied by an actor;"
+@role58,en,title,Chezoniya
+@role58,en,description,"Description of image, embodied by an actor;"
+@role59,en,title,Pompilius
+@role59,en,description,"Description of image, embodied by an actor;"
+@role60,en,title,Lili
+@role60,en,description,"Description of image, embodied by an actor;"
+@role61,en,title,Chezoniya
+@role61,en,description,"Description of image, embodied by an actor;"
+@role62,en,title,Wanda
+@role62,en,description,"Description of image, embodied by an actor;"
+@role63,en,title,Elianta
+@role63,en,description,"Description of image, embodied by an actor;"
+@role64,en,title,Filint
+@role64,en,description,"Description of image, embodied by an actor;"
+@role65,en,title,Acastus
+@role65,en,description,"Description of image, embodied by an actor;"
+@role66,en,title,Alceste
+@role66,en,description,"Description of image, embodied by an actor;"
+@role67,en,title,Klitandr
+@role67,en,description,"Description of image, embodied by an actor;"
+@role68,en,title,Orontes
+@role68,en,description,"Description of image, embodied by an actor;"
+@role69,en,title,Arsinoya
+@role69,en,description,"Description of image, embodied by an actor;"
+@role70,en,title,Selimena
+@role70,en,description,"Description of image, embodied by an actor;"
+@role71,en,title,Man
+@role71,en,description,"Description of image, embodied by an actor;"
+@role72,en,title,Neighbor
+@role72,en,description,"Description of image, embodied by an actor;"
+@role73,en,title,A neighbor with a child
+@role73,en,description,"Description of image, embodied by an actor;"
+@role74,en,title,Zlatohrest
+@role74,en,description,"Description of image, embodied by an actor;"
+@role75,en,title,Mitsnosvyat
+@role75,en,description,"Description of image, embodied by an actor;"
+@role76,en,title,Strichechka
+@role76,en,description,"Description of image, embodied by an actor;"
+@role77,en,title,Expert
+@role77,en,description,"Description of image, embodied by an actor;"
+@role78,en,title,Expert
+@role78,en,description,"Description of image, embodied by an actor;"
+@role79,en,title,Expert
+@role79,en,description,"Description of image, embodied by an actor;"
+@role80,en,title,Khoma Kychatyy
+@role80,en,description,"Description of image, embodied by an actor;"
+@role81,en,title,Galya
+@role81,en,description,"Description of image, embodied by an actor;"
+@role82,en,title,Angel
+@role82,en,description,"Description of image, embodied by an actor;"
+@role83,en,title,Colonel
+@role83,en,description,"Description of image, embodied by an actor;"
+@role84,en,title,Kozovoda
+@role84,en,description,"Description of image, embodied by an actor;"
+@role85,en,title,Jew
+@role85,en,description,"Description of image, embodied by an actor;"
+@role86,en,title,2nd girl
+@role86,en,description,"Description of image, embodied by an actor;"
+@role87,en,title,Student of seminary
+@role87,en,description,"Description of image, embodied by an actor;"
+@role88,en,title,1st girl
+@role88,en,description,"Description of image, embodied by an actor;"
+@role89,en,title,Daughter
+@role89,en,description,"Description of image, embodied by an actor;"
+@role90,en,title,Princess
+@role90,en,description,"Description of image, embodied by an actor;"
+@role91,en,title,Princess
+@role91,en,description,"Description of image, embodied by an actor;"
+@role92,en,title,Stepmother
+@role92,en,description,"Description of image, embodied by an actor;"
+@role93,en,title,Stepdaughter
+@role93,en,description,"Description of image, embodied by an actor;"
+@role94,en,title,Wolf
+@role94,en,description,"Description of image, embodied by an actor;"
+@role95,en,title,Wolf
+@role95,en,description,"Description of image, embodied by an actor;"
+@role96,en,title,Fox
+@role96,en,description,"Description of image, embodied by an actor;"
+@role97,en,title,Chicken
+@role97,en,description,"Description of image, embodied by an actor;"
+@role98,en,title,Magpie
+@role98,en,description,"Description of image, embodied by an actor;"
+@role99,en,title,Magpie
+@role99,en,description,"Description of image, embodied by an actor;"
+@role100,en,title,Stork
+@role100,en,description,"Description of image, embodied by an actor;"
+@role101,en,title,Daisy
+@role101,en,description,"Description of image, embodied by an actor;"
+@role102,en,title,Radish
+@role102,en,description,"Description of image, embodied by an actor;"
+@role103,en,title,The Ugly Duckling
+@role103,en,description,"Description of image, embodied by an actor;"

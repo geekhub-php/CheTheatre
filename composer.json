@@ -31,6 +31,7 @@
         "sonata-project/media-bundle": "~2.3",
         "nelmio/cors-bundle": "~1.4",
         "geek-hub/domain-routing-bundle": "dev-master",
+        "sonata-project/translation-bundle": "~1.0",
         "liip/monitor-bundle": "~2.0"
     },
     "require-dev": {

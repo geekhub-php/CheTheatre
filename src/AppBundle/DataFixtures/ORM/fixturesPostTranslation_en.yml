@@ -1,0 +1,241 @@
+AppBundle\Entity\Translations\PostTranslation:
+    postTranslation1:
+        object: '@post1'
+        locale: en
+        field: title
+        content: 'Among the Thunder and Silence'
+    postTranslation2:
+        object: '@post1'
+        locale: en
+        field: shortDescription
+        content: 'The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History'
+    postTranslation3:
+        object: '@post1'
+        locale: en
+        field: text
+        content: 'The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History'
+    postTranslation4:
+        object: '@post2'
+        locale: en
+        field: title
+        content: 'Kaydash Family'
+    postTranslation5:
+        object: '@post2'
+        locale: en
+        field: shortDescription
+        content: 'Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.'
+    postTranslation6:
+        object: '@post2'
+        locale: en
+        field: text
+        content: 'Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.'
+    postTranslation7:
+        object: '@post3'
+        locale: en
+        field: title
+        content: 'Garden of Gethsemane'
+    postTranslation8:
+        object: '@post3'
+        locale: en
+        field: shortDescription
+        content: 'People tragedy in 2 acts. Duration: 2 hours. 20 min.'
+    postTranslation9:
+        object: '@post3'
+        locale: en
+        field: text
+        content: 'People tragedy in 2 acts. Duration: 2 hours. 20 min. Running time: 1 hour. 50 min.'
+    postTranslation10:
+        object: '@post4'
+        locale: en
+        field: title
+        content: Shelmenko-servant
+    postTranslation11:
+        object: '@post4'
+        locale: en
+        field: shortDescription
+        content: 'Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.'
+    postTranslation12:
+        object: '@post4'
+        locale: en
+        field: text
+        content: 'Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.'
+    postTranslation13:
+        object: '@post5'
+        locale: en
+        field: title
+        content: 'Whos the Boss at Home?'
+    postTranslation14:
+        object: '@post5'
+        locale: en
+        field: shortDescription
+        content: 'Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.'
+    postTranslation15:
+        object: '@post5'
+        locale: en
+        field: text
+        content: 'Alex Kolomiets. Travesty in 2 acts based on the play "Pharaohs". Duration: 2 hours. 05 min.'
+    postTranslation16:
+        object: '@post6'
+        locale: en
+        field: title
+        content: 'Chasing Two Hares'
+    postTranslation17:
+        object: '@post6'
+        locale: en
+        field: shortDescription
+        content: 'Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.'
+    postTranslation18:
+        object: '@post6'
+        locale: en
+        field: text
+        content: 'Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.'
+    postTranslation19:
+        object: '@post7'
+        locale: en
+        field: title
+        content: 'Matchmaking in Goncharivka'
+    postTranslation20:
+        object: '@post7'
+        locale: en
+        field: shortDescription
+        content: 'Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.'
+    postTranslation21:
+        object: '@post7'
+        locale: en
+        field: text
+        content: 'Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.'
+    postTranslation22:
+        object: '@post8'
+        locale: en
+        field: title
+        content: 'Still Life with Thick Nephew'
+    postTranslation23:
+        object: '@post8'
+        locale: en
+        field: shortDescription
+        content: 'Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.'
+    postTranslation24:
+        object: '@post8'
+        locale: en
+        field: text
+        content: 'Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min.'
+    postTranslation25:
+        object: '@post9'
+        locale: en
+        field: title
+        content: Misanthrope
+    postTranslation26:
+        object: '@post9'
+        locale: en
+        field: shortDescription
+        content: 'Jean-Baptiste Moliere. Manic comedy'
+    postTranslation27:
+        object: '@post9'
+        locale: en
+        field: text
+        content: 'Jean-Baptiste Moliere. Manic comedy'
+    postTranslation28:
+        object: '@post10'
+        locale: en
+        field: title
+        content: 'Very Simple Story'
+    postTranslation29:
+        object: '@post10'
+        locale: en
+        field: shortDescription
+        content: 'Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.'
+    postTranslation30:
+        object: '@post10'
+        locale: en
+        field: text
+        content: 'Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.'
+    postTranslation31:
+        object: '@post11'
+        locale: en
+        field: title
+        content: Skanning
+    postTranslation32:
+        object: '@post11'
+        locale: en
+        field: shortDescription
+        content: 'Eugene Markowski. Dystopia'
+    postTranslation33:
+        object: '@post11'
+        locale: en
+        field: text
+        content: 'Eugene Markowski. Dystopia'
+    postTranslation34:
+        object: '@post12'
+        locale: en
+        field: title
+        content: 'Nazar Stodolya'
+    postTranslation35:
+        object: '@post12'
+        locale: en
+        field: shortDescription
+        content: 'Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.'
+    postTranslation36:
+        object: '@post12'
+        locale: en
+        field: text
+        content: 'Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.'
+    postTranslation37:
+        object: '@post13'
+        locale: en
+        field: title
+        content: 'Twelve Months or Guardians of the Year'
+    postTranslation38:
+        object: '@post13'
+        locale: en
+        field: shortDescription
+        content: 'Samuil Marshak. The musical tale. Duration: 1 hour.'
+    postTranslation39:
+        object: '@post13'
+        locale: en
+        field: text
+        content: 'Samuil Marshak. The musical tale. Duration: 1 hour.'
+    postTranslation40:
+        object: '@post14'
+        locale: en
+        field: title
+        content: 'Golden Chicken'
+    postTranslation41:
+        object: '@post14'
+        locale: en
+        field: shortDescription
+        content: 'Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.'
+    postTranslation42:
+        object: '@post14'
+        locale: en
+        field: text
+        content: 'Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.'
+    postTranslation43:
+        object: '@post15'
+        locale: en
+        field: title
+        content: 'King Drozdoborod'
+    postTranslation44:
+        object: '@post15'
+        locale: en
+        field: shortDescription
+        content: 'Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.'
+    postTranslation45:
+        object: '@post15'
+        locale: en
+        field: text
+        content: 'Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.'
+    postTranslation46:
+        object: '@post16'
+        locale: en
+        field: title
+        content: 'Road to the Sun'
+    postTranslation47:
+        object: '@post16'
+        locale: en
+        field: shortDescription
+        content: 'Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.'
+    postTranslation48:
+        object: '@post16'
+        locale: en
+        field: text
+        content: 'Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.'

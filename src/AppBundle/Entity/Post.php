@@ -11,14 +11,17 @@ use Gedmo\Translatable\Translatable;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="posts")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PostTranslation")
  * @ExclusionPolicy("all")
  */
-class Post
+class Post extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -76,13 +79,6 @@ class Post
     public $mainPictureThumbnails;
 
     /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
@@ -117,12 +113,36 @@ class Post
     private $tags;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\PostTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Post
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     public function __toString()
@@ -207,11 +227,6 @@ class Post
     public function getText()
     {
         return $this->text;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**

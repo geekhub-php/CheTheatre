@@ -1,0 +1,50 @@
+AppBundle\Entity\Translations\PostTranslation,,,
+object,locale,field,content
+@post1,en,title,Among the Thunder and Silence
+@post1,en,shortDescription,The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History
+@post1,en,text,The show is dedicated to the 80th anniversary of the birth of Vasyl Symonenko. Sergey Proskurnia. Documentary History
+@post2,en,title,Kaydash Family
+@post2,en,shortDescription,Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.
+@post2,en,text,Ivan  Nechuy-Levitsky. Tragic comedy in 3 acts. Duration: 2 hours. 35 min.
+@post3,en,title,Garden of Gethsemane
+@post3,en,shortDescription,People tragedy in 2 acts. Duration: 2 hours. 20 min.
+@post3,en,text,People tragedy in 2 acts. Duration: 2 hours. 20 min. Running time: 1 hour. 50 min.
+@post4,en,title,Shelmenko-servant
+@post4,en,shortDescription,Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.
+@post4,en,text,Gregory Kvitka-Osnovyanenko. Music by Vasily Solovyov-Sedoy. Musical comedy in 3 acts.
+@post5,en,title,Whos the Boss at Home?
+@post5,en,shortDescription,"Alex Kolomiets. Travesty in 2 acts based on the play ""Pharaohs"". Duration: 2 hours. 05 min."
+@post5,en,text,"Alex Kolomiets. Travesty in 2 acts based on the play ""Pharaohs"". Duration: 2 hours. 05 min."
+@post6,en,title,Chasing Two Hares
+@post6,en,shortDescription,Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.
+@post6,en,text,Michael Starytsky. Comedy in 2 acts. Duration: 2 hours. 15 min.
+@post7,en,title,Matchmaking in Goncharivka
+@post7,en,shortDescription,Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.
+@post7,en,text,Gregory Kvitka-Osnovyanenko. Music by Cyril Stetsenko. Musical comedy in 2 acts. Duration: 2 hours.
+@post8,en,title,Still Life with Thick Nephew
+@post8,en,shortDescription,"Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min."
+@post8,en,text,"Ion Sapdaru. Tragicomedy in 2 acts about monsters, beauty and love. Duration: 1 hour. 40 min."
+@post9,en,title,Misanthrope
+@post9,en,shortDescription,Jean-Baptiste Moliere. Manic comedy
+@post9,en,text,Jean-Baptiste Moliere. Manic comedy
+@post10,en,title,Very Simple Story
+@post10,en,shortDescription,Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.
+@post10,en,text,Maria Lado. Parable (Performance has one intermission). Duration: 2 hours.
+@post11,en,title,Skanning
+@post11,en,shortDescription,Eugene Markowski. Dystopia
+@post11,en,text,Eugene Markowski. Dystopia
+@post12,en,title,Nazar Stodolya
+@post12,en,shortDescription,Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.
+@post12,en,text,Taras Shevchenko. Christmas mystery-burlesque. Duration: 2 hours.
+@post13,en,title,Twelve Months or Guardians of the Year
+@post13,en,shortDescription,Samuil Marshak. The musical tale. Duration: 1 hour.
+@post13,en,text,Samuil Marshak. The musical tale. Duration: 1 hour.
+@post14,en,title,Golden Chicken
+@post14,en,shortDescription,Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.
+@post14,en,text,Vladimir Orlov. Musical tale for 1 action. Duration: 50 minutes.
+@post15,en,title,King Drozdoborod
+@post15,en,shortDescription,Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.
+@post15,en,text,Bohdan Stelmach. Musical tale for 1 action. Duration: 1 hour. 10 min.
+@post16,en,title,Road to the Sun
+@post16,en,shortDescription,"Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min."
+@post16,en,text,"Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min."

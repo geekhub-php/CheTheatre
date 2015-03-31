@@ -5,3 +5,42 @@ submit: Sign in
 sing_in_message: Please sign in
 sing_in_title: Authorithation
 Image_must_be_minimum_size: Image size must have minimum %width% px width and %height% px height!
+employee.edit.position.label: Position
+actor: actor
+actress: actress
+theatre_director: theatre director
+acting_artistic_director: acting artistic director
+production_director: production director
+main_artist: main artist
+costumer: costumer
+art_director: art director
+main_choreographer: main choreographer
+head_of_the_literary_and_dramatic_part: head of the literary and dramatic part
+conductor: conductor
+accompanist: accompanist
+Avatar: Avatar
+First Name: First Name
+Last Name: Last Name
+Dob: Dob
+Position: Position
+Roles: Roles
+Biography: Biography
+Gallery: Gallery
+Employee List: Employee List
+Main Picture: Main Picture
+Title: Title
+Type: Type
+Premiere: Premiere
+Performance List: Performance List
+Description: Description
+Slider Image: Slider Image
+Performance: Performance
+Date Time: Date Time
+Performance Event List: Performance Event List
+Post List: Post List
+Action: Action
+Tags: Tags
+Short Description: Short Description
+Text: Text
+Posts: Posts
+Tag List: Tag List

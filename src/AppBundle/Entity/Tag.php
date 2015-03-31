@@ -9,14 +9,17 @@ use AppBundle\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="tags")
  * @ORM\Entity
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\TagTranslation")
  * @ExclusionPolicy("all")
  */
-class Tag
+class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -55,17 +58,41 @@ class Tag
      */
     private $posts;
 
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\TagTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Tag
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**

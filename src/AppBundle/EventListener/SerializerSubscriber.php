@@ -31,34 +31,39 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         return [
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'],
-            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\PerformanceEvent', 'method' => 'onPrePerformanceEventSerialize'],
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Performance', 'method' => 'onPrePerformanceSerialize'],
+            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\PerformanceEvent', 'method' => 'onPrePerformanceEventSerialize'],
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Post', 'method' => 'onPrePostSerialize'],
         ];
     }
 
+    public function onPrePerformanceEventSerialize(ObjectEvent $event)
+    {
+
+    }
+
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
-        /** @var Employee $employee */
-        $employee = $event->getObject();
 
-        if (!$avatar = $event->getObject()->getAvatar()) {
-            return;
+         $employee = $event->getObject();
+
+        if ($employee->getAvatar()) {
+            $avatarLinks = $this->mediaController->getMediumFormatsAction($employee->getAvatar());
+            $employee->avatarThumbnails = $avatarLinks;
         }
-
-        $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
-        $event->getObject()->avatarThumbnails = $avatarLinks;
 
         if ($employee->getGalleryHasMedia()->getValues()) {
             foreach ($employee->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $galleryHasMediaLinks[] = [
+                    ['title' => $gallery->getTitle()],
+                    ['decription' => $gallery->getDescription()],
+                    $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+
+                ]
+                ;
                 $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
             }
         }
-    }
-
-    public function onPrePerformanceEventSerialize(ObjectEvent $event)
-    {
     }
 
     public function onPrePerformanceSerialize(ObjectEvent $event)
@@ -78,7 +83,13 @@ class SerializerSubscriber implements EventSubscriberInterface
 
         if ($performance->getGalleryHasMedia()->getValues()) {
             foreach ($performance->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $galleryHasMediaLinks[] = [
+                    ['title' => $gallery->getTitle()],
+                    ['decription' => $gallery->getDescription()],
+                    $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+
+                ]
+                ;
                 $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
             }
         }
@@ -96,7 +107,13 @@ class SerializerSubscriber implements EventSubscriberInterface
 
         if ($post->getGalleryHasMedia()->getValues()) {
             foreach ($post->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $galleryHasMediaLinks[] = [
+                    ['title' => $gallery->getTitle()],
+                    ['decription' => $gallery->getDescription()],
+                    $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+
+                    ]
+                ;
                 $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
             }
         }

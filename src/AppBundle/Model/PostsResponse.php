@@ -39,7 +39,7 @@ class PostsResponse extends AbstractPaginatedModel
     }
 
     /**
-     * @param mixed $posts
+     * @param  mixed $posts
      * @return $this
      */
     public function setPosts($posts)

@@ -1,0 +1,53 @@
+login: Логін
+password: Пароль
+submit: Увійти
+sing_in_message: Будь-ласка, авторизуйтеся
+sing_in_title: Авторизація
+you_cant_set_more_events_per_day: В один день не може бути більше %count% вистав!
+Image_must_be_minimum_size: Розмір зображення повиннен перевищувати %width% пікселів по довжині та %height% пікслеів по висоті!
+employee.edit.position.label: Посада
+actor: Актор
+actress: Актриса
+theatre_director: Директор Театру
+acting_artistic_director: Виконуючий обовязки художнього керівника
+production_director: Режисер-постановник
+main_artist: Головний художник
+costumer: Костюмер
+art_director: Художній керівник
+main_choreographer: Головний хорегограф
+head_of_the_literary_and_dramatic_part: Завідуючий літературно-драматичною частиною
+conductor: Диригент
+accompanist: Концертмейстер
+Avatar: Фотографія
+First Name: Им’я
+Last Name: Фамілія
+Dob: Д/Н
+Position: Посада
+Roles: Ролі
+Biography: Біографія
+Gallery: Галерея
+Employee List: Перелік Працівників
+Main Picture: Банер
+Title: Назва
+Type: Жанр
+Premiere: Прем’єра
+Performance List: Перелік Вистав
+Description: Опис
+Slider Image: Зображення для Слайдера на головній сторінці
+Performance: Вистава
+Date Time: Дата та Час
+Performance Event List: Розклад Вистав
+Post List: Перелік Новин
+Action: Можливі дії
+Tags: Теги
+Short Description: Стислий Опис
+Text: Текст
+Posts: Новини
+Tag List: Перелік Тегів
+link_actions: Можливі Дії
+Employee: Працівник
+Role List: Перелік Ролей
+Employees: Працівники
+Performances: Вистави
+PerformanceEvents: Розклад Вистав
+employee.position: Посада (Це поле перекладається автоматично системою)

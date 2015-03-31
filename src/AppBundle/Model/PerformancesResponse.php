@@ -39,7 +39,7 @@ class PerformancesResponse extends AbstractPaginatedModel
     }
 
     /**
-     * @param mixed $performances
+     * @param  mixed $performances
      * @return $this
      */
     public function setPerformances($performances)

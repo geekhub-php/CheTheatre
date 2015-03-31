@@ -42,7 +42,7 @@ class RoleAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('description')
+            ->add('description', null, ['required' => false])
             ->add('employee', 'sonata_type_model', ['required' => false]);
     }
 

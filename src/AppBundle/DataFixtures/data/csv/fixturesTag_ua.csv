@@ -1,0 +1,12 @@
+AppBundle\Entity\Tag,,
+title,createdAt,updatedAt
+Подсекальніков,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Ісааск Мендоса,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Антоніо,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Стецько,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Едуардо Палумбо,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Леонід Андрійович Гаєв,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Ірод,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Кривий,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Отелло,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
+Мамаєв,"<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"

@@ -11,15 +11,18 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
 use AppBundle\Validator\TwoPerformanceEventsPerDay;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performance_schedule")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceEventRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceEventTranslation")
  * @TwoPerformanceEventsPerDay()
  */
-class PerformanceEvent
+class PerformanceEvent extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
     use TimestampableTrait;
 
@@ -85,6 +88,29 @@ class PerformanceEvent
      * @Accessor(getter="getTime")
      */
     private $time;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\PerformanceEventTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
+    /**
+     * Unset translations
+     *
+     * @return PerformanceEvent
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
+    }
 
     /**
      * Get id

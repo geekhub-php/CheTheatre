@@ -1,0 +1,203 @@
+AppBundle\Entity\Translations\EmployeeTranslation,,,
+object,locale,field,content
+@employee1,en,firstName,Volodymyr
+@employee1,en,lastName,Osipov
+@employee1,en,biography,"Works in the theatre on the position of a director till 1999. Honoured Art Worker of Ukraine since 2009. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1993. Specialist in theatre study, organizer of theatrical business."
+@employee2,en,firstName,Serhiy
+@employee2,en,lastName,Proskurnja
+@employee2,en,biography,-
+@employee3,en,firstName,Oleksandr
+@employee3,en,lastName,Pavlutin
+@employee3,en,biography,Works in the theatre since 2002. Acting artistic director of the theatre since 2010. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 2002.
+@employee4,en,firstName,Serhiy
+@employee4,en,lastName,Ridvaneckij
+@employee4,en,biography,"Main artist in the theatre since 2003. Graduated from Lviv State Institute of Applied and Decorative Arts in 1991. Got up 39 performances, 8 of them in Cherkasy theatre."
+@employee5,en,firstName,Nataliya
+@employee5,en,lastName,Ridvanetska
+@employee5,en,biography,"Costumer. Works in the theatre since 2003. Graduated from Lviv State Institute of Applied and Decorative Arts in 1992. Artist-technologist. Got up 43 performances, 12 of them in Cherkasy theatre."
+@employee6,en,firstName,Nadiya
+@employee6,en,lastName,Nikifirova
+@employee6,en,biography,"Art director in the theatre since 1980. Graduated from Leningrad State Institute of  Drama, Music and Cinematography in 1980. Got up 70 performances, 55 of them in Cherkasy theatre."
+@employee7,en,firstName,Volodymyr
+@employee7,en,lastName,Tatarinov
+@employee7,en,biography,Honored Artist of Ukraine since 2007. Main choreographer. Works in the theatre since 1984. Graduated from Dnepropetrovsk State Theatre School in 1972. Director of choreographic collective.
+@employee8,en,firstName,Varvara
+@employee8,en,lastName,Prisagnenko
+@employee8,en,biography,Honored Worker of  culture of Ukraine since 2007. Head of the literary and dramatic part. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1975. In the theatre since 1975.
+@employee9,en,firstName,Olena
+@employee9,en,lastName,Belkina
+@employee9,en,biography,"Works in the theatre since 1995 as accompanist, since 2008 as conductor. Graduated from Cherkasy Music School n.a. Gulak-Artemowski."
+@employee10,en,firstName,Svitlana
+@employee10,en,lastName,Lezhnenko
+@employee10,en,biography,_
+@employee11,en,firstName,Galyna
+@employee11,en,lastName,Kuruchenko
+@employee11,en,biography,Works in the theatre since 1997. Graduated from Cherkasy Music School n.a. Gulak-Artemowski.
+@employee12,en,firstName,Serhiy
+@employee12,en,lastName,Bobrov
+@employee12,en,biography,Honored Artist of Ukraine since 2009. Works in the theatre since 1996.  Graduated from Dnepropetrovsk State Theatre School in 1996.
+@employee13,en,firstName,Nataliya
+@employee13,en,lastName,Vigran
+@employee13,en,biography,Honored Artist of Ukraine since 2009. Works in the theatre since 1994.
+@employee14,en,firstName,Mariya
+@employee14,en,lastName,Maryshchak
+@employee14,en,biography,Works in the theatre since 2008. Graduated from Vinnytsia School of Culture and Arts.
+@employee15,en,firstName,Yuriy
+@employee15,en,lastName,Berlinskij
+@employee15,en,biography,People's Artist of Ukraine since 2007. Works in the theater since 1980. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary.
+@employee16,en,firstName,Svitlana
+@employee16,en,lastName,Amelina
+@employee16,en,biography,Works in the theatre since 2008
+@employee17,en,firstName,Anna
+@employee17,en,lastName,Bobrova
+@employee17,en,biography,Works in the theatre since 2007. Graduated from Kaniv School of Culture and Arts in 2007.
+@employee18,en,firstName,Olena
+@employee18,en,lastName,Breharya
+@employee18,en,biography,Works in the theatre since 2008
+@employee19,en,firstName,Liliya
+@employee19,en,lastName,Byrlakova
+@employee19,en,biography,Works in the theatre since 2003. Graduated from Rivne State Humanitarian University in 2004.
+@employee20,en,firstName,Oksana
+@employee20,en,lastName,Vovkostril
+@employee20,en,biography,Works in the theatre since 2009
+@employee21,en,firstName,Oleksandr
+@employee21,en,lastName,Gelevera
+@employee21,en,biography,Works in the theatre since 2009
+@employee22,en,firstName,Mykola
+@employee22,en,lastName,Glazov
+@employee22,en,biography,"Works in the theatre since 1977 till 1986, since 1996 till 2000, since 2002 till 2003 and since 2006. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary"
+@employee23,en,firstName,Iryna
+@employee23,en,lastName,Glazova
+@employee23,en,biography,Works in the theatre since 2000 till 2006 and since 2010. Graduated from Dnipropetrovsk State Regional Theatre and Art College
+@employee24,en,firstName,Nataliya
+@employee24,en,lastName,Glazova
+@employee24,en,biography,Works in the theatre since 1976. Graduated from Kaniv Cultural and Educational College
+@employee25,en,firstName,Pavlo
+@employee25,en,lastName,Goncharov
+@employee25,en,biography,Works in the theatre since 2008. Graduated from Dnepropetrovsk State Regional Theatre and Art College in 1998.
+@employee26,en,firstName,Yuriy
+@employee26,en,lastName,Greben
+@employee26,en,biography,Works in the theatre since 1998. Graduated from Kaniv School of Culture in 1997.
+@employee27,en,firstName,Tetyana
+@employee27,en,lastName,Greben
+@employee27,en,biography,Works in the theatre since 1996. Graduated from Dnepropetrovsk State Theatre College in 1996.
+@employee28,en,firstName,Oleksandr
+@employee28,en,lastName,Gymennuj
+@employee28,en,biography,Works in the theatre since 2008. Graduated from the Kyiv Mining and Transport College in 1996.
+@employee29,en,firstName,Yuliya
+@employee29,en,lastName,Donska- Gymenna
+@employee29,en,biography,Works in the theatre since 2008. Graduated from the Mykolayiv State Higher School of Culture in 2008.
+@employee30,en,firstName,Mykola
+@employee30,en,lastName,Zajnchkivskij
+@employee30,en,biography,Honored Artist of Ukraine since 2010. Works in the theatre since 1986. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1986.
+@employee31,en,firstName,Anzhelina
+@employee31,en,lastName,Ivanova
+@employee31,en,biography,Works in the theatre since 1996. Graduated from Dnepropetrovsk State Theatre School in 1996.
+@employee32,en,firstName,Valeriy
+@employee32,en,lastName,Kirichenko
+@employee32,en,biography,Works in the theatre since 2003
+@employee33,en,firstName,Oleksiy
+@employee33,en,lastName,Klimenko
+@employee33,en,biography,Works in the theatre since 2012. Graduated from Kharkov State University of Arts n.a. I.M. Kotlyarevskyy in 2012.
+@employee34,en,firstName,Serhiy
+@employee34,en,lastName,Kovalenko
+@employee34,en,biography,Works in the theatre since 2012. Graduated from Cherkasy National University n.a. Bohdan Khmelnytsky.
+@employee35,en,firstName,Viktoriya
+@employee35,en,lastName,Kovaleva
+@employee35,en,biography,Works in the theatre since 1989
+@employee36,en,firstName,Viktor
+@employee36,en,lastName,Kolomiec
+@employee36,en,biography,Honored Artist of Ukraine. Works in the theatre since 1976. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1976.
+@employee37,en,firstName,Mykhaylo
+@employee37,en,lastName,Kondratskij
+@employee37,en,biography,Works in the theatre since 1988. Graduated from Kyiv National University of Culture and Arts in 2002.
+@employee38,en,firstName,Nadiya
+@employee38,en,lastName,Korbut
+@employee38,en,biography,Works in the theatre since 2005. Graduated from Uzhgorod School of Culture in 2002.
+@employee39,en,firstName,Tetyana
+@employee39,en,lastName,Krizhanivska
+@employee39,en,biography,Honored Artist of Ukraine. Works in the theatre since 1979. Graduated from the State Institute of Theatrical Arts n.a. Lunacharsky in 1984.
+@employee40,en,firstName,Oleksandr
+@employee40,en,lastName,Kuzmenko
+@employee40,en,biography,Works in the theatre since 1997. Graduated from Dnepropetrovsk State Theatre School in 1997.
+@employee41,en,firstName,Oleksandr
+@employee41,en,lastName,Kyzmun
+@employee41,en,biography,Honored Artist of Ukraine - 2009
+@employee42,en,firstName,Anna
+@employee42,en,lastName,Kyrulenko
+@employee42,en,biography,"Works in the theatre since 2011. Graduated from the Cherkasy Music School n.a. Gulak - Artemowski in 2008. Continues her studies at the Kyiv National University of Theatre, Film and Television n.a. Karpenko – Kary"
+@employee43,en,firstName,Nataliya
+@employee43,en,lastName,Mamalyga
+@employee43,en,biography,Honored Artist of Ukraine since 2009. Works in the theatre since 1994. Graduated from the Kiev State Conservatoire n.a. Tchaikovsky in 1992.
+@employee44,en,firstName,Iryna
+@employee44,en,lastName,Maslova
+@employee44,en,biography,Works in the theatre since 1998
+@employee45,en,firstName,Svitlana
+@employee45,en,lastName,Moskalenko
+@employee45,en,biography,Honored Artist of Ukraine. Works in the theatre since 2012. Graduated from the Drama Studio at the Franko Theater in 1975.
+@employee46,en,firstName,Nataliya
+@employee46,en,lastName,Panekina
+@employee46,en,biography,Works in the theatre since 2012. Graduated from Kharkov State University of Arts n.a. I.M. Kotlyarevskyy in 2011
+@employee47,en,firstName,Nataliya
+@employee47,en,lastName,Naumenko
+@employee47,en,biography,Works in the theatre since 2002
+@employee48,en,firstName,Serhiy
+@employee48,en,lastName,Ponomarenko
+@employee48,en,biography,Works in the theatre since 2003
+@employee49,en,firstName,Olena
+@employee49,en,lastName,Ponomarenko
+@employee49,en,biography,Works in the theatre since 2003
+@employee50,en,firstName,Lidiya
+@employee50,en,lastName,Popova
+@employee50,en,biography,Honored Artist of Ukraine since 1978. Works in the theatre since 1973. Graduated from Dnipropetrovsk State Theatre School in 1962.
+@employee51,en,firstName,Dmytro
+@employee51,en,lastName,Potapchyk
+@employee51,en,biography,Works in the theatre since 2010. Graduated from Rivne State Humanitarian University
+@employee52,en,firstName,Oleksandr
+@employee52,en,lastName,Pryz
+@employee52,en,biography,Works in the theatre since 2005
+@employee53,en,firstName,Yuriy
+@employee53,en,lastName,Prokopchuk
+@employee53,en,biography,Works in the theatre since 1998 . Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary
+@employee54,en,firstName,Oleksandr
+@employee54,en,lastName,Pjatkivskij
+@employee54,en,biography,Works in the theatre since 1977
+@employee55,en,firstName,Olha
+@employee55,en,lastName,Romodan
+@employee55,en,biography,Works in the theatre since 1990
+@employee56,en,firstName,Lyubov
+@employee56,en,lastName,Skobel
+@employee56,en,biography,Honored Artist of Ukraine since 2006. Works in the theatre since 1977. Graduated from the Drama Studio at the Franko Theater in 1977.
+@employee57,en,firstName,Evhen
+@employee57,en,lastName,Skrupnichenko
+@employee57,en,biography,Works in the theatre since 2008
+@employee58,en,firstName,Lydmyla
+@employee58,en,lastName,Talah
+@employee58,en,biography,Honored Artist of Ukraine. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary in 1967. Works in the theatre since 1967
+@employee59,en,firstName,Oleh
+@employee59,en,lastName,Telatnik
+@employee59,en,biography,Works in the theatre since 2005 року. Graduated from the Kharkov State Institute of Culture in 1995.
+@employee60,en,firstName,Svitlana
+@employee60,en,lastName,Tereshchenko
+@employee60,en,biography,Works in the theatre since 2009. Graduated from the Kyiv State Institute of Theatrical Arts n.a. Karpenko-Kary
+@employee61,en,firstName,Liliya
+@employee61,en,lastName,Kharchenko
+@employee61,en,biography,Works in the theatre since 1998
+@employee62,en,firstName,Kostyantyn
+@employee62,en,lastName,Shaenko
+@employee62,en,biography,Works in the theatre since 2003
+@employee63,en,firstName,Kateryna
+@employee63,en,lastName,Shakalova
+@employee63,en,biography,Works in the theatre since 2003. Graduated from Dnepropetrovsk Theatre and Art College.
+@employee64,en,firstName,Petro
+@employee64,en,lastName,Golybchehko
+@employee64,en,biography,Works in the theatre since 2014
+@employee65,en,firstName,Kateryna
+@employee65,en,lastName,Olejnikova
+@employee65,en,biography,Works in the theatre since 2014
+@employee66,en,firstName,Olena
+@employee66,en,lastName,Peredriy
+@employee66,en,biography,Works in the theatre since 2014
+@employee67,en,firstName,Maksym
+@employee67,en,lastName,Ruzhevol
+@employee67,en,biography,Works in the theatre since 2014

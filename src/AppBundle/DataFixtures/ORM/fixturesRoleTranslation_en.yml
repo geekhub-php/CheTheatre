@@ -1,0 +1,1031 @@
+AppBundle\Entity\Translations\RoleTranslation:
+    roleTranslation1:
+        object: '@role1'
+        locale: en
+        field: title
+        content: 'Young mother'
+    roleTranslation2:
+        object: '@role1'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation3:
+        object: '@role2'
+        locale: en
+        field: title
+        content: Mary
+    roleTranslation4:
+        object: '@role2'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation5:
+        object: '@role3'
+        locale: en
+        field: title
+        content: Tanya
+    roleTranslation6:
+        object: '@role3'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation7:
+        object: '@role4'
+        locale: en
+        field: title
+        content: Lydia
+    roleTranslation8:
+        object: '@role4'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation9:
+        object: '@role5'
+        locale: en
+        field: title
+        content: Luda
+    roleTranslation10:
+        object: '@role5'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation11:
+        object: '@role6'
+        locale: en
+        field: title
+        content: Nina
+    roleTranslation12:
+        object: '@role6'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation13:
+        object: '@role7'
+        locale: en
+        field: title
+        content: Lily
+    roleTranslation14:
+        object: '@role7'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation15:
+        object: '@role8'
+        locale: en
+        field: title
+        content: Waitress
+    roleTranslation16:
+        object: '@role8'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation17:
+        object: '@role9'
+        locale: en
+        field: title
+        content: Maria
+    roleTranslation18:
+        object: '@role9'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation19:
+        object: '@role10'
+        locale: en
+        field: title
+        content: 'Mr Tobias Rich'
+    roleTranslation20:
+        object: '@role10'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation21:
+        object: '@role11'
+        locale: en
+        field: title
+        content: Malvolio
+    roleTranslation22:
+        object: '@role11'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation23:
+        object: '@role12'
+        locale: en
+        field: title
+        content: Orsino
+    roleTranslation24:
+        object: '@role12'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation25:
+        object: '@role13'
+        locale: en
+        field: title
+        content: Viola
+    roleTranslation26:
+        object: '@role13'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation27:
+        object: '@role14'
+        locale: en
+        field: title
+        content: Olivia
+    roleTranslation28:
+        object: '@role14'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation29:
+        object: '@role15'
+        locale: en
+        field: title
+        content: Sebastian
+    roleTranslation30:
+        object: '@role15'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation31:
+        object: '@role16'
+        locale: en
+        field: title
+        content: 'Joker assistant'
+    roleTranslation32:
+        object: '@role16'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation33:
+        object: '@role17'
+        locale: en
+        field: title
+        content: Catherine
+    roleTranslation34:
+        object: '@role17'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation35:
+        object: '@role18'
+        locale: en
+        field: title
+        content: 'Galya Chumak'
+    roleTranslation36:
+        object: '@role18'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation37:
+        object: '@role19'
+        locale: en
+        field: title
+        content: 'Andrei Chumak'
+    roleTranslation38:
+        object: '@role19'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation39:
+        object: '@role20'
+        locale: en
+        field: title
+        content: Shpak
+    roleTranslation40:
+        object: '@role20'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation41:
+        object: '@role21'
+        locale: en
+        field: title
+        content: Shelmenko
+    roleTranslation42:
+        object: '@role21'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation43:
+        object: '@role22'
+        locale: en
+        field: title
+        content: Motrya
+    roleTranslation44:
+        object: '@role22'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation45:
+        object: '@role23'
+        locale: en
+        field: title
+        content: Prisenka
+    roleTranslation46:
+        object: '@role23'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation47:
+        object: '@role24'
+        locale: en
+        field: title
+        content: Evzheni
+    roleTranslation48:
+        object: '@role24'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation49:
+        object: '@role25'
+        locale: en
+        field: title
+        content: Evzheni
+    roleTranslation50:
+        object: '@role25'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation51:
+        object: '@role26'
+        locale: en
+        field: title
+        content: Evzheni
+    roleTranslation52:
+        object: '@role26'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation53:
+        object: '@role27'
+        locale: en
+        field: title
+        content: 'Ivan Semenovuch Skvortsov'
+    roleTranslation54:
+        object: '@role27'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation55:
+        object: '@role28'
+        locale: en
+        field: title
+        content: 'Fenna Stepanivna'
+    roleTranslation56:
+        object: '@role28'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation57:
+        object: '@role29'
+        locale: en
+        field: title
+        content: 'Agrafena Semenivna'
+    roleTranslation58:
+        object: '@role29'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation59:
+        object: '@role30'
+        locale: en
+        field: title
+        content: Loputskovskyy
+    roleTranslation60:
+        object: '@role30'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation61:
+        object: '@role31'
+        locale: en
+        field: title
+        content: Anna
+    roleTranslation62:
+        object: '@role31'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation63:
+        object: '@role32'
+        locale: en
+        field: title
+        content: 'Onys''ko'
+    roleTranslation64:
+        object: '@role32'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation65:
+        object: '@role33'
+        locale: en
+        field: title
+        content: Hrytsko
+    roleTranslation66:
+        object: '@role33'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation67:
+        object: '@role34'
+        locale: en
+        field: title
+        content: Korniy
+    roleTranslation68:
+        object: '@role34'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation69:
+        object: '@role35'
+        locale: en
+        field: title
+        content: Ustymivna
+    roleTranslation70:
+        object: '@role35'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation71:
+        object: '@role36'
+        locale: en
+        field: title
+        content: Catherine
+    roleTranslation72:
+        object: '@role36'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation73:
+        object: '@role37'
+        locale: en
+        field: title
+        content: Aristarchus
+    roleTranslation74:
+        object: '@role37'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation75:
+        object: '@role38'
+        locale: en
+        field: title
+        content: Odarka
+    roleTranslation76:
+        object: '@role38'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation77:
+        object: '@role39'
+        locale: en
+        field: title
+        content: Uljana
+    roleTranslation78:
+        object: '@role39'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation79:
+        object: '@role40'
+        locale: en
+        field: title
+        content: Minerie
+    roleTranslation80:
+        object: '@role40'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation81:
+        object: '@role41'
+        locale: en
+        field: title
+        content: Oksana
+    roleTranslation82:
+        object: '@role41'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation83:
+        object: '@role42'
+        locale: en
+        field: title
+        content: Ruslan
+    roleTranslation84:
+        object: '@role42'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation85:
+        object: '@role43'
+        locale: en
+        field: title
+        content: Masha
+    roleTranslation86:
+        object: '@role43'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation87:
+        object: '@role44'
+        locale: en
+        field: title
+        content: Victor
+    roleTranslation88:
+        object: '@role44'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation89:
+        object: '@role45'
+        locale: en
+        field: title
+        content: Lena
+    roleTranslation90:
+        object: '@role45'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation91:
+        object: '@role46'
+        locale: en
+        field: title
+        content: Vira
+    roleTranslation92:
+        object: '@role46'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation93:
+        object: '@role47'
+        locale: en
+        field: title
+        content: Nadia
+    roleTranslation94:
+        object: '@role47'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation95:
+        object: '@role48'
+        locale: en
+        field: title
+        content: Maxim
+    roleTranslation96:
+        object: '@role48'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation97:
+        object: '@role49'
+        locale: en
+        field: title
+        content: Stetsko
+    roleTranslation98:
+        object: '@role49'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation99:
+        object: '@role50'
+        locale: en
+        field: title
+        content: Prokip
+    roleTranslation100:
+        object: '@role50'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation101:
+        object: '@role51'
+        locale: en
+        field: title
+        content: Skoryk
+    roleTranslation102:
+        object: '@role51'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation103:
+        object: '@role52'
+        locale: en
+        field: title
+        content: Oleksij
+    roleTranslation104:
+        object: '@role52'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation105:
+        object: '@role53'
+        locale: en
+        field: title
+        content: Uljana
+    roleTranslation106:
+        object: '@role53'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation107:
+        object: '@role54'
+        locale: en
+        field: title
+        content: Uljana
+    roleTranslation108:
+        object: '@role54'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation109:
+        object: '@role55'
+        locale: en
+        field: title
+        content: Uljana
+    roleTranslation110:
+        object: '@role55'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation111:
+        object: '@role56'
+        locale: en
+        field: title
+        content: Oleksij
+    roleTranslation112:
+        object: '@role56'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation113:
+        object: '@role57'
+        locale: en
+        field: title
+        content: Odarka
+    roleTranslation114:
+        object: '@role57'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation115:
+        object: '@role58'
+        locale: en
+        field: title
+        content: Chezoniya
+    roleTranslation116:
+        object: '@role58'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation117:
+        object: '@role59'
+        locale: en
+        field: title
+        content: Pompilius
+    roleTranslation118:
+        object: '@role59'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation119:
+        object: '@role60'
+        locale: en
+        field: title
+        content: Lili
+    roleTranslation120:
+        object: '@role60'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation121:
+        object: '@role61'
+        locale: en
+        field: title
+        content: Chezoniya
+    roleTranslation122:
+        object: '@role61'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation123:
+        object: '@role62'
+        locale: en
+        field: title
+        content: Wanda
+    roleTranslation124:
+        object: '@role62'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation125:
+        object: '@role63'
+        locale: en
+        field: title
+        content: Elianta
+    roleTranslation126:
+        object: '@role63'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation127:
+        object: '@role64'
+        locale: en
+        field: title
+        content: Filint
+    roleTranslation128:
+        object: '@role64'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation129:
+        object: '@role65'
+        locale: en
+        field: title
+        content: Acastus
+    roleTranslation130:
+        object: '@role65'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation131:
+        object: '@role66'
+        locale: en
+        field: title
+        content: Alceste
+    roleTranslation132:
+        object: '@role66'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation133:
+        object: '@role67'
+        locale: en
+        field: title
+        content: Klitandr
+    roleTranslation134:
+        object: '@role67'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation135:
+        object: '@role68'
+        locale: en
+        field: title
+        content: Orontes
+    roleTranslation136:
+        object: '@role68'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation137:
+        object: '@role69'
+        locale: en
+        field: title
+        content: Arsinoya
+    roleTranslation138:
+        object: '@role69'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation139:
+        object: '@role70'
+        locale: en
+        field: title
+        content: Selimena
+    roleTranslation140:
+        object: '@role70'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation141:
+        object: '@role71'
+        locale: en
+        field: title
+        content: Man
+    roleTranslation142:
+        object: '@role71'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation143:
+        object: '@role72'
+        locale: en
+        field: title
+        content: Neighbor
+    roleTranslation144:
+        object: '@role72'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation145:
+        object: '@role73'
+        locale: en
+        field: title
+        content: 'A neighbor with a child'
+    roleTranslation146:
+        object: '@role73'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation147:
+        object: '@role74'
+        locale: en
+        field: title
+        content: Zlatohrest
+    roleTranslation148:
+        object: '@role74'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation149:
+        object: '@role75'
+        locale: en
+        field: title
+        content: Mitsnosvyat
+    roleTranslation150:
+        object: '@role75'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation151:
+        object: '@role76'
+        locale: en
+        field: title
+        content: Strichechka
+    roleTranslation152:
+        object: '@role76'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation153:
+        object: '@role77'
+        locale: en
+        field: title
+        content: Expert
+    roleTranslation154:
+        object: '@role77'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation155:
+        object: '@role78'
+        locale: en
+        field: title
+        content: Expert
+    roleTranslation156:
+        object: '@role78'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation157:
+        object: '@role79'
+        locale: en
+        field: title
+        content: Expert
+    roleTranslation158:
+        object: '@role79'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation159:
+        object: '@role80'
+        locale: en
+        field: title
+        content: 'Khoma Kychatyy'
+    roleTranslation160:
+        object: '@role80'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation161:
+        object: '@role81'
+        locale: en
+        field: title
+        content: Galya
+    roleTranslation162:
+        object: '@role81'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation163:
+        object: '@role82'
+        locale: en
+        field: title
+        content: Angel
+    roleTranslation164:
+        object: '@role82'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation165:
+        object: '@role83'
+        locale: en
+        field: title
+        content: Colonel
+    roleTranslation166:
+        object: '@role83'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation167:
+        object: '@role84'
+        locale: en
+        field: title
+        content: Kozovoda
+    roleTranslation168:
+        object: '@role84'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation169:
+        object: '@role85'
+        locale: en
+        field: title
+        content: Jew
+    roleTranslation170:
+        object: '@role85'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation171:
+        object: '@role86'
+        locale: en
+        field: title
+        content: '2nd girl'
+    roleTranslation172:
+        object: '@role86'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation173:
+        object: '@role87'
+        locale: en
+        field: title
+        content: 'Student of seminary'
+    roleTranslation174:
+        object: '@role87'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation175:
+        object: '@role88'
+        locale: en
+        field: title
+        content: '1st girl'
+    roleTranslation176:
+        object: '@role88'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation177:
+        object: '@role89'
+        locale: en
+        field: title
+        content: Daughter
+    roleTranslation178:
+        object: '@role89'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation179:
+        object: '@role90'
+        locale: en
+        field: title
+        content: Princess
+    roleTranslation180:
+        object: '@role90'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation181:
+        object: '@role91'
+        locale: en
+        field: title
+        content: Princess
+    roleTranslation182:
+        object: '@role91'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation183:
+        object: '@role92'
+        locale: en
+        field: title
+        content: Stepmother
+    roleTranslation184:
+        object: '@role92'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation185:
+        object: '@role93'
+        locale: en
+        field: title
+        content: Stepdaughter
+    roleTranslation186:
+        object: '@role93'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation187:
+        object: '@role94'
+        locale: en
+        field: title
+        content: Wolf
+    roleTranslation188:
+        object: '@role94'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation189:
+        object: '@role95'
+        locale: en
+        field: title
+        content: Wolf
+    roleTranslation190:
+        object: '@role95'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation191:
+        object: '@role96'
+        locale: en
+        field: title
+        content: Fox
+    roleTranslation192:
+        object: '@role96'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation193:
+        object: '@role97'
+        locale: en
+        field: title
+        content: Chicken
+    roleTranslation194:
+        object: '@role97'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation195:
+        object: '@role98'
+        locale: en
+        field: title
+        content: Magpie
+    roleTranslation196:
+        object: '@role98'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation197:
+        object: '@role99'
+        locale: en
+        field: title
+        content: Magpie
+    roleTranslation198:
+        object: '@role99'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation199:
+        object: '@role100'
+        locale: en
+        field: title
+        content: Stork
+    roleTranslation200:
+        object: '@role100'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation201:
+        object: '@role101'
+        locale: en
+        field: title
+        content: Daisy
+    roleTranslation202:
+        object: '@role101'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation203:
+        object: '@role102'
+        locale: en
+        field: title
+        content: Radish
+    roleTranslation204:
+        object: '@role102'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
+    roleTranslation205:
+        object: '@role103'
+        locale: en
+        field: title
+        content: 'The Ugly Duckling'
+    roleTranslation206:
+        object: '@role103'
+        locale: en
+        field: description
+        content: 'Description of image, embodied by an actor;'
