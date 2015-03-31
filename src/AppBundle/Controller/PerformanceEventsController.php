@@ -121,11 +121,11 @@ class PerformanceEventsController extends Controller
         $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
         $em->refresh($performanceEvent->getPerformance());
 
-        if ($performanceEvent->getTranslations()){
+        if ($performanceEvent->getTranslations()) {
             $performanceEvent->unsetTranslations();
         }
 
-        if ($performanceEvent->getPerformance()->getTranslations()){
+        if ($performanceEvent->getPerformance()->getTranslations()) {
             $performanceEvent->getPerformance()->unsetTranslations();
         }
 
