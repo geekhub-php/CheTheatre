@@ -117,6 +117,18 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Unset translations
+     *
+     * @return Post
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->getTitle();

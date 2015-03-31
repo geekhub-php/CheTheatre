@@ -156,6 +156,18 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     }
 
     /**
+     * Unset translations
+     *
+     * @return Employee
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer

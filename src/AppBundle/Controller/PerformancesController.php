@@ -44,15 +44,13 @@ class PerformancesController extends Controller
                         ->getRepository('AppBundle:Performance')
                         ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $performancesTranslated = array();
-            foreach ($performances as $performance) {
-                $performance->setLocale($paramFetcher->get('locale'));
-                $em->refresh($performance);
-                $performancesTranslated[] = $performance;
-            }
-            $performances = $performancesTranslated;
+        $performancesTranslated = array();
+        foreach ($performances as $performance) {
+            $performance->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performance);
+            $performancesTranslated[] = $performance;
         }
+        $performances = $performancesTranslated;
 
         $performancesResponse = new PerformancesResponse();
         $performancesResponse->setPerformances($performances);

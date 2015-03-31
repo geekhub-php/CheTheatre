@@ -88,7 +88,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
-     * @Expose
      */
     private $sliderImage;
 
@@ -161,6 +160,18 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
         $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Performance
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     /**

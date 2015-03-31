@@ -56,15 +56,15 @@ class PerformanceEventsController extends Controller
             )
         ;
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $performanceEventsTranslated = array();
-            foreach ($performanceEvents as $performanceEvent) {
-                $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
-                $em->refresh($performanceEvent->getPerformance());
-                $performanceEventsTranslated[] = $performanceEvent;
-            }
-            $performanceEvents = $performanceEventsTranslated;
+        $performanceEventsTranslated = array();
+
+        foreach ($performanceEvents as $performanceEvent) {
+            $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performanceEvent->getPerformance());
+            $performanceEventsTranslated[] = $performanceEvent;
         }
+
+        $performanceEvents = $performanceEventsTranslated;
 
         $performanceEventsResponse = new PerformanceEventsResponse();
         $performanceEventsResponse->setPerformanceEvents($performanceEvents);

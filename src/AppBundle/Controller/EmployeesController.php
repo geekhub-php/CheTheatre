@@ -45,15 +45,20 @@ class EmployeesController extends Controller
             ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'))
         ;
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $employeesTranslated = array();
-            foreach ($employees as $employee) {
-                $employee->setLocale($paramFetcher->get('locale'));
-                $em->refresh($employee);
-                $employeesTranslated[] = $employee;
+        $employeesTranslated = array();
+
+        foreach ($employees as $employee) {
+            $employee->setLocale($paramFetcher->get('locale'));
+            $em->refresh($employee);
+
+            if ($employee->getTranslations()){
+                $employee->unsetTranslations();
             }
-            $employees = $employeesTranslated;
+
+            $employeesTranslated[] = $employee;
         }
+
+        $employees = $employeesTranslated;
 
         $employeesResponse = new EmployeesResponse();
         $employeesResponse->setEmployees($employees);
@@ -124,13 +129,15 @@ class EmployeesController extends Controller
         $employee = $em->
                         getRepository('AppBundle:Employee')->findOneByslug($slug);
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $employee->setLocale($paramFetcher->get('locale'));
-            $em->refresh($employee);
-        }
-
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
+        }
+
+        $employee->setLocale($paramFetcher->get('locale'));
+        $em->refresh($employee);
+
+        if ($employee->getTranslations()){
+            $employee->unsetTranslations();
         }
 
         return $employee;
@@ -162,19 +169,37 @@ class EmployeesController extends Controller
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
+        $employee->setLocale($paramFetcher->get('locale'));
+        $em->refresh($employee);
+
+        if ($employee->getTranslations()){
+            $employee->unsetTranslations();
+        }
+
         $roles = $employee->getRoles();
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $rolesTranslated = [];
+        $rolesTranslated = [];
 
-            foreach ($roles as $role) {
-                $role->setLocale($paramFetcher->get('locale'));
-                $em->refresh($role);
-                $rolesTranslated[] = $role;
+        foreach ($roles as $role) {
+            $role->setLocale($paramFetcher->get('locale'));
+
+            $performance = $role->getPerformance();
+            $performance->setLocale($paramFetcher->get('locale'));
+
+            $em->refresh($role);
+            $em->refresh($performance);
+
+            if ($role->getTranslations()){
+                $role->unsetTranslations();
+            }
+            if ($performance->getTranslations()){
+                $performance->unsetTranslations();
             }
 
-            $roles = $rolesTranslated;
+            $rolesTranslated[] = $role;
         }
+
+        $roles = $rolesTranslated;
 
         return $roles;
     }

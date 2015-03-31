@@ -29,29 +29,25 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         return [
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'],
-            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\PerformanceEvent', 'method' => 'onPrePerformanceEventSerialize'],
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Performance', 'method' => 'onPrePerformanceSerialize'],
         ];
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
-        if (!$avatar = $event->getObject()->getAvatar()) {
-            return;
+
+         $employee = $event->getObject();
+
+        if ($employee->getAvatar()) {
+            $avatarLinks = $this->mediaController->getMediumFormatsAction($employee->getAvatar());
+            $employee->avatarThumbnails = $avatarLinks;
         }
-
-        $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
-        $event->getObject()->avatarThumbnails = $avatarLinks;
-    }
-
-    public function onPrePerformanceEventSerialize(ObjectEvent $event)
-    {
     }
 
     public function onPrePerformanceSerialize(ObjectEvent $event)
     {
         /** @var Performance $performance */
-        $performance = $avatar = $event->getObject();
+        $performance = $event->getObject();
 
         if ($performance->getMainPicture()) {
             $mainImageLinks = $this->mediaController->getMediumFormatsAction($performance->getMainPicture());

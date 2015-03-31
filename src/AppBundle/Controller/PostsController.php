@@ -44,15 +44,13 @@ class PostsController extends Controller
             ->getRepository('AppBundle:Post')
             ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-            $postsTranslated = array();
-            foreach ($posts as $post) {
-                $post->setLocale($paramFetcher->get('locale'));
-                $em->refresh($post);
-                $postsTranslated[] = $post;
-            }
-            $posts = $postsTranslated;
+        $postsTranslated = array();
+        foreach ($posts as $post) {
+            $post->setLocale($paramFetcher->get('locale'));
+            $em->refresh($post);
+            $postsTranslated[] = $post;
         }
+        $posts = $postsTranslated;
 
         $postsResponse = new PostsResponse();
         $postsResponse->setPosts($posts);
