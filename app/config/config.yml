@@ -158,7 +158,7 @@ sensio_framework_extra:
 nelmio_cors:
     paths:
         '^/':
-            origin_regex: true
+#            origin_regex: true
             allow_origin: %nelmio_cors.origin%
             allow_headers: ['Access-Control-Allow-Origin', 'Locale']
             expose_headers: ['Access-Control-Allow-Origin', 'Locale']
