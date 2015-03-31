@@ -4,6 +4,7 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Performance;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Employee;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
@@ -38,12 +39,22 @@ class SerializerSubscriber implements EventSubscriberInterface
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
+        /** @var Employee $employee */
+        $employee = $event->getObject();
+
         if (!$avatar = $event->getObject()->getAvatar()) {
             return;
         }
 
         $avatarLinks = $this->mediaController->getMediumFormatsAction($avatar->getId());
         $event->getObject()->avatarThumbnails = $avatarLinks;
+
+        if ($employee->getGalleryHasMedia()->getValues()) {
+            foreach ($employee->getGalleryHasMedia()->getValues() as $gallery) {
+                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
+            }
+        }
     }
 
     public function onPrePerformanceEventSerialize(ObjectEvent $event)
