@@ -71,7 +71,10 @@ class PerformancesController extends Controller
         ], true
         );
 
-        $first = $this->generateUrl('get_performances', [], true);
+        $first = $this->generateUrl('get_performances', [
+            'limit' => $paramFetcher->get('limit'),
+        ], true
+        );
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
             $this->generateUrl('get_performances', [

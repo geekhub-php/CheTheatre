@@ -56,7 +56,7 @@ class PerformanceEventsController extends Controller
             )
         ;
 
-        $performanceEventsTranslated = array();
+        $performanceEventsTranslated = [];
 
         foreach ($performanceEvents as $performanceEvent) {
 
@@ -81,7 +81,6 @@ class PerformanceEventsController extends Controller
 
         $performanceEventsResponse = new PerformanceEventsResponse();
         $performanceEventsResponse->setPerformanceEvents($performanceEvents);
-        $performanceEventsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')->getCount());
 
         return $performanceEventsResponse;
     }

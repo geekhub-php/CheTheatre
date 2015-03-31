@@ -111,6 +111,14 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private $galleryHasMedia;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")

@@ -133,6 +133,14 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private $galleryHasMedia;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -197,7 +205,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Set type
      *
-     * @param string $ type
+     * @param string $type
      * @return Performance
      */
     public function setType($type)
