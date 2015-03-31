@@ -39,9 +39,12 @@ class PerformanceEventsControllerTest extends AbstractController
             ['description'],
             ['premiere'],
             ['mainPicture'],
-            ['reference'],
+            ['sliderImage'],
             ['performance_small'],
             ['performance_big'],
+            ['slider_small'],
+            ['slider_slider'],
+            ['reference'],
             ['url'],
             ['properties'],
             ['alt'],
@@ -57,7 +60,7 @@ class PerformanceEventsControllerTest extends AbstractController
             ['month'],
             ['day'],
             ['time'],
-            ['total_count']
+            ['count']
         ];
     }
 }
