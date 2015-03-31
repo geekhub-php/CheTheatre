@@ -75,6 +75,13 @@ class SerializerSubscriber implements EventSubscriberInterface
             $sliderImageLinks = $this->mediaController->getMediumFormatsAction($performance->getSliderImage());
             $performance->sliderImageThumbnails = $sliderImageLinks;
         }
+
+        if ($performance ->getGalleryHasMedia()->getValues()) {
+            foreach ($performance ->getGalleryHasMedia()->getValues() as $gallery) {
+                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $performance ->galleryHasMediaThumbnails = $galleryHasMediaLinks;
+            }
+        }
     }
 
     public function onPrePostSerialize(ObjectEvent $event)
