@@ -59,8 +59,21 @@ class PerformanceEventsController extends Controller
         $performanceEventsTranslated = array();
 
         foreach ($performanceEvents as $performanceEvent) {
+
+            $performanceEvent->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performanceEvent);
+
             $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
             $em->refresh($performanceEvent->getPerformance());
+
+            if ($performanceEvent->getTranslations()){
+                $performanceEvent->unsetTranslations();
+            }
+
+            if ($performanceEvent->getPerformance()->getTranslations()){
+                $performanceEvent->getPerformance()->unsetTranslations();
+            }
+
             $performanceEventsTranslated[] = $performanceEvent;
         }
 
@@ -88,15 +101,32 @@ class PerformanceEventsController extends Controller
      * deprecated = true
      * )
      *
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *
      * @RestView
      */
-    public function getAction($id)
+    public function getAction(ParamFetcher $paramFetcher, $id)
     {
-        $performanceEvent = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:PerformanceEvent')->findOneById($id);
+        $em = $this->getDoctrine()->getManager();
+
+        $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->findOneById($id);
 
         if (!$performanceEvent) {
             throw $this->createNotFoundException('Unable to find '.$id.' entity');
+        }
+
+        $performanceEvent->setLocale($paramFetcher->get('locale'));
+        $em->refresh($performanceEvent);
+
+        $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
+        $em->refresh($performanceEvent->getPerformance());
+
+        if ($performanceEvent->getTranslations()){
+            $performanceEvent->unsetTranslations();
+        }
+
+        if ($performanceEvent->getPerformance()->getTranslations()){
+            $performanceEvent->getPerformance()->unsetTranslations();
         }
 
         return $performanceEvent;

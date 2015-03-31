@@ -30,7 +30,13 @@ class SerializerSubscriber implements EventSubscriberInterface
         return [
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Employee', 'method' => 'onPreEmployeeSerialize'],
             ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\Performance', 'method' => 'onPrePerformanceSerialize'],
+            ['event' => 'serializer.pre_serialize', 'class' => 'AppBundle\Entity\PerformanceEvent', 'method' => 'onPrePerformanceEventSerialize'],
         ];
+    }
+
+    public function onPrePerformanceEventSerialize()
+    {
+
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
