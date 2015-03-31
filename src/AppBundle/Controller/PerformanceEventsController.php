@@ -55,7 +55,6 @@ class PerformanceEventsController extends Controller
 
         $performanceEventsResponse = new PerformanceEventsResponse();
         $performanceEventsResponse->setPerformanceEvents($result);
-        $performanceEventsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:PerformanceEvent')->getCount());
 
         return $performanceEventsResponse;
     }
