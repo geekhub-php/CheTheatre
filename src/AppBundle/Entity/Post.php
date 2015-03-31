@@ -94,6 +94,14 @@ class Post
     private $galleryHasMedia;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")

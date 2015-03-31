@@ -76,10 +76,10 @@ class SerializerSubscriber implements EventSubscriberInterface
             $performance->sliderImageThumbnails = $sliderImageLinks;
         }
 
-        if ($performance ->getGalleryHasMedia()->getValues()) {
-            foreach ($performance ->getGalleryHasMedia()->getValues() as $gallery) {
+        if ($performance->getGalleryHasMedia()->getValues()) {
+            foreach ($performance->getGalleryHasMedia()->getValues() as $gallery) {
                 $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
-                $performance ->galleryHasMediaThumbnails = $galleryHasMediaLinks;
+                $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
             }
         }
     }
@@ -92,6 +92,13 @@ class SerializerSubscriber implements EventSubscriberInterface
         if ($post->getMainPicture()) {
             $mainImageLinks = $this->mediaController->getMediumFormatsAction($post->getMainPicture());
             $post->mainPictureThumbnails = $mainImageLinks;
+        }
+
+        if ($post->getGalleryHasMedia()->getValues()) {
+            foreach ($post->getGalleryHasMedia()->getValues() as $gallery) {
+                $galleryHasMediaLinks[] = $this->mediaController->getMediumFormatsAction($gallery->getMedia());
+                $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
+            }
         }
     }
 }
