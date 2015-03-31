@@ -32,33 +32,44 @@ class PostsController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="tag", description="Tag slug")
      *
      * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $posts = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:Post')
-            ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+        $posts = $this->getDoctrine()->getManager()->getRepository('AppBundle:Post')
+            ->findAllOrByTag(
+                $paramFetcher->get('limit'),
+                ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'),
+                $paramFetcher->get('tag')
+            )
+        ;
 
         $postsResponse = new PostsResponse();
         $postsResponse->setPosts($posts);
-        $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount());
+        $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount($paramFetcher->get('tag')));
         $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
         $postsResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_posts', [
             'limit' => $paramFetcher->get('limit'),
             'page' => $paramFetcher->get('page'),
+            'tag' => $paramFetcher->get('tag'),
         ], true
         );
 
-        $first = $this->generateUrl('get_posts', [], true);
+        $first = $this->generateUrl('get_posts', [
+            'limit' => $paramFetcher->get('limit'),
+            'tag' => $paramFetcher->get('tag'),
+        ], true
+        );
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
             $this->generateUrl('get_posts', [
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
+                'tag' => $paramFetcher->get('tag'),
             ], true
             ) :
             'false';
@@ -67,6 +78,7 @@ class PostsController extends Controller
             $this->generateUrl('get_posts', [
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')-1,
+                'tag' => $paramFetcher->get('tag'),
             ], true
             ) :
             'false';
@@ -74,6 +86,7 @@ class PostsController extends Controller
         $last = $this->generateUrl('get_posts', [
             'limit' => $paramFetcher->get('limit'),
             'page' => $postsResponse->getPageCount(),
+            'tag' => $paramFetcher->get('tag'),
         ], true
         );
 

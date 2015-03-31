@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
@@ -63,9 +64,16 @@ class Post
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
-     * @Expose
      */
     private $mainPicture;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("mainPicture")
+     */
+    public $mainPictureThumbnails;
 
     /**
      * @Gedmo\Locale
@@ -84,6 +92,14 @@ class Post
      *     )
      */
     private $galleryHasMedia;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
 
     /**
      * @Gedmo\Slug(fields={"title"})

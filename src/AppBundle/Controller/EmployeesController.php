@@ -53,7 +53,10 @@ class EmployeesController extends Controller
         ], true
         );
 
-        $first = $this->generateUrl('get_employees', [], true);
+        $first = $this->generateUrl('get_employees', [
+            'limit' => $paramFetcher->get('limit'),
+        ], true
+        );
 
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
             $this->generateUrl('get_employees', [

@@ -42,7 +42,7 @@ class PostAdmin extends Admin
                     'btn_list' => false,
                 ], [
                     'link_parameters' => [
-                        'context' => 'default',
+                        'context' => 'post',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
@@ -62,7 +62,7 @@ class PostAdmin extends Admin
                     'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
                     'admin_code' => 'sonata.media.admin.gallery_has_media',
                     'link_parameters' => [
-                        'context'  => 'employee',
+                        'context'  => 'post',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
