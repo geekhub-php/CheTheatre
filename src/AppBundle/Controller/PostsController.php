@@ -44,12 +44,30 @@ class PostsController extends Controller
             ->getRepository('AppBundle:Post')
             ->findBy([], ['createdAt' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
-        $postsTranslated = array();
+        $postsTranslated = [];
+
         foreach ($posts as $post) {
             $post->setLocale($paramFetcher->get('locale'));
             $em->refresh($post);
+
+            if ($post->getTranslations()) {
+                $post->unsetTranslations();
+            }
+
+            $tags = $post->getTags();
+
+            foreach ($tags as $tag) {
+                $tag->setLocale($paramFetcher->get('locale'));
+                $em->refresh($tag);
+
+                if ($tag->getTranslations()) {
+                    $tag->unsetTranslations();
+                }
+            }
+
             $postsTranslated[] = $post;
         }
+
         $posts = $postsTranslated;
 
         $postsResponse = new PostsResponse();
@@ -125,9 +143,22 @@ class PostsController extends Controller
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
-        if ($paramFetcher->get('locale') !== $paramFetcher->getParams()['locale']->default) {
-                $post->setLocale($paramFetcher->get('locale'));
-                $em->refresh($post);
+        $post->setLocale($paramFetcher->get('locale'));
+        $em->refresh($post);
+
+        if ($post->getTranslations()) {
+            $post->unsetTranslations();
+        }
+
+        $tags = $post->getTags();
+
+        foreach ($tags as $tag) {
+            $tag->setLocale($paramFetcher->get('locale'));
+            $em->refresh($tag);
+
+            if ($tag->getTranslations()) {
+                $tag->unsetTranslations();
+            }
         }
 
         return $post;

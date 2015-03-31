@@ -51,7 +51,7 @@ class EmployeesController extends Controller
             $employee->setLocale($paramFetcher->get('locale'));
             $em->refresh($employee);
 
-            if ($employee->getTranslations()){
+            if ($employee->getTranslations()) {
                 $employee->unsetTranslations();
             }
 
@@ -136,7 +136,7 @@ class EmployeesController extends Controller
         $employee->setLocale($paramFetcher->get('locale'));
         $em->refresh($employee);
 
-        if ($employee->getTranslations()){
+        if ($employee->getTranslations()) {
             $employee->unsetTranslations();
         }
 
@@ -172,7 +172,7 @@ class EmployeesController extends Controller
         $employee->setLocale($paramFetcher->get('locale'));
         $em->refresh($employee);
 
-        if ($employee->getTranslations()){
+        if ($employee->getTranslations()) {
             $employee->unsetTranslations();
         }
 
@@ -192,7 +192,7 @@ class EmployeesController extends Controller
             if ($role->getTranslations()){
                 $role->unsetTranslations();
             }
-            if ($performance->getTranslations()){
+            if ($performance->getTranslations()) {
                 $performance->unsetTranslations();
             }
 
