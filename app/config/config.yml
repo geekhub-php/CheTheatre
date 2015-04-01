@@ -167,7 +167,7 @@ nelmio_cors:
         origin_regex: false
     paths:
         '^/':
-            origin_regex: true
+            origin_regex: false
             allow_origin: %nelmio_cors.origin%
             allow_methods: ['*']
             allow_headers: ['*']
