@@ -88,7 +88,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
-     * @Expose
      */
     private $sliderImage;
 
@@ -134,6 +133,14 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private $galleryHasMedia;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -164,6 +171,18 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     }
 
     /**
+     * Unset translations
+     *
+     * @return Performance
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -186,7 +205,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Set type
      *
-     * @param string $ type
+     * @param string $type
      * @return Performance
      */
     public function setType($type)

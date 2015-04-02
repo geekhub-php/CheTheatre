@@ -45,7 +45,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param array $associationMappings
+     * @param  array $associationMappings
      * @return array
      */
     protected function getAssociatedMediaObjects(array $associationMappings)

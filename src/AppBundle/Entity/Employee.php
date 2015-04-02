@@ -111,6 +111,14 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private $galleryHasMedia;
 
     /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
@@ -153,6 +161,18 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
         parent::__construct();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Employee
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     /**

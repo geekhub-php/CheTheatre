@@ -78,4 +78,3 @@ class TravisCheck implements CheckInterface
         return 'Travis';
     }
 }
-

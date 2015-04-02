@@ -28,7 +28,7 @@ trait LinksTrait
     }
 
     /**
-     * @param mixed $links
+     * @param  mixed $links
      * @return $this
      */
     public function setLinks($links)

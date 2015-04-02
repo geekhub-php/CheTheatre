@@ -53,7 +53,7 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
-        - [ setContainer, [@service_container]]
+        - [ setParameters, ['%sonata_translation.default_locale%', '%sonata_translation.locales%']]
 
     sonata.admin.tag:
         class: AppBundle\Admin\TagAdmin

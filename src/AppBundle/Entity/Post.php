@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use Gedmo\Translatable\Translatable;
@@ -66,9 +67,16 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
-     * @Expose
      */
     private $mainPicture;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("mainPicture")
+     */
+    public $mainPictureThumbnails;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
@@ -80,6 +88,14 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *     )
      */
     private $galleryHasMedia;
+
+    /**
+     * @var array
+     * @Expose
+     * @Type("array")
+     * @SerializedName("gallery")
+     */
+    public $galleryHasMediaThumbnails;
 
     /**
      * @Gedmo\Slug(fields={"title"})
@@ -115,6 +131,18 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
         parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Unset translations
+     *
+     * @return Post
+     */
+    public  function unsetTranslations()
+    {
+        $this->translations = null;
+
+        return $this;
     }
 
     public function __toString()

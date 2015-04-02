@@ -99,7 +99,7 @@ abstract class AbstractPaginatedModel
     }
 
     /**
-     * @param mixed $_links
+     * @param  mixed $_links
      * @return $this
      */
     public function setLinks($_links)

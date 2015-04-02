@@ -23,7 +23,8 @@ class TagsController extends Controller
      *  parameters={
      *      {"name"="slug", "dataType"="string", "required"=true, "description"="Unique name for every tags"}
      *  },
-     *  output = "array<AppBundle\Entity\Tag>"
+     *  output = "array<AppBundle\Entity\Tag>",
+     * deprecated = true
      * )
      *
      * @RestView

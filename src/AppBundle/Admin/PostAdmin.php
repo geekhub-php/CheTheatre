@@ -18,12 +18,14 @@ class PostAdmin extends Admin
         '_sort_by' => 'name',
     ];
 
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
-    private $container;
+    private $default_locale;
 
-    public function setContainer(\Symfony\Component\DependencyInjection\ContainerInterface $container)
+    private $locales;
+
+    public function setParameters($default_locale, $locales)
     {
-        $this->container = $container;
+        $this->default_locale = $default_locale;
+        $this->locales = $locales;
     }
 
     /**
@@ -51,7 +53,7 @@ class PostAdmin extends Admin
                     'btn_list' => false,
                 ], [
                     'link_parameters' => [
-                        'context' => 'default',
+                        'context' => 'post',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
@@ -62,8 +64,8 @@ class PostAdmin extends Admin
                 $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
                     ->addModelTransformer(
                         new TagTransformer(
-                            $this->container->getParameter('sonata_translation.default_locale'),
-                            $this->container->getParameter('sonata_translation.locales'),
+                            $this->default_locale,
+                            $this->locales,
                             $this->modelManager->getEntityManager(new Tag())
                         )
                     )
@@ -81,7 +83,7 @@ class PostAdmin extends Admin
                         'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
                         'admin_code' => 'sonata.media.admin.gallery_has_media',
                         'link_parameters' => [
-                            'context'  => 'employee',
+                            'context'  => 'post',
                             'provider' => 'sonata.media.provider.image',
                         ],
                     ]
