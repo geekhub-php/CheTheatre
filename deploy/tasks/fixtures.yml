@@ -1,0 +1,16 @@
+---
+# Load Fixtures
+- name: Drop db
+  shell: app/console doctrine:database:drop --env={{project_env}} --domain=local --force chdir={{project_root}}/releases/{{release_dir}}
+
+- name: Create db
+  shell: app/console doctrine:database:create --env={{project_env}} --domain=local chdir={{project_root}}/releases/{{release_dir}}
+
+- name: Create schema
+  shell: app/console doctrine:schema:create --env={{project_env}} --domain=local chdir={{project_root}}/releases/{{release_dir}}
+
+- name: Run composer install with dev dependencies
+  shell: composer install chdir={{project_root}}/releases/{{release_dir}}
+
+- name: Fixtures load
+  shell: app/console doctrine:fixtures:load --no-interaction --env=dev --domain=local chdir={{project_root}}/releases/{{release_dir}}

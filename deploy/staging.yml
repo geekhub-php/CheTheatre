@@ -30,6 +30,8 @@
       shell: app/console assets:install --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
       with_items: domains
 
+    - include: tasks/fixtures.yml
+
     - name: Fix htaccess
       shell: sed -i -e 's,app_dev.php,app.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
 
