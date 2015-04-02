@@ -33,7 +33,7 @@ class PostsController extends Controller
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     * @QueryParam(name="tag", requirements="^[a-zA-Z]+", description="You can recieve posts by Tag slug, without Tag you will recieve all posts")
+     * @QueryParam(name="tag", description="You can receive posts by Tag slug, without Tag you will receive all posts")
      *
      * @RestView
      */
