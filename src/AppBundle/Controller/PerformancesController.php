@@ -66,18 +66,21 @@ class PerformancesController extends Controller
         $performancesResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_performances', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $paramFetcher->get('page'),
         ], true
         );
 
         $first = $this->generateUrl('get_performances', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
         ], true
         );
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
             $this->generateUrl('get_performances', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
             ], true
@@ -86,6 +89,7 @@ class PerformancesController extends Controller
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
             $this->generateUrl('get_performances', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')-1,
             ], true
@@ -93,6 +97,7 @@ class PerformancesController extends Controller
             'false';
 
         $last = $this->generateUrl('get_performances', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $performancesResponse->getPageCount(),
         ], true

@@ -82,6 +82,7 @@ class PostsController extends Controller
         $postsResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $paramFetcher->get('page'),
             'tag' => $paramFetcher->get('tag'),
@@ -89,6 +90,7 @@ class PostsController extends Controller
         );
 
         $first = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'tag' => $paramFetcher->get('tag'),
         ], true
@@ -96,6 +98,7 @@ class PostsController extends Controller
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
             $this->generateUrl('get_posts', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
                 'tag' => $paramFetcher->get('tag'),
@@ -105,6 +108,7 @@ class PostsController extends Controller
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
             $this->generateUrl('get_posts', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')-1,
                 'tag' => $paramFetcher->get('tag'),
@@ -113,6 +117,7 @@ class PostsController extends Controller
             'false';
 
         $last = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $postsResponse->getPageCount(),
             'tag' => $paramFetcher->get('tag'),
