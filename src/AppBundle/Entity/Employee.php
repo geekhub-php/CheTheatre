@@ -69,8 +69,8 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var /Datetime
      * @Assert\NotBlank()
-     * @ORM\Column(type="datetime")
-     * @Type("DateTime")
+     * @ORM\Column(type="date")
+     * @Type("Date")
      * @Expose
      */
     private $dob;
