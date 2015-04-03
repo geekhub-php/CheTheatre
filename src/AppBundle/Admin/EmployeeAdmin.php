@@ -53,7 +53,15 @@ class EmployeeAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('dob', 'sonata_type_date_picker')
+            ->add('dob', 'sonata_type_datetime_picker',
+                [
+                    'dp_side_by_side'       => false,
+                    'dp_use_current'        => false,
+                    'dp_use_seconds'        => false,
+                    'dp_use_minutes'        => false,
+                    'format' => "dd/MM/yyyy",
+                ]
+            )
             ->add('position', 'choice', [
                 'label' => 'employee.position',
                 'choices' => employee::getPositions(),
