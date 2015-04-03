@@ -2,31 +2,19 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Tag;
-use AppBundle\Form\DataTransformer\TagTransformer;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PostAdmin extends Admin
+class HistoryAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Post';
-    protected $baseRoutePattern = 'Post';
+    protected $baseRouteName = 'AppBundle\Entity\History';
+    protected $baseRoutePattern = 'History';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
         '_sort_by' => 'name',
     ];
-
-    private $default_locale;
-
-    private $locales;
-
-    public function setParameters($default_locale, $locales)
-    {
-        $this->default_locale = $default_locale;
-        $this->locales = $locales;
-    }
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -37,7 +25,13 @@ class PostAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('shortDescription')
+            ->add('dateTime', 'datetime',
+                [
+                    'label' => 'History_Date',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy'
+                ]
+            )
             ->add('text', 'textarea',
                 [
                     'attr' => [
@@ -52,37 +46,27 @@ class PostAdmin extends Admin
                     'btn_list' => false,
                 ], [
                     'link_parameters' => [
-                        'context' => 'post',
+                        'context' => 'history',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
             )
-            ->add(
-                $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(
-                        new TagTransformer(
-                            $this->default_locale,
-                            $this->locales,
-                            $this->modelManager->getEntityManager(new Tag())
-                        )
-                    )
+            ->add('galleryHasMedia', 'sonata_type_collection',
+                [
+                    'required' => false,
+                    'label' => 'Gallery'
+                ], [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
+                    'link_parameters' => [
+                        'context'  => 'history',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
             )
-                ->add('galleryHasMedia', 'sonata_type_collection',
-                    [
-                        'required' => false,
-                        'label' => 'Gallery',
-                    ], [
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable'  => 'position',
-                        'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                        'admin_code' => 'sonata.media.admin.gallery_has_media',
-                        'link_parameters' => [
-                            'context'  => 'post',
-                            'provider' => 'sonata.media.provider.image',
-                        ],
-                    ]
-                )
         ;
     }
     /**
@@ -94,6 +78,7 @@ class PostAdmin extends Admin
     {
         $listMapper
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
+            ->add('year', null, ['label' => 'History_Date'])
             ->addIdentifier('title')
             ->add('_action', 'actions',
                 [
@@ -116,6 +101,6 @@ class PostAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('tags', null, [], null, ['expanded' => true, 'multiple' => true]);
+            ->add('dateTime');
     }
 }

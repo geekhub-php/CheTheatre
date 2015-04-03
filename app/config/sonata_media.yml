@@ -41,6 +41,14 @@ sonata_media:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
+        history:  # the post context is mandatory
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
         slider:  # the performance slider image context is mandatory
             providers:
                 - sonata.media.provider.image
