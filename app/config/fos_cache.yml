@@ -3,7 +3,6 @@ fos_http_cache:
         defaults:
             overwrite: true
         rules:
-            # match all actions of a specific controller
             -
                 match:
                     attributes: { _controller: ^AppBundle:Employees:.* }
@@ -14,7 +13,6 @@ fos_http_cache:
             -
                 match:
                     attributes: { _controller: ^AppBundle:PerformanceEvents:.* }
-                    additional_cacheable_status: [400]
                 headers:
                     cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
                     last_modified: "-1 hour"
@@ -22,7 +20,6 @@ fos_http_cache:
             -
                 match:
                     attributes: { _controller: ^AppBundle:Performances:.* }
-                    additional_cacheable_status: [400]
                 headers:
                     cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
                     last_modified: "-1 hour"
@@ -30,12 +27,10 @@ fos_http_cache:
             -
                 match:
                     attributes: { _controller: ^AppBundle:Posts:.* }
-                    additional_cacheable_status: [400]
                 headers:
                     cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
                     last_modified: "-1 hour"
 
-            # match everything to set defaults
             -
                 match:
                     path: ^/
