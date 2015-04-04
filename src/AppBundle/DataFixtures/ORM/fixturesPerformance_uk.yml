@@ -8,6 +8,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia1, @galleryHasMedia2, @galleryHasMedia3, @galleryHasMedia4]
     performance2:
         title: 'Дванадцята ніч, або що захочете'
         type: Комедія
@@ -17,6 +18,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia5, @galleryHasMedia6, @galleryHasMedia7, @galleryHasMedia8]
     performance3:
         title: 'Сад Гетсиманський'
         type: 'Народна трагедія'
@@ -26,6 +28,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia9, @galleryHasMedia10, @galleryHasMedia11, @galleryHasMedia12]
     performance4:
         title: Шельменко-денщик
         type: 'Музична комедія'
@@ -35,6 +38,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia47, @galleryHasMedia48, @galleryHasMedia49, @galleryHasMedia50]
     performance5:
         title: 'Хто в домі господар?'
         type: 'Музична комедія'
@@ -44,6 +48,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia13, @galleryHasMedia14, @galleryHasMedia15, @galleryHasMedia16]
     performance6:
         title: Лєна
         type: 'Українська нова драма'
@@ -53,6 +58,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia17, @galleryHasMedia18, @galleryHasMedia19, @galleryHasMedia20]
     performance7:
         title: 'Сватання на Гончарівці'
         type: 'Музична комедія'
@@ -62,6 +68,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia21, @galleryHasMedia22]
     performance8:
         title: 'Натюрморт з товстим небожем'
         type: Трагікомедія
@@ -71,6 +78,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia23, @galleryHasMedia24]
     performance9:
         title: Мізантроп
         type: Водевіль
@@ -80,6 +88,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia25, @galleryHasMedia26, @galleryHasMedia27, @galleryHasMedia28, @galleryHasMedia29, @galleryHasMedia30, @galleryHasMedia31]
     performance10:
         title: 'Історія про людину, з якою трапилася історія'
         type: 'Абсурдна комедія'
@@ -89,6 +98,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia32, @galleryHasMedia33, @galleryHasMedia34, @galleryHasMedia35]
     performance11:
         title: Сканінг
         type: Вистава-фантазія
@@ -98,6 +108,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia36, @galleryHasMedia37, @galleryHasMedia38]
     performance12:
         title: 'Назар Стодоля'
         type: Містерія-бурлеск
@@ -107,6 +118,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     performance13:
         title: 'Дванадцять місяців або хранителі року'
         type: 'Музична казка'
@@ -116,6 +128,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     performance14:
         title: 'Золоте курча'
         type: 'Музична казка'
@@ -125,6 +138,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
     performance15:
         title: 'Барвінок герой'
         type: Електро-мюзикл
@@ -134,6 +148,7 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia46]
     performance16:
         title: 'Дорога до сонця'
         type: 'Музична казка'
@@ -143,3 +158,4 @@ AppBundle\Entity\Performance:
         sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia39]

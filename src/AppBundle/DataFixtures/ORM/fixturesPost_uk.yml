@@ -48,9 +48,9 @@ AppBundle\Entity\Post:
         updatedAt: <dateTimeBetween($createdAt, "now")>
         tags: '5x @tag*'
     post7:
-        title: ' Сватання на Гончарівці'
-        shortDescription: ' Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.'
-        text: ' Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.'
+        title: 'Сватання на Гончарівці'
+        shortDescription: 'Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.'
+        text: 'Григорій Квітка-Основ’яненко, Музика Кирила Стеценка. Музична комедія на 2 дії. Тривалість вистави 2 год.'
         mainPicture: <getMedia("performance-posters/default.jpg", "post")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>

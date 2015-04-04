@@ -8,6 +8,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі на посаді директора працює з 1999 року.Заслужений діяч мистецтв України з 2009 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1993 році. Театрознавець, організатор театральної справи.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia1, @galleryHasMedia2, @galleryHasMedia3, @galleryHasMedia4]
     employee2:
         firstName: Сергій
         lastName: Проскурня
@@ -17,6 +18,7 @@ AppBundle\Entity\Employee:
         biography: '-'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia5, @galleryHasMedia6, @galleryHasMedia7, @galleryHasMedia8]
     employee3:
         firstName: Олександр
         lastName: Павлютін
@@ -26,6 +28,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2002 року. В.О художнього керівника театру з 2010 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 2002 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia9, @galleryHasMedia10, @galleryHasMedia11, @galleryHasMedia12]
     employee4:
         firstName: Сергій
         lastName: Ридванецький
@@ -35,6 +38,7 @@ AppBundle\Entity\Employee:
         biography: 'Головний художник У театрі з 2003 року. Закінчив Львівський державний інститут прикладного і декоративного мистецтва у 1991 році. Художник декоративно-прикладного мистецтва. Поставлено 39 вистав, з них у Черкаському театрі - 8'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia47, @galleryHasMedia48, @galleryHasMedia49, @galleryHasMedia50]
     employee5:
         firstName: Наталія
         lastName: Ридванецька
@@ -44,6 +48,7 @@ AppBundle\Entity\Employee:
         biography: 'Художник по костюмах. У театрі з 2003 року.Закінчила Львівський державний інститут прикладного і декоративного мистецтва у 1992 році. Художник-технолог. Поставлено 43 вистави, з них у Черкаському театрі - 12.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia13, @galleryHasMedia14, @galleryHasMedia15, @galleryHasMedia16]
     employee6:
         firstName: Надія
         lastName: Нікіфорова
@@ -53,6 +58,7 @@ AppBundle\Entity\Employee:
         biography: 'Художник-постановник, у театрі з 1980 року. Закінчила Ленінградський державний інститут театру, музики і кінематографії у 1980 році. Поставлено 70 вистав, у Черкаському театрі - 55.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia17, @galleryHasMedia18, @galleryHasMedia19, @galleryHasMedia20]
     employee7:
         firstName: Володимир
         lastName: Татарінов
@@ -62,6 +68,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений артист України з 2007 року.Балетмейстер-постановник.У театрі з 1984 року. Закінчив Дніпропетровське державне театральне училище у 1972 році.Керівник хореографічного колективу.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia21, @galleryHasMedia22]
     employee8:
         firstName: Варвара
         lastName: Присяжненко
@@ -71,6 +78,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений працівник культури України з 2007 року. Керівник літературно-драматичною частиною. Закінчила Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1975 році. У театрі з 1975 року.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia23, @galleryHasMedia24]
     employee9:
         firstName: Олена
         lastName: Бєлкіна
@@ -80,6 +88,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі працює з 1995 року на посаді концертмейстер, з 2008 року диригент. Закінчила черкаське музичне училище ім. С. Гулака-Артемовського.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia25, @galleryHasMedia26, @galleryHasMedia27, @galleryHasMedia28, @galleryHasMedia29, @galleryHasMedia30, @galleryHasMedia31]
     employee10:
         firstName: Світлана
         lastName: Лежненко
@@ -89,6 +98,7 @@ AppBundle\Entity\Employee:
         biography: '-'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia32, @galleryHasMedia33, @galleryHasMedia34, @galleryHasMedia35]
     employee11:
         firstName: Галина
         lastName: Кириченко
@@ -98,6 +108,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 1997 року. Закінчила Черкаське музичне училище імені С.Гулака-Артемовського.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia36, @galleryHasMedia37, @galleryHasMedia38]
     employee12:
         firstName: Сергій
         lastName: Бобров
@@ -107,6 +118,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений артист України з 2009 року. У театрі працює з 1996 року. Закінчив Дніпропетровське державне театральне училище у 1996 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     employee13:
         firstName: Наталія
         lastName: Вігран
@@ -116,6 +128,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України з 2009 року. У театрі працює з 1994 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     employee14:
         firstName: Марія
         lastName: Марущак
@@ -125,6 +138,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі з 2008 року.Закінчила Вінницьке училище культури і мистецтв'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
     employee15:
         firstName: Юрій
         lastName: Берлінський
@@ -134,6 +148,7 @@ AppBundle\Entity\Employee:
         biography: 'Народний артист України з 2007 року. У театрі працює з 1980 року. Закінчив Київський держаний інститут театрального мистецтва ім. Карпенка-Карого у 1980 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia46]
     employee16:
         firstName: Світлана
         lastName: Амеліна
@@ -143,6 +158,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2008 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia39]
     employee17:
         firstName: Анна
         lastName: Боброва
@@ -152,6 +168,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2007 року.Закінчила Канівське училище культури і мистецтв у 2007 році'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia1, @galleryHasMedia2, @galleryHasMedia3, @galleryHasMedia4]
     employee18:
         firstName: Олена
         lastName: Брехаря
@@ -161,6 +178,7 @@ AppBundle\Entity\Employee:
         biography: 'у театрі працює з 2008 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia5, @galleryHasMedia6, @galleryHasMedia7, @galleryHasMedia8]
     employee19:
         firstName: Лілія
         lastName: Бурлакова
@@ -170,6 +188,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року. Закінчила Рівненський державний гуманітарний університет у 2004 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia9, @galleryHasMedia10, @galleryHasMedia11, @galleryHasMedia12]
     employee20:
         firstName: Оксана
         lastName: Вовкостріл
@@ -179,6 +198,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2009 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia47, @galleryHasMedia48, @galleryHasMedia49, @galleryHasMedia50]
     employee21:
         firstName: Олександр
         lastName: Гелеверя
@@ -188,6 +208,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2009 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia13, @galleryHasMedia14, @galleryHasMedia15, @galleryHasMedia16]
     employee22:
         firstName: Микола
         lastName: Глазов
@@ -197,6 +218,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі з 1977 року по 1986 рік, з 1996 року по 2000 рік, з 2002 року по 2003 рік та з 2006 року. Закінчив Київський інститут театрального мистецтва ім. І.К.Карпенка-Карого'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia17, @galleryHasMedia18, @galleryHasMedia19, @galleryHasMedia20]
     employee23:
         firstName: Ірина
         lastName: Глазова
@@ -206,6 +228,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі з 2000 року по 2006 рік та з 2010 року. Закінчила Дніпропетровський державний обласний театрально-художній коледж'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia21, @galleryHasMedia22]
     employee24:
         firstName: Наталія
         lastName: Глазова
@@ -215,6 +238,7 @@ AppBundle\Entity\Employee:
         biography: ' У театрі з 1976 року. Закінчила Канівське культпросвітнє училище'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia23, @galleryHasMedia24]
     employee25:
         firstName: Павло
         lastName: Гончаров
@@ -224,6 +248,7 @@ AppBundle\Entity\Employee:
         biography: 'у театрі працює з 2008 року. Закінчив Дніпропетровський державний обласний театрально-художній коледж у 1998 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia25, @galleryHasMedia26, @galleryHasMedia27, @galleryHasMedia28, @galleryHasMedia29, @galleryHasMedia30, @galleryHasMedia31]
     employee26:
         firstName: Юрій
         lastName: Гребень
@@ -233,6 +258,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 1998 року. Закінчив Канівське училище культури у 1997 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia32, @galleryHasMedia33, @galleryHasMedia34, @galleryHasMedia35]
     employee27:
         firstName: Тетяна
         lastName: Гребень
@@ -242,6 +268,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 1996 року. Закінчила Дніпропетровське державне театральне училище у 1996 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia36, @galleryHasMedia37, @galleryHasMedia38]
     employee28:
         firstName: Олександр
         lastName: Гуменний
@@ -251,6 +278,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2008 року. Закінчив Київський гірничо-транспортний технікум у 1996 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     employee29:
         firstName: Юлія
         lastName: Донська-Гуменна
@@ -260,6 +288,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2008 року.Закінчила Миколаївське державне вище училище культури у 2008 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     employee30:
         firstName: Микола
         lastName: Зайнчківський
@@ -269,6 +298,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений артист України з 2010 року. У театрі працює з 1986 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1986 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
     employee31:
         firstName: Анжеліна
         lastName: Іванова
@@ -278,6 +308,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 1996 року. Закінчила Дніпропетровське державне театральне училище у 1996 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia46]
     employee32:
         firstName: Валерій
         lastName: Кириченко
@@ -287,6 +318,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia39]
     employee33:
         firstName: Олексій
         lastName: Клименко
@@ -296,6 +328,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 2012 року. Закінчив Харківський державний університет мистецтв ім. І.П.Котляревського у 2012 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia1, @galleryHasMedia2, @galleryHasMedia3, @galleryHasMedia4]
     employee34:
         firstName: Сергій
         lastName: Коваленко
@@ -305,6 +338,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2012 року. Закінчив Черкаський національний університет ім. Богдана Хмельницького.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia5, @galleryHasMedia6, @galleryHasMedia7, @galleryHasMedia8]
     employee35:
         firstName: Вікторія
         lastName: Ковальoва
@@ -314,6 +348,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 1989 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia9, @galleryHasMedia10, @galleryHasMedia11, @galleryHasMedia12]
     employee36:
         firstName: Віктор
         lastName: Коломієць
@@ -323,6 +358,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений артист України. B театрі з 1976 року. Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1976 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia47, @galleryHasMedia48, @galleryHasMedia49, @galleryHasMedia50]
     employee37:
         firstName: Михайло
         lastName: Кондратський
@@ -332,6 +368,7 @@ AppBundle\Entity\Employee:
         biography: 'B театрі з 1988 року. Закінчив Київський державний університет культури та мистецтв у 2002 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia13, @galleryHasMedia14, @galleryHasMedia15, @galleryHasMedia16]
     employee38:
         firstName: Надія
         lastName: Корбут
@@ -341,6 +378,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 2005 року. Закінчила Ужгородське училище культури у 2002 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia17, @galleryHasMedia18, @galleryHasMedia19, @galleryHasMedia20]
     employee39:
         firstName: Тетяна
         lastName: Крижанівська
@@ -350,6 +388,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України. в театрі працює з 1979 року. Закінчила Державний інститут театрального мистецтва ім. Луначарського у 1984 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia21, @galleryHasMedia22]
     employee40:
         firstName: Олександр
         lastName: Кузьменко
@@ -359,6 +398,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 1997 року. Закінчив Дніпропетровське державне театральне училище у 1997 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia23, @galleryHasMedia24]
     employee41:
         firstName: Олександр
         lastName: Кузьмин
@@ -368,6 +408,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужений артист України - 2009 рік.  У театрі з 2008 року. Закінчив Харківський інститут мистецтв ім. І.Котляревського.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia25, @galleryHasMedia26, @galleryHasMedia27, @galleryHasMedia28, @galleryHasMedia29, @galleryHasMedia30, @galleryHasMedia31]
     employee42:
         firstName: Анна
         lastName: Куриленко
@@ -377,6 +418,7 @@ AppBundle\Entity\Employee:
         biography: 'у театрі з 2011 року. Закінчила Черкаське музичне училище ім. С.С. Гулака - Артемовського 2008р. продовжує навчання в Київському національному універститеті театру, кіно і телебачення ім. І. Карпенка - Карого'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia32, @galleryHasMedia33, @galleryHasMedia34, @galleryHasMedia35]
     employee43:
         firstName: Наталія
         lastName: Мамалига
@@ -386,6 +428,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України з 2009 року.У театрі працює з 1994 року. Закінчила Київську державну консерваторію ім. Чайковського у 1992 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia36, @galleryHasMedia37, @galleryHasMedia38]
     employee44:
         firstName: Ірина
         lastName: Маслова
@@ -395,6 +438,7 @@ AppBundle\Entity\Employee:
         biography: ' в театрі працює з 1998 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     employee45:
         firstName: Світлана
         lastName: Москаленко
@@ -404,6 +448,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України. У театрі працює з 2002 року. Закінчила драматичну студію при театрі ім. І.Франка у 1975 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     employee46:
         firstName: Наталія
         lastName: Панєкіна
@@ -413,6 +458,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 2012 року. Закінчила Харківський державний університет мистецтв ім. І.П.Котляревського у 2011 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
     employee47:
         firstName: Наталія
         lastName: Науменко
@@ -422,6 +468,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2002 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia46]
     employee48:
         firstName: Сергій
         lastName: Пономаренко
@@ -431,6 +478,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia39]
     employee49:
         firstName: Олена
         lastName: Пономаренко
@@ -440,6 +488,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia1, @galleryHasMedia2, @galleryHasMedia3, @galleryHasMedia4]
     employee50:
         firstName: Лідія
         lastName: Попова
@@ -449,6 +498,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України з 1978 року. в театрі працює з 1973 року. Закінчила Дніпропетровське державне театральне училище у 1962 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia5, @galleryHasMedia6, @galleryHasMedia7, @galleryHasMedia8]
     employee51:
         firstName: Дмитро
         lastName: Потапчук
@@ -458,6 +508,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2010 року. Закінчив Рівненський державний гуманітарний університет'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia9, @galleryHasMedia10, @galleryHasMedia11, @galleryHasMedia12]
     employee52:
         firstName: Олександр
         lastName: Приз
@@ -467,6 +518,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 2005 року '
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia47, @galleryHasMedia48, @galleryHasMedia49, @galleryHasMedia50]
     employee53:
         firstName: Юрій
         lastName: Прокопчук
@@ -476,6 +528,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 1998 року .Закінчив Київський державний інститут театрального мистецтва ім. Карпенка-Карого.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia13, @galleryHasMedia14, @galleryHasMedia15, @galleryHasMedia16]
     employee54:
         firstName: Олександр
         lastName: Пятківський
@@ -485,6 +538,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 1977 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia17, @galleryHasMedia18, @galleryHasMedia19, @galleryHasMedia20]
     employee55:
         firstName: Ольга
         lastName: Ромодан
@@ -494,6 +548,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 1990 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia21, @galleryHasMedia22]
     employee56:
         firstName: Любов
         lastName: Скобель
@@ -503,6 +558,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України з 2006 року. У театрі працює з 1977 року. Закінчила драматичну студію при театрі ім. І.Франка у 1977 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia23, @galleryHasMedia24]
     employee57:
         firstName: Евген
         lastName: Скрипніченко
@@ -512,6 +568,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі працює з 2008 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia25, @galleryHasMedia26, @galleryHasMedia27, @galleryHasMedia28, @galleryHasMedia29, @galleryHasMedia30, @galleryHasMedia31]
     employee58:
         firstName: Людмила
         lastName: Талах
@@ -521,6 +578,7 @@ AppBundle\Entity\Employee:
         biography: 'Заслужена артистка України. Закінчила Київський державний інститут театрального мистецтва ім. Карпенка-Карого у 1967 році. в театрі працює з 1967 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia32, @galleryHasMedia33, @galleryHasMedia34, @galleryHasMedia35]
     employee59:
         firstName: Олег
         lastName: Телятник
@@ -530,6 +588,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2005 року. Закінчив Харківський державний інститут культури у 1995 році.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia36, @galleryHasMedia37, @galleryHasMedia38]
     employee60:
         firstName: Світлана
         lastName: Терещенко
@@ -539,6 +598,7 @@ AppBundle\Entity\Employee:
         biography: 'У театрі з 2009 року. 3акінчила Київський державний інститут театрального мистецтва ім. І.К.Карпенка-Карого'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     employee61:
         firstName: Лілія
         lastName: Харченко
@@ -548,6 +608,7 @@ AppBundle\Entity\Employee:
         biography: ' в театрі працює з 1998 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     employee62:
         firstName: Костянтин
         lastName: Шаєнко
@@ -557,6 +618,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
     employee63:
         firstName: Катерина
         lastName: Шакалова
@@ -566,6 +628,7 @@ AppBundle\Entity\Employee:
         biography: 'в театрі працює з 2003 року. Закінчила Дніпропетровський театрально-художній коледж.'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia46]
     employee64:
         firstName: Петро
         lastName: Голубченко
@@ -575,6 +638,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2014 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia39]
     employee65:
         firstName: Катерина
         lastName: Олейнікова
@@ -584,6 +648,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2014 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia40, @galleryHasMedia41]
     employee66:
         firstName: Олена
         lastName: Передрій
@@ -593,6 +658,7 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2014 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia42, @galleryHasMedia43]
     employee67:
         firstName: Максим
         lastName: Рижевол
@@ -602,3 +668,4 @@ AppBundle\Entity\Employee:
         biography: 'В театрі з 2014 року'
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia: [@galleryHasMedia44, @galleryHasMedia45]
