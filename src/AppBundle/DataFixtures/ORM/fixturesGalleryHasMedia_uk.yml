@@ -1,0 +1,601 @@
+Application\Sonata\MediaBundle\Entity\GalleryHasMedia:
+    galleryHasMedia1:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia2:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia3:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia4:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia5:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia6:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху6.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia7:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху7.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia8:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia9:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia10:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia11:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia12:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia13:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia14:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia15:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia16:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia17:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia18:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia19:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia20:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia21:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia22:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia23:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 6.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia24:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 7.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia25:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia26:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia27:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia28:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia29:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia30:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 6.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia31:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 7.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia32:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia33:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia34:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia35:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia36:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia37:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 6.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia38:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 7.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia39:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 8.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia40:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia41:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia42:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia43:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia44:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 5.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia45:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 6.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia46:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 7.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia47:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 1.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia48:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 2.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia49:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 3.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia50:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 4.jpg", "performance")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia51:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia52:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia53:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia54:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia55:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia56:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху6.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia57:
+        title: 'академія сміху'
+        description: 'академія сміху'
+        media: <getMedia("performance-galleries/академія сміху7.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia58:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia59:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia60:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia61:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia62:
+        title: боїнг-боїнг
+        description: боїнг-боїнг
+        media: <getMedia("performance-galleries/боїнг-боїнг5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia63:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia64:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia65:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia66:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia67:
+        title: 'Вишневий сад'
+        description: 'Вишневий сад'
+        media: <getMedia("performance-galleries/Вишневий сад5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia68:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia69:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia70:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia71:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia72:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia73:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 6.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia74:
+        title: 'Дума про братів'
+        description: 'Дума про братів'
+        media: <getMedia("performance-galleries/Дума про братів 7.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia75:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia76:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia77:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia78:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia79:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia80:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 6.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia81:
+        title: Мізантроп
+        description: Мізантроп
+        media: <getMedia("performance-galleries/Мізантроп 7.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia82:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia83:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia84:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia85:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia86:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia87:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 6.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia88:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 7.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia89:
+        title: Розуара
+        description: Розуара
+        media: <getMedia("performance-galleries/Розуара 8.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia90:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia91:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia92:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia93:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia94:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 5.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia95:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 6.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia96:
+        title: Сільва
+        description: Сільва
+        media: <getMedia("performance-galleries/Сільва 7.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia97:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 1.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia98:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 2.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia99:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 3.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia100:
+        title: Шельменко
+        description: Шельменко
+        media: <getMedia("performance-galleries/Шельменко 4.jpg", "employee")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>

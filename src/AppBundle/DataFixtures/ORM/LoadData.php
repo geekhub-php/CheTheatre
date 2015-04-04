@@ -10,6 +10,7 @@ class LoadData extends DataFixtureLoader
     protected function getFixtures()
     {
         return array(
+            __DIR__.'/fixturesGalleryHasMedia_uk.yml',
             __DIR__.'/fixturesEmployee_uk.yml',
             __DIR__.'/fixturesPerformance_uk.yml',
             __DIR__.'/fixturesRole_uk.yml',
@@ -23,6 +24,7 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesPostTranslation_en.yml',
             __DIR__.'/fixturesHistoryTranslation_en.yml',
             __DIR__.'/fixturesTagTranslation_en.yml',
+            __DIR__.'/fixturesGalleryHasMediaTranslation_en.yml',
         );
     }
 

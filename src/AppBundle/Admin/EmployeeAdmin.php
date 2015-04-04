@@ -125,7 +125,6 @@ class EmployeeAdmin extends Admin
             ->add('firstName')
             ->add('lastName')
             ->add('dob')
-            ->add('position')
             ->add('roles')
         ;
     }
