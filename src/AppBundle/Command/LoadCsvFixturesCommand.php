@@ -54,6 +54,9 @@ class LoadCsvFixturesCommand extends ContainerAwareCommand
             $yaml = Yaml::dump($yamlArray, 3);
             $yaml = str_replace('\'<', '<', $yaml);
             $yaml = str_replace('>\'', '>', $yaml);
+            $yaml = str_replace('\'[', '[', $yaml);
+            $yaml = str_replace(']\'', ']', $yaml);
+
             file_put_contents($ymlFile, $yaml);
 
             $output->writeln('Load is finished!');
