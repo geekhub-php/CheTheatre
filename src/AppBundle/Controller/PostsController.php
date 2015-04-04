@@ -31,7 +31,7 @@ class PostsController extends Controller
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     * @QueryParam(name="tag", requirements="^[a-zA-Z]+", description="You can recieve posts by Tag slug, without Tag you will recieve all posts")
+     * @QueryParam(name="tag", description="You can receive posts by Tag slug, without Tag you will receive all posts")
      *
      * @RestView
      */
@@ -80,6 +80,7 @@ class PostsController extends Controller
         $postsResponse->setPage($paramFetcher->get('page'));
 
         $self = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $paramFetcher->get('page'),
             'tag' => $paramFetcher->get('tag'),
@@ -87,6 +88,7 @@ class PostsController extends Controller
         );
 
         $first = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'tag' => $paramFetcher->get('tag'),
         ], true
@@ -94,6 +96,7 @@ class PostsController extends Controller
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
             $this->generateUrl('get_posts', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')+1,
                 'tag' => $paramFetcher->get('tag'),
@@ -103,6 +106,7 @@ class PostsController extends Controller
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
             $this->generateUrl('get_posts', [
+                'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page')-1,
                 'tag' => $paramFetcher->get('tag'),
@@ -111,6 +115,7 @@ class PostsController extends Controller
             'false';
 
         $last = $this->generateUrl('get_posts', [
+            'locale' => $paramFetcher->get('locale'),
             'limit' => $paramFetcher->get('limit'),
             'page' => $postsResponse->getPageCount(),
             'tag' => $paramFetcher->get('tag'),

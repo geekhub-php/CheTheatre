@@ -65,3 +65,14 @@ services:
             - ~
         calls:
         - [ setTranslationDomain, [messages]]
+
+    sonata.admin.history:
+        class: AppBundle\Admin\HistoryAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "History" }
+        arguments:
+           - ~
+           - AppBundle\Entity\History
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]

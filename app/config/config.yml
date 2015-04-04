@@ -41,8 +41,8 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
-    read_from:      %kernel.root_dir%/web/uploads/images
-    write_to:       %kernel.root_dir%/web/uploads/images
+    read_from:      %kernel.root_dir%/../web
+    write_to:       %kernel.root_dir%/../web
     use_controller: false
     bundles:        [ ]
     #java: /usr/bin/java

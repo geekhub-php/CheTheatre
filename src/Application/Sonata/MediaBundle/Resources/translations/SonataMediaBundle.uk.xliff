@@ -6,6 +6,10 @@
                 <source>employee</source>
                 <target>Працівники</target>
             </trans-unit>
+            <trans-unit id="history">
+                <source>history</source>
+                <target>Історія</target>
+            </trans-unit>
         	<trans-unit id="performance">
                 <source>performance</source>
                 <target>Вистави</target>
