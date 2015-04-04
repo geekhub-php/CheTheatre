@@ -69,3 +69,17 @@ liip_monitor:
                 path:                 /posts/duzhie-prosta-istoriia
                 status_code:          200
                 content:              null
+
+            histories:
+                host:                 %api_domain%
+                port:                 80
+                path:                 /histories
+                status_code:          200
+                content:              null
+
+            histories_by_slug:
+                host:                 %api_domain%
+                port:                 80
+                path:                 /histories/tieatr-v-1932-1965rr
+                status_code:          200
+                content:              null
