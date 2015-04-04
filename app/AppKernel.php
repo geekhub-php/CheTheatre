@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new \GeekHub\DomainRoutingBundle\DomainRoutingBundle(),
             new Sonata\TranslationBundle\SonataTranslationBundle(),
             new Liip\MonitorBundle\LiipMonitorBundle(),
+            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
         );
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

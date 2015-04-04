@@ -1,0 +1,47 @@
+fos_http_cache:
+    cache_control:
+        defaults:
+            overwrite: true
+        rules:
+            -
+                match:
+                    attributes: { _controller: ^AppBundle:Employees:* }
+                headers:
+                    cache_control: { public: true, max_age: 604800, s_maxage: 604800 }
+                    last_modified: "-1 hour"
+
+            -
+                match:
+                    attributes: { _controller: ^AppBundle:History:* }
+                headers:
+                    cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
+                    last_modified: "-1 hour"
+
+            -
+                match:
+                    attributes: { _controller: ^AppBundle:PerformanceEvents:* }
+                headers:
+                    cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
+                    last_modified: "-1 hour"
+
+            -
+                match:
+                    attributes: { _controller: ^AppBundle:Performances:* }
+                headers:
+                    cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
+                    last_modified: "-1 hour"
+
+            -
+                match:
+                    attributes: { _controller: ^AppBundle:Posts:* }
+                headers:
+                    cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
+                    last_modified: "-1 hour"
+
+            -
+                match:
+                    path: ^/
+                headers:
+                    overwrite: false
+                    cache_control: { public: true, max_age: 86400, s_maxage: 86400 }
+                    last_modified: "-1 hour"

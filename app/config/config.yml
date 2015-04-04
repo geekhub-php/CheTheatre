@@ -5,6 +5,7 @@ imports:
     - { resource: sonata.yml }
     - { resource: admin.yml }
     - { resource: monitors.yml }
+    - { resource: fos_cache.yml }
 
 framework:
     #esi:             ~
