@@ -1,0 +1,6 @@
+AppBundle\Entity\Translations\HistoryTranslation,,,
+object,locale,field,content
+@history1,en,title,No translation for this title
+@history1,en,text,No translation for this text
+@history2,en,title,No translation for this title
+@history2,en,text,No translation for this text

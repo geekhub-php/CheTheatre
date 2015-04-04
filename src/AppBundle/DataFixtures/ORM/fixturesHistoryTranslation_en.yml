@@ -1,0 +1,21 @@
+AppBundle\Entity\Translations\HistoryTranslation:
+    historyTranslation1:
+        object: '@history1'
+        locale: en
+        field: title
+        content: 'No translation for this title'
+    historyTranslation2:
+        object: '@history1'
+        locale: en
+        field: text
+        content: 'No translation for this text'
+    historyTranslation3:
+        object: '@history2'
+        locale: en
+        field: title
+        content: 'No translation for this title'
+    historyTranslation4:
+        object: '@history2'
+        locale: en
+        field: text
+        content: 'No translation for this text'
