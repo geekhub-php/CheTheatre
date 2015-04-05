@@ -7,14 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class AbstractController extends WebTestCase
 {
-    protected $container;
-
-    protected $em;
-
-    protected static  $options = [
+    protected static $options = [
         'environment' => 'test',
         'debug'       => true,
     ];
+    protected $container;
+    protected $em;
 
     /**
      * {@inheritDoc}
@@ -25,9 +23,22 @@ abstract class AbstractController extends WebTestCase
     }
 
     /**
-     * @param  string                                $path
-     * @param  string                                $method
-     * @param  int                                   $expectedStatusCode
+     * @return EntityManager
+     */
+    public function getEm()
+    {
+        if (!$this->em) {
+            $this->em = $this->getContainer()->get('doctrine')->getManager();
+        }
+
+        return $this->em;
+    }
+
+    /**
+     * @param string $path
+     * @param string $method
+     * @param int $expectedStatusCode
+     *
      * @return \Symfony\Component\DomCrawler\Crawler
      */
     protected function request($path, $method = 'GET', $expectedStatusCode = 200)
@@ -44,6 +55,14 @@ abstract class AbstractController extends WebTestCase
         return $crawler;
     }
 
+    protected function getClient(array $server = array())
+    {
+        $client = $this->getContainer()->get('test.client');
+        $client->setServerParameters($server);
+
+        return $client;
+    }
+
     /**
      * @return \Symfony\Component\DependencyInjection\ContainerInterface
      */
@@ -56,31 +75,11 @@ abstract class AbstractController extends WebTestCase
         return $this->container;
     }
 
-    /**
-     * @return EntityManager
-     */
-    public function getEm()
-    {
-        if (!$this->em) {
-            $this->em = $this->getContainer()->get('doctrine')->getManager();
-        }
-
-        return $this->em;
-    }
-
     protected function getHttpHost()
     {
         return $this->getContainer()->hasParameter('local_domain')
             ? $this->getContainer()->getParameter('local_domain')
             : 'localhost'
             ;
-    }
-
-    protected function getClient(array $server = array())
-    {
-        $client = $this->getContainer()->get('test.client');
-        $client->setServerParameters($server);
-
-        return $client;
     }
 }
