@@ -9,7 +9,7 @@ class HistoryRepository extends AbstractRepository
         $qb = $this->createQueryBuilder('u')
             ->setMaxResults($limit)
             ->setFirstResult($page)
-            ->orderBy('u.createdAt', 'DESC')
+            ->orderBy('u.dateTime', 'DESC')
         ;
 
         $query = $qb->getQuery();
