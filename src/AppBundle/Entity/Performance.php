@@ -175,7 +175,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @return Performance
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 
@@ -205,7 +205,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Set type
      *
-     * @param string $type
+     * @param  string      $type
      * @return Performance
      */
     public function setType($type)

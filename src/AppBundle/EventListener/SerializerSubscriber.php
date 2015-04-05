@@ -40,13 +40,11 @@ class SerializerSubscriber implements EventSubscriberInterface
 
     public function onPrePerformanceEventSerialize(ObjectEvent $event)
     {
-
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
-
-         $employee = $event->getObject();
+        $employee = $event->getObject();
 
         if ($employee->getAvatar()) {
             $avatarLinks = $this->mediaController->getMediumFormatsAction($employee->getAvatar());
@@ -56,9 +54,9 @@ class SerializerSubscriber implements EventSubscriberInterface
         if ($employee->getGalleryHasMedia()->getValues()) {
             foreach ($employee->getGalleryHasMedia()->getValues() as $gallery) {
                 $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $employee->getLocale())?:$gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $employee->getLocale())?:$gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+                    'title' => $gallery->getTranslation('title', $employee->getLocale()) ?: $gallery->getTitle(),
+                    'decription' => $gallery->getTranslation('description', $employee->getLocale()) ?: $gallery->getDescription(),
+                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
                 ]
                 ;
                 $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
@@ -84,9 +82,9 @@ class SerializerSubscriber implements EventSubscriberInterface
         if ($performance->getGalleryHasMedia()->getValues()) {
             foreach ($performance->getGalleryHasMedia()->getValues() as $gallery) {
                 $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $performance->getLocale())?:$gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $performance->getLocale())?:$gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+                    'title' => $gallery->getTranslation('title', $performance->getLocale()) ?: $gallery->getTitle(),
+                    'decription' => $gallery->getTranslation('description', $performance->getLocale()) ?: $gallery->getDescription(),
+                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
                 ]
                 ;
                 $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
@@ -107,9 +105,9 @@ class SerializerSubscriber implements EventSubscriberInterface
         if ($post->getGalleryHasMedia()->getValues()) {
             foreach ($post->getGalleryHasMedia()->getValues() as $gallery) {
                 $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $post->getLocale())?:$gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $post->getLocale())?:$gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+                    'title' => $gallery->getTranslation('title', $post->getLocale()) ?: $gallery->getTitle(),
+                    'decription' => $gallery->getTranslation('description', $post->getLocale()) ?: $gallery->getDescription(),
+                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
                 ]
                 ;
                 $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
@@ -130,9 +128,9 @@ class SerializerSubscriber implements EventSubscriberInterface
         if ($history->getGalleryHasMedia()->getValues()) {
             foreach ($history->getGalleryHasMedia()->getValues() as $gallery) {
                 $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $history->getLocale())?:$gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $history->getLocale())?:$gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia())
+                    'title' => $gallery->getTranslation('title', $history->getLocale()) ?: $gallery->getTitle(),
+                    'decription' => $gallery->getTranslation('description', $history->getLocale()) ?: $gallery->getDescription(),
+                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
                 ]
                 ;
                 $history->galleryHasMediaThumbnails = $galleryHasMediaLinks;

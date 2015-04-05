@@ -93,7 +93,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *
      * @return Role
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 

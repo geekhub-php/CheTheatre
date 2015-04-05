@@ -105,7 +105,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      *
      * @return PerformanceEvent
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 

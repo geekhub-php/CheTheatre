@@ -140,7 +140,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
      *
      * @return History
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 
@@ -165,7 +165,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     /**
      * Set title
      *
-     * @param  string $title
+     * @param  string  $title
      * @return History
      */
     public function setTitle($title)
@@ -188,7 +188,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     /**
      * Set text
      *
-     * @param  string $text
+     * @param  string  $text
      * @return History
      */
     public function setText($text)
@@ -221,7 +221,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param  string  $slug
      * @return History
      */
     public function setSlug($slug)
@@ -290,7 +290,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     /**
      * Set dateTime
      *
-     * @param  \DateTime        $dateTime
+     * @param  \DateTime $dateTime
      * @return History
      */
     public function setDateTime($dateTime)

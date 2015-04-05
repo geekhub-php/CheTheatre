@@ -29,4 +29,3 @@ history:
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
-

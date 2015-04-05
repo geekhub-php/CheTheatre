@@ -138,7 +138,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *
      * @return Post
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 
