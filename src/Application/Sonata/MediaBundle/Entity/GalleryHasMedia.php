@@ -58,7 +58,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
      *
      * @return GalleryHasMedia
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 

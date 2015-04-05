@@ -149,7 +149,7 @@ class PerformancesController extends Controller
         $performance->setLocale($paramFetcher->get('locale'));
         $em->refresh($performance);
 
-        if ($performance->getTranslations()){
+        if ($performance->getTranslations()) {
             $performance->unsetTranslations();
         }
 
@@ -240,7 +240,7 @@ class PerformancesController extends Controller
         $performance = $em->getRepository('AppBundle:Performance')->findOneByslug($slug);
 
         if (!$performance) {
-            throw $this->createNotFoundException('Unable to find ' . $slug . ' entity');
+            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
         }
 
         $performance->setLocale($paramFetcher->get('locale'));

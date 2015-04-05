@@ -205,7 +205,7 @@ class EmployeesController extends Controller
             $em->refresh($role);
             $em->refresh($performance);
 
-            if ($role->getTranslations()){
+            if ($role->getTranslations()) {
                 $role->unsetTranslations();
             }
             if ($performance->getTranslations()) {

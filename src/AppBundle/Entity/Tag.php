@@ -83,7 +83,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      *
      * @return Tag
      */
-    public  function unsetTranslations()
+    public function unsetTranslations()
     {
         $this->translations = null;
 
