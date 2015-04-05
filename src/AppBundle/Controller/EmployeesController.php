@@ -47,11 +47,15 @@ class EmployeesController extends Controller
 
         foreach ($employees as $employee) {
             $employee->setLocale($paramFetcher->get('locale'));
+
             $em->refresh($employee);
 
             if ($employee->getTranslations()) {
                 $employee->unsetTranslations();
             }
+
+            $this->get('translator')->setLocale($paramFetcher->get('locale'));
+            $employee->setPosition($this->get('translator')->trans($employee->getPosition()));
 
             $employeesTranslated[] = $employee;
         }
@@ -146,6 +150,9 @@ class EmployeesController extends Controller
             $employee->unsetTranslations();
         }
 
+        $this->get('translator')->setLocale($paramFetcher->get('locale'));
+        $employee->setPosition($this->get('translator')->trans($employee->getPosition()));
+
         return $employee;
     }
 
@@ -181,6 +188,9 @@ class EmployeesController extends Controller
         if ($employee->getTranslations()) {
             $employee->unsetTranslations();
         }
+
+        $this->get('translator')->setLocale($paramFetcher->get('locale'));
+        $employee->setPosition($this->get('translator')->trans($employee->getPosition()));
 
         $roles = $employee->getRoles();
 
