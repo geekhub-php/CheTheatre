@@ -9,7 +9,7 @@
     domains: [admin.theatre.pp.ua, api.theatre.pp.ua]
     user: www-data
     keep_releases: 3
-    project_env: prod
+    project_env: staging
 
   tasks:
     - name: Get timestamp
@@ -31,7 +31,7 @@
       with_items: domains
 
     - name: Fix htaccess
-      shell: sed -i -e 's,app_dev.php,app.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
+      shell: sed -i -e 's,app_dev.php,app_staging.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
 
     - include: tasks/cleanup.yml
     - include: tasks/symlink.yml

@@ -1,0 +1,8 @@
+imports:
+    - { resource: config_prod.yml }
+
+domain_routing:
+    include_routes:
+        %api_domain%: ['config/routing_api.yml']
+        %admin_domain%: ['config/routing_sonata_admin.yml']
+        api-staging.theatre.pp.ua: ['config/routing_api.yml']
