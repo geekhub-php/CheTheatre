@@ -86,7 +86,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var string
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Type("string")
      * @Expose
      */
