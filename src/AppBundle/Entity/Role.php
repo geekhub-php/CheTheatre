@@ -46,7 +46,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     /**
      * @var string
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Type("string")
      * @Expose
      */
