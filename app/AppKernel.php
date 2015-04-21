@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Sonata\TranslationBundle\SonataTranslationBundle(),
             new Liip\MonitorBundle\LiipMonitorBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
         );
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

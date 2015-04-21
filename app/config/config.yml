@@ -170,3 +170,9 @@ domain_routing:
     include_routes:
         %api_domain%: ['config/routing_api.yml']
         %admin_domain%: ['config/routing_sonata_admin.yml']
+
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
