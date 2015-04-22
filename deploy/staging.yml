@@ -33,5 +33,8 @@
     - name: Fix htaccess
       shell: sed -i -e 's,app_dev.php,app_staging.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
 
+    - name: Run migrations
+      shell: app/console doctrine:migrations:migrate --domain=localhost -n chdir={{project_root}}/releases/{{release_dir}}
+
     - include: tasks/cleanup.yml
     - include: tasks/symlink.yml
