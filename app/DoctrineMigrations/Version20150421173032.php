@@ -16,13 +16,9 @@ class Version20150421173032 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $schema
-            ->getTable('performances')
-            ->changeColumn('description', ['type' => StringType::getType('text'), 'length' => null]);
-
-        $schema
-            ->getTable('roles')
-            ->changeColumn('description', ['type' => StringType::getType('text'), 'length' => null]);
+        $this->addSql('ALTER TABLE  `performances` CHANGE  `description`  `description` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL');
+        $this->addSql('ALTER TABLE  `employees` CHANGE  `biography`  `biography` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL');
+        $this->addSql('ALTER TABLE  `roles` CHANGE  `description`  `description` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL');
     }
 
     /**
@@ -30,12 +26,5 @@ class Version20150421173032 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $schema
-            ->getTable('performances')
-            ->changeColumn('description', ['type' => StringType::getType('string')]);
-
-        $schema
-            ->getTable('roles')
-            ->changeColumn('description', ['type' => StringType::getType('string')]);
     }
 }
