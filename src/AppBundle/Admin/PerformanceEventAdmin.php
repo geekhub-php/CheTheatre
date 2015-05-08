@@ -13,8 +13,8 @@ class PerformanceEventAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Entity\PerformanceEvent';
     protected $baseRoutePattern = 'PerformanceEvent';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by'    => 'dateTime',
     ];
 
     /**
