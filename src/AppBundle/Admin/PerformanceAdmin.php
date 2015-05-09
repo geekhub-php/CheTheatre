@@ -13,8 +13,8 @@ class PerformanceAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Entity\Performance';
     protected $baseRoutePattern = 'Performance';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by'    => 'premiere',
     ];
 
     /**
@@ -115,7 +115,6 @@ class PerformanceAdmin extends Admin
             ->addIdentifier('title')
             ->add('type')
             ->add('premiere')
-            ->add('createdAt')
         ;
     }
 
