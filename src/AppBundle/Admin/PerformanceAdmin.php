@@ -115,6 +115,7 @@ class PerformanceAdmin extends Admin
             ->addIdentifier('title')
             ->add('type')
             ->add('premiere')
+            ->add('createdAt')
         ;
     }
 
