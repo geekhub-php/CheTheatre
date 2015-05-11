@@ -48,7 +48,6 @@ class PerformanceAdmin extends Admin
             ->add('mainPicture', 'sonata_type_model_list',
                 [
                     'required' => false,
-                    'btn_list' => false,
                 ], [
                     'link_parameters' => [
                         'context'  => 'performance',
@@ -59,7 +58,6 @@ class PerformanceAdmin extends Admin
             ->add('sliderImage', 'sonata_type_model_list',
                 [
                     'required' => false,
-                    'btn_list' => false,
                 ], [
                     'link_parameters' => [
                         'context'  => 'slider',
