@@ -16,11 +16,11 @@ use Symfony\Component\Debug\Debug;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
-$domain = $input->getParameterOption(array('--domain', '-d'));
+$domain = $input->getParameterOption(array('--hostname', '-d'));
 if (!$domain) {
     $output = new Symfony\Component\Console\Output\ConsoleOutput();
     $formatter = new \Symfony\Component\Console\Helper\FormatterHelper();
-    $output->writeln($formatter->formatBlock("You must specify domain name", 'error', true));
+    $output->writeln($formatter->formatBlock("You must specify hostname", 'error', true));
 
     exit(1);
 }
