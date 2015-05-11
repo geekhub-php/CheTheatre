@@ -1248,12 +1248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/geekhub-php/DomainRoutingBundle.git",
-                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109"
+                "reference": "b7387900b2d49c6fca88afe19654e84a104e9b33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
-                "reference": "8a1d005526d9c12d3ce69d69edd795f7a9e8e109",
+                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/b7387900b2d49c6fca88afe19654e84a104e9b33",
+                "reference": "b7387900b2d49c6fca88afe19654e84a104e9b33",
                 "shasum": ""
             },
             "require": {
@@ -1276,7 +1276,7 @@
                 "domain",
                 "routing"
             ],
-            "time": "2015-03-14 08:15:36"
+            "time": "2015-05-11 17:55:11"
         },
         {
             "name": "guzzle/guzzle",
@@ -2174,7 +2174,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
