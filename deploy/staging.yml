@@ -6,7 +6,7 @@
     git_repository: https://github.com/geekhub-php/CheTheatre.git
     git_branch: master
 #    domains: [admin.chetheatre.local, api.chetheatre.local]
-    domains: [admin.theatre.pp.ua, api.theatre.pp.ua, apistaging.theatre.pp.ua, theatre-shevchenko.ck.ua]
+    domains: [admin.theatre.pp.ua, api.theatre.pp.ua, apistaging.theatre.pp.ua]
     user: www-data
     keep_releases: 3
     project_env: staging
