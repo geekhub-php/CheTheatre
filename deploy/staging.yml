@@ -23,18 +23,18 @@
     - include: tasks/symfony2-standart-deploy.yml
 
     - name: Dump assets
-      shell: app/console assetic:dump --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      shell: app/console assetic:dump --env={{project_env}} --hostname={{ item }} chdir={{project_root}}/releases/{{release_dir}}
       with_items: domains
 
     - name: Copy assets
-      shell: app/console assets:install --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      shell: app/console assets:install --env={{project_env}} --hostname={{ item }} chdir={{project_root}}/releases/{{release_dir}}
       with_items: domains
 
     - name: Fix htaccess
       shell: sed -i -e 's,app_dev.php,app_staging.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
 
     - name: Run migrations
-      shell: app/console doctrine:migrations:migrate --env={{project_env}} --domain=localhost -n chdir={{project_root}}/releases/{{release_dir}}
+      shell: app/console doctrine:migrations:migrate --env={{project_env}} --hostname=localhost -n chdir={{project_root}}/releases/{{release_dir}}
 
     - include: tasks/cleanup.yml
     - include: tasks/symlink.yml
