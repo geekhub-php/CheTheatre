@@ -75,6 +75,7 @@ class PerformanceAdmin extends Admin
             )
             ->add('roles', 'sonata_type_collection',
                 [
+                    'required' => false,
                     'by_reference' => false,
                 ], [
                     'edit' => 'inline',
