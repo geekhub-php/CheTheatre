@@ -21,6 +21,26 @@ class Media extends BaseMedia
     protected $id;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    public $createdAt;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    public $updatedAt;
+
+    /**
      * Get id
      *
      * @return integer

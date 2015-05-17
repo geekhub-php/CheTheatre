@@ -116,6 +116,26 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     private $slug;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    public $createdAt;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    public $updatedAt;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(

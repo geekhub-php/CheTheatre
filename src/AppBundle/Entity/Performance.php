@@ -92,6 +92,26 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private $sliderImage;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    public $createdAt;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    public $updatedAt;
+
+    /**
      * @var array
      * @Expose
      * @Type("array")

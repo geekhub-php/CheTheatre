@@ -79,6 +79,26 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     public $mainPictureThumbnails;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    public $createdAt;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    public $updatedAt;
+
+    /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
