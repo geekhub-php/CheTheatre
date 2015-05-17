@@ -6,26 +6,44 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Festival
+ * @package AppBundle\Entity
+ */
 class Festival extends Post
 {
     /**
-     * @ORM\OneToOne(targetEntity='AppBundle\Entity\FestivalPerformance')
+     * @ORM\OneToMany(targetEntity='AppBundle\Entity\FestivalPerformance')
      */
-    protected $festival_performance;
+    protected $festivalPerformances;
 
     /**
      * @return mixed
      */
-    public function getFestivalPerformance()
+    public function getFestivalPerformances()
     {
-        return $this->festival_performance;
+        return $this->festivalPerformances;
     }
 
     /**
-     * @param mixed $festival_performance
+     * @param FestivalPerformance $festivalPerformance
+     * @return $this
      */
-    public function setFestivalPerformance($festival_performance)
+    public function addFestivalPerformance(\AppBundle\Entity\FestivalPerformance $festivalPerformance)
     {
-        $this->festival_performance = $festival_performance;
+        $this->festivalPerformances[] = $festivalPerformance;
+
+        return $this;
+    }
+
+    /**
+     * @param FestivalPerformance $festivalPerformance
+     * @return $this
+     */
+    public function removeFestivalPerformance(\AppBundle\Entity\FestivalPerformance $festivalPerformance)
+    {
+        $this->festivalPerformances->removeElement($festivalPerformance);
+
+        return $this;
     }
 }
