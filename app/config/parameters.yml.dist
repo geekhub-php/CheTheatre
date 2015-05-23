@@ -29,5 +29,6 @@ parameters:
     admin_domain: admin.chetheatre.local
     prod_server_ip: ~
     nelmio_cors.origin: ['*']
-    admin_password: 111111
     cdn_domain: http://%api_domain%
+    users:
+        admin: { password: 111111, roles: 'ROLE_SUPER_ADMIN'}

@@ -2,8 +2,7 @@ security:
     providers:
         in_memory:
             memory:
-              users:
-                admin: { password: %admin_password%, roles: 'ROLE_SUPER_ADMIN'}
+              users: %users%
 
     firewalls:
         dev:

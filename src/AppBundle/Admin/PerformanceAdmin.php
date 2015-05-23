@@ -13,8 +13,8 @@ class PerformanceAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Entity\Performance';
     protected $baseRoutePattern = 'Performance';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by'    => 'premiere',
     ];
 
     /**
@@ -48,7 +48,6 @@ class PerformanceAdmin extends Admin
             ->add('mainPicture', 'sonata_type_model_list',
                 [
                     'required' => false,
-                    'btn_list' => false,
                 ], [
                     'link_parameters' => [
                         'context'  => 'performance',
@@ -59,7 +58,6 @@ class PerformanceAdmin extends Admin
             ->add('sliderImage', 'sonata_type_model_list',
                 [
                     'required' => false,
-                    'btn_list' => false,
                 ], [
                     'link_parameters' => [
                         'context'  => 'slider',
@@ -77,6 +75,7 @@ class PerformanceAdmin extends Admin
             )
             ->add('roles', 'sonata_type_collection',
                 [
+                    'required' => false,
                     'by_reference' => false,
                 ], [
                     'edit' => 'inline',

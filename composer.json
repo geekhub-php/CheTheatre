@@ -33,7 +33,9 @@
         "geek-hub/domain-routing-bundle": "dev-master",
         "sonata-project/translation-bundle": "~1.0",
         "liip/monitor-bundle": "~2.0",
-        "friendsofsymfony/http-cache-bundle": "~1.0"
+        "friendsofsymfony/http-cache-bundle": "~1.0",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": " 2.1.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -59,7 +61,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "discard-changes": true
     },
     "extra": {
         "symfony-app-dir": "app",

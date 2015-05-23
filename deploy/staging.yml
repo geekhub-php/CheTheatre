@@ -4,12 +4,12 @@
   vars:
     project_root: /var/www/backend.theatre.pp.ua
     git_repository: https://github.com/geekhub-php/CheTheatre.git
-    git_branch: develop
+    git_branch: master
 #    domains: [admin.chetheatre.local, api.chetheatre.local]
-    domains: [admin.theatre.pp.ua, api.theatre.pp.ua]
+    domains: [admin.theatre.pp.ua, api.theatre.pp.ua, apistaging.theatre.pp.ua, theatre-shevchenko.ck.ua]
     user: www-data
     keep_releases: 3
-    project_env: prod
+    project_env: staging
 
   tasks:
     - name: Get timestamp
@@ -23,17 +23,18 @@
     - include: tasks/symfony2-standart-deploy.yml
 
     - name: Dump assets
-      shell: app/console assetic:dump --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      shell: app/console assetic:dump --env={{project_env}} --hostname={{ item }} chdir={{project_root}}/releases/{{release_dir}}
       with_items: domains
 
     - name: Copy assets
-      shell: app/console assets:install --env={{project_env}} --domain={{ item }} chdir={{project_root}}/releases/{{release_dir}}
+      shell: app/console assets:install --env={{project_env}} --hostname={{ item }} chdir={{project_root}}/releases/{{release_dir}}
       with_items: domains
 
-    - include: tasks/fixtures.yml
-
     - name: Fix htaccess
-      shell: sed -i -e 's,app_dev.php,app.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
+      shell: sed -i -e 's,app_dev.php,app_staging.php,g' web/.htaccess chdir={{project_root}}/releases/{{release_dir}}
+
+    - name: Run migrations
+      shell: app/console doctrine:migrations:migrate --env={{project_env}} --hostname=localhost -n chdir={{project_root}}/releases/{{release_dir}}
 
     - include: tasks/cleanup.yml
     - include: tasks/symlink.yml
