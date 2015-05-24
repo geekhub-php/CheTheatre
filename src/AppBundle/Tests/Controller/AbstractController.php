@@ -4,6 +4,8 @@ namespace AppBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 abstract class AbstractController extends WebTestCase
 {
@@ -13,6 +15,7 @@ abstract class AbstractController extends WebTestCase
     ];
     protected $container;
     protected $em;
+    protected $client;
 
     /**
      * {@inheritDoc}
@@ -57,10 +60,12 @@ abstract class AbstractController extends WebTestCase
 
     protected function getClient(array $server = array())
     {
-        $client = $this->getContainer()->get('test.client');
-        $client->setServerParameters($server);
+        if (!$this->client) {
+            $this->client = $this->getContainer()->get('test.client');
+            $this->client->setServerParameters($server);
+        }
 
-        return $client;
+        return $this->client;
     }
 
     /**
@@ -81,5 +86,24 @@ abstract class AbstractController extends WebTestCase
             ? $this->getContainer()->getParameter('local_domain')
             : 'localhost'
             ;
+    }
+
+    protected function logIn()
+    {
+        $session = $this->getContainer()->get('session');
+
+        $firewall = 'secured_area';
+        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_SUPER_ADMIN'));
+        $session->set('_security_'.$firewall, serialize($token));
+        $session->save();
+
+        $this->getContainer()->get('security.token_storage')->setToken($token);
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $client = $this->getClient();
+
+        $client->getCookieJar()->set($cookie);
+
+        return $client;
     }
 }
