@@ -61,7 +61,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "discard-changes": true
     },
     "extra": {
         "symfony-app-dir": "app",
