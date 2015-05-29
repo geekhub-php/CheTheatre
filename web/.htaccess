@@ -41,6 +41,10 @@ DirectoryIndex app_dev.php
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule .? - [L]
 
+    # From non www to www
+    RewriteCond %{HTTP_HOST} ^theatre-shevchenko.ck.ua [NC]
+    RewriteRule ^(.*)$ http://www.theatre-shevchenko.ck.ua/$1 [L,R=301]
+
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app_dev.php [L]
 </IfModule>
