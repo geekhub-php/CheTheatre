@@ -7,8 +7,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Festival
- * @package AppBundle\Entity
+ * @ORM\Table(name="festivals")
+ * @ORM\Entity()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class Festival extends Post
 {
