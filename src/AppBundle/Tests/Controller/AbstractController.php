@@ -4,17 +4,18 @@ namespace AppBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 abstract class AbstractController extends WebTestCase
 {
-    protected $container;
-
-    protected $em;
-
-    protected static  $options = [
+    protected static $options = [
         'environment' => 'test',
         'debug'       => true,
     ];
+    protected $container;
+    protected $em;
+    protected $client;
 
     /**
      * {@inheritDoc}
@@ -25,9 +26,22 @@ abstract class AbstractController extends WebTestCase
     }
 
     /**
-     * @param  string                                $path
-     * @param  string                                $method
-     * @param  int                                   $expectedStatusCode
+     * @return EntityManager
+     */
+    public function getEm()
+    {
+        if (!$this->em) {
+            $this->em = $this->getContainer()->get('doctrine')->getManager();
+        }
+
+        return $this->em;
+    }
+
+    /**
+     * @param string $path
+     * @param string $method
+     * @param int $expectedStatusCode
+     *
      * @return \Symfony\Component\DomCrawler\Crawler
      */
     protected function request($path, $method = 'GET', $expectedStatusCode = 200)
@@ -44,6 +58,16 @@ abstract class AbstractController extends WebTestCase
         return $crawler;
     }
 
+    protected function getClient(array $server = array())
+    {
+        if (!$this->client) {
+            $this->client = $this->getContainer()->get('test.client');
+            $this->client->setServerParameters($server);
+        }
+
+        return $this->client;
+    }
+
     /**
      * @return \Symfony\Component\DependencyInjection\ContainerInterface
      */
@@ -56,18 +80,6 @@ abstract class AbstractController extends WebTestCase
         return $this->container;
     }
 
-    /**
-     * @return EntityManager
-     */
-    public function getEm()
-    {
-        if (!$this->em) {
-            $this->em = $this->getContainer()->get('doctrine')->getManager();
-        }
-
-        return $this->em;
-    }
-
     protected function getHttpHost()
     {
         return $this->getContainer()->hasParameter('local_domain')
@@ -76,10 +88,21 @@ abstract class AbstractController extends WebTestCase
             ;
     }
 
-    protected function getClient(array $server = array())
+    protected function logIn()
     {
-        $client = $this->getContainer()->get('test.client');
-        $client->setServerParameters($server);
+        $session = $this->getContainer()->get('session');
+
+        $firewall = 'secured_area';
+        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_SUPER_ADMIN'));
+        $session->set('_security_'.$firewall, serialize($token));
+        $session->save();
+
+        $this->getContainer()->get('security.token_storage')->setToken($token);
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $client = $this->getClient();
+
+        $client->getCookieJar()->set($cookie);
 
         return $client;
     }
