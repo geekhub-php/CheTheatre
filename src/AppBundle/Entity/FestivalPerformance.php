@@ -29,4 +29,25 @@ class FestivalPerformance extends Performance
      * )
      */
     protected $translations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity='AppBundle\Entity\Festival')
+     */
+    protected $festival;
+
+    /**
+     * @return mixed
+     */
+    public function getFestival()
+    {
+        return $this->festival;
+    }
+
+    /**
+     * @param mixed $festival
+     */
+    public function setFestival($festival)
+    {
+        $this->festival = $festival;
+    }
 }
