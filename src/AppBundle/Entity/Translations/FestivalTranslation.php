@@ -13,7 +13,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
  *     })}
  * )
  */
-class FestivalPerformanceTranslation extends AbstractPersonalTranslation
+class FestivalTranslation extends AbstractPersonalTranslation
 {
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Festival", inversedBy="translations")
