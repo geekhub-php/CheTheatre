@@ -4,6 +4,9 @@ namespace Application\Sonata\MediaBundle\Entity;
 
 use Sonata\MediaBundle\Entity\BaseGallery as BaseGallery;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="media__gallery")
@@ -21,22 +24,22 @@ class Gallery extends BaseGallery
     protected $id;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -51,7 +54,7 @@ class Gallery extends BaseGallery
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -59,7 +62,7 @@ class Gallery extends BaseGallery
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {
@@ -67,7 +70,7 @@ class Gallery extends BaseGallery
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -75,7 +78,7 @@ class Gallery extends BaseGallery
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {

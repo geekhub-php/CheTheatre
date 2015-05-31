@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 use AppBundle\Validator\MinSizeSliderImage;
 
 /**
@@ -30,29 +32,28 @@ class FestivalPerformance extends Performance
      */
     protected $translations;
 
-
     /**
      * @ORM\ManyToOne(targetEntity='AppBundle\Entity\Festival')
      */
     protected $festival;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -73,7 +74,7 @@ class FestivalPerformance extends Performance
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -81,7 +82,7 @@ class FestivalPerformance extends Performance
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {
@@ -89,7 +90,7 @@ class FestivalPerformance extends Performance
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -97,7 +98,7 @@ class FestivalPerformance extends Performance
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {

@@ -116,22 +116,22 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     private $slug;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -347,7 +347,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -355,7 +355,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {
@@ -363,7 +363,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -371,7 +371,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {

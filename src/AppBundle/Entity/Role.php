@@ -78,22 +78,22 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     private $slug;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -251,7 +251,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -259,7 +259,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {
@@ -267,7 +267,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -275,7 +275,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {

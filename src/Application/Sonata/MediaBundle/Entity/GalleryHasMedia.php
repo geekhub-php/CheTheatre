@@ -9,6 +9,8 @@ use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="media__gallery_media")
@@ -43,22 +45,22 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     private $description;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -158,7 +160,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -166,7 +168,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {
@@ -174,7 +176,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -182,7 +184,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {

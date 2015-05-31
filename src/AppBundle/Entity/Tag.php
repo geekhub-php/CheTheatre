@@ -53,22 +53,22 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     private $slug;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="create")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $createdBy;
 
     /**
-     * @var Datetime
+     * @var \Datetime
      *
      * @Expose
      * @Type("string")
      * @Gedmo\Blameable(on="update")
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $updatedBy;
 
@@ -205,7 +205,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getCreatedBy()
     {
@@ -213,7 +213,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     }
 
     /**
-     * @param Datetime $createdBy
+     * @param \Datetime $createdBy
      */
     public function setCreatedBy($createdBy)
     {
@@ -221,7 +221,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     }
 
     /**
-     * @return Datetime
+     * @return \Datetime
      */
     public function getUpdatedBy()
     {
@@ -229,7 +229,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     }
 
     /**
-     * @param Datetime $updatedBy
+     * @param \Datetime $updatedBy
      */
     public function setUpdatedBy($updatedBy)
     {
