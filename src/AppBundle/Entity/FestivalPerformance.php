@@ -30,7 +30,6 @@ class FestivalPerformance extends Performance
      */
     protected $translations;
 
-
     /**
      * @ORM\ManyToOne(targetEntity='AppBundle\Entity\Festival')
      */
