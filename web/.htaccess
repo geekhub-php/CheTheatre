@@ -8,10 +8,6 @@ DirectoryIndex app_dev.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Force www at the begining
-    RewriteCond %{HTTP_HOST} !^(www\.)
-    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
-
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
