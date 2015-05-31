@@ -28,7 +28,7 @@ class Media extends BaseMedia
      * @Gedmo\Blameable(on="create")
      * @ORM\Column(type="string")
      */
-    public $createdAt;
+    private $createdBy;
 
     /**
      * @var Datetime
@@ -38,7 +38,7 @@ class Media extends BaseMedia
      * @Gedmo\Blameable(on="update")
      * @ORM\Column(type="string")
      */
-    public $updatedAt;
+    private $updatedBy;
 
     /**
      * Get id
@@ -48,5 +48,37 @@ class Media extends BaseMedia
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }

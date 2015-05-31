@@ -123,7 +123,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
      * @Gedmo\Blameable(on="create")
      * @ORM\Column(type="string")
      */
-    public $createdAt;
+    private $createdBy;
 
     /**
      * @var Datetime
@@ -133,7 +133,7 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
      * @Gedmo\Blameable(on="update")
      * @ORM\Column(type="string")
      */
-    public $updatedAt;
+    private $updatedBy;
 
     /**
      * @var ArrayCollection
@@ -344,5 +344,37 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     public function setYear($year)
     {
         $this->year = $year;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }

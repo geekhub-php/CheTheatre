@@ -50,7 +50,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
      * @Gedmo\Blameable(on="create")
      * @ORM\Column(type="string")
      */
-    public $createdAt;
+    private $createdBy;
 
     /**
      * @var Datetime
@@ -60,7 +60,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
      * @Gedmo\Blameable(on="update")
      * @ORM\Column(type="string")
      */
-    public $updatedAt;
+    private $updatedBy;
 
     /**
      * @var ArrayCollection
@@ -155,5 +155,37 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }

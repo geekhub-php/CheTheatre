@@ -86,7 +86,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * @Gedmo\Blameable(on="create")
      * @ORM\Column(type="string")
      */
-    public $createdAt;
+    private $createdBy;
 
     /**
      * @var Datetime
@@ -96,7 +96,7 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * @Gedmo\Blameable(on="update")
      * @ORM\Column(type="string")
      */
-    public $updatedAt;
+    private $updatedBy;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
@@ -360,5 +360,37 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }

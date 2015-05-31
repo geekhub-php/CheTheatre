@@ -150,7 +150,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Gedmo\Blameable(on="create")
      * @ORM\Column(type="string")
      */
-    public $createdAt;
+    private $createdBy;
 
     /**
      * @var Datetime
@@ -160,7 +160,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @Gedmo\Blameable(on="update")
      * @ORM\Column(type="string")
      */
-    public $updatedAt;
+    private $updatedBy;
 
     /**
      * @var ArrayCollection
@@ -449,5 +449,37 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param \Datetime $createdBy
+     */
+    public function setCreatedBy(\Datetime $createdBy)
+    {
+        $this->createdBy = $createdBy;
     }
 }
