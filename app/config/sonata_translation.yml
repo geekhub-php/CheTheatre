@@ -3,7 +3,7 @@ imports:
 
 sonata_translation:
     locales: [uk, en]
-    default_locale: uk
+    default_locale: %locale%
     # here enable the types you need
     gedmo:
         enabled: true
