@@ -5,13 +5,14 @@ namespace AppBundle\Tests\Controller;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 abstract class AbstractController extends WebTestCase
 {
     protected static $options = [
         'environment' => 'test',
-        'debug'       => true,
+        'debug' => true,
     ];
     protected $container;
     protected $em;
@@ -37,6 +38,12 @@ abstract class AbstractController extends WebTestCase
         return $this->em;
     }
 
+    protected function dump($content, $destination = '/var/www/test.html')
+    {
+        $filesystem = new \Symfony\Component\Filesystem\Filesystem();
+        $filesystem->dumpFile($destination, $content);
+    }
+
     /**
      * @param string $path
      * @param string $method
@@ -58,11 +65,21 @@ abstract class AbstractController extends WebTestCase
         return $crawler;
     }
 
-    protected function getClient(array $server = array())
+    /**
+     * Selects form by a button by name or alt value for images.
+     *
+     * @param Crawler $pageObject
+     * @return \Symfony\Component\DomCrawler\Form
+     */
+    protected function getConfirmDeleteFormObject(Crawler $pageObject)
+    {
+        return $pageObject->filter('body > div > aside.right-side > section.content > div > div > div > div.box-footer.clearfix > form > button')->form();
+    }
+
+    protected function getClient(array $options = array(), array $server = array())
     {
         if (!$this->client) {
-            $this->client = $this->getContainer()->get('test.client');
-            $this->client->setServerParameters($server);
+            $this->client = static::createClient($options, $server);
         }
 
         return $this->client;
@@ -88,21 +105,12 @@ abstract class AbstractController extends WebTestCase
             ;
     }
 
-    protected function logIn()
+    protected function logIn($username = 'admin', $password = '111111')
     {
-        $session = $this->getContainer()->get('session');
-
-        $firewall = 'secured_area';
-        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_SUPER_ADMIN'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
-
-        $this->getContainer()->get('security.token_storage')->setToken($token);
-
-        $cookie = new Cookie($session->getName(), $session->getId());
         $client = $this->getClient();
-
-        $client->getCookieJar()->set($cookie);
+        $crawler = $client->request('GET', '/login');
+        $form = $crawler->selectButton('Sign in')->form();
+        $client->submit($form, ['_username' => $username, '_password' => $password]);
 
         return $client;
     }

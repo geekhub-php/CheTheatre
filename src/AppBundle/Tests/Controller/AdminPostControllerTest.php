@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminPostControllerTest extends AbstractController
+class AdminPostControllerTest extends AbstractAdminController
 {
     public function testPostListAction()
     {
@@ -12,6 +12,7 @@ class AdminPostControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Post/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Action']);
     }
 
     public function testPostCreateAction()

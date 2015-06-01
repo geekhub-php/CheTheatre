@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminPerformanceEventControllerTest extends AbstractController
+class AdminPerformanceEventControllerTest extends AbstractAdminController
 {
     public function testPerformanceEventListAction()
     {
@@ -12,6 +12,7 @@ class AdminPerformanceEventControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/PerformanceEvent/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Performance', 'Date Time']);
     }
 
     public function testPerformanceEventCreateAction()

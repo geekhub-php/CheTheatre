@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminRoleControllerTest extends AbstractController
+class AdminRoleControllerTest extends AbstractAdminController
 {
     public function testRoleListAction()
     {
@@ -12,6 +12,7 @@ class AdminRoleControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Role/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Title', 'Description', 'Performance', 'Employee', 'Action']);
     }
 
     public function testRoleCreateAction()

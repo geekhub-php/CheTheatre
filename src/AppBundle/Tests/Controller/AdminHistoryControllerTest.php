@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminHistoryControllerTest extends AbstractController
+class AdminHistoryControllerTest extends AbstractAdminController
 {
     public function testHistoryListAction()
     {
@@ -12,6 +12,7 @@ class AdminHistoryControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/History/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'History_Date', 'Title', 'Action']);
     }
 
     public function testHistoryCreateAction()
