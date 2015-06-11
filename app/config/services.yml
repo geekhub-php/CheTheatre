@@ -37,3 +37,10 @@ services:
         arguments: ["@translator"]
         tags:
             - { name: validator.constraint_validator, alias: min_size_slider_image }
+
+    app.event.entity_delete:
+        class: AppBundle\EventListener\EntityDeleteListener
+        arguments:
+            - @security.token_storage
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
