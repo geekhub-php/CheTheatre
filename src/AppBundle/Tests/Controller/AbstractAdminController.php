@@ -50,6 +50,6 @@ class AbstractAdminController extends AbstractController
         $this->getEm()->getFilters()->disable('softdeleteable');
         $employee = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
         $this->assertNotNull($employee);
-//        $this->assertEquals('admin', $employee->getDeletedBy());
+        $this->assertEquals('admin', $employee->getUpdatedBy());
     }
 }

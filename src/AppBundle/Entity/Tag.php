@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\DeletedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -21,7 +23,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     /**
      * @var integer
