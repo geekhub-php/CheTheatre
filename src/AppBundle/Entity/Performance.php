@@ -138,7 +138,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $roles;
 
