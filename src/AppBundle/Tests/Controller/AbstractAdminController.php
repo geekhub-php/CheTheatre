@@ -51,5 +51,6 @@ class AbstractAdminController extends AbstractController
         $employee = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
         $this->assertNotNull($employee);
         $this->assertEquals('admin', $employee->getUpdatedBy());
+        $this->assertEquals('admin', $employee->getDeletedBy());
     }
 }
