@@ -23,12 +23,12 @@ class EntityDeleteListener
         $token = $this->tokenStorage->getToken();
         $entity = $args->getEntity();
 
-        if (null == $token) {
-            throw new AccessDeniedException('Only authorized users can delete entities');
-        }
-
         if (!method_exists($entity, 'setDeletedBy')) {
             return;
+        }
+
+        if (null == $token) {
+            throw new AccessDeniedException('Only authorized users can delete entities');
         }
 
         $entity->setDeletedBy($token->getUser()->getUsername());
