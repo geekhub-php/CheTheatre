@@ -4,10 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
-use Gedmo\Translatable\Translatable;
+use AppBundle\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -23,7 +24,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Post extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     /**
      * @var integer
@@ -77,6 +78,26 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * @SerializedName("mainPicture")
      */
     public $mainPictureThumbnails;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
@@ -340,5 +361,37 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }

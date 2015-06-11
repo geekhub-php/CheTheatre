@@ -106,6 +106,7 @@ stof_doctrine_extensions:
             sluggable: true
             softdeleteable: true
             translatable: true
+            blameable: true
 
 # Swiftmailer Configuration
 swiftmailer:

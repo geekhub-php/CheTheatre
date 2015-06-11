@@ -4,9 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
-use Gedmo\Translatable\Translatable;
+use AppBundle\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -23,7 +24,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
@@ -141,6 +142,26 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @SerializedName("avatar")
      */
     public $avatarThumbnails;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
 
     /**
      * @var ArrayCollection
@@ -429,5 +450,37 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param \Datetime $createdBy
+     */
+    public function setCreatedBy(\Datetime $createdBy)
+    {
+        $this->createdBy = $createdBy;
     }
 }

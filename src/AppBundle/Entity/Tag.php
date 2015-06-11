@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\DeletedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -21,7 +23,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     /**
      * @var integer
@@ -51,6 +53,26 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
      * @Expose
      */
     private $slug;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="tags", cascade={"persist"})
@@ -182,5 +204,37 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }
