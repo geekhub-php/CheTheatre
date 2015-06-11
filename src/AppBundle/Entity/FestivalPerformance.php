@@ -1,27 +1,41 @@
 <?php
 
-namespace Application\Sonata\MediaBundle\Entity;
+namespace AppBundle\Entity;
 
-use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use AppBundle\Validator\MinSizeSliderImage;
 
 /**
- * @ORM\Table(name="media__media")
- * @ORM\Entity
+ * Class FestivalPerformance
+ * @package AppBundle\Entity
+ * @ORM\Table(name="festival_performances")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
+ * @ExclusionPolicy("all")
+ * @MinSizeSliderImage()
  */
-class Media extends BaseMedia
+class FestivalPerformance extends Performance
 {
     /**
-     * @var integer
+     * @var ArrayCollection
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\FestivalPerformanceTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
      */
-    protected $id;
+    protected $translations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity='AppBundle\Entity\Festival')
+     */
+    protected $festival;
 
     /**
      * @var \Datetime
@@ -44,13 +58,19 @@ class Media extends BaseMedia
     private $updatedBy;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return mixed
      */
-    public function getId()
+    public function getFestival()
     {
-        return $this->id;
+        return $this->festival;
+    }
+
+    /**
+     * @param mixed $festival
+     */
+    public function setFestival($festival)
+    {
+        $this->festival = $festival;
     }
 
     /**

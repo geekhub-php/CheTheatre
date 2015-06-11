@@ -1,27 +1,23 @@
 <?php
 
-namespace Application\Sonata\MediaBundle\Entity;
+namespace AppBundle\Entity;
 
-use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 
 /**
- * @ORM\Table(name="media__media")
- * @ORM\Entity
+ * Class Festival
+ * @package AppBundle\Entity
  */
-class Media extends BaseMedia
+class Festival extends Post
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity='AppBundle\Entity\FestivalPerformance')
      */
-    protected $id;
+    protected $festivalPerformances;
 
     /**
      * @var \Datetime
@@ -44,13 +40,33 @@ class Media extends BaseMedia
     private $updatedBy;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return mixed
      */
-    public function getId()
+    public function getFestivalPerformances()
     {
-        return $this->id;
+        return $this->festivalPerformances;
+    }
+
+    /**
+     * @param FestivalPerformance $festivalPerformance
+     * @return $this
+     */
+    public function addFestivalPerformance(\AppBundle\Entity\FestivalPerformance $festivalPerformance)
+    {
+        $this->festivalPerformances[] = $festivalPerformance;
+
+        return $this;
+    }
+
+    /**
+     * @param FestivalPerformance $festivalPerformance
+     * @return $this
+     */
+    public function removeFestivalPerformance(\AppBundle\Entity\FestivalPerformance $festivalPerformance)
+    {
+        $this->festivalPerformances->removeElement($festivalPerformance);
+
+        return $this;
     }
 
     /**
