@@ -24,4 +24,9 @@ class AdminPerformanceControllerTest extends AbstractAdminController
 
         $this->request('/admin/Performance/create', 'GET', 200);
     }
+
+    public function testPerformanceDeleteAction()
+    {
+        $this->processDeleteAction('Performance');
+    }
 }

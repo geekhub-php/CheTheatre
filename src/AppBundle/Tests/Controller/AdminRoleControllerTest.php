@@ -24,4 +24,9 @@ class AdminRoleControllerTest extends AbstractAdminController
 
         $this->request('/admin/Role/create', 'GET', 200);
     }
+
+    public function testRoleDeleteAction()
+    {
+        $this->processDeleteAction('Role');
+    }
 }

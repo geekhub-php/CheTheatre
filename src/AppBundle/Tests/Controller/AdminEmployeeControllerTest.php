@@ -27,18 +27,6 @@ class AdminEmployeeControllerTest extends AbstractAdminController
 
     public function testEmployeeDeleteAction()
     {
-        $this->logIn();
-        $employee = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([]);
-
-        $page = $this->request(sprintf('/admin/Employee/%s/delete?tl=en', $employee->getId()), 'GET', 200);
-        $form = $this->getConfirmDeleteFormObject($page);
-
-        $this->getClient()->followRedirects(true);
-        $listPage = $this->getClient()->submit($form);
-
-        $this->assertContains(
-            sprintf('Item "%s" has been deleted successfully.', $employee),
-            trim($listPage->filter('.alert-success')->text())
-        );
+        $this->processDeleteAction('Employee');
     }
 }

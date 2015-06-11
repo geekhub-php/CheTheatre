@@ -24,4 +24,9 @@ class AdminTagControllerTest extends AbstractAdminController
 
         $this->request('/admin/Tag/create', 'GET', 200);
     }
+
+    public function testTagDeleteAction()
+    {
+        $this->processDeleteAction('Tag');
+    }
 }

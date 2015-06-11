@@ -24,4 +24,9 @@ class AdminPostControllerTest extends AbstractAdminController
 
         $this->request('/admin/Post/create', 'GET', 200);
     }
+
+    public function testPostDeleteAction()
+    {
+        $this->processDeleteAction('Post');
+    }
 }

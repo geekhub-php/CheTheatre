@@ -24,4 +24,9 @@ class AdminHistoryControllerTest extends AbstractAdminController
 
         $this->request('/admin/History/create', 'GET', 200);
     }
+
+    public function testHistoryDeleteAction()
+    {
+        $this->processDeleteAction('History');
+    }
 }
