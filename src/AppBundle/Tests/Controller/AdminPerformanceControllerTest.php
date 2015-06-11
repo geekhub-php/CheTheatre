@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminPerformanceControllerTest extends AbstractController
+class AdminPerformanceControllerTest extends AbstractAdminController
 {
     public function testPerformanceListAction()
     {
@@ -12,6 +12,7 @@ class AdminPerformanceControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Performance/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Type', 'Premiere']);
     }
 
     public function testPerformanceCreateAction()
@@ -22,5 +23,10 @@ class AdminPerformanceControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Performance/create', 'GET', 200);
+    }
+
+    public function testPerformanceDeleteAction()
+    {
+        $this->processDeleteAction('Performance');
     }
 }

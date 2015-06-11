@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class AdminTagControllerTest extends AbstractController
+class AdminTagControllerTest extends AbstractAdminController
 {
     public function testTagListAction()
     {
@@ -12,6 +12,7 @@ class AdminTagControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Tag/list', 'GET', 200);
+        $this->assertAdminListPageHasColumns(['Title', 'Posts']);
     }
 
     public function testTagCreateAction()
@@ -22,5 +23,10 @@ class AdminTagControllerTest extends AbstractController
         $this->logIn();
 
         $this->request('/admin/Tag/create', 'GET', 200);
+    }
+
+    public function testTagDeleteAction()
+    {
+        $this->processDeleteAction('Tag');
     }
 }
