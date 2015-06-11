@@ -9,9 +9,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Festival
  * @package AppBundle\Entity
+ * @ORM\Table(name="festivals")
+ * @ORM\Entity()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\FestivalTranslation")
+ * @ExclusionPolicy("all")
  */
 class Festival extends Post
 {
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\FestivalTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
+
     /**
      * @ORM\OneToMany(targetEntity='AppBundle\Entity\FestivalPerformance')
      */
