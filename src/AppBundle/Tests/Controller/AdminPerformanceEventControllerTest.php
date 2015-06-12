@@ -27,6 +27,7 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
 
     public function testPerformanceEventDeleteAction()
     {
-        $this->processDeleteAction('PerformanceEvent');
+        $object = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([]);
+        $this->processDeleteAction($object);
     }
 }

@@ -27,6 +27,7 @@ class AdminRoleControllerTest extends AbstractAdminController
 
     public function testRoleDeleteAction()
     {
-        $this->processDeleteAction('Role');
+        $object = $this->getEm()->getRepository('AppBundle:Role')->findOneBy([]);
+        $this->processDeleteAction($object);
     }
 }

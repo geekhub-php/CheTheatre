@@ -27,6 +27,19 @@ class AdminEmployeeControllerTest extends AbstractAdminController
 
     public function testEmployeeDeleteAction()
     {
-        $this->processDeleteAction('Employee');
+        $employee = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([]);
+
+        $employeeCount1     = count($this->getEm()->getRepository('AppBundle:Employee')->findAll());
+        $rolesCount1 = count($this->getEm()->getRepository('AppBundle:Role')->findAll());
+        $employeeRolesCount = $employee->getRoles()->count();
+
+        $this->processDeleteAction($employee);
+
+        $rolesCount2 = count($this->getEm()->getRepository('AppBundle:Role')->findAll());
+        $employeeCount2 = count($this->getEm()->getRepository('AppBundle:Employee')->findAll());
+
+        $this->assertEquals($employeeCount1 - 1, $employeeCount2);
+        // All employees roles must be deleted
+        $this->assertEquals($rolesCount1 - $employeeRolesCount, $rolesCount2);
     }
 }

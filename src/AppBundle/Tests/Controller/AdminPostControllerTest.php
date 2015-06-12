@@ -27,6 +27,7 @@ class AdminPostControllerTest extends AbstractAdminController
 
     public function testPostDeleteAction()
     {
-        $this->processDeleteAction('Post');
+        $object = $this->getEm()->getRepository('AppBundle:Post')->findOneBy([]);
+        $this->processDeleteAction($object);
     }
 }
