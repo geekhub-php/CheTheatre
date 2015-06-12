@@ -18,12 +18,14 @@ class EntityDeleteListener
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function preRemove(LifecycleEventArgs $args)
+    public function preSoftDelete(LifecycleEventArgs $args)
     {
-        $token = $this->tokenStorage->getToken();
-        $entity = $args->getEntity();
+        $token  = $this->tokenStorage->getToken();
+        $object = $args->getEntity();
+        $om     = $args->getEntityManager();
+        $uow    = $om->getUnitOfWork();
 
-        if (!method_exists($entity, 'setDeletedBy')) {
+        if (!method_exists($object, 'setDeletedBy')) {
             return;
         }
 
@@ -31,8 +33,15 @@ class EntityDeleteListener
             throw new AccessDeniedException('Only authorized users can delete entities');
         }
 
-        $entity->setDeletedBy($token->getUser()->getUsername());
-        $args->getEntityManager()->persist($entity);
-        $args->getEntityManager()->flush($entity);
+        $meta = $om->getClassMetadata(get_class($object));
+        $reflProp = $meta->getReflectionProperty('deletedBy');
+        $oldValue = $reflProp->getValue($object);
+        $reflProp->setValue($object, $token->getUser()->getUsername());
+
+        $om->persist($object);
+        $uow->propertyChanged($object, 'deletedBy', $oldValue, $token->getUser()->getUsername());
+        $uow->scheduleExtraUpdate($object, array(
+            'deletedBy' => array($oldValue, $token->getUser()->getUsername()),
+        ));
     }
 }

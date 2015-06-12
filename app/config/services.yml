@@ -43,4 +43,4 @@ services:
         arguments:
             - @security.token_storage
         tags:
-            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: preSoftDelete, connection: default }

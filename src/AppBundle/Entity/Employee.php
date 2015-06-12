@@ -96,7 +96,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $roles;
 
