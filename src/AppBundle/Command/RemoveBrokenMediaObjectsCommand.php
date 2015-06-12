@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -50,7 +51,12 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
      */
     protected function getAssociatedMediaObjects(array $associationMappings)
     {
+        /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getManager();
+
+        if ($em->getFilters()->isEnabled('softdeleteable')) {
+            $em->getFilters()->disable('softdeleteable');
+        }
 
         $accessor = new PropertyAccessor();
 
