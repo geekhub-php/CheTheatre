@@ -29,7 +29,7 @@ class AdminEmployeeControllerTest extends AbstractAdminController
     {
         $employee = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([]);
 
-        $employeeCount1     = count($this->getEm()->getRepository('AppBundle:Employee')->findAll());
+        $employeeCount1 = count($this->getEm()->getRepository('AppBundle:Employee')->findAll());
         $rolesCount1 = count($this->getEm()->getRepository('AppBundle:Role')->findAll());
         $employeeRolesCount = $employee->getRoles()->count();
 
