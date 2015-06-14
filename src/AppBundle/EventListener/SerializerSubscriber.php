@@ -2,6 +2,7 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\History;
 use AppBundle\Entity\Performance;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Employee;
