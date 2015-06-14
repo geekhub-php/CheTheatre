@@ -15,7 +15,7 @@ class Version20150614010455 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $schema->getTable('history')->addColumn('shortDescription', 'string', ['length' => 255, 'default' => NULL, 'notnull' => false]);
+        $schema->getTable('history')->addColumn('shortDescription', 'string', ['length' => 4294967295, 'default' => NULL, 'notnull' => false]);
     }
 
     /**
