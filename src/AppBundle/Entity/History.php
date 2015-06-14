@@ -69,6 +69,25 @@ class History extends AbstractTranslateableStory
     protected $galleryHasMedia;
 
     /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\Choice(callback = "getTypes", message = "choose_valid_type")
+     * @ORM\Column(type="string", length=255)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $type;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @Serializer\Expose
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Performance", mappedBy="festival", orphanRemoval=true)
+     */
+    protected $performances;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -161,5 +180,29 @@ class History extends AbstractTranslateableStory
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public static function getTypes()
+    {
+        return ['history' => 'history', 'festival' => 'festival'];
     }
 }
