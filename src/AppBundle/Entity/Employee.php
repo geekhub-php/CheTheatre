@@ -144,6 +144,26 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public $avatarThumbnails;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(
@@ -430,5 +450,37 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param \Datetime $createdBy
+     */
+    public function setCreatedBy(\Datetime $createdBy)
+    {
+        $this->createdBy = $createdBy;
     }
 }

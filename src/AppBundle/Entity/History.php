@@ -117,6 +117,26 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     private $slug;
 
     /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var Datetime
+     *
+     * @Expose
+     * @Type("string")
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(
@@ -325,5 +345,37 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     public function setYear($year)
     {
         $this->year = $year;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @param Datetime $createdBy
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * @return Datetime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * @param Datetime $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
     }
 }
