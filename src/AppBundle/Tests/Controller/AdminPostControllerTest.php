@@ -27,6 +27,12 @@ class AdminPostControllerTest extends AbstractAdminController
 
     public function testPostDeleteAction()
     {
-        $this->processDeleteAction('Post');
+        $tagsCount1 = count($this->getEm()->getRepository('AppBundle:Tag')->findAll());
+
+        $object = $this->getEm()->getRepository('AppBundle:Post')->findOneBy([]);
+        $this->processDeleteAction($object);
+
+        $tagsCount2 = count($this->getEm()->getRepository('AppBundle:Tag')->findAll());
+        $this->assertEquals($tagsCount2, $tagsCount1);
     }
 }

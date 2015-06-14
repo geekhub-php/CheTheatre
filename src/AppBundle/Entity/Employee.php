@@ -4,9 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
-use Gedmo\Translatable\Translatable;
+use AppBundle\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -23,7 +24,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
@@ -95,7 +96,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $roles;
 

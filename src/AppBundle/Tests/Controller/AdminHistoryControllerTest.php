@@ -27,6 +27,12 @@ class AdminHistoryControllerTest extends AbstractAdminController
 
     public function testHistoryDeleteAction()
     {
-        $this->processDeleteAction('History');
+        $tagsCount1 = count($this->getEm()->getRepository('AppBundle:Tag')->findAll());
+
+        $object = $this->getEm()->getRepository('AppBundle:History')->findOneBy([]);
+        $this->processDeleteAction($object);
+
+        $tagsCount2 = count($this->getEm()->getRepository('AppBundle:Tag')->findAll());
+        $this->assertEquals($tagsCount2, $tagsCount1);
     }
 }

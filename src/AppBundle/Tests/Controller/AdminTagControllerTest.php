@@ -27,6 +27,7 @@ class AdminTagControllerTest extends AbstractAdminController
 
     public function testTagDeleteAction()
     {
-        $this->processDeleteAction('Tag');
+        $object = $this->getEm()->getRepository('AppBundle:Tag')->findOneBy([]);
+        $this->processDeleteAction($object);
     }
 }

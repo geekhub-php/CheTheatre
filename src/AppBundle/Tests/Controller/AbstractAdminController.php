@@ -25,31 +25,35 @@ class AbstractAdminController extends AbstractController
         $this->assertEquals([], $extraColumns, sprintf('Found extra columns "%s"', implode(', ', $extraColumns)));
     }
 
-    protected function processDeleteAction($entityName)
+    protected function processDeleteAction($object)
     {
         $this->logIn();
-        $employee = $this->getEm()->getRepository('AppBundle:'.$entityName)->findOneBy([]);
 
-        $page = $this->request(sprintf('/admin/%s/%s/delete?tl=en', $entityName, $employee->getId()), 'GET', 200);
+        $namespaceParts = explode('\\', get_class($object));
+        $entityName = array_pop($namespaceParts);
+
+        $page = $this->request(sprintf('/admin/%s/%s/delete?tl=en', $entityName, $object->getId()), 'GET', 200);
         $form = $this->getConfirmDeleteFormObject($page);
 
         $this->getClient()->followRedirects(true);
         $listPage = $this->getClient()->submit($form);
 
         $this->assertContains(
-            sprintf('Item "%s" has been deleted successfully.', $employee),
+            sprintf('Item "%s" has been deleted successfully.', $object),
             trim($listPage->filter('.alert-success')->text())
         );
 
         // Tested softdeleteable and blameable
-        $id = $employee->getId();
-        $this->getEm()->detach($employee);
-        $employee = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
-        $this->assertNull($employee);
+        $id = $object->getId();
+        $this->getEm()->detach($object);
+        $object = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
+        $this->assertNull($object);
 
         $this->getEm()->getFilters()->disable('softdeleteable');
-        $employee = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
-        $this->assertNotNull($employee);
-//        $this->assertEquals('admin', $employee->getDeletedBy());
+        $object = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
+        $this->assertNotNull($object, sprintf('SoftDeleteable filter is not active for "%s" entity', $entityName));
+        $this->assertEquals('admin', $object->getDeletedBy());
+
+        $this->getEm()->getFilters()->enable('softdeleteable');
     }
 }
