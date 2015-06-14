@@ -41,11 +41,21 @@ class PerformanceAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $em = $this->modelManager->getEntityManager('AppBundle\Entity\History');
+
+        $query = $em->createQueryBuilder('h')
+            ->select('h')
+            ->from('AppBundle:History', 'h')
+            ->where('h.type = :type')
+            ->orderBy('h.createdAt', 'ASC')
+            ->setParameter('type', 'festival');
+
         $formMapper
             ->add('title')
             ->add('type')
             ->add('festival', 'sonata_type_model', [
                 'required' => false,
+                'query' => $query,
             ])
             ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
             ->add('mainPicture', 'sonata_type_model_list',
