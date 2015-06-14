@@ -12,7 +12,7 @@ class AdminHistoryControllerTest extends AbstractAdminController
         $this->logIn();
 
         $this->request('/admin/History/list', 'GET', 200);
-        $this->assertAdminListPageHasColumns(['Main Picture', 'History_Date', 'Title', 'Action']);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'History_Date', 'Title', 'Action', 'Type']);
     }
 
     public function testHistoryCreateAction()

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\History;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -25,6 +26,9 @@ class HistoryAdmin extends Admin
     {
         $formMapper
             ->add('title')
+            ->add('type', 'choice', [
+                'choices'  => History::getTypes()
+            ])
             ->add('dateTime', 'datetime',
                 [
                     'label' => 'History_Date',
@@ -80,6 +84,7 @@ class HistoryAdmin extends Admin
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->add('year', null, ['label' => 'History_Date'])
             ->addIdentifier('title')
+            ->add('type')
             ->add('_action', 'actions',
                 [
                     'actions' => [
