@@ -33,7 +33,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
      * @var string
      *
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Serializer\Type("string")
      * @Serializer\Expose
      */
