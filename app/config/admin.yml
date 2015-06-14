@@ -76,3 +76,14 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
+
+    sonata.admin.festival:
+        class: AppBundle\Admin\FestivalAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Festival" }
+        arguments:
+           - ~
+           - AppBundle\Entity\Festival
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
