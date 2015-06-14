@@ -51,7 +51,7 @@ class AbstractAdminController extends AbstractController
 
         $this->getEm()->getFilters()->disable('softdeleteable');
         $object = $this->getEm()->getRepository('AppBundle:'.$entityName)->find($id);
-        $this->assertNotNull($object);
+        $this->assertNotNull($object, sprintf('SoftDeleteable filter is not active for "%s" entity', $entityName));
         $this->assertEquals('admin', $object->getDeletedBy());
 
         $this->getEm()->getFilters()->enable('softdeleteable');
