@@ -53,6 +53,10 @@ class Post extends AbstractTranslateableStory
      * \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable(name="tags__tag_post",
+     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      )
      * @Serializer\Expose
      */
     protected $tags;

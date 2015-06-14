@@ -55,13 +55,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="tags", cascade={"persist"})
-     *
-     */
-    private $posts;
-
-    /**
-     * @var ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\TagTranslation",

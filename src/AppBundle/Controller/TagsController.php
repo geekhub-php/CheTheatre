@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @RouteResource("Tag")
@@ -31,16 +32,6 @@ class TagsController extends Controller
      */
     public function getPostsAction($slug)
     {
-        $tag = $this->getDoctrine()
-                    ->getManager()
-                    ->getRepository('AppBundle:Tag')
-                    ->findOneBySlug($slug)
-        ;
-
-        if (!$tag) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
-
-        return $tag->getPosts();
+        return new JsonResponse();
     }
 }
