@@ -239,3 +239,93 @@ AppBundle\Entity\Translations\PerformanceTranslation:
         locale: en
         field: description
         content: 'Arkady Gorin, Edward Jaworski. Musical tale for 1 action. Duration: 1 hour. 15 min.'
+    performanceTranslation49:
+        object: '@performance17'
+        locale: en
+        field: title
+        content: 'Freeloader'
+    performanceTranslation50:
+        object: '@performance17'
+        locale: en
+        field: type
+        content: 'comedy'
+    performanceTranslation51:
+        object: '@performance17'
+        locale: en
+        field: description
+        content: ''
+    performanceTranslation52:
+        object: '@performance18'
+        locale: en
+        field: title
+        content: 'Baba'
+    performanceTranslation53:
+        object: '@performance18'
+        locale: en
+        field: type
+        content: 'drama'
+    performanceTranslation54:
+        object: '@performance18'
+        locale: en
+        field: description
+        content: ''
+    performanceTranslation55:
+        object: '@performance19'
+        locale: en
+        field: title
+        content: 'Call from yesterday'
+    performanceTranslation56:
+        object: '@performance19'
+        locale: en
+        field: type
+        content: 'modern comedy'
+    performanceTranslation57:
+        object: '@performance19'
+        locale: en
+        field: description
+        content: ''
+    performanceTranslation58:
+        object: '@performance20'
+        locale: en
+        field: title
+        content: 'London'
+    performanceTranslation59:
+        object: '@performance20'
+        locale: en
+        field: type
+        content: 'Monoperformance'
+    performanceTranslation60:
+        object: '@performance20'
+        locale: en
+        field: description
+        content: ''
+    performanceTranslation61:
+        object: '@performance21'
+        locale: en
+        field: title
+        content: 'Kalika z ostrova Inishmun'
+    performanceTranslation62:
+        object: '@performance21'
+        locale: en
+        field: type
+        content: 'Irlandska comedy'
+    performanceTranslation63:
+        object: '@performance21'
+        locale: en
+        field: description
+        content: ''
+    performanceTranslation64:
+        object: '@performance22'
+        locale: en
+        field: title
+        content: 'Dami i gusari'
+    performanceTranslation65:
+        object: '@performance22'
+        locale: en
+        field: type
+        content: 'comedy'
+    performanceTranslation66:
+        object: '@performance22'
+        locale: en
+        field: description
+        content: ''

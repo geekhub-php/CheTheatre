@@ -19,3 +19,15 @@ AppBundle\Entity\Translations\HistoryTranslation:
         locale: en
         field: text
         content: 'No translation for this text'
+    festivalTranslation1:
+        object: '@festival1'
+        locale: en
+        field: title
+        content: 'X International theater festival "Scene of mankind"'
+    historyTranslation2:
+        object: '@festival1'
+        locale: en
+        field: text
+        content: >
+            Opening the festival should be bright and unusual: at 17:30 on cherkastsiv flash mob waiting at Theater Square, the details of which organizers have not yet disclosed, maintaining the intrigue. At 18:30 on the stage show business card and pride theater Cherkasy - Shevchenko poem directed by Alexander Dzekuna "Big cellar" which for 11 years never ceases to amaze its mysticism.
+                                 In the following days the festival audience will see performances of leading Ukrainian theaters. The capital scene will be presented to the National Academic Drama Theatre. Ivan Franko National Academic Theatre of Russian Drama. L. Ukrainian, Drama and Comedy on the left bank.
