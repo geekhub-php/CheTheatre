@@ -62,19 +62,11 @@ class History extends AbstractTranslateableStory
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="history_galleryHasMedia",
-     *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
+     *     joinColumns={@ORM\JoinColumn(name="history_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
      * )
      */
     protected $galleryHasMedia;
-
-    /**
-     * \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
-     * @Serializer\Expose
-     */
-    protected $tags;
 
     /**
      * Constructor
@@ -83,7 +75,6 @@ class History extends AbstractTranslateableStory
     {
         parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -170,38 +161,5 @@ class History extends AbstractTranslateableStory
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
-    }
-
-    /**
-     * Add tags
-     *
-     * @param \AppBundle\Entity\Tag $tags
-     * @return self
-     */
-    public function addTag(\AppBundle\Entity\Tag $tags)
-    {
-        $this->tags[] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Remove tags
-     *
-     * @param \AppBundle\Entity\Tag $tags
-     */
-    public function removeTag(\AppBundle\Entity\Tag $tags)
-    {
-        $this->tags->removeElement($tags);
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
 }
