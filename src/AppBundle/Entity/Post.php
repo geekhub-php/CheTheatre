@@ -2,28 +2,22 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\DeletedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Traits\TimestampableTrait;
-use Gedmo\Translatable\Translatable;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="posts")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PostTranslation")
- * @ExclusionPolicy("all")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Serializer\ExclusionPolicy("all")
  */
-class Post extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Post extends AbstractTranslateableStory
 {
-    use TimestampableTrait;
+    use DeletedByTrait;
 
     /**
      * @var integer
@@ -32,88 +26,10 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string
-     * @Gedmo\Translatable
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
-     * @Type("string")
-     * @Expose
-     */
-    private $title;
-
-    /**
-     * @var string
-     * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=255, nullable=true)
-     * @Type("string")
-     * @Expose
-     */
-    private $shortDescription;
-
-    /**
-     * @var string
-     * @Gedmo\Translatable
-     * @ORM\Column(type="text", nullable=true)
-     * @Type("string")
-     * @Expose
-     */
-    private $text;
-
-    /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
-     * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
-     */
-    private $mainPicture;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("mainPicture")
-     */
-    public $mainPictureThumbnails;
-
-    /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
-     *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
-     * @ORM\JoinTable(name="post_galleryHasMedia",
-     *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
-     *     )
-     */
-    private $galleryHasMedia;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("gallery")
-     */
-    public $galleryHasMediaThumbnails;
-
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(name="slug", type="string", length=255)
-     * @Type("string")
-     * @Expose
-     */
-    private $slug;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
-     * @ORM\JoinTable(name="post_tag")
-     * @Expose
-     */
-    private $tags;
-
-    /**
-     * @var ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PostTranslation",
@@ -122,6 +38,25 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
      * )
      */
     protected $translations;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="post_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     * )
+     */
+    protected $galleryHasMedia;
+
+    /**
+     * \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
+     * @Serializer\Expose
+     */
+    protected $tags;
 
     /**
      * Constructor
@@ -143,202 +78,5 @@ class Post extends AbstractPersonalTranslatable  implements TranslatableInterfac
         $this->translations = null;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string $title
-     * @return Post
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get shortDescription
-     *
-     * @return string
-     */
-    public function getShortDescription()
-    {
-        return $this->shortDescription;
-    }
-
-    /**
-     * Set shortDescription
-     *
-     * @param  string $shortDescription
-     * @return Post
-     */
-    public function setShortDescription($shortDescription)
-    {
-        $this->shortDescription = $shortDescription;
-
-        return $this;
-    }
-
-    /**
-     * Set text
-     *
-     * @param  string $text
-     * @return Post
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param  string $slug
-     * @return Post
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get mainPicture
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getMainPicture()
-    {
-        return $this->mainPicture;
-    }
-
-    /**
-     * Set mainPicture
-     *
-     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
-     * @return Post
-     */
-    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
-    {
-        $this->mainPicture = $mainPicture;
-
-        return $this;
-    }
-
-    /**
-     * Add tag
-     *
-     * @param  \AppBundle\Entity\Tag $tag
-     * @return Post
-     */
-    public function addTag(\AppBundle\Entity\Tag $tag)
-    {
-        $this->tags[] = $tag;
-        $tag->addPost($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove tag
-     *
-     * @param \AppBundle\Entity\Tag $tag
-     */
-    public function removeTag(\AppBundle\Entity\Tag $tag)
-    {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Add galleryHasMedia
-     *
-     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
-     * @return Post
-     */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
-    {
-        $this->galleryHasMedia[] = $galleryHasMedia;
-
-        return $this;
-    }
-
-    /**
-     * Remove galleryHasMedia
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
-     */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
-    {
-        $this->galleryHasMedia->removeElement($galleryHasMedia);
-    }
-
-    /**
-     * Get galleryHasMedia
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGalleryHasMedia()
-    {
-        return $this->galleryHasMedia;
     }
 }

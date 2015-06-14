@@ -5,10 +5,11 @@ namespace AppBundle\Entity;
 use AppBundle\Model\LinksTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
-use Gedmo\Translatable\Translatable;
+use AppBundle\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -26,7 +27,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  */
 class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
-    use TimestampableTrait, LinksTrait;
+    use TimestampableTrait, LinksTrait, BlameableEntity, DeletedByTrait;
 
     /**
      * @var integer
@@ -117,7 +118,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $roles;
 

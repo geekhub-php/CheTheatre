@@ -11,7 +11,8 @@ env:
 before_script:
     - composer self-update
     - composer install
-    - php bin/reload --domain=localhost --env=test
+    - php bin/reload
 
 script:
+  - phpunit -c app/
   - phpunit -c app/

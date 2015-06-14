@@ -1,7 +1,11 @@
 imports:
     - { resource: config_dev.yml }
 
+parameters:
+    locale: en
+
 framework:
+    translator:      { fallback: "en" }
     test: ~
     session:
         storage_id: session.storage.mock_file
@@ -14,6 +18,9 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+sonata_translation:
+    default_locale: en
 
 domain_routing:
     include_routes:
