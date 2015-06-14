@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class HistoryAdmin extends Admin
+class HistoryAdmin extends AbstractStoryAdmin
 {
     protected $baseRouteName = 'AppBundle\Entity\History';
     protected $baseRoutePattern = 'History';
@@ -23,48 +23,14 @@ class HistoryAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        parent::configureFormFields($formMapper);
+
         $formMapper
-            ->add('title')
             ->add('dateTime', 'datetime',
                 [
                     'label' => 'History_Date',
                     'widget' => 'single_text',
                     'format' => 'yyyy'
-                ]
-            )
-            ->add('text', 'textarea',
-                [
-                    'attr' => [
-                            'class' => 'wysihtml5',
-                            'style' => 'height:300px',
-                    ],
-                ]
-            )
-            ->add('mainPicture', 'sonata_type_model_list',
-                [
-                    'required' => false,
-                    'btn_list' => false,
-                ], [
-                    'link_parameters' => [
-                        'context' => 'history',
-                        'provider' => 'sonata.media.provider.image',
-                    ],
-                ]
-            )
-            ->add('galleryHasMedia', 'sonata_type_collection',
-                [
-                    'required' => false,
-                    'label' => 'Gallery'
-                ], [
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable'  => 'position',
-                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                    'admin_code' => 'sonata.media.admin.gallery_has_media',
-                    'link_parameters' => [
-                        'context'  => 'history',
-                        'provider' => 'sonata.media.provider.image',
-                    ],
                 ]
             )
         ;
@@ -76,20 +42,8 @@ class HistoryAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
-            ->add('year', null, ['label' => 'History_Date'])
-            ->addIdentifier('title')
-            ->add('_action', 'actions',
-                [
-                    'actions' => [
-                        'edit' => [],
-                        'delete' => [],
-                    ],
-                ]
-            )
-
-        ;
+        parent::configureListFields($listMapper);
+        $listMapper->add('year', null, ['label' => 'History_Date']);
     }
 
     /**
