@@ -40,7 +40,7 @@ class PerformancesController extends Controller
 
         $performances = $em
                         ->getRepository('AppBundle:Performance')
-                        ->findBy([], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+                        ->findBy(['festival' => null], null, $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
 
         $performancesTranslated = array();
 
