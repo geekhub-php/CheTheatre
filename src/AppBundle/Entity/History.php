@@ -2,30 +2,22 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\DeletedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Blameable\Traits\BlameableEntity;
-use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Traits\TimestampableTrait;
-use AppBundle\Traits\DeletedByTrait;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\Accessor;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="history")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\HistoryRepository")
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\HistoryTranslation")
- * @ExclusionPolicy("all")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Serializer\ExclusionPolicy("all")
  */
-class History extends AbstractPersonalTranslatable  implements TranslatableInterface
+class History extends AbstractTranslateableStory
 {
-    use TimestampableTrait, BlameableEntity, DeletedByTrait;
+    use DeletedByTrait;
 
     /**
      * @var integer
@@ -34,90 +26,28 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @var string
-     * @Gedmo\Translatable
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
-     * @Type("string")
-     * @Expose
-     */
-    private $title;
-
-    /**
-     * @var string
-     * @Gedmo\Translatable
-     * @ORM\Column(type="text", nullable=true)
-     * @Type("string")
-     * @Expose
-     */
-    private $text;
-
-    /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
-     * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
-     */
-    private $mainPicture;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("mainPicture")
-     */
-    public $mainPictureThumbnails;
-
-    /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
-     *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
-     * @ORM\JoinTable(name="history_galleryHasMedia",
-     *     joinColumns={@ORM\JoinColumn(name="history_id",referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
-     *     )
-     */
-    private $galleryHasMedia;
-
-    /**
-     * @var array
-     * @Expose
-     * @Type("array")
-     * @SerializedName("gallery")
-     */
-    public $galleryHasMediaThumbnails;
+    protected $id;
 
     /**
      * @var /Datetime
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     * @Type("DateTime")
+     * @Serializer\Type("DateTime")
      */
-    private $dateTime;
+    protected $dateTime;
 
     /**
      * @var int
      *
-     * @Type("integer")
-     * @Expose
-     * @Accessor(getter="getYear")
+     * @Serializer\Type("integer")
+     * @Serializer\Expose
+     * @Serializer\Accessor(getter="getYear")
      */
-    private $year;
+    protected $year;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(name="slug", type="string", length=255)
-     * @Type("string")
-     * @Expose
-     */
-    private $slug;
-
-    /**
-     * @var ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\HistoryTranslation",
@@ -128,52 +58,32 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     protected $translations;
 
     /**
+     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\JoinTable(name="history_galleryHasMedia",
+     *     joinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
+     * )
+     */
+    protected $galleryHasMedia;
+
+    /**
+     * \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
+     * @Serializer\Expose
+     */
+    protected $tags;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         parent::__construct();
         $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Unset translations
-     *
-     * @return History
-     */
-    public function unsetTranslations()
-    {
-        $this->translations = null;
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param  string  $title
-     * @return History
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -187,105 +97,15 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * Set text
+     * Unset translations
      *
-     * @param  string  $text
      * @return History
      */
-    public function setText($text)
+    public function unsetTranslations()
     {
-        $this->text = $text;
+        $this->translations = null;
 
         return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param  string  $slug
-     * @return History
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get mainPicture
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getMainPicture()
-    {
-        return $this->mainPicture;
-    }
-
-    /**
-     * Set mainPicture
-     *
-     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
-     * @return History
-     */
-    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
-    {
-        $this->mainPicture = $mainPicture;
-
-        return $this;
-    }
-
-    /**
-     * Add galleryHasMedia
-     *
-     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
-     * @return History
-     */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
-    {
-        $this->galleryHasMedia[] = $galleryHasMedia;
-
-        return $this;
-    }
-
-    /**
-     * Remove galleryHasMedia
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
-     */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
-    {
-        $this->galleryHasMedia->removeElement($galleryHasMedia);
-    }
-
-    /**
-     * Get galleryHasMedia
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGalleryHasMedia()
-    {
-        return $this->galleryHasMedia;
     }
 
     /**
@@ -320,10 +140,68 @@ class History extends AbstractPersonalTranslatable  implements TranslatableInter
     }
 
     /**
-     * @param mixed $year
+     * Add galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @return self
      */
-    public function setYear($year)
+    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
-        $this->year = $year;
+        $this->galleryHasMedia[] = $galleryHasMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasMedia
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     */
+    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        $this->galleryHasMedia->removeElement($galleryHasMedia);
+    }
+
+    /**
+     * Get galleryHasMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasMedia()
+    {
+        return $this->galleryHasMedia;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \AppBundle\Entity\Tag $tags
+     * @return self
+     */
+    public function addTag(\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \AppBundle\Entity\Tag $tags
+     */
+    public function removeTag(\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
