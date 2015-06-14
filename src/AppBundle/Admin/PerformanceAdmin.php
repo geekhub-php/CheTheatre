@@ -73,6 +73,9 @@ class PerformanceAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
+            ->add('festival', 'sonata_type_model', [
+                'required' => false,
+            ])
             ->add('roles', 'sonata_type_collection',
                 [
                     'required' => false,
@@ -114,6 +117,7 @@ class PerformanceAdmin extends Admin
             ->addIdentifier('title')
             ->add('type')
             ->add('premiere')
+            ->add('festival')
         ;
     }
 
@@ -127,6 +131,7 @@ class PerformanceAdmin extends Admin
         $datagridMapper
             ->add('title')
             ->add('type')
+            ->add('festival')
         ;
     }
 }

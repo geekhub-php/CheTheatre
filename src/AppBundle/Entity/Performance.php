@@ -161,6 +161,13 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     protected $translations;
 
     /**
+     * @var \AppBundle\Entity\Festival
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Festival", inversedBy="performances")
+     */
+    protected $festival;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -457,5 +464,24 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    /**
+     * @return Festival
+     */
+    public function getFestival()
+    {
+        return $this->festival;
+    }
+
+    /**
+     * @param Festival $festival
+     * @return $this
+     */
+    public function setFestival($festival)
+    {
+        $this->festival = $festival;
+
+        return $this;
     }
 }
