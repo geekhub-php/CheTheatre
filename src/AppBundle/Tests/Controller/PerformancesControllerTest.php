@@ -6,7 +6,16 @@ class PerformancesControllerTest extends AbstractController
 {
     public function testGetPerformances()
     {
-        $this->request('/performances');
+        $allPerformances = $this->getEm()->getRepository('AppBundle:Performance')->findAll();
+        $repertoryPerformances = $this->getEm()->getRepository('AppBundle:Performance')->findBy(['festival' => null]);
+
+        $this->request('/performances?limit=100500');
+        $response = $this->getClient()->getResponse()->getContent();
+        $response = json_decode($response);
+
+        $this->assertEquals($response->count, count($response->performances));
+        $this->assertEquals(count($repertoryPerformances), $response->count);
+        $this->assertNotEquals(count($allPerformances), $response->count);
     }
 
     public function testGetPerformancesSlug()
