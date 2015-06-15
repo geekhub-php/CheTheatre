@@ -12,11 +12,11 @@ class LoadData extends DataFixtureLoader
         return array(
             __DIR__.'/fixturesGalleryHasMedia_uk.yml',
             __DIR__.'/fixturesEmployee_uk.yml',
+            __DIR__.'/fixturesHistory_uk.yml',
             __DIR__.'/fixturesPerformance_uk.yml',
             __DIR__.'/fixturesRole_uk.yml',
             __DIR__.'/fixturesTag_uk.yml',
             __DIR__.'/fixturesPost_uk.yml',
-            __DIR__.'/fixturesHistory_uk.yml',
             __DIR__.'/fixturesPerformanceEvent_uk.yml',
             __DIR__.'/fixturesEmployeeTranslation_en.yml',
             __DIR__.'/fixturesPerformanceTranslation_en.yml',

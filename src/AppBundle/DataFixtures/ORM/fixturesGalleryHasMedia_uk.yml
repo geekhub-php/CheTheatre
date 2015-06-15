@@ -599,3 +599,75 @@ Application\Sonata\MediaBundle\Entity\GalleryHasMedia:
         media: <getMedia("performance-galleries/Шельменко 4.jpg", "employee")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+    galleryHasMedia101:
+        media: <getMedia("performance-galleries/dami-i-gusari-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia102:
+        media: <getMedia("performance-galleries/dami-i-gusari-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia103:
+        media: <getMedia("performance-galleries/dami-i-gusari-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia104:
+        media: <getMedia("performance-galleries/kalika-z-ostrova-inishmaan-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia105:
+        media: <getMedia("performance-galleries/kalika-z-ostrova-inishmaan-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia106:
+        media: <getMedia("performance-galleries/kalika-z-ostrova-inishmaan-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia107:
+        media: <getMedia("performance-galleries/london-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia108:
+        media: <getMedia("performance-galleries/london-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia109:
+        media: <getMedia("performance-galleries/london-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia110:
+        media: <getMedia("performance-galleries/baba-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia111:
+        media: <getMedia("performance-galleries/baba-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia112:
+        media: <getMedia("performance-galleries/baba-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia113:
+        media: <getMedia("performance-galleries/dzvinok-iz-minulogo-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia114:
+        media: <getMedia("performance-galleries/dzvinok-iz-minulogo-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia115:
+        media: <getMedia("performance-galleries/dzvinok-iz-minulogo-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia116:
+        media: <getMedia("performance-galleries/nakhlibnik-1.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia117:
+        media: <getMedia("performance-galleries/nakhlibnik-2.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
+    galleryHasMedia118:
+        media: <getMedia("performance-galleries/nakhlibnik-3.jpeg", "performance")>
+        createdAt: <(new \DateTime("2015-05-07 11:00"))>
+        updatedAt: <(new \DateTime("2015-05-07 11:00"))>
