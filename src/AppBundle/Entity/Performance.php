@@ -60,6 +60,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var string
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      * @ORM\Column(type="text", nullable=true)
      * @Type("string")
      * @Expose
