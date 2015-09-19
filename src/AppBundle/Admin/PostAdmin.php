@@ -14,8 +14,8 @@ class PostAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Entity\Post';
     protected $baseRoutePattern = 'Post';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by' => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'dateTime',
     ];
 
     private $default_locale;
