@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use AppBundle\Entity\PerformanceEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -16,19 +17,6 @@ class PerformanceEventAdmin extends Admin
         '_sort_order' => 'DESC',
         '_sort_by'    => 'dateTime',
     ];
-
-    /**
-     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
-     *
-     * @return void
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('performance')
-            ->add('dateTime')
-        ;
-    }
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -47,6 +35,10 @@ class PerformanceEventAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
+            ->add('venue', 'choice', [
+                'choices'     => PerformanceEvent::$venues,
+                'placeholder' => 'choose_an_option',
+            ])
         ;
     }
 
@@ -60,6 +52,7 @@ class PerformanceEventAdmin extends Admin
         $listMapper
             ->addIdentifier('performance')
             ->add('dateTime')
+            ->add('venue', null, ['template' => "AppBundle:SonataAdmin:list_field.html.twig"])
         ;
     }
 
@@ -72,7 +65,14 @@ class PerformanceEventAdmin extends Admin
     {
         $datagridMapper
             ->add('performance')
-            ->add('dateTime')
+            ->add('venue', 'doctrine_orm_choice', [],
+                'choice',
+                [
+                    'choices' => PerformanceEvent::$venues,
+                    'expanded' => true,
+                    'multiple' => true
+                ]
+            )
         ;
     }
 }

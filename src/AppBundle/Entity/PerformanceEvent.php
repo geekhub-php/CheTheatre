@@ -28,6 +28,16 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
+    const VENUE_PHILHARMONIC = "venue-philharmonic";
+    const VENUE_KULIC_HOUSE  = "venue-kilic-house";
+    const VENUE_THEATRE      = "venue-theatre";
+
+    public static $venues = [
+        self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
+        self::VENUE_KULIC_HOUSE  => self::VENUE_KULIC_HOUSE,
+        self::VENUE_THEATRE      => self::VENUE_THEATRE,
+    ];
+
     /**
      * @var integer
      *
@@ -57,6 +67,15 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @Expose
      */
     private $dateTime;
+
+    /**
+     * Place where performance happens
+     * @var string
+     * @ORM\Column(type="string")
+     * @Type("string")
+     * @Expose
+     */
+    private $venue;
 
     /**
      * @var int
@@ -241,5 +260,21 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     public function setTime($time)
     {
         $this->time = $time;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVenue()
+    {
+        return $this->venue;
+    }
+
+    /**
+     * @param string $venue
+     */
+    public function setVenue($venue)
+    {
+        $this->venue = $venue;
     }
 }
