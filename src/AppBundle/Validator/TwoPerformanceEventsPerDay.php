@@ -10,7 +10,12 @@ class TwoPerformanceEventsPerDay extends Constraint
     /**
      * @var string
      */
-    public $message = 'you_cant_set_more_events_per_day';
+    public $max_performances_per_day = 'you_cant_set_more_events_per_day';
+
+    /**
+     * @var string
+     */
+    public $performance_must_have_a_date = 'performance_must_have_a_date';
 
     public function validatedBy()
     {
