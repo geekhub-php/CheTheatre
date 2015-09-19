@@ -4,598 +4,718 @@ AppBundle\Entity\PerformanceEvent:
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent2:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent3:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent4:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent5:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent6:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent7:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent8:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent9:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent10:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent11:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent12:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent13:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent14:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent15:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent16:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent17:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent18:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent19:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent20:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent21:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent22:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent23:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent24:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent25:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent26:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent27:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent28:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent29:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent30:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent31:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent32:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent33:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent34:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent35:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent36:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent37:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent38:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent39:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent40:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent41:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent42:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent43:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent44:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent45:
         performance: '@performance13'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent46:
         performance: '@performance14'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent47:
         performance: '@performance15'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent48:
         performance: '@performance16'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent49:
         performance: '@performance1'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent50:
         performance: '@performance2'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent51:
         performance: '@performance3'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent52:
         performance: '@performance4'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent53:
         performance: '@performance5'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent54:
         performance: '@performance6'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent55:
         performance: '@performance7'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent56:
         performance: '@performance8'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent57:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent58:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent59:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent60:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent61:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent62:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent63:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent64:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent65:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent66:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent67:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent68:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent69:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent70:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent71:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent72:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent73:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent74:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent75:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent76:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent77:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent78:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent79:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent80:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent81:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent82:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent83:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent84:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent85:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent86:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent87:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent88:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent89:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent90:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent91:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent92:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent93:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent94:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent95:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent96:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent97:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent98:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent99:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent100:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent101:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent102:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent103:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent104:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent105:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent106:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent107:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent108:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent109:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent110:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent111:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent112:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent113:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent114:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent115:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent116:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent117:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent118:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent119:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
     performanceEvent120:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 'venue-theatre'
