@@ -35,7 +35,7 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
             ->context
             ->expects($this->once())
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
+            ->with('dateTime', $this->translator->trans($this->constraint->max_performances_per_day, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
         ;
 
         $validator->validate($newPerformanceEvent, $this->constraint);
@@ -56,7 +56,7 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
             ->context
             ->expects($this->exactly(0))
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->message, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
+            ->with('dateTime', $this->translator->trans($this->constraint->max_performances_per_day, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
         ;
 
         $validator->validate($newPerformanceEvent, $this->constraint);
