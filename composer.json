@@ -29,6 +29,7 @@
         "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "guzzlehttp/guzzle": "~5.0",
         "twig/extensions": "~1.0",
+        "twig/twig": "1.22.1",
         "nelmio/api-doc-bundle": "dev-master",
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
