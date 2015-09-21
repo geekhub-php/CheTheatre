@@ -93,7 +93,6 @@ class HistoryAdmin extends Admin
                     ],
                 ]
             )
-
         ;
     }
 

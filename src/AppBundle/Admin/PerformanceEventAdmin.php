@@ -50,10 +50,15 @@ class PerformanceEventAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
             ->add('performance')
             ->add('dateTime')
             ->add('venue', null, ['template' => "AppBundle:SonataAdmin:list_field.html.twig"])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ])
         ;
     }
 
