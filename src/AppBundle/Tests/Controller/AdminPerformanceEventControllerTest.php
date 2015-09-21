@@ -12,7 +12,7 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
         $this->logIn();
 
         $this->request('/admin/PerformanceEvent/list', 'GET', 200);
-        $this->assertAdminListPageHasColumns(['Performance', 'Date Time','Venue']);
+        $this->assertAdminListPageHasColumns(['Performance', 'Date Time', 'Venue', 'Action']);
     }
 
     public function testPerformanceEventCreateAction()
