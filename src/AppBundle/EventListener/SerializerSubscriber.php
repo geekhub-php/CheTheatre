@@ -11,7 +11,7 @@ use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
 use Symfony\Component\Routing\Router;
-use Symfony\Component\Translation\LoggingTranslator;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class SerializerSubscriber implements EventSubscriberInterface
 {
@@ -21,10 +21,10 @@ class SerializerSubscriber implements EventSubscriberInterface
     /** @var Router */
     protected $router;
 
-    /** @var  LoggingTranslator */
+    /** @var  Translator */
     protected $translator;
 
-    public function __construct(MediaController $mediaController, Router $router, LoggingTranslator $translator)
+    public function __construct(MediaController $mediaController, Router $router, Translator $translator)
     {
         $this->mediaController = $mediaController;
         $this->router = $router;
