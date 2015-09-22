@@ -54,6 +54,7 @@ class SerializerSubscriber implements EventSubscriberInterface
 
     public function onPreEmployeeSerialize(ObjectEvent $event)
     {
+        /** @var Employee $employee */
         $employee = $event->getObject();
 
         if ($employee->getAvatar()) {
@@ -61,16 +62,8 @@ class SerializerSubscriber implements EventSubscriberInterface
             $employee->avatarThumbnails = $avatarLinks;
         }
 
-        if ($employee->getGalleryHasMedia()->getValues()) {
-            foreach ($employee->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $employee->getLocale()) ?: $gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $employee->getLocale()) ?: $gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
-                ]
-                ;
-                $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
-            }
+        if ($galleryHasMediaLinks = $this->formatGalleries($employee->getGalleryHasMedia()->getValues(), $employee->getLocale())) {
+            $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
 
@@ -89,16 +82,8 @@ class SerializerSubscriber implements EventSubscriberInterface
             $performance->sliderImageThumbnails = $sliderImageLinks;
         }
 
-        if ($performance->getGalleryHasMedia()->getValues()) {
-            foreach ($performance->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $performance->getLocale()) ?: $gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $performance->getLocale()) ?: $gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
-                ]
-                ;
-                $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
-            }
+        if ($galleryHasMediaLinks = $this->formatGalleries($performance->getGalleryHasMedia()->getValues(), $performance->getLocale())) {
+            $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
 
@@ -112,16 +97,8 @@ class SerializerSubscriber implements EventSubscriberInterface
             $post->mainPictureThumbnails = $mainImageLinks;
         }
 
-        if ($post->getGalleryHasMedia()->getValues()) {
-            foreach ($post->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $post->getLocale()) ?: $gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $post->getLocale()) ?: $gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
-                ]
-                ;
-                $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
-            }
+        if ($galleryHasMediaLinks = $this->formatGalleries($post->getGalleryHasMedia()->getValues(), $post->getLocale())) {
+            $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
 
@@ -135,16 +112,22 @@ class SerializerSubscriber implements EventSubscriberInterface
             $history->mainPictureThumbnails = $mainImageLinks;
         }
 
-        if ($history->getGalleryHasMedia()->getValues()) {
-            foreach ($history->getGalleryHasMedia()->getValues() as $gallery) {
-                $galleryHasMediaLinks[] = [
-                    'title' => $gallery->getTranslation('title', $history->getLocale()) ?: $gallery->getTitle(),
-                    'decription' => $gallery->getTranslation('description', $history->getLocale()) ?: $gallery->getDescription(),
-                    'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
-                ]
-                ;
-                $history->galleryHasMediaThumbnails = $galleryHasMediaLinks;
-            }
+        if ($galleryHasMediaLinks = $this->formatGalleries($history->getGalleryHasMedia()->getValues(), $history->getLocale())) {
+            $history->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
+    }
+
+    protected function formatGalleries($galleries, $locale)
+    {
+        $formatedGaleries = array_filter($galleries, function($gallery) { return $gallery->getMedia(); });
+        $formatedGaleries = array_map(function ($gallery) use ($locale) {
+            return [
+                'title' => $gallery->getTranslation('title', $locale) ?: $gallery->getTitle(),
+                'decription' => $gallery->getTranslation('description', $locale) ?: $gallery->getDescription(),
+                'images' => $this->mediaController->getMediumFormatsAction($gallery->getMedia()),
+            ];
+        }, $formatedGaleries);
+
+        return $formatedGaleries;
     }
 }
