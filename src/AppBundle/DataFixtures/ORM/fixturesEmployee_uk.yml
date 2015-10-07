@@ -53,7 +53,7 @@ AppBundle\Entity\Employee:
         firstName: Надія
         lastName: Нікіфорова
         dob: <dateTime()>
-        position: art_director
+        position: artistic_director
         avatar: <getMedia("avatars/nadiya-nikifirova.jpg", "employee")>
         biography: 'Художник-постановник, у театрі з 1980 року. Закінчила Ленінградський державний інститут театру, музики і кінематографії у 1980 році. Поставлено 70 вистав, у Черкаському театрі - 55.'
         createdAt: <dateTimeBetween("-200 days", "now")>

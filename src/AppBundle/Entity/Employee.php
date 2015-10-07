@@ -28,16 +28,27 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
 
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
-    const POSITION_THEATRE_DIRECTOR = 'theatre_director';
-    const POSITION_ACTING_ARTISTIC_DIRECTOR = 'acting_artistic_director';
+    const POSITION_THEATRE_DIRECTOR = 'theatre_director'; //
+    const POSITION_ACTING_ARTISTIC_DIRECTOR = 'acting_artistic_director'; //
     const POSITION_PRODUCTION_DIRECTOR = 'production_director';
     const POSITION_MAIN_ARTIST = 'main_artist';
     const POSITION_COSTUMER = 'costumer';
-    const POSITION_ART_DIRECTOR = 'art_director';
+    const POSITION_ARTISTIC_DIRECTOR = 'artistic_director';
     const POSITION_MAIN_CHOREOGPAPHER = 'main_choreographer';
     const POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART = 'head_of_the_literary_and_dramatic_part';
     const POSITION_CONDUCTOR = 'conductor';
     const POSITION_ACCOMPANIST = 'accompanist';
+    const POSITION_HEAD_CHOREOGRAPHER = 'head_choreographer';
+    const POSITION_ART_DIRECTOR = 'art_director';
+    const POSITION_STAGED = 'staged';
+    const POSITION_ACCOMPANIST_SINGING_CLASS = 'accompanist_singing_class';
+    const POSITION_HEAD_OF_TROUPE = 'head_of_troupe';
+    const POSITION_HEAD_OF_ARTISTIC_STAGING_PART = 'head_of_artistic_staging_part';
+    const POSITION_STAGE_MANAGER = 'stage_manager';
+    const POSITION_LEADING_ARTIST_SCENE = 'leading_artist_scene';
+    const POSITION_ACTOR_HIGHER_CATEGORY = 'actor_higher_category';
+    const POSITION_ACTOR_FIRST_CATEGORY = 'actor_first_category';
+    const POSITION_ACTOR_SINGER_SOLOIST_HIGHER_CATEGORY = 'actor_singer_soloist_higher_category';
 
     /**
      * @var integer
@@ -391,11 +402,22 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
             self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
             self::POSITION_MAIN_ARTIST => 'main_artist',
             self::POSITION_COSTUMER => 'costumer',
-            self::POSITION_ART_DIRECTOR => 'art_director',
+            self::POSITION_ARTISTIC_DIRECTOR => 'artistic_director',
             self::POSITION_MAIN_CHOREOGPAPHER => 'main_choreographer',
             self::POSITION_HEAD_OF_THE_LITERARY_AND_DRAMATIC_PART => 'head_of_the_literary_and_dramatic_part',
             self::POSITION_CONDUCTOR => 'conductor',
             self::POSITION_ACCOMPANIST => 'accompanist',
+            self::POSITION_HEAD_CHOREOGRAPHER => 'head_choreographer',
+            self::POSITION_ART_DIRECTOR => 'art_director',
+            self::POSITION_STAGED => 'staged',
+            self::POSITION_ACCOMPANIST_SINGING_CLASS => 'accompanist_singing_class',
+            self::POSITION_HEAD_OF_TROUPE => 'head_of_troupe',
+            self::POSITION_HEAD_OF_ARTISTIC_STAGING_PART => 'head_of_artistic_staging_part',
+            self::POSITION_STAGE_MANAGER => 'stage_manager',
+            self::POSITION_LEADING_ARTIST_SCENE => 'leading_artist_scene',
+            self::POSITION_ACTOR_HIGHER_CATEGORY => 'actor_higher_category',
+            self::POSITION_ACTOR_FIRST_CATEGORY => 'actor_first_category',
+            self::POSITION_ACTOR_SINGER_SOLOIST_HIGHER_CATEGORY => 'actor_singer_soloist_higher_category',
         ];
     }
 

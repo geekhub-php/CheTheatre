@@ -6,18 +6,33 @@ sing_in_title: Авторизація
 you_cant_set_more_events_per_day: В один день не може бути більше %count% вистав!
 Image_must_be_minimum_size: Розмір зображення повиннен перевищувати %width% пікселів по довжині та %height% пікслеів по висоті!
 employee.edit.position.label: Посада
+
+### positions start ###
 actor: Актор
 actress: Актриса
-theatre_director: Директор Театру
+theatre_director: Директор
 acting_artistic_director: Виконуючий обовязки художнього керівника
 production_director: Режисер-постановник
 main_artist: Головний художник
-costumer: Костюмер
-art_director: Художній керівник
+costumer: Художник по костюмах
+artistic_director: Художній керівник
 main_choreographer: Головний хорегограф
-head_of_the_literary_and_dramatic_part: Завідуючий літературно-драматичною частиною
-conductor: Диригент
-accompanist: Концертмейстер
+head_of_the_literary_and_dramatic_part: Керівник літературно-драматичної частини
+conductor: Диригент вищої категорії
+accompanist: Концертмейстер по класу балету
+head_choreographer: Головний балетмейстер
+art_director: Художник-постановник
+staged: Балетмейстер-постановник
+accompanist_singing_class: Концертмейстер по класу вокалу
+head_of_troupe: Завідуючий трупою
+head_of_artistic_staging_part: Завідуючий художньо-постановочною частиною
+stage_manager: Помічник режисера
+leading_artist_scene: Провідний майстер сцени
+actor_higher_category: Артист вищої категорії
+actor_first_category: Артист 1-ої категорії
+actor_singer_soloist_higher_category: Артист-вокаліст /соліст/ вищої категорії
+### positions end ###
+
 Avatar: Фотографія
 First Name: Ім’я
 Last Name: Прізвище
