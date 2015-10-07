@@ -16,7 +16,7 @@
         "symfony/event-dispatcher": "2.6.*@dev",
         "doctrine/common": "2.5.1",
         "doctrine/orm": "2.5.1",
-        "doctrine/doctrine-bundle": "1.5.1",
+        "doctrine/doctrine-bundle": "1.5.2",
         "doctrine/migrations": "1.0.*@dev",
         "doctrine/doctrine-migrations-bundle": " 2.1.*@dev",
         "doctrine/annotations": "1.2.7",
