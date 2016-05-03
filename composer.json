@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "symfony/symfony": "2.6.9",
+        "symfony/symfony": "~2.8",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
@@ -17,7 +17,6 @@
         "doctrine/common": "2.5.1",
         "doctrine/orm": "2.5.1",
         "doctrine/doctrine-bundle": "1.5.2",
-        "doctrine/migrations": "1.0.*@dev",
         "doctrine/doctrine-migrations-bundle": " 2.1.*@dev",
         "doctrine/annotations": "1.2.7",
         "doctrine/cache": "1.4.2",
@@ -29,7 +28,6 @@
         "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "guzzlehttp/guzzle": "~5.0",
         "twig/extensions": "~1.0",
-        "twig/twig": "1.22.1",
         "nelmio/api-doc-bundle": "dev-master",
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
@@ -76,9 +74,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.6-dev"
         }
     }
 }
