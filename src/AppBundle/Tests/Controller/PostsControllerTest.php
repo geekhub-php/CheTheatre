@@ -49,6 +49,10 @@ class PostsControllerTest extends AbstractController
 
         $this->assertEquals($secondPostSlug, $result->posts[0]->slug);
         $this->assertEquals($firstPostSlug, $result->posts[1]->slug);
+
+        //cleenup
+        $secondPost->setPinned(false);
+        $em->flush();
     }
 
     public function providerPostsResponseFields()

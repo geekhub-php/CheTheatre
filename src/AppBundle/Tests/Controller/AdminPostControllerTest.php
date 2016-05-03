@@ -11,7 +11,7 @@ class AdminPostControllerTest extends AbstractAdminController
         $this->logIn();
 
         $this->request('/admin/Post/list', 'GET', 200);
-        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Action']);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Created At', 'Action']);
     }
 
     public function testPostCreateAction()
