@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "20c3935410e8505d97943f1c1594322a",
-    "content-hash": "be30d487e7275960b3bcd3207624a9a7",
+    "hash": "ecf5e81b296406e1480eacd0877c1cb0",
+    "content-hash": "4314c944a60d1a6ee8f08abc759ac09c",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1332,17 +1332,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/geekhub-php/DomainRoutingBundle.git",
-                "reference": "b7387900b2d49c6fca88afe19654e84a104e9b33"
+                "reference": "6122f7cc1cb8a9ef8a92de4fbf1c912a9e852fd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/b7387900b2d49c6fca88afe19654e84a104e9b33",
-                "reference": "b7387900b2d49c6fca88afe19654e84a104e9b33",
+                "url": "https://api.github.com/repos/geekhub-php/DomainRoutingBundle/zipball/6122f7cc1cb8a9ef8a92de4fbf1c912a9e852fd2",
+                "reference": "6122f7cc1cb8a9ef8a92de4fbf1c912a9e852fd2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4",
-                "symfony/framework-bundle": "~2.3"
+                "symfony/framework-bundle": ">=2.8"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1360,7 +1360,7 @@
                 "domain",
                 "routing"
             ],
-            "time": "2015-05-11 17:55:11"
+            "time": "2016-05-03 13:02:36"
         },
         {
             "name": "guzzle/guzzle",
@@ -6906,7 +6906,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.5.0"
     },
     "platform-dev": []
 }
