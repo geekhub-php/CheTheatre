@@ -7,7 +7,6 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
     public function testPerformanceEventListAction()
     {
         $this->request('/admin/PerformanceEvent/list', 'GET', 302);
-        $this->request('/admin/PerformanceEvent/list' . base_convert(md5(uniqid()), 11, 10), 'GET', 404);
 
         $this->logIn();
 
@@ -18,7 +17,6 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
     public function testPerformanceEventCreateAction()
     {
         $this->request('/admin/PerformanceEvent/create', 'GET', 302);
-        $this->request('/admin/PerformanceEvent/create' . base_convert(md5(uniqid()), 11, 10), 'GET', 404);
 
         $this->logIn();
 

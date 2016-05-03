@@ -58,6 +58,15 @@ class Post extends AbstractTranslateableStory
     protected $tags;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="pinned", type="boolean")
+     * @Serializer\Type("boolean")
+     * @Serializer\Expose
+     */
+    protected $pinned = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -153,5 +162,24 @@ class Post extends AbstractTranslateableStory
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @param boolean $pinned
+     * @return Post
+     */
+    public function setPinned($pinned)
+    {
+        $this->pinned = $pinned;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPinned()
+    {
+        return $this->pinned;
     }
 }

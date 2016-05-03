@@ -13,6 +13,6 @@ class HistoryControllerTest extends AbstractController
     {
         $slug = $this->getEm()->getRepository('AppBundle:History')->findOneBy([])->getSlug();
         $this->request('/histories/'.$slug);
-        $this->request('/histories/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
+        $this->request('/histories/nonexistent-slug', 'GET', 404);
     }
 }

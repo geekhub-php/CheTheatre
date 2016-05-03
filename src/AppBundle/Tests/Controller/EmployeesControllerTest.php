@@ -13,14 +13,14 @@ class EmployeesControllerTest extends AbstractController
     {
         $slug = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([])->getSlug();
         $this->request('/employees/'.$slug);
-        $this->request('/employees/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
+        $this->request('/employees/nonexistent-slug', 'GET', 404);
     }
 
     public function testGetEmployeesSlugRoles()
     {
         $slug = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([])->getSlug();
         $this->request('/employees/'.$slug.'/roles');
-        $this->request('/employees/'.base_convert(md5(uniqid()), 11, 10).'/roles', 'GET', 404);
+        $this->request('/employees/nonexistent-slug/roles', 'GET', 404);
     }
 
     /**

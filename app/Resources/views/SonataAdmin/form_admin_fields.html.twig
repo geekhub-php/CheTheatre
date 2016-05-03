@@ -75,3 +75,11 @@
     {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
     <div class="clearfix"></div>
 {% endblock %}
+
+{% block checkbox_row -%}
+    {{ block('form_row') }}
+{%- endblock checkbox_row %}
+
+{% block checkbox_label %}
+    {{ block('form_label') }}
+{% endblock checkbox_label %}

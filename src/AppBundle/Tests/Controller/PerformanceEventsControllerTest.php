@@ -13,7 +13,7 @@ class PerformanceEventsControllerTest extends AbstractController
     {
         $id = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
         $this->request('/performanceevents/'.$id);
-        $this->request('/performanceevents/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
+        $this->request('/performanceevents/100500', 'GET', 404);
     }
 
     /**

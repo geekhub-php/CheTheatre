@@ -13,7 +13,7 @@ class PostsControllerTest extends AbstractController
     {
         $slug = $this->getEm()->getRepository('AppBundle:Post')->findOneBy([])->getSlug();
         $this->request('/posts/'.$slug);
-        $this->request('/posts/'.base_convert(md5(uniqid()), 11, 10), 'GET', 404);
+        $this->request('/posts/nonexistent-slug', 'GET', 404);
     }
 
     /**
@@ -22,10 +22,33 @@ class PostsControllerTest extends AbstractController
     public function testPostsResponseFields($field)
     {
         $client = $this->getClient();
-
-        $crawler = $client->request('GET', '/posts');
+        $client->request('GET', '/posts');
 
         $this->assertContains($field, $client->getResponse()->getContent());
+    }
+
+    public function testPinnedPost()
+    {
+        $client =  $this->getClient();
+
+        $client->request('GET', '/posts');
+        $result = $client->getResponse()->getContent();
+        $result = json_decode($result);
+
+        $firstPostSlug = $result->posts[0]->slug;
+        $secondPostSlug = $result->posts[1]->slug;
+
+        $em = $this->getEm();
+        $secondPost = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $secondPostSlug]);
+        $secondPost->setPinned(true);
+        $em->flush();
+
+        $client->request('GET', '/posts');
+        $result = $client->getResponse()->getContent();
+        $result = json_decode($result);
+
+        $this->assertEquals($secondPostSlug, $result->posts[0]->slug);
+        $this->assertEquals($firstPostSlug, $result->posts[1]->slug);
     }
 
     public function providerPostsResponseFields()

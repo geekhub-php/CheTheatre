@@ -15,7 +15,7 @@ class PostAdmin extends Admin
     protected $baseRoutePattern = 'Post';
     protected $datagridValues = [
         '_sort_order' => 'DESC',
-        '_sort_by' => 'dateTime',
+        '_sort_by' => 'createdAt',
     ];
 
     private $default_locale;
@@ -67,22 +67,26 @@ class PostAdmin extends Admin
                         )
                     )
             )
-                ->add('galleryHasMedia', 'sonata_type_collection',
-                    [
-                        'required' => false,
-                        'label' => 'Gallery',
-                    ], [
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable'  => 'position',
-                        'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                        'admin_code' => 'sonata.media.admin.gallery_has_media',
-                        'link_parameters' => [
-                            'context'  => 'post',
-                            'provider' => 'sonata.media.provider.image',
-                        ],
-                    ]
-                )
+            ->add('pinned', 'checkbox', [
+                'label'    => 'pinned_or_not',
+                'required' => false,
+            ])
+            ->add('galleryHasMedia', 'sonata_type_collection',
+                [
+                    'required' => false,
+                    'label' => 'Gallery',
+                ], [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
+                    'link_parameters' => [
+                        'context'  => 'post',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
         ;
     }
     /**
@@ -95,6 +99,7 @@ class PostAdmin extends Admin
         $listMapper
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
+            ->add('createdAt')
             ->add('_action', 'actions',
                 [
                     'actions' => [
