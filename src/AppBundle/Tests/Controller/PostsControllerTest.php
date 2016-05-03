@@ -41,7 +41,7 @@ class PostsControllerTest extends AbstractController
         $em = $this->getEm();
         $secondPost = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $secondPostSlug]);
         $secondPost->setPinned(true);
-        $em->flush();
+        $em->flush($secondPost);
 
         $client->request('GET', '/posts');
         $result = $client->getResponse()->getContent();
@@ -51,8 +51,9 @@ class PostsControllerTest extends AbstractController
         $this->assertEquals($firstPostSlug, $result->posts[1]->slug);
 
         //cleenup
+        $secondPost = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $secondPostSlug]);
         $secondPost->setPinned(false);
-        $em->flush();
+        $em->flush($secondPost);
     }
 
     public function providerPostsResponseFields()
