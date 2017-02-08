@@ -11,6 +11,7 @@ employee.edit.position.label: Посада
 actor: Актор
 actress: Актриса
 theatre_director: Директор
+theatre_director_art_director: Директор-художній керівник
 acting_artistic_director: Виконуючий обовязки художнього керівника
 production_director: Режисер-постановник
 main_artist: Головний художник

@@ -11,6 +11,7 @@ employee.edit.position.label: Position
 actor: actor
 actress: actress
 theatre_director: director
+theatre_director_art_director: director, artistic director
 acting_artistic_director: acting artistic director
 production_director: production director
 main_artist: main artist

@@ -29,6 +29,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     const POSITION_ACTOR = 'actor';
     const POSITION_ACTRESS = 'actress';
     const POSITION_THEATRE_DIRECTOR = 'theatre_director'; //
+    const POSITION_THEATRE_DIRECTOR_ART_DIRECTOR = 'theatre_director_art_director'; //
     const POSITION_ACTING_ARTISTIC_DIRECTOR = 'acting_artistic_director'; //
     const POSITION_PRODUCTION_DIRECTOR = 'production_director';
     const POSITION_MAIN_ARTIST = 'main_artist';
@@ -398,6 +399,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
             self::POSITION_ACTOR => 'actor',
             self::POSITION_ACTRESS => 'actress',
             self::POSITION_THEATRE_DIRECTOR => 'theatre_director',
+            self::POSITION_THEATRE_DIRECTOR_ART_DIRECTOR => 'theatre_director_art_director',
             self::POSITION_ACTING_ARTISTIC_DIRECTOR => 'acting_artistic_director',
             self::POSITION_PRODUCTION_DIRECTOR => 'production_director',
             self::POSITION_MAIN_ARTIST => 'main_artist',
