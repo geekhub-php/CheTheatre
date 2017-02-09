@@ -158,9 +158,17 @@
                     "200": {
                         "description": "Returned when all parameters were correct",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/PerformanceEvent"
+                            "type": "object",
+                            "properties": {
+                                "performance_events": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/PerformanceEvent"
+                                    }
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
                             }
                         }
                     },
