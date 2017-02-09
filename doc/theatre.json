@@ -99,6 +99,119 @@
                     }
                 }
             }
+        },
+        "/posts": {
+            "get": {
+                "summary": "Return collection of posts",
+                "description": "Multiple status values can be provided with comma seperated strings",
+                "produces": [
+                    "application/json",
+                    "application/xml",
+                    "text/html"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Count entries at one page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Number of page to be shown",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when all parameters were correct",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "posts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Post"
+                                    }
+                                },
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/post/{slug}": {
+            "get": {
+                "summary": "Find an Post by unique property {slug}",
+                "description": "Return an Post by unique property {slug}",
+                "produces": [
+                    "application/json",
+                    "application/xml",
+                    "text/html"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of Post to use",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Post by {slug} was found",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Post"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Post by {slug} was not found"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
