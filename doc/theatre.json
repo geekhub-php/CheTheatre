@@ -155,15 +155,6 @@
                                         "$ref": "#/definitions/History"
                                     }
                                 },
-                                "slug": {
-                                    "type": "string"
-                                },
-                                "created_at": {
-                                    "type": "string"
-                                },
-                                "updated_at": {
-                                    "type": "string"
-                                },
                                 "count": {
                                     "type": "integer"
                                 }
@@ -211,18 +202,6 @@
                                     "items": {
                                         "$ref": "#/definitions/History"
                                     }
-                                },
-                                "slug": {
-                                    "type": "string"
-                                },
-                                "created_at": {
-                                    "type": "string"
-                                },
-                                "updated_at": {
-                                    "type": "string"
-                                },
-                                "count": {
-                                    "type": "integer"
                                 }
                             }
                         }
