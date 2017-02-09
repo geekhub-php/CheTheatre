@@ -130,6 +130,7 @@
                         "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
+                        "pattern": "^[a-zA-Z]+",
                         "default": "uk"
                     }
                 ],
@@ -181,7 +182,8 @@
                         "name": "slug",
                         "description": "Slug of Post to use",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^[a-zA-Z]+"
                     },
                     {
                         "in": "query",
@@ -189,6 +191,7 @@
                         "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
+                        "pattern": "^[a-zA-Z]+",
                         "default": "uk"
                     }
                 ],
