@@ -99,6 +99,139 @@
                     }
                 }
             }
+        },
+        "/histories": {
+            "get": {
+                "summary": "Finds Pets by status",
+                "description": "Multiple status values can be provided with comma seperated strings",
+                "operationId": "findHistoryByStausId",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Status values that need to be considered for filter, default is 5",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Status values that need to be considered for filter, default is 1",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                },
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "histories": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/History"
+                                    }
+                                },
+                                "slug": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/histories/slug": {
+            "get": {
+                "summary": "slug historiies",
+                "description": "The slug historiies return information about the history",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "slug",
+                        "description": "values string ",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "history": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/History"
+                                    }
+                                },
+                                "slug": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entity with given not found"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -413,6 +546,9 @@
                 },
                 "updated_by": {
                     "type": "string"
+                },
+                "performances": {
+                    "type": "object"
                 },
                 "mainPicture": {
                     "type": "object",
