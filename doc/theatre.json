@@ -105,9 +105,7 @@
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma seperated strings",
                 "produces": [
-                    "application/json",
-                    "application/xml",
-                    "text/html"
+                    "application/json"
                 ],
                 "parameters": [
                     {
@@ -174,11 +172,8 @@
         "/post/{slug}": {
             "get": {
                 "summary": "Find an Post by unique property {slug}",
-                "description": "Return an Post by unique property {slug}",
                 "produces": [
-                    "application/json",
-                    "application/xml",
-                    "text/html"
+                    "application/json"
                 ],
                 "parameters": [
                     {
@@ -201,7 +196,7 @@
                     "200": {
                         "description": "Returned when Post by {slug} was found",
                         "schema": {
-                            "type": "array",
+                            "type": "object",
                             "items": {
                                 "$ref": "#/definitions/Post"
                             }
