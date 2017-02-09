@@ -234,6 +234,13 @@
             }
         }
     },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
     "definitions": {
         "Link": {
             "type": "object",
@@ -305,6 +312,81 @@
                 }
             }
         },
+        "Performance": {
+            "type": "object",
+            "properties": {
+                "locale": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "premiere": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "mainPicture": {
+                    "$ref": "#/definitions/PerformanceImage"
+                },
+                "sliderImage": {
+                    "type": "object",
+                    "properties": {
+                        "reference": {
+                            "$ref": "#/definitions/Image"
+                        },
+                        "slider_small": {
+                            "$ref": "#/definitions/Image"
+                        },
+                        "slider_slider": {
+                            "$ref": "#/definitions/Image"
+                        }
+                    }
+                }
+            }
+        },
+        "PerformanceEvent": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "date_time": {
+                    "type": "string"
+                },
+                "venue": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "performance": {
+                    "$ref": "#/definitions/Performance"
+                }
+            }
+        },
         "Employee": {
             "type": "object",
             "properties": {
@@ -372,6 +454,62 @@
                 }
             }
         },
+        "Role": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "performance": {
+                    "$ref": "#/definitions/Performance"
+                },
+                "employee": {
+                    "$ref": "#/definitions/Employee"
+                }
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "locale": {
+                    "type": "string",
+                    "enum": [
+                        "uk",
+                        "en"
+                    ]
+                }
+            }
+        },
         "History": {
             "type": "object",
             "properties": {
@@ -424,6 +562,56 @@
                         "history_big": {
                             "$ref": "#/definitions/Image"
                         }
+                    }
+                }
+            }
+        },
+        "Post": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "short_description": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "locale": {
+                    "type": "string",
+                    "enum": [
+                        "uk",
+                        "en"
+                    ]
+                },
+                "pinned": {
+                    "type": "boolean"
+                },
+                "mainPicture": {
+                    "type": "object",
+                    "properties": {
+                        "reference": {
+                            "$ref": "#/definitions/Image"
+                        },
+                        "post_small": {
+                            "$ref": "#/definitions/Image"
+                        },
+                        "post_big": {
+                            "$ref": "#/definitions/Image"
+                        },
+                        "post_main": {
+                            "$ref": "#/definitions/Image"
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Tag"
                     }
                 }
             }
