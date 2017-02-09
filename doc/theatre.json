@@ -12,7 +12,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "petstore.swagger.io",
+    "host": "host",
     "basePath": "/v2",
     "schemes": [
         "https"
@@ -197,9 +197,7 @@
                         "description": "Returned when Post by {slug} was found",
                         "schema": {
                             "type": "object",
-                            "items": {
-                                "$ref": "#/definitions/Post"
-                            }
+                            "$ref": "#/definitions/Post"
                         }
                     },
                     "404": {
