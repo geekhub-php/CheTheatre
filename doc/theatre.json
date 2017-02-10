@@ -12,7 +12,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "host",
+    "host": "api.theatre.pp.ua",
     "basePath": "/v2",
     "schemes": [
         "https"
@@ -130,8 +130,11 @@
                         "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -170,7 +173,7 @@
                 }
             }
         },
-        "/post/{slug}": {
+        "/posts/{slug}": {
             "get": {
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
@@ -183,7 +186,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -191,15 +194,17 @@
                         "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Returned when Post by {slug} was found",
                         "schema": {
-                            "type": "object",
                             "$ref": "#/definitions/Post"
                         }
                     },
