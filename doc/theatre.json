@@ -115,7 +115,6 @@
                         "description": "Count entries at one page, default is 10",
                         "required": false,
                         "type": "integer",
-                        "pattern": "\\d+",
                         "default": 10
                     },
                     {
@@ -124,7 +123,6 @@
                         "description": "Number of page to be shown, default is 1",
                         "required": false,
                         "type": "integer",
-                        "pattern": "\\d+",
                         "default": 1
                     },
                     {
@@ -133,8 +131,11 @@
                         "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -183,7 +184,8 @@
                         "name": "slug",
                         "description": "Performance slug",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -191,8 +193,11 @@
                         "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -221,7 +226,8 @@
                         "name": "slug",
                         "description": "Performance slug",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -229,8 +235,11 @@
                         "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-zA-Z]+",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
