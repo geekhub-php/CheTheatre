@@ -12,7 +12,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "petstore.swagger.io",
+    "host": "api.theatre.pp.ua",
     "basePath": "/v2",
     "schemes": [
         "https"
@@ -96,6 +96,283 @@
                     },
                     "404": {
                         "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "summary": "Return collection of posts",
+                "description": "Multiple status values can be provided with comma seperated strings",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Count entries at one page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Number of page to be shown",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when all parameters were correct",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "posts": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Post"
+                                    }
+                                },
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/posts/{slug}": {
+            "get": {
+                "summary": "Find an Post by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of Post to use",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Post by {slug} was found",
+                        "schema": {
+                            "$ref": "#/definitions/Post"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Post by {slug} was not found"
+                    }
+                }
+            }
+        },
+        "/performances": {
+            "get": {
+                "summary": "Returns a collection of Performances",
+                "description": "Multiple values can be provided",
+                "operationId": "findPerformances",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Count entries at one page, default is 10",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Number of page to be shown, default is 1",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when all parameters were correct",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "perfomances": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Performance"
+                                    }
+                                },
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/performances/{slug}": {
+            "get": {
+                "summary": "Returns Performance by unique property {slug}",
+                "operationId": "findPerfomanceBySlug",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "$ref": "#/definitions/Performance"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
+                    }
+                }
+            }
+        },
+        "/performances/{slug}/roles": {
+            "get": {
+                "summary": "Returns Performance roles by his unique {slug}",
+                "operationId": "findPerfomanceRolesBySlug",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "roles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Role"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
                     }
                 }
             }
@@ -534,12 +811,6 @@
                 },
                 "updated_by": {
                     "type": "string"
-                },
-                "performances": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Performance"
-                    }
                 },
                 "mainPicture": {
                     "type": "object",
