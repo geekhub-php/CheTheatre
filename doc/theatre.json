@@ -462,7 +462,7 @@
                         "description": "values string ",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\-]+$"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
