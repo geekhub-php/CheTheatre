@@ -131,7 +131,11 @@
                         "description": "Status values that need to be considered for filter, default is \"uk\"",
                         "required": false,
                         "type": "string",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -167,7 +171,7 @@
                 }
             }
         },
-        "/histories/slug": {
+        "/histories/{slug}": {
             "get": {
                 "summary": "slug historiies",
                 "description": "The slug historiies return information about the history",
@@ -176,11 +180,12 @@
                 ],
                 "parameters": [
                     {
-                        "in": "query",
+                        "in": "path",
                         "name": "slug",
                         "description": "values string ",
-                        "required": false,
-                        "type": "string"
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\-]+$"
                     },
                     {
                         "in": "query",
@@ -188,7 +193,11 @@
                         "description": "Status values that need to be considered for filter, default is \"uk\"",
                         "required": false,
                         "type": "string",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -198,7 +207,7 @@
                             "type": "object",
                             "properties": {
                                 "history": {
-                                    "type": "array",
+                                    "type": "object",
                                     "items": {
                                         "$ref": "#/definitions/History"
                                     }
@@ -527,7 +536,10 @@
                     "type": "string"
                 },
                 "performances": {
-                    "type": "object"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Performance"
+                    }
                 },
                 "mainPicture": {
                     "type": "object",
