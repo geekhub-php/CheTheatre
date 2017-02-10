@@ -12,17 +12,15 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "petstore.swagger.io",
-    "basePath": "/v2",
+    "host": "api.theatre.pp.ua",
+    "basePath": "/",
     "schemes": [
-        "https"
+        "http"
     ],
     "paths": {
         "/employees": {
             "get": {
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma seperated strings",
-                "operationId": "findPetsByStatus",
+                "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
                 ],
@@ -30,7 +28,7 @@
                     {
                         "in": "query",
                         "name": "limit",
-                        "description": "Status values that need to be considered for filter, default is 10",
+                        "description": "Number of employees per one page",
                         "required": false,
                         "type": "integer",
                         "default": 10
@@ -38,7 +36,7 @@
                     {
                         "in": "query",
                         "name": "page",
-                        "description": "Status values that need to be considered for filter, default is 1",
+                        "description": "Page number",
                         "required": false,
                         "type": "integer",
                         "default": 1
@@ -46,9 +44,10 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Language of data you want to receive",
                         "required": false,
                         "type": "string",
+                        "pattern": "[a-z]{2,2}",
                         "default": "uk"
                     }
                 ],
@@ -58,29 +57,16 @@
                         "schema": {
                             "type": "object",
                             "properties": {
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                },
                                 "page": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "example": 1
                                 },
                                 "total_count": {
-                                    "type": "integer"
-                                },
-                                "slug": {
-                                    "type": "string"
-                                },
-                                "created_at": {
-                                    "type": "string"
-                                },
-                                "updated_at": {
-                                    "type": "string"
-                                },
-                                "year": {
-                                    "type": "integer"
-                                },
-                                "type": {
-                                    "type": "string"
-                                },
-                                "count": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "example": 65
                                 },
                                 "employees": {
                                     "type": "array",
@@ -88,14 +74,92 @@
                                         "$ref": "#/definitions/Employee"
                                     }
                                 },
-                                "_links": {
-                                    "$ref": "#/definitions/PaginationLinks"
+                                "count": {
+                                    "type": "integer"
                                 }
                             }
                         }
                     },
                     "404": {
                         "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/employees/{slug}": {
+            "get": {
+                "description": "Returns an Employee by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of employee in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "pattern": "[a-z]{2,2}",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Employee"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when employee by {slug} not found in database"
+                    }
+                }
+            }
+        },
+        "/employees/{slug}/roles": {
+            "get": {
+                "description": "Returns an Employee roles by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of employee in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "pattern": "[a-z]{2,2}",
+                        "default": "uk"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Role"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when employee by {slug} not found in database"
                     }
                 }
             }
@@ -109,6 +173,17 @@
         }
     },
     "definitions": {
+        "Locale": {
+            "type": "string",
+            "enum": [
+                "uk",
+                "en"
+            ]
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "2017-02-17T12:14:24+0200"
+        },
         "Link": {
             "type": "object",
             "properties": {
@@ -147,35 +222,53 @@
                     "type": "object",
                     "properties": {
                         "alt": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "Cherkasy theatre Logo"
                         },
                         "title": {
                             "type": "string"
                         },
                         "src": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "http://theatre-shevchenko.ck.ua/img/logo.png"
                         },
                         "width": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 800
                         },
                         "height": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 600
                         }
                     }
                 }
             }
         },
-        "PerformanceImage": {
+        "ImageBlock": {
             "type": "object",
             "properties": {
                 "reference": {
                     "$ref": "#/definitions/Image"
                 },
-                "performance_small": {
+                "employee_small": {
                     "$ref": "#/definitions/Image"
                 },
-                "performance_big": {
+                "employee_big": {
                     "$ref": "#/definitions/Image"
+                }
+            }
+        },
+        "GaleryImage": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "images": {
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
@@ -183,7 +276,7 @@
             "type": "object",
             "properties": {
                 "locale": {
-                    "type": "string"
+                    "$ref": "#/definitions/Locale"
                 },
                 "title": {
                     "type": "string"
@@ -201,27 +294,16 @@
                     "type": "string"
                 },
                 "created_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "updated_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "mainPicture": {
-                    "$ref": "#/definitions/PerformanceImage"
+                    "$ref": "#/definitions/ImageBlock"
                 },
                 "sliderImage": {
-                    "type": "object",
-                    "properties": {
-                        "reference": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "slider_small": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "slider_slider": {
-                            "$ref": "#/definitions/Image"
-                        }
-                    }
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
@@ -257,96 +339,78 @@
         "Employee": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
+                "locale": {
+                    "$ref": "#/definitions/Locale"
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Larisa"
                 },
                 "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Burlaka"
                 },
                 "dob": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "position": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "actress"
                 },
                 "biography": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Working in theatre since 2001"
                 },
                 "slug": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "larisa-burlaka"
                 },
                 "created_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "updated_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "deleted_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "gallery": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "title": {
-                                "type": "string"
-                            },
-                            "decription": {
-                                "type": "string"
-                            },
-                            "images": {
-                                "$ref": "#/definitions/PerformanceImage"
-                            }
-                        }
+                        "$ref": "#/definitions/GaleryImage"
                     }
                 },
                 "avatar": {
-                    "type": "object",
-                    "properties": {
-                        "reference": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "employee_small": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "employee_big": {
-                            "$ref": "#/definitions/Image"
-                        }
-                    }
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
         "Role": {
             "type": "object",
             "properties": {
+                "locale": {
+                    "$ref": "#/definitions/Locale"
+                },
                 "title": {
                     "type": "string"
                 },
                 "description": {
                     "type": "string"
                 },
-                "slug": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
-                "performance": {
+                "perfomance": {
                     "$ref": "#/definitions/Performance"
                 },
                 "employee": {
                     "$ref": "#/definitions/Employee"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
