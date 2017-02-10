@@ -12,17 +12,15 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "petstore.swagger.io",
-    "basePath": "/v2",
+    "host": "api.theatre.pp.ua",
+    "basePath": "/",
     "schemes": [
-        "https"
+        "http"
     ],
     "paths": {
         "/employees": {
             "get": {
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma seperated strings",
-                "operationId": "findPetsByStatus",
+                "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
                 ],
@@ -30,7 +28,7 @@
                     {
                         "in": "query",
                         "name": "limit",
-                        "description": "Status values that need to be considered for filter, default is 10",
+                        "description": "Number of employees per one page",
                         "required": false,
                         "type": "integer",
                         "default": 10
@@ -38,7 +36,7 @@
                     {
                         "in": "query",
                         "name": "page",
-                        "description": "Status values that need to be considered for filter, default is 1",
+                        "description": "Page number",
                         "required": false,
                         "type": "integer",
                         "default": 1
@@ -46,15 +44,176 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Language of data you want to receive",
                         "required": false,
                         "type": "string",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                },
+                                "page": {
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "total_count": {
+                                    "type": "integer",
+                                    "example": 65
+                                },
+                                "employees": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Employee"
+                                    }
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/employees/{slug}": {
+            "get": {
+                "description": "Returns an Employee by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of employee in database",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Employee"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when employee by {slug} not found in database"
+                    }
+                }
+            }
+        },
+        "/employees/{slug}/roles": {
+            "get": {
+                "description": "Returns an Employee roles by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of employee in database",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Role"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when employee by {slug} not found in database"
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "summary": "Return collection of posts",
+                "description": "Multiple status values can be provided with comma seperated strings",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Count entries at one page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Number of page to be shown",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when all parameters were correct",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -64,28 +223,16 @@
                                 "total_count": {
                                     "type": "integer"
                                 },
-                                "slug": {
-                                    "type": "string"
-                                },
-                                "created_at": {
-                                    "type": "string"
-                                },
-                                "updated_at": {
-                                    "type": "string"
-                                },
-                                "year": {
+                                "count": {
                                     "type": "integer"
                                 },
                                 "type": {
                                     "type": "string"
                                 },
-                                "count": {
-                                    "type": "integer"
-                                },
-                                "employees": {
+                                "posts": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/Employee"
+                                        "$ref": "#/definitions/Post"
                                     }
                                 },
                                 "_links": {
@@ -96,6 +243,210 @@
                     },
                     "404": {
                         "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/posts/{slug}": {
+            "get": {
+                "summary": "Find an Post by unique property {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Slug of Post to use",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Post by {slug} was found",
+                        "schema": {
+                            "$ref": "#/definitions/Post"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Post by {slug} was not found"
+                    }
+                }
+            }
+        },
+        "/performances": {
+            "get": {
+                "summary": "Returns a collection of Performances",
+                "description": "Multiple values can be provided",
+                "operationId": "findPerformances",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Count entries at one page, default is 10",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Number of page to be shown, default is 1",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when all parameters were correct",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "perfomances": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Performance"
+                                    }
+                                },
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/performances/{slug}": {
+            "get": {
+                "summary": "Returns Performance by unique property {slug}",
+                "operationId": "findPerfomanceBySlug",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "$ref": "#/definitions/Performance"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
+                    }
+                }
+            }
+        },
+        "/performances/{slug}/roles": {
+            "get": {
+                "summary": "Returns Performance roles by his unique {slug}",
+                "operationId": "findPerfomanceRolesBySlug",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "roles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Role"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
                     }
                 }
             }
@@ -142,16 +493,20 @@
                         "name": "performance",
                         "description": "Performance slug",
                         "required": false,
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
                         "name": "locale",
                         "description": "Selects language of data you want to receive",
                         "required": true,
-                        "pattern": "^[a-zA-Z]+",
                         "type": "string",
-                        "default": "uk"
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
                     }
                 ],
                 "responses": {
@@ -177,6 +532,127 @@
                     }
                 }
             }
+        },
+        "/histories": {
+            "get": {
+                "summary": "Finds Pets by status",
+                "description": "Multiple status values can be provided with comma seperated strings",
+                "operationId": "findHistoryByStausId",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Status values that need to be considered for filter, default is 5",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Status values that need to be considered for filter, default is 1",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_links": {
+                                    "$ref": "#/definitions/PaginationLinks"
+                                },
+                                "page": {
+                                    "type": "integer"
+                                },
+                                "total_count": {
+                                    "type": "integer"
+                                },
+                                "histories": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/History"
+                                    }
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entities with given limit and offset are not found"
+                    }
+                }
+            }
+        },
+        "/histories/{slug}": {
+            "get": {
+                "summary": "slug historiies",
+                "description": "The slug historiies return information about the history",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "values string ",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[a-z\\d-]+$"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "history": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/definitions/History"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the entity with given not found"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -187,6 +663,17 @@
         }
     },
     "definitions": {
+        "Locale": {
+            "type": "string",
+            "enum": [
+                "uk",
+                "en"
+            ]
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "2017-02-17T12:14:24+0200"
+        },
         "Link": {
             "type": "object",
             "properties": {
@@ -225,35 +712,53 @@
                     "type": "object",
                     "properties": {
                         "alt": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "Cherkasy theatre Logo"
                         },
                         "title": {
                             "type": "string"
                         },
                         "src": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "http://theatre-shevchenko.ck.ua/img/logo.png"
                         },
                         "width": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 800
                         },
                         "height": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 600
                         }
                     }
                 }
             }
         },
-        "PerformanceImage": {
+        "ImageBlock": {
             "type": "object",
             "properties": {
                 "reference": {
                     "$ref": "#/definitions/Image"
                 },
-                "performance_small": {
+                "employee_small": {
                     "$ref": "#/definitions/Image"
                 },
-                "performance_big": {
+                "employee_big": {
                     "$ref": "#/definitions/Image"
+                }
+            }
+        },
+        "GaleryImage": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "images": {
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
@@ -261,7 +766,7 @@
             "type": "object",
             "properties": {
                 "locale": {
-                    "type": "string"
+                    "$ref": "#/definitions/Locale"
                 },
                 "title": {
                     "type": "string"
@@ -279,27 +784,16 @@
                     "type": "string"
                 },
                 "created_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "updated_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "mainPicture": {
-                    "$ref": "#/definitions/PerformanceImage"
+                    "$ref": "#/definitions/ImageBlock"
                 },
                 "sliderImage": {
-                    "type": "object",
-                    "properties": {
-                        "reference": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "slider_small": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "slider_slider": {
-                            "$ref": "#/definitions/Image"
-                        }
-                    }
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
@@ -335,96 +829,78 @@
         "Employee": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
+                "locale": {
+                    "$ref": "#/definitions/Locale"
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Larisa"
                 },
                 "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Burlaka"
                 },
                 "dob": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "position": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "actress"
                 },
                 "biography": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Working in theatre since 2001"
                 },
                 "slug": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "larisa-burlaka"
                 },
                 "created_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "updated_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "deleted_at": {
-                    "type": "string"
+                    "$ref": "#/definitions/DateTime"
                 },
                 "gallery": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "title": {
-                                "type": "string"
-                            },
-                            "decription": {
-                                "type": "string"
-                            },
-                            "images": {
-                                "$ref": "#/definitions/PerformanceImage"
-                            }
-                        }
+                        "$ref": "#/definitions/GaleryImage"
                     }
                 },
                 "avatar": {
-                    "type": "object",
-                    "properties": {
-                        "reference": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "employee_small": {
-                            "$ref": "#/definitions/Image"
-                        },
-                        "employee_big": {
-                            "$ref": "#/definitions/Image"
-                        }
-                    }
+                    "$ref": "#/definitions/ImageBlock"
                 }
             }
         },
         "Role": {
             "type": "object",
             "properties": {
+                "locale": {
+                    "$ref": "#/definitions/Locale"
+                },
                 "title": {
                     "type": "string"
                 },
                 "description": {
                     "type": "string"
                 },
-                "slug": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
-                "performance": {
+                "perfomance": {
                     "$ref": "#/definitions/Performance"
                 },
                 "employee": {
                     "$ref": "#/definitions/Employee"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
