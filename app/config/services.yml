@@ -28,7 +28,9 @@ services:
 
     two_performance_events_per_day_validator:
         class: AppBundle\Validator\TwoPerformanceEventsPerDayValidator
-        arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
+        arguments:
+            - "@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')"
+            - "@translator"
         tags:
             - { name: validator.constraint_validator, alias: two_performance_events_per_day }
 
@@ -41,6 +43,6 @@ services:
     app.event.entity_delete:
         class: AppBundle\EventListener\EntityDeleteListener
         arguments:
-            - @security.token_storage
+            - "@security.token_storage"
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
