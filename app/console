@@ -9,6 +9,7 @@ set_time_limit(0);
 
 require_once __DIR__.'/bootstrap.php.cache';
 require_once __DIR__.'/AppKernel.php';
+require_once __DIR__.'/ApiKernel.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -16,21 +17,16 @@ use Symfony\Component\Debug\Debug;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
-$domain = $input->getParameterOption(array('--hostname', '-d'));
-if (!$domain) {
-    $output = new Symfony\Component\Console\Output\ConsoleOutput();
-    $formatter = new \Symfony\Component\Console\Helper\FormatterHelper();
-    $output->writeln($formatter->formatBlock("You must specify hostname", 'error', true));
-
-    exit(1);
-}
 $debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
 
 if ($debug) {
     Debug::enable();
 }
 
-$kernel = new AppKernel($env, $debug);
-$kernel->setDomain($domain);
+if ('api' === $env) {
+    $kernel = new ApiKernel($env, $debug);
+} else {
+    $kernel = new AppKernel($env, $debug);
+}
 $application = new Application($kernel);
 $application->run($input);

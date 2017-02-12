@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -50,45 +51,50 @@ class LoadCsvFixturesCommand extends ContainerAwareCommand
         $ymlDir = __DIR__.'/../DataFixtures/ORM/';
         $ymlFile = $ymlDir.$fileName.'.yml';
 
-        if ($yamlArray = $this->csvToArray($entityName, $csvFile)) {
-            $yaml = Yaml::dump($yamlArray, 3);
-            $yaml = str_replace('\'<', '<', $yaml);
-            $yaml = str_replace('>\'', '>', $yaml);
-            $yaml = str_replace('\'[', '[', $yaml);
-            $yaml = str_replace(']\'', ']', $yaml);
+        $yamlArray = $this->csvToArray($entityName, $csvFile);
 
-            file_put_contents($ymlFile, $yaml);
+        $yaml = Yaml::dump($yamlArray, 3);
+        $yaml = str_replace('\'<', '<', $yaml);
+        $yaml = str_replace('>\'', '>', $yaml);
+        $yaml = str_replace('\'[', '[', $yaml);
+        $yaml = str_replace(']\'', ']', $yaml);
 
-            $output->writeln('Load is finished!');
-        } else {
-            $output->writeln('Load is failed!');
-        }
+        file_put_contents($ymlFile, $yaml);
+
+        $output->writeln('Load is finished!');
     }
 
+    /**
+     * @param $entityName
+     * @param $csvFile
+     * @return array
+     */
     protected function csvToArray($entityName, $csvFile)
     {
-        if (($handle = fopen($csvFile, 'r')) !== false) {
-            $allData = [];
+        $handle = fopen($csvFile, 'r');
 
-            while (($data = fgetcsv($handle)) !== false) {
-                $allData[] = $data;
-            }
-
-            fclose($handle);
-
-            $entityPath = $allData[0][0];
-            $yamlArray = [];
-            $number = count($allData[0]);
-
-            for ($i = 2; $i < (count($allData)); $i++) {
-                for ($c = 0; $c < $number; $c++) {
-                    $yamlArray[$entityPath][$entityName.($i - 1)][$allData[1][$c]] = $allData[$i][$c];
-                }
-            }
-
-            return $yamlArray;
-        } else {
-            return;
+        if ($handle === false) {
+            throw new RuntimeException(sprintf('Failed load "%s" file', $csvFile));
         }
+
+        $allData = [];
+
+        while (($data = fgetcsv($handle)) !== false) {
+            $allData[] = $data;
+        }
+
+        fclose($handle);
+
+        $entityPath = $allData[0][0];
+        $yamlArray = [];
+        $number = count($allData[0]);
+
+        for ($i = 2; $i < (count($allData)); $i++) {
+            for ($c = 0; $c < $number; $c++) {
+                $yamlArray[$entityPath][$entityName.($i - 1)][$allData[1][$c]] = $allData[$i][$c];
+            }
+        }
+
+        return $yamlArray;
     }
 }

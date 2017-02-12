@@ -22,7 +22,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")
  */
-class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Employee extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
@@ -108,7 +108,12 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="employee", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Role",
+     *     mappedBy="employee",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
      */
     private $roles;
 

@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\HistoryResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("History")
@@ -30,7 +31,12 @@ class HistoryController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -62,46 +68,63 @@ class HistoryController extends Controller
 
         $historyResponse = new HistoryResponse();
         $historyResponse->setHistory($history);
-        $historyResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:History')->getCount());
+        $historyResponse->setTotalCount(
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:History')->getCount()
+        );
         $historyResponse->setPageCount(ceil($historyResponse->getTotalCount() / $paramFetcher->get('limit')));
         $historyResponse->setPage($paramFetcher->get('page'));
 
-        $self = $this->generateUrl('get_histories', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $paramFetcher->get('page'),
-        ], true
+        $self = $this->generateUrl(
+            'get_histories',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $first = $this->generateUrl('get_histories', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-        ], true
+        $first = $this->generateUrl(
+            'get_histories',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $historyResponse->getPageCount() ?
-            $this->generateUrl('get_histories', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')+1,
-            ], true
+            $this->generateUrl(
+                'get_histories',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                ],
+                true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_histories', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')-1,
-            ], true
+            $this->generateUrl(
+                'get_histories',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
-        $last = $this->generateUrl('get_histories', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $historyResponse->getPageCount(),
-        ], true
+        $last = $this->generateUrl(
+            'get_histories',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $historyResponse->getPageCount(),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();
@@ -126,7 +149,12 @@ class HistoryController extends Controller
      *  output = "AppBundle\Entity\History"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */

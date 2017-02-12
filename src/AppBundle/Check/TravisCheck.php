@@ -47,7 +47,12 @@ class TravisCheck implements CheckInterface
     {
         $client = new Guzzle();
 
-        $url = sprintf('https://api.travis-ci.org/repos/%s/%s/branches/%s', $this->account, $this->repository, $this->branch);
+        $url = sprintf(
+            'https://api.travis-ci.org/repos/%s/%s/branches/%s',
+            $this->account,
+            $this->repository,
+            $this->branch
+        );
 
         $res = $client->get($url);
 

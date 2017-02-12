@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\PerformancesResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("Performance")
@@ -30,17 +31,26 @@ class PerformancesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $performances = $em
-                        ->getRepository('AppBundle:Performance')
-                        ->findBy(['festival' => null], ['premiere' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+        $performances = $em->getRepository('AppBundle:Performance')->findBy(
+            ['festival' => null],
+            ['premiere' => 'DESC'],
+            $paramFetcher->get('limit'),
+            ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+        );
 
         $performancesTranslated = array();
 
@@ -59,46 +69,63 @@ class PerformancesController extends Controller
 
         $performancesResponse = new PerformancesResponse();
         $performancesResponse->setPerformances($performances);
-        $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
+        $performancesResponse->setTotalCount(
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount()
+        );
         $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
         $performancesResponse->setPage($paramFetcher->get('page'));
 
-        $self = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $paramFetcher->get('page'),
-        ], true
+        $self = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $first = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-        ], true
+        $first = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
-            $this->generateUrl('get_performances', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')+1,
-            ], true
+            $this->generateUrl(
+                'get_performances',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_performances', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')-1,
-            ], true
+            $this->generateUrl(
+                'get_performances',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
-        $last = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $performancesResponse->getPageCount(),
-        ], true
+        $last = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $performancesResponse->getPageCount(),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();
@@ -111,9 +138,30 @@ class PerformancesController extends Controller
 
         foreach ($performances as $performance) {
             $performance->setLinks([
-                ['rel' => 'self', 'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)],
-                ['rel' => 'self.roles', 'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)],
-                ['rel' => 'self.events', 'href' => $this->generateUrl('get_performanceevents', ['performance' => $performance->getSlug()], true)],
+                [
+                    'rel' => 'self',
+                    'href' => $this->generateUrl(
+                        'get_performance',
+                        ['slug' => $performance->getSlug()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
+                ],
+                [
+                    'rel' => 'self.roles',
+                    'href' => $this->generateUrl(
+                        'get_performance_roles',
+                        ['slug' => $performance->getSlug()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
+                ],
+                [
+                    'rel' => 'self.events',
+                    'href' => $this->generateUrl(
+                        'get_performanceevents',
+                        ['performance' => $performance->getSlug()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
+                ],
             ]);
         }
 
@@ -131,7 +179,12 @@ class PerformancesController extends Controller
      *  output = "AppBundle\Entity\Performance"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -167,7 +220,12 @@ class PerformancesController extends Controller
      *  output = "array<AppBundle\Entity\Role>"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -229,7 +287,12 @@ class PerformancesController extends Controller
      * deprecated = true
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */

@@ -16,15 +16,31 @@ class PostsControllerTest extends AbstractController
         $this->request('/posts/nonexistent-slug', 'GET', 404);
     }
 
-    /**
-     * @dataProvider providerPostsResponseFields
-     */
-    public function testPostsResponseFields($field)
+    public function testPostsResponseFields()
     {
         $client = $this->getClient();
         $client->request('GET', '/posts');
+        $content = json_decode($client->getResponse()->getContent(), true);
 
-        $this->assertContains($field, $client->getResponse()->getContent());
+        self::assertArrayHasKey('page', $content);
+        self::assertArrayHasKey('total_count', $content);
+        self::assertArrayHasKey('posts', $content);
+        self::assertArrayHasKey('count', $content);
+
+        self::assertEquals(1, $content['page']);
+        self::assertEquals(16, $content['total_count']);
+        self::assertCount(10, $content['posts']);
+        self::assertEquals(10, $content['count']);
+
+        self::assertArrayHasKey('locale', $content['posts'][0]);
+        self::assertArrayHasKey('title', $content['posts'][0]);
+        self::assertArrayHasKey('short_description', $content['posts'][0]);
+        self::assertArrayHasKey('main_picture', $content['posts'][0]);
+        self::assertArrayHasKey('slug', $content['posts'][0]);
+        self::assertArrayHasKey('created_at', $content['posts'][0]);
+        self::assertArrayHasKey('updated_at', $content['posts'][0]);
+        self::assertArrayHasKey('tags', $content['posts'][0]);
+        self::assertArrayHasKey('pinned', $content['posts'][0]);
     }
 
     public function testPinnedPost()
@@ -54,41 +70,5 @@ class PostsControllerTest extends AbstractController
         $secondPost = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $secondPostSlug]);
         $secondPost->setPinned(false);
         $em->flush($secondPost);
-    }
-
-    public function providerPostsResponseFields()
-    {
-        return [
-            ['posts'],
-            ['title'],
-            ['short_description'],
-            ['text'],
-            ['mainPicture'],
-            ['reference'],
-            ['post_small'],
-            ['post_big'],
-            ['url'],
-            ['properties'],
-            ['alt'],
-            ['title'],
-            ['src'],
-            ['width'],
-            ['height'],
-            ['slug'],
-            ['tags'],
-            ['id'],
-            ['created_at'],
-            ['updated_at'],
-            ['page'],
-            ['count'],
-            ['total_count'],
-            ['_links'],
-            ['self'],
-            ['first'],
-            ['prev'],
-            ['next'],
-            ['last'],
-            ['href'],
-        ];
     }
 }

@@ -23,6 +23,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
      * @param  InputInterface  $input
      * @param  OutputInterface $output
      * @return int|null|void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

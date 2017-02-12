@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\PostsResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("Post")
@@ -30,10 +31,16 @@ class PostsController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      * @QueryParam(name="tag", description="You can receive posts by Tag slug, without Tag you will receive all posts")
      *
      * @RestView
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -75,51 +82,68 @@ class PostsController extends Controller
 
         $postsResponse = new PostsResponse();
         $postsResponse->setPosts($posts);
-        $postsResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount($paramFetcher->get('tag')));
+        $postsResponse->setTotalCount(
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:Post')->getCount($paramFetcher->get('tag'))
+        );
         $postsResponse->setPageCount(ceil($postsResponse->getTotalCount() / $paramFetcher->get('limit')));
         $postsResponse->setPage($paramFetcher->get('page'));
 
-        $self = $this->generateUrl('get_posts', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $paramFetcher->get('page'),
-            'tag' => $paramFetcher->get('tag'),
-        ], true
+        $self = $this->generateUrl(
+            'get_posts',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page'),
+                'tag' => $paramFetcher->get('tag'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $first = $this->generateUrl('get_posts', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'tag' => $paramFetcher->get('tag'),
-        ], true
+        $first = $this->generateUrl(
+            'get_posts',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'tag' => $paramFetcher->get('tag'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
-            $this->generateUrl('get_posts', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')+1,
-                'tag' => $paramFetcher->get('tag'),
-            ], true
+            $this->generateUrl(
+                'get_posts',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                    'tag' => $paramFetcher->get('tag'),
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_posts', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')-1,
-                'tag' => $paramFetcher->get('tag'),
-            ], true
+            $this->generateUrl(
+                'get_posts',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                    'tag' => $paramFetcher->get('tag'),
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
-        $last = $this->generateUrl('get_posts', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $postsResponse->getPageCount(),
-            'tag' => $paramFetcher->get('tag'),
-        ], true
+        $last = $this->generateUrl(
+            'get_posts',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $postsResponse->getPageCount(),
+                'tag' => $paramFetcher->get('tag'),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();
@@ -144,7 +168,12 @@ class PostsController extends Controller
      *  output = "AppBundle\Entity\Post"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */

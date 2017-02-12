@@ -2,22 +2,30 @@
 
 namespace AppBundle\Tests\Validator;
 
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use AppBundle\Validator\TwoPerformanceEventsPerDayValidator;
 use AppBundle\Validator\TwoPerformanceEventsPerDay;
 use AppBundle\Entity\PerformanceEvent;
+use Symfony\Component\Validator\Context\ExecutionContext;
 
 class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var TwoPerformanceEventsPerDay */
     private $constraint;
+
+    /** @var ExecutionContext */
     private $context;
+
+    /** @var TranslatorInterface */
     private $translator;
 
     public function setUp()
     {
         $this->constraint = new TwoPerformanceEventsPerDay();
-        $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')->disableOriginalConstructor()->getMock();
-        $this->translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')
+            ->disableOriginalConstructor()->getMock();
+        $this->translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
     }
 
     /**
@@ -28,15 +36,20 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $newPerformanceEvent = new PerformanceEvent();
         $newPerformanceEvent->setDateTime(new \DateTime());
 
-        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($perfomanceEvents), $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator(
+            $this->getPerformanceEventRepositoryMock($perfomanceEvents),
+            $this->translator
+        );
         $validator->initialize($this->context);
 
         $this
             ->context
             ->expects($this->once())
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->max_performances_per_day, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
-        ;
+            ->with('dateTime', $this->translator->trans(
+                $this->constraint->maxPerformancesPerDay,
+                ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]
+            ));
 
         $validator->validate($newPerformanceEvent, $this->constraint);
     }
@@ -49,15 +62,20 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
         $newPerformanceEvent = new PerformanceEvent();
         $newPerformanceEvent->setDateTime(new \DateTime());
 
-        $validator = new TwoPerformanceEventsPerDayValidator($this->getPerformanceEventRepositoryMock($perfomanceEvents), $this->translator);
+        $validator = new TwoPerformanceEventsPerDayValidator(
+            $this->getPerformanceEventRepositoryMock($perfomanceEvents),
+            $this->translator
+        );
         $validator->initialize($this->context);
 
         $this
             ->context
             ->expects($this->exactly(0))
             ->method('addViolationAt')
-            ->with('dateTime', $this->translator->trans($this->constraint->max_performances_per_day, ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]))
-        ;
+            ->with('dateTime', $this->translator->trans(
+                $this->constraint->maxPerformancesPerDay,
+                ['%count%' => TwoPerformanceEventsPerDayValidator::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]
+            ));
 
         $validator->validate($newPerformanceEvent, $this->constraint);
     }
@@ -65,11 +83,11 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     public function invalidDataProvider()
     {
         return [
-            [[new PerformanceEvent(), new PerformanceEvent()]],
-            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
-            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
-            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
-            [[new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent(), new PerformanceEvent()]],
+            [array_fill(0, 2, new PerformanceEvent())],
+            [array_fill(0, 3, new PerformanceEvent())],
+            [array_fill(0, 4, new PerformanceEvent())],
+            [array_fill(0, 5, new PerformanceEvent())],
+            [array_fill(0, 6, new PerformanceEvent())],
         ];
     }
 
@@ -83,7 +101,9 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
 
     public function getPerformanceEventRepositoryMock(array $perfomanceEvents)
     {
-        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')->disableOriginalConstructor()->getMock();
+        $repository = $this->getMockBuilder('AppBundle\Repository\PerformanceEventRepository')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $repository
             ->method('findByDateRangeAndSlug')

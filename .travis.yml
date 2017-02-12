@@ -1,19 +1,23 @@
 language: php
-php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
-#  - 7
 
-env:
-  - SYMFONY_VERSION=2.6.*
+matrix:
+  fast_finish: true
+  include:
+    - php: '7.1'
+      env: TARGET=phpcs
+    - php: '7.1'
+      env: TARGET=phpmd
+    - php: '7.1'
+      env: TARGET=phpunit
 
 before_script:
     - composer self-update
     - composer install
-    - php bin/reload
+    - if [ "$TARGET" = "phpunit" ]; then php bin/reload; fi
 
 script:
-  - phpunit -c app/
-  - phpunit -c app/
+  - if [ "$TARGET" = "phpunit" ]; then bin/phpunit -c app/  --coverage-clover=coverage.clover; fi
+  - if [ "$TARGET" = "phpunit" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ "$TARGET" = "phpunit" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - if [ "$TARGET" = "phpmd" ];   then bin/phpmd ./src text ./.phpmd-ruleset.xml; fi
+  - if [ "$TARGET" = "phpcs" ];   then bin/phpcs ./src --standard=PSR2 --extensions=php -p; fi

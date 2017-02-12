@@ -34,7 +34,7 @@ class RemoveBrokenMediaObjectsCommandTest extends AbstractController
         $media->setContext('employee');
         $media->setProviderName('sonata.media.provider.image');
 
-        $this->getContainer()->get('sonata.media.manager.media')->save($media, $andFlush = true);
+        $this->getContainer()->get('sonata.media.manager.media')->save($media, true);
 
         $this->getEm()->persist($media);
         $this->getEm()->flush();

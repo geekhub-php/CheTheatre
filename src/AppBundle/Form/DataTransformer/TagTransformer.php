@@ -30,7 +30,7 @@ class TagTransformer implements DataTransformerInterface
      * @param array         $localeCollection
      * @param ObjectManager $om
      */
-    public function __construct($defaultLocale, Array $localeCollection, ObjectManager $om)
+    public function __construct($defaultLocale, array $localeCollection, ObjectManager $om)
     {
         $this->defaultLocale = $defaultLocale;
         $this->localeCollection = $localeCollection;
@@ -44,7 +44,9 @@ class TagTransformer implements DataTransformerInterface
         }
 
         return implode(',', $collection->map(
-            function (Tag $tag) { return $tag->getTitle(); }
+            function (Tag $tag) {
+                return $tag->getTitle();
+            }
         )->toArray());
     }
 
@@ -58,11 +60,11 @@ class TagTransformer implements DataTransformerInterface
 
         foreach (explode(',', $string) as $tagTitle) {
             $tag = $this->om->getRepository('AppBundle:Tag')->findOneByTitle($tagTitle);
+            $tagTranslation = $this->om
+                ->getRepository('AppBundle:Translations\TagTranslation')
+                ->findOneByContent($tagTitle);
 
-            if (
-                !$tag &&
-                $tagTranslation = $this->om->getRepository('AppBundle:Translations\TagTranslation')->findOneByContent($tagTitle)
-            ) {
+            if (!$tag && $tagTranslation) {
                 $tag = $tagTranslation->getObject();
             }
 

@@ -29,14 +29,18 @@ class HistoryAdmin extends Admin
             ->add('type', 'choice', [
                 'choices'  => History::getTypes()
             ])
-            ->add('dateTime', 'datetime',
+            ->add(
+                'dateTime',
+                'datetime',
                 [
                     'label' => 'History_Date',
                     'widget' => 'single_text',
                     'format' => 'yyyy'
                 ]
             )
-            ->add('text', 'textarea',
+            ->add(
+                'text',
+                'textarea',
                 [
                     'attr' => [
                             'class' => 'wysihtml5',
@@ -44,22 +48,28 @@ class HistoryAdmin extends Admin
                     ],
                 ]
             )
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add(
+                'mainPicture',
+                'sonata_type_model_list',
                 [
                     'required' => false,
                     'btn_list' => false,
-                ], [
+                ],
+                [
                     'link_parameters' => [
                         'context' => 'history',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add(
+                'galleryHasMedia',
+                'sonata_type_collection',
                 [
                     'required' => false,
                     'label' => 'Gallery'
-                ], [
+                ],
+                [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable'  => 'position',
@@ -85,7 +95,9 @@ class HistoryAdmin extends Admin
             ->add('year', null, ['label' => 'History_Date'])
             ->addIdentifier('title')
             ->add('type')
-            ->add('_action', 'actions',
+            ->add(
+                '_action',
+                'actions',
                 [
                     'actions' => [
                         'edit' => [],

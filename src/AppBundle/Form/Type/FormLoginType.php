@@ -7,6 +7,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class FormLoginType extends AbstractType
 {
+    /**
+     * @{@inheritdoc}
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

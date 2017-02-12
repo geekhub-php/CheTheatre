@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Model\LinksTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -24,8 +25,9 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
-class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Performance extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, LinksTrait, BlameableEntity, DeletedByTrait;
 
@@ -112,14 +114,24 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var PerformanceEvent[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PerformanceEvent", mappedBy="performance", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\PerformanceEvent",
+     *     mappedBy="performance",
+     *     cascade={"persist"},
+     *     orphanRemoval=true
+     * )
      */
     private $performanceEvents;
 
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Role", mappedBy="performance", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Role",
+     *     mappedBy="performance",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
      */
     private $roles;
 
@@ -162,7 +174,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     protected $translations;
 
     /**
-     * @var \AppBundle\Entity\Festival
+     * @var \AppBundle\Entity\History
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\History", inversedBy="performances")
      */
@@ -468,7 +480,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     }
 
     /**
-     * @return Festival
+     * @return History
      */
     public function getFestival()
     {
@@ -476,7 +488,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     }
 
     /**
-     * @param Festival $festival
+     * @param History $festival
      * @return $this
      */
     public function setFestival($festival)

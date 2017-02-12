@@ -53,7 +53,9 @@ class EmployeeAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('dob', 'sonata_type_datetime_picker',
+            ->add(
+                'dob',
+                'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => false,
                     'dp_use_current'        => false,
@@ -62,13 +64,18 @@ class EmployeeAdmin extends Admin
                     'format' => "dd/MM/yyyy",
                 ]
             )
-            ->add('position', 'choice', [
-                'label' => 'employee.position',
-                'choices' => employee::getPositions(),
-                'translation_domain' => 'messages',
+            ->add(
+                'position',
+                'choice',
+                [
+                    'label' => 'employee.position',
+                    'choices' => Employee::getPositions(),
+                    'translation_domain' => 'messages',
                 ]
             )
-            ->add('biography', 'textarea',
+            ->add(
+                'biography',
+                'textarea',
                 [
                     'attr' => [
                         'class' => 'wysihtml5',
@@ -76,20 +83,25 @@ class EmployeeAdmin extends Admin
                     ],
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection', [
-                'required' => false,
-                'label' => 'Gallery',
-                ], [
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable'  => 'position',
-                'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
-                'admin_code' => 'sonata.media.admin.gallery_has_media',
-                'link_parameters' => [
-                    'context'  => 'employee',
-                    'provider' => 'sonata.media.provider.image',
+            ->add(
+                'galleryHasMedia',
+                'sonata_type_collection',
+                [
+                    'required' => false,
+                    'label' => 'Gallery',
                 ],
-            ])
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
+                    'link_parameters' => [
+                        'context'  => 'employee',
+                        'provider' => 'sonata.media.provider.image',
+                    ],
+                ]
+            )
         ;
     }
 
@@ -105,8 +117,11 @@ class EmployeeAdmin extends Admin
             ->addIdentifier('firstName')
             ->add('lastName')
             ->add('dob', 'date')
-            ->add('position', 'choice', [
-                    'choices' => employee::getPositions(),
+            ->add(
+                'position',
+                'choice',
+                [
+                    'choices' => Employee::getPositions(),
                     'catalogue' => 'messages',
                 ]
             )

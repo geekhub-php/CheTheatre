@@ -58,27 +58,31 @@ class PerformanceAdmin extends Admin
                 'query' => $query,
             ])
             ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add(
+                'mainPicture',
+                'sonata_type_model_list',
+                ['required' => false],
                 [
-                    'required' => false,
-                ], [
                     'link_parameters' => [
                         'context'  => 'performance',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
             )
-            ->add('sliderImage', 'sonata_type_model_list',
+            ->add(
+                'sliderImage',
+                'sonata_type_model_list',
+                ['required' => false],
                 [
-                    'required' => false,
-                ], [
                     'link_parameters' => [
                         'context'  => 'slider',
                         'provider' => 'sonata.media.provider.image',
                     ],
                 ]
             )
-            ->add('premiere', 'sonata_type_datetime_picker',
+            ->add(
+                'premiere',
+                'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,
@@ -86,21 +90,27 @@ class PerformanceAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
-            ->add('roles', 'sonata_type_collection',
+            ->add(
+                'roles',
+                'sonata_type_collection',
                 [
                     'required' => false,
                     'by_reference' => false,
-                ], [
+                ],
+                [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable'  => 'position',
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add(
+                'galleryHasMedia',
+                'sonata_type_collection',
                 [
                     'required' => false,
                     'label' => 'Gallery',
-                ], [
+                ],
+                [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable'  => 'position',

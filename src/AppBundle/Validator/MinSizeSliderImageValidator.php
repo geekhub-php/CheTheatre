@@ -31,12 +31,18 @@ class MinSizeSliderImageValidator extends ConstraintValidator
      */
     public function validate($object, Constraint $constraint)
     {
-        if (($object->getSliderImage() !== null) and (($object->getSliderImage()->getWidth() < self::MIN_WIDTH) or ($object->getSliderImage()->getHeight() < self::MIN_HEIGHT))) {
-            $this->context->addViolationAt(
-                'sliderImage',
-                $this->translator->trans($constraint->message, ['%height%' => self::MIN_HEIGHT, '%width%' => self::MIN_WIDTH])
-                )
-            ;
+        if (($object->getSliderImage() !== null)
+            and (
+                ($object->getSliderImage()->getWidth() < self::MIN_WIDTH)
+                or ($object->getSliderImage()->getHeight() < self::MIN_HEIGHT)
+            )) {
+                $this->context->addViolationAt(
+                    'sliderImage',
+                    $this->translator->trans(
+                        $constraint->message,
+                        ['%height%' => self::MIN_HEIGHT, '%width%' => self::MIN_WIDTH]
+                    )
+                );
         }
     }
 }

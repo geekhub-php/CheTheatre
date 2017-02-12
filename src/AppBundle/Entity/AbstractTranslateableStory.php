@@ -101,7 +101,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -124,7 +124,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get shortDescription
      *
-     * @return string 
+     * @return string
      */
     public function getShortDescription()
     {
@@ -147,7 +147,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -170,7 +170,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -193,7 +193,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get mainPicture
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMainPicture()
     {

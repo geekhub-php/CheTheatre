@@ -8,10 +8,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
-/**
- * Class TwoPerformanceEventsPerDayValidator
- * @package AppBundle\Validator
- */
 class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 {
     const MAX_PERFORMANCE_EVENTS_PER_ONE_DAY = 2;
@@ -41,7 +37,7 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
         if (false === is_object($performanceEvent->getDateTime())) {
             $this->context->addViolationAt(
                 'dateTime',
-                $this->translator->trans($constraint->performance_must_have_a_date)
+                $this->translator->trans($constraint->performanceMustHaveDate)
             );
 
             return;
@@ -50,7 +46,10 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
         if ($this->isMoreThanMax($performanceEvent)) {
             $this->context->addViolationAt(
                 'dateTime',
-                $this->translator->trans($constraint->max_performances_per_day, ['%count%' => self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY])
+                $this->translator->trans(
+                    $constraint->maxPerformancesPerDay,
+                    ['%count%' => self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY]
+                )
             );
         }
     }
@@ -71,8 +70,8 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 
         if ($performanceEvent->getId()) {
             return $countPerformanceEventsPerDate >= self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY +1;
-        } else {
-            return $countPerformanceEventsPerDate >= self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY;
         }
+
+        return $countPerformanceEventsPerDate >= self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY;
     }
 }

@@ -5,7 +5,6 @@ imports:
     - { resource: sonata.yml }
     - { resource: admin.yml }
     - { resource: monitors.yml }
-    - { resource: fos_cache.yml }
 
 framework:
     #esi:             ~
@@ -166,11 +165,6 @@ nelmio_cors:
             expose_headers: ['*']
             origin_regex: false
             max_age: 3600
-
-domain_routing:
-    include_routes:
-        %api_domain%: ['config/routing_api.yml']
-        %admin_domain%: ['config/routing_sonata_admin.yml']
 
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations

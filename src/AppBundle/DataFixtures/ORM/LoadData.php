@@ -9,7 +9,7 @@ class LoadData extends DataFixtureLoader
 {
     protected function getFixtures()
     {
-        return array(
+        return [
             __DIR__.'/fixturesGalleryHasMedia_uk.yml',
             __DIR__.'/fixturesEmployee_uk.yml',
             __DIR__.'/fixturesHistory_uk.yml',
@@ -25,7 +25,7 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesHistoryTranslation_en.yml',
             __DIR__.'/fixturesTagTranslation_en.yml',
             __DIR__.'/fixturesGalleryHasMediaTranslation_en.yml',
-        );
+        ];
     }
 
     public function getMedia($name, $context = 'default')
@@ -36,7 +36,7 @@ class LoadData extends DataFixtureLoader
         $media->setContext($context);
         $media->setProviderName('sonata.media.provider.image');
 
-        $this->container->get('sonata.media.manager.media')->save($media, $andFlush = true);
+        $this->container->get('sonata.media.manager.media')->save($media, true);
 
         return $media;
     }

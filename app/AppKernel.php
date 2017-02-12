@@ -1,12 +1,9 @@
 <?php
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use GeekHub\DomainRoutingBundle\DomainTrait;
 
 class AppKernel extends Kernel
 {
-    use DomainTrait;
-
     public function registerBundles()
     {
         $bundles = array(
@@ -34,7 +31,6 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new \GeekHub\DomainRoutingBundle\DomainRoutingBundle(),
             new Sonata\TranslationBundle\SonataTranslationBundle(),
             new Liip\MonitorBundle\LiipMonitorBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),

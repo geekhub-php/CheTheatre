@@ -1,7 +1,3 @@
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /
-
 employees:
     type: rest
     resource: AppBundle\Controller\EmployeesController
@@ -29,3 +25,7 @@ history:
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /
