@@ -17,7 +17,7 @@ class TwoPerformanceEventsPerDayValidatorTest extends \PHPUnit_Framework_TestCas
     {
         $this->constraint = new TwoPerformanceEventsPerDay();
         $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')->disableOriginalConstructor()->getMock();
-        $this->translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $this->translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
     }
 
     /**

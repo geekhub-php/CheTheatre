@@ -1,12 +1,12 @@
 language: php
 php:
-  - 5.5
   - 7.1
 
 before_script:
     - composer self-update
     - composer install
     - php bin/reload
+    - app/console cache:clear --env=api
 
 script:
   - phpunit -c app/

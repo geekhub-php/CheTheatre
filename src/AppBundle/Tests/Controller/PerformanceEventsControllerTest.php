@@ -23,7 +23,7 @@ class PerformanceEventsControllerTest extends AbstractController
     {
         $client = $this->getClient();
 
-        $crawler = $client->request('GET', '/performanceevents');
+        $client->request('GET', '/performanceevents');
 
         $this->assertContains($field, $client->getResponse()->getContent());
     }

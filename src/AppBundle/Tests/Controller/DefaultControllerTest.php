@@ -6,6 +6,6 @@ class DefaultControllerTest extends AbstractController
 {
     public function testGetHomeAction()
     {
-        $this->request('/');
+        $this->request('/doc/');
     }
 }

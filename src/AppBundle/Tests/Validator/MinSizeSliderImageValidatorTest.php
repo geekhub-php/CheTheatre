@@ -15,8 +15,9 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->constraint = new MinSizeSliderImage();
-        $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')->disableOriginalConstructor()->getMock();
-        $this->translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $this->context = $this->getMockBuilder('Symfony\Component\Validator\ExecutionContext')
+            ->disableOriginalConstructor()->getMock();
+        $this->translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
     }
 
     /**
