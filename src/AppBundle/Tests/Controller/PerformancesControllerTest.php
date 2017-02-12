@@ -39,55 +39,34 @@ class PerformancesControllerTest extends AbstractController
         $this->request('/performances/nonexistent-slug/performanceevents', 'GET', 404);
     }
 
-    /**
-     * @dataProvider providerPerformancesResponseFields
-     */
-    public function testPerformancesResponseFields($field)
+    public function testPerformancesResponseFields()
     {
         $client = $this->getClient();
 
         $client->request('GET', '/performances');
+        $content = json_decode($client->getResponse()->getContent(), true);
 
-        $this->assertContains($field, $client->getResponse()->getContent());
-    }
+        self::assertArrayHasKey('page', $content);
+        self::assertArrayHasKey('total_count', $content);
+        self::assertArrayHasKey('performances', $content);
+        self::assertArrayHasKey('count', $content);
 
-    public function providerPerformancesResponseFields()
-    {
-        return [
-            ['performances'],
-            ['title'],
-            ['type'],
-            ['description'],
-            ['premiere'],
-            ['mainPicture'],
-            ['sliderImage'],
-            ['performance_small'],
-            ['performance_big'],
-            ['slider_small'],
-            ['slider_slider'],
-            ['reference'],
-            ['url'],
-            ['properties'],
-            ['alt'],
-            ['title'],
-            ['src'],
-            ['width'],
-            ['height'],
-            ['slug'],
-            ['created_at'],
-            ['updated_at'],
-            ['links'],
-            ['rel'],
-            ['page'],
-            ['count'],
-            ['total_count'],
-            ['_links'],
-            ['self'],
-            ['first'],
-            ['prev'],
-            ['next'],
-            ['last'],
-            ['href'],
-        ];
+        self::assertEquals(1, $content['page']);
+        self::assertEquals(21, $content['total_count']);
+        self::assertCount(10, $content['performances']);
+        self::assertEquals(10, $content['count']);
+
+        self::assertArrayHasKey('locale', $content['performances'][0]);
+        self::assertArrayHasKey('title', $content['performances'][0]);
+        self::assertArrayHasKey('type', $content['performances'][0]);
+        self::assertArrayHasKey('description', $content['performances'][0]);
+        self::assertArrayHasKey('premiere', $content['performances'][0]);
+        self::assertArrayHasKey('mainPicture', $content['performances'][0]);
+        self::assertArrayHasKey('sliderImage', $content['performances'][0]);
+        self::assertArrayHasKey('gallery', $content['performances'][0]);
+        self::assertArrayHasKey('slug', $content['performances'][0]);
+        self::assertArrayHasKey('created_at', $content['performances'][0]);
+        self::assertArrayHasKey('updated_at', $content['performances'][0]);
+        self::assertArrayHasKey('links', $content['performances'][0]);
     }
 }
