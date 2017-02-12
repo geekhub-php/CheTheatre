@@ -20,10 +20,9 @@ class LoadCsvFixturesCommandTest extends AbstractController
         $command = $application->find('app:load-csv-fixtures');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
-                'entity'    => 'employee',
-                'isTranslation'    => 'translation',
-        ]
-    );
+            'entity'    => 'employee',
+            'isTranslation'    => 'translation',
+        ]);
 
         $this->assertContains("Load is finished!", $commandTester->getDisplay());
     }

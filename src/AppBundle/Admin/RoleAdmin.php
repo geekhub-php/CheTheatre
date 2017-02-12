@@ -58,7 +58,9 @@ class RoleAdmin extends Admin
             ->add('description')
             ->add('performance')
             ->add('employee')
-            ->add('_action', 'actions',
+            ->add(
+                '_action',
+                'actions',
                 [
                     'actions' => [
                         'show' => [],

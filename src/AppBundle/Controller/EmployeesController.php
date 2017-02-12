@@ -30,9 +30,15 @@ class EmployeesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -40,7 +46,12 @@ class EmployeesController extends Controller
 
         $employees = $em
             ->getRepository('AppBundle:Employee')
-            ->findBy([], ['lastName' => 'ASC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'))
+            ->findBy(
+                [],
+                ['lastName' => 'ASC'],
+                $paramFetcher->get('limit'),
+                ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+            )
         ;
 
         $employeesTranslated = array();
@@ -64,46 +75,63 @@ class EmployeesController extends Controller
 
         $employeesResponse = new EmployeesResponse();
         $employeesResponse->setEmployees($employees);
-        $employeesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->getCount());
+        $employeesResponse->setTotalCount(
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:Employee')->getCount()
+        );
         $employeesResponse->setPageCount(ceil($employeesResponse->getTotalCount() / $paramFetcher->get('limit')));
         $employeesResponse->setPage($paramFetcher->get('page'));
 
-        $self = $this->generateUrl('get_employees', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $paramFetcher->get('page'),
-        ], true
+        $self = $this->generateUrl(
+            'get_employees',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page'),
+            ],
+            true
         );
 
-        $first = $this->generateUrl('get_employees', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-        ], true
+        $first = $this->generateUrl(
+            'get_employees',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+            ],
+            true
         );
 
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
-            $this->generateUrl('get_employees', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')+1,
-            ], true
+            $this->generateUrl(
+                'get_employees',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                ],
+                true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_employees', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')-1,
-            ], true
+            $this->generateUrl(
+                'get_employees',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                ],
+                true
             ) :
             'false';
 
-        $last = $this->generateUrl('get_employees', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $employeesResponse->getPageCount(),
-        ], true
+        $last = $this->generateUrl(
+            'get_employees',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $employeesResponse->getPageCount(),
+            ],
+            true
         );
 
         $links = new PaginationLinks();
@@ -128,7 +156,12 @@ class EmployeesController extends Controller
      *  output = "AppBundle\Entity\Employee"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -167,7 +200,12 @@ class EmployeesController extends Controller
      *  output = "array<AppBundle\Entity\Role>"
      * )
      *
-     *  @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     *  @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */

@@ -29,8 +29,7 @@ class EmployeesControllerTest extends AbstractController
     public function testEmployeesResponseFields($field)
     {
         $client = $this->getClient();
-
-        $crawler = $client->request('GET', '/employees');
+        $client->request('GET', '/employees');
 
         $this->assertContains($field, $client->getResponse()->getContent());
     }

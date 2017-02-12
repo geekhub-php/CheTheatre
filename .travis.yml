@@ -1,13 +1,23 @@
 language: php
 php:
-  - 7.1
+  - php: 7.1
+
+matrix:
+  fast_finish: true
+  include:
+    - php: '7.1'
+      env: TARGET=phpcs
+    - php: '7.1'
+      env: TARGET=phpmd
+    - php: '7.1'
+      env: TARGET=phpunit
 
 before_script:
     - composer self-update
     - composer install
-    - php bin/reload
-    - app/console cache:clear --env=api
+    - if [ $TARGET = "phpunit" ]; then php bin/reload; fi
 
 script:
-  - phpunit -c app/
-  - phpunit -c app/
+  - if [ $TARGET = "phpunit" ]; then bin/phpunit -c app/ fi
+  - if [ $TARGET = "phpmd" ];   then bin/phpmd ./src text ./.phpmd-ruleset.xml fi
+  - if [ $TARGET = "phpcs" ];   then bin/phpcs ./src --standard=PSR2 --extensions=php -p fi

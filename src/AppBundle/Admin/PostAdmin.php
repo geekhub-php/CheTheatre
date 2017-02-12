@@ -18,13 +18,13 @@ class PostAdmin extends Admin
         '_sort_by' => 'createdAt',
     ];
 
-    private $default_locale;
+    private $defaultLocale;
 
     private $locales;
 
-    public function setParameters($default_locale, $locales)
+    public function setParameters($defaultLocale, $locales)
     {
-        $this->default_locale = $default_locale;
+        $this->defaultLocale = $defaultLocale;
         $this->locales = $locales;
     }
 
@@ -38,7 +38,9 @@ class PostAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('shortDescription')
-            ->add('text', 'textarea',
+            ->add(
+                'text',
+                'textarea',
                 [
                     'attr' => [
                             'class' => 'wysihtml5',
@@ -46,11 +48,14 @@ class PostAdmin extends Admin
                     ],
                 ]
             )
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add(
+                'mainPicture',
+                'sonata_type_model_list',
                 [
                     'required' => false,
                     'btn_list' => false,
-                ], [
+                ],
+                [
                     'link_parameters' => [
                         'context' => 'post',
                         'provider' => 'sonata.media.provider.image',
@@ -58,24 +63,35 @@ class PostAdmin extends Admin
                 ]
             )
             ->add(
-                $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(
-                        new TagTransformer(
-                            $this->default_locale,
-                            $this->locales,
-                            $this->modelManager->getEntityManager(new Tag())
-                        )
+                $formMapper->create(
+                    'tags',
+                    'text',
+                    ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']]
+                )
+                ->addModelTransformer(
+                    new TagTransformer(
+                        $this->defaultLocale,
+                        $this->locales,
+                        $this->modelManager->getEntityManager(new Tag())
                     )
+                )
             )
-            ->add('pinned', 'checkbox', [
-                'label'    => 'pinned_or_not',
-                'required' => false,
-            ])
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add(
+                'pinned',
+                'checkbox',
+                [
+                    'label'    => 'pinned_or_not',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'galleryHasMedia',
+                'sonata_type_collection',
                 [
                     'required' => false,
                     'label' => 'Gallery',
-                ], [
+                ],
+                [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable'  => 'position',
@@ -100,7 +116,9 @@ class PostAdmin extends Admin
             ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
             ->add('createdAt')
-            ->add('_action', 'actions',
+            ->add(
+                '_action',
+                'actions',
                 [
                     'actions' => [
                         'edit' => [],

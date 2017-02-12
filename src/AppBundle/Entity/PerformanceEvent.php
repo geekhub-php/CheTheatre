@@ -24,7 +24,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceEventTranslation")
  * @TwoPerformanceEventsPerDay()
  */
-class PerformanceEvent extends AbstractPersonalTranslatable  implements TranslatableInterface
+class PerformanceEvent extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
@@ -193,9 +193,9 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     {
         if ($this->getDateTime()) {
             return $this->getDateTime()->format('d-m-Y H:i');
-        } else {
-            return date("F j, Y, g:i a");
         }
+
+        return date("F j, Y, g:i a");
     }
 
     /**

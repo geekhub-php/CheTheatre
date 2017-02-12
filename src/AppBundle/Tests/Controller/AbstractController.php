@@ -56,10 +56,15 @@ abstract class AbstractController extends WebTestCase
         $client = $this->getClient();
 
         $crawler = $client->request($method, $path);
-        $this->assertEquals(
+        self::assertEquals(
             $expectedStatusCode,
             $client->getResponse()->getStatusCode(),
-            sprintf('We expected that uri "%s" will return %s status code, but had received %d', $path, $expectedStatusCode, $client->getResponse()->getStatusCode())
+            sprintf(
+                'We expected that uri "%s" will return %s status code, but had received %d',
+                $path,
+                $expectedStatusCode,
+                $client->getResponse()->getStatusCode()
+            )
         );
 
         return $crawler;
@@ -73,7 +78,10 @@ abstract class AbstractController extends WebTestCase
      */
     protected function getConfirmDeleteFormObject(Crawler $pageObject)
     {
-        return $pageObject->filter('body > div > aside.right-side > section.content > div > div > div > div.box-footer.clearfix > form > button')->form();
+        return $pageObject
+            ->filter('body > div > aside.right-side > section.content '
+                .'> div > div > div > div.box-footer.clearfix > form > button')
+            ->form();
     }
 
     protected function getClient(array $options = array(), array $server = array())

@@ -21,7 +21,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\TagTranslation")
  * @ExclusionPolicy("all")
  */
-class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Tag extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 

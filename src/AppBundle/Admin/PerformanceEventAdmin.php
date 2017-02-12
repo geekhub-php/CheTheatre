@@ -27,7 +27,9 @@ class PerformanceEventAdmin extends Admin
     {
         $formMapper
             ->add('performance', 'sonata_type_model')
-            ->add('dateTime', 'sonata_type_datetime_picker',
+            ->add(
+                'dateTime',
+                'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,
@@ -71,7 +73,10 @@ class PerformanceEventAdmin extends Admin
     {
         $datagridMapper
             ->add('performance')
-            ->add('venue', 'doctrine_orm_choice', [],
+            ->add(
+                'venue',
+                'doctrine_orm_choice',
+                [],
                 'choice',
                 [
                     'choices' => PerformanceEvent::$venues,

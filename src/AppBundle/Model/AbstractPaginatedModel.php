@@ -4,6 +4,7 @@ namespace AppBundle\Model;
 
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 
 /**
@@ -16,9 +17,10 @@ abstract class AbstractPaginatedModel
     /**
      * @var string
      * @Type("AppBundle\Model\PaginationLinks")
+     * @SerializedName("_links")
      * @Expose
      */
-    protected $_links;
+    protected $links;
 
     /**
      * @var integer
@@ -95,16 +97,16 @@ abstract class AbstractPaginatedModel
      */
     public function getLinks()
     {
-        return $this->_links;
+        return $this->links;
     }
 
     /**
-     * @param  mixed $_links
+     * @param  mixed $links
      * @return $this
      */
-    public function setLinks($_links)
+    public function setLinks($links)
     {
-        $this->_links = $_links;
+        $this->_links = $links;
 
         return $this;
     }

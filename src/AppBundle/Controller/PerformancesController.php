@@ -30,17 +30,26 @@ class PerformancesController extends Controller
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $performances = $em
-                        ->getRepository('AppBundle:Performance')
-                        ->findBy(['festival' => null], ['premiere' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+        $performances = $em->getRepository('AppBundle:Performance')->findBy(
+            ['festival' => null],
+            ['premiere' => 'DESC'],
+            $paramFetcher->get('limit'),
+            ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+        );
 
         $performancesTranslated = array();
 
@@ -59,46 +68,63 @@ class PerformancesController extends Controller
 
         $performancesResponse = new PerformancesResponse();
         $performancesResponse->setPerformances($performances);
-        $performancesResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount());
+        $performancesResponse->setTotalCount(
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:Performance')->getCount()
+        );
         $performancesResponse->setPageCount(ceil($performancesResponse->getTotalCount() / $paramFetcher->get('limit')));
         $performancesResponse->setPage($paramFetcher->get('page'));
 
-        $self = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $paramFetcher->get('page'),
-        ], true
+        $self = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $paramFetcher->get('page'),
+            ],
+            true
         );
 
-        $first = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-        ], true
+        $first = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+            ],
+            true
         );
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
-            $this->generateUrl('get_performances', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')+1,
-            ], true
+            $this->generateUrl(
+                'get_performances',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                ],
+                true
             ) :
             'false';
 
         $previsiousPage = $paramFetcher->get('page') > 1 ?
-            $this->generateUrl('get_performances', [
-                'locale' => $paramFetcher->get('locale'),
-                'limit' => $paramFetcher->get('limit'),
-                'page' => $paramFetcher->get('page')-1,
-            ], true
+            $this->generateUrl(
+                'get_performances',
+                [
+                    'locale' => $paramFetcher->get('locale'),
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                ],
+                true
             ) :
             'false';
 
-        $last = $this->generateUrl('get_performances', [
-            'locale' => $paramFetcher->get('locale'),
-            'limit' => $paramFetcher->get('limit'),
-            'page' => $performancesResponse->getPageCount(),
-        ], true
+        $last = $this->generateUrl(
+            'get_performances',
+            [
+                'locale' => $paramFetcher->get('locale'),
+                'limit' => $paramFetcher->get('limit'),
+                'page' => $performancesResponse->getPageCount(),
+            ],
+            true
         );
 
         $links = new PaginationLinks();
@@ -111,9 +137,22 @@ class PerformancesController extends Controller
 
         foreach ($performances as $performance) {
             $performance->setLinks([
-                ['rel' => 'self', 'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)],
-                ['rel' => 'self.roles', 'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)],
-                ['rel' => 'self.events', 'href' => $this->generateUrl('get_performanceevents', ['performance' => $performance->getSlug()], true)],
+                [
+                    'rel' => 'self',
+                    'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)
+                ],
+                [
+                    'rel' => 'self.roles',
+                    'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)
+                ],
+                [
+                    'rel' => 'self.events',
+                    'href' => $this->generateUrl(
+                        'get_performanceevents',
+                        ['performance' => $performance->getSlug()],
+                        true
+                    )
+                ],
             ]);
         }
 
@@ -131,7 +170,12 @@ class PerformancesController extends Controller
      *  output = "AppBundle\Entity\Performance"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -167,7 +211,12 @@ class PerformancesController extends Controller
      *  output = "array<AppBundle\Entity\Role>"
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */
@@ -229,7 +278,12 @@ class PerformancesController extends Controller
      * deprecated = true
      * )
      *
-     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
      *
      * @RestView
      */

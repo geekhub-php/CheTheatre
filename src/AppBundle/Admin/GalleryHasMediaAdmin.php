@@ -16,7 +16,7 @@ class GalleryHasMediaAdmin extends BaseGalleryHasMediaAdmin
     {
         parent::configureFormFields($formMapper);
 
-        $mediaField = $field = $formMapper->get('media');
+        $mediaField = $formMapper->get('media');
         $options    = $mediaField->getFormConfig()->getOptions();
         $options['btn_delete'] = false;
 

@@ -45,6 +45,7 @@ class PostRepository extends AbstractRepository
      * @param string $tagSlug
      * @param bool $pinned
      * @return \Doctrine\ORM\QueryBuilder
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     protected function getTaggedPostsQuery($tagSlug = null, $pinned = false)
     {

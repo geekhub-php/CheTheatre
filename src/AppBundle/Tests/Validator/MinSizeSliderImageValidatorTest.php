@@ -2,14 +2,21 @@
 
 namespace AppBundle\Tests\Validator;
 
+use Symfony\Component\CssSelector\XPath\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use AppBundle\Validator\MinSizeSliderImageValidator;
 use AppBundle\Validator\MinSizeSliderImage;
+use Symfony\Component\Validator\Context\ExecutionContext;
 
 class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var MinSizeSliderImage */
     private $constraint;
+
+    /** @var ExecutionContext */
     private $context;
+
+    /** @var TranslatorInterface */
     private $translator;
 
     public function setUp()
@@ -34,8 +41,13 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
             ->context
             ->expects($this->once())
             ->method('addViolationAt')
-            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]))
-        ;
+            ->with('sliderImage', $this->translator->trans(
+                $this->constraint->message,
+                [
+                    '%height%' => MinSizeSliderImageValidator::MIN_HEIGHT,
+                    '%width%' => MinSizeSliderImageValidator::MIN_WIDTH
+                ]
+            ));
 
         $validator->validate($newPerformance, $this->constraint);
     }
@@ -54,8 +66,13 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
             ->context
             ->expects($this->exactly(0))
             ->method('addViolationAt')
-            ->with('sliderImage', $this->translator->trans($this->constraint->message, ['%height%' => MinSizeSliderImageValidator::MIN_HEIGHT, '%width%' => MinSizeSliderImageValidator::MIN_WIDTH]))
-        ;
+            ->with('sliderImage', $this->translator->trans(
+                $this->constraint->message,
+                [
+                    '%height%' => MinSizeSliderImageValidator::MIN_HEIGHT,
+                    '%width%' => MinSizeSliderImageValidator::MIN_WIDTH
+                ]
+            ));
 
         $validator->validate($newPerformance, $this->constraint);
     }
@@ -81,7 +98,9 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function getPerformanceEntityMock(array $performanceSliderImageSize)
     {
-        $sliderImage = $this->getMockBuilder('Application\Sonata\MediaBundle\Entity\Media')->disableOriginalConstructor()->getMock();
+        $sliderImage = $this->getMockBuilder('Application\Sonata\MediaBundle\Entity\Media')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $sliderImage
             ->method('getWidth')
