@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\HistoryResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("History")
@@ -80,7 +81,7 @@ class HistoryController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $first = $this->generateUrl(
@@ -89,7 +90,7 @@ class HistoryController extends Controller
                 'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $historyResponse->getPageCount() ?
@@ -112,7 +113,7 @@ class HistoryController extends Controller
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -123,7 +124,7 @@ class HistoryController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $historyResponse->getPageCount(),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();

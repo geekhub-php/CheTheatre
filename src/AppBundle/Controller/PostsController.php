@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\PostsResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("Post")
@@ -95,7 +96,7 @@ class PostsController extends Controller
                 'page' => $paramFetcher->get('page'),
                 'tag' => $paramFetcher->get('tag'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $first = $this->generateUrl(
@@ -105,7 +106,7 @@ class PostsController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'tag' => $paramFetcher->get('tag'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $postsResponse->getPageCount() ?
@@ -117,7 +118,7 @@ class PostsController extends Controller
                     'page' => $paramFetcher->get('page')+1,
                     'tag' => $paramFetcher->get('tag'),
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -130,7 +131,7 @@ class PostsController extends Controller
                     'page' => $paramFetcher->get('page')-1,
                     'tag' => $paramFetcher->get('tag'),
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -142,7 +143,7 @@ class PostsController extends Controller
                 'page' => $postsResponse->getPageCount(),
                 'tag' => $paramFetcher->get('tag'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();

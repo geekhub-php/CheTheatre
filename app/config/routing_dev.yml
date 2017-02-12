@@ -16,18 +16,3 @@ _errors:
 
 _main:
     resource: routing.yml
-
-_admin:
-    resource: routing_admin.yml
-
-_api:
-    resource: routing_api.yml
-
-nelmio_api_doc_index:
-    path: /doc/
-    defaults: { _controller: NelmioApiDocBundle:ApiDoc:index, view: 'default' }
-    methods: [GET]
-
-login:
-  pattern:  /login
-  defaults: { _controller: AppBundle:Default:login }

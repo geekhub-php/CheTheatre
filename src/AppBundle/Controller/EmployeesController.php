@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\EmployeesResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("Employee")
@@ -88,7 +89,7 @@ class EmployeesController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $first = $this->generateUrl(
@@ -97,7 +98,7 @@ class EmployeesController extends Controller
                 'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $employeesResponse->getPageCount() ?
@@ -108,7 +109,7 @@ class EmployeesController extends Controller
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')+1,
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -120,7 +121,7 @@ class EmployeesController extends Controller
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -131,7 +132,7 @@ class EmployeesController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $employeesResponse->getPageCount(),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();

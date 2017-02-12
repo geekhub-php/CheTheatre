@@ -149,11 +149,16 @@ class SerializerSubscriber implements EventSubscriberInterface
             $history->getLocale()
         );
 
-        if ($galleryHasMediaLinks) {
+        if (!empty($galleryHasMediaLinks)) {
             $history->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
 
+    /**
+     * @param $galleries
+     * @param $locale
+     * @return array
+     */
     protected function formatGalleries($galleries, $locale)
     {
         $formatedGaleries = array_filter($galleries, function ($gallery) {

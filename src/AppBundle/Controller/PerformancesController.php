@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\PerformancesResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @RouteResource("Performance")
@@ -81,7 +82,7 @@ class PerformancesController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $paramFetcher->get('page'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $first = $this->generateUrl(
@@ -90,7 +91,7 @@ class PerformancesController extends Controller
                 'locale' => $paramFetcher->get('locale'),
                 'limit' => $paramFetcher->get('limit'),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $nextPage = $paramFetcher->get('page') < $performancesResponse->getPageCount() ?
@@ -101,7 +102,7 @@ class PerformancesController extends Controller
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')+1,
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -113,7 +114,7 @@ class PerformancesController extends Controller
                     'limit' => $paramFetcher->get('limit'),
                     'page' => $paramFetcher->get('page')-1,
                 ],
-                true
+                UrlGeneratorInterface::ABSOLUTE_URL
             ) :
             'false';
 
@@ -124,7 +125,7 @@ class PerformancesController extends Controller
                 'limit' => $paramFetcher->get('limit'),
                 'page' => $performancesResponse->getPageCount(),
             ],
-            true
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
 
         $links = new PaginationLinks();
@@ -139,18 +140,26 @@ class PerformancesController extends Controller
             $performance->setLinks([
                 [
                     'rel' => 'self',
-                    'href' => $this->generateUrl('get_performance', ['slug' => $performance->getSlug()], true)
+                    'href' => $this->generateUrl(
+                        'get_performance',
+                        ['slug' => $performance->getSlug()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
                 ],
                 [
                     'rel' => 'self.roles',
-                    'href' => $this->generateUrl('get_performance_roles', ['slug' => $performance->getSlug()], true)
+                    'href' => $this->generateUrl(
+                        'get_performance_roles',
+                        ['slug' => $performance->getSlug()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
                 ],
                 [
                     'rel' => 'self.events',
                     'href' => $this->generateUrl(
                         'get_performanceevents',
                         ['performance' => $performance->getSlug()],
-                        true
+                        UrlGeneratorInterface::ABSOLUTE_URL
                     )
                 ],
             ]);
