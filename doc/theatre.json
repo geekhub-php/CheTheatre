@@ -1311,20 +1311,14 @@
                 "uuid": {
                     "type": "string"
                 },
-                "position": {
-                    "$ref": "#/definitions/SeatPosition"
+                "row": {
+                    "type": "integer"
                 },
-                "drawPosition": {
-                    "$ref": "#/definitions/SeatDrawPosition"
-                },
-                "title": {
-                    "type": "string"
+                "place": {
+                    "type": "integer"
                 },
                 "venueSector": {
                     "$ref": "#/definitions/VenueSector"
-                },
-                "seatStatus": {
-                    "$ref": "#/definitions/SeatStatus"
                 },
                 "priceCategory": {
                     "$ref": "#/definitions/PriceCategory"
@@ -1339,17 +1333,9 @@
                 },
                 "title": {
                     "type": "string"
-                }
-            }
-        },
-        "EventPrice": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
                 },
-                "title": {
-                    "type": "string"
+                "venue": {
+                    "$ref": "#/definitions/Venue"
                 }
             }
         },
@@ -1391,11 +1377,11 @@
                 "number": {
                     "type": "string"
                 },
+                "price": {
+                    "type": "integer"
+                },
                 "performanceEvent": {
                     "$ref": "#/definitions/PerformanceEvent"
-                },
-                "eventPrice": {
-                    "$ref": "#/definitions/EventPrice"
                 },
                 "seat": {
                     "$ref": "#/definitions/Seat"
@@ -1405,34 +1391,9 @@
                 },
                 "updated_at": {
                     "$ref": "#/definitions/DateTime"
-                }
-            }
-        },
-        "SeatPosition": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
                 },
-                "row": {
-                    "type": "integer"
-                },
-                "place": {
-                    "type": "integer"
-                }
-            }
-        },
-        "SeatDrawPosition": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "pos_x": {
-                    "type": "integer"
-                },
-                "pos_y": {
-                    "type": "integer"
+                "status": {
+                    "$ref": "#/definitions/TicketStatus"
                 }
             }
         },
@@ -1458,10 +1419,10 @@
             "enum": [
                 "pending",
                 "paid",
-                "repealed"
+                "rejected"
             ]
         },
-        "SeatStatus": {
+        "TicketStatus": {
             "type": "string",
             "enum": [
                 "free",
