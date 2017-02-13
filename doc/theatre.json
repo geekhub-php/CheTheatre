@@ -1593,6 +1593,24 @@
             "type": "object",
             "properties": {
                 "id": {
+                }
+            }
+        },
+        "EventPrice": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "Cart": {
+            "type": "object",
+            "properties": {
+                "uuid": {
                     "type": "string"
                 },
                 "tickets": {
@@ -1606,6 +1624,12 @@
                 },
                 "paymentStatus": {
                     "$ref": "#/definitions/PaymentStatus"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
