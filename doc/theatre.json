@@ -1602,8 +1602,8 @@
                 "id": {
                     "type": "integer"
                 },
-                "title": {
-                    "type": "string"
+                "venue": {
+                    "$ref": "#/definitions/Venue"
                 }
             }
         },
