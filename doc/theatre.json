@@ -653,6 +653,261 @@
                     }
                 }
             }
+        },
+        "/venues": {
+            "get": {
+                "description": "Returns a collection of venue",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "venues": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Venue"
+                                    }
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when venues are not found"
+                    }
+                }
+            }
+        },
+        "/venue/{id}": {
+            "get": {
+                "description": "Get a venue info",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID of venue in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Venue"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when venue was not found by id"
+                    }
+                }
+            }
+        },
+        "/venue/{id}/seats": {
+            "get": {
+                "description": "Returns collection of seats for the venue with ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID of venue in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "seats": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Seat"
+                                    }
+                                },
+                                "count": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when venue are not found by id"
+                    }
+                }
+            }
+        },
+        "/seat/{uuid}": {
+            "get": {
+                "description": "Return info for seat with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of seat in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Seat"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when seat was not found by UUID"
+                    }
+                }
+            }
+        },
+        "/ticket/{uuid}": {
+            "get": {
+                "description": "Return info for ticket with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of ticket in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Ticket"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by UUID"
+                    }
+                }
+            }
+        },
+        "/cart/{uuid}": {
+            "get": {
+                "description": "Return info for cart with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of cart in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Cart"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when cart was not found by UUID"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -807,7 +1062,7 @@
                     "type": "string"
                 },
                 "venue": {
-                    "type": "string"
+                    "$ref": "#/definitions/Venue"
                 },
                 "year": {
                     "type": "integer"
@@ -923,11 +1178,7 @@
                     "type": "string"
                 },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 }
             }
         },
@@ -947,11 +1198,7 @@
                     "type": "string"
                 },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 },
                 "year": {
                     "type": "integer"
@@ -1000,11 +1247,7 @@
                     "type": "string"
                 },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 },
                 "pinned": {
                     "type": "boolean"
@@ -1033,6 +1276,198 @@
                     }
                 }
             }
+        },
+        "Venue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "adress": {
+                    "type": "string"
+                }
+            }
+        },
+        "VenueSector": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "venue": {
+                    "$ref": "#/definitions/Venue"
+                }
+            }
+        },
+        "Seat": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                "position": {
+                    "$ref": "#/definitions/SeatPosition"
+                },
+                "drawPosition": {
+                    "$ref": "#/definitions/SeatDrawPosition"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "venueSector": {
+                    "$ref": "#/definitions/VenueSector"
+                },
+                "seatStatus": {
+                    "$ref": "#/definitions/SeatStatus"
+                },
+                "priceCategory": {
+                    "$ref": "#/definitions/PriceCategory"
+                }
+            }
+        },
+        "PriceCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "EventPrice": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "Cart": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                "tickets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Ticket"
+                    }
+                },
+                "customer": {
+                    "$ref": "#/definitions/Customer"
+                },
+                "paymentStatus": {
+                    "$ref": "#/definitions/PaymentStatus"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/DateTime"
+                }
+            }
+        },
+        "Ticket": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                "series": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "performanceEvent": {
+                    "$ref": "#/definitions/PerformanceEvent"
+                },
+                "eventPrice": {
+                    "$ref": "#/definitions/EventPrice"
+                },
+                "seat": {
+                    "$ref": "#/definitions/Seat"
+                },
+                "created_at": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "updated_at": {
+                    "$ref": "#/definitions/DateTime"
+                }
+            }
+        },
+        "SeatPosition": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "row": {
+                    "type": "integer"
+                },
+                "place": {
+                    "type": "integer"
+                }
+            }
+        },
+        "SeatDrawPosition": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "pos_x": {
+                    "type": "integer"
+                },
+                "pos_y": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Customer": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "PaymentStatus": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "paid",
+                "repealed"
+            ]
+        },
+        "SeatStatus": {
+            "type": "string",
+            "enum": [
+                "free",
+                "booked",
+                "ordered"
+            ]
         }
     }
 }
