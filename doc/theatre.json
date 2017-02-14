@@ -783,181 +783,6 @@
                 }
             }
         },
-        "/venues": {
-            "get": {
-                "description": "Returns a collection of venue",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "venues": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Venue"
-                                    }
-                                },
-                                "count": {
-                                    "type": "integer"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when venues are not found"
-                    }
-                }
-            }
-        },
-        "/venue/{id}": {
-            "get": {
-                "description": "Get a venue info",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "ID of venue in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Venue"
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when venue was not found by id"
-                    }
-                }
-            }
-        },
-        "/venue/{id}/seats": {
-            "get": {
-                "description": "Returns collection of seats for the venue with ID",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "ID of venue in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "seats": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Seat"
-                                    }
-                                },
-                                "count": {
-                                    "type": "integer"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when venue are not found by id"
-                    }
-                }
-            }
-        },
-        "/seat/{uuid}": {
-            "get": {
-                "description": "Return info for seat with UUID",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of seat in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Seat"
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when seat was not found by UUID"
-                    }
-                }
-            }
-        },
         "/ticket/{uuid}": {
             "get": {
                 "description": "Return info for ticket with UUID",
@@ -987,7 +812,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/Ticket"
                         }
@@ -998,9 +823,96 @@
                 }
             }
         },
+        "/ticket/{uuid}/status": {
+            "get": {
+                "description": "Return info for ticket with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of ticket in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/TicketStatus"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by UUID"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update ticket status",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of s ticket in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ticketStatus",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TicketStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by UUID"
+                    }
+                }
+            }
+        },
+        "/cart": {
+            "post": {
+                "description": "Create new cart",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Cart"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when cart was not found by UUID"
+                    }
+                }
+            }
+        },
         "/cart/{uuid}": {
             "get": {
-                "description": "Return info for cart with UUID",
+                "description": "Return specific cart with UUID",
                 "produces": [
                     "application/json"
                 ],
@@ -1034,6 +946,111 @@
                     },
                     "404": {
                         "description": "Returned when cart was not found by UUID"
+                    }
+                }
+            }
+        },
+        "/cart/{uuid}/customer": {
+            "post": {
+                "description": "Return specific cart with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of cart in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "customer",
+                        "description": "Customer to add to the cart",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Cart"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when cart was not found by UUID"
+                    }
+                }
+            }
+        },
+        "/cart/{uuid}/ticket/{ticketUuid}": {
+            "post": {
+                "description": "Add ticket to Cart",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of cart in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "ticketUuid",
+                        "description": "UUID of ticket in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Cart"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when cart or ticket with uuid was not found"
+                    },
+                    "409": {
+                        "description": "Conflict. Was not able to add ticket to ht cart"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete ticket from Cart",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of cart in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "ticketUuid",
+                        "description": "UUID of ticket in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Returned when cart with uuid was not found"
                     }
                 }
             }
@@ -1207,6 +1224,12 @@
                 },
                 "performance": {
                     "$ref": "#/definitions/Performance"
+                },
+                "tickets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Ticket"
+                    }
                 }
             }
         },
@@ -1461,6 +1484,9 @@
                     "type": "integer"
                 },
                 "title": {
+                    "type": "string"
+                },
+                "color": {
                     "type": "string"
                 },
                 "venue": {
