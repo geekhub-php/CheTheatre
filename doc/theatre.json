@@ -94,10 +94,7 @@
         },
         "/employees/{slug}": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_employee",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "employees"
                 ],
@@ -142,10 +139,7 @@
         },
         "/employees/{slug}/roles": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_employee_roles",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "employees"
                 ],
@@ -193,10 +187,7 @@
         },
         "/posts": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_posts",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "posts"
                 ],
@@ -273,10 +264,7 @@
         },
         "/posts/{slug}": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_post",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "posts"
                 ],
@@ -321,10 +309,7 @@
         },
         "/performances": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performances",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performances"
                 ],
@@ -399,10 +384,7 @@
         },
         "/performances/{slug}": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performance",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performances"
                 ],
@@ -448,7 +430,6 @@
         },
         "/performances/{slug}/roles": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performance_roles",
                 "tags": [
                     "performances"
@@ -456,10 +437,6 @@
                 "summary": "Returns Performance roles by his unique {slug}",
                 "produces": [
                     "application/json"
-=======
-                "tags": [
-                    "performances"
->>>>>>> Added swagger documentation to ticket booking API
                 ],
                 "summary": "Returns Performance roles by his unique {slug}",
                 "operationId": "findPerformanceRolesBySlug",
@@ -511,10 +488,7 @@
         },
         "/performanceevents": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performanceevents",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performanceevents"
                 ],
@@ -600,10 +574,7 @@
         },
         "/performanceevents/{id}": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performanceevent",
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performanceevents"
                 ],
@@ -720,20 +691,11 @@
         },
         "/histories": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_histories",
                 "description": "Returns a collection of History",
                 "tags": [
                     "histories"
                 ],
-=======
-                "tags": [
-                    "histories"
-                ],
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma separated strings",
-                "operationId": "findHistoryByStatusId",
->>>>>>> Added swagger documentation to ticket booking API
                 "produces": [
                     "application/json"
                 ],
@@ -802,19 +764,11 @@
         },
         "/histories/{slug}": {
             "get": {
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_history",
                 "description": "Returns an History by unique property {slug}",
                 "tags": [
                     "histories"
                 ],
-=======
-                "tags": [
-                    "histories"
-                ],
-                "summary": "slug histories",
-                "description": "The slug histories return information about the history",
->>>>>>> Added swagger documentation to ticket booking API
                 "produces": [
                     "application/json"
                 ],
