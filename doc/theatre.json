@@ -825,7 +825,7 @@
         },
         "/ticket/{uuid}/status": {
             "get": {
-                "description": "Return info for ticket with UUID",
+                "description": "Return ticket status",
                 "produces": [
                     "application/json"
                 ],
@@ -836,18 +836,6 @@
                         "description": "UUID of ticket in database",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
                     }
                 ],
                 "responses": {
@@ -923,18 +911,6 @@
                         "description": "UUID of cart in database",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
                     }
                 ],
                 "responses": {
@@ -952,7 +928,7 @@
         },
         "/cart/{uuid}/customer": {
             "post": {
-                "description": "Return specific cart with UUID",
+                "description": "Add new customer to the cart",
                 "produces": [
                     "application/json"
                 ],
