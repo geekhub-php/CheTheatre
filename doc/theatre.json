@@ -562,13 +562,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returned when all parameters were correct",
+                        "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/PerformanceEvent"
                         }
                     },
-                    "400": {
-                        "description": "Returned when date diff more than 1 year"
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
                     }
                 }
             }
@@ -736,7 +736,7 @@
         },
         "/ticket/{uuid}/status": {
             "get": {
-                "description": "Return info for ticket with UUID",
+                "description": "Return ticket status",
                 "produces": [
                     "application/json"
                 ],
@@ -747,18 +747,6 @@
                         "description": "UUID of ticket in database",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
                     }
                 ],
                 "responses": {
@@ -834,18 +822,6 @@
                         "description": "UUID of cart in database",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Language of data you want to receive",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
                     }
                 ],
                 "responses": {
@@ -863,7 +839,7 @@
         },
         "/cart/{uuid}/customer": {
             "post": {
-                "description": "Return specific cart with UUID",
+                "description": "Add new customer to the cart",
                 "produces": [
                     "application/json"
                 ],
