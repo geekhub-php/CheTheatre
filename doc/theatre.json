@@ -5,9 +5,7 @@
         "title": "Cherkasy Drama Theatre",
         "termsOfService": "http://theatre-shevchenko.ck.ua/en/terms/",
         "contact": {
-            "name": "GeekHub Foundation",
-            "url": "http://geekhub.ck.ua/",
-            "email": "neek@geekhub.ck.ua"
+            "name": "neek@geekhub.ck.ua"
         },
         "license": {
             "name": "Apache 2.0",
@@ -96,7 +94,10 @@
         },
         "/employees/{slug}": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_employee",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "employees"
                 ],
@@ -111,7 +112,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -141,7 +142,10 @@
         },
         "/employees/{slug}/roles": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_employee_roles",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "employees"
                 ],
@@ -156,7 +160,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -189,7 +193,10 @@
         },
         "/posts": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_posts",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "posts"
                 ],
@@ -243,6 +250,9 @@
                                 "count": {
                                     "type": "integer"
                                 },
+                                "type": {
+                                    "type": "string"
+                                },
                                 "posts": {
                                     "type": "array",
                                     "items": {
@@ -263,7 +273,10 @@
         },
         "/posts/{slug}": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_post",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "posts"
                 ],
@@ -278,7 +291,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -306,60 +319,18 @@
                 }
             }
         },
-        "/tags/{slug}/posts": {
-            "get": {
-                "operationId": "get_tags_posts",
-                "summary": "Returns Posts for Tag by his unique {slug}",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "slug",
-                        "description": "Tag slug",
-                        "required": true,
-                        "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Selects language of data you want to receive, default is \"uk\"",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returned when Tag by slug was found in database",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Post"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when Tag by slug was not found in database"
-                    }
-                },
-                "deprecated": true
-            }
-        },
         "/performances": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performances",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performances"
                 ],
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
+                "operationId": "findPerformances",
                 "produces": [
                     "application/json"
                 ],
@@ -428,11 +399,15 @@
         },
         "/performances/{slug}": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performance",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performances"
                 ],
                 "summary": "Returns Performance by unique property {slug}",
+                "operationId": "findPerformanceBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -443,7 +418,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -473,6 +448,7 @@
         },
         "/performances/{slug}/roles": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performance_roles",
                 "tags": [
                     "performances"
@@ -480,49 +456,13 @@
                 "summary": "Returns Performance roles by his unique {slug}",
                 "produces": [
                     "application/json"
+=======
+                "tags": [
+                    "performances"
+>>>>>>> Added swagger documentation to ticket booking API
                 ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "slug",
-                        "description": "Performance slug",
-                        "required": true,
-                        "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
-                    },
-                    {
-                        "in": "query",
-                        "name": "locale",
-                        "description": "Selects language of data you want to receive, default is \"uk\"",
-                        "required": false,
-                        "type": "string",
-                        "default": "uk",
-                        "enum": [
-                            "uk",
-                            "en"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returned when Performance by slug was found in database",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Role"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when Performance by slug was not found in database"
-                    }
-                }
-            }
-        },
-        "/performances/{slug}/performanceevents": {
-            "get": {
-                "operationId": "get_performance_performanceevents",
-                "summary": "Returns Performanceevents for Performance by his unique {slug}",
+                "summary": "Returns Performance roles by his unique {slug}",
+                "operationId": "findPerformanceRolesBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -533,7 +473,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -552,9 +492,14 @@
                     "200": {
                         "description": "Returned when Performance by slug was found in database",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/PerformanceEvent"
+                            "type": "object",
+                            "properties": {
+                                "roles": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Role"
+                                    }
+                                }
                             }
                         }
                     },
@@ -566,7 +511,10 @@
         },
         "/performanceevents": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performanceevents",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performanceevents"
                 ],
@@ -579,9 +527,9 @@
                     {
                         "in": "query",
                         "name": "fromDate",
-                        "description": "Find entries from this date, fromat=dd-mm-yyyy",
-                        "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|today/",
+                        "description": "Find entries from this date, format=dd-mm-yyyy",
+                        "required": true,
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
                         "type": "string",
                         "format": "dateTime",
                         "default": "today"
@@ -589,9 +537,9 @@
                     {
                         "in": "query",
                         "name": "toDate",
-                        "description": "Find entries to this date, fromat=dd-mm-yyyy",
-                        "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|\\+1 Year/",
+                        "description": "Find entries to this date, format=dd-mm-yyyy",
+                        "required": true,
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
                         "type": "string",
                         "format": "dateTime",
                         "default": "+1 Year"
@@ -600,8 +548,8 @@
                         "in": "query",
                         "name": "limit",
                         "description": "Count of entities in collection",
-                        "required": false,
-                        "pattern": "/\\d+|all/",
+                        "required": true,
+                        "pattern": "\\d+|all",
                         "type": "string",
                         "default": "all"
                     },
@@ -611,14 +559,13 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/",
-                        "default": "all"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
                         "name": "locale",
                         "description": "Selects language of data you want to receive",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "default": "uk",
                         "enum": [
@@ -653,7 +600,10 @@
         },
         "/performanceevents/{id}": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_performanceevent",
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "tags": [
                     "performanceevents"
                 ],
@@ -770,11 +720,20 @@
         },
         "/histories": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_histories",
                 "description": "Returns a collection of History",
                 "tags": [
                     "histories"
                 ],
+=======
+                "tags": [
+                    "histories"
+                ],
+                "summary": "Finds Pets by status",
+                "description": "Multiple status values can be provided with comma separated strings",
+                "operationId": "findHistoryByStatusId",
+>>>>>>> Added swagger documentation to ticket booking API
                 "produces": [
                     "application/json"
                 ],
@@ -782,7 +741,7 @@
                     {
                         "in": "query",
                         "name": "limit",
-                        "description": "Count entries at one page",
+                        "description": "Status values that need to be considered for filter, default is 5",
                         "required": false,
                         "type": "integer",
                         "default": 5
@@ -790,7 +749,7 @@
                     {
                         "in": "query",
                         "name": "page",
-                        "description": "Number of page to be shown",
+                        "description": "Status values that need to be considered for filter, default is 1",
                         "required": false,
                         "type": "integer",
                         "default": 1
@@ -798,7 +757,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Selects language of data you want to receive",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -823,7 +782,7 @@
                                 "total_count": {
                                     "type": "integer"
                                 },
-                                "history": {
+                                "histories": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/History"
@@ -843,11 +802,19 @@
         },
         "/histories/{slug}": {
             "get": {
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "operationId": "get_history",
                 "description": "Returns an History by unique property {slug}",
                 "tags": [
                     "histories"
                 ],
+=======
+                "tags": [
+                    "histories"
+                ],
+                "summary": "slug histories",
+                "description": "The slug histories return information about the history",
+>>>>>>> Added swagger documentation to ticket booking API
                 "produces": [
                     "application/json"
                 ],
@@ -855,15 +822,15 @@
                     {
                         "in": "path",
                         "name": "slug",
-                        "description": "Slug of history in database",
+                        "description": "values string ",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Selects language of data you want to receive",
+                        "description": "Status values that need to be considered for filter, default is \"uk\"",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -875,9 +842,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returned when History by {slug} was found",
+                        "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/History"
+                            "type": "object",
+                            "properties": {
+                                "history": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/definitions/History"
+                                    }
+                                }
+                            }
                         }
                     },
                     "404": {
@@ -1584,6 +1559,7 @@
                 "color": {
                     "type": "string"
                 },
+<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
                 "venue": {
                     "$ref": "#/definitions/Venue"
                 }
@@ -1602,15 +1578,17 @@
                 "id": {
                     "type": "integer"
                 },
+=======
+>>>>>>> Added swagger documentation to ticket booking API
                 "venue": {
                     "$ref": "#/definitions/Venue"
                 }
             }
         },
-        "Cart": {
+        "CustomerOrder": {
             "type": "object",
             "properties": {
-                "uuid": {
+                "id": {
                     "type": "string"
                 },
                 "tickets": {
@@ -1624,12 +1602,6 @@
                 },
                 "paymentStatus": {
                     "$ref": "#/definitions/PaymentStatus"
-                },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
