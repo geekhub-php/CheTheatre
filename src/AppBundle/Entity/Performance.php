@@ -112,7 +112,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     public $sliderImageThumbnails;
 
     /**
-     * @var PerformanceEvent[]
+     * @var ArrayCollection|PerformanceEvent[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\PerformanceEvent",
@@ -124,7 +124,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     private $performanceEvents;
 
     /**
-     * @var Role[]
+     * @var ArrayCollection|Role[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Role",
@@ -136,7 +136,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     private $roles;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var ArrayCollection|GalleryHasMedia[]
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="performance_galleryHasMedia",
@@ -163,7 +163,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     private $slug;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PerformanceTranslation",

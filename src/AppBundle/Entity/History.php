@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Traits\DeletedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -47,7 +48,7 @@ class History extends AbstractTranslateableStory
     protected $year;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\HistoryTranslation",
@@ -58,7 +59,7 @@ class History extends AbstractTranslateableStory
     protected $translations;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var ArrayCollection|GalleryHasMedia[]
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="history_galleryHasMedia",
@@ -80,7 +81,7 @@ class History extends AbstractTranslateableStory
     protected $type;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * ArrayCollection|Performances[]
      *
      * @Serializer\Expose
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Performance", mappedBy="festival", orphanRemoval=true)
