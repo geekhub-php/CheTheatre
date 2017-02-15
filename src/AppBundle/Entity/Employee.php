@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -177,8 +178,8 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     public function __construct()
     {
         parent::__construct();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
     }
 
     /**
@@ -321,10 +322,10 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     /**
      * Add role
      *
-     * @param  \AppBundle\Entity\Role $role
+     * @param  Role $role
      * @return Employee
      */
-    public function addRole(\AppBundle\Entity\Role $role)
+    public function addRole(Role $role)
     {
         $this->roles[] = $role;
 
@@ -334,9 +335,9 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     /**
      * Remove role
      *
-     * @param \AppBundle\Entity\Role $role
+     * @param Role $role
      */
-    public function removeRole(\AppBundle\Entity\Role $role)
+    public function removeRole(Role $role)
     {
         $this->roles->removeElement($role);
     }
