@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\DeletedByTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
@@ -72,8 +73,8 @@ class Post extends AbstractTranslateableStory
     public function __construct()
     {
         parent::__construct();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
