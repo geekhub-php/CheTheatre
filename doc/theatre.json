@@ -541,6 +541,14 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": false,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "in": "path",
                         "name": "id",
                         "description": "PerformanceEvent ID",
@@ -563,6 +571,12 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation",
+                        "headers": {
+                            "Api-Key-Token": {
+                                "type": "string",
+                                "description": "Security API Key Token"
+                            }
+                        },
                         "schema": {
                             "$ref": "#/definitions/PerformanceEvent"
                         }
@@ -702,6 +716,14 @@
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "in": "path",
                         "name": "uuid",
                         "description": "UUID of ticket in database",
@@ -728,6 +750,9 @@
                             "$ref": "#/definitions/Ticket"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
                     }
@@ -741,6 +766,14 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
                     {
                         "in": "path",
                         "name": "uuid",
@@ -756,6 +789,9 @@
                             "$ref": "#/definitions/TicketStatus"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
                     }
@@ -767,7 +803,7 @@
                     {
                         "in": "path",
                         "name": "uuid",
-                        "description": "UUID of s ticket in database",
+                        "description": "ticket UUID in database",
                         "required": true,
                         "type": "string"
                     },
@@ -784,42 +820,66 @@
                     "204": {
                         "description": "successful operation"
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
                     }
                 }
             }
         },
-        "/cart": {
+        "/order": {
             "post": {
-                "description": "Create new cart",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "201": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Cart"
-                        }
-                    },
-                    "404": {
-                        "description": "Returned when cart was not found by UUID"
-                    }
-                }
-            }
-        },
-        "/cart/{uuid}": {
-            "get": {
-                "description": "Return specific cart with UUID",
+                "description": "Create new order",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerOrder"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    }
+                }
+            }
+        },
+        "/order/{uuid}": {
+            "get": {
+                "description": "Return specific order with UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "Security API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "in": "path",
                         "name": "uuid",
-                        "description": "UUID of cart in database",
+                        "description": "UUID of order in database",
                         "required": true,
                         "type": "string"
                     }
@@ -828,18 +888,21 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/Cart"
+                            "$ref": "#/definitions/CustomerOrder"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
-                        "description": "Returned when cart was not found by UUID"
+                        "description": "Returned when order was not found by UUID"
                     }
                 }
             }
         },
-        "/cart/{uuid}/customer": {
+        "/order/{uuid}/customer": {
             "post": {
-                "description": "Add new customer to the cart",
+                "description": "Add new customer to the order",
                 "produces": [
                     "application/json"
                 ],
@@ -847,14 +910,14 @@
                     {
                         "in": "path",
                         "name": "uuid",
-                        "description": "UUID of cart in database",
+                        "description": "UUID of order in database",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "in": "body",
                         "name": "customer",
-                        "description": "Customer to add to the cart",
+                        "description": "Customer to add to the order",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Customer"
@@ -865,26 +928,37 @@
                     "201": {
                         "description": "Successful operation",
                         "schema": {
-                            "$ref": "#/definitions/Cart"
+                            "$ref": "#/definitions/CustomerOrder"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
-                        "description": "Returned when cart was not found by UUID"
+                        "description": "Returned when order was not found by UUID"
                     }
                 }
             }
         },
-        "/cart/{uuid}/ticket/{ticketUuid}": {
+        "/order/{uuid}/ticket/{ticketUuid}": {
             "post": {
-                "description": "Add ticket to Cart",
+                "description": "Add ticket to order",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "in": "path",
                         "name": "uuid",
-                        "description": "UUID of cart in database",
+                        "description": "UUID of order in database",
                         "required": true,
                         "type": "string"
                     },
@@ -900,27 +974,38 @@
                     "201": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/Cart"
+                            "$ref": "#/definitions/CustomerOrder"
                         }
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
-                        "description": "Returned when cart or ticket with uuid was not found"
+                        "description": "Returned when order or ticket with uuid was not found"
                     },
                     "409": {
-                        "description": "Conflict. Was not able to add ticket to ht cart"
+                        "description": "Conflict. Was not able to add ticket to the order"
                     }
                 }
             },
             "delete": {
-                "description": "Delete ticket from Cart",
+                "description": "Delete ticket from order",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "in": "path",
                         "name": "uuid",
-                        "description": "UUID of cart in database",
+                        "description": "UUID of order in database",
                         "required": true,
                         "type": "string"
                     },
@@ -936,8 +1021,11 @@
                     "204": {
                         "description": "Successful operation"
                     },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
+                    },
                     "404": {
-                        "description": "Returned when cart with uuid was not found"
+                        "description": "Returned when order with uuid was not found"
                     }
                 }
             }
@@ -1071,12 +1159,6 @@
                 "slug": {
                     "type": "string"
                 },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
                 "mainPicture": {
                     "$ref": "#/definitions/ImageBlock"
                 },
@@ -1099,15 +1181,6 @@
                 },
                 "year": {
                     "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
                 },
                 "performance": {
                     "$ref": "#/definitions/Performance"
@@ -1149,15 +1222,6 @@
                     "type": "string",
                     "example": "larisa-burlaka"
                 },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "deleted_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
                 "gallery": {
                     "type": "array",
                     "items": {
@@ -1189,12 +1253,6 @@
                 },
                 "slug": {
                     "type": "string"
-                },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
@@ -1208,12 +1266,6 @@
                     "type": "string"
                 },
                 "slug": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
                     "type": "string"
                 },
                 "locale": {
@@ -1241,12 +1293,6 @@
                 },
                 "year": {
                     "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
                 },
                 "created_by": {
                     "type": "string"
@@ -1381,7 +1427,7 @@
                 }
             }
         },
-        "Cart": {
+        "CustomerOrder": {
             "type": "object",
             "properties": {
                 "uuid": {
@@ -1398,12 +1444,6 @@
                 },
                 "paymentStatus": {
                     "$ref": "#/definitions/PaymentStatus"
-                },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
@@ -1422,17 +1462,11 @@
                 "price": {
                     "type": "integer"
                 },
-                "performanceEvent": {
-                    "$ref": "#/definitions/PerformanceEvent"
+                "performanceEventId": {
+                    "type": "integer"
                 },
                 "seat": {
                     "$ref": "#/definitions/Seat"
-                },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
                 },
                 "status": {
                     "$ref": "#/definitions/TicketStatus"
