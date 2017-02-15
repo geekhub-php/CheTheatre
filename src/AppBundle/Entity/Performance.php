@@ -186,9 +186,9 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     public function __construct()
     {
         parent::__construct();
-        $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performanceEvents = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
     }
 
     /**
