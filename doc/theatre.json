@@ -177,7 +177,7 @@
         "/posts": {
             "get": {
                 "summary": "Return collection of posts",
-                "description": "Multiple status values can be provided with comma seperated strings",
+                "description": "Multiple status values can be provided with comma separated strings",
                 "produces": [
                     "application/json"
                 ],
@@ -341,7 +341,7 @@
                                 "count": {
                                     "type": "integer"
                                 },
-                                "perfomances": {
+                                "performances": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/Performance"
@@ -362,7 +362,7 @@
         "/performances/{slug}": {
             "get": {
                 "summary": "Returns Performance by unique property {slug}",
-                "operationId": "findPerfomanceBySlug",
+                "operationId": "findPerformanceBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -404,7 +404,7 @@
         "/performances/{slug}/roles": {
             "get": {
                 "summary": "Returns Performance roles by his unique {slug}",
-                "operationId": "findPerfomanceRolesBySlug",
+                "operationId": "findPerformanceRolesBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -462,7 +462,7 @@
                     {
                         "in": "query",
                         "name": "fromDate",
-                        "description": "Find entries from this date, fromat=dd-mm-yyyy",
+                        "description": "Find entries from this date, format=dd-mm-yyyy",
                         "required": true,
                         "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
                         "type": "string",
@@ -472,7 +472,7 @@
                     {
                         "in": "query",
                         "name": "toDate",
-                        "description": "Find entries to this date, fromat=dd-mm-yyyy",
+                        "description": "Find entries to this date, format=dd-mm-yyyy",
                         "required": true,
                         "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
                         "type": "string",
@@ -590,8 +590,8 @@
         "/histories": {
             "get": {
                 "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma seperated strings",
-                "operationId": "findHistoryByStausId",
+                "description": "Multiple status values can be provided with comma separated strings",
+                "operationId": "findHistoryByStatusId",
                 "produces": [
                     "application/json"
                 ],
@@ -660,8 +660,8 @@
         },
         "/histories/{slug}": {
             "get": {
-                "summary": "slug historiies",
-                "description": "The slug historiies return information about the history",
+                "summary": "slug histories",
+                "description": "The slug histories return information about the history",
                 "produces": [
                     "application/json"
                 ],
@@ -1124,7 +1124,7 @@
                 }
             }
         },
-        "GaleryImage": {
+        "GalleryImage": {
             "type": "object",
             "properties": {
                 "title": {
@@ -1225,7 +1225,7 @@
                 "gallery": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/GaleryImage"
+                        "$ref": "#/definitions/GalleryImage"
                     }
                 },
                 "avatar": {
@@ -1245,7 +1245,7 @@
                 "description": {
                     "type": "string"
                 },
-                "perfomance": {
+                "performance": {
                     "$ref": "#/definitions/Performance"
                 },
                 "employee": {
@@ -1371,7 +1371,7 @@
                 "title": {
                     "type": "string"
                 },
-                "adress": {
+                "address": {
                     "type": "string"
                 }
             }
