@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
 trait LinksTrait
 {
     /**
-     * @var Array[]
+     * @var link[]
      *
      * @Type("array")
      * @Expose
@@ -20,7 +20,8 @@ trait LinksTrait
     protected $links;
 
     /**
-     * @return \Array[]
+     * @var link[]
+     * @return link[]
      */
     public function getLinks()
     {

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Post;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -15,7 +16,7 @@ use JMS\Serializer\Annotation\Type;
 class PostsResponse extends AbstractPaginatedModel
 {
     /**
-     * @var Array[]
+     * @var Post[]
      * @Type("array<AppBundle\Entity\Post>")
      * @Expose
      */

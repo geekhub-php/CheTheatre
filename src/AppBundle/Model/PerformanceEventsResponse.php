@@ -2,7 +2,7 @@
 
 namespace AppBundle\Model;
 
-use AppBundle\Entity\Performance;
+use AppBundle\Entity\PerformanceEvent;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\Type;
 class PerformanceEventsResponse
 {
     /**
-     * @var Performance[]
+     * @var PerformanceEvent[]
      *
      * @Type("array<AppBundle\Entity\PerformanceEvent>")
      * @Expose
@@ -33,7 +33,7 @@ class PerformanceEventsResponse
     protected $count;
 
     /**
-     * @return Performance[]
+     * @return PerformanceEvent[]
      */
     public function getPerformanceEvents()
     {

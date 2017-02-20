@@ -2,6 +2,7 @@
 
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Performance;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -15,7 +16,7 @@ use JMS\Serializer\Annotation\Type;
 class PerformancesResponse extends AbstractPaginatedModel
 {
     /**
-     * @var Array[]
+     * @var Performance[]
      * @Type("array")
      * @Expose
      */

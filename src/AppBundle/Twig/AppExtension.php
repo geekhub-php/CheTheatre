@@ -2,18 +2,18 @@
 
 namespace AppBundle\Twig;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class AppExtension extends \Twig_Extension
 {
     /**
-     * @var EntityManager
+     * @var ManagerRegistry
      */
-    protected $em;
+    protected $registry;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $entityManager;
+        $this->registry = $managerRegistry;
     }
 
     public function getFunctions()
@@ -42,7 +42,7 @@ class AppExtension extends \Twig_Extension
      */
     protected function allTags()
     {
-        return $this->em->getRepository('AppBundle:Tag')->findAll();
+        return $this->registry->getManager()->getRepository('AppBundle:Tag')->findAll();
     }
 
     public function getName()
