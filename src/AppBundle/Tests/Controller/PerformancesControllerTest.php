@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class PerformancesControllerTest extends AbstractController
 {
-    public function testGetPerformances()
+    public function testGetPerformancesList()
     {
         $allPerformances = $this->getEm()->getRepository('AppBundle:Performance')->findAll();
         $repertoryPerformances = $this->getEm()->getRepository('AppBundle:Performance')->findBy(['festival' => null]);

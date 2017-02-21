@@ -1,0 +1,5 @@
+services:
+  app_test.swagger_spec_validator:
+    class: AppBundle\Tests\Controller\SwaggerSpecValidator
+    arguments:
+      - "%kernel.root_dir%/../doc/theatre.json"

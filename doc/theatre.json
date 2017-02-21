@@ -20,6 +20,7 @@
     "paths": {
         "/employees": {
             "get": {
+                "operationId": "get_employees",
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -91,6 +92,7 @@
         },
         "/employees/{slug}": {
             "get": {
+                "operationId": "get_employee",
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -132,6 +134,7 @@
         },
         "/employees/{slug}/roles": {
             "get": {
+                "operationId": "get_employee_roles",
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -176,6 +179,7 @@
         },
         "/posts": {
             "get": {
+                "operationId": "get_posts",
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma seperated strings",
                 "produces": [
@@ -249,6 +253,7 @@
         },
         "/posts/{slug}": {
             "get": {
+                "operationId": "get_post",
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -290,9 +295,9 @@
         },
         "/performances": {
             "get": {
+                "operationId": "get_performances",
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
-                "operationId": "findPerformances",
                 "produces": [
                     "application/json"
                 ],
@@ -341,7 +346,7 @@
                                 "count": {
                                     "type": "integer"
                                 },
-                                "perfomances": {
+                                "performances": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/Performance"
@@ -361,8 +366,8 @@
         },
         "/performances/{slug}": {
             "get": {
+                "operationId": "get_performance",
                 "summary": "Returns Performance by unique property {slug}",
-                "operationId": "findPerfomanceBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -403,8 +408,8 @@
         },
         "/performances/{slug}/roles": {
             "get": {
+                "operationId": "get_performance_roles",
                 "summary": "Returns Performance roles by his unique {slug}",
-                "operationId": "findPerfomanceRolesBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -453,6 +458,7 @@
         },
         "/performanceevents": {
             "get": {
+                "operationId": "get_performanceevents",
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
                 "produces": [
@@ -535,9 +541,9 @@
         },
         "/histories": {
             "get": {
+                "operationId": "get_histories",
                 "summary": "Finds Pets by status",
                 "description": "Multiple status values can be provided with comma seperated strings",
-                "operationId": "findHistoryByStausId",
                 "produces": [
                     "application/json"
                 ],
@@ -606,6 +612,7 @@
         },
         "/histories/{slug}": {
             "get": {
+                "operationId": "get_history",
                 "summary": "slug historiies",
                 "description": "The slug historiies return information about the history",
                 "produces": [
