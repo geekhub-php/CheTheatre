@@ -27,6 +27,9 @@ show_run("Load Fixtures", "app/console doctrine:fixtures:load --no-interaction  
 show_run("Assets install", "app/console assets:install --symlink ".$stringOptions);
 show_run("Assetic dump", "app/console assetic:dump ".$stringOptions);
 
+show_run("npm install", "npm i");
+show_run("npm install", "./node_modules/.bin/bower install");
+
 show_run("Warming up cache", "php app/console cache:warmup ".$stringOptions);
 
 exit(0);
