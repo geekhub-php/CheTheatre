@@ -1,0 +1,20 @@
+{
+  "name": "geekhub-php-chetheatre",
+  "description": "Charity project for Cherkassy Drama Theatre",
+  "main": "index.js",
+  "authors": [
+    "Geekhub"
+  ],
+  "license": "MIT",
+  "homepage": "hhttps://github.com/geekhub-php/CheTheatre",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "swagger-ui": "^2.2.10"
+  }
+}

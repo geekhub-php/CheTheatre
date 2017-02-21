@@ -1,0 +1,24 @@
+{
+  "name": "geekhub-php-chetheatre",
+  "version": "0.0.0",
+  "description": "Charity project for Cherkassy Drama Theatre",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geekhub-php/CheTheatre.git"
+  },
+  "author": "Geekhub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geekhub-php/CheTheatre/issues"
+  },
+  "dependencies": {
+    "bower": "~1.8.0"
+  }
+}
