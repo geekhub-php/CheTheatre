@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Traits\DeletedByTrait;
 use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -30,7 +31,7 @@ class Post extends AbstractTranslateableStory
     protected $id;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PostTranslation",

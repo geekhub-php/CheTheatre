@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Traits\DeletedByTrait;
 use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -49,7 +50,7 @@ class History extends AbstractTranslateableStory
     protected $year;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\HistoryTranslation",
@@ -82,7 +83,7 @@ class History extends AbstractTranslateableStory
     protected $type;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * ArrayCollection|Performances[]
      *
      * @Serializer\Expose
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Performance", mappedBy="festival", orphanRemoval=true)

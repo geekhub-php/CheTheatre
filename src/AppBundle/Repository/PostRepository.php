@@ -54,7 +54,7 @@ class PostRepository extends AbstractRepository
             ->setParameter('pinned', $pinned)
         ;
 
-        if ($tagSlug) {
+        if ($tagSlug !==null) {
             $qb->join('u.tags', 't')->andWhere('t.slug = :slug')->setParameter('slug', $tagSlug);
         }
 

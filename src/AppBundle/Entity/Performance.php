@@ -165,7 +165,11 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     private $slug;
 
     /**
+<<<<<<< HEAD
      * @var ArrayCollection|PerformanceTranslation[]
+=======
+     * @var ArrayCollection|Translation[]
+>>>>>>> master
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PerformanceTranslation",

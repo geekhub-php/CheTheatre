@@ -87,7 +87,7 @@ class SerializerSubscriber implements EventSubscriberInterface
             $employee->getLocale()
         );
 
-        if ($galleryHasMediaLinks) {
+        if (!empty(array_filter($galleryHasMediaLinks))) {
             $employee->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
@@ -112,7 +112,7 @@ class SerializerSubscriber implements EventSubscriberInterface
             $performance->getLocale()
         );
 
-        if ($galleryHasMediaLinks) {
+        if (!empty(array_filter($galleryHasMediaLinks))) {
             $performance->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
@@ -129,7 +129,7 @@ class SerializerSubscriber implements EventSubscriberInterface
 
         $galleryHasMediaLinks = $this->formatGalleries($post->getGalleryHasMedia()->getValues(), $post->getLocale());
 
-        if ($galleryHasMediaLinks) {
+        if (!empty(array_filter($galleryHasMediaLinks))) {
             $post->galleryHasMediaThumbnails = $galleryHasMediaLinks;
         }
     }
