@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Translations\EmployeeTranslation;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -107,7 +109,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     private $biography;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Role[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Role",
@@ -119,7 +121,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     private $roles;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|GalleryHasMedia[]
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="employee_galleryHasMedia",
@@ -162,7 +164,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     public $avatarThumbnails;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|EmployeeTranslation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\EmployeeTranslation",

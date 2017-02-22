@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\DeletedByTrait;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -40,7 +41,7 @@ class Post extends AbstractTranslateableStory
     protected $translations;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|GalleryHasMedia[]
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="post_galleryHasMedia",
@@ -51,7 +52,7 @@ class Post extends AbstractTranslateableStory
     protected $galleryHasMedia;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Tag[]
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @Serializer\Expose
