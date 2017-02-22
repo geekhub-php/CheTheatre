@@ -107,7 +107,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     private $biography;
 
     /**
-     * @var Role[]
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Role",
@@ -119,7 +119,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     private $roles;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="employee_galleryHasMedia",

@@ -40,7 +40,7 @@ class Post extends AbstractTranslateableStory
     protected $translations;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="post_galleryHasMedia",
@@ -51,7 +51,7 @@ class Post extends AbstractTranslateableStory
     protected $galleryHasMedia;
 
     /**
-     * \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @Serializer\Expose
