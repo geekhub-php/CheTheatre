@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Translations\PostTranslation;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Traits\DeletedByTrait;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
@@ -29,7 +31,7 @@ class Post extends AbstractTranslateableStory
     protected $id;
 
     /**
-     * @var ArrayCollection|Translation[]
+     * @var ArrayCollection|PostTranslation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PostTranslation",
@@ -73,8 +75,8 @@ class Post extends AbstractTranslateableStory
     public function __construct()
     {
         parent::__construct();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
