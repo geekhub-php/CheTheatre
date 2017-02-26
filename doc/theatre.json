@@ -104,7 +104,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -146,7 +146,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -230,9 +230,6 @@
                                 "count": {
                                     "type": "integer"
                                 },
-                                "type": {
-                                    "type": "string"
-                                },
                                 "posts": {
                                     "type": "array",
                                     "items": {
@@ -265,7 +262,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -378,7 +375,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -420,7 +417,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -439,14 +436,9 @@
                     "200": {
                         "description": "Returned when Performance by slug was found in database",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "roles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Role"
-                                    }
-                                }
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Role"
                             }
                         }
                     },
@@ -469,8 +461,8 @@
                         "in": "query",
                         "name": "fromDate",
                         "description": "Find entries from this date, fromat=dd-mm-yyyy",
-                        "required": true,
-                        "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
+                        "required": false,
+                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|today/",
                         "type": "string",
                         "format": "dateTime",
                         "default": "today"
@@ -479,8 +471,8 @@
                         "in": "query",
                         "name": "toDate",
                         "description": "Find entries to this date, fromat=dd-mm-yyyy",
-                        "required": true,
-                        "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
+                        "required": false,
+                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|\\+1 Year/",
                         "type": "string",
                         "format": "dateTime",
                         "default": "+1 Year"
@@ -489,8 +481,8 @@
                         "in": "query",
                         "name": "limit",
                         "description": "Count of entities in collection",
-                        "required": true,
-                        "pattern": "\\d+|all",
+                        "required": false,
+                        "pattern": "/\\d+|all/",
                         "type": "string",
                         "default": "all"
                     },
@@ -498,15 +490,15 @@
                         "in": "query",
                         "name": "performance",
                         "description": "Performance slug",
-                        "required": false,
+                        "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
                         "name": "locale",
                         "description": "Selects language of data you want to receive",
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "default": "uk",
                         "enum": [
@@ -539,11 +531,57 @@
                 }
             }
         },
+        "/performanceevent/{id}": {
+            "get": {
+                "operationId": "get_performanceevent",
+                "description": "Returns performanceEvent by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "PerformanceEvent ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "headers": {
+                            "Api-Key-Token": {
+                                "type": "string",
+                                "description": "Security API Key Token"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/PerformanceEvent"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
+                    }
+                }
+            }
+        },
         "/histories": {
             "get": {
                 "operationId": "get_histories",
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma seperated strings",
+                "description": "Returns a collection of History",
                 "produces": [
                     "application/json"
                 ],
@@ -551,7 +589,7 @@
                     {
                         "in": "query",
                         "name": "limit",
-                        "description": "Status values that need to be considered for filter, default is 5",
+                        "description": "Count entries at one page",
                         "required": false,
                         "type": "integer",
                         "default": 5
@@ -559,7 +597,7 @@
                     {
                         "in": "query",
                         "name": "page",
-                        "description": "Status values that need to be considered for filter, default is 1",
+                        "description": "Number of page to be shown",
                         "required": false,
                         "type": "integer",
                         "default": 1
@@ -567,7 +605,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -592,7 +630,7 @@
                                 "total_count": {
                                     "type": "integer"
                                 },
-                                "histories": {
+                                "history": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/History"
@@ -613,8 +651,7 @@
         "/histories/{slug}": {
             "get": {
                 "operationId": "get_history",
-                "summary": "slug historiies",
-                "description": "The slug historiies return information about the history",
+                "description": "Returns an History by unique property {slug}",
                 "produces": [
                     "application/json"
                 ],
@@ -622,15 +659,15 @@
                     {
                         "in": "path",
                         "name": "slug",
-                        "description": "values string ",
+                        "description": "Slug of history in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -642,17 +679,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Returned when History by {slug} was found",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "history": {
-                                    "type": "object",
-                                    "items": {
-                                        "$ref": "#/definitions/History"
-                                    }
-                                }
-                            }
+                            "$ref": "#/definitions/History"
                         }
                     },
                     "404": {

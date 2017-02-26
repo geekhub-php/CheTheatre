@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Tests\Controller\SwaggerValidator;
+namespace AppBundle\Tests\Controller\SwaggerValidator\Shemas;
 
 use Epfremme\Swagger\Entity\Schemas\SchemaInterface;
 

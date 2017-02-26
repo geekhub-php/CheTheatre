@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Tests\Controller\SwaggerValidator;
+namespace AppBundle\Tests\Controller\SwaggerValidator\Shemas;
 
 use Epfremme\Swagger\Entity\Schemas\ObjectSchema;
 use Epfremme\Swagger\Entity\Schemas\SchemaInterface;
@@ -14,7 +14,7 @@ class ObjectSchemaValidator extends AbstractShemaValidator implements SwaggerSch
     public function validate(SchemaInterface $schema, $actualContent)
     {
         self::assertInstanceOf(ObjectSchema::class, $schema);
-        self::assertInternalType('object', $actualContent);
+        self::assertInternalType(ObjectSchema::OBJECT_TYPE, $actualContent);
 
         /**
          * @var string $propertyName

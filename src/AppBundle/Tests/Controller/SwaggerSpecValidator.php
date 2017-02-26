@@ -2,8 +2,8 @@
 
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\Tests\Controller\SwaggerValidator\ObjectSchemaValidator;
-use AppBundle\Tests\Controller\SwaggerValidator\SchemaValidatorFactory;
+use AppBundle\Tests\Controller\SwaggerValidator\Parameters\ParameterValidatorFactory;
+use AppBundle\Tests\Controller\SwaggerValidator\Shemas\SchemaValidatorFactory;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Collections\ArrayCollection;
 use Epfremme\Swagger\Entity\Operation;
@@ -27,6 +27,11 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
      */
     private $schemaValidatorFactory;
 
+    /**
+     * @var ParameterValidatorFactory
+     */
+    private $parameterValidatorFactory;
+
     public function __construct(string $source)
     {
         $this->paths = new ArrayCollection();
@@ -35,6 +40,7 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
         $factory = new SwaggerFactory();
         $this->swagger = $factory->build($source);
         $this->schemaValidatorFactory = new SchemaValidatorFactory();
+        $this->parameterValidatorFactory = new ParameterValidatorFactory();
     }
 
     /**
@@ -45,6 +51,7 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
      */
     public function assertResource(string $operationId, Request $request, Response $response)
     {
+
         try {
             $path = $this->getPath($operationId);
             $method = strtolower($request->getMethod());
@@ -126,7 +133,18 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
 
     private function assertParameters(Request $request, Operation $operation)
     {
-        //todo: implement this
+        foreach ($operation->getParameters() as $key => $parameterDoc){
+            switch ($request->getMethod()){
+                case 'GET':
+                    $parameterRequest = $request->get($parameterDoc->getName());
+                    break;
+                case 'POST':
+                    $parameterRequest = $request->request->get($parameterDoc->getName());
+                    break;
+            }
+            $validator = $this->parameterValidatorFactory->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
+            $validator->validate($parameterDoc, $parameterRequest);
+        }
     }
 
     private function assertAllowedContentType(Response $response, Operation $operation)

@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Tests\Controller\SwaggerValidator;
+namespace AppBundle\Tests\Controller\SwaggerValidator\Shemas;
 
-class AbstractShemaValidator extends \PHPUnit_Framework_Assert
+abstract class AbstractShemaValidator extends \PHPUnit_Framework_Assert
 {
     /**
      * @var SchemaValidatorFactory
