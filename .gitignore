@@ -1,6 +1,7 @@
 /web/bundles/
 web/uploads/*
 /web/css/
+/web/swagger-ui/
 !web/uploads/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*

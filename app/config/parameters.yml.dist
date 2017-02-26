@@ -32,3 +32,6 @@ parameters:
     cdn_domain: http://%api_domain%
     users:
         admin: { password: 111111, roles: 'ROLE_SUPER_ADMIN'}
+    app_swagger_ui_resource_url: app_swagger_ui_static_resource
+    app_swagger_ui_static_resource_dir: doc/
+    app_swagger_ui_static_resource_filename: theatre.json

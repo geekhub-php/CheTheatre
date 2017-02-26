@@ -17,6 +17,16 @@ nelmio_api_doc_index:
     defaults: { _controller: NelmioApiDocBundle:ApiDoc:index, view: 'default' }
     methods: [GET]
 
+app_swagger_ui_index:
+    path: /swagger-doc/
+    defaults: { _controller: AppBundle:Default:swaggerUi }
+    methods: [GET]
+
+app_swagger_ui_static_resource:
+    path: /swagger-doc/{resource}
+    defaults: { _controller: AppBundle:Default:swaggerUiStaticResource }
+    methods: [GET]
+
 login:
   pattern:  /login
   defaults: { _controller: AppBundle:Default:login }

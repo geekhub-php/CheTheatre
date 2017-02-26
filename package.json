@@ -19,6 +19,8 @@
     "url": "https://github.com/geekhub-php/CheTheatre/issues"
   },
   "dependencies": {
-    "bower": "~1.8.0"
+    "bower": "~1.8.0",
+    "gulp": "~3.9.1",
+    "del": "~2.2.2"
   }
 }

@@ -28,7 +28,8 @@ show_run("Assets install", "app/console assets:install --symlink ".$stringOption
 show_run("Assetic dump", "app/console assetic:dump ".$stringOptions);
 
 show_run("npm install", "npm i");
-show_run("npm install", "./node_modules/.bin/bower install");
+show_run("bower install", "./node_modules/.bin/bower install");
+show_run("run gulp", "./node_modules/.bin/gulp");
 
 show_run("Warming up cache", "php app/console cache:warmup ".$stringOptions);
 
