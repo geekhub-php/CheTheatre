@@ -13,7 +13,6 @@ class IntegerPathParameterValidator extends AbstractParameterValidator
      */
     public function validate(AbstractParameter $parameterDoc, $parameterRequest)
     {
-
         self::assertInstanceOf(IntegerType::class, $parameterDoc);
 
         /**
@@ -21,8 +20,9 @@ class IntegerPathParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            $parameterRequest = $parameterDoc->getDefault();
-            self::assertNotNull($parameterRequest);
+            self::assertNotFalse($parameterDoc->getDefault());
+        } else {
+            self::assertRegExp('/^\d+$/', $parameterRequest);
         }
     }
 }

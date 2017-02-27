@@ -1,12 +1,11 @@
 <?php
-
-namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters\PathParameter;
+namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters\HeaderParameter;
 
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\AbstractParameterValidator;
 use Epfremme\Swagger\Entity\Parameters\AbstractParameter;
-use Epfremme\Swagger\Entity\Parameters\PathParameter\StringType;
+use Epfremme\Swagger\Entity\Parameters\HeaderParameter\StringType;
 
-class StringPathParameterValidator extends AbstractParameterValidator
+class StringHeaderParameterValidator extends AbstractParameterValidator
 {
     /**
      * @param AbstractParameter $parameterDoc
@@ -21,14 +20,11 @@ class StringPathParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            self::assertNotFalse($parameterDoc->getDefault());
         } else {
+            self::assertInternalType(StringType::STRING_TYPE, $parameterRequest);
+
             if ($parameterDoc->getPattern()) {
                 self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
-            }
-
-            if ($parameterDoc->getEnum()) {
-                self::assertContains($parameterRequest, $parameterDoc->getEnum());
             }
         }
     }

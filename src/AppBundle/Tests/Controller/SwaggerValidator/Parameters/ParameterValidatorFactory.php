@@ -2,6 +2,7 @@
 
 namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters;
 
+use AppBundle\Tests\Controller\SwaggerValidator\Parameters\HeaderParameter\StringHeaderParameterValidator;
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\PathParameter\IntegerPathParameterValidator;
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\PathParameter\StringPathParameterValidator;
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\QueryParameter\IntegerQueryParameterValidator;
@@ -12,11 +13,18 @@ class ParameterValidatorFactory
     /**
      * @param string $in
      * @param string $type
-     * @return IntegerPathParameterValidator|IntegerQueryParameterValidator|StringQueryParameterValidator|StringPathParameterValidator
+     * @return StringHeaderParameterValidator|IntegerPathParameterValidator|IntegerQueryParameterValidator|StringQueryParameterValidator|StringPathParameterValidator
      */
     public function getValidatorByType(string $in, string $type)
     {
         switch ($in) {
+             case 'header':
+                switch ($type) {
+                    case 'string':
+                        return new StringHeaderParameterValidator($this);
+                    default:
+                        throw new \RuntimeException(sprintf('No parameter validator for "%s" type', $type));
+                }
             case 'query':
                 switch ($type) {
                     case 'integer':

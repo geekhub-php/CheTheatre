@@ -6,8 +6,7 @@ class PerformanceEventsControllerTest extends AbstractController
 {
     public function testGetPerformanceEvents()
     {
-        $performance_slug = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getPerformance()->getSlug();
-        $this->request('/performanceevents?performance='.$performance_slug);
+        $this->request('/performanceevents');
     }
 
     public function testGetPerformanceEventsId()

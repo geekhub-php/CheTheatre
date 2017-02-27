@@ -12,8 +12,8 @@ class IntegerQueryParameterValidator extends AbstractParameterValidator
      * @param AbstractParameter $parameterDoc
      * @param integer $parameterRequest
      */
-    public function validate(AbstractParameter $parameterDoc, $parameterRequest){
-
+    public function validate(AbstractParameter $parameterDoc, $parameterRequest)
+    {
         self::assertInstanceOf(IntegerType::class, $parameterDoc);
 
         /**
@@ -21,8 +21,9 @@ class IntegerQueryParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            $parameterRequest = $parameterDoc->getDefault();
-            self::assertNotNull($parameterRequest);
+            self::assertNotFalse($parameterDoc->getDefault());
+        } else {
+            self::assertRegExp('/^\d+$/', $parameterRequest);
         }
     }
 }

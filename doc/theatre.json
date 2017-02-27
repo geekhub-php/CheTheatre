@@ -490,9 +490,10 @@
                         "in": "query",
                         "name": "performance",
                         "description": "Performance slug",
-                        "required": true,
+                        "required": false,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "/^[a-z\\d-]+$/",
+                        "default": "all"
                     },
                     {
                         "in": "query",

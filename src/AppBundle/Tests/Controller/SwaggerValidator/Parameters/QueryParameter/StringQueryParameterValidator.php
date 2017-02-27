@@ -12,8 +12,8 @@ class StringQueryParameterValidator extends AbstractParameterValidator
      * @param AbstractParameter $parameterDoc
      * @param string $parameterRequest
      */
-    public function validate(AbstractParameter $parameterDoc, $parameterRequest){
-
+    public function validate(AbstractParameter $parameterDoc, $parameterRequest)
+    {
         self::assertInstanceOf(StringType::class, $parameterDoc);
 
         /**
@@ -21,16 +21,15 @@ class StringQueryParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            $parameterRequest = $parameterDoc->getDefault();
-            self::assertNotNull($parameterRequest);
-        }
+            self::assertNotFalse($parameterDoc->getDefault());
+        } else {
+            if ($parameterDoc->getPattern()) {
+                self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
+            }
 
-        if ($parameterDoc->getPattern()) {
-            self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
-        }
-
-        if ($parameterDoc->getEnum()) {
-            self::assertContains($parameterRequest, $parameterDoc->getEnum());
+            if ($parameterDoc->getEnum()) {
+                self::assertContains($parameterRequest, $parameterDoc->getEnum());
+            }
         }
     }
 }
