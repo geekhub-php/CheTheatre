@@ -32,12 +32,12 @@ class PerformancesControllerTest extends AbstractController
         $this->request('/performances/nonexistent-slug/roles', 'GET', 404);
     }
 
-    public function testGetPerformancesSlugPerformanceEvents()
-    {
-        $slug = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
-        $this->request('/performances/'.$slug.'/performanceevents');
-        $this->request('/performances/nonexistent-slug/performanceevents', 'GET', 404);
-    }
+//    public function testGetPerformancesSlugPerformanceEvents()
+//    {
+//        $slug = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([])->getSlug();
+//        $this->request('/performances/'.$slug.'/performanceevents');
+//        $this->request('/performances/nonexistent-slug/performanceevents', 'GET', 404);
+//    }
 
     public function testPerformancesResponseFields()
     {

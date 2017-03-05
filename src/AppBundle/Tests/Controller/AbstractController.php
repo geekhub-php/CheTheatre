@@ -80,11 +80,15 @@ abstract class AbstractController extends WebTestCase
         );
 
         $uri = parse_url($this->getClient()->getRequest()->getRequestUri(), PHP_URL_PATH);
-        $this->getContainer()->get('app_test.swagger_spec_validator')->assertResource(
-            $this->getContainer()->get('router')->match($uri)['_route'],
-            $this->getClient()->getRequest(),
-            $this->getClient()->getResponse()
-        );
+
+        if ((substr($uri, 0,7) != '/admin/') && (substr($uri, 0,5) != '/doc/') && (substr($uri, 0,6) != '/tags/')) {
+            $this->getContainer()->get('app_test.swagger_spec_validator')->assertResource(
+                $this->getContainer()->get('router')->match($uri)['_route'],
+                $this->getClient()->getRequest(),
+                $this->getClient()->getResponse()
+            );
+        }
+
 
         return $crawler;
     }
