@@ -1,48 +1,16 @@
 <?php
 
-namespace AppBundle\Tests\Controller;
+namespace AppBundle\Tests\Controller\SwaggerValidator;
 
-use AppBundle\Tests\Controller\SwaggerValidator\Parameters\ParameterValidatorFactory;
-use AppBundle\Tests\Controller\SwaggerValidator\Shemas\SchemaValidatorFactory;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Common\Collections\ArrayCollection;
 use Epfremme\Swagger\Entity\Operation;
 use Epfremme\Swagger\Entity\Path;
 use Epfremme\Swagger\Entity\Response as SwaggerResponse;
 use Epfremme\Swagger\Entity\Schemas\SchemaInterface;
-use Epfremme\Swagger\Entity\Swagger;
-use Epfremme\Swagger\Factory\SwaggerFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
+class SwaggerSpecValidator extends AbstractSwagger
 {
-    /**
-     * @var Swagger
-     */
-    protected $swagger;
-
-    /**
-     * @var SchemaValidatorFactory
-     */
-    private $schemaValidatorFactory;
-
-    /**
-     * @var ParameterValidatorFactory
-     */
-    private $parameterValidatorFactory;
-
-    public function __construct(string $source)
-    {
-        $this->paths = new ArrayCollection();
-
-        AnnotationRegistry::registerLoader('class_exists');
-        $factory = new SwaggerFactory();
-        $this->swagger = $factory->build($source);
-        $this->schemaValidatorFactory = new SchemaValidatorFactory();
-        $this->parameterValidatorFactory = new ParameterValidatorFactory();
-    }
-
     /**
      * @param string $operationId
      * @param Request $request
@@ -92,25 +60,9 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
     }
 
     /**
-     * @param string $operationId
-     * @return Path
+     * @param Response $response
+     * @param SwaggerResponse $documentedResponse
      */
-    private function getPath(string $operationId):Path
-    {
-        foreach ($this->swagger->getPaths() as $path) {
-            foreach ($path->getOperations() as $operation) {
-                if ($operationId === $operation->getOperationId()) {
-                    return $path;
-                }
-            }
-        }
-
-        self::fail(sprintf(
-            'Swagger documentation has no resourse for "%s" operation id',
-            $operationId
-        ));
-    }
-
     private function assertResponse(Response $response, SwaggerResponse $documentedResponse)
     {
         if (null === $documentedResponse->getSchema()) {
@@ -122,19 +74,27 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
         $this->assertSchema($response, $documentedResponse->getSchema());
     }
 
+    /**
+     * @param Response $response
+     * @param SchemaInterface $schema
+     */
     private function assertSchema(Response $response, SchemaInterface $schema)
     {
         $json = $response->getContent();
         $actualContent = json_decode($json);
 
-        $validator = $this->schemaValidatorFactory->getValidatorByType($schema->getType());
+        $validator = $this->getSchemaValidatorFactory()->getValidatorByType($schema->getType());
         $validator->validate($schema, $actualContent);
     }
 
+    /**
+     * @param Request $request
+     * @param Operation $operation
+     */
     private function assertParameters(Request $request, Operation $operation)
     {
-        foreach ($operation->getParameters() as $key => $parameterDoc){
-            switch ($request->getMethod()){
+        foreach ($operation->getParameters() as $parameterDoc) {
+            switch ($request->getMethod()) {
                 case 'GET':
                     $parameterRequest = $request->get($parameterDoc->getName());
                     break;
@@ -142,11 +102,15 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
                     $parameterRequest = $request->request->get($parameterDoc->getName());
                     break;
             }
-            $validator = $this->parameterValidatorFactory->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
+            $validator = $this->getParameterValidatorFactory()->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
             $validator->validate($parameterDoc, $parameterRequest);
         }
     }
 
+    /**
+     * @param Response $response
+     * @param Operation $operation
+     */
     private function assertAllowedContentType(Response $response, Operation $operation)
     {
         $actualContentType = $response->headers->get('content-type');
@@ -158,6 +122,10 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
         );
     }
 
+    /**
+     * @param string $method
+     * @param Operation $operation
+     */
     private function assertAllowedStatusCode(string $method, Operation $operation)
     {
         $allowedStatusCodes = $operation->getResponses()->getKeys();
@@ -174,6 +142,7 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
 
     /**
      * @param string $method
+     * @param Path $path
      */
     private function assertAllowedHttpMethod(string $method, Path $path)
     {

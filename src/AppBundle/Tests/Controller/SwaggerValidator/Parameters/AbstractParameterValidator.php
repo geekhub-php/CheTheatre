@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters;
 
-
 abstract class AbstractParameterValidator extends \PHPUnit_Framework_Assert
 {
     /**

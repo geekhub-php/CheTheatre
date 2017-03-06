@@ -10,7 +10,7 @@ class IntegerQueryParameterValidator extends AbstractParameterValidator
 {
     /**
      * @param AbstractParameter $parameterDoc
-     * @param integer $parameterRequest
+     * @param $parameterRequest
      */
     public function validate(AbstractParameter $parameterDoc, $parameterRequest)
     {
@@ -22,8 +22,8 @@ class IntegerQueryParameterValidator extends AbstractParameterValidator
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
             self::assertNotFalse($parameterDoc->getDefault());
-        } else {
-            self::assertRegExp('/^\d+$/', $parameterRequest);
+            $parameterRequest = $parameterDoc->getDefault();
         }
+        self::assertRegExp('/^\d+$/', $parameterRequest);
     }
 }

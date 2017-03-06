@@ -18,14 +18,17 @@ class ParameterValidatorFactory
     public function getValidatorByType(string $in, string $type)
     {
         switch ($in) {
-             case 'header':
+            case 'header':
+                printf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'string':
                         return new StringHeaderParameterValidator($this);
                     default:
                         throw new \RuntimeException(sprintf('No parameter validator for "%s" type', $type));
                 }
+                break;
             case 'query':
+                printf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'integer':
                         return new IntegerQueryParameterValidator($this);
@@ -34,7 +37,9 @@ class ParameterValidatorFactory
                     default:
                         throw new \RuntimeException(sprintf('No parameter validator for "%s" type', $type));
                 }
+                break;
             case 'path':
+                printf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'integer':
                         return new IntegerPathParameterValidator($this);
@@ -43,6 +48,7 @@ class ParameterValidatorFactory
                     default:
                         throw new \RuntimeException(sprintf('No parameter validator for "%s" type', $type));
                 }
+                break;
             default:
                 throw new \RuntimeException(sprintf('No parameter validator for "%s" in', $in));
         }

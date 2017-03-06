@@ -22,14 +22,14 @@ class StringQueryParameterValidator extends AbstractParameterValidator
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
             self::assertNotFalse($parameterDoc->getDefault());
-        } else {
-            if ($parameterDoc->getPattern()) {
-                self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
-            }
+            $parameterRequest = $parameterDoc->getDefault();
+        }
+        if ($parameterDoc->getPattern()) {
+            self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
+        }
 
-            if ($parameterDoc->getEnum()) {
-                self::assertContains($parameterRequest, $parameterDoc->getEnum());
-            }
+        if ($parameterDoc->getEnum()) {
+            self::assertContains($parameterRequest, $parameterDoc->getEnum());
         }
     }
 }

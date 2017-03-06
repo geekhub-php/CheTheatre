@@ -13,6 +13,7 @@ class ArrayShemaValidator extends AbstractShemaValidator implements SwaggerSchem
      */
     public function validate(SchemaInterface $schema, $actualContent)
     {
+        self::assertNotNull($actualContent);
         self::assertInstanceOf(ArraySchema::class, $schema);
         self::assertInternalType(ArraySchema::ARRAY_TYPE, $actualContent);
     }

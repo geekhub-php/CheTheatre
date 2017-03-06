@@ -15,6 +15,5 @@ class StringShemaValidator extends AbstractShemaValidator implements SwaggerSche
     {
         self::assertInstanceOf(StringSchema::class, $schema);
         self::assertInternalType(StringSchema::STRING_TYPE, $actualContent);
-
     }
 }

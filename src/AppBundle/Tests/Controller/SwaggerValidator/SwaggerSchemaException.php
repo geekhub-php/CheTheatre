@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Tests\Controller;
+namespace AppBundle\Tests\Controller\SwaggerValidator;
 
 class SwaggerSchemaException extends \Exception implements \PHPUnit_Exception
 {
