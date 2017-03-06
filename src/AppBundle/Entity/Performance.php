@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
+use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
@@ -100,6 +101,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
      * @Expose
      * @Type("array")
      * @SerializedName("mainPicture")
+     * @Accessor(getter="getMainPicture")
      */
     public $mainPictureThumbnails;
 
@@ -108,6 +110,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
      * @Expose
      * @Type("array")
      * @SerializedName("sliderImage")
+     * @Accessor(getter="getSliderImage")
      */
     public $sliderImageThumbnails;
 
@@ -151,6 +154,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
      * @Expose
      * @Type("array")
      * @SerializedName("gallery")
+     * @Accessor(getter="getGalleryHasMedia")
      */
     public $galleryHasMediaThumbnails;
 
