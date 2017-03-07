@@ -19,7 +19,7 @@ class ParameterValidatorFactory
     {
         switch ($in) {
             case 'header':
-                printf('Validator for type in "%s"', $in);
+                sprintf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'string':
                         return new StringHeaderParameterValidator($this);
@@ -28,7 +28,7 @@ class ParameterValidatorFactory
                 }
                 break;
             case 'query':
-                printf('Validator for type in "%s"', $in);
+                sprintf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'integer':
                         return new IntegerQueryParameterValidator($this);
@@ -39,7 +39,7 @@ class ParameterValidatorFactory
                 }
                 break;
             case 'path':
-                printf('Validator for type in "%s"', $in);
+                sprintf('Validator for type in "%s"', $in);
                 switch ($type) {
                     case 'integer':
                         return new IntegerPathParameterValidator($this);

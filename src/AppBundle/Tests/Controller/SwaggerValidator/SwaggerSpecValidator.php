@@ -19,7 +19,6 @@ class SwaggerSpecValidator extends AbstractSwagger
      */
     public function assertResource(string $operationId, Request $request, Response $response)
     {
-
         try {
             $path = $this->getPath($operationId);
             $method = strtolower($request->getMethod());
@@ -102,7 +101,8 @@ class SwaggerSpecValidator extends AbstractSwagger
                     $parameterRequest = $request->request->get($parameterDoc->getName());
                     break;
             }
-            $validator = $this->getParameterValidatorFactory()->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
+            $factory = $this->getParameterValidatorFactory();
+            $validator = $factory->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
             $validator->validate($parameterDoc, $parameterRequest);
         }
     }
