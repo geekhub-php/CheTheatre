@@ -70,13 +70,17 @@ class DefaultController extends Controller
      */
     public function swaggerUiStaticResourceAction($resource)
     {
-        $dir = $this->get('kernel')->getRootDir() . '/../' . $this->get('service_container')->getParameter('app_swagger_ui_static_resource_dir');
+        $dir = sprintf(
+            '%s/../%s',
+            $this->get('kernel')->getRootDir(),
+            $this->get('service_container')->getParameter('app_swagger_ui_static_resource_dir')
+        );
 
         try {
             $finder = new Finder();
             $files = $finder->in($dir)->files()->name($resource);
 
-            if (count($files) === 0){
+            if (count($files) === 0) {
                 throw new \Exception(sprintf('Cannot find API Documentation: %s', $resource));
             }
 

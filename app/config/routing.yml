@@ -12,18 +12,13 @@ _admin:
 _api:
     resource: routing_api.yml
 
-nelmio_api_doc_index:
-    path: /doc/
-    defaults: { _controller: NelmioApiDocBundle:ApiDoc:index, view: 'default' }
-    methods: [GET]
-
 app_swagger_ui_index:
-    path: /swagger-doc/
+    path: /doc/
     defaults: { _controller: AppBundle:Default:swaggerUi }
     methods: [GET]
 
 app_swagger_ui_static_resource:
-    path: /swagger-doc/{resource}
+    path: /doc/{resource}
     defaults: { _controller: AppBundle:Default:swaggerUiStaticResource }
     methods: [GET]
 

@@ -26,6 +26,12 @@ _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
 
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /
+app_swagger_ui_index:
+    path: /
+    defaults: { _controller: AppBundle:Default:swaggerUi }
+    methods: [GET]
+
+app_swagger_ui_static_resource:
+    path: /{resource}
+    defaults: { _controller: AppBundle:Default:swaggerUiStaticResource }
+    methods: [GET]
