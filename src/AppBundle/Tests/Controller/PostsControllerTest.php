@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class PostsControllerTest extends AbstractController
+class PostsControllerTest extends AbstractApiController
 {
     public function testGetPosts()
     {

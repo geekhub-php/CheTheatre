@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class EmployeesControllerTest extends AbstractController
+class EmployeesControllerTest extends AbstractApiController
 {
     public function testGetEmployees()
     {

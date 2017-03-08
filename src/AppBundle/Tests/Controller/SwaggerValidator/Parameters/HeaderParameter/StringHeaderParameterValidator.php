@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters\HeaderParameter;
 
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\AbstractParameterValidator;

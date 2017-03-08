@@ -2,15 +2,51 @@
 
 namespace AppBundle\Tests\Controller\SwaggerValidator;
 
+use AppBundle\Tests\Controller\SwaggerValidator\Parameters\ParameterValidatorFactory;
+use AppBundle\Tests\Controller\SwaggerValidator\Shemas\SchemaValidatorFactory;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Collections\ArrayCollection;
 use Epfremme\Swagger\Entity\Operation;
 use Epfremme\Swagger\Entity\Path;
 use Epfremme\Swagger\Entity\Response as SwaggerResponse;
 use Epfremme\Swagger\Entity\Schemas\SchemaInterface;
+use Epfremme\Swagger\Entity\Swagger;
+use Epfremme\Swagger\Factory\SwaggerFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SwaggerSpecValidator extends AbstractSwagger
+class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
 {
+    /**
+     * @var Swagger
+     */
+    protected $swagger;
+
+    /**
+     * @var SchemaValidatorFactory
+     */
+    protected $schemaValidatorFactory;
+
+    /**
+     * @var ParameterValidatorFactory
+     */
+    protected $parameterValidatorFactory;
+
+    /**
+     * AbstractSwagger constructor.
+     * @param string $source
+     */
+    public function __construct(string $source)
+    {
+        $this->paths = new ArrayCollection();
+
+        AnnotationRegistry::registerLoader('class_exists');
+        $factory = new SwaggerFactory();
+        $this->swagger = $factory->build($source);
+        $this->schemaValidatorFactory = new SchemaValidatorFactory();
+        $this->parameterValidatorFactory = new ParameterValidatorFactory();
+    }
+
     /**
      * @param string $operationId
      * @param Request $request
@@ -30,7 +66,7 @@ class SwaggerSpecValidator extends AbstractSwagger
             $this->assertAllowedStatusCode($statusCode, $operation);
 
             $this->assertAllowedContentType($response, $operation);
-            $this->assertParameters($request, $operation);
+            $this->assertRequest($request, $operation);
 
             /** @var SwaggerResponse $documentedResponse */
             $documentedResponse = $operation->getResponses()[$statusCode];
@@ -56,6 +92,42 @@ class SwaggerSpecValidator extends AbstractSwagger
                 $e
             );
         }
+    }
+
+    /**
+     * @param string $operationId
+     * @return Path
+     */
+    protected function getPath(string $operationId):Path
+    {
+        foreach ($this->swagger->getPaths() as $path) {
+            foreach ($path->getOperations() as $operation) {
+                if ($operationId === $operation->getOperationId()) {
+                    return $path;
+                }
+            }
+        }
+
+        self::fail(sprintf(
+            'Swagger documentation has no resourse for "%s" operation id',
+            $operationId
+        ));
+    }
+
+    /**
+     * @return SchemaValidatorFactory
+     */
+    protected function getSchemaValidatorFactory(): SchemaValidatorFactory
+    {
+        return $this->schemaValidatorFactory;
+    }
+
+    /**
+     * @return ParameterValidatorFactory
+     */
+    protected function getParameterValidatorFactory(): ParameterValidatorFactory
+    {
+        return $this->parameterValidatorFactory;
     }
 
     /**
@@ -90,7 +162,7 @@ class SwaggerSpecValidator extends AbstractSwagger
      * @param Request $request
      * @param Operation $operation
      */
-    private function assertParameters(Request $request, Operation $operation)
+    private function assertRequest(Request $request, Operation $operation)
     {
         foreach ($operation->getParameters() as $parameterDoc) {
             switch ($request->getMethod()) {
@@ -100,6 +172,8 @@ class SwaggerSpecValidator extends AbstractSwagger
                 case 'POST':
                     $parameterRequest = $request->request->get($parameterDoc->getName());
                     break;
+                default:
+                    throw new \Exception('Unsupported method');
             }
             $factory = $this->getParameterValidatorFactory();
             $validator = $factory->getValidatorByType($parameterDoc->getIn(), $parameterDoc->getType());
