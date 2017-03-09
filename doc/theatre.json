@@ -290,6 +290,52 @@
                 }
             }
         },
+        "/tags/{slug}/posts": {
+            "get": {
+                "operationId": "get_tags_posts",
+                "summary": "Returns Posts for Tag by his unique {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Tag slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "/^[a-z\\d-]+$/"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Tag by slug was found in database",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Post"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Tag by slug was not found in database"
+                    }
+                },
+                "deprecated": "true"
+            }
+        },
         "/performances": {
             "get": {
                 "operationId": "get_performances",
@@ -446,6 +492,52 @@
                         "description": "Returned when Performance by slug was not found in database"
                     }
                 }
+            }
+        },
+        "/performances/{slug}/performanceevents": {
+            "get": {
+                "operationId": "get_performance_performanceevents",
+                "summary": "Returns Performanceevents for Performance by his unique {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "/^[a-z\\d-]+$/"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PerformanceEvent"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
+                    }
+                },
+                "deprecated": "true"
             }
         },
         "/performanceevents": {

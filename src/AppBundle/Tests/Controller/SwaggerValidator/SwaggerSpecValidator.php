@@ -164,6 +164,7 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
     /**
      * @param Request $request
      * @param Operation $operation
+     * @throws \Exception
      */
     private function assertRequest(Request $request, Operation $operation)
     {
