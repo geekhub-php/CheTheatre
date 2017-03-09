@@ -21,7 +21,7 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "jms/serializer-bundle": "0.13.*",
+        "jms/serializer-bundle": "^1.1",
         "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "guzzlehttp/guzzle": "~5.0",
         "twig/extensions": "~1.0",
@@ -45,7 +45,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "fabpot/goutte": "2.0.4",
         "squizlabs/php_codesniffer": "^2.8",
-        "phpmd/phpmd": "^2.6"
+        "phpmd/phpmd": "^2.6",
+        "epfremme/swagger-php": "^2.0"
     },
     "scripts": {
         "post-root-package-install": [

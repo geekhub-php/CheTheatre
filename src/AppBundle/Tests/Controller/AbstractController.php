@@ -3,10 +3,10 @@
 namespace AppBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 abstract class AbstractController extends WebTestCase
 {
@@ -14,8 +14,20 @@ abstract class AbstractController extends WebTestCase
         'environment' => 'test',
         'debug' => true,
     ];
+
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
+
+    /**
+     * @var EntityManager
+     */
     protected $em;
+
+    /**
+     * @var Client
+     */
     protected $client;
 
     /**
@@ -84,6 +96,11 @@ abstract class AbstractController extends WebTestCase
             ->form();
     }
 
+    /**
+     * @param array $options
+     * @param array $server
+     * @return Client
+     */
     protected function getClient(array $options = array(), array $server = array())
     {
         if (!$this->client) {
@@ -94,7 +111,7 @@ abstract class AbstractController extends WebTestCase
     }
 
     /**
-     * @return \Symfony\Component\DependencyInjection\ContainerInterface
+     * @return ContainerInterface
      */
     public function getContainer()
     {

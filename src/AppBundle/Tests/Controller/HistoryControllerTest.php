@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class HistoryControllerTest extends AbstractController
+class HistoryControllerTest extends AbstractApiController
 {
     public function testGetHistories()
     {

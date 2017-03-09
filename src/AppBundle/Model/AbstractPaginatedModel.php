@@ -106,7 +106,7 @@ abstract class AbstractPaginatedModel
      */
     public function setLinks($links)
     {
-        $this->_links = $links;
+        $this->links = $links;
 
         return $this;
     }

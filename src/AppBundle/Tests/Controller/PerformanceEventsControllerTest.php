@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-class PerformanceEventsControllerTest extends AbstractController
+class PerformanceEventsControllerTest extends AbstractApiController
 {
     public function testGetPerformanceEvents()
     {

@@ -20,6 +20,7 @@
     "paths": {
         "/employees": {
             "get": {
+                "operationId": "get_employees",
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -91,6 +92,7 @@
         },
         "/employees/{slug}": {
             "get": {
+                "operationId": "get_employee",
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -102,7 +104,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -132,6 +134,7 @@
         },
         "/employees/{slug}/roles": {
             "get": {
+                "operationId": "get_employee_roles",
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -143,7 +146,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -176,6 +179,7 @@
         },
         "/posts": {
             "get": {
+                "operationId": "get_posts",
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma seperated strings",
                 "produces": [
@@ -226,9 +230,6 @@
                                 "count": {
                                     "type": "integer"
                                 },
-                                "type": {
-                                    "type": "string"
-                                },
                                 "posts": {
                                     "type": "array",
                                     "items": {
@@ -249,6 +250,7 @@
         },
         "/posts/{slug}": {
             "get": {
+                "operationId": "get_post",
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -260,7 +262,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -288,11 +290,57 @@
                 }
             }
         },
+        "/tags/{slug}/posts": {
+            "get": {
+                "operationId": "get_tags_posts",
+                "summary": "Returns Posts for Tag by his unique {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Tag slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "/^[a-z\\d-]+$/"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Tag by slug was found in database",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Post"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Tag by slug was not found in database"
+                    }
+                },
+                "deprecated": "true"
+            }
+        },
         "/performances": {
             "get": {
+                "operationId": "get_performances",
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
-                "operationId": "findPerformances",
                 "produces": [
                     "application/json"
                 ],
@@ -341,7 +389,7 @@
                                 "count": {
                                     "type": "integer"
                                 },
-                                "perfomances": {
+                                "performances": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/Performance"
@@ -361,8 +409,8 @@
         },
         "/performances/{slug}": {
             "get": {
+                "operationId": "get_performance",
                 "summary": "Returns Performance by unique property {slug}",
-                "operationId": "findPerfomanceBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -373,7 +421,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -403,8 +451,8 @@
         },
         "/performances/{slug}/roles": {
             "get": {
+                "operationId": "get_performance_roles",
                 "summary": "Returns Performance roles by his unique {slug}",
-                "operationId": "findPerfomanceRolesBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -415,7 +463,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
@@ -434,14 +482,9 @@
                     "200": {
                         "description": "Returned when Performance by slug was found in database",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "roles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Role"
-                                    }
-                                }
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Role"
                             }
                         }
                     },
@@ -451,8 +494,55 @@
                 }
             }
         },
+        "/performances/{slug}/performanceevents": {
+            "get": {
+                "operationId": "get_performance_performanceevents",
+                "summary": "Returns Performanceevents for Performance by his unique {slug}",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "slug",
+                        "description": "Performance slug",
+                        "required": true,
+                        "type": "string",
+                        "pattern": "/^[a-z\\d-]+$/"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned when Performance by slug was found in database",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PerformanceEvent"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when Performance by slug was not found in database"
+                    }
+                },
+                "deprecated": "true"
+            }
+        },
         "/performanceevents": {
             "get": {
+                "operationId": "get_performanceevents",
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
                 "produces": [
@@ -463,8 +553,8 @@
                         "in": "query",
                         "name": "fromDate",
                         "description": "Find entries from this date, fromat=dd-mm-yyyy",
-                        "required": true,
-                        "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
+                        "required": false,
+                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|today/",
                         "type": "string",
                         "format": "dateTime",
                         "default": "today"
@@ -473,8 +563,8 @@
                         "in": "query",
                         "name": "toDate",
                         "description": "Find entries to this date, fromat=dd-mm-yyyy",
-                        "required": true,
-                        "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
+                        "required": false,
+                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|\\+1 Year/",
                         "type": "string",
                         "format": "dateTime",
                         "default": "+1 Year"
@@ -483,8 +573,8 @@
                         "in": "query",
                         "name": "limit",
                         "description": "Count of entities in collection",
-                        "required": true,
-                        "pattern": "\\d+|all",
+                        "required": false,
+                        "pattern": "/\\d+|all/",
                         "type": "string",
                         "default": "all"
                     },
@@ -494,13 +584,14 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/",
+                        "default": "all"
                     },
                     {
                         "in": "query",
                         "name": "locale",
                         "description": "Selects language of data you want to receive",
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "default": "uk",
                         "enum": [
@@ -533,11 +624,57 @@
                 }
             }
         },
+        "/performanceevent/{id}": {
+            "get": {
+                "operationId": "get_performanceevent",
+                "description": "Returns performanceEvent by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "PerformanceEvent ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "headers": {
+                            "Api-Key-Token": {
+                                "type": "string",
+                                "description": "Security API Key Token"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/PerformanceEvent"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
+                    }
+                }
+            }
+        },
         "/histories": {
             "get": {
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma seperated strings",
-                "operationId": "findHistoryByStausId",
+                "operationId": "get_histories",
+                "description": "Returns a collection of History",
                 "produces": [
                     "application/json"
                 ],
@@ -545,7 +682,7 @@
                     {
                         "in": "query",
                         "name": "limit",
-                        "description": "Status values that need to be considered for filter, default is 5",
+                        "description": "Count entries at one page",
                         "required": false,
                         "type": "integer",
                         "default": 5
@@ -553,7 +690,7 @@
                     {
                         "in": "query",
                         "name": "page",
-                        "description": "Status values that need to be considered for filter, default is 1",
+                        "description": "Number of page to be shown",
                         "required": false,
                         "type": "integer",
                         "default": 1
@@ -561,7 +698,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -586,7 +723,7 @@
                                 "total_count": {
                                     "type": "integer"
                                 },
-                                "histories": {
+                                "history": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/History"
@@ -606,8 +743,8 @@
         },
         "/histories/{slug}": {
             "get": {
-                "summary": "slug historiies",
-                "description": "The slug historiies return information about the history",
+                "operationId": "get_history",
+                "description": "Returns an History by unique property {slug}",
                 "produces": [
                     "application/json"
                 ],
@@ -615,15 +752,15 @@
                     {
                         "in": "path",
                         "name": "slug",
-                        "description": "values string ",
+                        "description": "Slug of history in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$"
+                        "pattern": "/^[a-z\\d-]+$/"
                     },
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -635,17 +772,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Returned when History by {slug} was found",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "history": {
-                                    "type": "object",
-                                    "items": {
-                                        "$ref": "#/definitions/History"
-                                    }
-                                }
-                            }
+                            "$ref": "#/definitions/History"
                         }
                     },
                     "404": {
