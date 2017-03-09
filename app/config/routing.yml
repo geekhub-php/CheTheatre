@@ -12,14 +12,14 @@ _admin:
 _api:
     resource: routing_api.yml
 
-app_swagger_ui_index:
+swagger_ui_index:
     path: /doc/
-    defaults: { _controller: AppBundle:Default:swaggerUi }
+    defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
 
-app_swagger_ui_static_resource:
-    path: /doc/{resource}
-    defaults: { _controller: AppBundle:Default:swaggerUiStaticResource }
+swagger_ui_doc_file:
+    path: /doc/theatre.json
+    defaults: { _controller: AppBundle:SwaggerUi:docFile }
     methods: [GET]
 
 login:
