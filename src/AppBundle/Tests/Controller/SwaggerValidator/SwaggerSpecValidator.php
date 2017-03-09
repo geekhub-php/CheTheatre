@@ -15,6 +15,9 @@ use Epfremme\Swagger\Factory\SwaggerFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
 {
     /**
