@@ -587,7 +587,7 @@
                         "in": "header",
                         "name": "API-Key-Token",
                         "description": "API Key Token",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "format": "string"
                     },
@@ -614,12 +614,6 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "headers": {
-                            "Api-Key-Token": {
-                                "type": "string",
-                                "description": "Security API Key Token"
-                            }
-                        },
                         "schema": {
                             "$ref": "#/definitions/PerformanceEvent"
                         }
@@ -1715,8 +1709,8 @@
                 "price": {
                     "type": "integer"
                 },
-                "performanceEventId": {
-                    "type": "integer"
+                "performanceEvent": {
+                    "$ref": "#/definitions/PerformanceEvent"
                 },
                 "seat": {
                     "$ref": "#/definitions/Seat"
