@@ -17,11 +17,6 @@ swagger_ui_index:
     defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
 
-swagger_ui_doc_file:
-    path: /doc/theatre.json
-    defaults: { _controller: AppBundle:SwaggerUi:docFile }
-    methods: [GET]
-
 login:
   pattern:  /login
   defaults: { _controller: AppBundle:Default:login }

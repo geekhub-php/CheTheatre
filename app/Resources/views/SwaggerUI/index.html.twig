@@ -54,7 +54,7 @@
         if (url && url.length > 1) {
             url = decodeURIComponent(url[1]);
         } else {
-            url = {{ doc_file_url|json_encode|raw }};
+            url = "{{ asset('swagger-ui/doc/theatre.json', null, true) }}";
         }
 
         hljs.configure({

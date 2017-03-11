@@ -30,8 +30,3 @@ swagger_ui_index:
     path: /
     defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
-
-swagger_ui_doc_file:
-    path: /theatre.json
-    defaults: { _controller: AppBundle:SwaggerUi:docFile }
-    methods: [GET]
