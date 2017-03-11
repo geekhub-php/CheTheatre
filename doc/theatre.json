@@ -14,7 +14,6 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "",
     "basePath": "/",
     "schemes": [
         "http"
@@ -335,7 +334,7 @@
                         "description": "Returned when Tag by slug was not found in database"
                     }
                 },
-                "deprecated": "true"
+                "deprecated": true
             }
         },
         "/performances": {
@@ -538,8 +537,7 @@
                     "404": {
                         "description": "Returned when Performance by slug was not found in database"
                     }
-                },
-                "deprecated": "true"
+                }
             }
         },
         "/performanceevents": {
