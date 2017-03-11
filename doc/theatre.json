@@ -3,7 +3,7 @@
     "info": {
         "version": "2.0.0",
         "title": "Cherkasy Drama Theatre",
-        "termsOfService": "http://theatre-shevchenko.ck.ua/en//terms/",
+        "termsOfService": "http://theatre-shevchenko.ck.ua/en/terms/",
         "contact": {
             "name": "neek@geekhub.ck.ua"
         },
@@ -20,6 +20,9 @@
     "paths": {
         "/employees": {
             "get": {
+                "tags": [
+                    "employees"
+                ],
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -91,6 +94,9 @@
         },
         "/employees/{slug}": {
             "get": {
+                "tags": [
+                    "employees"
+                ],
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -132,6 +138,9 @@
         },
         "/employees/{slug}/roles": {
             "get": {
+                "tags": [
+                    "employees"
+                ],
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -176,6 +185,9 @@
         },
         "/posts": {
             "get": {
+                "tags": [
+                    "post"
+                ],
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma separated strings",
                 "produces": [
@@ -249,6 +261,9 @@
         },
         "/posts/{slug}": {
             "get": {
+                "tags": [
+                    "post"
+                ],
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -290,6 +305,9 @@
         },
         "/performances": {
             "get": {
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
                 "operationId": "findPerformances",
@@ -361,6 +379,9 @@
         },
         "/performances/{slug}": {
             "get": {
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns Performance by unique property {slug}",
                 "operationId": "findPerformanceBySlug",
                 "produces": [
@@ -403,6 +424,9 @@
         },
         "/performances/{slug}/roles": {
             "get": {
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns Performance roles by his unique {slug}",
                 "operationId": "findPerformanceRolesBySlug",
                 "produces": [
@@ -453,6 +477,9 @@
         },
         "/performanceevents": {
             "get": {
+                "tags": [
+                    "performanceevent"
+                ],
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
                 "produces": [
@@ -535,6 +562,9 @@
         },
         "/performanceevent/{id}": {
             "get": {
+                "tags": [
+                    "performanceevent"
+                ],
                 "description": "Returns performanceEvent by ID",
                 "produces": [
                     "application/json"
@@ -544,7 +574,7 @@
                         "in": "header",
                         "name": "API-Key-Token",
                         "description": "API Key Token",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "format": "string"
                     },
@@ -571,15 +601,74 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "headers": {
-                            "Api-Key-Token": {
-                                "type": "string",
-                                "description": "Security API Key Token"
-                            }
-                        },
                         "schema": {
                             "$ref": "#/definitions/PerformanceEvent"
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden. API-Key-Token isn't valid"
+                    },
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
+                    }
+                }
+            }
+        },
+        "/performanceevent/{id}/tickets": {
+            "get": {
+                "tags": [
+                    "performanceevent"
+                ],
+                "description": "Returns performanceEvent Tickets by performance ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "PerformanceEvent ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": true,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "tickets": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Ticket"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden. API-Key-Token isn't valid"
                     },
                     "404": {
                         "description": "Returned when performanceevent was not found by ID"
@@ -589,6 +678,9 @@
         },
         "/histories": {
             "get": {
+                "tags": [
+                    "histories"
+                ],
                 "summary": "Finds Pets by status",
                 "description": "Multiple status values can be provided with comma separated strings",
                 "operationId": "findHistoryByStatusId",
@@ -660,6 +752,9 @@
         },
         "/histories/{slug}": {
             "get": {
+                "tags": [
+                    "histories"
+                ],
                 "summary": "slug histories",
                 "description": "The slug histories return information about the history",
                 "produces": [
@@ -710,6 +805,9 @@
         },
         "/ticket/{uuid}": {
             "get": {
+                "tags": [
+                    "ticket"
+                ],
                 "description": "Return info for ticket with UUID",
                 "produces": [
                     "application/json"
@@ -751,7 +849,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. API-Key-Token isn't valid"
                     },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
@@ -761,6 +859,9 @@
         },
         "/ticket/{uuid}/status": {
             "get": {
+                "tags": [
+                    "ticket"
+                ],
                 "description": "Return ticket status",
                 "produces": [
                     "application/json"
@@ -831,6 +932,9 @@
         },
         "/order": {
             "post": {
+                "tags": [
+                    "order"
+                ],
                 "description": "Create new order",
                 "produces": [
                     "application/json"
@@ -863,6 +967,9 @@
         },
         "/order/{uuid}": {
             "get": {
+                "tags": [
+                    "order"
+                ],
                 "description": "Return specific order with UUID",
                 "produces": [
                     "application/json"
@@ -902,6 +1009,9 @@
         },
         "/order/{uuid}/customer": {
             "post": {
+                "tags": [
+                    "order"
+                ],
                 "description": "Add new customer to the order",
                 "produces": [
                     "application/json"
@@ -942,6 +1052,10 @@
         },
         "/order/{uuid}/ticket/{ticketUuid}": {
             "post": {
+                "tags": [
+                    "ticket",
+                    "order"
+                ],
                 "description": "Add ticket to order",
                 "produces": [
                     "application/json"
@@ -1319,12 +1433,6 @@
                 },
                 "performance": {
                     "$ref": "#/definitions/Performance"
-                },
-                "tickets": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Ticket"
-                    }
                 }
             }
         },
@@ -1508,6 +1616,9 @@
                 },
                 "address": {
                     "type": "string"
+                },
+                "hallTemplate": {
+                    "type": "string"
                 }
             }
         },
@@ -1597,8 +1708,8 @@
                 "price": {
                     "type": "integer"
                 },
-                "performanceEventId": {
-                    "type": "integer"
+                "performanceEvent": {
+                    "$ref": "#/definitions/PerformanceEvent"
                 },
                 "seat": {
                     "$ref": "#/definitions/Seat"
