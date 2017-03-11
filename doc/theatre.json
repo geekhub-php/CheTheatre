@@ -1124,46 +1124,12 @@
                 }
             }
         },
-        "/signup": {
-            "post": {
-                "tags": [
-                    "user"
-                ],
-                "summary": "Create user",
-                "operationId": "createUser",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Created user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid email/password"
-                    }
-                }
-            }
-        },
         "/login": {
             "post": {
                 "tags": [
                     "user"
                 ],
-                "summary": "Logs user into the system",
+                "summary": "Login/Signup user into the system",
                 "operationId": "loginUser",
                 "produces": [
                     "application/json"
@@ -1180,16 +1146,28 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Email and password for login",
+                        "description": "Login/Signup data",
                         "required": true,
                         "schema": {
                             "type": "object",
-                            "title": "Customer",
+                            "title": "CustomerLogin",
                             "properties": {
                                 "email": {
                                     "type": "string"
                                 },
                                 "password": {
+                                    "type": "string"
+                                },
+                                "firstName": {
+                                    "type": "string"
+                                },
+                                "lastName": {
+                                    "type": "string"
+                                },
+                                "facebookUserId": {
+                                    "type": "string"
+                                },
+                                "accessToken": {
                                     "type": "string"
                                 }
                             }
@@ -1198,24 +1176,38 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
-                            "$ref": "#/definitions/Customer"
+                            "type": "object",
+                            "properties": {
+                                "customer": {
+                                    "$ref": "#/definitions/Customer"
+                                },
+                                "apiKeyToken": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     },
                     "400": {
-                        "description": "Invalid email/password"
+                        "description": "Validation error"
+                    },
+                    "401": {
+                        "description": "Invalid email/password/socialUserId/accessToken"
+                    },
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
                     }
                 }
             }
         },
-        "/login/facebook": {
+        "/logout": {
             "get": {
                 "tags": [
                     "user"
                 ],
-                "summary": "Logs user into the system via Facebook",
-                "operationId": "loginUserWithFacebook",
+                "summary": "Logs out current logged in user session",
+                "operationId": "logoutUser",
                 "produces": [
                     "application/json"
                 ],
@@ -1231,30 +1223,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
+                        "description": "Successful operation"
                     },
-                    "400": {
-                        "description": "Login canceled"
-                    }
-                }
-            }
-        },
-        "/logout": {
-            "get": {
-                "tags": [
-                    "user"
-                ],
-                "summary": "Logs out current logged in user session",
-                "operationId": "logoutUser",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
+                    "403": {
+                        "description": "Forbidden. Incorrect API-Key-Token"
                     }
                 }
             }
