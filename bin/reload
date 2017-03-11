@@ -20,7 +20,7 @@ show_run("Create database", "app/console doctrine:database:create " . $stringOpt
 
 show_run("Create schema", "app/console doctrine:schema:create " . $stringOptions);
 
-show_run("Cache clear", "php app/console cache:clear ".$stringOptions);
+show_run("Cache clear", "rm -rf app/cache/api app/cache/admin && php app/console cache:clear ".$stringOptions);
 
 show_run("Load Fixtures", "app/console doctrine:fixtures:load --no-interaction  " . $stringOptions);
 

@@ -5,7 +5,9 @@
         "title": "Cherkasy Drama Theatre",
         "termsOfService": "http://theatre-shevchenko.ck.ua/en//terms/",
         "contact": {
-            "name": "neek@geekhub.ck.ua"
+            "name": "GeekHub Foundation",
+            "url": "http://geekhub.ck.ua/",
+            "email": "neek@geekhub.ck.ua"
         },
         "license": {
             "name": "Apache 2.0",

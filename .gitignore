@@ -2,7 +2,6 @@
 web/uploads/*
 /web/css/
 /web/swagger-ui/*
-!/web/swagger-ui/doc
 !web/uploads/.gitkeep
 /app/bootstrap.php.cache
 /app/cache/*
