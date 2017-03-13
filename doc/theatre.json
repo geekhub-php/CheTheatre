@@ -899,6 +899,9 @@
                 }
             },
             "patch": {
+                "tags": [
+                    "ticket"
+                ],
                 "description": "Update ticket status",
                 "parameters": [
                     {
@@ -1103,6 +1106,10 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "ticket",
+                    "order"
+                ],
                 "description": "Delete ticket from order",
                 "produces": [
                     "application/json"
@@ -1167,7 +1174,6 @@
                         "in": "body",
                         "name": "body",
                         "description": "Login/Signup data",
-                        "required": true,
                         "schema": {
                             "type": "object",
                             "title": "CustomerLogin",
@@ -1184,10 +1190,10 @@
                                 "lastName": {
                                     "type": "string"
                                 },
-                                "facebookUserId": {
+                                "social_network": {
                                     "type": "string"
                                 },
-                                "accessToken": {
+                                "social_token": {
                                     "type": "string"
                                 }
                             }
