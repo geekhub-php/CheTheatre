@@ -1234,13 +1234,13 @@
                 }
             }
         },
-        "/login": {
+        "/customers/login": {
             "post": {
                 "tags": [
-                    "user"
+                    "customers"
                 ],
-                "summary": "Login/Signup user into the system",
-                "operationId": "loginUser",
+                "summary": "Login/Signup customer into the system",
+                "operationId": "loginCustomer",
                 "produces": [
                     "application/json"
                 ],
@@ -1310,13 +1310,13 @@
                 }
             }
         },
-        "/logout": {
+        "/customers/logout": {
             "get": {
                 "tags": [
-                    "user"
+                    "customers"
                 ],
-                "summary": "Logs out current logged in user session",
-                "operationId": "logoutUser",
+                "summary": "Logs out current logged in customer session",
+                "operationId": "logoutCustomer",
                 "produces": [
                     "application/json"
                 ],
