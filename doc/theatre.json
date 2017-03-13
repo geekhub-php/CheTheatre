@@ -1147,7 +1147,6 @@
                         "in": "body",
                         "name": "body",
                         "description": "Login/Signup data",
-                        "required": true,
                         "schema": {
                             "type": "object",
                             "title": "CustomerLogin",
@@ -1164,10 +1163,10 @@
                                 "lastName": {
                                     "type": "string"
                                 },
-                                "facebookUserId": {
+                                "social_network": {
                                     "type": "string"
                                 },
-                                "accessToken": {
+                                "social_token": {
                                     "type": "string"
                                 }
                             }
