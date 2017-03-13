@@ -1,0 +1,43 @@
+AppBundle\Entity\Seat:
+    seat1:
+        uuid: 'test1'
+        row: 1
+        place: 1
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat2:
+        uuid: 'test2'
+        row: 1
+        place: 2
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat3:
+        uuid: 'test3'
+        row: 1
+        place: 3
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat4:
+        uuid: 'test4'
+        row: 1
+        place: 4
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat5:
+        uuid: 'test5'
+        row: 1
+        place: 5
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat6:
+        uuid: 'test6'
+        row: 1
+        place: 6
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'
+    seat7:
+        uuid: 'test7'
+        row: 1
+        place: 7
+        venueSector: '@venue_sector1'
+        priceCategory: '@priceCategory1'

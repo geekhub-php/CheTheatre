@@ -1,0 +1,16 @@
+AppBundle\Entity\Translations\PriceCategoryTranslation:
+    priceCategoryTranslation1:
+        object: '@priceCategory1'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation2:
+        object: '@priceCategory2'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation3:
+        object: '@priceCategory3'
+        locale: en
+        field: title
+        content: 'cheap'

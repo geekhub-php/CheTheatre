@@ -1,0 +1,13 @@
+AppBundle\Entity\PriceCategory:
+    priceCategory1:
+        title: 'дорогий'
+        color: '#258dc8'
+        venue: '@venue1'
+    priceCategory2:
+        title: 'середній'
+        color: '#258dc8'
+        venue: '@venue1'
+    priceCategory3:
+        title: 'дешевий'
+        color: '#258dc8'
+        venue: '@venue1'

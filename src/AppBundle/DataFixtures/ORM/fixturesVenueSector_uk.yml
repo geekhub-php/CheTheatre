@@ -1,0 +1,22 @@
+AppBundle\Entity\VenueSector:
+    venue_sector1:
+        title: 'Партер'
+        venue: '@venue1'
+    venue_sector2:
+        title: 'Партер'
+        venue: '@venue2'
+    venue_sector3:
+        title: 'Партер'
+        venue: '@venue3'
+    venue_sector4:
+        title: 'Партер'
+        venue: '@venue4'
+    venue_sector5:
+        title: 'Партер'
+        venue: '@venue5'
+    venue_sector6:
+        title: 'Балкон'
+        venue: '@venue1'
+    venue_sector7:
+        title: 'Балкон'
+        venue: '@venue5'

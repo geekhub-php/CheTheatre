@@ -69,7 +69,7 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         /** @var PerformanceEvent $performanceEvent */
         $performanceEvent = $event->getObject();
-        $performanceEvent->setVenue($this->translator->trans($performanceEvent->getVenue()));
+//        $performanceEvent->setVenue($this->translator->trans($performanceEvent->getVenue()));
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)

@@ -5,10 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
-use AppBundle\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -20,24 +18,13 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 /**
  * @ORM\Table(name="performance_schedule")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PerformanceEventRepository")
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\PerformanceEventTranslation")
  * @TwoPerformanceEventsPerDay()
  */
 class PerformanceEvent extends AbstractPersonalTranslatable implements TranslatableInterface
 {
-    use TimestampableTrait, BlameableEntity, DeletedByTrait;
-
-    const VENUE_PHILHARMONIC = "venue-philharmonic";
-    const VENUE_KULIC_HOUSE  = "venue-kilic-house";
-    const VENUE_THEATRE      = "venue-theatre";
-
-    public static $venues = [
-        self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
-        self::VENUE_KULIC_HOUSE  => self::VENUE_KULIC_HOUSE,
-        self::VENUE_THEATRE      => self::VENUE_THEATRE,
-    ];
+    use TimestampableTrait;
 
     /**
      * @var integer
@@ -70,10 +57,10 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     private $dateTime;
 
     /**
-     * Place where performance happens
-     * @var string
-     * @ORM\Column(type="string")
-     * @Type("string")
+     * @var Venue
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="performanceEvents")
+     * @Type("AppBundle\Entity\Venue")
      * @Expose
      */
     private $venue;
@@ -264,7 +251,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @return string
+     * @return Venue
      */
     public function getVenue()
     {
@@ -272,10 +259,13 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @param string $venue
+     * @param Venue $venue
+     * @return PerformanceEvent
      */
-    public function setVenue($venue)
+    public function setVenue(Venue $venue = null)
     {
         $this->venue = $venue;
+
+        return $this;
     }
 }
