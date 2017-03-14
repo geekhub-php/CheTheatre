@@ -12,7 +12,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "",
+    "host": "api.theatre.pp.ua",
     "basePath": "/v2/",
     "schemes": [
         "https"
@@ -23,6 +23,7 @@
                 "tags": [
                     "employees"
                 ],
+                "operationId": "findEmployees",
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -97,6 +98,7 @@
                 "tags": [
                     "employees"
                 ],
+                "operationId": "findEmployeeBySlug",
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -141,6 +143,7 @@
                 "tags": [
                     "employees"
                 ],
+                "operationId": "findRolesByEmployeeSlug",
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -188,6 +191,7 @@
                 "tags": [
                     "posts"
                 ],
+                "operationId": "findPosts",
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma separated strings",
                 "produces": [
@@ -264,6 +268,7 @@
                 "tags": [
                     "posts"
                 ],
+                "operationId": "findPostBySlug",
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -308,9 +313,9 @@
                 "tags": [
                     "performances"
                 ],
+                "operationId": "findPerformances",
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
-                "operationId": "findPerformances",
                 "produces": [
                     "application/json"
                 ],
@@ -382,8 +387,8 @@
                 "tags": [
                     "performances"
                 ],
-                "summary": "Returns Performance by unique property {slug}",
                 "operationId": "findPerformanceBySlug",
+                "summary": "Returns Performance by unique property {slug}",
                 "produces": [
                     "application/json"
                 ],
@@ -427,8 +432,8 @@
                 "tags": [
                     "performances"
                 ],
+                "operationId": "findRolesByPerformanceSlug",
                 "summary": "Returns Performance roles by his unique {slug}",
-                "operationId": "findPerformanceRolesBySlug",
                 "produces": [
                     "application/json"
                 ],
@@ -480,6 +485,7 @@
                 "tags": [
                     "performanceevents"
                 ],
+                "operationId": "findPerformanceEvents",
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
                 "produces": [
@@ -565,6 +571,7 @@
                 "tags": [
                     "performanceevents"
                 ],
+                "operationId": "findPerformanceEventById",
                 "description": "Returns performanceEvent by ID",
                 "produces": [
                     "application/json"
@@ -619,6 +626,7 @@
                 "tags": [
                     "performanceevents"
                 ],
+                "operationId": "findTicketsByPerformanceEventId",
                 "description": "Returns performanceEvent Tickets by performance ID",
                 "produces": [
                     "application/json"
@@ -681,9 +689,9 @@
                 "tags": [
                     "histories"
                 ],
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma separated strings",
-                "operationId": "findHistoryByStatusId",
+                "operationId": "findHistoryByParameters",
+                "summary": "Get History by Parameters",
+                "description": "Return collection of histories by parameters",
                 "produces": [
                     "application/json"
                 ],
@@ -707,7 +715,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -719,7 +727,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -745,7 +753,7 @@
                         }
                     },
                     "404": {
-                        "description": "Returned when the entities with given limit and offset are not found"
+                        "description": "Histories were not found"
                     }
                 }
             }
@@ -755,8 +763,9 @@
                 "tags": [
                     "histories"
                 ],
-                "summary": "slug histories",
-                "description": "The slug histories return information about the history",
+                "operationId": "findHistoryBySlug",
+                "summary": "Return History by Slug",
+                "description": "Return History by Slug",
                 "produces": [
                     "application/json"
                 ],
@@ -764,7 +773,7 @@
                     {
                         "in": "path",
                         "name": "slug",
-                        "description": "values string ",
+                        "description": "History Slug",
                         "required": true,
                         "type": "string",
                         "pattern": "^[a-z\\d-]+$"
@@ -772,7 +781,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Status values that need to be considered for filter, default is \"uk\"",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -784,7 +793,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -798,7 +807,7 @@
                         }
                     },
                     "404": {
-                        "description": "Returned when the entity with given not found"
+                        "description": "History was not found"
                     }
                 }
             }
@@ -808,6 +817,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "operationId": "findTicketById",
                 "description": "Return info for ticket by ID",
                 "produces": [
                     "application/json"
@@ -831,7 +841,7 @@
                     {
                         "in": "query",
                         "name": "locale",
-                        "description": "Language of data you want to receive",
+                        "description": "Selects language of data you want to receive, default is \"uk\"",
                         "required": false,
                         "type": "string",
                         "default": "uk",
@@ -852,7 +862,7 @@
                         "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
-                        "description": "Returned when ticket was not found"
+                        "description": "Ticket was not found"
                     }
                 }
             }
@@ -862,6 +872,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "operationId": "freeTicket",
                 "description": "Update ticket status. Remove the ticket from the reserve.",
                 "parameters": [
                     {
@@ -897,6 +908,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "operationId": "reserveTicket",
                 "description": "Update ticket status. Reserve the ticket.",
                 "parameters": [
                     {
@@ -935,6 +947,7 @@
                 "tags": [
                     "orders"
                 ],
+                "operationId": "findOrders",
                 "description": "Return customer orders",
                 "produces": [
                     "application/json"
@@ -970,6 +983,7 @@
                 "tags": [
                     "orders"
                 ],
+                "operationId": "findOrderById",
                 "description": "Return specific customer order by ID",
                 "produces": [
                     "application/json"
@@ -1011,8 +1025,8 @@
                 "tags": [
                     "customers"
                 ],
-                "summary": "Login/Signup customer into the system",
                 "operationId": "loginCustomer",
+                "summary": "Login/Signup customer into the system",
                 "produces": [
                     "application/json"
                 ],
@@ -1087,8 +1101,8 @@
                 "tags": [
                     "customers"
                 ],
-                "summary": "Logs out current logged in customer session",
                 "operationId": "logoutCustomer",
+                "summary": "Logs out current logged in customer session",
                 "produces": [
                     "application/json"
                 ],
