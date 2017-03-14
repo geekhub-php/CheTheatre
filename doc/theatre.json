@@ -568,7 +568,7 @@
             "get": {
                 "operationId": "get_performanceevents",
                 "tags": [
-                    "performanceevent"
+                    "performanceevents"
                 ],
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
@@ -886,12 +886,12 @@
                 }
             }
         },
-        "/tickets/{uuid}": {
+        "/tickets/{id}": {
             "get": {
                 "tags": [
                     "tickets"
                 ],
-                "description": "Return info for ticket with UUID",
+                "description": "Return info for ticket by ID",
                 "produces": [
                     "application/json"
                 ],
@@ -906,8 +906,8 @@
                     },
                     {
                         "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of ticket in database",
+                        "name": "id",
+                        "description": "ticket ID in database",
                         "required": true,
                         "type": "string"
                     },
@@ -935,12 +935,12 @@
                         "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
-                        "description": "Returned when ticket was not found by UUID"
+                        "description": "Returned when ticket was not found"
                     }
                 }
             }
         },
-        "/tickets/{uuid}/free": {
+        "/tickets/{id}/free": {
             "patch": {
                 "tags": [
                     "tickets"
@@ -956,8 +956,8 @@
                     },
                     {
                         "in": "path",
-                        "name": "uuid",
-                        "description": "ticket UUID in database",
+                        "name": "id",
+                        "description": "ticket ID in database",
                         "required": true,
                         "type": "string"
                     }
@@ -970,12 +970,12 @@
                         "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
-                        "description": "Returned when ticket was not found by UUID"
+                        "description": "Returned when ticket was not found by ID"
                     }
                 }
             }
         },
-        "/tickets/{uuid}/reserve": {
+        "/tickets/{id}/reserve": {
             "patch": {
                 "tags": [
                     "tickets"
@@ -991,8 +991,8 @@
                     },
                     {
                         "in": "path",
-                        "name": "uuid",
-                        "description": "ticket UUID in database",
+                        "name": "id",
+                        "description": "ticket ID in database",
                         "required": true,
                         "type": "string"
                     }
@@ -1005,7 +1005,7 @@
                         "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
-                        "description": "Returned when ticket was not found by UUID"
+                        "description": "Returned when ticket was not found by ID"
                     },
                     "409": {
                         "description": "Conflict. You are not able to make reservation for the thicket"
@@ -1048,12 +1048,12 @@
                 }
             }
         },
-        "/orders/{uuid}": {
+        "/orders/{id}": {
             "get": {
                 "tags": [
                     "orders"
                 ],
-                "description": "Return specific customer order by UUID",
+                "description": "Return specific customer order by ID",
                 "produces": [
                     "application/json"
                 ],
@@ -1067,8 +1067,8 @@
                     },
                     {
                         "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of order in database",
+                        "name": "id",
+                        "description": "Order ID in database",
                         "required": true,
                         "type": "string"
                     }
@@ -1084,7 +1084,7 @@
                         "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
-                        "description": "Returned when order was not found by UUID"
+                        "description": "Returned when order was not found by ID"
                     }
                 }
             }
@@ -1555,7 +1555,7 @@
         "Seat": {
             "type": "object",
             "properties": {
-                "uuid": {
+                "id": {
                     "type": "string"
                 },
                 "row": {
@@ -1592,7 +1592,7 @@
         "CustomerOrder": {
             "type": "object",
             "properties": {
-                "uuid": {
+                "id": {
                     "type": "string"
                 },
                 "tickets": {
@@ -1612,7 +1612,7 @@
         "Ticket": {
             "type": "object",
             "properties": {
-                "uuid": {
+                "id": {
                     "type": "string"
                 },
                 "series": {
@@ -1638,7 +1638,7 @@
         "Customer": {
             "type": "object",
             "properties": {
-                "uuid": {
+                "id": {
                     "type": "string"
                 },
                 "firstName": {
