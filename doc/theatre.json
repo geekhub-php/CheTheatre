@@ -12,7 +12,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "api.theatre.pp.ua",
+    "host": "",
     "basePath": "/v2/",
     "schemes": [
         "https"
