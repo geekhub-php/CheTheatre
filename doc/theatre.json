@@ -1513,27 +1513,6 @@
                 "color": {
                     "type": "string"
                 },
-<<<<<<< efb00edf1541186e95a58a9f39fd3e5fa06b8972
-                "venue": {
-                    "$ref": "#/definitions/Venue"
-                }
-            }
-        },
-        "CustomerOrder": {
-            "type": "object",
-            "properties": {
-                "id": {
-                }
-            }
-        },
-        "EventPrice": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-=======
->>>>>>> Added swagger documentation to ticket booking API
                 "venue": {
                     "$ref": "#/definitions/Venue"
                 }
