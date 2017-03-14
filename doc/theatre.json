@@ -14,9 +14,9 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "basePath": "/",
+    "basePath": "/v2/",
     "schemes": [
-        "http"
+        "https"
     ],
     "paths": {
         "/employees": {
@@ -191,7 +191,7 @@
             "get": {
                 "operationId": "get_posts",
                 "tags": [
-                    "post"
+                    "posts"
                 ],
                 "summary": "Return collection of posts",
                 "description": "Multiple status values can be provided with comma separated strings",
@@ -265,7 +265,7 @@
             "get": {
                 "operationId": "get_post",
                 "tags": [
-                    "post"
+                    "posts"
                 ],
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
@@ -651,11 +651,11 @@
                 }
             }
         },
-        "/performanceevent/{id}": {
+        "/performanceevents/{id}": {
             "get": {
                 "operationId": "get_performanceevent",
                 "tags": [
-                    "performanceevent"
+                    "performanceevents"
                 ],
                 "description": "Returns performanceEvent by ID",
                 "produces": [
@@ -706,10 +706,10 @@
                 }
             }
         },
-        "/performanceevent/{id}/tickets": {
+        "/performanceevents/{id}/tickets": {
             "get": {
                 "tags": [
-                    "performanceevent"
+                    "performanceevents"
                 ],
                 "description": "Returns performanceEvent Tickets by performance ID",
                 "produces": [
@@ -886,10 +886,10 @@
                 }
             }
         },
-        "/ticket/{uuid}": {
+        "/tickets/{uuid}": {
             "get": {
                 "tags": [
-                    "ticket"
+                    "tickets"
                 ],
                 "description": "Return info for ticket with UUID",
                 "produces": [
@@ -932,7 +932,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden. API-Key-Token isn't valid"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
@@ -940,75 +940,34 @@
                 }
             }
         },
-        "/ticket/{uuid}/status": {
-            "get": {
+        "/tickets/{uuid}/free": {
+            "patch": {
                 "tags": [
-                    "ticket"
+                    "tickets"
                 ],
-                "description": "Return ticket status",
-                "produces": [
-                    "application/json"
-                ],
+                "description": "Update ticket status. Remove the ticket from the reserve.",
                 "parameters": [
                     {
                         "in": "header",
                         "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of ticket in database",
+                        "description": "Security API Key Token",
                         "required": true,
                         "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/TicketStatus"
-                        }
                     },
-                    "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
-                    },
-                    "404": {
-                        "description": "Returned when ticket was not found by UUID"
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "ticket"
-                ],
-                "description": "Update ticket status",
-                "parameters": [
                     {
                         "in": "path",
                         "name": "uuid",
                         "description": "ticket UUID in database",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "name": "ticketStatus",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/TicketStatus"
-                        }
                     }
                 ],
                 "responses": {
                     "204": {
-                        "description": "successful operation"
+                        "description": "Successful operation"
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Returned when ticket was not found by UUID"
@@ -1016,12 +975,50 @@
                 }
             }
         },
-        "/order": {
-            "post": {
+        "/tickets/{uuid}/reserve": {
+            "patch": {
                 "tags": [
-                    "order"
+                    "tickets"
                 ],
-                "description": "Create new order",
+                "description": "Update ticket status. Reserve the ticket.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "Security API Key Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "ticket UUID in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by UUID"
+                    },
+                    "409": {
+                        "description": "Conflict. You are not able to make reservation for the thicket"
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "orders"
+                ],
+                "description": "Return customer orders",
                 "produces": [
                     "application/json"
                 ],
@@ -1046,17 +1043,17 @@
                         "description": "Bad Request"
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
         },
-        "/order/{uuid}": {
+        "/orders/{uuid}": {
             "get": {
                 "tags": [
-                    "order"
+                    "orders"
                 ],
-                "description": "Return specific order with UUID",
+                "description": "Return specific customer order by UUID",
                 "produces": [
                     "application/json"
                 ],
@@ -1066,8 +1063,7 @@
                         "name": "API-Key-Token",
                         "description": "Security API Key Token",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "string"
                     },
                     {
                         "in": "path",
@@ -1085,151 +1081,10 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Returned when order was not found by UUID"
-                    }
-                }
-            }
-        },
-        "/order/{uuid}/customer": {
-            "post": {
-                "tags": [
-                    "order"
-                ],
-                "description": "Add new customer to the order",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of order in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "customer",
-                        "description": "Customer to add to the order",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/CustomerOrder"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
-                    },
-                    "404": {
-                        "description": "Returned when order was not found by UUID"
-                    }
-                }
-            }
-        },
-        "/order/{uuid}/ticket/{ticketUuid}": {
-            "post": {
-                "tags": [
-                    "ticket",
-                    "order"
-                ],
-                "description": "Add ticket to order",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of order in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "ticketUuid",
-                        "description": "UUID of ticket in database",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/CustomerOrder"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
-                    },
-                    "404": {
-                        "description": "Returned when order or ticket with uuid was not found"
-                    },
-                    "409": {
-                        "description": "Conflict. Was not able to add ticket to the order"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "ticket",
-                    "order"
-                ],
-                "description": "Delete ticket from order",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of order in database",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "ticketUuid",
-                        "description": "UUID of ticket in database",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Successful operation"
-                    },
-                    "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
-                    },
-                    "404": {
-                        "description": "Returned when order with uuid was not found"
                     }
                 }
             }
@@ -1305,7 +1160,7 @@
                         "description": "Invalid email/password/socialUserId/accessToken"
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
@@ -1335,7 +1190,7 @@
                         "description": "Successful operation"
                     },
                     "403": {
-                        "description": "Forbidden. Incorrect API-Key-Token"
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
