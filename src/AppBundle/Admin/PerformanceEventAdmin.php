@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Venue;
 use Sonata\AdminBundle\Admin\Admin;
 use AppBundle\Entity\PerformanceEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -37,10 +38,7 @@ class PerformanceEventAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
-            ->add('venue', 'choice', [
-                'choices'     => PerformanceEvent::$venues,
-                'placeholder' => 'choose_an_option',
-            ])
+            ->add('venue')
         ;
     }
 
@@ -54,7 +52,7 @@ class PerformanceEventAdmin extends Admin
         $listMapper
             ->add('performance')
             ->add('dateTime')
-            ->add('venue', null, ['template' => "AppBundle:SonataAdmin:list_field.html.twig"])
+            ->add('venue')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -73,17 +71,7 @@ class PerformanceEventAdmin extends Admin
     {
         $datagridMapper
             ->add('performance')
-            ->add(
-                'venue',
-                'doctrine_orm_choice',
-                [],
-                'choice',
-                [
-                    'choices' => PerformanceEvent::$venues,
-                    'expanded' => true,
-                    'multiple' => true
-                ]
-            )
+            ->add('venue')
         ;
     }
 }

@@ -11,7 +11,6 @@ use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Sonata\MediaBundle\Controller\Api\MediaController;
 use Symfony\Component\Routing\Router;
-use Symfony\Component\Translation\TranslatorInterface;
 
 class SerializerSubscriber implements EventSubscriberInterface
 {
@@ -21,14 +20,10 @@ class SerializerSubscriber implements EventSubscriberInterface
     /** @var Router */
     protected $router;
 
-    /** @var  TranslatorInterface */
-    protected $translator;
-
-    public function __construct(MediaController $mediaController, Router $router, TranslatorInterface $translator)
+    public function __construct(MediaController $mediaController, Router $router)
     {
         $this->mediaController = $mediaController;
         $this->router = $router;
-        $this->translator = $translator;
     }
 
     /**
@@ -49,11 +44,6 @@ class SerializerSubscriber implements EventSubscriberInterface
             ],
             [
                 'event' => 'serializer.pre_serialize',
-                'class' => 'AppBundle\Entity\PerformanceEvent',
-                'method' => 'onPrePerformanceEventSerialize'
-            ],
-            [
-                'event' => 'serializer.pre_serialize',
                 'class' => 'AppBundle\Entity\Post',
                 'method' => 'onPrePostSerialize'
             ],
@@ -63,13 +53,6 @@ class SerializerSubscriber implements EventSubscriberInterface
                 'method' => 'onPreHistorySerialize'
             ],
         ];
-    }
-
-    public function onPrePerformanceEventSerialize(ObjectEvent $event)
-    {
-        /** @var PerformanceEvent $performanceEvent */
-        $performanceEvent = $event->getObject();
-//        $performanceEvent->setVenue($this->translator->trans($performanceEvent->getVenue()));
     }
 
     public function onPreEmployeeSerialize(ObjectEvent $event)

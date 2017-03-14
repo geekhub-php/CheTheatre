@@ -936,7 +936,7 @@
                     "type": "string"
                 },
                 "venue": {
-                    "type": "string"
+                    "$ref": "#/definitions/Venue"
                 },
                 "year": {
                     "type": "integer"
@@ -1160,6 +1160,23 @@
                     "items": {
                         "$ref": "#/definitions/Tag"
                     }
+                }
+            }
+        },
+        "Venue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "hallTemplate": {
+                    "type": "string"
                 }
             }
         }

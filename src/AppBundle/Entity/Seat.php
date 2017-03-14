@@ -10,10 +10,13 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="seat")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SeatRepository")
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\SeatTranslation")
  * @ExclusionPolicy("all")
  */
 class Seat
@@ -81,6 +84,18 @@ class Seat
     {
         return $this->id;
     }
+
+
+    /**
+     * @var ArrayCollection|Translation[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translations\SeatTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
 
     /**
      * @return Seat
