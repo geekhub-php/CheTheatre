@@ -61,7 +61,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -89,7 +89,7 @@
                         }
                     },
                     "404": {
-                        "description": "Returned when the entities with given limit and offset are not found"
+                        "description": "Returned when entities with given limit and offset were not found"
                     }
                 }
             }
@@ -128,7 +128,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/Employee"
                         }
@@ -173,7 +173,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -193,8 +193,7 @@
                 "tags": [
                     "posts"
                 ],
-                "summary": "Return collection of posts",
-                "description": "Multiple status values can be provided with comma separated strings",
+                "description": "Returns collection of posts",
                 "produces": [
                     "application/json"
                 ],
@@ -791,7 +790,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -969,7 +968,7 @@
                     {
                         "in": "path",
                         "name": "id",
-                        "description": "ticket ID in database",
+                        "description": "Ticket ID in database",
                         "required": true,
                         "type": "string"
                     }
@@ -996,7 +995,7 @@
                     "orders"
                 ],
                 "operationId": "get_orders",
-                "description": "Return customer orders",
+                "description": "Returns customer orders",
                 "produces": [
                     "application/json"
                 ],
@@ -1012,7 +1011,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -1035,7 +1034,7 @@
                     "orders"
                 ],
                 "operationId": "get_order",
-                "description": "Return specific order with ID",
+                "description": "Returns specific order with ID",
                 "produces": [
                     "application/json"
                 ],
@@ -1058,7 +1057,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/CustomerOrder"
                         }
@@ -1094,7 +1093,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Login/Signup data",
+                        "description": "Login/Signup customer data",
                         "schema": {
                             "type": "object",
                             "title": "CustomerLogin",
@@ -1102,13 +1101,10 @@
                                 "email": {
                                     "type": "string"
                                 },
-                                "password": {
+                                "first_name": {
                                     "type": "string"
                                 },
-                                "firstName": {
-                                    "type": "string"
-                                },
-                                "lastName": {
+                                "last_name": {
                                     "type": "string"
                                 },
                                 "social_network": {
@@ -1130,7 +1126,7 @@
                                 "customer": {
                                     "$ref": "#/definitions/Customer"
                                 },
-                                "apiKeyToken": {
+                                "api_key_token": {
                                     "type": "string"
                                 }
                             }
@@ -1154,7 +1150,7 @@
                     "customers"
                 ],
                 "operationId": "logout_customer",
-                "summary": "Logs out current logged in customer session",
+                "summary": "Logs out current logged in customer from service",
                 "produces": [
                     "application/json"
                 ],
@@ -1169,7 +1165,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "description": "Successful operation"
                     },
                     "403": {
@@ -1307,10 +1303,10 @@
                 "slug": {
                     "type": "string"
                 },
-                "mainPicture": {
+                "main_picture": {
                     "$ref": "#/definitions/ImageBlock"
                 },
-                "sliderImage": {
+                "slider_image": {
                     "$ref": "#/definitions/ImageBlock"
                 }
             }
@@ -1442,7 +1438,7 @@
                 "updated_by": {
                     "type": "string"
                 },
-                "mainPicture": {
+                "main_picture": {
                     "type": "object",
                     "properties": {
                         "reference": {
@@ -1479,7 +1475,7 @@
                 "pinned": {
                     "type": "boolean"
                 },
-                "mainPicture": {
+                "main_picture": {
                     "type": "object",
                     "properties": {
                         "reference": {
@@ -1516,7 +1512,7 @@
                 "address": {
                     "type": "string"
                 },
-                "hallTemplate": {
+                "hall_template": {
                     "type": "string"
                 }
             }
@@ -1547,10 +1543,10 @@
                 "place": {
                     "type": "integer"
                 },
-                "venueSector": {
+                "venue_sector": {
                     "$ref": "#/definitions/VenueSector"
                 },
-                "priceCategory": {
+                "price_category": {
                     "$ref": "#/definitions/PriceCategory"
                 }
             }
@@ -1587,7 +1583,7 @@
                 "customer": {
                     "$ref": "#/definitions/Customer"
                 },
-                "paymentStatus": {
+                "payment_status": {
                     "$ref": "#/definitions/PaymentStatus"
                 }
             }
@@ -1607,7 +1603,7 @@
                 "price": {
                     "type": "integer"
                 },
-                "performanceEvent": {
+                "performance_event": {
                     "$ref": "#/definitions/PerformanceEvent"
                 },
                 "seat": {
@@ -1624,10 +1620,10 @@
                 "id": {
                     "type": "string"
                 },
-                "firstName": {
+                "first_name": {
                     "type": "string"
                 },
-                "lastName": {
+                "last_name": {
                     "type": "string"
                 },
                 "email": {
