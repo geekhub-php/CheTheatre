@@ -111,7 +111,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -156,7 +156,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -278,7 +278,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -323,7 +323,7 @@
                         "description": "Tag slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -446,7 +446,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -491,7 +491,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -544,7 +544,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -592,7 +592,7 @@
                         "name": "fromDate",
                         "description": "Find entries from this date, format=dd-mm-yyyy",
                         "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|today/",
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
                         "type": "string",
                         "format": "dateTime",
                         "default": "today"
@@ -602,7 +602,7 @@
                         "name": "toDate",
                         "description": "Find entries to this date, format=dd-mm-yyyy",
                         "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|\\+1 Year/",
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
                         "type": "string",
                         "format": "dateTime",
                         "default": "+1 Year"
@@ -612,7 +612,7 @@
                         "name": "limit",
                         "description": "Count of entities in collection",
                         "required": false,
-                        "pattern": "/\\d+|all/",
+                        "pattern": "\\d+|all",
                         "type": "string",
                         "default": "all"
                     },
@@ -622,7 +622,7 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/",
+                        "pattern": "^[a-z\\d-]+$",
                         "default": "all"
                     },
                     {
@@ -871,7 +871,7 @@
                         "description": "Slug of history in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
