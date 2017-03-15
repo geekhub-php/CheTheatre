@@ -510,14 +510,9 @@
                     "200": {
                         "description": "Returned Roles collection by Performance slug",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "roles": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Role"
-                                    }
-                                }
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Role"
                             }
                         }
                     },
@@ -674,14 +669,6 @@
                 ],
                 "parameters": [
                     {
-                        "in": "header",
-                        "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "description": "PerformanceEvent ID",
@@ -729,14 +716,6 @@
                 ],
                 "parameters": [
                     {
-                        "in": "header",
-                        "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "description": "PerformanceEvent ID",
@@ -760,19 +739,11 @@
                     "200": {
                         "description": "Successful operation",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "tickets": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Ticket"
-                                    }
-                                }
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Ticket"
                             }
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Returned when performanceevent was not found by ID"
@@ -911,14 +882,6 @@
                 ],
                 "parameters": [
                     {
-                        "in": "header",
-                        "name": "API-Key-Token",
-                        "description": "API Key Token",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "description": "Ticket ID in database",
@@ -944,9 +907,6 @@
                         "schema": {
                             "$ref": "#/definitions/Ticket"
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Returned when ticket doesn't found by ID"
@@ -1057,14 +1017,9 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "orders": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/CustomerOrder"
-                                    }
-                                }
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CustomerOrder"
                             }
                         }
                     },
@@ -1135,7 +1090,7 @@
                         "in": "header",
                         "name": "API-Key-Token",
                         "description": "API Key Token",
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "format": "string"
                     },
