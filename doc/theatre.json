@@ -695,9 +695,6 @@
                             "$ref": "#/definitions/PerformanceEvent"
                         }
                     },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
-                    },
                     "404": {
                         "description": "Returned when performanceevent was not found by ID"
                     }
