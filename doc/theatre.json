@@ -25,6 +25,7 @@
                 "tags": [
                     "employees"
                 ],
+                "summary": "Get collection of employees",
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -100,6 +101,7 @@
                 "tags": [
                     "employees"
                 ],
+                "summary": "Get employee by slug",
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -145,6 +147,7 @@
                 "tags": [
                     "employees"
                 ],
+                "summary": "Get roles by employee slug",
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -193,6 +196,7 @@
                 "tags": [
                     "posts"
                 ],
+                "summary": "Get posts collection",
                 "description": "Returns collection of posts",
                 "produces": [
                     "application/json"
@@ -662,6 +666,7 @@
                 "tags": [
                     "performanceevents"
                 ],
+                "summary": "Get performance event by ID",
                 "description": "Returns performanceEvent by ID",
                 "produces": [
                     "application/json"
@@ -706,6 +711,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "summary": "Get tickets collection for performanceevent",
                 "description": "Returns performanceEvent Tickets by performance ID",
                 "produces": [
                     "application/json"
@@ -753,8 +759,8 @@
                 "tags": [
                     "histories"
                 ],
-                "description": "Returns a collection of History",
                 "summary": "Get History by Parameters",
+                "description": "Returns a collection of History",
                 "produces": [
                     "application/json"
                 ],
@@ -827,6 +833,7 @@
                 "tags": [
                     "histories"
                 ],
+                "summary": "Get History by slug",
                 "description": "Returns an History by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -872,6 +879,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "summary": "Get ticket by ID",
                 "description": "Returns ticket with ID",
                 "produces": [
                     "application/json"
@@ -916,6 +924,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "summary": "Withdraw thicket reservation",
                 "description": "Update ticket status. Remove the ticket from the reserve.",
                 "produces": [
                     "application/json"
@@ -946,6 +955,9 @@
                     },
                     "404": {
                         "description": "Returned when ticket was not found by ID"
+                    },
+                    "409": {
+                        "description": "Conflict. You are not able to withdraw thicket reservation"
                     }
                 }
             }
@@ -956,6 +968,7 @@
                 "tags": [
                     "tickets"
                 ],
+                "summary": "Reserve ticket",
                 "description": "Update ticket status. Reserve the ticket.",
                 "parameters": [
                     {
@@ -991,10 +1004,11 @@
         },
         "/orders": {
             "get": {
+                "operationId": "get_orders",
                 "tags": [
                     "orders"
                 ],
-                "operationId": "get_orders",
+                "summary": "Get collection of orders",
                 "description": "Returns customer orders",
                 "produces": [
                     "application/json"
@@ -1030,10 +1044,11 @@
         },
         "/orders/{id}": {
             "get": {
+                "operationId": "get_order",
                 "tags": [
                     "orders"
                 ],
-                "operationId": "get_order",
+                "summary": "Get order by ID",
                 "description": "Returns specific order with ID",
                 "produces": [
                     "application/json"
@@ -1073,10 +1088,10 @@
         },
         "/customers/login": {
             "post": {
+                "operationId": "login_customer",
                 "tags": [
                     "customers"
                 ],
-                "operationId": "login_customer",
                 "summary": "Login/Signup customer into the system",
                 "produces": [
                     "application/json"
