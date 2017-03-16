@@ -3,7 +3,7 @@
     "info": {
         "version": "2.0.0",
         "title": "Cherkasy Drama Theatre",
-        "termsOfService": "http://theatre-shevchenko.ck.ua/en//terms/",
+        "termsOfService": "http://theatre-shevchenko.ck.ua/en/terms/",
         "contact": {
             "name": "GeekHub Foundation",
             "url": "http://geekhub.ck.ua/",
@@ -22,6 +22,10 @@
         "/employees": {
             "get": {
                 "operationId": "get_employees",
+                "tags": [
+                    "employees"
+                ],
+                "summary": "Get collection of employees",
                 "description": "Returns a collection of theatre employees",
                 "produces": [
                     "application/json"
@@ -58,7 +62,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -86,7 +90,7 @@
                         }
                     },
                     "404": {
-                        "description": "Returned when the entities with given limit and offset are not found"
+                        "description": "Returned when entities with given limit and offset were not found"
                     }
                 }
             }
@@ -94,6 +98,10 @@
         "/employees/{slug}": {
             "get": {
                 "operationId": "get_employee",
+                "tags": [
+                    "employees"
+                ],
+                "summary": "Get employee by slug",
                 "description": "Returns an Employee by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -105,7 +113,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -122,7 +130,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/Employee"
                         }
@@ -136,6 +144,10 @@
         "/employees/{slug}/roles": {
             "get": {
                 "operationId": "get_employee_roles",
+                "tags": [
+                    "employees"
+                ],
+                "summary": "Get roles by employee slug",
                 "description": "Returns an Employee roles by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -147,7 +159,7 @@
                         "description": "Slug of employee in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -164,7 +176,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -181,8 +193,11 @@
         "/posts": {
             "get": {
                 "operationId": "get_posts",
-                "summary": "Return collection of posts",
-                "description": "Multiple status values can be provided with comma seperated strings",
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Get posts collection",
+                "description": "Returns collection of posts",
                 "produces": [
                     "application/json"
                 ],
@@ -252,6 +267,9 @@
         "/posts/{slug}": {
             "get": {
                 "operationId": "get_post",
+                "tags": [
+                    "posts"
+                ],
                 "summary": "Find an Post by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -263,7 +281,7 @@
                         "description": "Slug of Post to use",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -294,6 +312,9 @@
         "/tags/{slug}/posts": {
             "get": {
                 "operationId": "get_tags_posts",
+                "tags": [
+                    "tags"
+                ],
                 "summary": "Returns Posts for Tag by his unique {slug}",
                 "produces": [
                     "application/json"
@@ -305,7 +326,7 @@
                         "description": "Tag slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -322,7 +343,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returned when Tag by slug was found in database",
+                        "description": "Returned Post collection by Tag slug",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -340,6 +361,9 @@
         "/performances": {
             "get": {
                 "operationId": "get_performances",
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns a collection of Performances",
                 "description": "Multiple values can be provided",
                 "produces": [
@@ -411,6 +435,9 @@
         "/performances/{slug}": {
             "get": {
                 "operationId": "get_performance",
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns Performance by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -422,7 +449,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -453,6 +480,9 @@
         "/performances/{slug}/roles": {
             "get": {
                 "operationId": "get_performance_roles",
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns Performance roles by his unique {slug}",
                 "produces": [
                     "application/json"
@@ -464,7 +494,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -481,7 +511,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returned when Performance by slug was found in database",
+                        "description": "Returned Roles collection by Performance slug",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -498,6 +528,9 @@
         "/performances/{slug}/performanceevents": {
             "get": {
                 "operationId": "get_performance_performanceevents",
+                "tags": [
+                    "performances"
+                ],
                 "summary": "Returns Performanceevents for Performance by his unique {slug}",
                 "produces": [
                     "application/json"
@@ -509,7 +542,7 @@
                         "description": "Performance slug",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -543,6 +576,9 @@
         "/performanceevents": {
             "get": {
                 "operationId": "get_performanceevents",
+                "tags": [
+                    "performanceevents"
+                ],
                 "summary": "Find a collection of theatre performanceEvents",
                 "description": "Returns a collection of theatre performanceEvents",
                 "produces": [
@@ -552,9 +588,9 @@
                     {
                         "in": "query",
                         "name": "fromDate",
-                        "description": "Find entries from this date, fromat=dd-mm-yyyy",
+                        "description": "Find entries from this date, format=dd-mm-yyyy",
                         "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|today/",
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|today",
                         "type": "string",
                         "format": "dateTime",
                         "default": "today"
@@ -562,9 +598,9 @@
                     {
                         "in": "query",
                         "name": "toDate",
-                        "description": "Find entries to this date, fromat=dd-mm-yyyy",
+                        "description": "Find entries to this date, format=dd-mm-yyyy",
                         "required": false,
-                        "pattern": "/\\d{2}-\\d{2}-\\d{4}|\\+1 Year/",
+                        "pattern": "\\d{2}-\\d{2}-\\d{4}|\\+1 Year",
                         "type": "string",
                         "format": "dateTime",
                         "default": "+1 Year"
@@ -574,7 +610,7 @@
                         "name": "limit",
                         "description": "Count of entities in collection",
                         "required": false,
-                        "pattern": "/\\d+|all/",
+                        "pattern": "\\d+|all",
                         "type": "string",
                         "default": "all"
                     },
@@ -584,7 +620,7 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/",
+                        "pattern": "^[a-z\\d-]+$",
                         "default": "all"
                     },
                     {
@@ -624,9 +660,13 @@
                 }
             }
         },
-        "/performanceevent/{id}": {
+        "/performanceevents/{id}": {
             "get": {
                 "operationId": "get_performanceevent",
+                "tags": [
+                    "performanceevents"
+                ],
+                "summary": "Get performance event by ID",
                 "description": "Returns performanceEvent by ID",
                 "produces": [
                     "application/json"
@@ -655,14 +695,56 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "headers": {
-                            "Api-Key-Token": {
-                                "type": "string",
-                                "description": "Security API Key Token"
-                            }
-                        },
                         "schema": {
                             "$ref": "#/definitions/PerformanceEvent"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
+                    }
+                }
+            }
+        },
+        "/performanceevents/{id}/tickets": {
+            "get": {
+                "operationId": "get_ticket_performanceevents",
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Get tickets collection for performanceevent",
+                "description": "Returns performanceEvent Tickets by performance ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "PerformanceEvent ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Ticket"
+                            }
                         }
                     },
                     "404": {
@@ -674,6 +756,10 @@
         "/histories": {
             "get": {
                 "operationId": "get_histories",
+                "tags": [
+                    "histories"
+                ],
+                "summary": "Get History by Parameters",
                 "description": "Returns a collection of History",
                 "produces": [
                     "application/json"
@@ -710,7 +796,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -744,6 +830,10 @@
         "/histories/{slug}": {
             "get": {
                 "operationId": "get_history",
+                "tags": [
+                    "histories"
+                ],
+                "summary": "Get History by slug",
                 "description": "Returns an History by unique property {slug}",
                 "produces": [
                     "application/json"
@@ -755,7 +845,7 @@
                         "description": "Slug of history in database",
                         "required": true,
                         "type": "string",
-                        "pattern": "/^[a-z\\d-]+$/"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -779,6 +869,322 @@
                     },
                     "404": {
                         "description": "Returned when the entity with given not found"
+                    }
+                }
+            }
+        },
+        "/tickets/{id}": {
+            "get": {
+                "operationId": "get_ticket",
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Get ticket by ID",
+                "description": "Returns ticket with ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Ticket ID in database",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Ticket"
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when ticket doesn't found by ID"
+                    }
+                }
+            }
+        },
+        "/tickets/{id}/free": {
+            "patch": {
+                "operationId": "free_ticket",
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Withdraw thicket reservation",
+                "description": "Update ticket status. Remove the ticket from the reserve.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "Security API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Ticket ID in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by ID"
+                    },
+                    "409": {
+                        "description": "Conflict. You are not able to withdraw thicket reservation"
+                    }
+                }
+            }
+        },
+        "/tickets/{id}/reserve": {
+            "patch": {
+                "operationId": "reserve_ticket",
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Reserve ticket",
+                "description": "Update ticket status. Reserve the ticket.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "Security API Key Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Ticket ID in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    },
+                    "404": {
+                        "description": "Returned when ticket was not found by ID"
+                    },
+                    "409": {
+                        "description": "Conflict. You are not able to make reservation for the thicket"
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "operationId": "get_orders",
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Get collection of orders",
+                "description": "Returns customer orders",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CustomerOrder"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    }
+                }
+            }
+        },
+        "/orders/{id}": {
+            "get": {
+                "operationId": "get_order",
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Get order by ID",
+                "description": "Returns specific order with ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "Security API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID of order in database",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerOrder"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    },
+                    "404": {
+                        "description": "Returned when order was not found by ID"
+                    }
+                }
+            }
+        },
+        "/customers/login": {
+            "post": {
+                "operationId": "login_customer",
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Login/Signup customer into the system",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": false,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Login/Signup customer data",
+                        "schema": {
+                            "type": "object",
+                            "title": "CustomerLogin",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "first_name": {
+                                    "type": "string"
+                                },
+                                "last_name": {
+                                    "type": "string"
+                                },
+                                "social_network": {
+                                    "type": "string"
+                                },
+                                "social_token": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "customer": {
+                                    "$ref": "#/definitions/Customer"
+                                },
+                                "api_key_token": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "401": {
+                        "description": "Invalid email/password/socialUserId/accessToken"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    }
+                }
+            }
+        },
+        "/customers/logout": {
+            "get": {
+                "tags": [
+                    "customers"
+                ],
+                "operationId": "logout_customer",
+                "summary": "Logs out current logged in customer from service",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
@@ -877,7 +1283,7 @@
                 }
             }
         },
-        "GaleryImage": {
+        "GalleryImage": {
             "type": "object",
             "properties": {
                 "title": {
@@ -912,16 +1318,10 @@
                 "slug": {
                     "type": "string"
                 },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "mainPicture": {
+                "main_picture": {
                     "$ref": "#/definitions/ImageBlock"
                 },
-                "sliderImage": {
+                "slider_image": {
                     "$ref": "#/definitions/ImageBlock"
                 }
             }
@@ -936,19 +1336,10 @@
                     "type": "string"
                 },
                 "venue": {
-                    "type": "string"
+                    "$ref": "#/definitions/Venue"
                 },
                 "year": {
                     "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
                 },
                 "performance": {
                     "$ref": "#/definitions/Performance"
@@ -984,19 +1375,10 @@
                     "type": "string",
                     "example": "larisa-burlaka"
                 },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "deleted_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
                 "gallery": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/GaleryImage"
+                        "$ref": "#/definitions/GalleryImage"
                     }
                 },
                 "avatar": {
@@ -1016,7 +1398,7 @@
                 "description": {
                     "type": "string"
                 },
-                "perfomance": {
+                "performance": {
                     "$ref": "#/definitions/Performance"
                 },
                 "employee": {
@@ -1024,12 +1406,6 @@
                 },
                 "slug": {
                     "type": "string"
-                },
-                "created_at": {
-                    "$ref": "#/definitions/DateTime"
-                },
-                "updated_at": {
-                    "$ref": "#/definitions/DateTime"
                 }
             }
         },
@@ -1045,18 +1421,8 @@
                 "slug": {
                     "type": "string"
                 },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 }
             }
         },
@@ -1076,20 +1442,10 @@
                     "type": "string"
                 },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 },
                 "year": {
                     "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
                 },
                 "created_by": {
                     "type": "string"
@@ -1097,7 +1453,7 @@
                 "updated_by": {
                     "type": "string"
                 },
-                "mainPicture": {
+                "main_picture": {
                     "type": "object",
                     "properties": {
                         "reference": {
@@ -1129,16 +1485,12 @@
                     "type": "string"
                 },
                 "locale": {
-                    "type": "string",
-                    "enum": [
-                        "uk",
-                        "en"
-                    ]
+                    "$ref": "#/definitions/Locale"
                 },
                 "pinned": {
                     "type": "boolean"
                 },
-                "mainPicture": {
+                "main_picture": {
                     "type": "object",
                     "properties": {
                         "reference": {
@@ -1162,6 +1514,153 @@
                     }
                 }
             }
+        },
+        "Venue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "hall_template": {
+                    "type": "string"
+                }
+            }
+        },
+        "VenueSector": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "venue": {
+                    "$ref": "#/definitions/Venue"
+                }
+            }
+        },
+        "Seat": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "row": {
+                    "type": "integer"
+                },
+                "place": {
+                    "type": "integer"
+                },
+                "venue_sector": {
+                    "$ref": "#/definitions/VenueSector"
+                },
+                "price_category": {
+                    "$ref": "#/definitions/PriceCategory"
+                }
+            }
+        },
+        "PriceCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "venue": {
+                    "$ref": "#/definitions/Venue"
+                }
+            }
+        },
+        "CustomerOrder": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tickets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Ticket"
+                    }
+                },
+                "customer": {
+                    "$ref": "#/definitions/Customer"
+                },
+                "payment_status": {
+                    "$ref": "#/definitions/PaymentStatus"
+                }
+            }
+        },
+        "Ticket": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "series": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "performance_event": {
+                    "$ref": "#/definitions/PerformanceEvent"
+                },
+                "seat": {
+                    "$ref": "#/definitions/Seat"
+                },
+                "status": {
+                    "$ref": "#/definitions/TicketStatus"
+                }
+            }
+        },
+        "Customer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "PaymentStatus": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "paid",
+                "rejected"
+            ]
+        },
+        "TicketStatus": {
+            "type": "string",
+            "enum": [
+                "free",
+                "booked",
+                "ordered"
+            ]
         }
     }
 }
