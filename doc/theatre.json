@@ -809,7 +809,7 @@
                                 "total_count": {
                                     "type": "integer"
                                 },
-                                "histories": {
+                                "history": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/History"
