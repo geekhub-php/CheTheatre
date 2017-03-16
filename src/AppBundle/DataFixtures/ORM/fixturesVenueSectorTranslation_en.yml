@@ -1,11 +1,36 @@
 AppBundle\Entity\Translations\VenueSectorTranslation:
-    venue_sectorTranslation1:
-        object: '@venue_sector1'
+    venueSectorTranslation1:
+        object: '@venueSector1'
         locale: en
         field: title
         content: 'Parterre'
-    venue_sectorTranslation2:
-        object: '@venue_sector2'
+    venueSectorTranslation2:
+        object: '@venueSector6'
+        locale: en
+        field: title
+        content: 'Balcony'
+    venueSectorTranslation3:
+        object: '@venueSector2'
+        locale: en
+        field: title
+        content: 'Parterre'
+    venueSectorTranslation4:
+        object: '@venueSector3'
+        locale: en
+        field: title
+        content: 'Parterre'
+    venueSectorTranslation5:
+        object: '@venueSector4'
+        locale: en
+        field: title
+        content: 'Parterre'
+    venueSectorTranslation6:
+        object: '@venueSector5'
+        locale: en
+        field: title
+        content: 'Parterre'
+    venueSectorTranslation7:
+        object: '@venueSector7'
         locale: en
         field: title
         content: 'Balcony'
