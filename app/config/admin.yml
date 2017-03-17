@@ -42,6 +42,7 @@ services:
            - ~
         calls:
            - [ setTranslationDomain, [messages]]
+           - [ setTemplate, [edit, AppBundle:PostAdmin:edit.html.twig]]
 
     sonata.admin.post:
         class: AppBundle\Admin\PostAdmin
