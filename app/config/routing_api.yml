@@ -30,3 +30,8 @@ swagger_ui_index:
     path: /
     defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
+
+customers_login:
+  path:  /customers/login
+  defaults: { _controller: AppBundle:Customer:customersLogin }
+  methods: [GET]
