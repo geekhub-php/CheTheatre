@@ -10,26 +10,22 @@ namespace AppBundle\Repository;
  */
 class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
-    public $apiKey;
-    public function findUsernameByApiKey($apiKey){
-        $qb = $this->createQueryBuilder('u');
-        $qb->select('u.username,u.id')
-            // ->from('User', 'u')
-            ->where('u.apiKey =:api')
-            ->setParameter('api', $apiKey);
-        //->getQuery()
-        //->getResult();
-        return $qb->getQuery()->getResult();
+    public function findUsernameByApiKey($param){
+        return $this->createQueryBuilder('c')
+            ->select('c.username, c.id')
+            ->where('c.apiKey =: param')
+            ->setParameter(':param', $param)
+            ->getQuery()
+            ->getResult();
     }
-    public $id;
-    public function findUserByFacebookId($id){
-        $qb = $this->createQueryBuilder('u');
-        $qb->select('u.id, u.username, u.facebookID')
-            // ->from('User', 'u')
-            ->where('u.facebookID =:name')
-            ->setParameter('name', $id);
-        //->getQuery()
-        //->getResult();
-        return $qb->getQuery()->getResult();
+
+    public function findUserByFacebook($param)
+    {
+        return $this->createQueryBuilder('customer')
+            ->select('customer.id, customer.username, customer.facebookID')
+            ->where('customer.facebookID= :param')
+            ->setParameter(':param', $param)
+            ->getQuery()
+            ->getResult();
     }
 }
