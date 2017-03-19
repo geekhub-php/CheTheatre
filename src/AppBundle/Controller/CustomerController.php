@@ -11,18 +11,17 @@ class CustomerController extends Controller
     public function customersLoginAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $apiKeyHead= $request->headers->get('apikey');
-        $accessToken = $request->headers->get('token');
+        //$apiKeyHead= $request->headers->get('apikey');
+        //$accessToken = $request->headers->get('token');
 
-        if ($accessToken){
+        /*if ($accessToken){
             $UserFacebook = $this->get('service_facebook_sdk')->setValue($accessToken)->getValue();
 
             $apiKey=uniqid('token_');
-                
+          */
             $userFind = $em->getRepository('AppBundle:Customer')
-                ->findUserByFacebookId($UserFacebook->getId());
-            dump($userFind);
-            die();
+                ->findUserByFacebook('1607601072588116');
+
             if($userFind){
                 $userRefreshApikey = $em->getRepository('AppBundle:Customer')
                     ->find($userFind[0]['id']);
@@ -53,11 +52,11 @@ class CustomerController extends Controller
     
              }
 
-        }
-        else{
+        //}
+       // else{
             //add first, last name or refreshAll
 
-        }
+       // }
 
 
 

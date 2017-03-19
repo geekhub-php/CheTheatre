@@ -13,7 +13,7 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
     public function findUsernameByApiKey($param){
         return $this->createQueryBuilder('c')
             ->select('c.username, c.id')
-            ->where('c.apiKey =: param')
+            ->where('c.apiKey = :param')
             ->setParameter(':param', $param)
             ->getQuery()
             ->getResult();
@@ -23,7 +23,7 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('customer')
             ->select('customer.id, customer.username, customer.facebookID')
-            ->where('customer.facebookID= :param')
+            ->where('customer.facebookID = :param')
             ->setParameter(':param', $param)
             ->getQuery()
             ->getResult();
