@@ -76,7 +76,7 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Seat",
      *     mappedBy="priceCategory",
-     *     cascade={"persist", "remove"}
+     *     cascade={"persist"}
      * )
      */
     protected $seats;
