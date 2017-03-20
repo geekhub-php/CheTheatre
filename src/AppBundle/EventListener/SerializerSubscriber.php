@@ -4,7 +4,6 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\History;
 use AppBundle\Entity\Performance;
-use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Employee;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;

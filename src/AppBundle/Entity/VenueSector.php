@@ -55,18 +55,18 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     /**
      * @var Venue
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="venueSector")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="venueSectors")
      * @Type("AppBundle\Entity\Venue")
      * @Expose()
      */
     protected $venue;
 
     /**
-     * @var ArrayCollection|Seat[]
+     * @var Collection|Seat[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Seat",
-     *     mappedBy="object",
+     *     mappedBy="venueSector",
      *     cascade={"persist", "remove"}
      * )
      */

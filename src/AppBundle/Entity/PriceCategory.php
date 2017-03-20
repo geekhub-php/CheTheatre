@@ -64,18 +64,18 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var Venue
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="priceCategory")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="priceCategories")
      * @Type("AppBundle\Entity\Venue")
      * @Expose()
      */
     protected $venue;
 
     /**
-     * @var ArrayCollection|Seat[]
+     * @var Collection|Seat[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Seat",
-     *     mappedBy="object",
+     *     mappedBy="priceCategory",
      *     cascade={"persist", "remove"}
      * )
      */
@@ -188,5 +188,13 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @param Venue $venue
+     */
+    public function setVenue(Venue $venue)
+    {
+        $this->venue = $venue;
     }
 }

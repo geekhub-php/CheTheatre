@@ -2,9 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\DeletedByTrait;
+use AppBundle\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -18,10 +21,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="venue")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\VenueRepository")
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\VenueTranslation")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
 class Venue extends AbstractPersonalTranslatable implements TranslatableInterface
 {
+    use TimestampableTrait, DeletedByTrait;
+
     /**
      * @var integer
      *
@@ -53,7 +59,6 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="text", nullable=true)
      * @Type("string")
@@ -85,26 +90,26 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
     protected $performanceEvents;
 
     /**
-     * @var ArrayCollection|VenueSector[]
+     * @var Collection|VenueSector[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\VenueSector",
-     *     mappedBy="object",
+     *     mappedBy="venue",
      *     cascade={"persist", "remove"}
      * )
      */
-    protected $venueSector;
+    protected $venueSectors;
 
     /**
-     * @var ArrayCollection|PriceCategory[]
+     * @var Collection|PriceCategory[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\PriceCategory",
-     *     mappedBy="object",
+     *     mappedBy="venue",
      *     cascade={"persist", "remove"}
      * )
      */
-    protected $priceCategory;
+    protected $priceCategories;
 
     /**
      * Venue constructor.
@@ -113,8 +118,8 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
     {
         parent::__construct();
         $this->performanceEvents = new ArrayCollection();
-        $this->venueSector = new ArrayCollection();
-        $this->priceCategory = new ArrayCollection();
+        $this->venueSectors = new ArrayCollection();
+        $this->priceCategories = new ArrayCollection();
     }
 
     /**
@@ -225,7 +230,7 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      */
     public function addVenueSector(VenueSector $venueSector)
     {
-        $this->venueSector[] = $venueSector;
+        $this->venueSectors[] = $venueSector;
 
         return $this;
     }
@@ -235,7 +240,7 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      */
     public function removeVenueSector(VenueSector $venueSector)
     {
-        $this->venueSector->removeElement($venueSector);
+        $this->venueSectors->removeElement($venueSector);
     }
 
     /**
@@ -243,7 +248,7 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      */
     public function getVenueSector()
     {
-        return $this->venueSector;
+        return $this->venueSectors;
     }
 
 
@@ -253,7 +258,7 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      */
     public function addPriceCategory(PriceCategory $priceCategory)
     {
-        $this->priceCategory[] = $priceCategory;
+        $this->priceCategories[] = $priceCategory;
 
         return $this;
     }
@@ -263,15 +268,15 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      */
     public function removePriceCategory(PriceCategory $priceCategory)
     {
-        $this->priceCategory->removeElement($priceCategory);
+        $this->priceCategories->removeElement($priceCategory);
     }
 
     /**
      * @return Collection
      */
-    public function getPriceCategory()
+    public function getPriceCategories()
     {
-        return $this->priceCategory;
+        return $this->priceCategories;
     }
 
     /**
@@ -280,5 +285,13 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @param PriceCategory[]|Collection $priceCategory
+     */
+    public function setPriceCategories($priceCategory)
+    {
+        $this->priceCategories = $priceCategory;
     }
 }

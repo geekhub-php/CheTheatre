@@ -5,6 +5,7 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class VenueAdmin extends Admin
@@ -24,9 +25,11 @@ class VenueAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('Venue', ['class'=>'col-lg-12'])
             ->add('title')
             ->add('address')
             ->add('hallTemplate')
+            ->end()
         ;
     }
 
@@ -58,5 +61,21 @@ class VenueAdmin extends Admin
         $datagridMapper
             ->add('title')
         ;
+    }
+
+    /**
+     * @param mixed $object
+     * @return bool
+     * @throws ModelManagerException
+     */
+    public function preRemove($object)
+    {
+        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        if (count($object->getPerformanceEvents()) != 0) {
+            $message = sprintf('An Error has occurred during deletion of item "%s".', $object->getTitle());
+            $em->detach($object);
+            throw new ModelManagerException($message, 200);
+        }
+        return false;
     }
 }

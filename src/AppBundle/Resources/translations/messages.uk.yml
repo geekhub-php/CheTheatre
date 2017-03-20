@@ -54,6 +54,7 @@ Performance: Вистава
 Date Time: Дата та Час
 Performance Event List: Розклад Вистав
 Post List: Перелік Новин
+Venue List: Перелік Місць проведення
 Action: Можливі дії
 Tags: Теги
 Short Description: Стислий Опис
@@ -71,10 +72,9 @@ History: Історія Театру
 History List: Історія Театру
 History_Date: Рік в Історії
 history: Історія
-venue-philharmonic: Черкаська Філармонія
-venue-kilic-house: Будинок культури ім. Кулика
-venue-theatre: Черкаський Театр
-Venue: Місце проведення
+Venue: Місце Проведення
+Address: Адреса
+Hall Template: Шаблон зала
 choose_an_option: Виберіть зі списку
 performance_must_have_a_date: Введіть дату проведення вистави
 pinned_or_not: Показувати вверху усіх новин?
