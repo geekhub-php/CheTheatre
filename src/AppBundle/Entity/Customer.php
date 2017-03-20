@@ -5,9 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
@@ -63,10 +62,8 @@ class Customer implements UserInterface
      */
     private $facebookID;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -75,10 +72,8 @@ class Customer implements UserInterface
         return $this->id;
     }
 
-
-
     /**
-     * Set apiKey
+     * Set apiKey.
      *
      * @param string $apiKey
      *
@@ -92,7 +87,7 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get apiKey
+     * Get apiKey.
      *
      * @return string
      */
@@ -101,25 +96,23 @@ class Customer implements UserInterface
         return $this->apiKey;
     }
 
+    public function getRoles()
+    {
+        return array('ROLE_API');
+    }
 
-public function getRoles()
-{
-    return array('ROLE_API');
-}
-
-public function getPassword()
-{
-}
-public function getSalt()
-{
-}
-public function eraseCredentials()
-{
-}
-
+    public function getPassword()
+    {
+    }
+    public function getSalt()
+    {
+    }
+    public function eraseCredentials()
+    {
+    }
 
     /**
-     * Set facebookID
+     * Set facebookID.
      *
      * @param string $facebookID
      *
@@ -133,7 +126,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Get facebookID
+     * Get facebookID.
      *
      * @return string
      */
@@ -143,7 +136,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Set usernameApi
+     * Set usernameApi.
      *
      * @param string $username
      *
@@ -151,13 +144,13 @@ public function eraseCredentials()
      */
     public function setUsername($username)
     {
-        $this->username= $username;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get username.
      *
      * @return string
      */
@@ -166,10 +159,8 @@ public function eraseCredentials()
         return $this->username;
     }
 
-
-
     /**
-     * Set firstname
+     * Set firstname.
      *
      * @param string $firstname
      *
@@ -183,7 +174,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Get firstname
+     * Get firstname.
      *
      * @return string
      */
@@ -193,7 +184,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Set lastname
+     * Set lastname.
      *
      * @param string $lastname
      *
@@ -207,7 +198,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Get lastname
+     * Get lastname.
      *
      * @return string
      */
@@ -217,7 +208,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -231,7 +222,7 @@ public function eraseCredentials()
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */

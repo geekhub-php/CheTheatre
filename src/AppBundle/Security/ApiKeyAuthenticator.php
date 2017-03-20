@@ -1,18 +1,15 @@
 <?php
+
 namespace AppBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
-
-
 use Doctrine\Common\Persistence\ManagerRegistry;
-
 
 class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
 {
@@ -25,35 +22,16 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
 
     public function createToken(Request $request, $providerKey)
     {
-        // look for an apikey query parameter
-        $apiKey = $request->query->get('apikey');
-
-        // or if you want to use an "apikey" header, then do something like this:
-         //$apiKey = $request->headers->get('apikey');
-
-       /* if (!$apiKey) {
+        $apiKey = $request->headers->get('API-Key-Token');
+        if (!$apiKey) {
             throw new BadCredentialsException();
-
-        }*/
-
-       if (!$apiKey){
-
-            throw new BadCredentialsException();
-
-
-
-
-
         }
 
-             return new PreAuthenticatedToken(
+        return new PreAuthenticatedToken(
                  'anon.',
                  $apiKey,
                 $providerKey
-
             );
-
-
     }
 
     public function supportsToken(TokenInterface $token, $providerKey)
@@ -92,8 +70,4 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
             $user->getRoles()
         );
     }
-
-
-
-
 }

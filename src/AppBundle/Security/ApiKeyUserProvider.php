@@ -8,11 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-
-
 class ApiKeyUserProvider implements UserProviderInterface
 {
-
     private $registry;
 
     public function __construct(ManagerRegistry $registry)
@@ -20,21 +17,21 @@ class ApiKeyUserProvider implements UserProviderInterface
         $this->registry = $registry;
     }
 
-
     public function getUsernameForApiKey($apiKey)
     {
         // Look up the username based on the token in the database, via
         // an API call, or do something entirely different
 
-        $user=$this->registry->getManager()
+        $user = $this->registry->getManager()
             ->getRepository('AppBundle:Customer')
             ->findUsernameByApiKey($apiKey);
-        if($user){
-            $username=$user[0]['username'];
+        if ($user) {
+            $username = $user->getUsername();
+        } else {
+            $username = null;
         }
-        else $username=$user;
 
-       return $username;
+        return $username;
     }
 
     public function loadUserByUsername($username)
@@ -62,7 +59,7 @@ class ApiKeyUserProvider implements UserProviderInterface
         return User::class === $class;
     }
 
-    public function createApiKeyUser(){
-
+    public function createApiKeyUser()
+    {
     }
 }
