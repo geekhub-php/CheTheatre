@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Venue;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -77,5 +78,12 @@ class VenueAdmin extends Admin
             throw new ModelManagerException($message, 200);
         }
         return false;
+    }
+
+    public function toString($object)
+    {
+        return $object instanceof Venue
+            ? $object->getTitle()
+            : 'Venue'; // shown in the breadcrumb on the create views
     }
 }
