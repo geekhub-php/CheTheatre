@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Translations\PerformanceTranslation;
 use AppBundle\Model\LinksTrait;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -167,7 +169,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     private $slug;
 
     /**
-     * @var ArrayCollection|Translation[]
+     * @var ArrayCollection|PerformanceTranslation[]
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Translations\PerformanceTranslation",
@@ -190,9 +192,9 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
     public function __construct()
     {
         parent::__construct();
-        $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performanceEvents = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
     }
 
     /**

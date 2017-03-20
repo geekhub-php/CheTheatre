@@ -22,14 +22,13 @@ class StringPathParameterValidator extends AbstractParameterValidator
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
             self::assertNotFalse($parameterDoc->getDefault());
-            $parameterRequest = $parameterDoc->getDefault();
         }
 
-        if ($parameterDoc->getPattern()) {
-            self::assertRegExp($parameterDoc->getPattern(), $parameterRequest);
+        if ($parameterRequest != null && $parameterDoc->getPattern()) {
+            self::assertRegExp('/'.$parameterDoc->getPattern().'/', $parameterRequest);
         }
 
-        if ($parameterDoc->getEnum()) {
+        if ($parameterRequest != null && $parameterDoc->getEnum()) {
             self::assertContains($parameterRequest, $parameterDoc->getEnum());
         }
     }
