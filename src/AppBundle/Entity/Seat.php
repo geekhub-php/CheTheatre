@@ -19,7 +19,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\SeatTranslation")
  * @ExclusionPolicy("all")
  */
-class Seat
+class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     /**
      * @var integer
@@ -29,15 +29,6 @@ class Seat
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
-     * @Type("string")
-     * @Expose()
-     */
-    protected $uuid;
 
     /**
      * @var integer
@@ -63,7 +54,7 @@ class Seat
      * @var VenueSector
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector", inversedBy="seats")
-     * @Type("AppBundle\Entity\Venue")
+     * @Type("AppBundle\Entity\VenueSector")
      * @Expose()
      */
     protected $venueSector;
@@ -72,7 +63,7 @@ class Seat
      * @var PriceCategory
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PriceCategory", inversedBy="seats")
-     * @Type("AppBundle\Entity\Venue")
+     * @Type("AppBundle\Entity\PriceCategory")
      * @Expose()
      */
     protected $priceCategory;
