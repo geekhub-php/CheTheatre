@@ -12,6 +12,8 @@ web/uploads/*
 /app/check.php
 /build/
 /vendor/
+/bower_components/
+/node_modules/
 /bin/
 !/bin/base_script.php
 !/bin/reload
