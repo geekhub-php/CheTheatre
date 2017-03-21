@@ -9,9 +9,8 @@ use Gedmo\Translatable\Document\Translation;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="seat")
@@ -22,11 +21,11 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     /**
-     * @var integer
+     * @var Uuid
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="uuid_binary")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
 
@@ -69,13 +68,20 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     protected $priceCategory;
 
     /**
-     * @return integer
+     * Seat constructor.
+     */
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
+
+    /**
+     * @return Uuid
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * @var ArrayCollection|Translation[]

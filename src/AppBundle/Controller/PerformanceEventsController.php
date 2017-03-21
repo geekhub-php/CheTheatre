@@ -168,4 +168,18 @@ class PerformanceEventsController extends Controller
 
         return $performanceEvent;
     }
+
+    /**
+     * @RestView
+     */
+    public function cgetTicketsAction($id)
+    {
+        # TODO
+        $response = [
+            'message' => 'necessary to realize controller to get tickets collection for performanceEvent',
+            'ticket_id' => $id
+        ];
+
+        return $response;
+    }
 }
