@@ -56,3 +56,6 @@ services:
     service_facebook_sdk:
         class: AppBundle\Services\FacebookSdk
         arguments: ["%id_app_facebook%","%secret_id%","%graf_version%"]
+
+    service_customers_login_validator:
+            class: AppBundle\Services\ValidatorCustomersLoginOptions

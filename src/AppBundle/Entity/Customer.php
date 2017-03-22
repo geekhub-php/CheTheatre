@@ -4,12 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * User.
  *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
+ * @ExclusionPolicy("all")
  */
 class Customer implements UserInterface
 {
@@ -26,6 +31,7 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=100, nullable=true)
+     * @Expose
      */
     protected $firstname;
 
@@ -33,12 +39,14 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=100, nullable=true)
+     * @Expose
      */
     protected $lastname;
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     * @Expose
      */
     protected $email;
     /**
@@ -52,6 +60,7 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="apiKey", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $apiKey;
 
