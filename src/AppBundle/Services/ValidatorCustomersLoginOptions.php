@@ -4,21 +4,30 @@ namespace AppBundle\Services;
 
 class ValidatorCustomersLoginOptions
 {
-    public function resultOptions($userAuthenticated, $apiKeyHead, $facebookToken, $firstNameHead, $lastNameHead, $emailHead)
+    /**
+     * @param string $userAuthenticated
+     * @param string $apiKeyFromRequest
+     * @param string $socialNetwork
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
+     * @return string
+     */
+    public function resultOptions($userAuthenticated, $apiKeyFromRequest, $socialNetwork, $firstName, $lastName, $email)
     {
         if ($userAuthenticated) {
-            if ($facebookToken) {
-                return 'social token true';
+            if ($socialNetwork) {
+                return 'social network true';
             }
-            if ($firstNameHead && $lastNameHead && $emailHead) {
+            if ($firstName && $lastName && $email) {
                 return 'customer input of the form';
             } else {
                 return 'Invalid email/first_name/last_name';
             }
-        } elseif ($apiKeyHead) {
+        } elseif ($apiKeyFromRequest) {
             return 'not valid apiKey';
         } else {
-            return 'new costomer';
+            return 'new customer';
         }
     }
 }

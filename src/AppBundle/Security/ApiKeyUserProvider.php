@@ -24,7 +24,7 @@ class ApiKeyUserProvider implements UserProviderInterface
 
         $user = $this->registry->getManager()
             ->getRepository('AppBundle:Customer')
-            ->findUsernameByApiKey($apiKey);
+            ->findOneByApiKey($apiKey);
         if ($user) {
             $username = $user->getUsername();
         } else {

@@ -31,7 +31,7 @@ swagger_ui_index:
     defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
 
-customers-login:
+customers_login:
   path: /customers/login
-  defaults: { _controller: AppBundle:Customer:customerLogin }
+  defaults: { _controller: AppBundle:Customer:login }
   methods: [POST]

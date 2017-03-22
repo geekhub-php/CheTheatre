@@ -30,18 +30,19 @@ class Customer implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=100, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=100, nullable=true)
      * @Expose
      */
-    protected $firstname;
+    protected $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=100, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
      * @Expose
      */
-    protected $lastname;
+    protected $lastName;
+
     /**
      * @var string
      *
@@ -49,6 +50,7 @@ class Customer implements UserInterface
      * @Expose
      */
     protected $email;
+
     /**
      * @var string
      *
@@ -59,7 +61,7 @@ class Customer implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="apiKey", type="string", length=255, nullable=true)
+     * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
      * @Expose
      */
     private $apiKey;
@@ -69,7 +71,7 @@ class Customer implements UserInterface
      *
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true, unique=true)
      */
-    private $facebookID;
+    private $facebookId;
 
     /**
      * Get id.
@@ -105,47 +107,61 @@ class Customer implements UserInterface
         return $this->apiKey;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getRoles()
     {
         return array('ROLE_API');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getPassword()
     {
     }
+
+    /**
+     * @inheritdoc
+     */
     public function getSalt()
     {
     }
+
+    /**
+     * @inheritdoc
+     */
     public function eraseCredentials()
     {
     }
 
     /**
-     * Set facebookID.
+     * Set facebookId.
      *
-     * @param string $facebookID
+     * @param string $facebookId
      *
      * @return Customer
      */
-    public function setFacebookID($facebookID)
+    public function setFacebookID($facebookId)
     {
-        $this->facebookID = $facebookID;
+        $this->facebookId = $facebookId;
 
         return $this;
     }
 
     /**
-     * Get facebookID.
+     * Get facebookId.
      *
      * @return string
      */
     public function getFacebookID()
     {
-        return $this->facebookID;
+        return $this->facebookId;
     }
 
     /**
-     * Set usernameApi.
+     * Set username.
      *
      * @param string $username
      *
@@ -169,51 +185,51 @@ class Customer implements UserInterface
     }
 
     /**
-     * Set firstname.
+     * Set firstName.
      *
-     * @param string $firstname
+     * @param string $firstName
      *
      * @return Customer
      */
-    public function setFirstname($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get firstname.
+     * Get firstName.
      *
      * @return string
      */
-    public function getFirstname()
+    public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * Set lastname.
+     * Set lastName.
      *
-     * @param string $lastname
+     * @param string $lastName
      *
      * @return Customer
      */
-    public function setLastname($lastname)
+    public function setLastName($lastName)
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     /**
-     * Get lastname.
+     * Get lastName.
      *
      * @return string
      */
-    public function getLastname()
+    public function getLastName()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
     /**
