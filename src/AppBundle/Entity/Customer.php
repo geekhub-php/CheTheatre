@@ -6,14 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User.
  *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
+ * @UniqueEntity("facebookId")
  * @ExclusionPolicy("all")
  */
 class Customer implements UserInterface
@@ -31,6 +32,9 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=100, nullable=true)
+     * @Assert\Regex(pattern="/\d/", match=false)
+     * @Assert\Type("string")
+     * @Assert\Length(min=2, max=100)
      * @Expose
      */
     protected $firstName;
@@ -39,6 +43,9 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
+     * @Assert\Regex(pattern="/\d/", match=false)
+     * @Assert\Type("string")
+     * @Assert\Length(min=2, max=100)
      * @Expose
      */
     protected $lastName;
@@ -47,6 +54,9 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     * @Assert\Email()
+     * @Assert\Type("string")
+     * @Assert\Length(max=100)
      * @Expose
      */
     protected $email;
@@ -55,6 +65,8 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=100)
+     * @Assert\Type("string")
+     * @Assert\Length(max=100)
      */
     protected $username;
 
@@ -62,6 +74,8 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
+     * @Assert\Type("string")
+     * @Assert\Length(max=255)
      * @Expose
      */
     private $apiKey;
@@ -70,6 +84,8 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true, unique=true)
+     * @Assert\Type("string")
+     * @Assert\Length(max=255)
      */
     private $facebookId;
 
@@ -143,7 +159,7 @@ class Customer implements UserInterface
      *
      * @return Customer
      */
-    public function setFacebookID($facebookId)
+    public function setFacebookId($facebookId)
     {
         $this->facebookId = $facebookId;
 
@@ -155,7 +171,7 @@ class Customer implements UserInterface
      *
      * @return string
      */
-    public function getFacebookID()
+    public function getFacebookId()
     {
         return $this->facebookId;
     }
