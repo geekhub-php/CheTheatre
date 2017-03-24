@@ -35,3 +35,4 @@ customers-login:
   path: /customers/login
   defaults: { _controller: AppBundle:Customer:customerLogin }
   methods: [POST]
+
