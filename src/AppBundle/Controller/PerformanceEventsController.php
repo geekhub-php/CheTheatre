@@ -77,11 +77,16 @@ class PerformanceEventsController extends Controller
         $performanceEventsTranslated = [];
 
         foreach ($performanceEvents as $performanceEvent) {
+
+            /** @var PerformanceEvent $performanceEvent */
             $performanceEvent->setLocale($paramFetcher->get('locale'));
             $em->refresh($performanceEvent);
 
             $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
             $em->refresh($performanceEvent->getPerformance());
+
+            $performanceEvent->getVenue()->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performanceEvent->getVenue());
 
             if ($performanceEvent->getTranslations()) {
                 $performanceEvent->unsetTranslations();
@@ -89,6 +94,10 @@ class PerformanceEventsController extends Controller
 
             if ($performanceEvent->getPerformance()->getTranslations()) {
                 $performanceEvent->getPerformance()->unsetTranslations();
+            }
+
+            if ($performanceEvent->getVenue()->getTranslations()) {
+                $performanceEvent->getVenue()->unsetTranslations();
             }
 
             $performanceEventsTranslated[] = $performanceEvent;
@@ -142,12 +151,19 @@ class PerformanceEventsController extends Controller
         $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
         $em->refresh($performanceEvent->getPerformance());
 
+        $performanceEvent->getVenue()->setLocale($paramFetcher->get('locale'));
+        $em->refresh($performanceEvent->getVenue());
+
         if ($performanceEvent->getTranslations()) {
             $performanceEvent->unsetTranslations();
         }
 
         if ($performanceEvent->getPerformance()->getTranslations()) {
             $performanceEvent->getPerformance()->unsetTranslations();
+        }
+
+        if ($performanceEvent->getVenue()->getTranslations()) {
+            $performanceEvent->getVenue()->unsetTranslations();
         }
 
         return $performanceEvent;

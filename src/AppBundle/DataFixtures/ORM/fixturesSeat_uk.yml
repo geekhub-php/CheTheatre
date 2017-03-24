@@ -1,0 +1,105 @@
+AppBundle\Entity\Seat:
+    seat1:
+        row: 1
+        place: 1
+        venueSector: '@venueSector1'
+    seat2:
+        row: 1
+        place: 2
+        venueSector: '@venueSector1'
+    seat3:
+        row: 1
+        place: 3
+        venueSector: '@venueSector1'
+    seat4:
+        row: 1
+        place: 4
+        venueSector: '@venueSector1'
+    seat5:
+        row: 1
+        place: 5
+        venueSector: '@venueSector1'
+    seat6:
+        row: 1
+        place: 6
+        venueSector: '@venueSector1'
+    seat7:
+        row: 1
+        place: 7
+        venueSector: '@venueSector1'
+    seat8:
+        row: 1
+        place: 8
+        venueSector: '@venueSector1'
+    seat9:
+        row: 1
+        place: 9
+        venueSector: '@venueSector1'
+    seat10:
+        row: 1
+        place: 10
+        venueSector: '@venueSector1'
+    seat11:
+        row: 1
+        place: 11
+        venueSector: '@venueSector1'
+    seat12:
+        row: 1
+        place: 12
+        venueSector: '@venueSector1'
+    seat13:
+        row: 1
+        place: 13
+        venueSector: '@venueSector1'
+    seat14:
+        row: 1
+        place: 14
+        venueSector: '@venueSector1'
+    seat15:
+        row: 1
+        place: 15
+        venueSector: '@venueSector1'
+    seat16:
+        row: 1
+        place: 16
+        venueSector: '@venueSector1'
+    seat17:
+        row: 1
+        place: 17
+        venueSector: '@venueSector1'
+    seat18:
+        row: 1
+        place: 18
+        venueSector: '@venueSector1'
+    seat19:
+        row: 1
+        place: 19
+        venueSector: '@venueSector1'
+    seat20:
+        row: 1
+        place: 20
+        venueSector: '@venueSector1'
+    seat21:
+        row: 1
+        place: 21
+        venueSector: '@venueSector1'
+    seat22:
+        row: 1
+        place: 22
+        venueSector: '@venueSector1'
+    seat23:
+        row: 1
+        place: 23
+        venueSector: '@venueSector1'
+    seat24:
+        row: 1
+        place: 24
+        venueSector: '@venueSector1'
+    seat25:
+        row: 1
+        place: 25
+        venueSector: '@venueSector1'
+    seat26:
+        row: 1
+        place: 26
+        venueSector: '@venueSector1'
