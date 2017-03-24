@@ -2,16 +2,13 @@
 
 namespace AppBundle\Repository;
 
-use phpDocumentor\Reflection\Types\Object_;
-
 class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
      * @param  string $param
-     * @return Object
+     * @return object
      */
-
-    public function findUsernameByApiKey($param)
+    public function findOneByApiKey($param)
     {
         return $this->createQueryBuilder('c')
             ->select('c')

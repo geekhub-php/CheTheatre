@@ -6,14 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User.
  *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
+ * @UniqueEntity("facebookId")
  * @ExclusionPolicy("all")
  */
 class Customer implements UserInterface
@@ -30,36 +31,51 @@ class Customer implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=100, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=100, nullable=true)
+     * @Assert\Regex(pattern="/\d/", match=false)
+     * @Assert\Type("string")
+     * @Assert\Length(min=2, max=100)
      * @Expose
      */
-    protected $firstname;
+    protected $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=100, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
+     * @Assert\Regex(pattern="/\d/", match=false)
+     * @Assert\Type("string")
+     * @Assert\Length(min=2, max=100)
      * @Expose
      */
-    protected $lastname;
+    protected $lastName;
+
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     * @Assert\Email()
+     * @Assert\Type("string")
+     * @Assert\Length(max=100)
      * @Expose
      */
     protected $email;
+
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=100)
+     * @Assert\Type("string")
+     * @Assert\Length(max=100)
      */
     protected $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="apiKey", type="string", length=255, nullable=true)
+     * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
+     * @Assert\Type("string")
+     * @Assert\Length(max=255)
      * @Expose
      */
     private $apiKey;
@@ -68,8 +84,10 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true, unique=true)
+     * @Assert\Type("string")
+     * @Assert\Length(max=255)
      */
-    private $facebookID;
+    private $facebookId;
 
     /**
      * Get id.
@@ -105,47 +123,61 @@ class Customer implements UserInterface
         return $this->apiKey;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getRoles()
     {
         return array('ROLE_API');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getPassword()
     {
     }
+
+    /**
+     * @inheritdoc
+     */
     public function getSalt()
     {
     }
+
+    /**
+     * @inheritdoc
+     */
     public function eraseCredentials()
     {
     }
 
     /**
-     * Set facebookID.
+     * Set facebookId.
      *
-     * @param string $facebookID
+     * @param string $facebookId
      *
      * @return Customer
      */
-    public function setFacebookID($facebookID)
+    public function setFacebookId($facebookId)
     {
-        $this->facebookID = $facebookID;
+        $this->facebookId = $facebookId;
 
         return $this;
     }
 
     /**
-     * Get facebookID.
+     * Get facebookId.
      *
      * @return string
      */
-    public function getFacebookID()
+    public function getFacebookId()
     {
-        return $this->facebookID;
+        return $this->facebookId;
     }
 
     /**
-     * Set usernameApi.
+     * Set username.
      *
      * @param string $username
      *
@@ -169,51 +201,51 @@ class Customer implements UserInterface
     }
 
     /**
-     * Set firstname.
+     * Set firstName.
      *
-     * @param string $firstname
+     * @param string $firstName
      *
      * @return Customer
      */
-    public function setFirstname($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get firstname.
+     * Get firstName.
      *
      * @return string
      */
-    public function getFirstname()
+    public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * Set lastname.
+     * Set lastName.
      *
-     * @param string $lastname
+     * @param string $lastName
      *
      * @return Customer
      */
-    public function setLastname($lastname)
+    public function setLastName($lastName)
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     /**
-     * Get lastname.
+     * Get lastName.
      *
      * @return string
      */
-    public function getLastname()
+    public function getLastName()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
     /**
