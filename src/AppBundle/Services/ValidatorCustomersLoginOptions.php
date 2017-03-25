@@ -2,10 +2,9 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Form\Customer\CustomerType;
+use AppBundle\Form\Type\CustomerType;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormFactoryInterface;
-use AppBundle\Entity\DTOCustomer;
 use AppBundle\Entity\Customer;
 
 class ValidatorCustomersLoginOptions
@@ -19,60 +18,56 @@ class ValidatorCustomersLoginOptions
         $this->FacebookSdk = $facebookSdk;
     }
 
-    public function resultOptions($userAuthenticated, $data, $apiKeyHead)
+    public function resultOptions($userAuthenticated, $data, $apiKeyInHeader)
     {
         $apiKey = uniqid('token_');
 
-        if ($userAuthenticated) {
-            $DTOCustomer = new DTOCustomer();
-            $form = $this->formFactory->create(new CustomerType(), $DTOCustomer);
-            $form['firstName']->setData($data['first_name']);
-            $form['lastName']->setData($data['last_name']);
+        $form = $this->formFactory->create(CustomerType::class);
+        $form->submit($data);
 
-            $form['socialToken']->setData($data['social_token']);
-            $form['socialNetwork']->setData($data['social_network']);
-            $form['email']->setData($data['email']);
+        if ($form->isValid()) {
+            if ($userAuthenticated) {
+                if ($data['socialToken']) {
+                    $userFacebook = $this->FacebookSdk
+                        ->getUserFacebook($data['socialToken']);
 
-            $form->submit($data);
+                    $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
+                        ->findOneByApiKey($apiKeyInHeader);
+                    $userFindApiKey->setEmail($userFacebook->getEmail());
+                    $userFindApiKey->setFacebookId($userFacebook->getId());
+                    $userFindApiKey->setFirstName($userFacebook->getFirstName());
+                    $userFindApiKey->setLastName($userFacebook->getLastName());
+                    //$userFindApiKey->setApiKey($apiKey);
+                    $this->registry->getManager()->flush();
 
-            if ($data['social_token']) {
-                $UserFacebook = $this->FacebookSdk
-                    ->getUserFacebook($data['social_token']);
+                    return $userFindApiKey;
+                }
 
-                $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
-                    ->findOneByApiKey($apiKeyHead);
-                $userFindApiKey->setEmail($UserFacebook->getEmail());
-                $userFindApiKey->setFacebookId($UserFacebook->getId());
-                $userFindApiKey->setFirstName($UserFacebook->getFirstName());
-                $userFindApiKey->setLastName($UserFacebook->getLastName());
-                //$userFindApiKey->setApiKey($apiKey);
-                $this->registry->getManager()->flush();
+                if ($data['firstName'] && $data['email'] && $data['lastName']) {
+                    $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
+                        ->findOneByApiKey($apiKeyInHeader);
+                    $userFindApiKey->setFirstName($data['firstName']);
+                    $userFindApiKey->setLastName($data['lastName']);
+                    $userFindApiKey->setEmail($data['email']);
+                    $this->registry->getManager()->flush();
 
-                return $UserFacebook->getEmail();
-            }
-
-            if ($data['first_name'] && $data['email'] && $data['last_name'] && $form['email']->isValid()) {
-                $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
-                    ->findOneByApiKey($apiKeyHead);
-                $userFindApiKey->setFirstName($data['first_name']);
-                $userFindApiKey->setLastName($data['last_name']);
-                $userFindApiKey->setEmail($data['email']);
-                $this->registry->getManager()->flush();
-
-                return 'customer input of the form';
+                    return $userFindApiKey;
+                } else {
+                    return '401 Invalid email/first_name/last_name';
+                }
+            } elseif ($apiKeyInHeader) {
+                return '403 Not valid apiKey';
             } else {
-                return 'Invalid email/first_name/last_name';
-            }
-        } elseif ($apiKeyHead) {
-            return 'not valid apiKey';
-        } else {
-            $costumer = new Customer();
-            $costumer->setUsername('customer');
-            $costumer->setApiKey($apiKey);
-            $this->registry->getManager()->persist($costumer);
-            $this->registry->getManager()->flush();
+                $customer = new Customer();
+                $customer->setUsername('customer');
+                $customer->setApiKey($apiKey);
+                $this->registry->getManager()->persist($customer);
+                $this->registry->getManager()->flush();
 
-            return 'new costomer';
+                return $customer;
+            }
         }
+
+        return $form;
     }
 }

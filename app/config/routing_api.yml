@@ -32,11 +32,6 @@ swagger_ui_index:
     methods: [GET]
 
 customers-login:
-    path: /customers/login
-    defaults: { _controller: AppBundle:Customer:customerLogin }
-    methods: [POST]
-
-  #type: rest
-  #resource: AppBundle\Controller\CustomerController
-  #methods: [GET, POST]
-
+    type: rest
+    resource: AppBundle\Controller\CustomerController
+    methods: [GET, POST]
