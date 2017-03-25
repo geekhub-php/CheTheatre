@@ -20,7 +20,7 @@ class CustomerType extends AbstractType
             ->add('username')
             ->add('firstName')
             ->add('lastName')
-            ->add('apiKey')
+            ->add('apiKeyToken')
             ->add('facebookId')
             ->add('socialNetwork', null, [
                 'mapped' => false,

@@ -74,12 +74,12 @@ class Customer implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
+     * @ORM\Column(name="api_key_token", type="string", length=255, nullable=true)
      * @Assert\Type("string")
      * @Assert\Length(max=255)
      * @Expose
      */
-    private $apiKey;
+    private $apiKeyToken;
 
     /**
      * @var string
@@ -101,27 +101,27 @@ class Customer implements UserInterface
     }
 
     /**
-     * Set apiKey.
+     * Set apiKeyToken.
      *
-     * @param string $apiKey
+     * @param string $apiKeyToken
      *
      * @return Customer
      */
-    public function setApiKey($apiKey)
+    public function setApiKeyToken($apiKeyToken)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKeyToken = $apiKeyToken;
 
         return $this;
     }
 
     /**
-     * Get apiKey.
+     * Get apiKeyToken.
      *
      * @return string
      */
-    public function getApiKey()
+    public function getApiKeyToken()
     {
-        return $this->apiKey;
+        return $this->apiKeyToken;
     }
 
     /**

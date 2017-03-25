@@ -18,34 +18,38 @@ class ValidatorCustomersLoginOptions
         $this->FacebookSdk = $facebookSdk;
     }
 
-    public function resultOptions($userAuthenticated, $data, $apiKeyInHeader)
+    public function resultOptions($userAuthenticated, $data, $apiKeyTokenInHeader)
     {
-        $apiKey = uniqid('token_');
+        $apiKeyToken = uniqid('token_');
 
         $form = $this->formFactory->create(CustomerType::class);
         $form->submit($data);
 
         if ($form->isValid()) {
             if ($userAuthenticated) {
-                if ($data['socialToken']) {
+                if ($data['socialNetwork'] == 'facebook' && $data['socialToken']) {
                     $userFacebook = $this->FacebookSdk
                         ->getUserFacebook($data['socialToken']);
 
-                    $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
-                        ->findOneByApiKey($apiKeyInHeader);
-                    $userFindApiKey->setEmail($userFacebook->getEmail());
-                    $userFindApiKey->setFacebookId($userFacebook->getId());
-                    $userFindApiKey->setFirstName($userFacebook->getFirstName());
-                    $userFindApiKey->setLastName($userFacebook->getLastName());
-                    //$userFindApiKey->setApiKey($apiKey);
-                    $this->registry->getManager()->flush();
+                    if ($userFacebook->getId()) {
+                        $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
+                            ->findOneByApiKeyToken($apiKeyTokenInHeader);
+                        $userFindApiKey->setEmail($userFacebook->getEmail());
+                        $userFindApiKey->setFacebookId($userFacebook->getId());
+                        $userFindApiKey->setFirstName($userFacebook->getFirstName());
+                        $userFindApiKey->setLastName($userFacebook->getLastName());
+                        //$userFindApiKey->setApiKey($apiKeyToken);
+                        $this->registry->getManager()->flush();
 
-                    return $userFindApiKey;
+                        return $userFindApiKey;
+                    }
+
+                    return '401 Invalid facebook';
                 }
 
-                if ($data['firstName'] && $data['email'] && $data['lastName']) {
+                if ($data['email'] && $data['firstName'] && $data['lastName']) {
                     $userFindApiKey = $this->registry->getRepository('AppBundle:Customer')
-                        ->findOneByApiKey($apiKeyInHeader);
+                        ->findOneByApiKeyToken($apiKeyTokenInHeader);
                     $userFindApiKey->setFirstName($data['firstName']);
                     $userFindApiKey->setLastName($data['lastName']);
                     $userFindApiKey->setEmail($data['email']);
@@ -55,12 +59,12 @@ class ValidatorCustomersLoginOptions
                 } else {
                     return '401 Invalid email/first_name/last_name';
                 }
-            } elseif ($apiKeyInHeader) {
+            } elseif ($apiKeyTokenInHeader) {
                 return '403 Not valid apiKey';
             } else {
                 $customer = new Customer();
                 $customer->setUsername('customer');
-                $customer->setApiKey($apiKey);
+                $customer->setApiKeyToken($apiKeyToken);
                 $this->registry->getManager()->persist($customer);
                 $this->registry->getManager()->flush();
 
