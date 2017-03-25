@@ -24,6 +24,7 @@ class Ticket
     const STATUS_FREE    = 'free';
     const STATUS_BOOKED  = 'booked';
     const STATUS_PAID    = 'paid';
+    const STATUS_OFFLINE = 'offline';
 
     /**
      * @var Uuid
@@ -105,7 +106,7 @@ class Ticket
     /**
      * @var Enum
      * @Assert\Choice(callback="getStatuses")
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'paid')")
+     * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'paid', 'offline')")
      * @Serializer\Groups({"get_ticket", "cget_ticket"})
      * @Expose()
      */
@@ -130,7 +131,6 @@ class Ticket
      */
     public function getId()
     {
-//        return $this->id->toString();
         return $this->id;
     }
 
@@ -223,6 +223,7 @@ class Ticket
             self::STATUS_FREE,
             self::STATUS_BOOKED,
             self::STATUS_PAID,
+            self::STATUS_OFFLINE,
         ];
     }
 }
