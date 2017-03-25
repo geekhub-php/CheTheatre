@@ -28,7 +28,7 @@ class OrdersController extends Controller
     /**
      * @RestView
      */
-    public function getAction(ParamFetcher $paramFetcher, $orderId)
+    public function getAction($orderId)
     {
         # TODO
         $response = [
