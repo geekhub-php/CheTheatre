@@ -138,7 +138,8 @@ class CustomerOrder
     /**
      * @return array
      */
-    public static function getStatuses() {
+    public static function getStatuses()
+    {
         return [
             self::STATUS_PAID,
             self::STATUS_PENDING,
@@ -146,5 +147,3 @@ class CustomerOrder
         ];
     }
 }
-
-

@@ -12,7 +12,6 @@ use JMS\Serializer\Annotation\Type;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Table(name="ticket")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
@@ -218,7 +217,8 @@ class Ticket
     /**
      * @return array
      */
-    public static function getStatuses() {
+    public static function getStatuses()
+    {
         return [
             self::STATUS_FREE,
             self::STATUS_BOOKED,
