@@ -7,9 +7,9 @@ use AppBundle\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -42,6 +42,8 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose()
      */
@@ -51,6 +53,7 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
      * @var string
      * @Gedmo\Translatable
      * @Assert\NotBlank()
+     * @Serializer\Groups({"get_ticket"})
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose()

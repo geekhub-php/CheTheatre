@@ -2,7 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\Ticket;
 use FOS\RestBundle\Request\ParamFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -167,5 +170,19 @@ class PerformanceEventsController extends Controller
         }
 
         return $performanceEvent;
+    }
+
+    /**
+     * @RestView(serializerGroups={"cget_ticket"})
+     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
+     */
+    public function cgetTicketsAction(PerformanceEvent $performanceEvent)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tickets = $em
+            ->getRepository(Ticket::class)
+            ->findBy(['performanceEvent' => $performanceEvent]);
+
+        return $tickets;
     }
 }

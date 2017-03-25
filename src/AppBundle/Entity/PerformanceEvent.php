@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use AppBundle\Traits\DeletedByTrait;
@@ -35,6 +36,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      */
@@ -44,6 +47,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="performanceEvents")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\Performance")
      * @Expose
      */
@@ -54,6 +59,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("DateTime")
      * @Expose
      */
@@ -63,6 +70,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @var Venue
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="performanceEvents")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\Venue")
      * @Expose
      */
@@ -71,6 +80,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      * @Accessor(getter="getYear")
@@ -80,6 +90,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getMonth")
      */
@@ -88,6 +99,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getDay")
      */
@@ -96,6 +108,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var string
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getTime")
      */
