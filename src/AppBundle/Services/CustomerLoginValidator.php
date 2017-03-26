@@ -6,6 +6,7 @@ use AppBundle\Form\Type\CustomerType;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormFactoryInterface;
 use AppBundle\Entity\Customer;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CustomerLoginValidator
 {
@@ -20,9 +21,9 @@ class CustomerLoginValidator
     private $formFactory;
 
     /**
-     * @var GuzzleClientFacebook
+     * @var GuzzleClient
      */
-    private $facebookGuzzle;
+    private $guzzleClient;
 
     /**
      * @var array
@@ -37,13 +38,16 @@ class CustomerLoginValidator
     /**
      * @param ManagerRegistry $registry
      * @param FormFactoryInterface $formFactory
-     * @param GuzzleClientFacebook $facebookSdk
+     * @param GuzzleClient $guzzleClient
      */
-    public function __construct(ManagerRegistry $registry, FormFactoryInterface $formFactory, GuzzleClientFacebook $facebookGuzzle)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        FormFactoryInterface $formFactory,
+        GuzzleClient $guzzleClient
+    ) {
         $this->registry = $registry;
         $this->formFactory = $formFactory;
-        $this->facebookGuzzle = $facebookGuzzle;
+        $this->guzzleClient = $guzzleClient;
     }
 
     /**
@@ -67,7 +71,7 @@ class CustomerLoginValidator
 
         if (!$userAuthenticated) {
             if ($apiKeyInHeader) {
-                throw new \Exception('403 Invalid API-Key-Token');
+                throw new HttpException(401, 'Invalid API-Key-Token');
             }
 
             return $this->newCustomer();
@@ -81,7 +85,7 @@ class CustomerLoginValidator
             return $this->loginFacebook();
         }
 
-        throw new \Exception('401 Invalid credentials');
+        throw new HttpException(401, 'Invalid credentials');
     }
 
     /**
@@ -120,7 +124,7 @@ class CustomerLoginValidator
      */
     private function loginFacebook()
     {
-        $userFacebook = $this->facebookGuzzle
+        $userFacebook = $this->guzzleClient
             ->getUserFacebook($this->data['socialToken']);
 
         $customer = $this->registry->getRepository('AppBundle:Customer')

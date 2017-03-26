@@ -59,7 +59,7 @@ services:
 
     customer_login_validator:
         class: AppBundle\Services\CustomerLoginValidator
-        arguments: ["@doctrine", "@form.factory", "@guzzle_facebook"]
+        arguments: ["@doctrine", "@form.factory", "@guzzle_client"]
 
-    guzzle_facebook:
-        class: AppBundle\Services\GuzzleClientFacebook
+    guzzle_client:
+        class: AppBundle\Services\GuzzleClient

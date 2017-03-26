@@ -25,7 +25,7 @@ history:
 customers-login:
     type: rest
     resource: AppBundle\Controller\CustomerController
-    methods: [GET, POST]
+    methods: [POST]
 
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"

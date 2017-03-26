@@ -143,6 +143,8 @@ fos_rest:
     body_listener:
         array_normalizer: fos_rest.normalizer.camel_keys
     format_listener: true
+    access_denied_listener:
+        json: true
     routing_loader:
         default_format: json
     view:
@@ -152,6 +154,9 @@ fos_rest:
             xml: true
             yml: false
             html: false
+    exception:
+        enabled: true
+        exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 sensio_framework_extra:
     view:
