@@ -20,9 +20,9 @@ class CustomerLoginValidator
     private $formFactory;
 
     /**
-     * @var FacebookSdk
+     * @var GuzzleClientFacebook
      */
-    private $facebookSdk;
+    private $facebookGuzzle;
 
     /**
      * @var array
@@ -37,13 +37,13 @@ class CustomerLoginValidator
     /**
      * @param ManagerRegistry $registry
      * @param FormFactoryInterface $formFactory
-     * @param FacebookSdk $facebookSdk
+     * @param GuzzleClientFacebook $facebookSdk
      */
-    public function __construct(ManagerRegistry $registry, FormFactoryInterface $formFactory, FacebookSdk $facebookSdk)
+    public function __construct(ManagerRegistry $registry, FormFactoryInterface $formFactory, GuzzleClientFacebook $facebookGuzzle)
     {
         $this->registry = $registry;
         $this->formFactory = $formFactory;
-        $this->facebookSdk = $facebookSdk;
+        $this->facebookGuzzle = $facebookGuzzle;
     }
 
     /**
@@ -120,15 +120,15 @@ class CustomerLoginValidator
      */
     private function loginFacebook()
     {
-        $userFacebook = $this->facebookSdk
+        $userFacebook = $this->facebookGuzzle
             ->getUserFacebook($this->data['socialToken']);
 
         $customer = $this->registry->getRepository('AppBundle:Customer')
             ->findOneBy(['apiKey' => $this->apiKeyInHeader]);
-        $customer->setEmail($userFacebook->getEmail());
-        $customer->setFacebookId($userFacebook->getId());
-        $customer->setFirstName($userFacebook->getFirstName());
-        $customer->setLastName($userFacebook->getLastName());
+        $customer->setEmail($userFacebook->email);
+        $customer->setFacebookId($userFacebook->id);
+        $customer->setFirstName($userFacebook->first_name);
+        $customer->setLastName($userFacebook->last_name);
         $this->registry->getManager()->flush();
 
         return $customer;

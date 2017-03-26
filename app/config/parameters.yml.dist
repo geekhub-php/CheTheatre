@@ -32,6 +32,3 @@ parameters:
     cdn_domain: http://%api_domain%
     users:
         admin: { password: 111111, roles: 'ROLE_SUPER_ADMIN'}
-    facebook.app_id: ~
-    facebook.secret_id: ~
-    facebook.graph_version: v2.8

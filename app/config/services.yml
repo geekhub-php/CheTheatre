@@ -57,10 +57,9 @@ services:
         public: false
         arguments: ["@doctrine"]
 
-    facebook_sdk:
-        class: AppBundle\Services\FacebookSdk
-        arguments: ["%facebook.app_id%", "%facebook.secret_id%", "%facebook.graph_version%"]
-
     customer_login_validator:
         class: AppBundle\Services\CustomerLoginValidator
-        arguments: ["@doctrine", "@form.factory", "@facebook_sdk"]
+        arguments: ["@doctrine", "@form.factory", "@guzzle_facebook"]
+
+    guzzle_facebook:
+        class: AppBundle\Services\GuzzleClientFacebook
