@@ -73,12 +73,24 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     protected $seats;
 
     /**
+     * @var Collection|PriceCategory[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\PriceCategory",
+     *     mappedBy="venueSector",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $priceCategories;
+
+    /**
      * VenueSector constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->seats = new ArrayCollection();
+        $this->priceCategories = new ArrayCollection();
     }
 
     /**
@@ -159,5 +171,40 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @param  PriceCategory $priceCategory
+     * @return VenueSector
+     */
+    public function addPriceCategory(PriceCategory $priceCategory)
+    {
+        $this->priceCategories[] = $priceCategory;
+
+        return $this;
+    }
+
+    /**
+     * @param PriceCategory $priceCategory
+     */
+    public function removePriceCategory(PriceCategory $priceCategory)
+    {
+        $this->priceCategories->removeElement($priceCategory);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPriceCategories()
+    {
+        return $this->priceCategories;
+    }
+
+    /**
+     * @param PriceCategory[]|Collection $priceCategory
+     */
+    public function setPriceCategories($priceCategory)
+    {
+        $this->priceCategories = $priceCategory;
     }
 }

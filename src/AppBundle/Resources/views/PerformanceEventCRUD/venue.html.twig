@@ -1,0 +1,26 @@
+<div class="form-inline">
+    <div class="form-group">
+        <label for="sectors" class="sr-only">Сектор</label>
+        <select class="form-control" id="sectors">
+            {% for sector in venue.venueSector %}
+                <option value="{{ sector.id }}">{{ sector.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="row">Ряд</label>
+        <input type="text" class="form-control" id="row" placeholder="1-5,6,7,10-15">
+    </div>
+    <div class="form-group">
+        <label for="place">Місце</label>
+        <input type="text" class="form-control" id="place" placeholder="1-5,6,7,10-15">
+    </div>
+    <div class="form-group">
+        <label for="price">Ціна</label>
+        <input type="text" class="form-control" id="price" placeholder="50">
+    </div>
+    <button type="submit" class="btn btn-default">+</button>
+</div>
+
+<h2 class="title">СЦЕНА</h2>
+{{ venue.hallTemplate|raw }}

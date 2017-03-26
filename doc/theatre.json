@@ -1560,9 +1560,6 @@
                 },
                 "venue_sector": {
                     "$ref": "#/definitions/VenueSector"
-                },
-                "price_category": {
-                    "$ref": "#/definitions/PriceCategory"
                 }
             }
         },
@@ -1572,14 +1569,23 @@
                 "id": {
                     "type": "integer"
                 },
-                "title": {
+                "rows": {
+                    "type": "string"
+                },
+                "places": {
                     "type": "string"
                 },
                 "color": {
                     "type": "string"
                 },
-                "venue": {
-                    "$ref": "#/definitions/Venue"
+                "price": {
+                    "type": "integer"
+                },
+                "venue_sector": {
+                    "$ref": "#/definitions/VenueSector"
+                },
+                "performance_event": {
+                    "$ref": "#/definitions/PerformanceEvent"
                 }
             }
         },

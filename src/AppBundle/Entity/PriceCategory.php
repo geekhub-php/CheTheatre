@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
@@ -33,13 +32,12 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose()
      */
-    protected $title;
+    protected $rows;
 
     /**
      * @var string
@@ -48,7 +46,24 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
      * @Type("string")
      * @Expose()
      */
+    protected $places;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255)
+     * @Type("string")
+     * @Expose()
+     */
     protected $color;
+
+    /**
+     * @var integer
+     * @Assert\NotBlank()
+     * @ORM\Column(type="integer")
+     * @Type("integer")
+     * @Expose()
+     */
+    protected $price;
 
     /**
      * @var ArrayCollection|Translation[]
@@ -62,34 +77,22 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     protected $translations;
 
     /**
-     * @var Venue
+     * @var PerformanceEvent
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="priceCategories")
-     * @Type("AppBundle\Entity\Venue")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent", inversedBy="priceCategories")
+     * @Type("AppBundle\Entity\PerformanceEvent")
      * @Expose()
      */
-    protected $venue;
+    protected $performanceEvent;
 
     /**
-     * @var Collection|Seat[]
+     * @var VenueSector
      *
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Seat",
-     *     mappedBy="priceCategory",
-     *     cascade={"persist"}
-     * )
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector", inversedBy="priceCategories")
+     * @Type("AppBundle\Entity\VenueSector")
+     * @Expose()
      */
-    protected $seats;
-
-
-    /**
-     * PriceCategory constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->seats = new ArrayCollection();
-    }
+    protected $venueSector;
 
     /**
      * @return integer
@@ -148,41 +151,6 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @return Venue
-     */
-    public function getVenue()
-    {
-        return $this->venue;
-    }
-
-    /**
-     * @param  Seat $seat
-     * @return PriceCategory
-     */
-    public function addSeat(Seat $seat)
-    {
-        $this->seats[] = $seat;
-
-        return $this;
-    }
-
-    /**
-     * @param Seat $seat
-     */
-    public function removeSeat(Seat $seat)
-    {
-        $this->seats->removeElement($seat);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getSeat()
-    {
-        return $this->seats;
-    }
-
-    /**
      * @return string
      */
     public function __toString()
@@ -191,10 +159,18 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @param Venue $venue
+     * @return VenueSector
      */
-    public function setVenue(Venue $venue)
+    public function getVenueSector(): VenueSector
     {
-        $this->venue = $venue;
+        return $this->venueSector;
+    }
+
+    /**
+     * @param VenueSector $venueSector
+     */
+    public function setVenueSector(VenueSector $venueSector)
+    {
+        $this->venueSector = $venueSector;
     }
 }

@@ -60,15 +60,6 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     protected $venueSector;
 
     /**
-     * @var PriceCategory
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PriceCategory", inversedBy="seats")
-     * @Type("AppBundle\Entity\PriceCategory")
-     * @Expose()
-     */
-    protected $priceCategory;
-
-    /**
      * @return integer
      */
     public function getId()
@@ -136,13 +127,5 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     public function getVenueSector(): VenueSector
     {
         return $this->venueSector;
-    }
-
-    /**
-     * @return PriceCategory
-     */
-    public function getPriceCategory(): PriceCategory
-    {
-        return $this->priceCategory;
     }
 }

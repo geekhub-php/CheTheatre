@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -111,6 +112,23 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * )
      */
     protected $translations;
+
+    /**
+     * @var Collection|PriceCategory[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\PriceCategory",
+     *     mappedBy="performanceEvent",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $priceCategories;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->priceCategories = new ArrayCollection();
+    }
 
     /**
      * Unset translations
@@ -270,5 +288,40 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
         $this->venue = $venue;
 
         return $this;
+    }
+
+    /**
+     * @param  PriceCategory $priceCategory
+     * @return PerformanceEvent
+     */
+    public function addPriceCategory(PriceCategory $priceCategory)
+    {
+        $this->priceCategories[] = $priceCategory;
+
+        return $this;
+    }
+
+    /**
+     * @param PriceCategory $priceCategory
+     */
+    public function removePriceCategory(PriceCategory $priceCategory)
+    {
+        $this->priceCategories->removeElement($priceCategory);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPriceCategories()
+    {
+        return $this->priceCategories;
+    }
+
+    /**
+     * @param PriceCategory[]|Collection $priceCategory
+     */
+    public function setPriceCategories($priceCategory)
+    {
+        $this->priceCategories = $priceCategory;
     }
 }

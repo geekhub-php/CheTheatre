@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class PerformanceEventAdmin extends Admin
 {
@@ -17,7 +18,15 @@ class PerformanceEventAdmin extends Admin
     ];
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @param RouteCollection $collection
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('getVenue');
+    }
+
+    /**
+     * @param FormMapper $formMapper
      *
      * @return void
      */
@@ -40,7 +49,7 @@ class PerformanceEventAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @param ListMapper $listMapper
      *
      * @return void
      */
@@ -60,7 +69,7 @@ class PerformanceEventAdmin extends Admin
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @param DatagridMapper $datagridMapper
      *
      * @return void
      */
