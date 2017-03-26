@@ -63,3 +63,9 @@ services:
 
     guzzle_client:
         class: AppBundle\Services\GuzzleClient
+
+    app.exception_listener:
+        class: AppBundle\EventListener\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception}
+        arguments: ["@service_container"]
