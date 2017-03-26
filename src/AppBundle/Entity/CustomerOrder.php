@@ -20,6 +20,8 @@ class CustomerOrder
 {
     use TimestampableTrait;
 
+    const STATUS_OPENED   = 'opened';
+    const STATUS_CLOSED   = 'closed';
     const STATUS_PENDING  = 'pending';
     const STATUS_PAID     = 'paid';
     const STATUS_REJECTED = 'rejected';
@@ -47,7 +49,11 @@ class CustomerOrder
     /**
      * @var Enum
      * @Assert\Choice(callback="getStatuses")
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'ordered')")
+     * @ORM\Column(
+     *     name="status",
+     *     type="string",
+     *     columnDefinition="enum('free', 'booked', 'ordered', 'opened', 'closed')"
+     * )
      * @Expose()
      */
     protected $status;
@@ -58,6 +64,7 @@ class CustomerOrder
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->status = self::STATUS_OPENED;
         $this->tickets = new ArrayCollection();
     }
 
@@ -141,6 +148,8 @@ class CustomerOrder
     public static function getStatuses()
     {
         return [
+            self::STATUS_OPENED,
+            self::STATUS_CLOSED,
             self::STATUS_PAID,
             self::STATUS_PENDING,
             self::STATUS_REJECTED,

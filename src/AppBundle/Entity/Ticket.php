@@ -40,26 +40,26 @@ class Ticket
     private $id;
 
     /**
-     * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=5,  nullable=false)
+     * @var \DateTime
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime", nullable=false)
      *
      * @Serializer\Groups({"get_ticket", "cget_ticket"})
-     * @Type("string")
+     * @Type("datetime")
      * @Expose
      */
-    private $series;
+    private $setDate;
 
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=20,  nullable=false)
+     * @ORM\Column(type="string", length=10,  nullable=false)
      *
      * @Serializer\Groups({"get_ticket", "cget_ticket"})
      * @Type("string")
      * @Expose
      */
-    private $number;
+    private $setNumber;
 
     /**
      * @var integer
@@ -135,38 +135,6 @@ class Ticket
     }
 
     /**
-     * @return string
-     */
-    public function getSeries()
-    {
-        return $this->series;
-    }
-
-    /**
-     * @param string $series
-     */
-    public function setSeries($series)
-    {
-        $this->series = $series;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    /**
-     * @param string $number
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
-    }
-
-    /**
      * @return int
      */
     public function getPrice()
@@ -225,5 +193,37 @@ class Ticket
             self::STATUS_PAID,
             self::STATUS_OFFLINE,
         ];
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSetDate(): \DateTime
+    {
+        return $this->setDate;
+    }
+
+    /**
+     * @param \DateTime $setDate
+     */
+    public function setSetDate(\DateTime $setDate)
+    {
+        $this->setDate = $setDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSetNumber(): string
+    {
+        return $this->setNumber;
+    }
+
+    /**
+     * @param string $setNumber
+     */
+    public function setSetNumber(string $setNumber)
+    {
+        $this->setNumber = $setNumber;
     }
 }
