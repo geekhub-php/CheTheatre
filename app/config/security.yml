@@ -22,12 +22,12 @@ security:
                 path:   %admin_dashboard_base_url%/logout
                 target: /login
 
-        secured_area1:
+        secured_area_api:
             pattern: ^/
             anonymous: ~
             stateless: true
             simple_preauth:
-               authenticator: apikey_authenticator
+               authenticator: api_key_authenticator
             provider: api_key_user_provider
 
     role_hierarchy:

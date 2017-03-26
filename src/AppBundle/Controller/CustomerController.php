@@ -18,7 +18,7 @@ class CustomerController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $validatorResult = $this->get('service_customers_login_validator')
+        $validatorResult = $this->get('customer_login_validator')
             ->resultOptions(
                 $this->getUser(),
                 $request->request->all(),

@@ -3,7 +3,6 @@
 parameters:
      sonata.media.admin.gallery_has_media.class: AppBundle\Admin\GalleryHasMediaAdmin
      my_user_provider.class: AppBundle\Security\Core\User\OAuthUserProvider
-     graf_version: v2.8
 
 services:
     app.event_listener.serializer_subscriber:
@@ -53,10 +52,15 @@ services:
         class: AppBundle\Security\ApiKeyUserProvider
         arguments: ["@doctrine"]
 
-    service_facebook_sdk:
-        class: AppBundle\Services\FacebookSdk
-        arguments: ["%id_app_facebook%","%secret_id%","%graf_version%"]
+    api_key_authenticator:
+        class:  AppBundle\Security\ApiKeyAuthenticator
+        public: false
+        arguments: ["@doctrine"]
 
-    service_customers_login_validator:
-        class: AppBundle\Services\ValidatorCustomersLoginOptions
-        arguments: ["@doctrine","@form.factory","@service_facebook_sdk"]
+    facebook_sdk:
+        class: AppBundle\Services\FacebookSdk
+        arguments: ["%facebook.app_id%", "%facebook.secret_id%", "%facebook.graph_version%"]
+
+    customer_login_validator:
+        class: AppBundle\Services\CustomerLoginValidator
+        arguments: ["@doctrine", "@form.factory", "@facebook_sdk"]

@@ -22,6 +22,11 @@ history:
     type: rest
     resource: AppBundle\Controller\HistoryController
 
+customers-login:
+    type: rest
+    resource: AppBundle\Controller\CustomerController
+    methods: [GET, POST]
+
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
@@ -30,8 +35,3 @@ swagger_ui_index:
     path: /
     defaults: { _controller: AppBundle:SwaggerUi:index }
     methods: [GET]
-
-customers-login:
-    type: rest
-    resource: AppBundle\Controller\CustomerController
-    methods: [GET, POST]

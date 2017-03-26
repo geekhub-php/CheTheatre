@@ -6,6 +6,7 @@ use AppBundle\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Type;
 
 class CustomerType extends AbstractType
@@ -20,11 +21,14 @@ class CustomerType extends AbstractType
             ->add('username')
             ->add('firstName')
             ->add('lastName')
-            ->add('apiKeyToken')
+            ->add('apiKey')
             ->add('facebookId')
             ->add('socialNetwork', null, [
                 'mapped' => false,
-                'constraints' => [new Type(['type' => 'string'])]
+                'constraints' => [
+                    new Type(['type' => 'string']),
+                    new Choice(['choices' => ['facebook']])
+                ]
             ])
             ->add('socialToken', null, ['mapped' => false])
         ;

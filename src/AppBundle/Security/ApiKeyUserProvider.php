@@ -10,30 +10,43 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ApiKeyUserProvider implements UserProviderInterface
 {
+    /**
+     * @var ManagerRegistry
+     */
     private $registry;
 
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         $this->registry = $registry;
     }
 
-    public function getUsernameForApiKey($apiKey)
+    /**
+     * @param string $apiKey
+     * @return null|string
+     */
+    public function getUsernameByApiKey($apiKey)
     {
         // Look up the username based on the token in the database, via
         // an API call, or do something entirely different
-
-        $user = $this->registry->getManager()
+        $user = $this
+            ->registry
+            ->getManager()
             ->getRepository('AppBundle:Customer')
-            ->findOneByApiKeyToken($apiKey);
-        if ($user) {
-            $username = $user->getUsername();
-        } else {
-            $username = null;
+            ->findOneBy(['apiKey' => $apiKey]);
+
+        if (!$user) {
+            return null;
         }
 
-        return $username;
+        return $user->getUsername();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function loadUserByUsername($username)
     {
         return new User(
@@ -45,6 +58,9 @@ class ApiKeyUserProvider implements UserProviderInterface
         );
     }
 
+    /**
+     * @inheritdoc
+     */
     public function refreshUser(UserInterface $user)
     {
         // this is used for storing authentication in the session
@@ -54,12 +70,11 @@ class ApiKeyUserProvider implements UserProviderInterface
         throw new UnsupportedUserException();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function supportsClass($class)
     {
         return User::class === $class;
-    }
-
-    public function createApiKeyUser()
-    {
     }
 }

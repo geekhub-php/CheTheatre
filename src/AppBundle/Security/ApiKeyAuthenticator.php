@@ -13,33 +13,54 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
 {
+    /**
+     * @var ManagerRegistry
+     */
     private $registry;
 
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         $this->registry = $registry;
     }
 
+    /**
+     * @param Request $request
+     * @param string $providerKey
+     * @return PreAuthenticatedToken
+     */
     public function createToken(Request $request, $providerKey)
     {
-
         $apiKey = $request->headers->get('API-Key-Token');
         if (!$apiKey) {
             throw new BadCredentialsException();
         }
 
         return new PreAuthenticatedToken(
-                 'customer.',
-                 $apiKey,
-                $providerKey
-            );
+            'customer',
+            $apiKey,
+            $providerKey
+        );
     }
 
+    /**
+     * @param TokenInterface $token
+     * @param string $providerKey
+     * @return bool
+     */
     public function supportsToken(TokenInterface $token, $providerKey)
     {
         return $token instanceof PreAuthenticatedToken && $token->getProviderKey() === $providerKey;
     }
 
+    /**
+     * @param TokenInterface $token
+     * @param UserProviderInterface $userProvider
+     * @param string $providerKey
+     * @return PreAuthenticatedToken
+     */
     public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
     {
         if (!$userProvider instanceof ApiKeyUserProvider) {
@@ -52,7 +73,7 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
         }
 
         $apiKey = $token->getCredentials();
-        $username = $userProvider->getUsernameForApiKey($apiKey);
+        $username = $userProvider->getUsernameByApiKey($apiKey);
 
         if (!$username) {
             // CAUTION: this message will be returned to the client
