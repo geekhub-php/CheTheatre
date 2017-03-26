@@ -29,16 +29,6 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
-    const VENUE_PHILHARMONIC = "venue-philharmonic";
-    const VENUE_KULIC_HOUSE  = "venue-kilic-house";
-    const VENUE_THEATRE      = "venue-theatre";
-
-    public static $venues = [
-        self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
-        self::VENUE_KULIC_HOUSE  => self::VENUE_KULIC_HOUSE,
-        self::VENUE_THEATRE      => self::VENUE_THEATRE,
-    ];
-
     /**
      * @var integer
      *
@@ -70,10 +60,10 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     private $dateTime;
 
     /**
-     * Place where performance happens
-     * @var string
-     * @ORM\Column(type="string")
-     * @Type("string")
+     * @var Venue
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="performanceEvents")
+     * @Type("AppBundle\Entity\Venue")
      * @Expose
      */
     private $venue;
@@ -264,7 +254,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @return string
+     * @return Venue
      */
     public function getVenue()
     {
@@ -272,10 +262,13 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @param string $venue
+     * @param Venue $venue
+     * @return PerformanceEvent
      */
-    public function setVenue($venue)
+    public function setVenue(Venue $venue)
     {
         $this->venue = $venue;
+
+        return $this;
     }
 }

@@ -77,3 +77,14 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
+
+    sonata.admin.venue:
+        class: AppBundle\Admin\VenueAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Venue" }
+        arguments:
+           - ~
+           - AppBundle\Entity\Venue
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
