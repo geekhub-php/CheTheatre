@@ -11,7 +11,7 @@ class GuzzleClient
     /**
      * @param string $accessToken
      *
-     * @return object
+     * @return mixed
      */
     public function getUserFacebook($accessToken)
     {

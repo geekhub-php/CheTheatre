@@ -52,11 +52,11 @@ class CustomerLoginValidator
     }
 
     /**
-     * @param $userAuthenticated
+     * @param mixed  $userAuthenticated
      * @param array  $data
      * @param string $apiKeyInHeader
      *
-     * @return Customer|null|object|\Symfony\Component\Form\FormInterface
+     * @return CustomerResponse|\Symfony\Component\Form\FormInterface
      *
      * @throws \Exception
      */
@@ -110,7 +110,7 @@ class CustomerLoginValidator
     }
 
     /**
-     * @return CustomerResponse|null|object
+     * @return CustomerResponse
      */
     private function loginForm()
     {
@@ -127,7 +127,7 @@ class CustomerLoginValidator
     }
 
     /**
-     * @return CustomerResponse|null|object
+     * @return CustomerResponse
      */
     private function loginFacebook()
     {
