@@ -36,9 +36,9 @@ class CustomerLoginValidator
     private $apiKeyInHeader;
 
     /**
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry      $registry
      * @param FormFactoryInterface $formFactory
-     * @param GuzzleClient $guzzleClient
+     * @param GuzzleClient         $guzzleClient
      */
     public function __construct(
         ManagerRegistry $registry,
@@ -52,9 +52,11 @@ class CustomerLoginValidator
 
     /**
      * @param $userAuthenticated
-     * @param array $data
+     * @param array  $data
      * @param string $apiKeyInHeader
+     *
      * @return Customer|null|object|\Symfony\Component\Form\FormInterface
+     *
      * @throws \Exception
      */
     public function resultOptions($userAuthenticated, $data, $apiKeyInHeader)
@@ -65,16 +67,16 @@ class CustomerLoginValidator
         $form = $this->formFactory->create(CustomerType::class);
         $form->submit($data);
 
-        if (!$form->isValid()) {
-            return $form;
-        }
-
         if (!$userAuthenticated) {
             if ($apiKeyInHeader) {
                 throw new HttpException(401, 'Invalid API-Key-Token');
             }
 
             return $this->newCustomer();
+        }
+
+        if (!$form->isValid()) {
+            return $form;
         }
 
         if ($data['email'] && $data['firstName'] && $data['lastName']) {

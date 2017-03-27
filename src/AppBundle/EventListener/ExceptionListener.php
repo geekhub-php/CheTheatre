@@ -31,17 +31,17 @@ class ExceptionListener
         $request = $this->container->get('request');
         $route = $request->get('_route');
         $exception = $event->getException();
-
         $data = array(
             'error' => array(
                 'code' => 403,
-               'message' => 'Forbidden. You don\'t have necessary permissions for the resource',
+                'message' => 'Forbidden. You don\'t have necessary permissions for the resource',
             ),
         );
 
         if ($exception->getMessage() == 'Full authentication is required to access this resource.') {
             if ($route == 'tickets' || $route == 'orders') {
                 $response = new JsonResponse($data);
+                $response->headers->set('X-Status-Code', 403);
                 $event->setResponse($response);
             }
         }
