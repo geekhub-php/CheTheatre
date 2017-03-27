@@ -1,0 +1,76 @@
+AppBundle\Entity\Translations\PriceCategoryTranslation:
+    priceCategoryTranslation1:
+        object: '@priceCategory1'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation2:
+        object: '@priceCategory2'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation3:
+        object: '@priceCategory3'
+        locale: en
+        field: title
+        content: 'cheap'
+    priceCategoryTranslation4:
+        object: '@priceCategory4'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation5:
+        object: '@priceCategory5'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation6:
+        object: '@priceCategory6'
+        locale: en
+        field: title
+        content: 'cheap'
+    priceCategoryTranslation7:
+        object: '@priceCategory7'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation8:
+        object: '@priceCategory8'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation9:
+        object: '@priceCategory9'
+        locale: en
+        field: title
+        content: 'cheap'
+    priceCategoryTranslation10:
+        object: '@priceCategory10'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation11:
+        object: '@priceCategory11'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation12:
+        object: '@priceCategory12'
+        locale: en
+        field: title
+        content: 'cheap'
+    priceCategoryTranslation13:
+        object: '@priceCategory13'
+        locale: en
+        field: title
+        content: 'expensive'
+    priceCategoryTranslation14:
+        object: '@priceCategory14'
+        locale: en
+        field: title
+        content: 'middle'
+    priceCategoryTranslation15:
+        object: '@priceCategory15'
+        locale: en
+        field: title
+        content: 'cheap'

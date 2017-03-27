@@ -7,7 +7,7 @@ parameters:
 services:
     app.event_listener.serializer_subscriber:
         class: AppBundle\EventListener\SerializerSubscriber
-        arguments: ["@sonata.media.controller.api.media", "@router", "@translator"]
+        arguments: ["@sonata.media.controller.api.media", "@router"]
         tags:
             - { name: jms_serializer.event_subscriber }
 

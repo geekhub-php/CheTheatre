@@ -1,0 +1,51 @@
+AppBundle\Entity\Translations\VenueTranslation:
+    venueTranslation1:
+        object: '@venue1'
+        locale: en
+        field: title
+        content: 'Cherkasy Philharmonic'
+    venueTranslation2:
+        object: '@venue1'
+        locale: en
+        field: address
+        content: 'Khreshchatyk Street, 196, Cherkasy region, 18000'
+    venueTranslation3:
+        object: '@venue2'
+        locale: en
+        field: title
+        content: 'Kulic House'
+    venueTranslation4:
+        object: '@venue2'
+        locale: en
+        field: address
+        content: 'Blahovisna Street 170, Cherkasy region, 18000'
+    venueTranslation5:
+        object: '@venue3'
+        locale: en
+        field: title
+        content: 'Cherkasy Theatre'
+    venueTranslation6:
+        object: '@venue3'
+        locale: en
+        field: address
+        content: 'Boulevard Shevchenko, 234 Cherkasy, 18000'
+    venueTranslation7:
+        object: '@venue4'
+        locale: en
+        field: title
+        content: 'Cherkasky City Palace of Youth'
+    venueTranslation8:
+        object: '@venue4'
+        locale: en
+        field: address
+        content: 'Street Sumgait, 12, Cherkasy region, 18000'
+    venueTranslation9:
+        object: '@venue5'
+        locale: en
+        field: title
+        content: 'Friendship Culture Palace of Nations'
+    venueTranslation10:
+        object: '@venue5'
+        locale: en
+        field: address
+        content: '249, Shevchenko boulevard, Cherkasy, 18000'

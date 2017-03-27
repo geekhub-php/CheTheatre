@@ -2,7 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\Ticket;
 use FOS\RestBundle\Request\ParamFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -77,11 +80,16 @@ class PerformanceEventsController extends Controller
         $performanceEventsTranslated = [];
 
         foreach ($performanceEvents as $performanceEvent) {
+
+            /** @var PerformanceEvent $performanceEvent */
             $performanceEvent->setLocale($paramFetcher->get('locale'));
             $em->refresh($performanceEvent);
 
             $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
             $em->refresh($performanceEvent->getPerformance());
+
+            $performanceEvent->getVenue()->setLocale($paramFetcher->get('locale'));
+            $em->refresh($performanceEvent->getVenue());
 
             if ($performanceEvent->getTranslations()) {
                 $performanceEvent->unsetTranslations();
@@ -89,6 +97,10 @@ class PerformanceEventsController extends Controller
 
             if ($performanceEvent->getPerformance()->getTranslations()) {
                 $performanceEvent->getPerformance()->unsetTranslations();
+            }
+
+            if ($performanceEvent->getVenue()->getTranslations()) {
+                $performanceEvent->getVenue()->unsetTranslations();
             }
 
             $performanceEventsTranslated[] = $performanceEvent;
@@ -142,6 +154,9 @@ class PerformanceEventsController extends Controller
         $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
         $em->refresh($performanceEvent->getPerformance());
 
+        $performanceEvent->getVenue()->setLocale($paramFetcher->get('locale'));
+        $em->refresh($performanceEvent->getVenue());
+
         if ($performanceEvent->getTranslations()) {
             $performanceEvent->unsetTranslations();
         }
@@ -150,6 +165,24 @@ class PerformanceEventsController extends Controller
             $performanceEvent->getPerformance()->unsetTranslations();
         }
 
+        if ($performanceEvent->getVenue()->getTranslations()) {
+            $performanceEvent->getVenue()->unsetTranslations();
+        }
+
         return $performanceEvent;
+    }
+
+    /**
+     * @RestView(serializerGroups={"cget_ticket"})
+     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
+     */
+    public function cgetTicketsAction(PerformanceEvent $performanceEvent)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tickets = $em
+            ->getRepository(Ticket::class)
+            ->findBy(['performanceEvent' => $performanceEvent]);
+
+        return $tickets;
     }
 }

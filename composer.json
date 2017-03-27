@@ -36,8 +36,8 @@
         "liip/monitor-bundle": "~2.0",
         "friendsofsymfony/rest-bundle": "~1.4",
         "friendsofsymfony/http-cache-bundle": "~1.0",
-        "facebook/graph-sdk": "~5.0"
-    },
+        "ramsey/uuid-doctrine": "^1.2"
+   },
     "require-dev": {
         "phpunit/phpunit": "5.7.*",
         "sensio/generator-bundle": "~2.3",

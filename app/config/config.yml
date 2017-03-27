@@ -32,10 +32,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - 'bootstrap_3_layout.html.twig'
-            - 'SonataCoreBundle:Form:datepicker.html.twig'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'SonataCoreBundle:Form:colorpicker.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -64,6 +64,7 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
+            uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"

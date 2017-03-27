@@ -1,5 +1,12 @@
 language: php
 
+addons:
+  ssh_known_hosts: 139.59.151.111
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 matrix:
   fast_finish: true
   include:
@@ -9,15 +16,27 @@ matrix:
       env: TARGET=phpmd
     - php: '7.1'
       env: TARGET=phpunit
-
+    - php: '7.1'
+      env: TARGET=update DB=chetheatre
+before_install:
+  - openssl aes-256-cbc -K $encrypted_67869cbca1a5_key -iv $encrypted_67869cbca1a5_iv
+    -in geekhub_travis_ci.enc -out geekhub_travis_ci -d
+  - chmod 600 geekhub_travis_ci
 before_script:
-    - composer self-update
-    - composer install
-    - if [ "$TARGET" = "phpunit" ]; then php bin/reload; fi
-
+  - composer self-update
+  - composer install
+  - if [ "$TARGET" = "phpunit" ] || [ "$TARGET" = "update" ]; then php bin/reload; fi
+  - if [ "$TARGET" = "update" ]; then mysql -e "drop database $DB;" -u root; fi
+  - if [ "$TARGET" = "update" ]; then mysql -e "create database $DB;" -u root; fi
+  - if [ "$TARGET" = "update" ]; then scp -i ./geekhub_travis_ci travis-ci@139.59.151.111:~/$DB.sql ./$DB.sql; fi
+  - if [ "$TARGET" = "update" ]; then mysql -u root $DB < ./$DB.sql; fi
 script:
+  - if [ "$TARGET" = "update" ]; then app/console doctrine:migrations:migrate -n --env=prod; fi
   - if [ "$TARGET" = "phpunit" ]; then bin/phpunit -c app/  --coverage-clover=coverage.clover; fi
+  - if [ "$TARGET" = "update" ]; then bin/phpunit -c app/; fi
   - if [ "$TARGET" = "phpunit" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
   - if [ "$TARGET" = "phpunit" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
   - if [ "$TARGET" = "phpmd" ];   then bin/phpmd ./src text ./.phpmd-ruleset.xml; fi
   - if [ "$TARGET" = "phpcs" ];   then bin/phpcs ./src --standard=PSR2 --extensions=php -p; fi
+after_script:
+  - rm geekhub_travis_ci

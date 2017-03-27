@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Traits\TimestampableTrait;
 use AppBundle\Traits\DeletedByTrait;
@@ -29,22 +30,14 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
-    const VENUE_PHILHARMONIC = "venue-philharmonic";
-    const VENUE_KULIC_HOUSE  = "venue-kilic-house";
-    const VENUE_THEATRE      = "venue-theatre";
-
-    public static $venues = [
-        self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
-        self::VENUE_KULIC_HOUSE  => self::VENUE_KULIC_HOUSE,
-        self::VENUE_THEATRE      => self::VENUE_THEATRE,
-    ];
-
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      */
@@ -54,6 +47,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="performanceEvents")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\Performance")
      * @Expose
      */
@@ -64,16 +59,20 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
+     *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("DateTime")
      * @Expose
      */
     private $dateTime;
 
     /**
-     * Place where performance happens
-     * @var string
-     * @ORM\Column(type="string")
-     * @Type("string")
+     * @var Venue
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="performanceEvents")
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("AppBundle\Entity\Venue")
      * @Expose
      */
     private $venue;
@@ -81,6 +80,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      * @Accessor(getter="getYear")
@@ -90,6 +90,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getMonth")
      */
@@ -98,6 +99,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var int
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getDay")
      */
@@ -106,6 +108,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var string
      *
+     * @Serializer\Groups({"get_ticket"})
      * @Expose
      * @Accessor(getter="getTime")
      */
@@ -264,7 +267,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @return string
+     * @return Venue
      */
     public function getVenue()
     {
@@ -272,10 +275,13 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @param string $venue
+     * @param Venue $venue
+     * @return PerformanceEvent
      */
-    public function setVenue($venue)
+    public function setVenue(Venue $venue)
     {
         $this->venue = $venue;
+
+        return $this;
     }
 }

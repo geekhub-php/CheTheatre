@@ -1,0 +1,61 @@
+AppBundle\Entity\PriceCategory:
+    priceCategory1:
+        title: 'дорогий'
+        color: 'blue'
+        venue: '@venue1'
+    priceCategory2:
+        title: 'середній'
+        color: 'pink'
+        venue: '@venue1'
+    priceCategory3:
+        title: 'дешевий'
+        color: 'green'
+        venue: '@venue1'
+    priceCategory4:
+        title: 'дорогий'
+        color: 'blue'
+        venue: '@venue2'
+    priceCategory5:
+        title: 'середній'
+        color: 'pink'
+        venue: '@venue2'
+    priceCategory6:
+        title: 'дешевий'
+        color: 'green'
+        venue: '@venue2'
+    priceCategory7:
+        title: 'дорогий'
+        color: 'blue'
+        venue: '@venue3'
+    priceCategory8:
+        title: 'середній'
+        color: 'pink'
+        venue: '@venue3'
+    priceCategory9:
+        title: 'дешевий'
+        color: 'green'
+        venue: '@venue3'
+    priceCategory10:
+        title: 'дорогий'
+        color: 'blue'
+        venue: '@venue4'
+    priceCategory11:
+        title: 'середній'
+        color: 'pink'
+        venue: '@venue4'
+    priceCategory12:
+        title: 'дешевий'
+        color: 'green'
+        venue: '@venue4'
+    priceCategory13:
+        title: 'дорогий'
+        color: 'blue'
+        venue: '@venue5'
+    priceCategory14:
+        title: 'середній'
+        color: 'pink'
+        venue: '@venue5'
+    priceCategory15:
+        title: 'дешевий'
+        color: 'green'
+        venue: '@venue5'
