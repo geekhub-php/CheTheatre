@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -47,6 +48,7 @@ class Performance extends AbstractPersonalTranslatable implements TranslatableIn
      * @var string
      * @Gedmo\Translatable
      * @Assert\NotBlank()
+     * @Serializer\Groups({"get_ticket"})
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose

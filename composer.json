@@ -35,7 +35,8 @@
         "geek-hub/domain-routing-bundle": "dev-master",
         "liip/monitor-bundle": "~2.0",
         "friendsofsymfony/rest-bundle": "~1.4",
-        "friendsofsymfony/http-cache-bundle": "~1.0"
+        "friendsofsymfony/http-cache-bundle": "~1.0",
+        "ramsey/uuid-doctrine": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "5.7.*",
