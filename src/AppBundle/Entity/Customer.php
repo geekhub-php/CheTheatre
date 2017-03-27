@@ -11,8 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * User.
- *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
  * @UniqueEntity("facebookId")
@@ -77,7 +75,6 @@ class Customer implements UserInterface
      * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
      * @Assert\Type("string")
      * @Assert\Length(max=255)
-     * @Expose
      */
     private $apiKey;
 

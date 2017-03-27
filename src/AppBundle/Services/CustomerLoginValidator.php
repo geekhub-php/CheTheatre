@@ -3,6 +3,7 @@
 namespace AppBundle\Services;
 
 use AppBundle\Form\Type\CustomerType;
+use AppBundle\Model\CustomerResponse;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormFactoryInterface;
 use AppBundle\Entity\Customer;
@@ -91,7 +92,7 @@ class CustomerLoginValidator
     }
 
     /**
-     * @return Customer
+     * @return CustomerResponse
      */
     private function newCustomer()
     {
@@ -103,11 +104,13 @@ class CustomerLoginValidator
         $this->registry->getManager()->persist($customer);
         $this->registry->getManager()->flush();
 
-        return $customer;
+        $customerResponse = new CustomerResponse($customer);
+
+        return $customerResponse;
     }
 
     /**
-     * @return Customer|null|object
+     * @return CustomerResponse|null|object
      */
     private function loginForm()
     {
@@ -118,11 +121,13 @@ class CustomerLoginValidator
         $customer->setEmail($this->data['email']);
         $this->registry->getManager()->flush();
 
-        return $customer;
+        $customerResponse = new CustomerResponse($customer);
+
+        return $customerResponse;
     }
 
     /**
-     * @return Customer|null|object
+     * @return CustomerResponse|null|object
      */
     private function loginFacebook()
     {
@@ -137,6 +142,8 @@ class CustomerLoginValidator
         $customer->setLastName($userFacebook->last_name);
         $this->registry->getManager()->flush();
 
-        return $customer;
+        $customerResponse = new CustomerResponse($customer);
+
+        return $customerResponse;
     }
 }
