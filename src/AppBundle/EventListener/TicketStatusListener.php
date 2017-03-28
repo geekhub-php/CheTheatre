@@ -2,12 +2,10 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\Customer;
 use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;;
 use AppBundle\Exception\TicketStatusConflictException;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class TicketStatusListener

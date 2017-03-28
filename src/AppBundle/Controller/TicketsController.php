@@ -2,13 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Exception\TicketStatusConflictException;
-use Faker\Provider\DateTime;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
-use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
