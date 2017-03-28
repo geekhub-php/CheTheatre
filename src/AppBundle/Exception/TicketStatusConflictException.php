@@ -17,5 +17,4 @@ class TicketStatusConflictException extends HttpException
     {
         parent::__construct($code, $message, $previous, array(), $code);
     }
-
 }
