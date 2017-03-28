@@ -2,9 +2,11 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\Customer;
 use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;;
 use AppBundle\Exception\TicketStatusConflictException;
+use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -17,16 +19,25 @@ class TicketStatusListener
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function preUpdate(PreUpdateEventArgs $args)
+    public function onFlush(OnFlushEventArgs $args)
     {
-        /** @var Ticket $entity */
-        $entity = $args->getEntity();
-        if (!$entity instanceof Ticket) {
-            return;
+        $em = $args->getEntityManager();
+        $uow = $em->getUnitOfWork();
+
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+            if (!$entity instanceof Ticket) {
+                return;
+            }
+
+            if (!key_exists('status', $uow->getEntityChangeSet($entity))) {
+                return;
+            }
+
+            $ticket = $entity;
         }
 
-        $oldStatus = $args->getOldValue('status');
-        $newStatus = $args->getNewValue('status');
+        $oldStatus = $uow->getEntityChangeSet($ticket)['status'][0];
+        $newStatus = $uow->getEntityChangeSet($ticket)['status'][1];
 
         if (!in_array($newStatus, Ticket::getStatuses())) {
             throw new \InvalidArgumentException("Invalid ticket status");
@@ -36,17 +47,25 @@ class TicketStatusListener
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
 
-        $em = $args->getEntityManager();
-        $user = $em->getRepository('AppBundle:Customer')->find(1); //for testing
-        //$user = $this->tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
+
         /** @var CustomerOrder $order */
         $order = $em->getRepository('AppBundle:CustomerOrder')->findOpenedCustomerOrder($user);
 
-        if ($oldStatus === Ticket::STATUS_FREE && $newStatus === Ticket::STATUS_BOOKED) {
-            $entity->setCustomerOrder($order);
-        } elseif ($oldStatus === Ticket::STATUS_BOOKED && $newStatus === Ticket::STATUS_FREE) {
-            $entity->setCustomerOrder(null);
+        /**
+         * Creating order if isn't exist
+         */
+        if (!$order) {
+            $order = new CustomerOrder($user);
+            $ticketMetadata = $em->getClassMetadata(CustomerOrder::class);
+            $em->persist($order);
+            $uow->computeChangeSet($ticketMetadata, $order);
         }
 
+        if ($oldStatus === Ticket::STATUS_FREE && $newStatus === Ticket::STATUS_BOOKED) {
+            $ticket->setCustomerOrder($order);
+        } elseif ($oldStatus === Ticket::STATUS_BOOKED && $newStatus === Ticket::STATUS_FREE) {
+            $ticket->setCustomerOrder(null);
+        }
     }
 }
