@@ -226,4 +226,56 @@ class Ticket
     {
         $this->setNumber = $setNumber;
     }
+
+    /**
+     * Set seat
+     *
+     * @param \AppBundle\Entity\Seat $seat
+     *
+     * @return Ticket
+     */
+    public function setSeat(\AppBundle\Entity\Seat $seat)
+    {
+        $this->seat = $seat;
+
+        return $this;
+    }
+
+    /**
+     * Set performanceEvent
+     *
+     * @param \AppBundle\Entity\PerformanceEvent $performanceEvent
+     *
+     * @return Ticket
+     */
+    public function setPerformanceEvent(\AppBundle\Entity\PerformanceEvent $performanceEvent)
+    {
+        $this->performanceEvent = $performanceEvent;
+
+        return $this;
+    }
+
+    /**
+     * Set customerOrder
+     *
+     * @param \AppBundle\Entity\CustomerOrder $customerOrder
+     *
+     * @return Ticket
+     */
+    public function setCustomerOrder(\AppBundle\Entity\CustomerOrder $customerOrder = null)
+    {
+        $this->customerOrder = $customerOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get customerOrder
+     *
+     * @return \AppBundle\Entity\CustomerOrder
+     */
+    public function getCustomerOrder()
+    {
+        return $this->customerOrder;
+    }
 }
