@@ -59,7 +59,7 @@ services:
 
     customer_login_validator:
         class: AppBundle\Services\CustomerLoginValidator
-        arguments: ["@doctrine", "@form.factory", "@guzzle_client"]
+        arguments: ["@doctrine", "@guzzle_client", "@validator"]
 
     guzzle_client:
         class: AppBundle\Services\GuzzleClient

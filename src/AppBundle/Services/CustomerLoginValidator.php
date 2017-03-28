@@ -2,12 +2,12 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Form\Type\CustomerType;
 use AppBundle\Model\CustomerResponse;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Component\Form\FormFactoryInterface;
+use Gedmo\ReferenceIntegrity\Mapping\Validator;
 use AppBundle\Entity\Customer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 class CustomerLoginValidator
 {
@@ -17,15 +17,14 @@ class CustomerLoginValidator
     private $registry;
 
     /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
      * @var GuzzleClient
      */
     private $guzzleClient;
 
+    /**
+     * @var RecursiveValidator
+     */
+    private $validator;
     /**
      * @var array
      */
@@ -37,18 +36,18 @@ class CustomerLoginValidator
     private $apiKeyInHeader;
 
     /**
-     * @param ManagerRegistry      $registry
-     * @param FormFactoryInterface $formFactory
-     * @param GuzzleClient         $guzzleClient
+     * @param ManagerRegistry $registry
+     * @param GuzzleClient    $guzzleClient
+     * @param Validator       $validator
      */
     public function __construct(
         ManagerRegistry $registry,
-        FormFactoryInterface $formFactory,
-        GuzzleClient $guzzleClient
+        GuzzleClient $guzzleClient,
+        RecursiveValidator $validator
     ) {
         $this->registry = $registry;
-        $this->formFactory = $formFactory;
         $this->guzzleClient = $guzzleClient;
+        $this->validator = $validator;
     }
 
     /**
@@ -56,7 +55,7 @@ class CustomerLoginValidator
      * @param array  $data
      * @param string $apiKeyInHeader
      *
-     * @return CustomerResponse|\Symfony\Component\Form\FormInterface
+     * @return CustomerResponse
      *
      * @throws \Exception
      */
@@ -64,9 +63,6 @@ class CustomerLoginValidator
     {
         $this->data = $data;
         $this->apiKeyInHeader = $apiKeyInHeader;
-
-        $form = $this->formFactory->create(CustomerType::class);
-        $form->submit($data);
 
         if (!$userAuthenticated) {
             if ($apiKeyInHeader) {
@@ -76,8 +72,8 @@ class CustomerLoginValidator
             return $this->newCustomer();
         }
 
-        if (!$form->isValid()) {
-            return $form;
+        if (!($this->validInputData($this->data))) {
+            throw new HttpException(400, 'Validation error');
         }
 
         if ($data['email'] && $data['firstName'] && $data['lastName']) {
@@ -145,5 +141,23 @@ class CustomerLoginValidator
         $customerResponse = new CustomerResponse($customer);
 
         return $customerResponse;
+    }
+
+    /**
+     * @return bool
+     */
+    private function validInputData($data)
+    {
+        $customer = new Customer();
+        $customer->setFirstName($data['firstName']);
+        $customer->setLastName($data['lastName']);
+        $customer->setEmail($data['email']);
+        $errors = $this->validator->validate($customer);
+
+        if (count($errors) > 0) {
+            return false;
+        }
+
+        return true;
     }
 }
