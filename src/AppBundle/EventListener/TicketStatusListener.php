@@ -3,7 +3,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\CustomerOrder;
-use AppBundle\Entity\Ticket;;
+use AppBundle\Entity\Ticket;
 use AppBundle\Exception\TicketStatusConflictException;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
