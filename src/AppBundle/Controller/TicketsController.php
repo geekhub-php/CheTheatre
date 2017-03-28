@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ticket;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -15,6 +17,7 @@ class TicketsController extends Controller
 {
 
     /**
+     * @Get(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      * @RestView(serializerGroups={"get_ticket"})
      */
@@ -25,6 +28,7 @@ class TicketsController extends Controller
 
     /**
      * @RestView(statusCode=204)
+     * @Patch(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      */
     public function freeAction(Ticket $ticket)
@@ -36,6 +40,7 @@ class TicketsController extends Controller
 
     /**
      * @RestView(statusCode=204)
+     * @Patch(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      */
     public function reserveAction(Ticket $ticket)

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\Ticket;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Request\ParamFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -173,6 +174,7 @@ class PerformanceEventsController extends Controller
     }
 
     /**
+     * @Get(requirements={"performanceEvent" = "\d+"})
      * @RestView(serializerGroups={"cget_ticket"})
      * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      */

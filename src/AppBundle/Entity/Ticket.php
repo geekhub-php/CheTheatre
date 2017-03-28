@@ -175,7 +175,7 @@ class Ticket
     }
 
     /**
-     * @param Enum $status
+     * @param Enum|String $status
      */
     public function setStatus($status)
     {
