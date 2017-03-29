@@ -39,7 +39,8 @@ class ExceptionListener
         );
 
         if ($exception->getMessage() == 'Full authentication is required to access this resource.') {
-            if ($route == 'reserve_ticket' || $route == 'free_ticket' || $route == 'get_orders' || $route == 'get_order') {
+            if ($route == 'reserve_ticket' || $route == 'free_ticket'
+                || $route == 'get_orders' || $route == 'get_order') {
                 $response = new JsonResponse($data);
                 $response->headers->set('X-Status-Code', 403);
                 $event->setResponse($response);
