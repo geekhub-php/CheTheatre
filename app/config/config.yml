@@ -143,9 +143,7 @@ fos_rest:
     param_fetcher_listener: true
     body_listener:
         array_normalizer: fos_rest.normalizer.camel_keys
-    format_listener: true
-    access_denied_listener:
-        json: true
+    format_listener: false
     routing_loader:
         default_format: json
     view:

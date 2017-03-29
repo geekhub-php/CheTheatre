@@ -44,6 +44,8 @@ security:
     access_control:
             - { path: ^%admin_dashboard_base_url%/, roles: ROLE_SUPER_ADMIN }
             - { path: ^/customers/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/orders, roles: ROLES_API }
+            - { path: ^/tickets, roles: ROLES_API }
 
     encoders:
           Symfony\Component\Security\Core\User\User: plaintext
