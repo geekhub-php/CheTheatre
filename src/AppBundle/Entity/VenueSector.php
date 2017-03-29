@@ -207,4 +207,12 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     {
         $this->priceCategories = $priceCategory;
     }
+
+    /**
+     * @param Venue $venue
+     */
+    public function setVenue(Venue $venue)
+    {
+        $this->venue = $venue;
+    }
 }

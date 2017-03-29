@@ -114,12 +114,14 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     protected $translations;
 
     /**
-     * @var Collection|PriceCategory[]
+     * @var PriceCategory[]
      *
+     * @Assert\Valid
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\PriceCategory",
      *     mappedBy="performanceEvent",
-     *     cascade={"persist", "remove"}
+     *     cascade={"all"},
+     *     orphanRemoval=true
      * )
      */
     protected $priceCategories;
@@ -304,7 +306,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @param PriceCategory $priceCategory
      */
-    public function removePriceCategory(PriceCategory $priceCategory)
+    public function removePriceCategories(PriceCategory $priceCategory)
     {
         $this->priceCategories->removeElement($priceCategory);
     }
@@ -318,7 +320,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     }
 
     /**
-     * @param PriceCategory[]|Collection $priceCategory
+     * @param PriceCategory[]|ArrayCollection $priceCategory
      */
     public function setPriceCategories($priceCategory)
     {

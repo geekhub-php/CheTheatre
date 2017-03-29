@@ -50,7 +50,7 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, options={"default" : "grey"})
      * @Type("string")
      * @Expose()
      */
@@ -113,18 +113,10 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * @param  string $color
      * @return PriceCategory
      */
-    public function setColor($color)
+    public function setColor($color = 'grey')
     {
         $this->color = $color;
 
@@ -140,28 +132,9 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @param  string $title
-     * @return PriceCategory
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
-
-    /**
      * @return VenueSector
      */
-    public function getVenueSector(): VenueSector
+    public function getVenueSector()
     {
         return $this->venueSector;
     }
@@ -172,5 +145,69 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     public function setVenueSector(VenueSector $venueSector)
     {
         $this->venueSector = $venueSector;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRows()
+    {
+        return $this->rows;
+    }
+
+    /**
+     * @param string $rows
+     */
+    public function setRows(string $rows)
+    {
+        $this->rows = $rows;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaces()
+    {
+        return $this->places;
+    }
+
+    /**
+     * @param string $places
+     */
+    public function setPlaces(string $places)
+    {
+        $this->places = $places;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     */
+    public function setPrice(int $price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return PerformanceEvent
+     */
+    public function getPerformanceEvent()
+    {
+        return $this->performanceEvent;
+    }
+
+    /**
+     * @param PerformanceEvent $performanceEvent
+     */
+    public function setPerformanceEvent(PerformanceEvent $performanceEvent)
+    {
+        $this->performanceEvent = $performanceEvent;
     }
 }

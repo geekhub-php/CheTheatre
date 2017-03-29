@@ -22,8 +22,12 @@ class PerformanceEventAdmin extends Admin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection->add('getVenue');
+        $collection
+            ->add('getVenue')
+            ->add('deletePriceCategories')
+        ;
     }
+
 
     /**
      * @param FormMapper $formMapper
@@ -33,6 +37,7 @@ class PerformanceEventAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('PerformanceEvents', ['class'=>'col-lg-12'])
             ->add('performance', 'sonata_type_model')
             ->add(
                 'dateTime',
@@ -45,6 +50,27 @@ class PerformanceEventAdmin extends Admin
                 ]
             )
             ->add('venue')
+            ->end()
+            ->with('PriceCategory', [
+                'class'=>'col-lg-12',
+            ])
+            ->add('priceCategories', 'sonata_type_collection', [
+                'by_reference' => true,
+                'required' => false,
+                'cascade_validation' => true,
+                'type_options'       => [
+                    'delete' => true,
+                ],
+                'label' => false,
+            ], [
+                'inline'            => 'table',
+                'edit'            => 'inline',
+                'sortable'        => 'position',
+                'link_parameters'       => [
+                    'performanceEvent_id' => $this->getSubject()->getId(),
+                ],
+            ])
+            ->end()
         ;
     }
 

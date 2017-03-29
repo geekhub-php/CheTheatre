@@ -9,10 +9,23 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
+            var s = "{{ app.request.get('_route') }}";
+            var route = s.split("_", 2);
+            if (route[1] == 'create') {
+                $('#PriceCategory, #VenueHall').hide();
+            }
+            var venue_title = $("#select2-chosen-2").html();
             $("#{{ admin.uniqId }}_venue").change(function()
             {
-                var id=$(this).val();
-                $("#hall").load("{{ admin.generateUrl('getVenue') }}", 'id='+ id);
+                var new_venue_title =  $("#select2-chosen-2").html();
+                if ((venue_title != new_venue_title) && (route[1] != 'create')) {
+                    venue_title = new_venue_title;
+                    var performanceEvent_id = "{{ object.id }}";
+                    $('#price').load("{{ admin.generateUrl('deletePriceCategories') }}", 'performanceEvent_id=' + performanceEvent_id);
+                    $( "form:first" ).submit();
+                }
+                {#var venue_id = $(this).val();#}
+                {#$("#hall").load("{{ admin.generateUrl('getVenue') }}", 'venue_id=' + venue_id);#}
             });
         })
     </script>
@@ -51,14 +64,13 @@
             {% if has_tab %}<div class="row">{% endif %}
             {% for code in admin.formtabs['default'].groups %}
                 {% set form_group = admin.formgroups[code] %}
-                <div class="col-md-12 {{ form_group.class }}">
+                <div class="col-md-12 {{ form_group.class }}" id="{{ form_group.name }}">
                     <div class="box box-success">
                         <div class="box-header">
                             <h4 class="box-title">
                                 {{ admin.trans(form_group.name, {}, form_group.translation_domain) }}
                             </h4>
                         </div>
-                        {#<div class="box{% if loop.first %} in{% endif %}" id="{{ admin.uniqid }}_{{ loop.index }}">#}
                         <div class="box-body">
                             <div class="sonata-ba-collapsed-fields">
                                 {% if form_group.description != false %}
@@ -72,17 +84,25 @@
                                 {% else %}
                                     <em>{{ 'message_form_group_empty'|trans({}, 'SonataAdminBundle') }}</em>
                                 {% endfor %}
-                                <div id="hall">
-                                    {% if object.venue != false %}
-                                        {% include 'AppBundle:PerformanceEventCRUD:venue.html.twig' with { 'venue': object.venue } %}
-                                    {% endif %}
-                                </div>
                             </div>
                         </div>
-                        {#</div>#}
                     </div>
                 </div>
             {% endfor %}
+            <div class="col-md-12" id="price"></div>
+            <div class="col-md-12" id="VenueHall">
+                <div class="box box-success">
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div id="hall">
+                                {% if object.venue != false %}
+                                    {% include 'AppBundle:PerformanceEventCRUD:venueHall.html.twig' with { 'venue': object.venue } %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% if has_tab %}</div>{% endif %}
         {% endif %}
     </div>
