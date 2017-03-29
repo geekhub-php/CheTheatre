@@ -13,14 +13,14 @@ class CustomerOrderRepository extends AbstractRepository
      * @param Customer $param
      * @return CustomerOrder
      */
-    public function findOpenedCustomerOrder(Customer $param)
+    public function findLastOpenOrder(Customer $param): CustomerOrder
     {
         return $this->createQueryBuilder('o')
             ->join('o.customer', 'c')
             ->where('o.status = :opened')
             ->andWhere('c.id = :param')
             ->setParameter(':param', $param->getId())
-            ->setParameter(':opened', 'opened')
+            ->setParameter(':opened', CustomerOrder::STATUS_OPENED)
             ->orderBy('o.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()

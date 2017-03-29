@@ -31,11 +31,6 @@ class TicketsController extends Controller
     public function freeAction(Ticket $ticket)
     {
         $em = $this->getDoctrine()->getManager();
-
-        if ($ticket->getStatus() === Ticket::STATUS_FREE) {
-            throw new TicketStatusConflictException('Ticket is already free');
-        }
-
         $ticket->setStatus(Ticket::STATUS_FREE);
         $em->flush();
     }
