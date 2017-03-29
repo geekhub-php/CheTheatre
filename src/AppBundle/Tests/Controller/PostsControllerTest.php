@@ -21,26 +21,12 @@ class PostsControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request('GET', '/posts');
         $content = json_decode($client->getResponse()->getContent(), true);
-
-        self::assertArrayHasKey('page', $content);
-        self::assertArrayHasKey('total_count', $content);
-        self::assertArrayHasKey('posts', $content);
-        self::assertArrayHasKey('count', $content);
+        $totalCount = count($this->getEm()->getRepository('AppBundle:Post')->findAll());
 
         self::assertEquals(1, $content['page']);
-        self::assertEquals(16, $content['total_count']);
+        self::assertEquals($totalCount, $content['total_count']);
         self::assertCount(10, $content['posts']);
         self::assertEquals(10, $content['count']);
-
-        self::assertArrayHasKey('locale', $content['posts'][0]);
-        self::assertArrayHasKey('title', $content['posts'][0]);
-        self::assertArrayHasKey('short_description', $content['posts'][0]);
-        self::assertArrayHasKey('main_picture', $content['posts'][0]);
-        self::assertArrayHasKey('slug', $content['posts'][0]);
-        self::assertArrayHasKey('created_at', $content['posts'][0]);
-        self::assertArrayHasKey('updated_at', $content['posts'][0]);
-        self::assertArrayHasKey('tags', $content['posts'][0]);
-        self::assertArrayHasKey('pinned', $content['posts'][0]);
     }
 
     public function testPinnedPost()

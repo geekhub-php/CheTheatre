@@ -29,22 +29,11 @@ class EmployeesControllerTest extends AbstractApiController
         $client->request('GET', '/employees');
 
         $content = json_decode($client->getResponse()->getContent(), true);
+        $totalEmployeeCount = count($this->getEm()->getRepository('AppBundle:Employee')->findAll());
 
-        self::assertEquals(66, $content['total_count']);
+        self::assertEquals($totalEmployeeCount, $content['total_count']);
         self::assertEquals(1, $content['page']);
         self::assertEquals(10, $content['count']);
         self::assertCount(10, $content['employees']);
-
-        self::assertArrayHasKey('locale', $content['employees'][0]);
-        self::assertArrayHasKey('first_name', $content['employees'][0]);
-        self::assertArrayHasKey('last_name', $content['employees'][0]);
-        self::assertArrayHasKey('dob', $content['employees'][0]);
-        self::assertArrayHasKey('position', $content['employees'][0]);
-        self::assertArrayHasKey('biography', $content['employees'][0]);
-        self::assertArrayHasKey('gallery', $content['employees'][0]);
-        self::assertArrayHasKey('slug', $content['employees'][0]);
-        self::assertArrayHasKey('avatar', $content['employees'][0]);
-        self::assertArrayHasKey('created_at', $content['employees'][0]);
-        self::assertArrayHasKey('updated_at', $content['employees'][0]);
     }
 }

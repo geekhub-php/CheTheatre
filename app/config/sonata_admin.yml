@@ -12,8 +12,8 @@ sonata_admin:
     dashboard:
         groups:
             CheTheatre:
-                label: Головна панель
-                label_catalogue: AppBundle
+                label: Dashboard
+                label_catalogue: SonataAdminBundle
 #            sonata_media:
 #                label: Медіа (сховати в майбутньому)
 #                label_catalogue: AppBundle

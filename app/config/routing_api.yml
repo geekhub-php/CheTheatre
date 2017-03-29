@@ -2,6 +2,10 @@ employees:
     type: rest
     resource: AppBundle\Controller\EmployeesController
 
+orders:
+    type: rest
+    resource: AppBundle\Controller\OrdersController
+
 performances:
     type: rest
     resource: AppBundle\Controller\PerformancesController
@@ -17,6 +21,10 @@ posts:
 tags:
     type: rest
     resource: AppBundle\Controller\TagsController
+
+tickets:
+    type: rest
+    resource: AppBundle\Controller\TicketsController
 
 history:
     type: rest
