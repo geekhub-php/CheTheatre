@@ -41,4 +41,6 @@ script:
 after_script:
   - rm geekhub_travis_ci
 after_success:
-  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111 "cd /var/www/performance-event-edit.staging.theatre.pp.ua && git pull && php bin/reload"; fi
+  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then
+    ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111 "echo 1 > /tmp/travis-deploy";
+    fi
