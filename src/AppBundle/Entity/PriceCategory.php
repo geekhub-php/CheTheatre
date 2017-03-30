@@ -43,7 +43,6 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Serializer\Groups({"get_ticket"})
@@ -62,7 +61,7 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var integer
      * @Assert\NotBlank()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @Type("integer")
      * @Expose()
      */

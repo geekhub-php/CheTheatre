@@ -40,3 +40,8 @@ script:
   - if [ "$TARGET" = "phpcs" ];   then bin/phpcs ./src --standard=PSR2 --extensions=php -p; fi
 after_script:
   - rm geekhub_travis_ci
+after_success:
+  - if [ "$TARGET" = "phpunit" ]; then cd /var/www/performance-event-edit.staging.theatre.pp.ua; fi
+  - if [ "$TARGET" = "phpunit" ]; then git pull; fi
+  - if [ "$TARGET" = "phpunit" ]; then bin/reload; fi
+
