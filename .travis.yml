@@ -30,8 +30,6 @@ before_script:
   - if [ "$TARGET" = "update" ]; then mysql -e "create database $DB;" -u root; fi
   - if [ "$TARGET" = "update" ]; then scp -i ./geekhub_travis_ci travis-ci@139.59.151.111:~/$DB.sql ./$DB.sql; fi
   - if [ "$TARGET" = "update" ]; then mysql -u root $DB < ./$DB.sql; fi
-before_success:
-  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111; fi
 script:
   - if [ "$TARGET" = "update" ]; then app/console doctrine:migrations:migrate -n --env=prod; fi
   - if [ "$TARGET" = "phpunit" ]; then bin/phpunit -c app/  --coverage-clover=coverage.clover; fi
@@ -43,6 +41,7 @@ script:
 after_script:
   - rm geekhub_travis_ci
 after_success:
+  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111; fi
   - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then cd /var/www/performance-event-edit.staging.theatre.pp.ua; fi
   - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then git pull; fi
   - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then bin/reload; fi
