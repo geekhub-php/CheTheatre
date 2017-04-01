@@ -1558,11 +1558,8 @@
                 "place": {
                     "type": "integer"
                 },
-                "venue_sector": {
-                    "$ref": "#/definitions/VenueSector"
-                },
-                "price_category": {
-                    "$ref": "#/definitions/PriceCategory"
+                "venue_sector_id": {
+                    "type": "integer"
                 }
             }
         },
@@ -1609,17 +1606,20 @@
                 "id": {
                     "type": "string"
                 },
-                "series": {
-                    "type": "string"
+                "set_date": {
+                    "$ref": "#/definitions/DateTime"
                 },
-                "number": {
+                "set_number": {
                     "type": "string"
                 },
                 "price": {
                     "type": "integer"
                 },
-                "performance_event": {
-                    "$ref": "#/definitions/PerformanceEvent"
+                "performance_event_id": {
+                    "type": "integer"
+                },
+                "price_category_id": {
+                    "type": "integer"
                 },
                 "seat": {
                     "$ref": "#/definitions/Seat"
@@ -1649,6 +1649,8 @@
         "PaymentStatus": {
             "type": "string",
             "enum": [
+                "opened",
+                "closed",
                 "pending",
                 "paid",
                 "rejected"
@@ -1659,7 +1661,8 @@
             "enum": [
                 "free",
                 "booked",
-                "ordered"
+                "ordered",
+                "offline"
             ]
         }
     }

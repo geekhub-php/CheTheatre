@@ -16,6 +16,14 @@ class PerformanceEventsControllerTest extends AbstractApiController
         $this->request('/performanceevents/100500', 'GET', 404);
     }
 
+    public function testGetPerformanceEventsTicketsId()
+    {
+        $id = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
+        $id = 120;
+//        $this->request('/performanceevents/'.$id.'/tickets');
+        $this->request('/performanceevents/100500/tickets', 'GET', 404);
+    }
+
     public function testPerformanceEventsResponseFields()
     {
         $client = $this->getClient();
