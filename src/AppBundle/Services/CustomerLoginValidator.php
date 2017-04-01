@@ -17,9 +17,9 @@ class CustomerLoginValidator
     private $registry;
 
     /**
-     * @var GuzzleClient
+     * @var FacebookUserProvider
      */
-    private $guzzleClient;
+    private $facebookUserProvider;
 
     /**
      * @var RecursiveValidator
@@ -36,17 +36,17 @@ class CustomerLoginValidator
     private $apiKeyInHeader;
 
     /**
-     * @param ManagerRegistry $registry
-     * @param GuzzleClient    $guzzleClient
-     * @param Validator       $validator
+     * @param ManagerRegistry         $registry
+     * @param FacebookUserProvider    $facebookUserProvider
+     * @param RecursiveValidator      $validator
      */
     public function __construct(
         ManagerRegistry $registry,
-        GuzzleClient $guzzleClient,
+        FacebookUserProvider $facebookUserProvider,
         RecursiveValidator $validator
     ) {
         $this->registry = $registry;
-        $this->guzzleClient = $guzzleClient;
+        $this->facebookUserProvider = $facebookUserProvider;
         $this->validator = $validator;
     }
 
@@ -127,18 +127,31 @@ class CustomerLoginValidator
      */
     private function loginFacebook()
     {
-        $userFacebook = $this->guzzleClient
-            ->getUserFacebook($this->data['socialToken']);
+        $userFacebook = $this->facebookUserProvider
+            ->getUser($this->data['socialToken']);
 
+        $customerFacebook = $this->registry->getRepository('AppBundle:Customer')
+            ->findOneBy(['facebookId' => $userFacebook->id]);
         $customer = $this->registry->getRepository('AppBundle:Customer')
             ->findOneBy(['apiKey' => $this->apiKeyInHeader]);
-        $customer->setEmail($userFacebook->email);
-        $customer->setFacebookId($userFacebook->id);
-        $customer->setFirstName($userFacebook->first_name);
-        $customer->setLastName($userFacebook->last_name);
+
+        if (!$customerFacebook) {
+            $customer->setEmail($userFacebook->email);
+            $customer->setFacebookId($userFacebook->id);
+            $customer->setFirstName($userFacebook->first_name);
+            $customer->setLastName($userFacebook->last_name);
+            $this->registry->getManager()->flush();
+
+            $customerResponse = new CustomerResponse($customer);
+
+            return $customerResponse;
+        }
+
+        $this->registry->getManager()->remove($customer);
+        $customerFacebook->setApiKey($this->apiKeyInHeader);
         $this->registry->getManager()->flush();
 
-        $customerResponse = new CustomerResponse($customer);
+        $customerResponse = new CustomerResponse($customerFacebook);
 
         return $customerResponse;
     }

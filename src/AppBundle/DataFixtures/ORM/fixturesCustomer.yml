@@ -1,0 +1,7 @@
+AppBundle\Entity\Customer:
+    customer1:
+        username: customer
+        apiKey: token_11111111
+    customer2:
+        username: customer
+        apiKey: token_22222222

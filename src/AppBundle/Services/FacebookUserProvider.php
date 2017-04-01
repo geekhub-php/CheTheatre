@@ -6,14 +6,14 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class GuzzleClient
+class FacebookUserProvider
 {
     /**
      * @param string $accessToken
      *
      * @return mixed
      */
-    public function getUserFacebook($accessToken)
+    public function getUser($accessToken)
     {
         try {
             $client = new Client();
