@@ -33,7 +33,7 @@ class Ticket
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose
      */
@@ -44,8 +44,8 @@ class Ticket
      * @Assert\DateTime()
      * @ORM\Column(type="datetime", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
-     * @Type("datetime")
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("DateTime")
      * @Expose
      */
     private $setDate;
@@ -55,7 +55,7 @@ class Ticket
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=10,  nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose
      */
@@ -66,7 +66,7 @@ class Ticket
      * @Assert\NotBlank()
      * @ORM\Column(type="integer", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      */
@@ -78,7 +78,7 @@ class Ticket
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Seat", fetch="EAGER")
      * @ORM\JoinColumn(name="seat_id", referencedColumnName="id", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\Seat")
      * @Expose()
      */
@@ -89,10 +89,7 @@ class Ticket
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent",  fetch="EAGER")
      * @ORM\JoinColumn(name="performance_event_id", referencedColumnName="id", nullable=false)
-     *
-     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\PerformanceEvent")
-     * @Expose()
      */
     protected $performanceEvent;
 
@@ -107,7 +104,7 @@ class Ticket
      * @var Enum
      * @Assert\Choice(callback="getStatuses")
      * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'paid', 'offline')")
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Expose()
      */
     protected $status;
@@ -117,19 +114,30 @@ class Ticket
      *
      * @param Seat $seat
      * @param PerformanceEvent $performanceEvent
+     * @param int $ticketPrice
+     * @param \DateTime $setDate
+     * @param string $setNumber
      */
-    public function __construct(Seat $seat, PerformanceEvent $performanceEvent)
-    {
+    public function __construct(
+        Seat $seat,
+        PerformanceEvent $performanceEvent,
+        int $ticketPrice,
+        \DateTime $setDate,
+        string $setNumber
+    ) {
         $this->id = Uuid::uuid4();
+        $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
-        $this->status = self::STATUS_FREE;
+        $this->price = $ticketPrice;
+        $this->setDate = $setDate;
+        $this->setNumber = $setNumber;
     }
 
     /**
-     * @return string
+     * @return Uuid
      */
-    public function getId()
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -137,23 +145,15 @@ class Ticket
     /**
      * @return int
      */
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }
 
     /**
-     * @param int $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
      * @return Seat
      */
-    public function getSeat()
+    public function getSeat(): Seat
     {
         return $this->seat;
     }
@@ -161,15 +161,46 @@ class Ticket
     /**
      * @return PerformanceEvent
      */
-    public function getPerformanceEvent()
+    public function getPerformanceEvent(): PerformanceEvent
     {
         return $this->performanceEvent;
     }
 
     /**
+     * Get PerformanceEvent Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("performance_event_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
+     */
+    public function getPerformanceEventId(): int
+    {
+        return $this->performanceEvent->getId();
+    }
+
+    /**
+     * Get PriceCategory Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("price_category_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
+     */
+    public function getPriceCategoryId(): int
+    {
+        //TODO
+        return 0;
+    }
+
+    /**
      * @return Enum
      */
-    public function getStatus()
+    public function getStatus(): Enum
     {
         return $this->status;
     }
@@ -185,7 +216,7 @@ class Ticket
     /**
      * @return array
      */
-    public static function getStatuses()
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_FREE,
@@ -204,26 +235,10 @@ class Ticket
     }
 
     /**
-     * @param \DateTime $setDate
-     */
-    public function setSetDate(\DateTime $setDate)
-    {
-        $this->setDate = $setDate;
-    }
-
-    /**
      * @return string
      */
     public function getSetNumber(): string
     {
         return $this->setNumber;
-    }
-
-    /**
-     * @param string $setNumber
-     */
-    public function setSetNumber(string $setNumber)
-    {
-        $this->setNumber = $setNumber;
     }
 }

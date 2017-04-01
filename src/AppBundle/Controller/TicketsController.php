@@ -15,15 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class TicketsController extends Controller
 {
-
     /**
-     * @Get(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("ticket", class="AppBundle:Ticket")
+     * @Get(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @ParamConverter("id", class="AppBundle:Ticket")
      * @RestView(serializerGroups={"get_ticket"})
      */
-    public function getAction(Ticket $ticket)
+    public function getAction(Ticket $id)
     {
-        return $ticket;
+        return $id;
     }
 
     /**

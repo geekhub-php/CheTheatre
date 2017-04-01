@@ -71,7 +71,7 @@ class CustomerOrder
     /**
      * @return Uuid
      */
-    public function getId()
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -95,13 +95,13 @@ class CustomerOrder
     /**
      * @return Enum
      */
-    public function getStatus()
+    public function getStatus(): Enum
     {
         return $this->status;
     }
 
     /**
-     * @param Enum $status
+     * @param Enum|String $status
      */
     public function setStatus($status)
     {
@@ -138,14 +138,14 @@ class CustomerOrder
     /**
      * @return bool
      */
-    private function isStatusPaid()
+    private function isStatusPaid(): bool
     {
         return $this->status === self::STATUS_PAID;
     }
     /**
      * @return array
      */
-    public static function getStatuses()
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_OPENED,
