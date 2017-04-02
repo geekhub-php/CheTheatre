@@ -13,6 +13,8 @@ class Version20170402155012 extends AbstractMigration
     protected $venue_sector_slugs = [
         'Партер' => 'parterre',
         'Балкон' => 'balcony',
+        'Лоджия Левая' => 'loggia-left',
+    	'Лоджия Правая' => 'loggia-right',
     ];
 
     /**
@@ -49,7 +51,7 @@ class Version20170402155012 extends AbstractMigration
         $stmt->execute();
 
         while ($row = $stmt->fetch()) {
-            if (empty($row['title'])) {
+            if (empty($row['title']) || empty($this->venue_sector_slugs[$row['title']])) {
                 continue;
             }
             $this->connection->update(
