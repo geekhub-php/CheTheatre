@@ -2,8 +2,6 @@
 
 namespace AppBundle\Tests\Controller;
 
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-
 class TicketControllerTest extends AbstractApiController
 {
     public function testGetTicketsId()
@@ -18,11 +16,14 @@ class TicketControllerTest extends AbstractApiController
     public function testFreeTicketsId()
     {
         $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy([])->getId();
-        $this->request('/tickets/'.$slug.'/free', 'PATCH', 204);
+        $this->request('tickets/'.$slug.'/free', 'PATCH', 204);
     }
 
     public function testReserveTickets()
     {
-        $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy([])->getId();
+        $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy(array('status' => 'free'))->getId();
+        $this->request('/tickets/'.$slug.'/free', 'PATCH', 204);
+        $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy(array('status' => 'booked'))->getId();
+        $this->request('/tickets/'.$slug.'/free', 'PATCH', 409);
     }
 }

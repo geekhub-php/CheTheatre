@@ -62,6 +62,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        server_version: 5.7
         types:
             json: Sonata\Doctrine\Types\JsonType
             uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
