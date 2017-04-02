@@ -39,6 +39,10 @@ class TicketStatusListener
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
 
+        if ($oldStatus === Ticket::STATUS_OFFLINE) {
+            return;
+        }
+
         //$user = $this->tokenStorage->getToken()->getUser();
         $user = $em->getRepository('AppBundle:Customer')->find(1);
         /** @var CustomerOrderRepository $customerOrderRepository */
@@ -62,7 +66,7 @@ class TicketStatusListener
         if ($oldStatus === Ticket::STATUS_FREE && $newStatus === Ticket::STATUS_BOOKED) {
             $ticket->setCustomerOrder($order);
             /**
-             * Unset an order to a ticket
+             * Unset an order from a ticket
              */
         } elseif ($oldStatus === Ticket::STATUS_BOOKED && $newStatus === Ticket::STATUS_FREE) {
             $ticket->setCustomerOrder(null);
@@ -81,7 +85,6 @@ class TicketStatusListener
             return false;
         }
 
-        //$ticket = null;
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             if (!$entity instanceof Ticket && !key_exists('status', $uow->getEntityChangeSet($entity))) {
                 return false;

@@ -11,9 +11,9 @@ class CustomerOrderRepository extends AbstractRepository
      * Method returns opened customer order
      *
      * @param Customer $param
-     * @return CustomerOrder
+     * @return CustomerOrder|null
      */
-    public function findLastOpenOrder(Customer $param): CustomerOrder
+    public function findLastOpenOrder(Customer $param)
     {
         return $this->createQueryBuilder('o')
             ->join('o.customer', 'c')

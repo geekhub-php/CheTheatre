@@ -1609,10 +1609,10 @@
                 "id": {
                     "type": "string"
                 },
-                "series": {
+                "setDate": {
                     "type": "string"
                 },
-                "number": {
+                "set_number": {
                     "type": "string"
                 },
                 "price": {
