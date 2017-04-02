@@ -59,13 +59,7 @@ services:
 
     customer_login_validator:
         class: AppBundle\Services\CustomerLoginValidator
-        arguments: ["@doctrine", "@guzzle_client", "@validator"]
+        arguments: ["@doctrine", "@guzzle_client", "@validator", "@serializer"]
 
     guzzle_client:
         class: AppBundle\Services\GuzzleClient
-
-    app.exception_listener:
-        class: AppBundle\EventListener\ExceptionListener
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception}
-        arguments: ["@service_container"]

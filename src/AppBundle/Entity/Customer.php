@@ -34,6 +34,9 @@ class Customer implements UserInterface
      * @Assert\Regex(pattern="/\d/", match=false)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
+     * @Assert\NotBlank(
+     *     message="not.blank"
+     * )
      * @Expose
      */
     protected $firstName;
@@ -45,6 +48,9 @@ class Customer implements UserInterface
      * @Assert\Regex(pattern="/\d/", match=false)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
+     * @Assert\NotBlank(
+     *     message="not.blank"
+     * )
      * @Expose
      */
     protected $lastName;
@@ -56,6 +62,9 @@ class Customer implements UserInterface
      * @Assert\Email()
      * @Assert\Type("string")
      * @Assert\Length(max=100)
+     * @Assert\NotBlank(
+     *     message="not.blank"
+     * )
      * @Expose
      */
     protected $email;
