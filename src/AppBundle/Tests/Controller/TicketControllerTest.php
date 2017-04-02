@@ -23,7 +23,5 @@ class TicketControllerTest extends AbstractApiController
     {
         $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy(array('status' => 'free'))->getId();
         $this->request('/tickets/'.$slug.'/free', 'PATCH', 204);
-        $slug = $this->getEm()->getRepository('AppBundle:Ticket')->findOneBy(array('status' => 'booked'))->getId();
-        $this->request('/tickets/'.$slug.'/free', 'PATCH', 409);
     }
 }

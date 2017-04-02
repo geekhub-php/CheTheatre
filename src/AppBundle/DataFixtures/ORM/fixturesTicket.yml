@@ -1,0 +1,6 @@
+AppBundle\Entity\Ticket:
+    ticket{1..10}:
+        __construct: [@seat<current()>, @performanceEvent120]
+        price: '100'
+        setDate: '2017-04-02 17:51:00'
+        setNumber: '111'
