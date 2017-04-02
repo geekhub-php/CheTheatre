@@ -86,10 +86,14 @@ class CustomerOrder
 
     /**
      * @param Ticket[]|ArrayCollection $tickets
+     *
+     * @return CustomerOrder
      */
     public function setTickets($tickets)
     {
         $this->tickets = $tickets;
+
+        return $this;
     }
 
     /**
@@ -102,16 +106,21 @@ class CustomerOrder
 
     /**
      * @param Enum|String $status
+     *
+     * @return CustomerOrder
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
      * Add Ticket
      *
      * @param Ticket $ticket
+     *
      * @return CustomerOrder
      */
     public function addTicket(Ticket $ticket)
@@ -126,6 +135,8 @@ class CustomerOrder
 
     /**
      * @param Ticket $ticket
+     *
+     * @return CustomerOrder
      */
     public function removeTicket(Ticket $ticket)
     {
@@ -133,6 +144,8 @@ class CustomerOrder
             throw new \InvalidArgumentException('Order already pai. Impossible to remove the ticket.');
         }
         $this->tickets->removeElement($ticket);
+
+        return $this;
     }
 
     /**

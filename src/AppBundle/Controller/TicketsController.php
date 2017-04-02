@@ -27,25 +27,25 @@ class TicketsController extends Controller
 
     /**
      * @RestView(statusCode=204)
-     * @Patch(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("ticket", class="AppBundle:Ticket")
+     * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function freeAction(Ticket $ticket)
+    public function freeAction(Ticket $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $ticket->setStatus(Ticket::STATUS_FREE);
+        $id->setStatus(Ticket::STATUS_FREE);
         $em->flush();
     }
 
     /**
      * @RestView(statusCode=204)
-     * @Patch(requirements={"ticket" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("ticket", class="AppBundle:Ticket")
+     * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function reserveAction(Ticket $ticket)
+    public function reserveAction(Ticket $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $ticket->setStatus(Ticket::STATUS_BOOKED);
+        $id->setStatus(Ticket::STATUS_BOOKED);
         $em->flush();
     }
 }

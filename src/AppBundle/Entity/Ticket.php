@@ -207,10 +207,14 @@ class Ticket
 
     /**
      * @param Enum|String $status
+     *
+     * @return Ticket
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**

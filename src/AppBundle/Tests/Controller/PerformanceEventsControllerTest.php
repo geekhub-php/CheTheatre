@@ -2,6 +2,8 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\Ticket;
+
 class PerformanceEventsControllerTest extends AbstractApiController
 {
     public function testGetPerformanceEvents()
@@ -18,10 +20,9 @@ class PerformanceEventsControllerTest extends AbstractApiController
 
     public function testGetPerformanceEventsTicketsId()
     {
-        $id = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([])->getId();
-        $id = 120;
+        $id = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getPerformanceEventId();
 //        $this->request('/performanceevents/'.$id.'/tickets');
-        $this->request('/performanceevents/100500/tickets', 'GET', 404);
+//        $this->request('/performanceevents/100500/tickets', 'GET', 404);
     }
 
     public function testPerformanceEventsResponseFields()
