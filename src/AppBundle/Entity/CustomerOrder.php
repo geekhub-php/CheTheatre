@@ -63,7 +63,7 @@ class CustomerOrder
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer")
      */
-    protected $customer;
+    //protected $customer;
 
     /**
      * CustomerOrder constructor.
@@ -162,29 +162,5 @@ class CustomerOrder
             self::STATUS_PENDING,
             self::STATUS_REJECTED,
         ];
-    }
-
-    /**
-     * Set customer
-     *
-     * @param \AppBundle\Entity\Customer $customer
-     *
-     * @return CustomerOrder
-     */
-    public function setCustomer(\AppBundle\Entity\Customer $customer = null)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \AppBundle\Entity\Customer
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
     }
 }
