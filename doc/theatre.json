@@ -1541,6 +1541,9 @@
                 "title": {
                     "type": "string"
                 },
+                "slug": {
+                    "type": "string"
+                },
                 "venue": {
                     "$ref": "#/definitions/Venue"
                 }
