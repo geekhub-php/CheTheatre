@@ -78,7 +78,7 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
         if (!$username) {
             // CAUTION: this message will be returned to the client
             // (so don't put any un-trusted messages / error strings here)
-            throw new CustomUserMessageAuthenticationException(
+            throw new InvalidApiKeyException(
                 sprintf('API Key "%s" does not exist.', $apiKey)
             );
         }

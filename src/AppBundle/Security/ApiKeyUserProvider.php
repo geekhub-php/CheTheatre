@@ -25,7 +25,7 @@ class ApiKeyUserProvider implements UserProviderInterface
 
     /**
      * @param string $apiKey
-     * @return null|string
+     * @return null|object
      */
     public function getUsernameByApiKey($apiKey)
     {
