@@ -73,6 +73,13 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     protected $seats;
 
     /**
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
+     * @Expose
+     */
+    private $slug;
+
+    /**
      * VenueSector constructor.
      */
     public function __construct()
@@ -151,6 +158,29 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     public function getSeat()
     {
         return $this->seats;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string      $slug
+     * @return VenueSector
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**
