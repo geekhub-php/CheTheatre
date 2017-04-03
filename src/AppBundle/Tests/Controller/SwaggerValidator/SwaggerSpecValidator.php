@@ -68,7 +68,9 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
             $statusCode = $response->getStatusCode();
             $this->assertAllowedStatusCode($statusCode, $operation);
 
-            $this->assertAllowedContentType($response, $operation);
+            if (!in_array($statusCode, [204, 404, 405])) {
+                $this->assertAllowedContentType($response, $operation);
+            }
             $this->assertRequest($request, $operation);
 
             /** @var SwaggerResponse $documentedResponse */
@@ -171,10 +173,19 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
         foreach ($operation->getParameters() as $parameterDoc) {
             switch ($request->getMethod()) {
                 case 'GET':
-                    $parameterRequest = $request->get($parameterDoc->getName());
+                    $parameterRequest = $this->getParameterFromRequest(
+                        $request, $parameterDoc->getIn(), $parameterDoc->getName()
+                    );
                     break;
                 case 'POST':
-                    $parameterRequest = $request->request->get($parameterDoc->getName());
+                    $parameterRequest = $this->getParameterFromRequest(
+                        $request->request, $parameterDoc->getIn(), $parameterDoc->getName()
+                    );
+                    break;
+                case 'PATCH':
+                    $parameterRequest = $this->getParameterFromRequest(
+                        $request, $parameterDoc->getIn(), $parameterDoc->getName()
+                    );
                     break;
                 default:
                     throw new \Exception('Unsupported method');
@@ -234,5 +245,24 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
                 $method
             )
         );
+    }
+
+    private function getParameterFromRequest(Request $request, string $getFrom, string $paramName)
+    {
+        switch ($getFrom) {
+            case 'header':
+                $requestParameter = $request->headers->get($paramName);
+                break;
+            case 'query':
+                $requestParameter = $request->get($paramName);
+                break;
+            case 'path':
+                $requestParameter = $request->get($paramName);
+                break;
+            default:
+                throw new \Exception('Unsupported parameter place');
+        }
+
+        return $requestParameter;
     }
 }

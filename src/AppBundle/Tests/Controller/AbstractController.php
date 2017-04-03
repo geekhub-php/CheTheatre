@@ -60,14 +60,22 @@ abstract class AbstractController extends WebTestCase
      * @param string $path
      * @param string $method
      * @param int $expectedStatusCode
+     * @param array $headers
      *
      * @return \Symfony\Component\DomCrawler\Crawler
      */
-    protected function request($path, $method = 'GET', $expectedStatusCode = 200)
+    protected function request($path, $method = 'GET', $expectedStatusCode = 200, $headers = [])
     {
         $client = $this->getClient();
 
-        $crawler = $client->request($method, $path);
+        $crawler = $client->request(
+            $method,
+            $path,
+            array(),
+            array(),
+            $this->prepareRequestHeaders($headers)
+        );
+
         self::assertEquals(
             $expectedStatusCode,
             $client->getResponse()->getStatusCode(),
@@ -120,6 +128,21 @@ abstract class AbstractController extends WebTestCase
         }
 
         return $this->container;
+    }
+
+    /**
+     * @param array $headers
+     *
+     * @return array
+     */
+    private function prepareRequestHeaders($headers = [])
+    {
+        $requestHeaders = [];
+        foreach ($headers as $headerName => $headerValue) {
+            $requestHeaders['HTTP_'.$headerName] = $headerValue;
+        }
+
+        return $requestHeaders;
     }
 
     protected function getHttpHost()
