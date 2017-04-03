@@ -2,11 +2,61 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\Customer;
 use AppBundle\Services\FacebookUserProvider;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CustomerControllerTest extends AbstractController
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_11111111')
+            ->getQuery()
+            ->execute();
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_22222222')
+            ->getQuery()
+            ->execute();
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_33333333')
+            ->getQuery()
+            ->execute();
+
+        $customer1 = new Customer();
+        $customer1
+            ->setUsername('customer')
+            ->setApiKey('token_11111111');
+        $customer2 = new Customer();
+        $customer2
+            ->setUsername('customer')
+            ->setApiKey('token_22222222')
+            ->setFacebookId('fb_id_22222222');
+        $customer3 = new Customer();
+        $customer3
+            ->setUsername('customer')
+            ->setApiKey('token_33333333');
+
+        $this->getEm()->persist($customer1);
+        $this->getEm()->persist($customer2);
+        $this->getEm()->persist($customer3);
+        $this->getEm()->flush();
+    }
+
     public function testSuccessLogin()
     {
         $client = $this->getClient();
@@ -25,6 +75,7 @@ class CustomerControllerTest extends AbstractController
         );
 
         $content = json_decode($client->getResponse()->getContent(), true);
+
         self::assertEquals(200, $client->getResponse()->getStatusCode());
         self::assertNotNull($content['api_key']);
     }
@@ -100,7 +151,7 @@ class CustomerControllerTest extends AbstractController
     public function testSuccessLoginFacebookExistingUser()
     {
         $userFacebook = new \stdClass();
-        $userFacebook->id = 'fb_id_11111111';
+        $userFacebook->id = 'fb_id_22222222';
 
         $client = $this->getClient();
 
@@ -108,7 +159,7 @@ class CustomerControllerTest extends AbstractController
 
         $facebook->expects($this->once())
             ->method('getUser')
-            ->with('social_token_11111111')
+            ->with('social_token_22222222')
             ->will($this->returnValue($userFacebook));
 
         $client->getContainer()->set('facebook_user_provider', $facebook);
@@ -121,16 +172,16 @@ class CustomerControllerTest extends AbstractController
                 'lastName' => '',
                 'email' => '',
                 'socialNetwork' => 'facebook',
-                'socialToken' => 'social_token_11111111',
+                'socialToken' => 'social_token_22222222',
             ],
             [],
-            ['HTTP_API-Key-Token' => 'token_22222222']
+            ['HTTP_API-Key-Token' => 'token_33333333']
         );
 
         $content = json_decode($client->getResponse()->getContent(), true);
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
-        self::assertEquals('token_22222222', $content['api_key']);
+        self::assertEquals('token_33333333', $content['api_key']);
     }
 
     public function testFailLogin()
@@ -219,6 +270,7 @@ class CustomerControllerTest extends AbstractController
             [],
             ['HTTP_API-Key-Token' => 'token_11111111']
         );
+
         self::assertEquals(400, $client->getResponse()->getStatusCode());
     }
 
