@@ -221,4 +221,61 @@ class CustomerControllerTest extends AbstractController
         );
         self::assertEquals(400, $client->getResponse()->getStatusCode());
     }
+
+    public function testlogoutFailApiKeyToken()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'GET',
+            '/customers/logout',
+            [],
+            [],
+            ['HTTP_API-Key-Token' => 'token_11111111']
+        );
+
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testlogoutFailWithoutApiKeyToken()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'GET',
+            '/customers/logout',
+            [],
+            [],
+            []
+        );
+
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testlogoutSuccessApiKeyToken()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'GET',
+            '/customers/logout',
+            [],
+            [],
+            ['HTTP_API-Key-Token' => 'token_58e2a426dcddd']
+        );
+
+        $customer = $this->getEm()
+            ->getRepository('AppBundle:Customer')
+            ->findOneBy(['apiKey'=>'token_58e2a426dcddd']);
+        self::assertEquals(null, $customer);
+        self::assertEquals(204, $client->getResponse()->getStatusCode());
+
+        $client->request(
+            'GET',
+            '/customers/logout',
+            [],
+            [],
+            ['HTTP_API-Key-Token' => 'token_58e2a426dcddd']
+        );
+
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
 }
