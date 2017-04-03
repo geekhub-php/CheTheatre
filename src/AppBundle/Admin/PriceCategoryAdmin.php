@@ -37,10 +37,12 @@ class PriceCategoryAdmin extends Admin
                         }
                     }
                     if (($this->getSubject() !== null) && ($performanceEventId === null)) {
-                        $performanceEvent = $this->getSubject()->getPerformanceEvent();
-                        $venueSectors = $performanceEvent->getVenue()->getVenueSector();
-                        foreach ($venueSectors as $sector) {
-                            $qb->orWhere("p.id = ".$sector->getId());
+                        if ($this->getSubject()->getPerformanceEvent() !== null) {
+                            $performanceEvent = $this->getSubject()->getPerformanceEvent();
+                            $venueSectors = $performanceEvent->getVenue()->getVenueSector();
+                            foreach ($venueSectors as $sector) {
+                                $qb->orWhere("p.id = ".$sector->getId());
+                            }
                         }
                     }
                     return $qb;
@@ -56,7 +58,7 @@ class PriceCategoryAdmin extends Admin
                 ]
             ])
             ->add('places', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'placeholder' => '1-5,6,7,10-15',
                 ]

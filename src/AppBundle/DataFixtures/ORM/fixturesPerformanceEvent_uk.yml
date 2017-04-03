@@ -5,717 +5,837 @@ AppBundle\Entity\PerformanceEvent:
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent2:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'
     performanceEvent3:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent4:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue4'
+        setNumber: '0000001'
     performanceEvent5:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue5'
+        setNumber: '0000001'
     performanceEvent6:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue4'
+        setNumber: '0000001'
     performanceEvent7:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent8:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent9:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent10:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent11:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent12:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent13:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent14:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent15:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent16:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent17:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent18:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent19:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent20:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent21:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent22:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent23:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent24:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent25:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent26:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent27:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent28:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent29:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent30:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent31:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent32:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent33:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent34:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent35:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent36:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent37:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent38:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent39:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent40:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent41:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent42:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent43:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent44:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent45:
         performance: '@performance13'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent46:
         performance: '@performance14'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent47:
         performance: '@performance15'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent48:
         performance: '@performance16'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent49:
         performance: '@performance1'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent50:
         performance: '@performance2'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent51:
         performance: '@performance3'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent52:
         performance: '@performance4'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent53:
         performance: '@performance5'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent54:
         performance: '@performance6'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent55:
         performance: '@performance7'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent56:
         performance: '@performance8'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent57:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent58:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent59:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent60:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent61:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent62:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent63:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent64:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent65:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent66:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent67:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent68:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent69:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent70:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent71:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent72:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent73:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent74:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent75:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent76:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent77:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent78:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent79:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent80:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent81:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent82:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent83:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent84:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent85:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent86:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent87:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent88:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent89:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent90:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent91:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent92:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent93:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent94:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent95:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent96:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent97:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent98:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent99:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent100:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent101:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent102:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent103:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent104:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent105:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent106:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent107:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent108:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent109:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent110:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent111:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent112:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent113:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent114:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent115:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        setNumber: '0000001'
     performanceEvent116:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'
     performanceEvent117:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'
     performanceEvent118:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'
     performanceEvent119:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'
     performanceEvent120:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        setNumber: '0000001'

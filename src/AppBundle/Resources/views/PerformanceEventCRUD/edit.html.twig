@@ -12,22 +12,22 @@
             var s = "{{ app.request.get('_route') }}";
             var route = s.split("_", 2);
             if (route[1] == 'create') {
-                $('#PriceCategory, #VenueHall').hide();
+                $("#PriceCategory, #VenueHall").hide();
             }
-            var venue_title = $("#select2-chosen-2").html();
-            $("#{{ admin.uniqId }}_venue").change(function()
-            {
-                var new_venue_title =  $("#select2-chosen-2").html();
-                if ((venue_title != new_venue_title) && (route[1] != 'create')) {
-                    venue_title = new_venue_title;
-                    var performanceEvent_id = "{{ object.id }}";
-                    $('#price').load("{{ admin.generateUrl('deletePriceCategories') }}", 'performanceEvent_id=' + performanceEvent_id);
-                    $( "form:first" ).submit();
+            $("#{{ admin.uniqId }}_venue").change(function () {
+                if (route[1] != 'create') {
+                    var venue_id = $(this).val();
+                    $("#hall").load("{{ admin.generateUrl('getVenue') }}", 'venue_id=' + venue_id);
+                    $.get("{{ admin.generateUrl('deletePriceCategories') }}", {"performanceEvent_id":"{{ object.id }}"}, function (data, status) {
+                        if (status === 'success') {
+                            $("#sonata-ba-field-container-{{ admin.uniqId }}_priceCategories").find('table').remove();
+                        }
+                    });
+                } else {
+                    $("form:first").submit();
                 }
-                {#var venue_id = $(this).val();#}
-                {#$("#hall").load("{{ admin.generateUrl('getVenue') }}", 'venue_id=' + venue_id);#}
             });
-        })
+        });
     </script>
 {% endblock %}
 {% block sonata_tab_content %}
@@ -89,7 +89,6 @@
                     </div>
                 </div>
             {% endfor %}
-            <div class="col-md-12" id="price"></div>
             <div class="col-md-12" id="VenueHall">
                 <div class="box box-success">
                     <div class="box-body">

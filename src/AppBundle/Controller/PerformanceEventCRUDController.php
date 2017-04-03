@@ -21,19 +21,18 @@ class PerformanceEventCRUDController extends CRUDController
     }
 
     /**
-     * @return bool|Response
+     * @return Response
      */
     public function deletePriceCategoriesAction()
     {
         $performanceEventId = $this->get('request')->query->get('performanceEvent_id');
         $em = $this->getDoctrine()->getManager();
         $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->find($performanceEventId);
-        $priceCategories = $performanceEvent->getPriceCategories();
-        foreach ($priceCategories as $priceCategory) {
+        foreach ($performanceEvent->getPriceCategories() as $priceCategory) {
             $performanceEvent->removePriceCategories($priceCategory);
-            $em->persist($performanceEvent);
+            $em->remove($priceCategory);
+            $em->flush();
         }
-        $em->flush();
         return new Response();
     }
 }

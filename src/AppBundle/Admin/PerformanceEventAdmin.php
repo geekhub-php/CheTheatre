@@ -49,11 +49,10 @@ class PerformanceEventAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
+            ->add('setNumber')
             ->add('venue')
             ->end()
-            ->with('PriceCategory', [
-                'class'=>'col-lg-12',
-            ])
+            ->with('PriceCategory', ['class'=>'col-lg-12'])
             ->add('priceCategories', 'sonata_type_collection', [
                 'by_reference' => true,
                 'required' => false,

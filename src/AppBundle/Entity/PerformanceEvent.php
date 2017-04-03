@@ -116,6 +116,16 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     private $time;
 
     /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=10,  nullable=false)
+     *
+     * @Type("string")
+     * @Expose
+     */
+    private $setNumber;
+
+    /**
      * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
@@ -127,13 +137,13 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     protected $translations;
 
     /**
-     * @var PriceCategory[]
+     * @var ArrayCollection|PriceCategory[]
      *
      * @Assert\Valid
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\PriceCategory",
      *     mappedBy="performanceEvent",
-     *     cascade={"all"},
+     *     cascade={"persist"},
      *     orphanRemoval=true
      * )
      */
@@ -338,5 +348,21 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     public function setPriceCategories($priceCategory)
     {
         $this->priceCategories = $priceCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSetNumber()
+    {
+        return $this->setNumber;
+    }
+
+    /**
+     * @param string $setNumber
+     */
+    public function setSetNumber($setNumber)
+    {
+        $this->setNumber = $setNumber;
     }
 }

@@ -103,3 +103,71 @@ AppBundle\Entity\Seat:
         row: 1
         place: 26
         venueSector: '@venueSector1'
+    seat27:
+        row: 1
+        place: 1
+        venueSector: '@venueSector2'
+    seat28:
+        row: 1
+        place: 2
+        venueSector: '@venueSector2'
+    seat29:
+        row: 1
+        place: 3
+        venueSector: '@venueSector2'
+    seat30:
+        row: 1
+        place: 4
+        venueSector: '@venueSector2'
+    seat31:
+        row: 1
+        place: 5
+        venueSector: '@venueSector2'
+    seat32:
+        row: 1
+        place: 6
+        venueSector: '@venueSector2'
+    seat33:
+        row: 1
+        place: 7
+        venueSector: '@venueSector2'
+    seat34:
+        row: 1
+        place: 8
+        venueSector: '@venueSector2'
+    seat35:
+        row: 1
+        place: 9
+        venueSector: '@venueSector2'
+    seat36:
+        row: 1
+        place: 10
+        venueSector: '@venueSector2'
+    seat37:
+        row: 1
+        place: 11
+        venueSector: '@venueSector2'
+    seat38:
+        row: 1
+        place: 12
+        venueSector: '@venueSector2'
+    seat39:
+        row: 1
+        place: 13
+        venueSector: '@venueSector2'
+    seat40:
+        row: 1
+        place: 14
+        venueSector: '@venueSector2'
+    seat41:
+        row: 1
+        place: 15
+        venueSector: '@venueSector2'
+    seat42:
+        row: 1
+        place: 16
+        venueSector: '@venueSector2'
+    seat43:
+        row: 1
+        place: 17
+        venueSector: '@venueSector2'

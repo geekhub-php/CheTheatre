@@ -34,6 +34,10 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern     = "/^\d+(-\d+)?(,\d+(-\d+)?)*$/",
+     *     htmlPattern = "^\d+(-\d+)?(,\d+(-\d+)?)*$"
+     * )
      * @ORM\Column(type="string", length=255)
      * @Serializer\Groups({"get_ticket"})
      * @Type("string")
@@ -43,7 +47,11 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^\d+(-\d+)?(,\d+(-\d+)?)*$/",
+     *     htmlPattern = "^\d+(-\d+)?(,\d+(-\d+)?)*$"
+     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Type("string")
      * @Serializer\Groups({"get_ticket"})
      * @Expose()
@@ -211,5 +219,13 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     public function setPerformanceEvent(PerformanceEvent $performanceEvent)
     {
         $this->performanceEvent = $performanceEvent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return 'PriceCategory';
     }
 }
