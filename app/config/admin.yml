@@ -87,3 +87,14 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
+
+    sonata.admin.customer:
+            class: AppBundle\Admin\CustomerAdmin
+            tags:
+               - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Customers" }
+            arguments:
+               - ~
+               - AppBundle\Entity\Customer
+               - ~
+            calls:
+            - [ setTranslationDomain, [messages]]

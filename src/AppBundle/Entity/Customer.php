@@ -3,7 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
+use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Tests\Fixtures\Order;
 use Symfony\Component\Security\Core\User\UserInterface;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -11,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
  * @UniqueEntity("facebookId")
  * @ExclusionPolicy("all")
@@ -97,6 +97,18 @@ class Customer implements UserInterface
     private $facebookId;
 
     /**
+     * @var ArrayCollection|Order[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\CustomerOrder",
+     *     mappedBy="customer",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
+     */
+    private $orders;
+
+    /**
      * Get id.
      *
      * @return int
@@ -129,9 +141,54 @@ class Customer implements UserInterface
     {
         return $this->apiKey;
     }
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
 
     /**
-     * @inheritdoc
+     * Add order.
+     *
+     * @param CustomerOrder $order
+     *
+     * @return Customer
+     */
+    public function addOrder(CustomerOrder $order)
+    {
+        $this->orders[] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Remove order.
+     *
+     * @param CustomerOrder $order
+     */
+    public function removeOrder(CustomerOrder $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * Get orders.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+    /**
+     * {@inheritdoc}
      */
     public function getRoles()
     {
@@ -139,21 +196,21 @@ class Customer implements UserInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getPassword()
     {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSalt()
     {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function eraseCredentials()
     {

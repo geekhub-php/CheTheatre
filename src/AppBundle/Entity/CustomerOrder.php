@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Table(name="customer_order")
@@ -20,10 +21,10 @@ class CustomerOrder
 {
     use TimestampableTrait;
 
-    const STATUS_OPENED   = 'opened';
-    const STATUS_CLOSED   = 'closed';
-    const STATUS_PENDING  = 'pending';
-    const STATUS_PAID     = 'paid';
+    const STATUS_OPENED = 'opened';
+    const STATUS_CLOSED = 'closed';
+    const STATUS_PENDING = 'pending';
+    const STATUS_PAID = 'paid';
     const STATUS_REJECTED = 'rejected';
 
     /**
@@ -59,6 +60,14 @@ class CustomerOrder
     protected $status;
 
     /**
+     * @var Customer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="orders")
+     * @Type("AppBundle\Entity\Customer")
+     */
+    private $customer;
+
+    /**
      * CustomerOrder constructor.
      */
     public function __construct()
@@ -66,6 +75,16 @@ class CustomerOrder
         $this->id = Uuid::uuid4();
         $this->status = self::STATUS_OPENED;
         $this->tickets = new ArrayCollection();
+    }
+
+    /**
+     * Get customer.
+     *
+     * @return \AppBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 
     /**
@@ -109,9 +128,10 @@ class CustomerOrder
     }
 
     /**
-     * Add Ticket
+     * Add Ticket.
      *
      * @param Ticket $ticket
+     *
      * @return CustomerOrder
      */
     public function addTicket(Ticket $ticket)
