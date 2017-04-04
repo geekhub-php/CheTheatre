@@ -33,9 +33,14 @@ history:
 logout_customer:
     type: rest
     resource: AppBundle\Controller\CustomerController
-    methods: [GET]
+    methods: [POST]
 
-login_customer:
+update_customer:
+    type: rest
+    resource: AppBundle\Controller\CustomerController
+    methods: [POST]
+
+new_customer:
     type: rest
     resource: AppBundle\Controller\CustomerController
     methods: [POST]
