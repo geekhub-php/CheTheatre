@@ -99,8 +99,6 @@ class TicketStatusListener
             $em->persist($order);
             $uow->computeChangeSet($ticketMetadata, $order);
         }
-
         return $order;
     }
-
 }
