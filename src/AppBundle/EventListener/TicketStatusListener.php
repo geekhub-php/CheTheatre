@@ -6,6 +6,7 @@ use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Exception\TicketStatusConflictException;
 use AppBundle\Repository\CustomerOrderRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\UnitOfWork;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -39,25 +40,7 @@ class TicketStatusListener
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
 
-        if ($oldStatus === Ticket::STATUS_OFFLINE) {
-            return;
-        }
-
-        //$user = $this->tokenStorage->getToken()->getUser();
-        $user = $em->getRepository('AppBundle:Customer')->find(1);
-        /** @var CustomerOrderRepository $customerOrderRepository */
-        $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
-        $order = $customerOrderRepository->findLastOpenOrder($user);
-
-        /**
-         * Creating order if isn't exist
-         */
-        if (!$order) {
-            $order = new CustomerOrder($user);
-            $ticketMetadata = $em->getClassMetadata(CustomerOrder::class);
-            $em->persist($order);
-            $uow->computeChangeSet($ticketMetadata, $order);
-        }
+        $order = $this->getCustomerOrder($em, $uow);
 
         /**
          * Set an order to a ticket
@@ -92,4 +75,32 @@ class TicketStatusListener
             return $entity;
         }
     }
+
+    /**
+     * Gets order or creating if doesn't exist
+     *
+     * @param EntityManagerInterface $em
+     * @param UnitOfWork $uow
+     * @return CustomerOrder $order
+     */
+    private function getCustomerOrder(EntityManagerInterface $em, UnitOfWork $uow): CustomerOrder
+    {
+        /** @var CustomerOrderRepository $repository */
+        $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
+        //$customer = $this->tokenStorage->getToken()->getUser();
+        $customer = $em->getRepository('AppBundle:Customer')->find(1);
+        $order = $customerOrderRepository->findLastOpenOrder($customer);
+        /**
+         * Creating order if isn't exist
+         */
+        if (!$order) {
+            $order = new CustomerOrder($customer);
+            $ticketMetadata = $em->getClassMetadata(CustomerOrder::class);
+            $em->persist($order);
+            $uow->computeChangeSet($ticketMetadata, $order);
+        }
+
+        return $order;
+    }
+
 }
