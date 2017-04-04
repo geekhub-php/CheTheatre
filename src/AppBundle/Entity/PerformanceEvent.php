@@ -117,13 +117,35 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
 
     /**
      * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=10,  nullable=false)
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @ORM\Column(type="string", length=10,  nullable=true)
      *
      * @Type("string")
      * @Expose
      */
     private $setNumber;
+
+    /**
+     * @var \DateTime
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("datetime")
+     * @Expose
+     */
+    private $setDate;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : "0"})
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("boolean")
+     * @Expose
+     */
+    private $enableSale;
 
     /**
      * @var ArrayCollection|Translation[]
@@ -364,5 +386,37 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     public function setSetNumber($setNumber)
     {
         $this->setNumber = $setNumber;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSetDate()
+    {
+        return $this->setDate;
+    }
+
+    /**
+     * @param \DateTime $setDate
+     */
+    public function setSetDate($setDate)
+    {
+        $this->setDate = $setDate;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEnableSale()
+    {
+        return $this->enableSale;
+    }
+
+    /**
+     * @param boolean $enableSale
+     */
+    public function setEnableSale($enableSale = false)
+    {
+        $this->enableSale = $enableSale;
     }
 }

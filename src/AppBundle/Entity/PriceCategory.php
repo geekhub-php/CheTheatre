@@ -60,7 +60,7 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255, options={"default" : "grey"})
+     * @ORM\Column(type="string", length=255, options={"default" : "gray"})
      * @Type("string")
      * @Expose()
      */

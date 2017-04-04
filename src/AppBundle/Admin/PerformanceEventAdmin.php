@@ -49,7 +49,6 @@ class PerformanceEventAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
-            ->add('setNumber')
             ->add('venue')
             ->end()
             ->with('PriceCategory', ['class'=>'col-lg-12'])
@@ -69,6 +68,25 @@ class PerformanceEventAdmin extends Admin
                     'performanceEvent_id' => $this->getSubject()->getId(),
                 ],
             ])
+            ->end()
+            ->with('EnableSale', ['class'=>'col-lg-12'])
+            ->add(
+                'setDate',
+                'sonata_type_datetime_picker',
+                [
+                    'dp_side_by_side'       => true,
+                    'dp_use_current'        => true,
+                    'dp_use_seconds'        => false,
+                    'format' => "dd/MM/yyyy HH:mm",
+                    'required' => false,
+                ]
+            )
+            ->add('setNumber', null, [
+            'required' => false,
+        ])
+            ->add('enableSale', null, [
+            'required' => false,
+        ])
             ->end()
         ;
     }

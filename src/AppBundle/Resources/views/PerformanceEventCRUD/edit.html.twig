@@ -12,7 +12,7 @@
             var s = "{{ app.request.get('_route') }}";
             var route = s.split("_", 2);
             if (route[1] == 'create') {
-                $("#PriceCategory, #VenueHall").hide();
+                $("#PriceCategory, #EnableSale, #VenueHall").hide();
             }
             $("#{{ admin.uniqId }}_venue").change(function () {
                 if (route[1] != 'create') {
