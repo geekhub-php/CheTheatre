@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\TimestampableTrait;
-use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -53,7 +52,7 @@ class Ticket
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="series_number", type="string", length=10,  nullable=false)
+     * @ORM\Column(name="series_number", type="string", length=10, nullable=false)
      *
      * @Serializer\Groups({"get_ticket"})
      * @Type("string")
@@ -102,10 +101,11 @@ class Ticket
     protected $customerOrder;
 
     /**
-     * @var Enum
+     * @var string
      * @Assert\Choice(callback="getStatuses")
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'paid', 'offline')")
+     * @ORM\Column(name="status", type="string", length=15)
      * @Serializer\Groups({"get_ticket"})
+     * @Type("string")
      * @Expose()
      */
     protected $status;
@@ -199,15 +199,15 @@ class Ticket
     }
 
     /**
-     * @return Enum
+     * @return string
      */
-    public function getStatus(): Enum
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param Enum|String $status
+     * @param String $status
      *
      * @return Ticket
      */
