@@ -83,10 +83,10 @@ class PerformanceEventAdmin extends Admin
             )
             ->add('setNumber', null, [
             'required' => false,
-        ])
+            ])
             ->add('enableSale', null, [
             'required' => false,
-        ])
+            ])
             ->end()
         ;
     }

@@ -415,7 +415,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @param boolean $enableSale
      */
-    public function setEnableSale($enableSale = false)
+    public function setEnableSale($enableSale)
     {
         $this->enableSale = $enableSale;
     }
