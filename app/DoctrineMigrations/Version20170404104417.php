@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170404100923 extends AbstractMigration
+class Version20170404104417 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20170404100923 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE performance_schedule ADD setNumber VARCHAR(10) DEFAULT NULL, ADD setDate DATETIME DEFAULT NULL, ADD enableSale TINYINT(1) DEFAULT \'0\'');
+        $this->addSql('ALTER TABLE performance_schedule ADD seriesNumber VARCHAR(10) DEFAULT NULL, ADD seriesDate DATETIME DEFAULT NULL, ADD enableSale TINYINT(1) DEFAULT \'0\'');
         $this->addSql('ALTER TABLE price_category DROP FOREIGN KEY FK_64FA22D640A73EBA');
         $this->addSql('DROP INDEX IDX_64FA22D640A73EBA ON price_category');
         $this->addSql('ALTER TABLE price_category ADD places VARCHAR(255) DEFAULT NULL, ADD price INT NOT NULL, ADD venueSector_id INT DEFAULT NULL, CHANGE color color VARCHAR(255) DEFAULT \'gray\' NOT NULL, CHANGE title rows VARCHAR(255) NOT NULL, CHANGE venue_id performanceEvent_id INT DEFAULT NULL');
@@ -42,7 +42,7 @@ class Version20170404100923 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE customer_order CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
-        $this->addSql('ALTER TABLE performance_schedule DROP setNumber, DROP setDate, DROP enableSale');
+        $this->addSql('ALTER TABLE performance_schedule DROP seriesNumber, DROP seriesDate, DROP enableSale');
         $this->addSql('ALTER TABLE price_category DROP FOREIGN KEY FK_64FA22D65F1583FA');
         $this->addSql('ALTER TABLE price_category DROP FOREIGN KEY FK_64FA22D6137F3880');
         $this->addSql('DROP INDEX IDX_64FA22D65F1583FA ON price_category');

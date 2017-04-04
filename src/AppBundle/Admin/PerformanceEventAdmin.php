@@ -71,7 +71,7 @@ class PerformanceEventAdmin extends Admin
             ->end()
             ->with('EnableSale', ['class'=>'col-lg-12'])
             ->add(
-                'setDate',
+                'seriesDate',
                 'sonata_type_datetime_picker',
                 [
                     'dp_side_by_side'       => true,
@@ -81,7 +81,7 @@ class PerformanceEventAdmin extends Admin
                     'required' => false,
                 ]
             )
-            ->add('setNumber', null, [
+            ->add('seriesNumber', null, [
             'required' => false,
             ])
             ->add('enableSale', null, [

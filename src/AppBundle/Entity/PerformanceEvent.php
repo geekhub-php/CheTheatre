@@ -124,7 +124,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @Type("string")
      * @Expose
      */
-    private $setNumber;
+    private $seriesNumber;
 
     /**
      * @var \DateTime
@@ -135,7 +135,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * @Type("datetime")
      * @Expose
      */
-    private $setDate;
+    private $seriesDate;
 
     /**
      * @var boolean
@@ -375,33 +375,33 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @return string
      */
-    public function getSetNumber()
+    public function getSeriesNumber()
     {
-        return $this->setNumber;
+        return $this->seriesNumber;
     }
 
     /**
-     * @param string $setNumber
+     * @param string $seriesNumber
      */
-    public function setSetNumber($setNumber)
+    public function setSeriesNumber($seriesNumber)
     {
-        $this->setNumber = $setNumber;
+        $this->seriesNumber = $seriesNumber;
     }
 
     /**
      * @return \DateTime
      */
-    public function getSetDate()
+    public function getSeriesDate()
     {
-        return $this->setDate;
+        return $this->seriesDate;
     }
 
     /**
-     * @param \DateTime $setDate
+     * @param \DateTime $seriesDate
      */
-    public function setSetDate($setDate)
+    public function setSeriesDate($seriesDate)
     {
-        $this->setDate = $setDate;
+        $this->seriesDate = $seriesDate;
     }
 
     /**
