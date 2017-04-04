@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\CustomerResponse;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use FOS\RestBundle\Controller\Annotations\Post;
+
 /**
  * @RouteResource("Customer")
  */
@@ -14,18 +17,36 @@ class CustomerController extends Controller
 {
     /**
      * @param Request $request
+     * @Post("/customers/login/social")
      * @return View
      */
-    public function loginAction(Request $request)
+    public function loginSocialAction(Request $request)
     {
-        $validatorResult = $this->get('customer_login_validator')
-            ->resultOptions(
-                $this->getUser(),
-                $request->request->all(),
-                $request->headers->get('API-Key-Token')
-            );
+        $customer = $this->get('jms_serializer')->deserialize(
+            $request->getContent(),
+            CustomerResponse::class,
+            'json'
+        );
 
-        return View::create($validatorResult);
+        $errors = $this->get('validator')->validate(
+            $customer,
+            null,
+            'socialNetwork'
+        );
+
+        if (count($errors) > 0) {
+            throw new HttpException(400, 'Validation error');
+        }
+
+        $customerResponse = new CustomerResponse(
+            $this->get('customer_login')->loginSocialNetwork(
+                $customer->getSocialNetwork(),
+                $customer->getSocialToken(),
+                $request->headers->get('API-Key-Token')
+            )
+        );
+
+        return View::create($customerResponse);
     }
 
     /**

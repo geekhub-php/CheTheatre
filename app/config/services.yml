@@ -57,12 +57,13 @@ services:
         public: false
         arguments: ["@doctrine"]
 
-    customer_login_validator:
-        class: AppBundle\Services\CustomerLoginValidator
+    customer_login:
+        class: AppBundle\Services\CustomerLogin
         arguments: ["@doctrine", "@facebook_user_provider", "@validator"]
 
     facebook_user_provider:
         class: AppBundle\Services\FacebookUserProvider
+        arguments: ["@serializer", "@validator"]
 
     app.exception_listener:
         class: AppBundle\EventListener\ExceptionListener
