@@ -1609,10 +1609,10 @@
                 "id": {
                     "type": "string"
                 },
-                "set_date": {
+                "series_date": {
                     "$ref": "#/definitions/DateTime"
                 },
-                "set_number": {
+                "series_number": {
                     "type": "string"
                 },
                 "price": {

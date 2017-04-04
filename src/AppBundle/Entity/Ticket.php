@@ -42,24 +42,24 @@ class Ticket
     /**
      * @var \DateTime
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Column(name="series_date", type="datetime", nullable=false)
      *
      * @Serializer\Groups({"get_ticket"})
      * @Type("DateTime")
      * @Expose
      */
-    private $setDate;
+    private $seriesDate;
 
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=10,  nullable=false)
+     * @ORM\Column(name="series_number", type="string", length=10,  nullable=false)
      *
      * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose
      */
-    private $setNumber;
+    private $seriesNumber;
 
     /**
      * @var integer
@@ -97,6 +97,7 @@ class Ticket
      * @var CustomerOrder
      *
      * @ORM\ManyToOne(targetEntity="CustomerOrder", inversedBy="tickets")
+     * @ORM\Column(name="customer_order_id", type="integer", nullable=true)
      */
     protected $customerOrder;
 
@@ -115,23 +116,23 @@ class Ticket
      * @param Seat $seat
      * @param PerformanceEvent $performanceEvent
      * @param int $ticketPrice
-     * @param \DateTime $setDate
-     * @param string $setNumber
+     * @param \DateTime $seriesDate
+     * @param string $seriesNumber
      */
     public function __construct(
         Seat $seat,
         PerformanceEvent $performanceEvent,
         int $ticketPrice,
-        \DateTime $setDate,
-        string $setNumber
+        \DateTime $seriesDate,
+        string $seriesNumber
     ) {
         $this->id = Uuid::uuid4();
         $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
         $this->price = $ticketPrice;
-        $this->setDate = $setDate;
-        $this->setNumber = $setNumber;
+        $this->seriesDate = $seriesDate;
+        $this->seriesNumber = $seriesNumber;
     }
 
     /**
@@ -233,16 +234,16 @@ class Ticket
     /**
      * @return \DateTime
      */
-    public function getSetDate(): \DateTime
+    public function getSeriesDate(): \DateTime
     {
-        return $this->setDate;
+        return $this->seriesDate;
     }
 
     /**
      * @return string
      */
-    public function getSetNumber(): string
+    public function getSeriesNumber(): string
     {
-        return $this->setNumber;
+        return $this->seriesNumber;
     }
 }
