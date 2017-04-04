@@ -171,3 +171,159 @@ AppBundle\Entity\Seat:
         row: 1
         place: 17
         venueSector: '@venueSector2'
+    seat44:
+        row: 2
+        place: 1
+        venueSector: '@venueSector2'
+    seat45:
+        row: 2
+        place: 2
+        venueSector: '@venueSector2'
+    seat46:
+        row: 2
+        place: 3
+        venueSector: '@venueSector2'
+    seat47:
+        row: 2
+        place: 4
+        venueSector: '@venueSector2'
+    seat48:
+        row: 2
+        place: 5
+        venueSector: '@venueSector2'
+    seat49:
+        row: 2
+        place: 6
+        venueSector: '@venueSector2'
+    seat50:
+        row: 2
+        place: 7
+        venueSector: '@venueSector2'
+    seat51:
+        row: 2
+        place: 8
+        venueSector: '@venueSector2'
+    seat52:
+        row: 2
+        place: 9
+        venueSector: '@venueSector2'
+    seat53:
+        row: 2
+        place: 10
+        venueSector: '@venueSector2'
+    seat54:
+        row: 2
+        place: 11
+        venueSector: '@venueSector2'
+    seat55:
+        row: 2
+        place: 12
+        venueSector: '@venueSector2'
+    seat56:
+        row: 2
+        place: 13
+        venueSector: '@venueSector2'
+    seat57:
+        row: 2
+        place: 14
+        venueSector: '@venueSector2'
+    seat58:
+        row: 2
+        place: 15
+        venueSector: '@venueSector2'
+    seat59:
+        row: 2
+        place: 16
+        venueSector: '@venueSector2'
+    seat60:
+        row: 2
+        place: 17
+        venueSector: '@venueSector2'
+    seat61:
+        row: 2
+        place: 18
+        venueSector: '@venueSector2'
+    seat62:
+        row: 2
+        place: 19
+        venueSector: '@venueSector2'
+    seat63:
+        row: 3
+        place: 1
+        venueSector: '@venueSector2'
+    seat64:
+        row: 3
+        place: 2
+        venueSector: '@venueSector2'
+    seat65:
+        row: 3
+        place: 3
+        venueSector: '@venueSector2'
+    seat66:
+        row: 3
+        place: 4
+        venueSector: '@venueSector2'
+    seat67:
+        row: 3
+        place: 5
+        venueSector: '@venueSector2'
+    seat68:
+        row: 3
+        place: 6
+        venueSector: '@venueSector2'
+    seat69:
+        row: 3
+        place: 7
+        venueSector: '@venueSector2'
+    seat70:
+        row: 3
+        place: 8
+        venueSector: '@venueSector2'
+    seat71:
+        row: 3
+        place: 9
+        venueSector: '@venueSector2'
+    seat72:
+        row: 3
+        place: 10
+        venueSector: '@venueSector2'
+    seat73:
+        row: 3
+        place: 11
+        venueSector: '@venueSector2'
+    seat74:
+        row: 3
+        place: 12
+        venueSector: '@venueSector2'
+    seat75:
+        row: 3
+        place: 13
+        venueSector: '@venueSector2'
+    seat76:
+        row: 3
+        place: 14
+        venueSector: '@venueSector2'
+    seat77:
+        row: 3
+        place: 15
+        venueSector: '@venueSector2'
+    seat78:
+        row: 3
+        place: 16
+        venueSector: '@venueSector2'
+    seat79:
+        row: 3
+        place: 17
+        venueSector: '@venueSector2'
+    seat80:
+        row: 3
+        place: 18
+        venueSector: '@venueSector2'
+    seat81:
+        row: 3
+        place: 19
+        venueSector: '@venueSector2'
+    seat82:
+        row: 3
+        place: 20
+        venueSector: '@venueSector2'

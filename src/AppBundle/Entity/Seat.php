@@ -97,7 +97,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @return int
      */
-    public function getRow(): int
+    public function getRow()
     {
         return $this->row;
     }
@@ -105,7 +105,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @param int $row
      */
-    public function setRow(int $row)
+    public function setRow($row)
     {
         $this->row = $row;
     }
@@ -113,7 +113,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @return int
      */
-    public function getPlace(): int
+    public function getPlace()
     {
         return $this->place;
     }
@@ -121,7 +121,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @param int $place
      */
-    public function setPlace(int $place)
+    public function setPlace($place)
     {
         $this->place = $place;
     }

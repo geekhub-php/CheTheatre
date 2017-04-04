@@ -184,7 +184,7 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @param string $places
      */
-    public function setPlaces(string $places)
+    public function setPlaces($places)
     {
         $this->places = $places;
     }

@@ -2,9 +2,11 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\PriceCategory;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
@@ -122,5 +124,88 @@ class PerformanceEventAdmin extends Admin
             ->add('performance')
             ->add('venue')
         ;
+    }
+
+    public function preUpdate($object)
+    {
+        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        $categories = $em->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $object]);
+        $venue = $object->getVenue()->getTitle();
+
+        /** @var PriceCategory $category*/
+
+        foreach ($categories as $category) {
+            self::getRows($venue, $category->getRows(), $category->getVenueSector(), $category->getPlaces());
+        }
+    }
+
+    private function getSeat($venue, $row, $venueSector, $place = null)
+    {
+        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        if ($place === null) {
+            $seat = $em->getRepository('AppBundle:Seat')->findBy([
+                'row' => $row,
+                'venueSector' => $venueSector,
+            ]);
+            if (!$seat) {
+                $this->getRequest()->getSession()->getFlashBag()
+                    ->add(
+                        'error',
+                        "Помилка. В залi $venue немає $row ряда в секторі $venueSector!"
+                    );
+                throw new ModelManagerException('Error!');
+            }
+        }
+        if ($place !== null) {
+            $seat = $em->getRepository('AppBundle:Seat')->findOneBy([
+                'row' => $row,
+                'place' => $place,
+                'venueSector' => $venueSector,
+            ]);
+            if (!$seat) {
+                $this->getRequest()->getSession()->getFlashBag()
+                    ->add(
+                        'error',
+                        "Помилка. В залi $venue немає $row - $place в секторі $venueSector!"
+                    );
+                throw new ModelManagerException('Error!');
+            }
+        }
+    }
+
+    private function getPlaces($venue, $row, $venueSector, $strPlaces)
+    {
+        if ($strPlaces === null) {
+            self::getSeat($venue, $row, $venueSector);
+            return;
+        }
+        $dataPlaces = explode(',', $strPlaces);
+        foreach ($dataPlaces as $places) {
+            if (substr_count($places, '-') === 1) {
+                list($begin, $end) = explode('-', $places);
+                for ($place = $begin; $place <= $end; $place++) {
+                    self::getSeat($venue, $row, $venueSector, $place);
+                }
+            }
+            if (substr_count($places, '-') === 0) {
+                self::getSeat($venue, $row, $venueSector, $places);
+            }
+        }
+    }
+
+    private function getRows($venue, $strRows, $venueSector, $strPlaces)
+    {
+        $dataRows = explode(',', $strRows);
+        foreach ($dataRows as $rows) {
+            if (substr_count($rows, '-') === 1) {
+                list($begin, $end) = explode('-', $rows);
+                for ($row = $begin; $row <= $end; $row++) {
+                    self::getPlaces($venue, $row, $venueSector, $strPlaces);
+                }
+            }
+            if (substr_count($rows, '-') === 0) {
+                self::getPlaces($venue, $rows, $venueSector, $strPlaces);
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ class AdminPriceCategoryControllerTest extends AbstractAdminController
 {
     public function testPriceCategoryCreateAction()
     {
-        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([]);
+        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy(['venue' => '1']);
 
         $this->request('/admin/PriceCategory/create?performanceEvent_id='.$performanceEvent->getId(), 'GET', 302);
 
