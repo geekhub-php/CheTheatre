@@ -305,6 +305,11 @@ class CustomerControllerTest extends AbstractController
     public function testlogoutSuccessApiKeyToken()
     {
         $client = $this->getClient();
+        $customer = $this->getEm()
+            ->getRepository('AppBundle:Customer')
+            ->findOneBy(['apiKey'=>'token_58e2a426dcddd']);
+
+        self::assertNotNull(null, $customer);
         $client->request(
             'GET',
             '/customers/logout',

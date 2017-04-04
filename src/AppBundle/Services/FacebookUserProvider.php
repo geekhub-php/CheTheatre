@@ -55,7 +55,7 @@ class FacebookUserProvider
             $errors = $this->validator->validate($userFacebook);
 
             if (count($errors) > 0) {
-                throw new HttpException(400, 'Social validation error');
+                throw new HttpException(400, 'Social response validation error');
             }
 
             return $userFacebook;

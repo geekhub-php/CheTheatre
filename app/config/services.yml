@@ -59,7 +59,7 @@ services:
 
     customer_login:
         class: AppBundle\Services\CustomerLogin
-        arguments: ["@doctrine", "@facebook_user_provider", "@validator"]
+        arguments: ["@doctrine", "@validator", "@serializer", "@facebook_user_provider"]
 
     facebook_user_provider:
         class: AppBundle\Services\FacebookUserProvider
