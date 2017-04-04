@@ -1,0 +1,23 @@
+parameters:
+    app.entity.performance_event.class:     AppBundle\Entity\PerformanceEvent
+    app.entity.seat.class:                  AppBundle\Entity\Seat
+    app.entity.ticket.class:                AppBundle\Entity\Ticket
+
+services:
+    app.repository.performance_event:
+        class: AppBundle\Repository\PerformanceEventRepository
+        factory: doctrine.orm.default_entity_manager:getRepository
+        arguments:
+            - %app.entity.performance_event.class%
+
+    app.repository.seat:
+        class: AppBundle\Repository\SeatRepository
+        factory: doctrine.orm.default_entity_manager:getRepository
+        arguments:
+            - %app.entity.seat.class%
+
+    app.repository.ticket:
+        class: AppBundle\Repository\TicketRepository
+        factory: doctrine.orm.default_entity_manager:getRepository
+        arguments:
+            - %app.entity.ticket.class%
