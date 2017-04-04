@@ -7,27 +7,34 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use JMS\Serializer\Serializer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 class FacebookUserProvider
 {
     /**
+     * @var Serializer
+     */
+    protected $serializer;
+
+    /**
      * @var RecursiveValidator
      */
     protected $validator;
 
-    protected $serializer;
-
-    public function __construct(RecursiveValidator $validator, Serializer $serializer)
+    /**
+     * @param Serializer         $serializer
+     * @param RecursiveValidator $validator
+     */
+    public function __construct(Serializer $serializer, RecursiveValidator $validator)
     {
-        $this->validator = $validator;
         $this->serializer = $serializer;
+        $this->validator = $validator;
     }
+
     /**
      * @param string $accessToken
      *
-     * @return 
+     * @return FacebookResponse
      */
     public function getUser($accessToken)
     {
@@ -40,8 +47,6 @@ class FacebookUserProvider
                     'fields' => 'id, email, first_name, last_name', ],
                 ]
             );
-            // todo: Add validation facebook response
-//            $userFacebook = json_decode($result->getBody(), true);
             $userFacebook = $this->serializer->deserialize(
                 $result->getBody(),
                 FacebookResponse::class,
@@ -50,9 +55,7 @@ class FacebookUserProvider
             $errors = $this->validator->validate($userFacebook);
 
             if (count($errors) > 0) {
-                $errorsString = (string) $errors;
-
-                throw new ValidatorException(sprintf('There are errors "%s"', $errorsString));
+                throw new HttpException(400, 'Social response validation error');
             }
 
             return $userFacebook;

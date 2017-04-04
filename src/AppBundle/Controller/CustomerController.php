@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Customer;
 use AppBundle\Model\CustomerResponse;
+use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,32 +16,28 @@ class CustomerController extends Controller
 {
     /**
      * @param Request $request
-     *
-     * @return CustomerResponse
+     * @Post("/customers/login/new")
+     * @return CustomerResponse|View
      */
     public function newAction(Request $request)
     {
         $apiKey = $request->headers->get('API-Key-Token');
         $user = $this->getUser();
-
         if (!$user && !$apiKey) {
             $customer = $this->get('customer_login')
                 ->newCustomer();
-
             return new CustomerResponse($customer);
         }
-
         $response = [
             '401' => 'Invalid API-Key-Token',
         ];
-
         return View::create($response, 401);
     }
 
     /**
      * @param Request $request
-     *
-     * @return CustomerResponse
+     * @Post("/customers/login/update")
+     * @return View
      */
     public function updateAction(Request $request)
     {
@@ -50,36 +46,45 @@ class CustomerController extends Controller
                 $request->headers->get('API-Key-Token'),
                 $request->getContent()
             );
-        if ($customer) {
-            return new CustomerResponse($customer);
-        }
 
-        $response = [
-            '401' => 'invalid first_name, last_name, email',
-        ];
+        $customerResponse = new CustomerResponse($customer);
 
-        return View::create($response, 401);
+        return View::create($customerResponse);
     }
 
     /**
      * @param Request $request
-     *
+     * @Post("/customers/login/social")
+     * @return View
+     */
+    public function loginSocialAction(Request $request)
+    {
+        $customer = $this->get('customer_login')
+            ->loginSocialNetwork(
+                $request->headers->get('API-Key-Token'),
+                $request->getContent()
+            );
+
+        $customerResponse = new CustomerResponse($customer);
+
+        return View::create($customerResponse);
+    }
+
+    /**
+     * @param Request $request
      * @return View
      */
     public function logoutAction(Request $request)
     {
         $apiKeyHead = $request->headers->get('API-Key-Token');
-
         $response = [
             '204' => 'Successful operation',
         ];
-
         $em = $this->getDoctrine()->getManager();
         $customer = $em->getRepository('AppBundle:Customer')
             ->findOneBy(['apiKey' => $apiKeyHead]);
         $customer->setApiKey(null);
         $em->flush();
-
         return View::create($response, 204);
     }
 }

@@ -35,16 +35,6 @@ logout_customer:
     resource: AppBundle\Controller\CustomerController
     methods: [POST]
 
-update_customer:
-    type: rest
-    resource: AppBundle\Controller\CustomerController
-    methods: [POST]
-
-new_customer:
-    type: rest
-    resource: AppBundle\Controller\CustomerController
-    methods: [POST]
-
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
