@@ -44,7 +44,9 @@ security:
     access_control:
             - { path: ^%admin_dashboard_base_url%/, roles: ROLE_SUPER_ADMIN }
 
-            - { path: .*/customers/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: .*/customers/login/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: .*/customers/login/update, roles: ROLE_API }
+            - { path: .*/customers/login/social, roles: ROLE_API }
             - { path: .*/customers/logout, roles: ROLE_API }
             - { path: .*/orders, roles: ROLE_API }
             - { path: .*/tickets/.*/free, roles: ROLE_API }

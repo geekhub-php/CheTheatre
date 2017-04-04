@@ -2,7 +2,7 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Model\CustomerResponse;
+use AppBundle\Model\CustomerRequest;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use AppBundle\Entity\Customer;
 use JMS\Serializer\Serializer;
@@ -42,8 +42,7 @@ class CustomerLogin
         RecursiveValidator $validator,
         Serializer $serializer,
         FacebookUserProvider $facebookUserProvider
-    )
-    {
+    ) {
         $this->registry = $registry;
         $this->validator = $validator;
         $this->serializer = $serializer;
@@ -61,19 +60,21 @@ class CustomerLogin
         $customer->setApiKey($apiKey);
         $this->registry->getManager()->persist($customer);
         $this->registry->getManager()->flush();
+
         return $customer;
     }
 
     /**
      * @param string $apiKey
      * @param array  $content
+     *
      * @return Customer
      */
     public function updateCustomer($apiKey, $content)
     {
         $serializer = $this->serializer;
-        $user = $serializer->deserialize($content, 'AppBundle\Model\UpdateCustomerRequest', 'json');
-        $errors = $this->validator->validate($user);
+        $user = $serializer->deserialize($content, 'AppBundle\Model\CustomerRequest', 'json');
+        $errors = $this->validator->validate($user, 'update');
         if (count($errors) > 0) {
             throw new HttpException(400, 'Validation error');
         }
@@ -84,19 +85,21 @@ class CustomerLogin
         $customer->setLastName($user->getLastName());
         $customer->setEmail($user->getEmail());
         $this->registry->getManager()->flush();
+
         return $customer;
     }
 
     /**
      * @param string $apiKey
      * @param array  $content
+     *
      * @return Customer
      */
     public function loginSocialNetwork($apiKey, $content)
     {
         $customer = $this->serializer->deserialize(
             $content,
-            CustomerResponse::class,
+            CustomerRequest::class,
             'json'
         );
 

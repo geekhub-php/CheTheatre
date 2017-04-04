@@ -19,7 +19,7 @@ class CustomerController extends Controller
      * @Post("/customers/login/new")
      * @return CustomerResponse|View
      */
-    public function newAction(Request $request)
+    public function loginNewAction(Request $request)
     {
         $apiKey = $request->headers->get('API-Key-Token');
         $user = $this->getUser();
@@ -39,7 +39,7 @@ class CustomerController extends Controller
      * @Post("/customers/login/update")
      * @return View
      */
-    public function updateAction(Request $request)
+    public function loginUpdateAction(Request $request)
     {
         $customer = $this->get('customer_login')
             ->updateCustomer(
@@ -85,6 +85,7 @@ class CustomerController extends Controller
             ->findOneBy(['apiKey' => $apiKeyHead]);
         $customer->setApiKey(null);
         $em->flush();
+        //return $response;
         return View::create($response, 204);
     }
 }
