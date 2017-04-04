@@ -38,8 +38,8 @@ class TicketsControllerTest extends AbstractApiController
         self::assertArrayHasKey('performance_event_id', $content);
         self::assertArrayHasKey('id', $content);
         self::assertArrayHasKey('price_category_id', $content);
-        self::assertArrayHasKey('set_date', $content);
-        self::assertArrayHasKey('set_number', $content);
+        self::assertArrayHasKey('series_date', $content);
+        self::assertArrayHasKey('series_number', $content);
         self::assertArrayHasKey('status', $content);
         self::assertArrayHasKey('price', $content);
         self::assertArrayHasKey('seat', $content);
