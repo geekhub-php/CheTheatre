@@ -22,7 +22,10 @@ class TicketsController extends Controller
      */
     public function getAction(Ticket $id)
     {
-        return $id;
+        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
+        $ticket = $id;
+
+        return $ticket;
     }
 
     /**
@@ -32,8 +35,11 @@ class TicketsController extends Controller
      */
     public function freeAction(Ticket $id)
     {
+        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
+        $ticket = $id;
+
         $em = $this->getDoctrine()->getManager();
-        $id->setStatus(Ticket::STATUS_FREE);
+        $ticket->setStatus(Ticket::STATUS_FREE);
         $em->flush();
     }
 
@@ -44,8 +50,11 @@ class TicketsController extends Controller
      */
     public function reserveAction(Ticket $id)
     {
+        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
+        $ticket = $id;
+
         $em = $this->getDoctrine()->getManager();
-        $id->setStatus(Ticket::STATUS_BOOKED);
+        $ticket->setStatus(Ticket::STATUS_BOOKED);
         $em->flush();
     }
 }
