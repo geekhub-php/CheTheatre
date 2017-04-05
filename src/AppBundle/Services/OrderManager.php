@@ -37,7 +37,7 @@ class OrderManager
         /** @var CustomerOrderRepository $repository */
         $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
         //$customer = $this->tokenStorage->getToken()->getUser();
-        $customer = $em->getRepository('AppBundle:Customer')->find(1);
+        $customer = $em->getRepository('AppBundle:Customer')->findOneBy([]);
         $order = $customerOrderRepository->findLastOpenOrder($customer);
 
         /**

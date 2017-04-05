@@ -41,7 +41,7 @@ class TicketsController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $ticket->setStatus(Ticket::STATUS_FREE);
-        //$this->get('app.order.manager')->removeOrderFromTicket($ticket);
+        $this->get('app.order.manager')->removeOrderFromTicket($ticket);
         $em->flush();
     }
 
@@ -60,7 +60,7 @@ class TicketsController extends Controller
             throw new TicketStatusConflictException('Ticket is already booked');
         }
         $ticket->setStatus(Ticket::STATUS_BOOKED);
-        //$this->get('app.order.manager')->addOrderToTicket($ticket);
+        $this->get('app.order.manager')->addOrderToTicket($ticket);
         $em->flush();
     }
 }
