@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Exception\TicketStatusConflictException;
+use AppBundle\Services\OrderManager;
 use Faker\Provider\DateTime;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
@@ -28,7 +29,8 @@ class TicketsController extends Controller
      */
     public function getAction(Ticket $id)
     {
-        return $id;
+        $ticket = $id;
+        return $ticket;
     }
 
     /**
@@ -38,8 +40,11 @@ class TicketsController extends Controller
      */
     public function freeAction(Ticket $id)
     {
+        $ticket = $id;
         $em = $this->getDoctrine()->getManager();
-        $id->setStatus(Ticket::STATUS_FREE);
+        $ticket->setStatus(Ticket::STATUS_FREE);
+        /** @var OrderManager $orderManager */
+        $this->get('app.order.manager')->removeOrderToTicket($ticket);
         $em->flush();
     }
 
@@ -50,13 +55,16 @@ class TicketsController extends Controller
      */
     public function reserveAction(Ticket $id)
     {
+        $ticket = $id;
         $em = $this->getDoctrine()->getManager();
 
-        if ($id->getStatus() === Ticket::STATUS_BOOKED) {
+        if ($ticket->getStatus() === Ticket::STATUS_BOOKED) {
             throw new TicketStatusConflictException('Ticket is already booked');
         }
 
-        $id->setStatus(Ticket::STATUS_BOOKED);
+        $ticket->setStatus(Ticket::STATUS_BOOKED);
+        /** @var OrderManager $orderManager */
+        $this->get('app.order.manager')->addOrderToTicket($ticket);
         $em->flush();
     }
 }
