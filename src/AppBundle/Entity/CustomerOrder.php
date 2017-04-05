@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\TimestampableTrait;
-use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Ramsey\Uuid\Uuid;
@@ -47,13 +47,10 @@ class CustomerOrder
     protected $tickets;
 
     /**
-     * @var Enum
+     * @var string
      * @Assert\Choice(callback="getStatuses")
-     * @ORM\Column(
-     *     name="status",
-     *     type="string",
-     *     columnDefinition="enum('free', 'booked', 'ordered', 'opened', 'closed')"
-     * )
+     * @ORM\Column(name="status", type="string", length=15)
+     * @Serializer\Type("string")
      * @Expose()
      */
     protected $status;
@@ -78,7 +75,7 @@ class CustomerOrder
     /**
      * @return Uuid
      */
-    public function getId()
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -93,32 +90,41 @@ class CustomerOrder
 
     /**
      * @param Ticket[]|ArrayCollection $tickets
+     *
+     * @return CustomerOrder
      */
     public function setTickets($tickets)
     {
         $this->tickets = $tickets;
+
+        return $this;
     }
 
     /**
-     * @return Enum
+     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param Enum $status
+     * @param String $status
+     *
+     * @return CustomerOrder
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
      * Add Ticket
      *
      * @param Ticket $ticket
+     *
      * @return CustomerOrder
      */
     public function addTicket(Ticket $ticket)
@@ -133,6 +139,8 @@ class CustomerOrder
 
     /**
      * @param Ticket $ticket
+     *
+     * @return CustomerOrder
      */
     public function removeTicket(Ticket $ticket)
     {
@@ -140,12 +148,14 @@ class CustomerOrder
             throw new \InvalidArgumentException('Order already pai. Impossible to remove the ticket.');
         }
         $this->tickets->removeElement($ticket);
+
+        return $this;
     }
 
     /**
      * @return bool
      */
-    private function isStatusPaid()
+    private function isStatusPaid(): bool
     {
         return $this->status === self::STATUS_PAID;
     }
@@ -153,7 +163,7 @@ class CustomerOrder
     /**
      * @return array
      */
-    public static function getStatuses()
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_OPENED,

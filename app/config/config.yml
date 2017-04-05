@@ -1,4 +1,5 @@
 imports:
+    - { resource: @AppBundle/Resources/config/config.yml }
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
@@ -61,11 +62,14 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        server_version: 5.7
         charset:  UTF8
         server_version: 5.7
         types:
             json: Sonata\Doctrine\Types\JsonType
             uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
+        mapping_types:
+            enum: string
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"

@@ -20,12 +20,6 @@ class OrderManager
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function addOrderToTicket(Ticket $ticket)
-    {
-        $order = $this->getCustomerOrder();
-        $ticket->setCustomerOrder($order);
-    }
-
     public function removeOrderToTicket(Ticket $ticket)
     {
         $ticket->setCustomerOrder(null);
@@ -34,7 +28,7 @@ class OrderManager
     /**
      * @return CustomerOrder
      */
-    private function getCustomerOrder(): CustomerOrder
+    public function getCustomerOrder(): CustomerOrder
     {
         $em = $this->doctrine->getEntityManager();
         /** @var CustomerOrderRepository $customerOrderRepository */
