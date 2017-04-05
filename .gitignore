@@ -22,3 +22,4 @@ web/uploads/*
 *~
 /node_modules/
 /bower_components/
+coverage.clover

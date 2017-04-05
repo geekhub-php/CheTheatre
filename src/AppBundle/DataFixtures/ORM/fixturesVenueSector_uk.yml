@@ -2,21 +2,28 @@ AppBundle\Entity\VenueSector:
     venueSector1:
         title: 'Партер'
         venue: '@venue1'
+        slug: 'parterre'
     venueSector2:
         title: 'Партер'
         venue: '@venue2'
+        slug: 'parterre'
     venueSector3:
         title: 'Партер'
         venue: '@venue3'
+        slug: 'parterre'
     venueSector4:
         title: 'Партер'
         venue: '@venue4'
+        slug: 'parterre'
     venueSector5:
         title: 'Партер'
         venue: '@venue5'
+        slug: 'parterre'
     venueSector6:
         title: 'Балкон'
         venue: '@venue1'
+        slug: 'balcony'
     venueSector7:
         title: 'Балкон'
         venue: '@venue5'
+        slug: 'balcony'
