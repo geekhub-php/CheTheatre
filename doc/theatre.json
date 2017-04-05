@@ -1086,13 +1086,47 @@
                 }
             }
         },
-        "/customers/login": {
+        "/customers/login/new": {
             "post": {
-                "operationId": "login_customer",
+                "operationId": "login_customer_new",
                 "tags": [
                     "customers"
                 ],
-                "summary": "Login/Signup customer into the system",
+                "summary": "Create new customer (anonymous)",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "customer": {
+                                    "$ref": "#/definitions/Customer"
+                                },
+                                "api_key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/customers/login/update": {
+            "post": {
+                "operationId": "login_customer_update",
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Update customer",
                 "produces": [
                     "application/json"
                 ],
@@ -1108,7 +1142,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Login/Signup customer data",
+                        "description": "Customer data",
                         "schema": {
                             "type": "object",
                             "title": "CustomerLogin",
@@ -1121,7 +1155,62 @@
                                 },
                                 "last_name": {
                                     "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "customer": {
+                                    "$ref": "#/definitions/Customer"
                                 },
+                                "api_key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/customers/login/social": {
+            "post": {
+                "operationId": "login_customer_social",
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Customer social login",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": false,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Customer data",
+                        "schema": {
+                            "type": "object",
+                            "title": "CustomerLogin",
+                            "properties": {
                                 "social_network": {
                                     "type": "string"
                                 },
@@ -1141,20 +1230,17 @@
                                 "customer": {
                                     "$ref": "#/definitions/Customer"
                                 },
-                                "api_key_token": {
+                                "api_key": {
                                     "type": "string"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "Validation error"
+                        "description": "Validation error / Socia response validation error / Social login error"
                     },
                     "401": {
-                        "description": "Invalid email/password/socialUserId/accessToken"
-                    },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Invalid credentials"
                     }
                 }
             }

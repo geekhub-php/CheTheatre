@@ -2,7 +2,7 @@
 
 namespace AppBundle\Domain\PerformanceEvent;
 
-use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\PerformanceEvent as PerformanceEventEntity;
 use AppBundle\Exception\NotFoundException;
 
 interface PerformanceEventInterface
@@ -12,8 +12,8 @@ interface PerformanceEventInterface
      *
      * @param int $id
      *
-     * @return PerformanceEvent
+     * @return PerformanceEventEntity
      * @throws NotFoundException
      */
-    public function getById(int $id): PerformanceEvent;
+    public function getById(int $id): PerformanceEventEntity;
 }

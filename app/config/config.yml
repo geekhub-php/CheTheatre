@@ -144,7 +144,8 @@ nelmio_api_doc:
 
 fos_rest:
     param_fetcher_listener: true
-    body_listener: true
+    body_listener:
+        array_normalizer: fos_rest.normalizer.camel_keys
     format_listener: true
     routing_loader:
         default_format: json
@@ -155,6 +156,9 @@ fos_rest:
             xml: true
             yml: false
             html: false
+    exception:
+        enabled: true
+        exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 sensio_framework_extra:
     view:

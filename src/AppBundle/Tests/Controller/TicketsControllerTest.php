@@ -3,10 +3,60 @@
 namespace AppBundle\Tests\Controller;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Entity\Customer;
 
 class TicketsControllerTest extends AbstractApiController
 {
     const FAKE_TICKET_ID = '550e8400-e29b-41d4-a716-446655440000';
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_11111111')
+            ->getQuery()
+            ->execute();
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_22222222')
+            ->getQuery()
+            ->execute();
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Customer', 'c')
+            ->where('c.apiKey = :apiKey')
+            ->setParameter('apiKey', 'token_33333333')
+            ->getQuery()
+            ->execute();
+
+        $customer1 = new Customer();
+        $customer1
+            ->setUsername('customer')
+            ->setApiKey('token_11111111');
+        $customer2 = new Customer();
+        $customer2
+            ->setUsername('customer')
+            ->setApiKey('token_22222222')
+            ->setFacebookId('fb_id_22222222');
+        $customer3 = new Customer();
+        $customer3
+            ->setUsername('customer')
+            ->setApiKey('token_33333333');
+
+        $this->getEm()->persist($customer1);
+        $this->getEm()->persist($customer2);
+        $this->getEm()->persist($customer3);
+        $this->getEm()->flush();
+    }
 
     public function testGetTicketsId()
     {
@@ -19,7 +69,7 @@ class TicketsControllerTest extends AbstractApiController
     {
         $id = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId();
         $headers = [
-            'API-Key-Token' => '802057ff9b5b4eb7fbb8856b6eb2cc5b'
+            'API-Key-Token' => 'token_11111111'
         ];
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/free', 'PATCH', 404, $headers);
