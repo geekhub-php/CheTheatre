@@ -60,9 +60,12 @@ class GenerateTicketsCommand extends ContainerAwareCommand
             $performanceEventId = (int) $input->getArgument('performanceEventId') ?: null;
             $force = (bool) $input->getOption('force')  ? true : false;
 
-            $this->ticketService->generateSet($this->performanceEventService->getById($performanceEventId), $force);
+            $numberOfTickets = $this->ticketService->generateSet(
+                $this->performanceEventService->getById($performanceEventId),
+                $force
+            );
 
-            $output->writeln(sprintf('<info>SUCCESS</info>'));
+            $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', $numberOfTickets));
         } catch (\Exception $e) {
             $output->writeln('<error>ERROR Generating Tickets: '.$e->getMessage().'</error>');
         } finally {

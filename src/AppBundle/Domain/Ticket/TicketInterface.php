@@ -12,6 +12,8 @@ interface TicketInterface
      * @param PerformanceEvent $performanceEvent
      * @param bool $force
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     *
+     * @return int
      */
     public function generateSet(PerformanceEvent $performanceEvent, bool $force = false);
 
