@@ -68,7 +68,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => '',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "",
@@ -93,7 +93,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "john.doe@example.com",
@@ -139,7 +139,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "",
@@ -182,7 +182,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_33333333',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "",
@@ -209,7 +209,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111_invalid',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "",
@@ -233,7 +233,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "john.doe111example.com",
@@ -267,7 +267,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ],
             '{
                 "email": "",
@@ -291,7 +291,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111_invalid',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ]
         );
 
@@ -318,7 +318,7 @@ class CustomerControllerTest extends AbstractController
 
         $customer = $this->getEm()
             ->getRepository('AppBundle:Customer')
-            ->findOneBy(['apiKey'=>'token_11111111']);
+            ->findOneBy(['apiKey' => 'token_11111111']);
         self::assertNotNull($customer->getApiKey());
 
         $client->request(
@@ -328,15 +328,14 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ]
         );
         $customer = $this->getEm()
             ->getRepository('AppBundle:Customer')
-            ->findOneBy(['apiKey'=>'token_11111111']);
+            ->findOneBy(['apiKey' => 'token_11111111']);
         self::assertEquals(null, $customer);
         self::assertEquals(204, $client->getResponse()->getStatusCode());
-
         $client->request(
             'POST',
             '/customers/logout',
@@ -344,7 +343,7 @@ class CustomerControllerTest extends AbstractController
             [],
             [
                 'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json'
+                'CONTENT_TYPE' => 'application/json',
             ]
         );
         self::assertEquals(401, $client->getResponse()->getStatusCode());

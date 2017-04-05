@@ -42,9 +42,11 @@ class FacebookUserProvider
             $client = new Client();
             $result = $client->get(
                 'https://graph.facebook.com/v2.8/me',
-                ['query' => [
-                    'access_token' => $accessToken,
-                    'fields' => 'id, email, first_name, last_name', ],
+                ['query' => ['access_token' => $accessToken,
+                 'fields' => 'id, 
+                 email, first_name, 
+                 last_name',
+                ],
                 ]
             );
             $userFacebook = $this->serializer->deserialize(

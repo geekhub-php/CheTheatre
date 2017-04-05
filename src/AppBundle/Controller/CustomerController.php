@@ -86,7 +86,6 @@ class CustomerController extends Controller
             ->findOneBy(['apiKey' => $apiKeyHead]);
         $customer->setApiKey(null);
         $em->flush();
-
         return View::create($response, 204);
     }
 }
