@@ -1563,6 +1563,7 @@
                 },
                 "venue_sector_id": {
                     "type": "integer"
+                },
                 "venue_sector": {
                     "$ref": "#/definitions/VenueSector"
                 }
