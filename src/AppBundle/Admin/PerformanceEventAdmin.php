@@ -18,6 +18,7 @@ class PerformanceEventAdmin extends Admin
         '_sort_order' => 'DESC',
         '_sort_by'    => 'dateTime',
     ];
+    protected $seatPrice = [];
 
     /**
      * @param RouteCollection $collection
@@ -126,7 +127,7 @@ class PerformanceEventAdmin extends Admin
         ;
     }
 
-    public function preUpdate($object)
+    public function postUpdate($object)
     {
         $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
         $categories = $em->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $object]);
@@ -148,12 +149,19 @@ class PerformanceEventAdmin extends Admin
                 'venueSector' => $venueSector,
             ]);
             if (!$seat) {
-                $this->getRequest()->getSession()->getFlashBag()
+                $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('session')
+                    ->getFlashBag()
                     ->add(
                         'error',
                         "Помилка. В залi $venue немає $row ряда в секторі $venueSector!"
                     );
-                throw new ModelManagerException('Error!');
+                throw new ModelManagerException('Error row!');
+            }
+            foreach ($seat as $placeAllInRow) {
+                self::validateSeat($row, $placeAllInRow->getPlace(), $venueSector);
             }
         }
         if ($place !== null) {
@@ -163,13 +171,18 @@ class PerformanceEventAdmin extends Admin
                 'venueSector' => $venueSector,
             ]);
             if (!$seat) {
-                $this->getRequest()->getSession()->getFlashBag()
+                $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('session')
+                    ->getFlashBag()
                     ->add(
                         'error',
                         "Помилка. В залi $venue немає $row - $place в секторі $venueSector!"
                     );
-                throw new ModelManagerException('Error!');
+                throw new ModelManagerException('Error row-place!');
             }
+            self::validateSeat($row, $place, $venueSector);
         }
     }
 
@@ -207,5 +220,26 @@ class PerformanceEventAdmin extends Admin
                 self::getPlaces($venue, $rows, $venueSector, $strPlaces);
             }
         }
+    }
+
+    private function validateSeat($row, $place, $venueSector)
+    {
+        $seats = $this->seatPrice;
+        foreach ($seats as $key) {
+            if ($key === $row.'-'.$place) {
+                $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('session')
+                    ->getFlashBag()
+                    ->add(
+                        'error',
+                        "Помилка. $row - $place в секторі $venueSector вже має цiну!"
+                    );
+                throw new ModelManagerException('Error row-place price!');
+            }
+        }
+        $seats[]= $row.'-'.$place;
+        $this->seatPrice = $seats;
     }
 }

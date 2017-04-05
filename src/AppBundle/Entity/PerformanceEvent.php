@@ -369,7 +369,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      */
     public function setPriceCategories($priceCategory)
     {
-        $this->priceCategories = $priceCategory;
+        $this->priceCategories[] = $priceCategory;
     }
 
     /**
