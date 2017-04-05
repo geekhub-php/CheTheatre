@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
-use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -37,7 +36,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
      * @Type("string")
      * @Expose()
      */
@@ -58,7 +56,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @var Venue
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="venueSectors")
-     *
      * @Type("AppBundle\Entity\Venue")
      * @Expose()
      */
@@ -74,6 +71,13 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * )
      */
     protected $seats;
+
+    /**
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
+     * @Expose
+     */
+    private $slug;
 
     /**
      * VenueSector constructor.
@@ -154,6 +158,29 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     public function getSeat()
     {
         return $this->seats;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string      $slug
+     * @return VenueSector
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**

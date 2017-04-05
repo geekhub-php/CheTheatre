@@ -175,7 +175,7 @@ class PerformanceEventsController extends Controller
 
     /**
      * @Get(requirements={"performanceEvent" = "\d+"})
-     * @RestView(serializerGroups={"cget_ticket"})
+     * @RestView(serializerGroups={"get_ticket"})
      * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      */
     public function cgetTicketsAction(PerformanceEvent $performanceEvent)

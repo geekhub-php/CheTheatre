@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\TimestampableTrait;
-use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -33,7 +32,7 @@ class Ticket
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose
      */
@@ -42,31 +41,31 @@ class Ticket
     /**
      * @var \DateTime
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Column(name="series_date", type="datetime", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
-     * @Type("datetime")
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("DateTime")
      * @Expose
      */
-    private $setDate;
+    private $seriesDate;
 
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=10,  nullable=false)
+     * @ORM\Column(name="series_number", type="string", length=10, nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose
      */
-    private $setNumber;
+    private $seriesNumber;
 
     /**
      * @var integer
      * @Assert\NotBlank()
      * @ORM\Column(type="integer", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose
      */
@@ -78,7 +77,7 @@ class Ticket
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Seat", fetch="EAGER")
      * @ORM\JoinColumn(name="seat_id", referencedColumnName="id", nullable=false)
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\Seat")
      * @Expose()
      */
@@ -89,10 +88,7 @@ class Ticket
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent",  fetch="EAGER")
      * @ORM\JoinColumn(name="performance_event_id", referencedColumnName="id", nullable=false)
-     *
-     * @Serializer\Groups({"get_ticket"})
      * @Type("AppBundle\Entity\PerformanceEvent")
-     * @Expose()
      */
     protected $performanceEvent;
 
@@ -100,14 +96,16 @@ class Ticket
      * @var CustomerOrder
      *
      * @ORM\ManyToOne(targetEntity="CustomerOrder", inversedBy="tickets")
+     * @ORM\Column(name="customer_order_id", type="integer", nullable=true)
      */
     protected $customerOrder;
 
     /**
-     * @var Enum
+     * @var string
      * @Assert\Choice(callback="getStatuses")
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('free', 'booked', 'paid', 'offline')")
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @ORM\Column(name="status", type="string", length=15)
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("string")
      * @Expose()
      */
     protected $status;
@@ -117,19 +115,30 @@ class Ticket
      *
      * @param Seat $seat
      * @param PerformanceEvent $performanceEvent
+     * @param int $ticketPrice
+     * @param \DateTime $seriesDate
+     * @param string $seriesNumber
      */
-    public function __construct(Seat $seat, PerformanceEvent $performanceEvent)
-    {
+    public function __construct(
+        Seat $seat,
+        PerformanceEvent $performanceEvent,
+        int $ticketPrice,
+        \DateTime $seriesDate,
+        string $seriesNumber
+    ) {
         $this->id = Uuid::uuid4();
+        $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
-        $this->status = self::STATUS_FREE;
+        $this->price = $ticketPrice;
+        $this->seriesDate = $seriesDate;
+        $this->seriesNumber = $seriesNumber;
     }
 
     /**
-     * @return string
+     * @return Uuid
      */
-    public function getId()
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -137,23 +146,15 @@ class Ticket
     /**
      * @return int
      */
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }
 
     /**
-     * @param int $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
      * @return Seat
      */
-    public function getSeat()
+    public function getSeat(): Seat
     {
         return $this->seat;
     }
@@ -161,31 +162,66 @@ class Ticket
     /**
      * @return PerformanceEvent
      */
-    public function getPerformanceEvent()
+    public function getPerformanceEvent(): PerformanceEvent
     {
         return $this->performanceEvent;
     }
 
     /**
-     * @return Enum
+     * Get PerformanceEvent Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("performance_event_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
      */
-    public function getStatus()
+    public function getPerformanceEventId(): int
+    {
+        return $this->performanceEvent->getId();
+    }
+
+    /**
+     * Get PriceCategory Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("price_category_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
+     */
+    public function getPriceCategoryId(): int
+    {
+        //TODO
+        return 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param Enum|String $status
+     * @param String $status
+     *
+     * @return Ticket
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
      * @return array
      */
-    public static function getStatuses()
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_FREE,
@@ -198,32 +234,16 @@ class Ticket
     /**
      * @return \DateTime
      */
-    public function getSetDate(): \DateTime
+    public function getSeriesDate(): \DateTime
     {
-        return $this->setDate;
-    }
-
-    /**
-     * @param \DateTime $setDate
-     */
-    public function setSetDate(\DateTime $setDate)
-    {
-        $this->setDate = $setDate;
+        return $this->seriesDate;
     }
 
     /**
      * @return string
      */
-    public function getSetNumber(): string
+    public function getSeriesNumber(): string
     {
-        return $this->setNumber;
-    }
-
-    /**
-     * @param string $setNumber
-     */
-    public function setSetNumber(string $setNumber)
-    {
-        $this->setNumber = $setNumber;
+        return $this->seriesNumber;
     }
 }
