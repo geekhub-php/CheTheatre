@@ -97,7 +97,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @return int
      */
-    public function getRow()
+    public function getRow(): int
     {
         return $this->row;
     }
@@ -105,7 +105,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @param int $row
      */
-    public function setRow($row)
+    public function setRow(int $row)
     {
         $this->row = $row;
     }
@@ -113,7 +113,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @return int
      */
-    public function getPlace()
+    public function getPlace(): int
     {
         return $this->place;
     }
@@ -121,7 +121,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @param int $place
      */
-    public function setPlace($place)
+    public function setPlace(int $place)
     {
         $this->place = $place;
     }
@@ -132,5 +132,20 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     public function getVenueSector(): VenueSector
     {
         return $this->venueSector;
+    }
+
+    /**
+     * Get VenueSector Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("venue_sector_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
+     */
+    public function getVenueSectorId(): int
+    {
+        return $this->venueSector->getId();
     }
 }

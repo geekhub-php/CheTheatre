@@ -10,7 +10,7 @@ class StringPathParameterValidator extends AbstractParameterValidator
 {
     /**
      * @param AbstractParameter $parameterDoc
-     * @param string $parameterRequest
+     * @param string|null $parameterRequest
      */
     public function validate(AbstractParameter $parameterDoc, $parameterRequest)
     {

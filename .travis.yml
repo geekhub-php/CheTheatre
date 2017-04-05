@@ -32,6 +32,7 @@ before_script:
   - if [ "$TARGET" = "update" ]; then mysql -u root $DB < ./$DB.sql; fi
 script:
   - if [ "$TARGET" = "update" ]; then app/console doctrine:migrations:migrate -n --env=prod; fi
+  - if [ "$TARGET" = "update" ]; then app/console app:generate-tickets 191 --env=prod; fi
   - if [ "$TARGET" = "phpunit" ]; then bin/phpunit -c app/  --coverage-clover=coverage.clover; fi
   - if [ "$TARGET" = "update" ]; then bin/phpunit -c app/; fi
   - if [ "$TARGET" = "phpunit" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi

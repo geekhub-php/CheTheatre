@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
-use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -37,7 +36,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
      * @Type("string")
      * @Expose()
      */
@@ -76,15 +74,11 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     protected $seats;
 
     /**
-     * @var Collection|PriceCategory[]
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\PriceCategory",
-     *     mappedBy="venueSector",
-     *     cascade={"persist", "remove"}
-     * )
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Type("string")
+     * @Expose
      */
-    protected $priceCategories;
+    private $slug;
 
     /**
      * VenueSector constructor.
@@ -93,7 +87,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     {
         parent::__construct();
         $this->seats = new ArrayCollection();
-        $this->priceCategories = new ArrayCollection();
     }
 
     /**
@@ -169,53 +162,33 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     }
 
     /**
+     * Get slug
+     *
      * @return string
      */
-    public function __toString()
+    public function getSlug()
     {
-        return $this->getTitle();
+        return $this->slug;
     }
 
     /**
-     * @param  PriceCategory $priceCategory
+     * Set slug
+     *
+     * @param  string      $slug
      * @return VenueSector
      */
-    public function addPriceCategory(PriceCategory $priceCategory)
+    public function setSlug($slug)
     {
-        $this->priceCategories[] = $priceCategory;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * @param PriceCategory $priceCategory
+     * @return string
      */
-    public function removePriceCategory(PriceCategory $priceCategory)
+    public function __toString()
     {
-        $this->priceCategories->removeElement($priceCategory);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPriceCategories()
-    {
-        return $this->priceCategories;
-    }
-
-    /**
-     * @param PriceCategory[]|Collection $priceCategory
-     */
-    public function setPriceCategories($priceCategory)
-    {
-        $this->priceCategories = $priceCategory;
-    }
-
-    /**
-     * @param Venue $venue
-     */
-    public function setVenue(Venue $venue)
-    {
-        $this->venue = $venue;
+        return $this->getTitle();
     }
 }
