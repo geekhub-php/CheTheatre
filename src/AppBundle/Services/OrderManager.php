@@ -30,6 +30,7 @@ class OrderManager
     {
         $ticket->setCustomerOrder(null);
     }
+
     private function getCustomerOrder()
     {
         $em = $this->doctrine->getEntityManager();

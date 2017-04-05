@@ -68,7 +68,7 @@ class SwaggerSpecValidator extends \PHPUnit_Framework_Assert
             $statusCode = $response->getStatusCode();
             $this->assertAllowedStatusCode($statusCode, $operation);
 
-            if (!in_array($statusCode, [204, 404, 405])) {
+            if (!in_array($statusCode, [204, 404, 409, 405])) {
                 $this->assertAllowedContentType($response, $operation);
             }
             $this->assertRequest($request, $operation);

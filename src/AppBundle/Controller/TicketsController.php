@@ -3,12 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Exception\TicketStatusConflictException;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * @RouteResource("Ticket")
@@ -40,7 +42,7 @@ class TicketsController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $ticket->setStatus(Ticket::STATUS_FREE);
-        $this->get('app.order.manager')->removeOrderFromTicket($ticket);
+        //$this->get('app.order.manager')->removeOrderFromTicket($ticket);
         $em->flush();
     }
 
@@ -55,8 +57,11 @@ class TicketsController extends Controller
         $ticket = $id;
 
         $em = $this->getDoctrine()->getManager();
+        if ($ticket->getStatus() === Ticket::STATUS_BOOKED) {
+            throw new TicketStatusConflictException('Ticket is already booked');
+        }
         $ticket->setStatus(Ticket::STATUS_BOOKED);
-        $this->get('app.order.manager')->addOrderToTicket($ticket);
+        //$this->get('app.order.manager')->addOrderToTicket($ticket);
         $em->flush();
     }
 }

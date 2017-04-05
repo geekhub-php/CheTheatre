@@ -24,6 +24,7 @@ class TicketsControllerTest extends AbstractApiController
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/free', 'PATCH', 404, $headers);
         $this->request('/tickets/'.$id.'/reserve', 'PATCH', 204, $headers);
+        $this->request('/tickets/'.$id.'/reserve', 'PATCH', 409, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/reserve', 'PATCH', 404, $headers);
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);
     }

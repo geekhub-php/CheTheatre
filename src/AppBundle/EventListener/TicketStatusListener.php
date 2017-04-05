@@ -39,7 +39,6 @@ class TicketStatusListener
         if ($oldStatus === Ticket::STATUS_PAID) {
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
-
     }
 
     /**
