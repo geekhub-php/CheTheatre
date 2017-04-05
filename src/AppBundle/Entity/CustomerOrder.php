@@ -40,7 +40,7 @@ class CustomerOrder
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Ticket",
-     *     mappedBy="object",
+     *     mappedBy="customerOrder",
      *     cascade={"persist", "remove"}
      * )
      */
@@ -56,13 +56,20 @@ class CustomerOrder
     protected $status;
 
     /**
+     * @var Customer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer")
+     */
+    protected $customer;
+
+    /**
      * CustomerOrder constructor.
      */
-    public function __construct()
+    public function __construct(Customer $customer)
     {
-        $this->id = Uuid::uuid4();
         $this->status = self::STATUS_OPENED;
         $this->tickets = new ArrayCollection();
+        $this->customer = $customer;
     }
 
     /**
@@ -152,6 +159,7 @@ class CustomerOrder
     {
         return $this->status === self::STATUS_PAID;
     }
+
     /**
      * @return array
      */
@@ -164,5 +172,29 @@ class CustomerOrder
             self::STATUS_PENDING,
             self::STATUS_REJECTED,
         ];
+    }
+
+    /**
+     * Set customer
+     *
+     * @param Customer $customer
+     *
+     * @return CustomerOrder
+     */
+    public function setCustomer(Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \AppBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }
