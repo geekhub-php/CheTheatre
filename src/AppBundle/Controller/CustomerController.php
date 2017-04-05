@@ -17,7 +17,7 @@ class CustomerController extends Controller
     /**
      * @param Request $request
      * @Post("/customers/login/new")
-     * @return CustomerResponse|View
+     * @return View
      */
     public function loginNewAction(Request $request)
     {
@@ -26,7 +26,8 @@ class CustomerController extends Controller
         if (!$user && !$apiKey) {
             $customer = $this->get('customer_login')
                 ->newCustomer();
-            return new CustomerResponse($customer);
+            $customerResponse = new CustomerResponse($customer);
+            return View::create($customerResponse);
         }
         $response = [
             '401' => 'Invalid API-Key-Token',
@@ -85,7 +86,7 @@ class CustomerController extends Controller
             ->findOneBy(['apiKey' => $apiKeyHead]);
         $customer->setApiKey(null);
         $em->flush();
-        //return $response;
+
         return View::create($response, 204);
     }
 }

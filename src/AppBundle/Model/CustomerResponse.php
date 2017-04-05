@@ -14,8 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CustomerResponse
 {
-    const SOCIAL_NETWORK_FACEBOOK= 'facebook';
-
     /**
      * @var Customer
      *
@@ -32,27 +30,6 @@ class CustomerResponse
      * @Expose
      */
     protected $apiKey;
-
-    /**
-     * @var string
-     *
-     * @Type("string")
-     * @Accessor(getter="getSocialNetwork")
-     * @Assert\NotBlank(groups={"socialNetwork"})
-     * @Assert\Choice(callback="getSocialNetworks", groups={"socialNetwork"})
-     * @Expose
-     */
-    protected $socialNetwork;
-
-    /**
-     * @var string
-     *
-     * @Type("string")
-     * @Accessor(getter="getSocialToken")
-     * @Assert\NotBlank(groups={"socialNetwork"})
-     * @Expose
-     */
-    protected $socialToken;
 
     /**
      * @param Customer $customer
@@ -87,31 +64,5 @@ class CustomerResponse
     public function getApiKey()
     {
         return $this->getCustomer()->getApiKey();
-    }
-
-    /**
-     * @return string
-     */
-    public function getSocialNetwork()
-    {
-        return $this->socialNetwork;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getSocialNetworks()
-    {
-        return [
-            self::SOCIAL_NETWORK_FACEBOOK,
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getSocialToken()
-    {
-        return $this->socialToken;
     }
 }

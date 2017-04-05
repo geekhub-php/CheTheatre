@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Model;
+
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,12 +15,11 @@ use JMS\Serializer\Annotation\Type;
  */
 class CustomerRequest
 {
-    const SOCIAL_NETWORK_FACEBOOK= 'facebook';
-
+    const SOCIAL_NETWORK_FACEBOOK = 'facebook';
 
     /**
      * @var string
-     *  @Type("string")
+     * @Type("string")
      * @Accessor(getter="getFirstName")
      * @Assert\Regex(pattern="/\d/", match=false, groups={"update"})
      * @Assert\Type("string", groups={"update"})
@@ -29,7 +29,7 @@ class CustomerRequest
      * )
      * @Expose
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @var string
@@ -99,7 +99,6 @@ class CustomerRequest
         return $this->firstName;
     }
 
-
     /**
      * Get lastName.
      *
@@ -110,8 +109,6 @@ class CustomerRequest
         return $this->lastName;
     }
 
-
-
     /**
      * Get email.
      *
@@ -121,7 +118,6 @@ class CustomerRequest
     {
         return $this->email;
     }
-
 
     /**
      * @return string
@@ -171,4 +167,3 @@ class CustomerRequest
         return $this->apiKey;
     }
 }
-

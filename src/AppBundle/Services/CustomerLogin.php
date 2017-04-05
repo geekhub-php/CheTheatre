@@ -73,7 +73,7 @@ class CustomerLogin
     public function updateCustomer($apiKey, $content)
     {
         $serializer = $this->serializer;
-        $user = $serializer->deserialize($content, 'AppBundle\Model\CustomerRequest', 'json');
+        $user = $serializer->deserialize($content, CustomerRequest::class, 'json');
         $errors = $this->validator->validate($user, 'update');
         if (count($errors) > 0) {
             throw new HttpException(400, 'Validation error');
