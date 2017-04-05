@@ -4,6 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Customer;
+
 class TicketsControllerTest extends AbstractApiController
 {
     const FAKE_TICKET_ID = '550e8400-e29b-41d4-a716-446655440000';
