@@ -25,6 +25,12 @@ class OrderManager
         $ticket->setCustomerOrder(null);
     }
 
+    public function addOrderToTicket(Ticket $ticket)
+    {
+        $order = $this->getCustomerOrder();
+        $ticket->setCustomerOrder($order);
+    }
+
     /**
      * @return CustomerOrder
      */

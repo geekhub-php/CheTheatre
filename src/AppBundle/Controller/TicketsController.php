@@ -49,11 +49,11 @@ class TicketsController extends Controller
     }
 
     /**
-     * @RestView(statusCode=204)
-     * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @RestView(statusCode=200)
+     * @Get(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
      * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function reserveAction(Ticket $id)
+    public function getAction(Ticket $id)
     {
         //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
         $ticket = $id;
@@ -65,8 +65,7 @@ class TicketsController extends Controller
         }
 
         $ticket->setStatus(Ticket::STATUS_BOOKED);
-        $order = $this->get('app.order.manager')->getCustomerOrder();
-        $ticket->setCustomerOrder($order);
+        $this->get('app.order.manager')->addOrderToTicket($ticket);
         $em->flush();
     }
 }
