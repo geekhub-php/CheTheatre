@@ -49,8 +49,6 @@ services:
 
     app.event.ticket_status:
         class: AppBundle\EventListener\TicketStatusListener
-        arguments:
-          - "@security.token_storage"
         tags:
           - { name: doctrine.event_listener, event: onFlush, connection: default  }
 

@@ -68,8 +68,6 @@ doctrine:
         types:
             json: Sonata\Doctrine\Types\JsonType
             uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
-        mapping_types:
-            enum:       string
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"

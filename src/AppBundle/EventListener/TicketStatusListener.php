@@ -2,24 +2,13 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Exception\TicketStatusConflictException;
-use AppBundle\Repository\CustomerOrderRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\UnitOfWork;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class TicketStatusListener
 {
-    protected $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage)
-    {
-        $this->tokenStorage = $tokenStorage;
-    }
-
     public function onFlush(OnFlushEventArgs $args)
     {
         $em = $args->getEntityManager();
