@@ -40,20 +40,6 @@ class TicketStatusListener
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
 
-        $order = $this->getCustomerOrder($em, $uow);
-
-        /**
-         * Set an order to a ticket
-         *
-         */
-        if ($oldStatus === Ticket::STATUS_FREE && $newStatus === Ticket::STATUS_BOOKED) {
-            $ticket->setCustomerOrder($order);
-            /**
-             * Unset an order from a ticket
-             */
-        } elseif ($oldStatus === Ticket::STATUS_BOOKED && $newStatus === Ticket::STATUS_FREE) {
-            $ticket->setCustomerOrder(null);
-        }
     }
 
     /**
@@ -74,31 +60,5 @@ class TicketStatusListener
             }
             return $entity;
         }
-    }
-
-    /**
-     * Gets order or creating if doesn't exist
-     *
-     * @param EntityManagerInterface $em
-     * @param UnitOfWork $uow
-     * @return CustomerOrder $order
-     */
-    private function getCustomerOrder(EntityManagerInterface $em, UnitOfWork $uow): CustomerOrder
-    {
-        /** @var CustomerOrderRepository $repository */
-        $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
-        //$customer = $this->tokenStorage->getToken()->getUser();
-        $customer = $em->getRepository('AppBundle:Customer')->find(1);
-        $order = $customerOrderRepository->findLastOpenOrder($customer);
-        /**
-         * Creating order if isn't exist
-         */
-        if (!$order) {
-            $order = new CustomerOrder($customer);
-            $ticketMetadata = $em->getClassMetadata(CustomerOrder::class);
-            $em->persist($order);
-            $uow->computeChangeSet($ticketMetadata, $order);
-        }
-        return $order;
     }
 }

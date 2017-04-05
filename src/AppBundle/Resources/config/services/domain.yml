@@ -1,0 +1,16 @@
+services:
+    app.domain.performance_event:
+        class:    AppBundle\Domain\PerformanceEvent\PerformanceEvent
+        arguments:
+           - @app.repository.performance_event
+
+    app.domain.seat:
+        class:    AppBundle\Domain\Seat\Seat
+        arguments:
+            - @app.repository.seat
+
+    app.domain.ticket:
+        class:    AppBundle\Domain\Ticket\Ticket
+        arguments:
+            - @app.repository.ticket
+            - @app.domain.seat
