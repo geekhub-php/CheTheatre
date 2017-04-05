@@ -10,10 +10,6 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20170404104417 extends AbstractMigration
 {
-    protected $venue_sectors = [
-        'venue-philharmonic_parterre' => 1,
-    ];
-
     /**
      * @param Schema $schema
      */
@@ -37,11 +33,6 @@ class Version20170404104417 extends AbstractMigration
         $this->addSql('ALTER TABLE ticket CHANGE status status enum(\'free\', \'booked\', \'paid\', \'offline\')');
     }
 
-    public function postUp(Schema $schema)
-    {
-        $this->addVenueSectors();
-        $this->setVenueIdForVenueSector();
-    }
     /**
      * @param Schema $schema
      */
@@ -63,36 +54,5 @@ class Version20170404104417 extends AbstractMigration
         $this->addSql('ALTER TABLE seat ADD CONSTRAINT FK_3D5C36664319ED49 FOREIGN KEY (priceCategory_id) REFERENCES price_category (id)');
         $this->addSql('CREATE INDEX IDX_3D5C36664319ED49 ON seat (priceCategory_id)');
         $this->addSql('ALTER TABLE ticket CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
-    }
-
-    private function addVenueSectors()
-    {
-        // --------- Cherkasy Philharmonic --------------//
-        $this->connection->insert(
-            'venue_sector',
-            [
-                'title' => 'Партер',
-            ]
-        );
-        $id = $this->connection->lastInsertId();
-        $this->venue_sectors['venue-philharmonic_parterre'] = $id;
-        $this->connection->insert(
-            'venue_sector_translation',
-            [
-                'object_id' => $id,
-                'locale' => 'en',
-                'field' => 'title',
-                'content' => 'Parterre',
-            ]
-        );
-    }
-
-    private function setVenueIdForVenueSector():void
-    {
-        $this->connection->update(
-            'venue_sector',
-            ['venue_id' => 1],
-            ['id' => 1]
-        );
     }
 }
