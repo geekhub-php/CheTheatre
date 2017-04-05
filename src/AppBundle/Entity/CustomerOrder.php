@@ -67,9 +67,10 @@ class CustomerOrder
      */
     public function __construct(Customer $customer)
     {
+        $this->id = Uuid::uuid4();
         $this->status = self::STATUS_OPENED;
-        $this->tickets = new ArrayCollection();
         $this->customer = $customer;
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -159,7 +160,6 @@ class CustomerOrder
     {
         return $this->status === self::STATUS_PAID;
     }
-
     /**
      * @return array
      */
@@ -172,29 +172,5 @@ class CustomerOrder
             self::STATUS_PENDING,
             self::STATUS_REJECTED,
         ];
-    }
-
-    /**
-     * Set customer
-     *
-     * @param Customer $customer
-     *
-     * @return CustomerOrder
-     */
-    public function setCustomer(Customer $customer = null)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \AppBundle\Entity\Customer
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
     }
 }
