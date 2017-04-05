@@ -3,16 +3,15 @@
 namespace AppBundle\Domain\Ticket;
 
 use AppBundle\Domain\Seat\SeatInterface;
-use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\PerformanceEvent as PerformanceEventEntity;
 use AppBundle\Entity\Seat as SeatEntity;
 use AppBundle\Entity\Ticket as TicketEntity;
 use AppBundle\Exception\NotFoundException;
-use AppBundle\Repository\PerformanceEventRepository;
 use AppBundle\Repository\TicketRepository;
 
 class Ticket implements TicketInterface
 {
-    /** @var PerformanceEventRepository */
+    /** @var TicketRepository */
     private $ticketRepository;
 
     /** @var SeatInterface */
@@ -36,9 +35,9 @@ class Ticket implements TicketInterface
      * @inheritdoc
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function generateSet(PerformanceEvent $performanceEvent, bool $force = false)
+    public function generateSet(PerformanceEventEntity $performanceEventEntity, bool $force = false)
     {
-        $seats = $this->seatService->getByVenue($performanceEvent->getVenue());
+        $seats = $this->seatService->getByVenue($performanceEventEntity->getVenue());
 
         // TODO
         // generate only if SET was not generated before
@@ -55,13 +54,13 @@ class Ticket implements TicketInterface
         $tickets = [];
         /** @var SeatEntity $seat */
         foreach ($seats as $seat) {
-            $tickets[] = new TicketEntity($seat, $performanceEvent, $price, $seriesDate, $seriesNumber);
+            $tickets[] = new TicketEntity($seat, $performanceEventEntity, $price, $seriesDate, $seriesNumber);
             $count += 1;
         }
 
         $this->ticketRepository->batchSave($tickets);
 
-        return 'successfully generated '.$count;
+        return $count;
     }
 
     /**
