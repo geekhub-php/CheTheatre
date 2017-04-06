@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -115,6 +116,38 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     private $time;
 
     /**
+     * @var string
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @ORM\Column(type="string", length=10,  nullable=true)
+     *
+     * @Type("string")
+     * @Expose
+     */
+    private $seriesNumber;
+
+    /**
+     * @var \DateTime
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("datetime")
+     * @Expose
+     */
+    private $seriesDate;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : "0"})
+     *
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("boolean")
+     * @Expose
+     */
+    private $enableSale;
+
+    /**
      * @var ArrayCollection|Translation[]
      *
      * @ORM\OneToMany(
@@ -124,6 +157,25 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      * )
      */
     protected $translations;
+
+    /**
+     * @var ArrayCollection|PriceCategory[]
+     *
+     * @Assert\Valid
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\PriceCategory",
+     *     mappedBy="performanceEvent",
+     *     cascade={"persist"},
+     *     orphanRemoval=true
+     * )
+     */
+    protected $priceCategories;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->priceCategories = new ArrayCollection();
+    }
 
     /**
      * Unset translations
@@ -283,5 +335,88 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
         $this->venue = $venue;
 
         return $this;
+    }
+
+    /**
+     * @param  PriceCategory $priceCategory
+     * @return PerformanceEvent
+     */
+    public function addPriceCategory(PriceCategory $priceCategory)
+    {
+        $this->priceCategories[] = $priceCategory;
+
+        return $this;
+    }
+
+    /**
+     * @param PriceCategory $priceCategory
+     */
+    public function removePriceCategories(PriceCategory $priceCategory)
+    {
+        $this->priceCategories->removeElement($priceCategory);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPriceCategories()
+    {
+        return $this->priceCategories;
+    }
+
+    /**
+     * @param PriceCategory[]|ArrayCollection $priceCategory
+     */
+    public function setPriceCategories($priceCategory)
+    {
+        $this->priceCategories[] = $priceCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeriesNumber()
+    {
+        return $this->seriesNumber;
+    }
+
+    /**
+     * @param string $seriesNumber
+     */
+    public function setSeriesNumber($seriesNumber)
+    {
+        $this->seriesNumber = $seriesNumber;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSeriesDate()
+    {
+        return $this->seriesDate;
+    }
+
+    /**
+     * @param \DateTime $seriesDate
+     */
+    public function setSeriesDate($seriesDate)
+    {
+        $this->seriesDate = $seriesDate;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEnableSale()
+    {
+        return $this->enableSale;
+    }
+
+    /**
+     * @param boolean $enableSale
+     */
+    public function setEnableSale($enableSale)
+    {
+        $this->enableSale = $enableSale;
     }
 }

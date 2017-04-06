@@ -32,16 +32,17 @@ services:
         calls:
            - [ setTranslationDomain, [messages]]
 
-    sonata.admin.performanceEvent:
+    sonata.admin.performance.event:
         class: AppBundle\Admin\PerformanceEventAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "PerformanceEvents" }
         arguments:
            - ~
            - AppBundle\Entity\PerformanceEvent
-           - ~
+           - 'AppBundle:PerformanceEventCRUD'
         calls:
            - [ setTranslationDomain, [messages]]
+           - [ setTemplate, ['edit', 'AppBundle:PerformanceEventCRUD:edit.html.twig']]
 
     sonata.admin.post:
         class: AppBundle\Admin\PostAdmin
@@ -84,6 +85,17 @@ services:
         arguments:
            - ~
            - AppBundle\Entity\Venue
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
+
+    sonata.admin.price.category:
+        class: AppBundle\Admin\PriceCategoryAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm }
+        arguments:
+           - ~
+           - AppBundle\Entity\PriceCategory
            - ~
         calls:
         - [ setTranslationDomain, [messages]]

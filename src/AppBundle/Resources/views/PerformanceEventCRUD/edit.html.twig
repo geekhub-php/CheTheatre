@@ -1,0 +1,108 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/halls/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/halls/vendors-css.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/halls/style.css') }}" />
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var s = "{{ app.request.get('_route') }}";
+            var route = s.split("_", 2);
+            if (route[1] == 'create') {
+                $("#PriceCategory, #EnableSale, #VenueHall").hide();
+            }
+            $("#{{ admin.uniqId }}_venue").change(function () {
+                if (route[1] != 'create') {
+                    var venue_id = $(this).val();
+                    $("#hall").load("{{ admin.generateUrl('getVenue') }}", 'venue_id=' + venue_id);
+                    $.get("{{ admin.generateUrl('deletePriceCategories') }}", {"performanceEvent_id":"{{ object.id }}"}, function (data, status) {
+                        if (status === 'success') {
+                            $("#sonata-ba-field-container-{{ admin.uniqId }}_priceCategories").find('table').remove();
+                        }
+                    });
+                } else {
+                    $("form:first").submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+{% block sonata_tab_content %}
+    {% set has_tab = ((admin.formtabs|length == 1 and admin.formtabs|keys[0] != 'default') or admin.formtabs|length > 1 ) %}
+
+    <div class="col-md-12">
+        {% if has_tab %}
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs" role="tablist">
+                    {% for name, form_tab in admin.formtabs %}
+                        <li{% if loop.index == 1 %} class="active"{% endif %}>
+                            <a href="#tab_{{ loop.index }}" data-toggle="tab">
+                                <span class="glyphicon glyphicon-exclamation-sign has-errors hide"></span> {{ admin.trans(name, {}, form_tab.translation_domain) }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="tab-content">
+                    {% for code, form_tab in admin.formtabs %}
+                        <div class="tab-pane fade{% if loop.first %} in active{% endif %}" id="tab_{{ loop.index }}">
+                            <div class="box-body  container-fluid">
+                                <div class="sonata-ba-collapsed-fields">
+                                    {% if form_tab.description != false %}
+                                        <p>{{ form_tab.description|raw }}</p>
+                                    {% endif %}
+                                    {{ form_helper.render_groups(admin, form, form_tab['groups'], has_tab) }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            {% if has_tab %}<div class="row">{% endif %}
+            {% for code in admin.formtabs['default'].groups %}
+                {% set form_group = admin.formgroups[code] %}
+                <div class="col-md-12 {{ form_group.class }}" id="{{ form_group.name }}">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                {{ admin.trans(form_group.name, {}, form_group.translation_domain) }}
+                            </h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="sonata-ba-collapsed-fields">
+                                {% if form_group.description != false %}
+                                    <p>{{ form_group.description|raw }}</p>
+                                {% endif %}
+
+                                {% for field_name in form_group.fields %}
+                                    {% if admin.formfielddescriptions[field_name] is defined %}
+                                        {{ form_row(form[field_name]) }}
+                                    {% endif %}
+                                {% else %}
+                                    <em>{{ 'message_form_group_empty'|trans({}, 'SonataAdminBundle') }}</em>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="col-md-12" id="VenueHall">
+                <div class="box box-success">
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div id="hall">
+                                {% if object.venue != false %}
+                                    {% include 'AppBundle:PerformanceEventCRUD:venueHall.html.twig' with { 'venue': object.venue } %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if has_tab %}</div>{% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

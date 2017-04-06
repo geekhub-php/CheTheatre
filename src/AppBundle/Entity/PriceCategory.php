@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Document\Translation;
@@ -34,24 +33,47 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
 
     /**
      * @var string
-     * @Gedmo\Translatable
      * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern     = "/^\d+(-\d+)?(,\d+(-\d+)?)*$/",
+     *     htmlPattern = "^\d+(-\d+)?(,\d+(-\d+)?)*$"
+     * )
      * @ORM\Column(type="string", length=255)
      * @Serializer\Groups({"get_ticket"})
      * @Type("string")
      * @Expose()
      */
-    protected $title;
+    protected $rows;
 
     /**
      * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^\d+(-\d+)?(,\d+(-\d+)?)*$/",
+     *     htmlPattern = "^\d+(-\d+)?(,\d+(-\d+)?)*$"
+     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Type("string")
      * @Serializer\Groups({"get_ticket"})
      * @Expose()
      */
+    protected $places;
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, options={"default" : "gray"})
+     * @Type("string")
+     * @Expose()
+     */
     protected $color;
+
+    /**
+     * @var integer
+     * @Assert\NotBlank()
+     * @ORM\Column(type="integer", nullable=false)
+     * @Type("integer")
+     * @Expose()
+     */
+    protected $price;
 
     /**
      * @var ArrayCollection|Translation[]
@@ -65,34 +87,21 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     protected $translations;
 
     /**
-     * @var Venue
+     * @var PerformanceEvent
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="priceCategories")
-     * @Type("AppBundle\Entity\Venue")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent", inversedBy="priceCategories")
+     */
+    protected $performanceEvent;
+
+    /**
+     * @var VenueSector
+     *
+     * @Serializer\SerializedName("venueSector_id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector")
+     * @Type("AppBundle\Entity\VenueSector")
      * @Expose()
      */
-    protected $venue;
-
-    /**
-     * @var Collection|Seat[]
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Seat",
-     *     mappedBy="priceCategory",
-     *     cascade={"persist"}
-     * )
-     */
-    protected $seats;
-
-
-    /**
-     * PriceCategory constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->seats = new ArrayCollection();
-    }
+    protected $venueSector;
 
     /**
      * @return integer
@@ -113,18 +122,10 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * @param  string $color
      * @return PriceCategory
      */
-    public function setColor($color)
+    public function setColor($color = 'grey')
     {
         $this->color = $color;
 
@@ -140,64 +141,90 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     }
 
     /**
-     * @param  string $title
-     * @return PriceCategory
+     * @return VenueSector
      */
-    public function setTitle($title)
+    public function getVenueSector()
     {
-        $this->title = $title;
-
-        return $this;
+        return $this->venueSector;
     }
 
     /**
-     * @return Venue
+     * @param VenueSector $venueSector
      */
-    public function getVenue()
+    public function setVenueSector(VenueSector $venueSector)
     {
-        return $this->venue;
-    }
-
-    /**
-     * @param  Seat $seat
-     * @return PriceCategory
-     */
-    public function addSeat(Seat $seat)
-    {
-        $this->seats[] = $seat;
-
-        return $this;
-    }
-
-    /**
-     * @param Seat $seat
-     */
-    public function removeSeat(Seat $seat)
-    {
-        $this->seats->removeElement($seat);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getSeat()
-    {
-        return $this->seats;
+        $this->venueSector = $venueSector;
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function getRows()
     {
-        return $this->getTitle();
+        return $this->rows;
     }
 
     /**
-     * @param Venue $venue
+     * @param string $rows
      */
-    public function setVenue(Venue $venue)
+    public function setRows(string $rows)
     {
-        $this->venue = $venue;
+        $this->rows = $rows;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaces()
+    {
+        return $this->places;
+    }
+
+    /**
+     * @param string $places
+     */
+    public function setPlaces($places)
+    {
+        $this->places = $places;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     */
+    public function setPrice(int $price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return PerformanceEvent
+     */
+    public function getPerformanceEvent()
+    {
+        return $this->performanceEvent;
+    }
+
+    /**
+     * @param PerformanceEvent $performanceEvent
+     */
+    public function setPerformanceEvent(PerformanceEvent $performanceEvent)
+    {
+        $this->performanceEvent = $performanceEvent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return 'PriceCategory';
     }
 }
