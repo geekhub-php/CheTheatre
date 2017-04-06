@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @RouteResource("Customer")
@@ -23,16 +24,17 @@ class CustomerController extends Controller
     {
         $apiKey = $request->headers->get('API-Key-Token');
         $user = $this->getUser();
+
         if (!$user && !$apiKey) {
             $customer = $this->get('customer_login')
                 ->newCustomer();
+
             $customerResponse = new CustomerResponse($customer);
+
             return View::create($customerResponse);
         }
-        $response = [
-            '401' => 'Invalid API-Key-Token',
-        ];
-        return View::create($response, 401);
+
+        throw new HttpException(401, 'Invalid API-Key-Token');
     }
 
     /**
@@ -77,15 +79,15 @@ class CustomerController extends Controller
      */
     public function logoutAction(Request $request)
     {
-        $apiKeyHead = $request->headers->get('API-Key-Token');
-        $response = [
-            '204' => 'Successful operation',
-        ];
+        $apiKey = $request->headers->get('API-Key-Token');
         $em = $this->getDoctrine()->getManager();
+
         $customer = $em->getRepository('AppBundle:Customer')
-            ->findOneBy(['apiKey' => $apiKeyHead]);
+            ->findOneBy(['apiKey' => $apiKey]);
         $customer->setApiKey(null);
+
         $em->flush();
-        return View::create($response, 204);
+
+        return View::create(null, 204);
     }
 }

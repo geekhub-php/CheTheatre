@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use JMS\Serializer\Serializer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Validator\Validator\RecursiveValidator;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FacebookUserProvider
 {
@@ -17,15 +17,15 @@ class FacebookUserProvider
     protected $serializer;
 
     /**
-     * @var RecursiveValidator
+     * @var ValidatorInterface
      */
     protected $validator;
 
     /**
      * @param Serializer         $serializer
-     * @param RecursiveValidator $validator
+     * @param ValidatorInterface $validator
      */
-    public function __construct(Serializer $serializer, RecursiveValidator $validator)
+    public function __construct(Serializer $serializer, ValidatorInterface $validator)
     {
         $this->serializer = $serializer;
         $this->validator = $validator;
@@ -34,7 +34,7 @@ class FacebookUserProvider
     /**
      * @param string $accessToken
      *
-     * @return FacebookResponse
+     * @return object
      */
     public function getUser($accessToken)
     {
@@ -42,15 +42,13 @@ class FacebookUserProvider
             $client = new Client();
             $result = $client->get(
                 'https://graph.facebook.com/v2.8/me',
-                ['query' => ['access_token' => $accessToken,
-                 'fields' => 'id, 
-                 email, first_name, 
-                 last_name',
-                ],
+                ['query' => [
+                    'access_token' => $accessToken,
+                    'fields' => 'id, email, first_name, last_name']
                 ]
             );
             $userFacebook = $this->serializer->deserialize(
-                $result->getBody(),
+                $result->getBody()->getContents(),
                 FacebookResponse::class,
                 'json'
             );

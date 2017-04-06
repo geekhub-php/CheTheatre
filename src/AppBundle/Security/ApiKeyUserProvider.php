@@ -22,10 +22,10 @@ class ApiKeyUserProvider implements UserProviderInterface
     {
         $this->registry = $registry;
     }
-
+    
     /**
      * @param string $apiKey
-     * @return null|object
+     * @return null|string
      */
     public function getUsernameByApiKey($apiKey)
     {
