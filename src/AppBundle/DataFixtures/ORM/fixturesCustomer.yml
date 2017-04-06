@@ -5,3 +5,7 @@ AppBundle\Entity\Customer:
     customer2:
         username: customer
         apiKey: token_22222222
+        facebookId: fb_id_22222222
+    customer3:
+        username: customer
+        apiKey: token_33333333

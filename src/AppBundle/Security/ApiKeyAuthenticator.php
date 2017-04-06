@@ -3,9 +3,9 @@
 namespace AppBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
@@ -78,7 +78,8 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
         if (!$username) {
             // CAUTION: this message will be returned to the client
             // (so don't put any un-trusted messages / error strings here)
-            throw new InvalidApiKeyException(
+            throw new HttpException(
+                401,
                 sprintf('API Key "%s" does not exist.', $apiKey)
             );
         }

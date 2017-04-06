@@ -37,7 +37,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
      *
      * @ORM\Column(name="row", type="integer")
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose()
      */
@@ -47,7 +47,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
      * @var integer
      * @Assert\NotBlank()
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @ORM\Column(name="place", type="integer")
      * @Type("integer")
      * @Expose()
@@ -57,7 +57,6 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @var VenueSector
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector", inversedBy="seats")
      * @Type("AppBundle\Entity\VenueSector")
      * @Expose()
@@ -67,7 +66,7 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * @var PriceCategory
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PriceCategory", inversedBy="seats")
      * @Type("AppBundle\Entity\PriceCategory")
      * @Expose()
@@ -142,6 +141,21 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     public function getVenueSector(): VenueSector
     {
         return $this->venueSector;
+    }
+
+    /**
+     * Get VenueSector Id.
+     *
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("venue_sector_id")
+     * @Type("integer")
+     * @Serializer\Groups({"get_ticket"})
+     *
+     * @return integer
+     */
+    public function getVenueSectorId(): int
+    {
+        return $this->venueSector->getId();
     }
 
     /**

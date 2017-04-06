@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\Ticket;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Request\ParamFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -173,11 +174,16 @@ class PerformanceEventsController extends Controller
     }
 
     /**
-     * @RestView(serializerGroups={"cget_ticket"})
-     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
+     * @Get(requirements={"id" = "\d+"})
+     * @RestView(serializerGroups={"get_ticket"})
+     * @ParamConverter("id", class="AppBundle:PerformanceEvent")
      */
-    public function cgetTicketsAction(PerformanceEvent $performanceEvent)
+    public function cgetTicketsAction(PerformanceEvent $id)
     {
+        //This done not in right way (PerformanceEvent $performanceEvent)
+        // to have RESTfully looking route: /performanceevents/{id}/tickets
+        $performanceEvent = $id;
+
         $em = $this->getDoctrine()->getManager();
         $tickets = $em
             ->getRepository(Ticket::class)

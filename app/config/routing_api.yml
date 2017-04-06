@@ -30,7 +30,7 @@ history:
     type: rest
     resource: AppBundle\Controller\HistoryController
 
-customers-login:
+logout_customer:
     type: rest
     resource: AppBundle\Controller\CustomerController
     methods: [POST]
