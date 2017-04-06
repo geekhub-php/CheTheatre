@@ -11,14 +11,17 @@ class OrderManager
 {
     protected $doctrine;
 
-    public function __construct(RegistryInterface $doctrine)
+    protected $customerManager;
+
+    public function __construct(RegistryInterface $doctrine, CustomerManager $customerManager)
     {
         $this->doctrine = $doctrine;
+        $this->customerManager = $customerManager;
     }
 
-    public function addOrderToTicket(Ticket $ticket, $apiKey)
+    public function addOrderToTicket(Ticket $ticket)
     {
-        $order = $this->getCustomerOrder($apiKey);
+        $order = $this->getCustomerOrder();
         $ticket->setCustomerOrder($order);
     }
 
@@ -27,12 +30,12 @@ class OrderManager
         $ticket->setCustomerOrder(null);
     }
 
-    private function getCustomerOrder($apiKey): CustomerOrder
+    private function getCustomerOrder(): CustomerOrder
     {
         $em = $this->doctrine->getEntityManager();
+        $customer = $this->customerManager->getCurrentUserByApiKey();
         /** @var CustomerOrderRepository $repository */
         $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
-        $customer = $em->getRepository('AppBundle:Customer')->findOneBy(['apiKey' => $apiKey]);
         $order = $customerOrderRepository->findLastOpenOrder($customer);
 
         /**
@@ -42,6 +45,7 @@ class OrderManager
             $order = new CustomerOrder($customer);
             $em->persist($order);
         }
+
         return $order;
     }
 }

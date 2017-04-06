@@ -53,9 +53,13 @@ services:
         tags:
           - { name: doctrine.event_listener, event: onFlush, connection: default  }
 
+    app.customer.manager:
+        class: AppBundle\Services\CustomerManager
+        arguments: ["@request_stack", "@doctrine"]
+
     app.order.manager:
         class: AppBundle\Services\OrderManager
-        arguments: ["@doctrine"]
+        arguments: ["@doctrine", "@app.customer.manager"]
 
     api_key_user_provider:
         class: AppBundle\Security\ApiKeyUserProvider
