@@ -2,6 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Customer;
 
@@ -74,6 +75,12 @@ class TicketsControllerTest extends AbstractApiController
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/free', 'PATCH', 404, $headers);
         $this->request('/tickets/'.$id.'/reserve', 'PATCH', 204, $headers);
+        $customer = $this->getEm()->getRepository(Customer::class)->findOneBy(['apiKey' => 'token_11111111']);
+        $order = $this->getEm()->getRepository(CustomerOrder::class)->findLastOpenOrder($customer);
+        $ticket = $this->getEm()->getRepository(Ticket::class)->findOneBy([]);
+        $this->assertEquals($customer, $order->getCustomer());
+        $this->assertEquals(CustomerOrder::class, get_class($order));
+        $this->assertEquals($order, $ticket->getCustomerOrder());
         $this->request('/tickets/'.$id.'/reserve', 'PATCH', 409, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/reserve', 'PATCH', 404, $headers);
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);

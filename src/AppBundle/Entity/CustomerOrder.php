@@ -59,6 +59,7 @@ class CustomerOrder
      * @var Customer
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $customer;
 
@@ -117,6 +118,26 @@ class CustomerOrder
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param $customer
+     *
+     * @return CustomerOrder
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
 
         return $this;
     }

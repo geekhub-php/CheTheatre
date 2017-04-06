@@ -6,23 +6,19 @@ use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Repository\CustomerOrderRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class OrderManager
 {
     protected $doctrine;
 
-    protected $tokenStorage;
-
-    public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage)
+    public function __construct(RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
-        $this->tokenStorage = $tokenStorage;
     }
 
-    public function addOrderToTicket(Ticket $ticket)
+    public function addOrderToTicket(Ticket $ticket, $apiKey)
     {
-        $order = $this->getCustomerOrder();
+        $order = $this->getCustomerOrder($apiKey);
         $ticket->setCustomerOrder($order);
     }
 
@@ -31,13 +27,12 @@ class OrderManager
         $ticket->setCustomerOrder(null);
     }
 
-    private function getCustomerOrder()
+    private function getCustomerOrder($apiKey): CustomerOrder
     {
         $em = $this->doctrine->getEntityManager();
         /** @var CustomerOrderRepository $repository */
         $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
-        //$customer = $this->tokenStorage->getToken()->getUser();
-        $customer = $em->getRepository('AppBundle:Customer')->findOneBy([]);
+        $customer = $em->getRepository('AppBundle:Customer')->findOneBy(['apiKey' => $apiKey]);
         $order = $customerOrderRepository->findLastOpenOrder($customer);
 
         /**
