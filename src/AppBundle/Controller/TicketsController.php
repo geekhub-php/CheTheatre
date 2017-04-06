@@ -51,7 +51,7 @@ class TicketsController extends Controller
      * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
      * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function reserveAction(Ticket $id, Request $request)
+    public function reserveAction(Ticket $id)
     {
         //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
         $ticket = $id;
