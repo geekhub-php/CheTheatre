@@ -90,15 +90,14 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
      * @var PerformanceEvent
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent", inversedBy="priceCategories")
-     * @Type("AppBundle\Entity\PerformanceEvent")
-     * @Expose()
      */
     protected $performanceEvent;
 
     /**
      * @var VenueSector
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector", inversedBy="priceCategories")
+     * @Serializer\SerializedName("venueSector_id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector")
      * @Type("AppBundle\Entity\VenueSector")
      * @Expose()
      */
