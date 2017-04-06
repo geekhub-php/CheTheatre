@@ -80,7 +80,7 @@ class CustomerLogin
             'json'
         );
 
-        $errors = $this->validator->validate($customerRequest, null, 'update');
+        $errors = $this->validator->validate($customerRequest, null, ['update']);
 
         if (count($errors) > 0) {
             throw new HttpException(400, 'Validation error');
@@ -112,7 +112,7 @@ class CustomerLogin
             'json'
         );
 
-        $errors = $this->validator->validate($customerRequest, null, 'socialNetwork');
+        $errors = $this->validator->validate($customerRequest, null, ['socialNetwork']);
 
         if (count($errors) > 0) {
             throw new HttpException(400, 'Validation error');

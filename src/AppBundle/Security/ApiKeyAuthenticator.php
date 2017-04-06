@@ -75,7 +75,7 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
         $apiKey = $token->getCredentials();
         $username = $userProvider->getUsernameByApiKey($apiKey);
 
-        if (!$username) {
+        if ($username === null) {
             // CAUTION: this message will be returned to the client
             // (so don't put any un-trusted messages / error strings here)
             throw new HttpException(

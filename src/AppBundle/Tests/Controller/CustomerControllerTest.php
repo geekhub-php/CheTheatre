@@ -7,7 +7,7 @@ use AppBundle\Model\FacebookResponse;
 use AppBundle\Services\FacebookUserProvider;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class CustomerControllerTest extends AbstractController
+class CustomerControllerTest extends AbstractApiController
 {
     public function setUp()
     {
