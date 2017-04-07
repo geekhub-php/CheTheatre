@@ -3,17 +3,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
- * @UniqueEntity("facebookId")
+ *
+ * @DoctrineAssert\UniqueEntity(fields="facebookId",
+ * message="facebookId already exists",
+ * groups={"uniqFacebookId"}
+ * )
+ * @DoctrineAssert\UniqueEntity(fields="apiKey",
+ * message="apikey already exists",
+ * groups={"uniqApikey"}
+ * )
  * @ExclusionPolicy("all")
  */
 class Customer implements UserInterface
@@ -81,7 +88,7 @@ class Customer implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
+     * @ORM\Column(name="api_key", type="string", length=255, nullable=true, unique=true)
      * @Assert\Type("string")
      * @Assert\Length(max=255)
      */
@@ -131,7 +138,7 @@ class Customer implements UserInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getRoles()
     {
@@ -139,21 +146,21 @@ class Customer implements UserInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getPassword()
     {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSalt()
     {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function eraseCredentials()
     {
