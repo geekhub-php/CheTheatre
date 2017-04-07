@@ -54,10 +54,14 @@ class CustomerLogin
      */
     public function newCustomer()
     {
-        $apiKey = uniqid('token_');
-        $customer = new Customer();
-        $customer->setUsername('customer');
-        $customer->setApiKey($apiKey);
+        do {
+            $apiKey = uniqid('token_');
+            $customer = new Customer();
+            $customer->setUsername('customer');
+            $customer->setApiKey($apiKey);
+            dump($apiKey);
+        } while (!$this->customerValidator($customer, 'uniqApikey'));
+
         $this->registry->getManager()->persist($customer);
         $this->registry->getManager()->flush();
 
@@ -74,19 +78,18 @@ class CustomerLogin
     {
         $serializer = $this->serializer;
         $user = $serializer->deserialize($content, CustomerRequest::class, 'json');
-        $errors = $this->validator->validate($user, 'update');
-        if (count($errors) > 0) {
-            throw new HttpException(400, 'Validation error');
-        }
-        $customer = $this->registry->getRepository('AppBundle:Customer')
+        if ($this->customerValidator($user, 'update')) {
+            $customer = $this->registry->getRepository('AppBundle:Customer')
             ->findOneBy(['apiKey' => $apiKey]);
-        $customer->setApiKey($apiKey);
-        $customer->setFirstName($user->getFirstName());
-        $customer->setLastName($user->getLastName());
-        $customer->setEmail($user->getEmail());
-        $this->registry->getManager()->flush();
+            $customer->setApiKey($apiKey);
+            $customer->setFirstName($user->getFirstName());
+            $customer->setLastName($user->getLastName());
+            $customer->setEmail($user->getEmail());
+            $this->registry->getManager()->flush();
 
-        return $customer;
+            return $customer;
+        }
+        throw new HttpException(400, 'Validation error');
     }
 
     /**
@@ -103,38 +106,44 @@ class CustomerLogin
             'json'
         );
 
-        $errors = $this->validator->validate(
-            $customer,
-            null,
-            'socialNetwork'
-        );
+        if ($this->customerValidator($customer, 'socialNetwork')) {
+            $userSocial = $this->facebookUserProvider
+                ->getUser($customer->getSocialToken());
 
-        if (count($errors) > 0) {
-            throw new HttpException(400, 'Validation error');
-        }
+            $customerFacebook = $this->registry->getRepository('AppBundle:Customer')
+                ->findOneBy(['facebookId' => $userSocial->getId()]);
+            $customer = $this->registry->getRepository('AppBundle:Customer')
+                ->findOneBy(['apiKey' => $apiKey]);
 
-        $userSocial = $this->facebookUserProvider
-            ->getUser($customer->getSocialToken());
+            if (!$customerFacebook) {
+                $customer->setFacebookId($userSocial->getId());
+                $customer->setEmail($userSocial->getEmail());
+                $customer->setFirstName($userSocial->getFirstName());
+                $customer->setLastName($userSocial->getLastName());
+                $this->registry->getManager()->flush();
 
-        $customerFacebook = $this->registry->getRepository('AppBundle:Customer')
-            ->findOneBy(['facebookId' => $userSocial->getId()]);
-        $customer = $this->registry->getRepository('AppBundle:Customer')
-            ->findOneBy(['apiKey' => $apiKey]);
+                return $customer;
+            }
 
-        if (!$customerFacebook) {
-            $customer->setFacebookId($userSocial->getId());
-            $customer->setEmail($userSocial->getEmail());
-            $customer->setFirstName($userSocial->getFirstName());
-            $customer->setLastName($userSocial->getLastName());
+            $this->registry->getManager()->remove($customer);
+            $customerFacebook->setApiKey($apiKey);
             $this->registry->getManager()->flush();
 
-            return $customer;
+            return $customerFacebook;
+        }
+        throw new HttpException(400, 'Validation error');
+    }
+    /**
+     * @return bool
+     */
+    private function customerValidator($customer, $groups)
+    {
+        $errors = $this->validator->validate($customer, $groups);
+
+        if (count($errors) > 0) {
+            return false;
         }
 
-        $this->registry->getManager()->remove($customer);
-        $customerFacebook->setApiKey($apiKey);
-        $this->registry->getManager()->flush();
-
-        return $customerFacebook;
+        return true;
     }
 }
