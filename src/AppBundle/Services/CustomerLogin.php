@@ -59,7 +59,6 @@ class CustomerLogin
             $customer = new Customer();
             $customer->setUsername('customer');
             $customer->setApiKey($apiKey);
-            dump($apiKey);
         } while (!$this->customerValidator($customer, 'uniqApikey'));
 
         $this->registry->getManager()->persist($customer);
@@ -120,21 +119,18 @@ class CustomerLogin
             $customer = $this->registry->getRepository('AppBundle:Customer')
                 ->findOneBy(['apiKey' => $apiKey]);
 
-            if (!$customerFacebook) {
-                $customer->setFacebookId($userSocial->getId());
-                $customer->setEmail($userSocial->getEmail());
-                $customer->setFirstName($userSocial->getFirstName());
-                $customer->setLastName($userSocial->getLastName());
+            if ($customerFacebook && ($customerFacebook->getApiKey() != $apiKey)) {
+                $this->registry->getManager()->remove($customerFacebook);
                 $this->registry->getManager()->flush();
-
-                return $customer;
             }
 
-            $this->registry->getManager()->remove($customer);
-            $customerFacebook->setApiKey($apiKey);
+            $customer->setFacebookId($userSocial->getId());
+            $customer->setEmail($userSocial->getEmail());
+            $customer->setFirstName($userSocial->getFirstName());
+            $customer->setLastName($userSocial->getLastName());
             $this->registry->getManager()->flush();
 
-            return $customerFacebook;
+            return $customer;
         }
         throw new HttpException(400, 'Validation error');
     }
