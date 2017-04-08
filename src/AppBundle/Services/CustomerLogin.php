@@ -59,7 +59,7 @@ class CustomerLogin
             $customer = new Customer();
             $customer->setUsername('customer');
             $customer->setApiKey($apiKey);
-        } while (!$this->customerValidator($customer, 'uniqApikey'));
+        } while (!$this->customerValidator($customer, ['uniqApikey']));
 
         $this->registry->getManager()->persist($customer);
         $this->registry->getManager()->flush();
@@ -81,19 +81,20 @@ class CustomerLogin
             'json'
         );
 
-        if ($this->customerValidator($customerRequest, 'update')) {
-            $customer = $this->registry->getRepository('AppBundle:Customer')
-                ->findOneBy(['apiKey' => $apiKey]);
-            $customer->setApiKey($apiKey);
-            $customer->setFirstName($customerRequest->getFirstName());
-            $customer->setLastName($customerRequest->getLastName());
-            $customer->setEmail($customerRequest->getEmail());
-
-            $this->registry->getManager()->flush();
-
-            return $customer;
+        if (!$this->customerValidator($customerRequest, ['update'])) {
+            throw new HttpException(400, 'Validation error');
         }
-        throw new HttpException(400, 'Validation error');
+
+        $customer = $this->registry->getRepository('AppBundle:Customer')
+            ->findOneBy(['apiKey' => $apiKey]);
+        $customer->setApiKey($apiKey);
+        $customer->setFirstName($customerRequest->getFirstName());
+        $customer->setLastName($customerRequest->getLastName());
+        $customer->setEmail($customerRequest->getEmail());
+
+        $this->registry->getManager()->flush();
+
+        return $customer;
     }
 
     /**
@@ -110,40 +111,41 @@ class CustomerLogin
             'json'
         );
 
-        if ($this->customerValidator($customerRequest, 'socialNetwork')) {
-            $userSocial = $this->facebookUserProvider
-                ->getUser($customerRequest->getSocialToken());
-
-            $customerFacebook = $this->registry->getRepository('AppBundle:Customer')
-                ->findOneBy(['facebookId' => $userSocial->getId()]);
-            $customer = $this->registry->getRepository('AppBundle:Customer')
-                ->findOneBy(['apiKey' => $apiKey]);
-
-            if ($customerFacebook && ($customerFacebook->getApiKey() != $apiKey)) {
-                $this->registry->getManager()->remove($customerFacebook);
-                $this->registry->getManager()->flush();
-            }
-
-            $customer->setFacebookId($userSocial->getId());
-            $customer->setEmail($userSocial->getEmail());
-            $customer->setFirstName($userSocial->getFirstName());
-            $customer->setLastName($userSocial->getLastName());
-            $this->registry->getManager()->flush();
-
-            return $customer;
+        if (!$this->customerValidator($customerRequest, ['socialNetwork'])) {
+            throw new HttpException(400, 'Validation error');
         }
-        throw new HttpException(400, 'Validation error');
+
+        $userSocial = $this->facebookUserProvider
+            ->getUser($customerRequest->getSocialToken());
+
+        $customerFacebook = $this->registry->getRepository('AppBundle:Customer')
+            ->findOneBy(['facebookId' => $userSocial->getId()]);
+        $customer = $this->registry->getRepository('AppBundle:Customer')
+            ->findOneBy(['apiKey' => $apiKey]);
+
+        if ($customerFacebook && ($customerFacebook->getApiKey() != $apiKey)) {
+            $this->registry->getManager()->remove($customerFacebook);
+            $this->registry->getManager()->flush();
+        }
+
+        $customer->setFacebookId($userSocial->getId());
+        $customer->setEmail($userSocial->getEmail());
+        $customer->setFirstName($userSocial->getFirstName());
+        $customer->setLastName($userSocial->getLastName());
+        $this->registry->getManager()->flush();
+
+        return $customer;
     }
 
     /**
      * @param object $customer
-     * @param string $groups
+     * @param array  $groups
      *
      * @return bool
      */
     private function customerValidator($customer, $groups)
     {
-        $errors = $this->validator->validate($customer, null, [$groups]);
+        $errors = $this->validator->validate($customer, null, $groups);
 
         if (count($errors) > 0) {
             return false;

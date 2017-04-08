@@ -1246,7 +1246,7 @@
             }
         },
         "/customers/logout": {
-            "get": {
+            "post": {
                 "tags": [
                     "customers"
                 ],
