@@ -129,7 +129,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var \DateTime
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      *
      * @Serializer\Groups({"get_ticket"})
      * @Type("DateTime")
