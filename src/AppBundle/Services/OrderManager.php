@@ -27,7 +27,10 @@ class OrderManager
 
     public function removeOrderFromTicket(Ticket $ticket)
     {
-        $ticket->setCustomerOrder(null);
+        $order = $this->getCustomerOrder();
+        if ($order === $ticket->getCustomerOrder()) {
+            $ticket->setCustomerOrder(null);
+        }
     }
 
     private function getCustomerOrder(): CustomerOrder
