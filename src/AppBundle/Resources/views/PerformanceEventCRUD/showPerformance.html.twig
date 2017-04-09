@@ -1,0 +1,20 @@
+<div class="row" style="padding:10px;">
+    <div class="form-group col-md-12">
+        <label for="showPerformance">{{ 'Performance'|trans() }}:</label>
+        <input type="text" class="form-control" id="showPerformance" disabled value="{{ performanceEvent.performance.title }}">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="showDateTime">{{ 'Date Time'|trans() }}:</label>
+        <input type="text" class="form-control" id="showDateTime" disabled value="{{ performanceEvent.dateTime|date("d/M/y H:m") }}">
+    </div>
+    <div class="form-group col-md-12">
+        <label for="showVenue">{{ 'Venue'|trans() }}:</label>
+        <input type="text" class="form-control" id="showVenue" disabled value="{{ performanceEvent.venue.title }}, {{ performanceEvent.venue.address }}">
+    </div>
+    <div class="form-group col-md-12">
+        <label for="showPriceCategory">{{ 'PriceCategory'|trans() }}:</label>
+        {% for priceCategory in performanceEvent.priceCategories %}
+            <p><span style="display:block;float: left;margin-right: 5px;height: 20px;width: 20px;background-color:{{ priceCategory.color }}"></span>{{ priceCategory.price }}грн.</p>
+        {% endfor %}
+    </div>
+</div>

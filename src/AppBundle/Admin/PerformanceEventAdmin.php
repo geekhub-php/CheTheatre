@@ -2,13 +2,18 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\PriceCategory;
+use AppBundle\Entity\RowsForSale;
+use AppBundle\Entity\Seat;
+use AppBundle\Entity\Venue;
+use AppBundle\Entity\VenueSector;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PerformanceEventAdmin extends Admin
 {
@@ -31,7 +36,6 @@ class PerformanceEventAdmin extends Admin
         ;
     }
 
-
     /**
      * @param FormMapper $formMapper
      *
@@ -39,6 +43,10 @@ class PerformanceEventAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
+        $queryRowsForSale = $em->getRepository('AppBundle:RowsForSale')
+            ->findVenueSectorsByPerformanceEventQueryBuilder($this->getSubject());
+
         $formMapper
             ->with('PerformanceEvents', ['class'=>'col-lg-12'])
             ->add('performance', 'sonata_type_model')
@@ -64,34 +72,55 @@ class PerformanceEventAdmin extends Admin
                 ],
                 'label' => false,
             ], [
-                'inline'            => 'table',
-                'edit'            => 'inline',
-                'sortable'        => 'position',
+                'inline'  => 'table',
+                'edit' => 'inline',
+                'sortable' => 'position',
                 'link_parameters'       => [
                     'performanceEvent_id' => $this->getSubject()->getId(),
                 ],
             ])
             ->end()
             ->with('EnableSale', ['class'=>'col-lg-12'])
-            ->add(
-                'seriesDate',
-                'sonata_type_datetime_picker',
-                [
-                    'dp_side_by_side'       => true,
-                    'dp_use_current'        => true,
-                    'dp_use_seconds'        => false,
-                    'format' => "dd/MM/yyyy HH:mm",
-                    'required' => false,
-                ]
-            )
-            ->add('seriesNumber', null, [
-            'required' => false,
+            ->add('seriesDate', 'sonata_type_datetime_picker', [
+                'dp_side_by_side'       => true,
+                'dp_use_current'        => true,
+                'dp_use_seconds'        => false,
+                'format' => "dd/MM/yyyy HH:mm",
+                'required' => false,
             ])
-            ->add('enableSale', null, [
-            'required' => false,
+            ->add('rowsForSale', 'sonata_type_model', [
+                'class' => RowsForSale::class,
+                'required' => false,
+                'multiple' => true,
+                'query' => $queryRowsForSale,
             ])
-            ->end()
         ;
+        if ($this->getSubject()->isEnableSale() !== true) {
+            $formMapper
+                ->add('seriesNumber', null, [
+                    'required' => false,
+                ])
+                ->add('enableSale', 'checkbox', [
+                    'required' => false,
+                ])
+                ->end()
+            ;
+        }
+        if ($this->getSubject()->isEnableSale() === true) {
+            $formMapper
+                ->add('seriesNumber', null, [
+                    'required' => false,
+                    'attr' => ['class' => 'hidden'],
+                    'label' => false,
+                ])
+                ->add('enableSale', TextType::class, [
+                    'required' => false,
+                    'attr' => ['class' => 'hidden'],
+                    'label' => false,
+                ])
+                ->end()
+            ;
+        }
     }
 
     /**
@@ -110,37 +139,117 @@ class PerformanceEventAdmin extends Admin
                     'edit' => [],
                     'delete' => [],
                 ],
-            ])
-        ;
-    }
-
-    /**
-     * @param DatagridMapper $datagridMapper
-     *
-     * @return void
-     */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('performance')
-            ->add('venue')
-        ;
+            ]);
     }
 
     public function postUpdate($object)
     {
+        self::inspectPriceCategories($object);
+    }
+
+    /**
+     * Inspect PriceCategory. Search errors
+     *
+     * @param PerformanceEvent $performanceEvent
+     * @throws ModelManagerException
+     */
+    private function inspectPriceCategories(PerformanceEvent $performanceEvent)
+    {
         $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
-        $categories = $em->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $object]);
-        $venue = $object->getVenue()->getTitle();
+        $categories = $em->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $performanceEvent]);
+        $seat = $em->getRepository('AppBundle:Seat')->findByVenue($performanceEvent->getVenue());
+        $venue = $performanceEvent->getVenue();
 
         /** @var PriceCategory $category*/
 
         foreach ($categories as $category) {
             self::getRows($venue, $category->getRows(), $category->getVenueSector(), $category->getPlaces());
         }
+        self::inspectSeatWithoutPrice(count($seat), $performanceEvent, $venue);
+        if (!$performanceEvent->getSeriesNumber()) {
+            $performanceEvent->setEnableSale(null);
+            $em->persist($performanceEvent);
+            $em->flush();
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->add(
+                    'error',
+                    "Помилка. Введіть номер комплекта квитків!"
+                );
+            throw new ModelManagerException();
+        }
+        if ((count($seat) === count($this->seatPrice)) && ($performanceEvent->isEnableSale() === null)) {
+            $performanceEvent->setEnableSale(false);
+            $em->persist($performanceEvent);
+            $em->flush();
+        }
     }
 
-    private function getSeat($venue, $row, $venueSector, $place = null)
+    /**
+     * Parse string rows in PriceCategory
+     *
+     * @param Venue $venue
+     * @param $strRows
+     * @param VenueSector $venueSector
+     * @param $strPlaces
+     */
+    private function getRows(Venue $venue, $strRows, VenueSector $venueSector, $strPlaces)
+    {
+        $dataRows = explode(',', $strRows);
+        foreach ($dataRows as $rows) {
+            if (substr_count($rows, '-') === 1) {
+                list($begin, $end) = explode('-', $rows);
+                for ($row = $begin; $row <= $end; $row++) {
+                    self::getPlaces($venue, $row, $venueSector, $strPlaces);
+                }
+            }
+            if (substr_count($rows, '-') === 0) {
+                self::getPlaces($venue, $rows, $venueSector, $strPlaces);
+            }
+        }
+    }
+
+    /**
+     * Parse string places in PriceCategory
+     *
+     * @param Venue $venue
+     * @param $row
+     * @param VenueSector $venueSector
+     * @param $strPlaces
+     */
+    private function getPlaces(Venue $venue, $row, VenueSector $venueSector, $strPlaces)
+    {
+        if ($strPlaces === null) {
+            self::getSeat($venue, $row, $venueSector);
+            return;
+        }
+        $dataPlaces = explode(',', $strPlaces);
+        foreach ($dataPlaces as $places) {
+            if (substr_count($places, '-') === 1) {
+                list($begin, $end) = explode('-', $places);
+                for ($place = $begin; $place <= $end; $place++) {
+                    self::getSeat($venue, $row, $venueSector, $place);
+                }
+            }
+            if (substr_count($places, '-') === 0) {
+                self::getSeat($venue, $row, $venueSector, $places);
+            }
+        }
+    }
+
+    /**
+     * Research existing Seat with row-place - $row-$place
+     *
+     * @param Venue $venue
+     * @param $row
+     * @param VenueSector $venueSector
+     * @param null $place
+     * @throws ModelManagerException
+     */
+    private function getSeat(Venue $venue, $row, VenueSector $venueSector, $place = null)
     {
         $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
         if ($place === null) {
@@ -161,7 +270,7 @@ class PerformanceEventAdmin extends Admin
                 throw new ModelManagerException('Error row!');
             }
             foreach ($seat as $placeAllInRow) {
-                self::validateSeat($row, $placeAllInRow->getPlace(), $venueSector);
+                self::inspectSeatMoreThanOnePrice($row, $placeAllInRow->getPlace(), $venueSector);
             }
         }
         if ($place !== null) {
@@ -182,47 +291,19 @@ class PerformanceEventAdmin extends Admin
                     );
                 throw new ModelManagerException('Error row-place!');
             }
-            self::validateSeat($row, $place, $venueSector);
+            self::inspectSeatMoreThanOnePrice($row, $place, $venueSector);
         }
     }
 
-    private function getPlaces($venue, $row, $venueSector, $strPlaces)
-    {
-        if ($strPlaces === null) {
-            self::getSeat($venue, $row, $venueSector);
-            return;
-        }
-        $dataPlaces = explode(',', $strPlaces);
-        foreach ($dataPlaces as $places) {
-            if (substr_count($places, '-') === 1) {
-                list($begin, $end) = explode('-', $places);
-                for ($place = $begin; $place <= $end; $place++) {
-                    self::getSeat($venue, $row, $venueSector, $place);
-                }
-            }
-            if (substr_count($places, '-') === 0) {
-                self::getSeat($venue, $row, $venueSector, $places);
-            }
-        }
-    }
-
-    private function getRows($venue, $strRows, $venueSector, $strPlaces)
-    {
-        $dataRows = explode(',', $strRows);
-        foreach ($dataRows as $rows) {
-            if (substr_count($rows, '-') === 1) {
-                list($begin, $end) = explode('-', $rows);
-                for ($row = $begin; $row <= $end; $row++) {
-                    self::getPlaces($venue, $row, $venueSector, $strPlaces);
-                }
-            }
-            if (substr_count($rows, '-') === 0) {
-                self::getPlaces($venue, $rows, $venueSector, $strPlaces);
-            }
-        }
-    }
-
-    private function validateSeat($row, $place, $venueSector)
+    /**
+     * Search Seat with more than one price
+     *
+     * @param $row
+     * @param $place
+     * @param VenueSector $venueSector
+     * @throws ModelManagerException
+     */
+    private function inspectSeatMoreThanOnePrice($row, $place, VenueSector $venueSector)
     {
         $seats = $this->seatPrice;
         foreach ($seats as $key) {
@@ -241,5 +322,33 @@ class PerformanceEventAdmin extends Admin
         }
         $seats[]= $row.'-'.$place;
         $this->seatPrice = $seats;
+    }
+
+    /**
+     * Search Seat without price
+     *
+     * @param $countSeat
+     * @param PerformanceEvent $performanceEvent
+     * @param Venue $venue
+     * @throws ModelManagerException
+     */
+    private function inspectSeatWithoutPrice($countSeat, PerformanceEvent $performanceEvent, Venue $venue)
+    {
+        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        if ($countSeat != count($this->seatPrice)) {
+            $performanceEvent->setEnableSale(null);
+            $em->persist($performanceEvent);
+            $em->flush();
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->add(
+                    'error',
+                    "Помилка. В залi $venue ціна проставлена не на всі місця!"
+                );
+            throw new ModelManagerException();
+        }
     }
 }

@@ -22,6 +22,7 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesPerformanceEvent_uk.yml',
             __DIR__.'/fixturesPriceCategory_uk.yml',
             __DIR__.'/fixturesSeat_uk.yml',
+            __DIR__.'/fixturesRowsForSale_uk.yml',
             __DIR__.'/fixturesEmployeeTranslation_en.yml',
             __DIR__.'/fixturesVenueTranslation_en.yml',
             __DIR__.'/fixturesVenueSectorTranslation_en.yml',

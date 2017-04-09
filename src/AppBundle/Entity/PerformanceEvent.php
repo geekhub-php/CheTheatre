@@ -120,7 +120,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      *
      * @Serializer\Groups({"get_ticket"})
      * @ORM\Column(type="string", length=10,  nullable=true)
-     *
+     * @Assert\Length(max="10", min="3")
      * @Type("string")
      * @Expose
      */
@@ -129,23 +129,37 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     /**
      * @var \DateTime
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      *
      * @Serializer\Groups({"get_ticket"})
-     * @Type("datetime")
+     * @Type("DateTime")
      * @Expose
      */
     private $seriesDate;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=true, options={"default" : "0"})
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : false})
      *
      * @Serializer\Groups({"get_ticket"})
      * @Type("boolean")
      * @Expose
      */
     private $enableSale;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="AppBundle\Entity\RowsForSale",
+     *     inversedBy="performanceEvent",
+     *     cascade={"persist","detach","merge"}
+     * )
+     * @Serializer\Groups({"get_ticket"})
+     * @Type("array")
+     * @Expose
+     */
+    protected $rowsForSale;
 
     /**
      * @var ArrayCollection|Translation[]
@@ -175,6 +189,8 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     {
         parent::__construct();
         $this->priceCategories = new ArrayCollection();
+        $this->seriesDate = new \DateTime();
+        $this->rowsForSale = new ArrayCollection();
     }
 
     /**
@@ -418,5 +434,32 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     public function setEnableSale($enableSale)
     {
         $this->enableSale = $enableSale;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getRowsForSale()
+    {
+        return $this->rowsForSale;
+    }
+
+    /**
+     * @param  RowsForSale $rowsForSale
+     * @return PerformanceEvent
+     */
+    public function addRowsForSale(RowsForSale $rowsForSale)
+    {
+        $this->rowsForSale[] = $rowsForSale;
+
+        return $this;
+    }
+
+    /**
+     * @param RowsForSale $rowsForSale
+     */
+    public function removeRowsForSale(RowsForSale $rowsForSale)
+    {
+        $this->rowsForSale->removeElement($rowsForSale);
     }
 }

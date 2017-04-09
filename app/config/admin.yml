@@ -99,3 +99,14 @@ services:
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
+
+    sonata.admin.rows.for.sale:
+        class: AppBundle\Admin\RowsForSaleAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm }
+        arguments:
+           - ~
+           - AppBundle\Entity\RowsForSale
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
