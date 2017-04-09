@@ -220,7 +220,7 @@ class CustomerControllerTest extends AbstractApiController
             }'
         );
 
-        self::assertEquals(401, $client->getResponse()->getStatusCode());
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
     }
 
     public function testFailLoginUpdate()
@@ -295,7 +295,7 @@ class CustomerControllerTest extends AbstractApiController
             ]
         );
 
-        self::assertEquals(401, $client->getResponse()->getStatusCode());
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
     }
 
     public function testFailLogoutWithoutApiKeyToken()
@@ -309,7 +309,7 @@ class CustomerControllerTest extends AbstractApiController
             []
         );
 
-        self::assertEquals(403, $client->getResponse()->getStatusCode());
+        self::assertEquals(401, $client->getResponse()->getStatusCode());
     }
 
     public function testSuccessLogoutApiKeyToken()
@@ -346,6 +346,6 @@ class CustomerControllerTest extends AbstractApiController
                 'CONTENT_TYPE' => 'application/json',
             ]
         );
-        self::assertEquals(401, $client->getResponse()->getStatusCode());
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
     }
 }

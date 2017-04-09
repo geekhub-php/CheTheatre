@@ -48,14 +48,10 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
 
-    api_key_user_provider:
-        class: AppBundle\Security\ApiKeyUserProvider
-        arguments: ["@doctrine"]
-
     api_key_authenticator:
         class:  AppBundle\Security\ApiKeyAuthenticator
         public: false
-        arguments: ["@doctrine"]
+        arguments: ["@doctrine.orm.entity_manager"]
 
     customer_login:
         class: AppBundle\Services\CustomerLogin

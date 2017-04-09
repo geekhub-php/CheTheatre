@@ -4,7 +4,9 @@ security:
             memory:
               users: %users%
         api_key_user_provider:
-            id: api_key_user_provider
+            entity:
+                class: AppBundle:Customer
+                property: apiKey
 
     firewalls:
         dev:
@@ -26,9 +28,8 @@ security:
             pattern: ^/
             anonymous: ~
             stateless: true
-            simple_preauth:
-               authenticator: api_key_authenticator
-            provider: api_key_user_provider
+            guard:
+                authenticator: api_key_authenticator
 
     role_hierarchy:
             ROLE_SONATA_FOO_ADMIN:
