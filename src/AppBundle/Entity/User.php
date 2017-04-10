@@ -10,20 +10,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
- * @ORM\Table(name="customers")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  *
- * @DoctrineAssert\UniqueEntity(fields="facebookId",
- * message="facebookId already exists",
- * groups={"uniqFacebookId"}
+ * @DoctrineAssert\UniqueEntity(
+ *     fields="facebookId",
+ *     message="facebookId already exists",
+ *     groups={"uniqFacebookId"}
  * )
- * @DoctrineAssert\UniqueEntity(fields="apiKey",
- * message="apikey already exists",
- * groups={"uniqApikey"}
+ * @DoctrineAssert\UniqueEntity(
+ *     fields="apiKey",
+ *     message="apikey already exists",
+ *     groups={"uniqApikey"}
  * )
+ *
  * @ExclusionPolicy("all")
  */
-class Customer implements UserInterface
+class User implements UserInterface
 {
     /**
      * @var int
@@ -38,12 +41,14 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=100, nullable=true)
+     *
      * @Assert\Regex(pattern="/\d/", match=false)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
      * @Assert\NotBlank(
      *     message="not.blank"
      * )
+     *
      * @Expose
      */
     protected $firstName;
@@ -52,12 +57,14 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
+     *
      * @Assert\Regex(pattern="/\d/", match=false)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
      * @Assert\NotBlank(
      *     message="not.blank"
      * )
+     *
      * @Expose
      */
     protected $lastName;
@@ -66,12 +73,14 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     *
      * @Assert\Email()
      * @Assert\Type("string")
      * @Assert\Length(max=100)
      * @Assert\NotBlank(
      *     message="not.blank"
      * )
+     *
      * @Expose
      */
     protected $email;
@@ -80,6 +89,7 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=100)
+     *
      * @Assert\Type("string")
      * @Assert\Length(max=100)
      */
@@ -89,6 +99,7 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="api_key", type="string", length=255, nullable=true, unique=true)
+     *
      * @Assert\Type("string")
      * @Assert\Length(max=255)
      */
@@ -98,29 +109,26 @@ class Customer implements UserInterface
      * @var string
      *
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true, unique=true)
+     *
      * @Assert\Type("string")
      * @Assert\Length(max=255)
      */
     private $facebookId;
 
     /**
-     * Get id.
-     *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set apiKey.
-     *
      * @param string $apiKey
      *
-     * @return Customer
+     * @return User
      */
-    public function setApiKey($apiKey)
+    public function setApiKey(?string $apiKey): User
     {
         $this->apiKey = $apiKey;
 
@@ -128,17 +136,15 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get apiKey.
-     *
      * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): ?string
     {
         return $this->apiKey;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getRoles()
     {
@@ -146,34 +152,32 @@ class Customer implements UserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getPassword()
     {
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getSalt()
     {
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function eraseCredentials()
     {
     }
 
     /**
-     * Set facebookId.
-     *
      * @param string $facebookId
      *
-     * @return Customer
+     * @return User
      */
-    public function setFacebookId($facebookId)
+    public function setFacebookId(?string $facebookId): User
     {
         $this->facebookId = $facebookId;
 
@@ -181,23 +185,19 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get facebookId.
-     *
      * @return string
      */
-    public function getFacebookId()
+    public function getFacebookId(): ?string
     {
         return $this->facebookId;
     }
 
     /**
-     * Set username.
-     *
      * @param string $username
      *
-     * @return Customer
+     * @return User
      */
-    public function setUsername($username)
+    public function setUsername(?string $username): User
     {
         $this->username = $username;
 
@@ -205,23 +205,19 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get username.
-     *
      * @return string
      */
-    public function getUsername()
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * Set firstName.
-     *
      * @param string $firstName
      *
-     * @return Customer
+     * @return User
      */
-    public function setFirstName($firstName)
+    public function setFirstName(?string $firstName): User
     {
         $this->firstName = $firstName;
 
@@ -229,23 +225,19 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get firstName.
-     *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
     /**
-     * Set lastName.
-     *
      * @param string $lastName
      *
-     * @return Customer
+     * @return User
      */
-    public function setLastName($lastName)
+    public function setLastName(?string $lastName): User
     {
         $this->lastName = $lastName;
 
@@ -253,23 +245,19 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get lastName.
-     *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
     /**
-     * Set email.
-     *
      * @param string $email
      *
-     * @return Customer
+     * @return User
      */
-    public function setEmail($email)
+    public function setEmail(?string $email): User
     {
         $this->email = $email;
 
@@ -277,11 +265,9 @@ class Customer implements UserInterface
     }
 
     /**
-     * Get email.
-     *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }

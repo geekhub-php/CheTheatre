@@ -48,7 +48,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     {
         $apiKey = $credentials['token'];
 
-        $user = $this->em->getRepository('AppBundle:Customer')
+        $user = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['apiKey' => $apiKey]);
 
         return $user;

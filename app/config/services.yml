@@ -53,8 +53,8 @@ services:
         public: false
         arguments: ["@doctrine.orm.entity_manager"]
 
-    customer_login:
-        class: AppBundle\Services\CustomerLogin
+    user_login:
+        class: AppBundle\Services\UserLogin
         arguments: ["@doctrine", "@serializer", "@validator", "@facebook_user_provider"]
 
     facebook_user_provider:

@@ -2,12 +2,12 @@
 
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\Entity\Customer;
+use AppBundle\Entity\User;
 use AppBundle\Model\FacebookResponse;
 use AppBundle\Services\FacebookUserProvider;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class CustomerControllerTest extends AbstractApiController
+class UserControllerTest extends AbstractApiController
 {
     public function setUp()
     {
@@ -16,45 +16,45 @@ class CustomerControllerTest extends AbstractApiController
         $this
             ->getEm()
             ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
+            ->delete('AppBundle:User', 'u')
+            ->where('u.apiKey = :apiKey')
             ->setParameter('apiKey', 'token_11111111')
             ->getQuery()
             ->execute();
         $this
             ->getEm()
             ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
+            ->delete('AppBundle:User', 'u')
+            ->where('u.apiKey = :apiKey')
             ->setParameter('apiKey', 'token_22222222')
             ->getQuery()
             ->execute();
         $this
             ->getEm()
             ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
+            ->delete('AppBundle:User', 'u')
+            ->where('u.apiKey = :apiKey')
             ->setParameter('apiKey', 'token_33333333')
             ->getQuery()
             ->execute();
 
-        $customer1 = new Customer();
-        $customer1
-            ->setUsername('customer')
+        $user1 = new User();
+        $user1
+            ->setUsername('user')
             ->setApiKey('token_11111111');
-        $customer2 = new Customer();
-        $customer2
-            ->setUsername('customer')
+        $user2 = new User();
+        $user2
+            ->setUsername('user')
             ->setApiKey('token_22222222')
             ->setFacebookId('fb_id_22222222');
-        $customer3 = new Customer();
-        $customer3
-            ->setUsername('customer')
+        $user3 = new User();
+        $user3
+            ->setUsername('user')
             ->setApiKey('token_33333333');
 
-        $this->getEm()->persist($customer1);
-        $this->getEm()->persist($customer2);
-        $this->getEm()->persist($customer3);
+        $this->getEm()->persist($user1);
+        $this->getEm()->persist($user2);
+        $this->getEm()->persist($user3);
         $this->getEm()->flush();
     }
 
@@ -63,7 +63,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/login/new',
+            '/users/login/new',
             [],
             [],
             [
@@ -88,7 +88,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/login/update',
+            '/users/login/update',
             [],
             [],
             [
@@ -107,9 +107,9 @@ class CustomerControllerTest extends AbstractApiController
         $content = json_decode($client->getResponse()->getContent(), true);
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
-        self::assertEquals('John', $content['customer']['first_name']);
-        self::assertEquals('Doe', $content['customer']['last_name']);
-        self::assertEquals('john.doe@example.com', $content['customer']['email']);
+        self::assertEquals('John', $content['user']['first_name']);
+        self::assertEquals('Doe', $content['user']['last_name']);
+        self::assertEquals('john.doe@example.com', $content['user']['email']);
         self::assertEquals('token_11111111', $content['api_key']);
     }
 
@@ -134,7 +134,7 @@ class CustomerControllerTest extends AbstractApiController
 
         $client->request(
             'POST',
-            '/customers/login/social',
+            '/users/login/social',
             [],
             [],
             [
@@ -153,9 +153,9 @@ class CustomerControllerTest extends AbstractApiController
         $content = json_decode($client->getResponse()->getContent(), true);
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
-        self::assertEquals($userFacebook->getFirstName(), $content['customer']['first_name']);
-        self::assertEquals($userFacebook->getLastName(), $content['customer']['last_name']);
-        self::assertEquals($userFacebook->getEmail(), $content['customer']['email']);
+        self::assertEquals($userFacebook->getFirstName(), $content['user']['first_name']);
+        self::assertEquals($userFacebook->getLastName(), $content['user']['last_name']);
+        self::assertEquals($userFacebook->getEmail(), $content['user']['email']);
         self::assertEquals('token_11111111', $content['api_key']);
     }
 
@@ -177,7 +177,7 @@ class CustomerControllerTest extends AbstractApiController
 
         $client->request(
             'POST',
-            '/customers/login/social',
+            '/users/login/social',
             [],
             [],
             [
@@ -204,7 +204,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/login/new',
+            '/users/login/new',
             [],
             [],
             [
@@ -228,7 +228,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/login/update',
+            '/users/login/update',
             [],
             [],
             [
@@ -262,7 +262,7 @@ class CustomerControllerTest extends AbstractApiController
 
         $client->request(
             'POST',
-            '/customers/login/social',
+            '/users/login/social',
             [],
             [],
             [
@@ -286,7 +286,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/logout',
+            '/users/logout',
             [],
             [],
             [
@@ -303,7 +303,7 @@ class CustomerControllerTest extends AbstractApiController
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/customers/logout',
+            '/users/logout',
             [],
             [],
             []
@@ -316,14 +316,14 @@ class CustomerControllerTest extends AbstractApiController
     {
         $client = $this->getClient();
 
-        $customer = $this->getEm()
-            ->getRepository('AppBundle:Customer')
+        $user = $this->getEm()
+            ->getRepository('AppBundle:User')
             ->findOneBy(['apiKey' => 'token_11111111']);
-        self::assertNotNull($customer->getApiKey());
+        self::assertNotNull($user->getApiKey());
 
         $client->request(
             'POST',
-            '/customers/logout',
+            '/users/logout',
             [],
             [],
             [
@@ -331,14 +331,14 @@ class CustomerControllerTest extends AbstractApiController
                 'CONTENT_TYPE' => 'application/json',
             ]
         );
-        $customer = $this->getEm()
-            ->getRepository('AppBundle:Customer')
+        $user = $this->getEm()
+            ->getRepository('AppBundle:User')
             ->findOneBy(['apiKey' => 'token_11111111']);
-        self::assertEquals(null, $customer);
+        self::assertEquals(null, $user);
         self::assertEquals(204, $client->getResponse()->getStatusCode());
         $client->request(
             'POST',
-            '/customers/logout',
+            '/users/logout',
             [],
             [],
             [

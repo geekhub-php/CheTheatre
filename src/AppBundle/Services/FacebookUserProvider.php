@@ -34,9 +34,9 @@ class FacebookUserProvider
     /**
      * @param string $accessToken
      *
-     * @return object
+     * @return FacebookResponse
      */
-    public function getUser($accessToken)
+    public function getUser(string $accessToken): FacebookResponse
     {
         try {
             $client = new Client();

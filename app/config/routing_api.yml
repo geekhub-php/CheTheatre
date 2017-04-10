@@ -30,9 +30,9 @@ history:
     type: rest
     resource: AppBundle\Controller\HistoryController
 
-logout_customer:
+logout_user:
     type: rest
-    resource: AppBundle\Controller\CustomerController
+    resource: AppBundle\Controller\UserController
     methods: [POST]
 
 _monitor:
