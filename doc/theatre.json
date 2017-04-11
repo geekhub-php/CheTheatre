@@ -707,7 +707,7 @@
         },
         "/performanceevents/{id}/tickets": {
             "get": {
-                "operationId": "get_ticket_performanceevents",
+                "operationId": "get_performanceevents_tickets",
                 "tags": [
                     "tickets"
                 ],
