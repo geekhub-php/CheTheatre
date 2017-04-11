@@ -188,6 +188,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle().' '.$this->getVenue();
     }
 }

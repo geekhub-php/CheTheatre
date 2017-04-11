@@ -185,6 +185,11 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      */
     protected $priceCategories;
 
+    /**
+     * @var boolean
+     */
+    protected $sale;
+
     public function __construct()
     {
         parent::__construct();
@@ -461,5 +466,21 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
     public function removeRowsForSale(RowsForSale $rowsForSale)
     {
         $this->rowsForSale->removeElement($rowsForSale);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSale()
+    {
+        return $this->sale;
+    }
+
+    /**
+     * @param boolean $sale
+     */
+    public function setSale($sale)
+    {
+        $this->sale = $sale;
     }
 }

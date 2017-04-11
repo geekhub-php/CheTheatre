@@ -8,6 +8,7 @@ use AppBundle\Entity\RowsForSale;
 use AppBundle\Entity\Seat;
 use AppBundle\Entity\Venue;
 use AppBundle\Entity\VenueSector;
+use Doctrine\ORM\EntityManager;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Exception\ModelManagerException;
@@ -24,6 +25,11 @@ class PerformanceEventAdmin extends Admin
         '_sort_by'    => 'dateTime',
     ];
     protected $seatPrice = [];
+
+    /**
+     * @var EntityManager
+     */
+    protected $em;
 
     /**
      * @param RouteCollection $collection
@@ -43,8 +49,7 @@ class PerformanceEventAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.default_entity_manager');
-        $queryRowsForSale = $em->getRepository('AppBundle:RowsForSale')
+        $queryRowsForSale = $this->getEm()->getRepository('AppBundle:RowsForSale')
             ->findVenueSectorsByPerformanceEventQueryBuilder($this->getSubject());
 
         $formMapper
@@ -100,8 +105,9 @@ class PerformanceEventAdmin extends Admin
                 ->add('seriesNumber', null, [
                     'required' => false,
                 ])
-                ->add('enableSale', 'checkbox', [
+                ->add('sale', 'checkbox', [
                     'required' => false,
+                    'label' => 'Enable Sale',
                 ])
                 ->end()
             ;
@@ -142,50 +148,70 @@ class PerformanceEventAdmin extends Admin
             ]);
     }
 
+    public function preUpdate($object)
+    {
+        $this->seatPrice = [];
+        if (!self::inspectPriceCategories($object)) {
+            return null;
+        }
+        if (!self::inspectSeatWithoutPrice($object->getVenue())) {
+            return null;
+        }
+        if (!self::inspectSeriesNumber($object)) {
+            return null;
+        }
+        if ($object->isEnableSale() === null) {
+            $object->setEnableSale(false);
+            $this->getEm()->persist($object);
+        }
+        if (($object->isEnableSale() === false) && ($object->isSale() === true)) {
+            $object->setEnableSale(true);
+            $this->getEm()->persist($object);
+        }
+        return true;
+    }
+
     public function postUpdate($object)
     {
-        self::inspectPriceCategories($object);
+        $this->seatPrice = [];
+        if (!self::inspectPriceCategories($object)) {
+            return null;
+        }
+        if (!self::inspectSeatWithoutPrice($object->getVenue())) {
+            return null;
+        }
+        if (!self::inspectSeriesNumber($object)) {
+            return null;
+        }
+        return true;
+    }
+
+    public function getEm()
+    {
+        if (!$this->em) {
+            $this->em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        }
+        return $this->em;
     }
 
     /**
      * Inspect PriceCategory. Search errors
      *
      * @param PerformanceEvent $performanceEvent
-     * @throws ModelManagerException
+     * @return bool
      */
-    private function inspectPriceCategories(PerformanceEvent $performanceEvent)
+    public function inspectPriceCategories(PerformanceEvent $performanceEvent)
     {
-        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
-        $categories = $em->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $performanceEvent]);
-        $seat = $em->getRepository('AppBundle:Seat')->findByVenue($performanceEvent->getVenue());
+        $categories = $this->getEm()->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $performanceEvent]);
         $venue = $performanceEvent->getVenue();
-
         /** @var PriceCategory $category*/
-
         foreach ($categories as $category) {
             self::getRows($venue, $category->getRows(), $category->getVenueSector(), $category->getPlaces());
         }
-        self::inspectSeatWithoutPrice(count($seat), $performanceEvent, $venue);
-        if (!$performanceEvent->getSeriesNumber()) {
-            $performanceEvent->setEnableSale(null);
-            $em->persist($performanceEvent);
-            $em->flush();
-            $this
-                ->getConfigurationPool()
-                ->getContainer()
-                ->get('session')
-                ->getFlashBag()
-                ->add(
-                    'error',
-                    "Помилка. Введіть номер комплекта квитків!"
-                );
-            throw new ModelManagerException();
+        if (!$categories) {
+            return false;
         }
-        if ((count($seat) === count($this->seatPrice)) && ($performanceEvent->isEnableSale() === null)) {
-            $performanceEvent->setEnableSale(false);
-            $em->persist($performanceEvent);
-            $em->flush();
-        }
+        return true;
     }
 
     /**
@@ -195,8 +221,9 @@ class PerformanceEventAdmin extends Admin
      * @param $strRows
      * @param VenueSector $venueSector
      * @param $strPlaces
+     * @return bool|null
      */
-    private function getRows(Venue $venue, $strRows, VenueSector $venueSector, $strPlaces)
+    public function getRows(Venue $venue, $strRows, VenueSector $venueSector, $strPlaces = null)
     {
         $dataRows = explode(',', $strRows);
         foreach ($dataRows as $rows) {
@@ -210,6 +237,7 @@ class PerformanceEventAdmin extends Admin
                 self::getPlaces($venue, $rows, $venueSector, $strPlaces);
             }
         }
+        return true;
     }
 
     /**
@@ -220,7 +248,7 @@ class PerformanceEventAdmin extends Admin
      * @param VenueSector $venueSector
      * @param $strPlaces
      */
-    private function getPlaces(Venue $venue, $row, VenueSector $venueSector, $strPlaces)
+    public function getPlaces(Venue $venue, $row, VenueSector $venueSector, $strPlaces = null)
     {
         if ($strPlaces === null) {
             self::getSeat($venue, $row, $venueSector);
@@ -249,11 +277,10 @@ class PerformanceEventAdmin extends Admin
      * @param null $place
      * @throws ModelManagerException
      */
-    private function getSeat(Venue $venue, $row, VenueSector $venueSector, $place = null)
+    public function getSeat(Venue $venue, $row, VenueSector $venueSector, $place = null)
     {
-        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
         if ($place === null) {
-            $seat = $em->getRepository('AppBundle:Seat')->findBy([
+            $seat = $this->getEm()->getRepository('AppBundle:Seat')->findBy([
                 'row' => $row,
                 'venueSector' => $venueSector,
             ]);
@@ -274,7 +301,7 @@ class PerformanceEventAdmin extends Admin
             }
         }
         if ($place !== null) {
-            $seat = $em->getRepository('AppBundle:Seat')->findOneBy([
+            $seat = $this->getEm()->getRepository('AppBundle:Seat')->findOneBy([
                 'row' => $row,
                 'place' => $place,
                 'venueSector' => $venueSector,
@@ -303,7 +330,7 @@ class PerformanceEventAdmin extends Admin
      * @param VenueSector $venueSector
      * @throws ModelManagerException
      */
-    private function inspectSeatMoreThanOnePrice($row, $place, VenueSector $venueSector)
+    public function inspectSeatMoreThanOnePrice($row, $place, VenueSector $venueSector)
     {
         $seats = $this->seatPrice;
         foreach ($seats as $key) {
@@ -317,7 +344,7 @@ class PerformanceEventAdmin extends Admin
                         'error',
                         "Помилка. $row - $place в секторі $venueSector вже має цiну!"
                     );
-                throw new ModelManagerException('Error row-place price!');
+                throw new ModelManagerException('Error Seat with more than one price!');
             }
         }
         $seats[]= $row.'-'.$place;
@@ -327,19 +354,15 @@ class PerformanceEventAdmin extends Admin
     /**
      * Search Seat without price
      *
-     * @param $countSeat
-     * @param PerformanceEvent $performanceEvent
      * @param Venue $venue
+     * @return bool
      * @throws ModelManagerException
      */
-    private function inspectSeatWithoutPrice($countSeat, PerformanceEvent $performanceEvent, Venue $venue)
+    public function inspectSeatWithoutPrice(Venue $venue)
     {
-        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
-        if ($countSeat != count($this->seatPrice)) {
-            $performanceEvent->setEnableSale(null);
-            $em->persist($performanceEvent);
-            $em->flush();
-            $this
+        $seat = $this->getEm()->getRepository('AppBundle:Seat')->findByVenue($venue);
+        if (count($seat) != count($this->seatPrice)) {
+             $this
                 ->getConfigurationPool()
                 ->getContainer()
                 ->get('session')
@@ -348,7 +371,32 @@ class PerformanceEventAdmin extends Admin
                     'error',
                     "Помилка. В залi $venue ціна проставлена не на всі місця!"
                 );
-            throw new ModelManagerException();
+            throw new ModelManagerException('In the hall not all places have price!');
         }
+        return true;
+    }
+
+    /**
+     * SeriesNumber can not be blank!
+     *
+     * @param PerformanceEvent $performanceEvent
+     * @return bool
+     * @throws ModelManagerException
+     */
+    public function inspectSeriesNumber(PerformanceEvent $performanceEvent)
+    {
+        if (!$performanceEvent->getSeriesNumber()) {
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->add(
+                    'error',
+                    "Помилка. Введіть номер комплекта квитків!"
+                );
+            throw new ModelManagerException('Error SeriesNumber blank!');
+        }
+        return true;
     }
 }

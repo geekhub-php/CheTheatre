@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170409213410 extends AbstractMigration
+class Version20170411152812 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -25,6 +25,9 @@ class Version20170409213410 extends AbstractMigration
         $this->addSql('ALTER TABLE performanceevent_rowsforsale ADD CONSTRAINT FK_4B0B0CD3A26F6674 FOREIGN KEY (rowsforsale_id) REFERENCES rows_for_sale (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE rows_for_sale ADD CONSTRAINT FK_BB4AF581137F3880 FOREIGN KEY (venueSector_id) REFERENCES venue_sector (id)');
         $this->addSql('ALTER TABLE rows_for_sale_translation ADD CONSTRAINT FK_AA8BD619232D562B FOREIGN KEY (object_id) REFERENCES rows_for_sale (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE ticket DROP FOREIGN KEY FK_97A0ADA31C7C4AAD');
+        $this->addSql('DROP INDEX IDX_97A0ADA31C7C4AAD ON ticket');
+        $this->addSql('ALTER TABLE ticket CHANGE customer_order_id customer_order_id INT DEFAULT NULL');
     }
 
     /**
@@ -40,5 +43,8 @@ class Version20170409213410 extends AbstractMigration
         $this->addSql('DROP TABLE performanceevent_rowsforsale');
         $this->addSql('DROP TABLE rows_for_sale');
         $this->addSql('DROP TABLE rows_for_sale_translation');
+        $this->addSql('ALTER TABLE ticket CHANGE customer_order_id customer_order_id BINARY(16) DEFAULT NULL COMMENT \'(DC2Type:uuid_binary)\'');
+        $this->addSql('ALTER TABLE ticket ADD CONSTRAINT FK_97A0ADA31C7C4AAD FOREIGN KEY (customer_order_id) REFERENCES customer_order (id)');
+        $this->addSql('CREATE INDEX IDX_97A0ADA31C7C4AAD ON ticket (customer_order_id)');
     }
 }

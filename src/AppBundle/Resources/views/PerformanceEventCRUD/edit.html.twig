@@ -26,6 +26,7 @@
                     $.get("{{ admin.generateUrl('deletePriceCategories') }}", {"performanceEvent_id":"{{ object.id }}"}, function (data, status) {
                         if (status === 'success') {
                             $("#sonata-ba-field-container-{{ admin.uniqId }}_priceCategories").find('table').remove();
+                            $("form:first").submit();
                         }
                     });
                 } else {
