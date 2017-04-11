@@ -89,7 +89,11 @@ class PriceCategory extends AbstractPersonalTranslatable implements Translatable
     /**
      * @var PerformanceEvent
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PerformanceEvent", inversedBy="priceCategories", cascade={"persist"})
+     * @ORM\ManyToOne(
+     *     targetEntity="AppBundle\Entity\PerformanceEvent",
+     *     inversedBy="priceCategories",
+     *     cascade={"persist"}
+     *     )
      */
     protected $performanceEvent;
 

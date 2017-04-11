@@ -45,7 +45,8 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
             $successMessage->text()
         );
 
-        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([], ['id' => 'DESC']);
+        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')
+            ->findOneBy([], ['id' => 'DESC']);
 
         return $performanceEvent;
     }
@@ -92,7 +93,8 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
             $successMessage->text()
         );
 
-        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')->findOneBy([], ['id' => 'DESC']);
+        $performanceEvent = $this->getEm()->getRepository('AppBundle:PerformanceEvent')
+            ->findOneBy([], ['id' => 'DESC']);
 
         return $performanceEvent;
     }
@@ -182,16 +184,16 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
      * @depends testPerformanceEventPriceCategoryCreateAction
      * @param PerformanceEvent $performanceEvent
      */
-    public function testPerformanceEventUpdate(PerformanceEvent $performanceEvent)
-    {
-        $adminPerformanceEvent = $this->getContainer()->get('sonata.admin.performance.event');
-
-        $performanceEvent->setSeriesNumber('00000055');
-        $this->getEm()->persist($performanceEvent);
-
+//    public function testPerformanceEventUpdate(PerformanceEvent $performanceEvent)
+//    {
+//        $adminPerformanceEvent = $this->getContainer()->get('sonata.admin.performance.event');
+//
+//        $performanceEvent->setSeriesNumber('00000055');
+//        $this->getEm()->persist($performanceEvent);
+//
 //        self::assertNotFalse($adminPerformanceEvent->preUpdate($performanceEvent));
 //        self::assertNotFalse($adminPerformanceEvent->postUpdate($performanceEvent));
-    }
+//    }
 
     /**
      * @depends testPerformanceEventCreateAction

@@ -202,7 +202,8 @@ class PerformanceEventAdmin extends Admin
      */
     public function inspectPriceCategories(PerformanceEvent $performanceEvent)
     {
-        $categories = $this->getEm()->getRepository('AppBundle:PriceCategory')->findBy(['performanceEvent' => $performanceEvent]);
+        $categories = $this->getEm()->getRepository('AppBundle:PriceCategory')
+            ->findBy(['performanceEvent' => $performanceEvent]);
         $venue = $performanceEvent->getVenue();
         /** @var PriceCategory $category*/
         foreach ($categories as $category) {
