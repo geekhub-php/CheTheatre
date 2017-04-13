@@ -51,7 +51,7 @@ services:
     api_key_authenticator:
         class:  AppBundle\Security\ApiKeyAuthenticator
         public: false
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine"]
 
     user_login:
         class: AppBundle\Services\UserLogin

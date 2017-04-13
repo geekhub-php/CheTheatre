@@ -2,7 +2,7 @@
 
 namespace AppBundle\Security;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,16 +15,16 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {
     /**
-     * @var EntityManager
+     * @var ManagerRegistry
      */
-    private $em;
+    private $registry;
 
     /**
-     * @param EntityManager $em
+     * @param ManagerRegistry $registry
      */
-    public function __construct(EntityManager $em)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->em = $em;
+        $this->registry = $registry;
     }
 
     /**
@@ -48,7 +48,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     {
         $apiKey = $credentials['token'];
 
-        $user = $this->em->getRepository('AppBundle:User')
+        $user = $this->registry->getRepository('AppBundle:User')
             ->findOneBy(['apiKey' => $apiKey]);
 
         return $user;

@@ -25,7 +25,8 @@ class TicketsControllerTest extends AbstractApiController
         $user1 = new User();
         $user1
             ->setUsername('user')
-            ->setApiKey('token_11111111');
+            ->setApiKey('token_11111111')
+            ->setRole('ROLE_API');
 
         $this->getEm()->persist($user1);
         $this->getEm()->flush();
