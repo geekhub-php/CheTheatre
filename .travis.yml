@@ -41,3 +41,7 @@ script:
   - if [ "$TARGET" = "phpcs" ];   then bin/phpcs ./src --standard=PSR2 --extensions=php -p; fi
 after_script:
   - rm geekhub_travis_ci
+after_success:
+  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then
+    ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111 "echo 1 > /tmp/travis-deploy";
+    fi

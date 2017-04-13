@@ -28,6 +28,8 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Type("integer")
+     * @Expose()
      */
     protected $id;
 
@@ -56,8 +58,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @var Venue
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="venueSectors")
-     * @Type("AppBundle\Entity\Venue")
-     * @Expose()
      */
     protected $venue;
 
@@ -188,6 +188,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle().' '.$this->getVenue();
     }
 }

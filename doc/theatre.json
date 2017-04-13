@@ -753,6 +753,54 @@
                 }
             }
         },
+        "/performanceevents/{id}/pricecategories": {
+            "get": {
+                "operationId": "get_performanceevent_price_categories",
+                "tags": [
+                    "performanceevents"
+                ],
+                "summary": "Get PriceCategories collection for PerformanceEvent",
+                "description": "Returns PriceCategories by performanceEvent ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "PerformanceEvent ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "locale",
+                        "description": "Selects language of data you want to receive",
+                        "required": false,
+                        "type": "string",
+                        "default": "uk",
+                        "enum": [
+                            "uk",
+                            "en"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceCategory"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when performanceevent was not found by ID"
+                    }
+                }
+            }
+        },
         "/histories": {
             "get": {
                 "operationId": "get_histories",
@@ -1663,6 +1711,9 @@
                 },
                 "venue_sector_id": {
                     "type": "integer"
+                },
+                "venue_sector": {
+                    "$ref": "#/definitions/VenueSector"
                 }
             }
         },
@@ -1672,14 +1723,23 @@
                 "id": {
                     "type": "integer"
                 },
-                "title": {
+                "rows": {
+                    "type": "string"
+                },
+                "places": {
                     "type": "string"
                 },
                 "color": {
                     "type": "string"
                 },
-                "venue": {
-                    "$ref": "#/definitions/Venue"
+                "price": {
+                    "type": "integer"
+                },
+                "venue_sector": {
+                    "$ref": "#/definitions/VenueSector"
+                },
+                "performance_event": {
+                    "$ref": "#/definitions/PerformanceEvent"
                 }
             }
         },

@@ -5,717 +5,957 @@ AppBundle\Entity\PerformanceEvent:
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent2:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent3:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent4:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue4'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent5:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue5'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent6:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue4'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent7:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent8:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent9:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent10:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent11:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent12:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent13:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent14:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent15:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent16:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent17:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent18:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent19:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent20:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-61 days", "-31 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent21:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent22:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent23:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent24:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent25:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent26:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent27:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent28:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent29:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent30:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent31:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent32:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent33:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent34:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent35:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent36:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent37:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent38:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent39:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent40:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-30 days", "now")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent41:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent42:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent43:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent44:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent45:
         performance: '@performance13'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent46:
         performance: '@performance14'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent47:
         performance: '@performance15'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent48:
         performance: '@performance16'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent49:
         performance: '@performance1'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent50:
         performance: '@performance2'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent51:
         performance: '@performance3'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent52:
         performance: '@performance4'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent53:
         performance: '@performance5'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent54:
         performance: '@performance6'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent55:
         performance: '@performance7'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent56:
         performance: '@performance8'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent57:
         performance: '@performance9'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent58:
         performance: '@performance10'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent59:
         performance: '@performance11'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent60:
         performance: '@performance12'
         dateTime: <dateTimeBetween("now", "+30 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent61:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent62:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent63:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent64:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent65:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent66:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent67:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent68:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent69:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent70:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent71:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent72:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent73:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent74:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent75:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent76:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent77:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent78:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent79:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent80:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+31 days", "+61 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent81:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent82:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent83:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent84:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent85:
         performance: '@performance5'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent86:
         performance: '@performance6'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent87:
         performance: '@performance7'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent88:
         performance: '@performance8'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent89:
         performance: '@performance9'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent90:
         performance: '@performance10'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent91:
         performance: '@performance11'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue4'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent92:
         performance: '@performance12'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent93:
         performance: '@performance13'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent94:
         performance: '@performance14'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent95:
         performance: '@performance15'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent96:
         performance: '@performance16'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent97:
         performance: '@performance1'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent98:
         performance: '@performance2'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent99:
         performance: '@performance3'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent100:
         performance: '@performance4'
         dateTime: <dateTimeBetween("-91 days", "-62 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent101:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent102:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent103:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent104:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent105:
         performance: '@performance9'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent106:
         performance: '@performance10'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent107:
         performance: '@performance11'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent108:
         performance: '@performance12'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent109:
         performance: '@performance13'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent110:
         performance: '@performance14'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent111:
         performance: '@performance15'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent112:
         performance: '@performance16'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent113:
         performance: '@performance1'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent114:
         performance: '@performance2'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue3'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent115:
         performance: '@performance3'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue2'
+        venue: '@venue1'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent116:
         performance: '@performance4'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent117:
         performance: '@performance5'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
         venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent118:
         performance: '@performance6'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue1'
+        venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent119:
         performance: '@performance7'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue1'
+        venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false
     performanceEvent120:
         performance: '@performance8'
         dateTime: <dateTimeBetween("+62 days", "+91 days")>
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
-        venue: '@venue1'
+        venue: '@venue2'
+        seriesNumber: '0000001'
+        enableSale: false

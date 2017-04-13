@@ -1,0 +1,236 @@
+body {
+  min-width: 1000px;
+}
+ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+li {
+  list-style-type: none;
+}
+.title-hall {
+  text-align: center;
+  font-size: 35px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+}
+.title {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 35px;
+  display: inline-block;
+}
+.title-kulyka {
+  width: 600px;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 25px;
+}
+.place {
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid #000000;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  color: #000000;
+  margin: 2.5px;
+}
+.legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.legend dt {
+  border-radius: 3px;
+  border: 1px solid #000000;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  margin-left: 25px;
+}
+.booking {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #761c19;
+  width: 100%;
+  min-height: 400px;
+  background: #ffcdcd;
+}
+.booking .title-booking {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.booking dl {
+  margin: 7px 15px;
+  padding-bottom: 20px;
+}
+.booking dl dt,
+.booking dl dd {
+  display: inline-block;
+  margin-left: 5px;
+}
+.booking dl.close-booking:after {
+  content: "\d7";
+  font-size: 25px;
+  color: red;
+}
+.booking .pay-btn {
+  background: #761c19;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  border: none;
+}
+.booking .pay-btn:hover {
+  background: transparent;
+  border: 1px solid #761c19;
+  color: #761c19;
+  padding: 4px 10px;
+}
+.booking .bought-place-info,
+.booking footer {
+  color: #761c19;
+}
+.booking header {
+  border-bottom: 1px solid #4d4d4d;
+}
+.booking header .title-show {
+  color: #000000;
+  font-size: 20px;
+  margin: 10px;
+}
+.booking header .title-hall-place {
+  margin: 10px;
+  color: #000000;
+  font-size: 15px;
+}
+.booking header h2 {
+  border: 1px solid #761c19;
+  background: #761c19;
+  color: #ffffff;
+}
+.booking footer {
+  border-top: 1px solid #4d4d4d;
+}
+.place-reserved {
+  background-color: #A9A9A9;
+}
+.place-bought {
+  background-color: #D3D3D3;
+}
+.place-price1 {
+  background-color: #0000FF;
+}
+.place-price2 {
+  background-color: #FFC0CB;
+}
+.place-price3 {
+  background-color: #008000;
+}
+.hall_kulyka {
+  background-image: url("images/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.offset-1:before {
+  content: "\2002";
+  display: inline-block;
+  margin: 2.5px;
+  height: 20px;
+  width: 20px;
+}
+.offset-2:before {
+  content: "\2002";
+  display: inline-block;
+  margin: 2.5px;
+  height: 20px;
+  width: 20px;
+}
+.hall-places {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.hall-places-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.hall-places-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.parter {
+  margin: 0 auto 70px;
+}
+.hall {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
+}
+.hall_philharmonic {
+  text-align: center;
+  padding-bottom: 50px;
+  background-image: url("images/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.title-philharmonic {
+  width: 800px;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 25px;
+}
+.section-middle,
+.section-back {
+  margin-top: 40px;
+}
+.section-back {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.left-hall {
+  margin-right: 68px;
+}
+.right-hall {
+  margin-left: 68px;
+}
+.img-balcony {
+  border: 1px solid #000000;
+  border-radius: 20px;
+  background-color: antiquewhite;
+  min-height: 400px;
+  width: 60%;
+}
+.balcony-front {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.back-offset {
+  margin-right: 77.5px;
+}
+.loggia-left li,
+.loggia-right li {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.loggia-left li {
+  transform: rotate(80deg);
+}
+.loggia-right li {
+  transform: rotate(-80deg);
+}
