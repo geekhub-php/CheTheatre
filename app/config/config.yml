@@ -183,3 +183,11 @@ doctrine_migrations:
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
+
+monolog:
+    handlers:
+        invalid_api_key:
+            type:    stream
+            level: info
+            path:   "%kernel.logs_dir%/111.log"
+            channels: [invalid_api_key]

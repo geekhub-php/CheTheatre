@@ -27,6 +27,13 @@ class CustomerController extends Controller
             $customer = $this->get('customer_login')
                 ->newCustomer();
             $customerResponse = new CustomerResponse($customer);
+
+            //$logger = $this->get('monolog.logger.invalid_api_key');
+            //$logger->info('Info message for interesting things');
+            //$logger->err('Something really bad happened!');
+            //$this->get('logger')->err('Something really bad happened!');
+            $this->get('customer_logger_send_mail');
+
             return View::create($customerResponse);
         }
         $response = [

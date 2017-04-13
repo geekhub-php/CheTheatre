@@ -3,6 +3,11 @@ imports:
 
 monolog:
     handlers:
+        invalid_api_key:
+            level:    info
+            type:     stream
+            path:  "%kernel.logs_dir%/111.log"
+            channels: [invalid_api_key]
         main:
             type:         fingers_crossed
             action_level: error

@@ -13,6 +13,11 @@ web_profiler:
 
 monolog:
     handlers:
+        #invalid_api_key:
+         #   type:    stream
+         #   level: info
+         #   path:   "%kernel.logs_dir%/111.log"
+         #   channels: [invalid_api_key]
         main:
             type:   stream
             path:   "%kernel.logs_dir%/%kernel.environment%.log"
