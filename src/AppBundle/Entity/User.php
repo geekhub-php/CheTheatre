@@ -116,6 +116,13 @@ class User implements UserInterface
     private $facebookId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=50)
+     */
+    private $role;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -143,12 +150,35 @@ class User implements UserInterface
         return $this->apiKey;
     }
 
+
+    /**
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setRole(?string $role): User
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+
+
     /**
      * @inheritdoc
      */
     public function getRoles()
     {
-        return array('ROLE_API');
+        return array($this->role);
     }
 
     /**

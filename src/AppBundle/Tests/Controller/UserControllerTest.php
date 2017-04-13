@@ -41,17 +41,19 @@ class UserControllerTest extends AbstractApiController
         $user1 = new User();
         $user1
             ->setUsername('user')
-            ->setApiKey('token_11111111');
+            ->setApiKey('token_11111111')
+            ->setRole('ROLE_API');
         $user2 = new User();
         $user2
             ->setUsername('user')
             ->setApiKey('token_22222222')
-            ->setFacebookId('fb_id_22222222');
+            ->setFacebookId('fb_id_22222222')
+            ->setRole('ROLE_API');
         $user3 = new User();
         $user3
             ->setUsername('user')
-            ->setApiKey('token_33333333');
-
+            ->setApiKey('token_33333333')
+            ->setRole('ROLE_API');
         $this->getEm()->persist($user1);
         $this->getEm()->persist($user2);
         $this->getEm()->persist($user3);

@@ -59,6 +59,7 @@ class UserLogin
             $user = new User();
             $user->setUsername('user');
             $user->setApiKey($apiKey);
+            $user->setRole('ROLE_API');
         } while (!$this->isValidUserData($user, ['uniqApikey']));
 
         $this->registry->getManager()->persist($user);
