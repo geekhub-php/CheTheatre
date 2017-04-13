@@ -1029,7 +1029,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/CustomerOrder"
+                                "$ref": "#/definitions/UserOrder"
                             }
                         }
                     },
@@ -1074,7 +1074,7 @@
                     "200": {
                         "description": "Successful operation",
                         "schema": {
-                            "$ref": "#/definitions/CustomerOrder"
+                            "$ref": "#/definitions/UserOrder"
                         }
                     },
                     "403": {
@@ -1086,13 +1086,13 @@
                 }
             }
         },
-        "/customers/login/new": {
+        "/users/login/new": {
             "post": {
-                "operationId": "login_customer_new",
+                "operationId": "login_user_new",
                 "tags": [
-                    "customers"
+                    "users"
                 ],
-                "summary": "Create new customer (anonymous)",
+                "summary": "Create new user (anonymous)",
                 "produces": [
                     "application/json"
                 ],
@@ -1102,8 +1102,8 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "customer": {
-                                    "$ref": "#/definitions/Customer"
+                                "user": {
+                                    "$ref": "#/definitions/User"
                                 },
                                 "api_key": {
                                     "type": "string"
@@ -1115,18 +1115,21 @@
                         "description": "Validation error"
                     },
                     "401": {
-                        "description": "Invalid credentials"
+                        "description": "Authentication required"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
         },
-        "/customers/login/update": {
+        "/users/login/update": {
             "post": {
-                "operationId": "login_customer_update",
+                "operationId": "login_user_update",
                 "tags": [
-                    "customers"
+                    "users"
                 ],
-                "summary": "Update customer",
+                "summary": "Update user",
                 "produces": [
                     "application/json"
                 ],
@@ -1135,17 +1138,18 @@
                         "in": "header",
                         "name": "API-Key-Token",
                         "description": "API Key Token",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "format": "string"
                     },
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Customer data",
+                        "description": "User data",
+                        "required": true,
                         "schema": {
                             "type": "object",
-                            "title": "CustomerLogin",
+                            "title": "UserUpdateData",
                             "properties": {
                                 "email": {
                                     "type": "string"
@@ -1166,8 +1170,8 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "customer": {
-                                    "$ref": "#/definitions/Customer"
+                                "user": {
+                                    "$ref": "#/definitions/User"
                                 },
                                 "api_key": {
                                     "type": "string"
@@ -1179,18 +1183,21 @@
                         "description": "Validation error"
                     },
                     "401": {
-                        "description": "Invalid credentials"
+                        "description": "Authentication required"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
         },
-        "/customers/login/social": {
+        "/users/login/social": {
             "post": {
-                "operationId": "login_customer_social",
+                "operationId": "login_user_social",
                 "tags": [
-                    "customers"
+                    "users"
                 ],
-                "summary": "Customer social login",
+                "summary": "User social login",
                 "produces": [
                     "application/json"
                 ],
@@ -1199,17 +1206,18 @@
                         "in": "header",
                         "name": "API-Key-Token",
                         "description": "API Key Token",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "format": "string"
                     },
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Customer data",
+                        "description": "User data",
+                        "required": true,
                         "schema": {
                             "type": "object",
-                            "title": "CustomerLogin",
+                            "title": "UserSocialData",
                             "properties": {
                                 "social_network": {
                                     "type": "string"
@@ -1227,8 +1235,8 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "customer": {
-                                    "$ref": "#/definitions/Customer"
+                                "user": {
+                                    "$ref": "#/definitions/User"
                                 },
                                 "api_key": {
                                     "type": "string"
@@ -1237,21 +1245,24 @@
                         }
                     },
                     "400": {
-                        "description": "Validation error / Socia response validation error / Social login error"
+                        "description": "Validation error"
                     },
                     "401": {
-                        "description": "Invalid credentials"
+                        "description": "Authentication required"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource"
                     }
                 }
             }
         },
-        "/customers/logout": {
-            "get": {
+        "/users/logout": {
+            "post": {
                 "tags": [
-                    "customers"
+                    "users"
                 ],
-                "operationId": "logout_customer",
-                "summary": "Logs out current logged in customer from service",
+                "operationId": "logout_user",
+                "summary": "Logs out current logged in user from system",
                 "produces": [
                     "application/json"
                 ],
@@ -1268,6 +1279,9 @@
                 "responses": {
                     "204": {
                         "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Authentication required"
                     },
                     "403": {
                         "description": "Forbidden. You don't have necessary permissions for the resource"
@@ -1669,7 +1683,7 @@
                 }
             }
         },
-        "CustomerOrder": {
+        "UserOrder": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1681,8 +1695,8 @@
                         "$ref": "#/definitions/Ticket"
                     }
                 },
-                "customer": {
-                    "$ref": "#/definitions/Customer"
+                "user": {
+                    "$ref": "#/definitions/User"
                 },
                 "payment_status": {
                     "$ref": "#/definitions/PaymentStatus"
@@ -1718,7 +1732,7 @@
                 }
             }
         },
-        "Customer": {
+        "User": {
             "type": "object",
             "properties": {
                 "id": {
