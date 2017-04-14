@@ -29,7 +29,7 @@ class Version20170404104417 extends AbstractMigration
         $this->addSql('ALTER TABLE seat DROP FOREIGN KEY FK_3D5C36664319ED49');
         $this->addSql('DROP INDEX IDX_3D5C36664319ED49 ON seat');
         $this->addSql('ALTER TABLE seat DROP priceCategory_id');
-        $this->addSql('ALTER TABLE customer_order CHANGE status status enum(\'free\', \'booked\', \'ordered\', \'opened\', \'closed\')');
+        $this->addSql('ALTER TABLE user_order CHANGE status status enum(\'free\', \'booked\', \'ordered\', \'opened\', \'closed\')');
         $this->addSql('ALTER TABLE ticket CHANGE status status enum(\'free\', \'booked\', \'paid\', \'offline\')');
     }
 
@@ -41,7 +41,7 @@ class Version20170404104417 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE customer_order CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('ALTER TABLE user_order CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
         $this->addSql('ALTER TABLE performance_schedule DROP seriesNumber, DROP seriesDate, DROP enableSale');
         $this->addSql('ALTER TABLE price_category DROP FOREIGN KEY FK_64FA22D65F1583FA');
         $this->addSql('ALTER TABLE price_category DROP FOREIGN KEY FK_64FA22D6137F3880');
