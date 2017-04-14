@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 class PerformanceEventAdmin extends Admin
 {
@@ -49,7 +50,7 @@ class PerformanceEventAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $queryRowsForSale = $this->getEm()->getRepository('AppBundle:RowsForSale')
+        $queryRowsForSale = $this->getEm()->getRepository(RowsForSale::class)
             ->findVenueSectorsByPerformanceEventQueryBuilder($this->getSubject());
 
         $formMapper
@@ -146,6 +147,19 @@ class PerformanceEventAdmin extends Admin
                     'delete' => [],
                 ],
             ]);
+    }
+
+    /**
+     * @param DatagridMapper $datagridMapper
+     *
+     * @return void
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('performance')
+            ->add('venue')
+        ;
     }
 
     public function preUpdate($object)
