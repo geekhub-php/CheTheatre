@@ -20,7 +20,7 @@ class Version20170411152812 extends AbstractMigration
 
         $this->addSql('ALTER TABLE ticket DROP FOREIGN KEY FK_97A0ADA31C7C4AAD');
         $this->addSql('DROP INDEX IDX_97A0ADA31C7C4AAD ON ticket');
-        $this->addSql('ALTER TABLE users RENAME INDEX uniq_62534e219be8fd98 TO UNIQ_1483A5E99BE8FD98');
+        $this->addSql('ALTER TABLE ticket CHANGE user_order_id user_order_id INT DEFAULT NULL');
     }
 
     /**
