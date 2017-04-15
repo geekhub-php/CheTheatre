@@ -18,6 +18,7 @@ class Version20170321184028 extends AbstractMigration
         'venue-palac_molodi' => 5,
         'venue-center_of_kids_arts' => 6,
         'venue-cherkasy-art-museum' => 7,
+        'venue-friendship-palace-of-nations' => 8,
     ];
 
     /**
@@ -32,7 +33,7 @@ class Version20170321184028 extends AbstractMigration
         );
 
         $this->addSql('CREATE TABLE venue (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, hallTemplate LONGTEXT DEFAULT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME DEFAULT NULL, deletedAt DATETIME DEFAULT NULL, deletedBy VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE venue_sector (id INT AUTO_INCREMENT NOT NULL, venue_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, INDEX IDX_53CC259240A73EBA (venue_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE venue_sector (id INT AUTO_INCREMENT NOT NULL, venue_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, INDEX IDX_53CC259240A73EBA (venue_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE seat_translation (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_9132FE65232D562B (object_id), UNIQUE INDEX lookup_unique_seat_translation_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE venue_sector_translation (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_B4A75B1B232D562B (object_id), UNIQUE INDEX lookup_unique_venue_sector_translation_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE venue_translation (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_A2B005A232D562B (object_id), UNIQUE INDEX lookup_unique_venue_translation_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
@@ -50,6 +51,13 @@ class Version20170321184028 extends AbstractMigration
         $this->addSql('ALTER TABLE performance_schedule ADD venue_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE performance_schedule ADD CONSTRAINT FK_D12575F940A73EBA FOREIGN KEY (venue_id) REFERENCES venue (id)');
         $this->addSql('CREATE INDEX IDX_D12575F940A73EBA ON performance_schedule (venue_id)');
+        $this->addSql('CREATE TABLE performanceevent_rowsforsale (performanceevent_id INT NOT NULL, rowsforsale_id INT NOT NULL, INDEX IDX_4B0B0CD3A663E1AC (performanceevent_id), INDEX IDX_4B0B0CD3A26F6674 (rowsforsale_id), PRIMARY KEY(performanceevent_id, rowsforsale_id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE rows_for_sale (id INT AUTO_INCREMENT NOT NULL, row INT NOT NULL, venueSector_id INT DEFAULT NULL, INDEX IDX_BB4AF581137F3880 (venueSector_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE rows_for_sale_translation (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_AA8BD619232D562B (object_id), UNIQUE INDEX lookup_unique_rows_for_sale_translation_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE performanceevent_rowsforsale ADD CONSTRAINT FK_4B0B0CD3A663E1AC FOREIGN KEY (performanceevent_id) REFERENCES performance_schedule (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE performanceevent_rowsforsale ADD CONSTRAINT FK_4B0B0CD3A26F6674 FOREIGN KEY (rowsforsale_id) REFERENCES rows_for_sale (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE rows_for_sale ADD CONSTRAINT FK_BB4AF581137F3880 FOREIGN KEY (venueSector_id) REFERENCES venue_sector (id)');
+        $this->addSql('ALTER TABLE rows_for_sale_translation ADD CONSTRAINT FK_AA8BD619232D562B FOREIGN KEY (object_id) REFERENCES rows_for_sale (id) ON DELETE CASCADE');
     }
 
     public function postUp(Schema $schema)
@@ -89,6 +97,11 @@ class Version20170321184028 extends AbstractMigration
         $this->addSql('DROP TABLE price_category');
         $this->addSql('DROP INDEX IDX_D12575F940A73EBA ON performance_schedule');
         $this->addSql('ALTER TABLE performance_schedule ADD venue VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, DROP venue_id');
+        $this->addSql('ALTER TABLE performanceevent_rowsforsale DROP FOREIGN KEY FK_4B0B0CD3A26F6674');
+        $this->addSql('ALTER TABLE rows_for_sale_translation DROP FOREIGN KEY FK_AA8BD619232D562B');
+        $this->addSql('DROP TABLE performanceevent_rowsforsale');
+        $this->addSql('DROP TABLE rows_for_sale');
+        $this->addSql('DROP TABLE rows_for_sale_translation');
     }
 
     private function addVenues()
@@ -96,12 +109,13 @@ class Version20170321184028 extends AbstractMigration
         $now = new \DateTime();
 
         // --------- Cherkasy Philharmonic --------------//
+        $file = file_get_contents(__DIR__.'/../../src/AppBundle/Resources/views/hallTemplate/venue-philharmonic.html.twig');
         $this->connection->insert(
             'venue',
             [
                 'title' => 'Черкаська Філармонія',
                 'address' => 'вулиця Хрещатик, 196, Черкаси, Черкаська область, Україна, 18000',
-                'hallTemplate' => '<div></div>',
+                'hallTemplate' => $file,
                 'createdAt' => $now->format('Y-m-d H:i:s'),
             ]
         );
@@ -125,14 +139,119 @@ class Version20170321184028 extends AbstractMigration
                 'content' => 'Khreshchatyk Street, 196, Cherkasy region, Ukraine, 18000',
             ]
         );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Партер',
+                'slug' => 'parterre',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Parterre',
+            ]
+        );
+        for ($i = 1; $i <= 23; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Балкон',
+                'slug' => 'balcony',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Balcony',
+            ]
+        );
+        for ($i = 1; $i <= 5; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Лоджия Левая',
+                'slug' => 'loggia-left',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'loggia-left',
+            ]
+        );
+        $this->connection->insert(
+            'rows_for_sale',
+            [
+                'row' => 1,
+                'venueSector_id' => $venue_sector_id,
+            ]
+        );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Лоджия Правая',
+                'slug' => 'loggia-right',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'loggia-right',
+            ]
+        );
+        $this->connection->insert(
+            'rows_for_sale',
+            [
+                'row' => 1,
+                'venueSector_id' => $venue_sector_id,
+            ]
+        );
 
         // --------- Kulik's House of Culture --------------//
+        $file = file_get_contents(__DIR__.'/../../src/AppBundle/Resources/views/hallTemplate/venue-kilic-house.html.twig');
         $this->connection->insert(
             'venue',
             [
                 'title' => 'Будинок культури ім. Кулика',
                 'address' => 'вулиця Благовісна, 170, Черкаси, Черкаська область, Україна, 18000',
-                'hallTemplate' => '<div></div>',
+                'hallTemplate' => $file,
                 'createdAt' => $now->format('Y-m-d H:i:s'),
             ]
         );
@@ -156,6 +275,33 @@ class Version20170321184028 extends AbstractMigration
                 'content' => 'Blahovisna Street 170, Cherkasy region, Ukraine, 18000',
             ]
         );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Партер',
+                'slug' => 'parterre',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Parterre',
+            ]
+        );
+        for ($i = 1; $i <= 17; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
 
         // --------- Cherkasy Theatre --------------//
         $this->connection->insert(
@@ -218,14 +364,33 @@ class Version20170321184028 extends AbstractMigration
                 'content' => 'Khreshchatyk Street, 170, Cherkasy region, Ukraine, 18000',
             ]
         );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Партер',
+                'slug' => 'parterre',
+                'venue_id' => $id,
+            ]
+        );
+        $id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Parterre',
+            ]
+        );
 
         // --------- Cherkasky City Palace of Youth --------------//
+        $file = file_get_contents(__DIR__.'/../../src/AppBundle/Resources/views/hallTemplate/venue-palac_molodi.html.twig');
         $this->connection->insert(
             'venue',
             [
                 'title' => 'Черкаський міський Палац молоді',
                 'address' => 'вулиця Сумгаїтська, 12, Черкаси, Черкаська область, Україна, 18000',
-                'hallTemplate' => '<div></div>',
+                'hallTemplate' => $file,
                 'createdAt' => $now->format('Y-m-d H:i:s'),
             ]
         );
@@ -249,6 +414,33 @@ class Version20170321184028 extends AbstractMigration
                 'content' => 'Street Sumgait, 12, Cherkasy region, Ukraine, 18000',
             ]
         );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Партер',
+                'slug' => 'parterre',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Parterre',
+            ]
+        );
+        for ($i = 1; $i <= 17; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
 
         // --------- Center for Children and Youth --------------//
         $this->connection->insert(
@@ -311,6 +503,92 @@ class Version20170321184028 extends AbstractMigration
                 'content' => 'Khreshchatyk Street, 259, Cherkasy region, Ukraine, 18000',
             ]
         );
+
+        // --------- Friendship Culture Palace of Nations --------------//
+        $file = file_get_contents(__DIR__.'/../../src/AppBundle/Resources/views/hallTemplate/venue-friendship-palace-of-nations.html.twig');
+        $this->connection->insert(
+            'venue',
+            [
+                'title' => 'ПК Дружба Народів',
+                'address' => 'бульвар Шевченка, 249, Черкаси, Черкаська, Україна, 18000',
+                'hallTemplate' => $file,
+                'createdAt' => $now->format('Y-m-d H:i:s'),
+            ]
+        );
+        $id = $this->connection->lastInsertId();
+        $this->venues['venue-friendship-palace-of-nations'] = $id;
+        $this->connection->insert(
+            'venue_translation',
+            [
+                'object_id' => $id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Friendship Culture Palace of Nations',
+            ]
+        );
+        $this->connection->insert(
+            'venue_translation',
+            [
+                'object_id' => $id,
+                'locale' => 'en',
+                'field' => 'address',
+                'content' => 'Shevchenko boulevard, 249, Cherkasy region, Ukraine, 18000',
+            ]
+        );
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Партер',
+                'slug' => 'parterre',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Parterre',
+            ]
+        );
+        for ($i = 1; $i <= 21; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
+        $this->connection->insert(
+            'venue_sector',
+            [
+                'title' => 'Балкон',
+                'slug' => 'balcony',
+                'venue_id' => $id,
+            ]
+        );
+        $venue_sector_id = $this->connection->lastInsertId();
+        $this->connection->insert(
+            'venue_sector_translation',
+            [
+                'object_id' => $venue_sector_id,
+                'locale' => 'en',
+                'field' => 'title',
+                'content' => 'Balcony',
+            ]
+        );
+        for ($i = 1; $i <= 11; $i++) {
+            $this->connection->insert(
+                'rows_for_sale',
+                [
+                    'row' => $i,
+                    'venueSector_id' => $venue_sector_id,
+                ]
+            );
+        }
     }
 
     private function setVenueIdForPerformanceShedule():void
