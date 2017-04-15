@@ -16,7 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TicketsController extends Controller
 {
     /**
-     * @Get("/tickets/{id}", requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @Get(
+     *     "/tickets/{id}",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      * @RestView(serializerGroups={"get_ticket"})
      */
@@ -27,7 +30,10 @@ class TicketsController extends Controller
 
     /**
      * @RestView(statusCode=204)
-     * @Patch("/tickets/{id}/free", requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @Patch(
+     *     "/tickets/{id}/free",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      */
     public function freeAction(Ticket $ticket)
@@ -39,7 +45,10 @@ class TicketsController extends Controller
 
     /**
      * @RestView(statusCode=204)
-     * @Patch("/tickets/{id}/reserve", requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
+     * @Patch(
+     *     "/tickets/{id}/reserve",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
      * @ParamConverter("ticket", class="AppBundle:Ticket")
      */
     public function reserveAction(Ticket $ticket)

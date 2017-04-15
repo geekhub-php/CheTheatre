@@ -101,6 +101,17 @@ class Ticket
     protected $customerOrder;
 
     /**
+     * @var PriceCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PriceCategory", fetch="EAGER")
+     * @ORM\JoinColumn(name="price_category_id", referencedColumnName="id", nullable=false)
+     *
+     * @Type("AppBundle\Entity\PriceCategory")
+     * @Expose()
+     */
+    protected $priceCategory;
+
+    /**
      * @var string
      * @Assert\Choice(callback="getStatuses")
      * @ORM\Column(name="status", type="string", length=15)
@@ -115,6 +126,7 @@ class Ticket
      *
      * @param Seat $seat
      * @param PerformanceEvent $performanceEvent
+     * @param PriceCategory $priceCategory
      * @param int $ticketPrice
      * @param \DateTime $seriesDate
      * @param string $seriesNumber
@@ -122,6 +134,7 @@ class Ticket
     public function __construct(
         Seat $seat,
         PerformanceEvent $performanceEvent,
+        PriceCategory $priceCategory,
         int $ticketPrice,
         \DateTime $seriesDate,
         string $seriesNumber
@@ -130,6 +143,7 @@ class Ticket
         $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
+        $this->priceCategory = $priceCategory;
         $this->price = $ticketPrice;
         $this->seriesDate = $seriesDate;
         $this->seriesNumber = $seriesNumber;
@@ -194,8 +208,7 @@ class Ticket
      */
     public function getPriceCategoryId(): int
     {
-        //TODO
-        return 0;
+        return empty($this->priceCategory) ? 0 : $this->priceCategory->getId();
     }
 
     /**
@@ -245,5 +258,13 @@ class Ticket
     public function getSeriesNumber(): string
     {
         return $this->seriesNumber;
+    }
+
+    /**
+     * @return PriceCategory
+     */
+    public function getPriceCategory(): PriceCategory
+    {
+        return $this->priceCategory;
     }
 }

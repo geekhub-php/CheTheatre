@@ -4,10 +4,12 @@ namespace AppBundle\Domain\Ticket;
 
 use AppBundle\Domain\Seat\SeatInterface;
 use AppBundle\Entity\PerformanceEvent as PerformanceEventEntity;
+use AppBundle\Entity\PriceCategory;
 use AppBundle\Entity\Seat as SeatEntity;
 use AppBundle\Entity\Ticket as TicketEntity;
 use AppBundle\Exception\NotFoundException;
 use AppBundle\Repository\TicketRepository;
+use Symfony\Component\Security\Acl\Exception\Exception;
 
 class Ticket implements TicketInterface
 {
@@ -39,6 +41,12 @@ class Ticket implements TicketInterface
     {
         $seats = $this->seatService->getByVenue($performanceEventEntity->getVenue());
 
+        $priceCategories = $performanceEventEntity->getPriceCategories();
+
+        if (!$priceCategories->count()) {
+            throw new \Exception('No priceCategory found for performance event: '.$performanceEventEntity->getId());
+        }
+
         // TODO
         // generate only if SET was not generated before
         // check PriceCategory, and take price from it;
@@ -46,15 +54,21 @@ class Ticket implements TicketInterface
         // FORCE ticket SET generation
         // Log for generated ticket
 
-        $seriesNumber = 'testTicket';
-        $seriesDate = new \DateTime('now');
         $price = 50;
         $count = 0;
+        $priceCategory = $priceCategories->first();
 
         $tickets = [];
         /** @var SeatEntity $seat */
         foreach ($seats as $seat) {
-            $tickets[] = new TicketEntity($seat, $performanceEventEntity, $price, $seriesDate, $seriesNumber);
+            $tickets[] = new TicketEntity(
+                $seat,
+                $performanceEventEntity,
+                $priceCategory,
+                $price,
+                $performanceEventEntity->getSeriesDate(),
+                $performanceEventEntity->getSeriesNumber()
+            );
             $count += 1;
         }
 
