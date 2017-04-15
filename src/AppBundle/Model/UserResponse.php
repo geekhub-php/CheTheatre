@@ -2,7 +2,7 @@
 
 namespace AppBundle\Model;
 
-use AppBundle\Entity\Customer;
+use AppBundle\Entity\User;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -12,15 +12,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ExclusionPolicy("all")
  */
-class CustomerResponse
+class UserResponse
 {
     /**
-     * @var Customer
+     * @var User
      *
-     * @Type("AppBundle\Entity\Customer")
+     * @Type("AppBundle\Entity\User")
      * @Expose
      */
-    protected $customer;
+    protected $user;
 
     /**
      * @var string
@@ -32,28 +32,29 @@ class CustomerResponse
     protected $apiKey;
 
     /**
-     * @param Customer $customer
+     * @param User $user
      */
-    public function __construct($customer)
+    public function __construct(User $user)
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     /**
-     * @return Customer
+     * @return User
      */
-    public function getCustomer()
+    public function getUser(): User
     {
-        return $this->customer;
+        return $this->user;
     }
 
     /**
-     * @param  Customer $customer
-     * @return $this
+     * @param User $user
+     *
+     * @return UserResponse
      */
-    public function setCustomer($customer)
+    public function setUser(User $user): UserResponse
     {
-        $this->customer = $customer;
+        $this->user = $user;
 
         return $this;
     }
@@ -61,8 +62,8 @@ class CustomerResponse
     /**
      * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): string
     {
-        return $this->getCustomer()->getApiKey();
+        return $this->getUser()->getApiKey();
     }
 }

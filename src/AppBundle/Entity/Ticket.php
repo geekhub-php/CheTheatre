@@ -93,13 +93,12 @@ class Ticket
     protected $performanceEvent;
 
     /**
-     * @var CustomerOrder
+     * @var UserOrder
      *
-     * @ORM\ManyToOne(targetEntity="CustomerOrder", inversedBy="tickets", fetch="EAGER")
-     * @ORM\JoinColumn(name="customer_order_id", referencedColumnName="id", nullable=true)
-     * @Type("AppBundle\Entity\CustomerOrder")
+     * @ORM\ManyToOne(targetEntity="UserOrder", inversedBy="tickets")
+     * @ORM\Column(name="user_order_id", type="integer", nullable=true)
      */
-    protected $customerOrder;
+    protected $userOrder;
 
     /**
      * @var string
@@ -246,57 +245,5 @@ class Ticket
     public function getSeriesNumber(): string
     {
         return $this->seriesNumber;
-    }
-
-    /**
-     * Set seat
-     *
-     * @param \AppBundle\Entity\Seat $seat
-     *
-     * @return Ticket
-     */
-    public function setSeat(\AppBundle\Entity\Seat $seat)
-    {
-        $this->seat = $seat;
-
-        return $this;
-    }
-
-    /**
-     * Set performanceEvent
-     *
-     * @param \AppBundle\Entity\PerformanceEvent $performanceEvent
-     *
-     * @return Ticket
-     */
-    public function setPerformanceEvent(\AppBundle\Entity\PerformanceEvent $performanceEvent)
-    {
-        $this->performanceEvent = $performanceEvent;
-
-        return $this;
-    }
-
-    /**
-     * Set customerOrder
-     *
-     * @param \AppBundle\Entity\CustomerOrder $customerOrder
-     *
-     * @return Ticket
-     */
-    public function setCustomerOrder(\AppBundle\Entity\CustomerOrder $customerOrder = null)
-    {
-        $this->customerOrder = $customerOrder;
-
-        return $this;
-    }
-
-    /**
-     * Get customerOrder
-     *
-     * @return \AppBundle\Entity\CustomerOrder
-     */
-    public function getCustomerOrder()
-    {
-        return $this->customerOrder;
     }
 }

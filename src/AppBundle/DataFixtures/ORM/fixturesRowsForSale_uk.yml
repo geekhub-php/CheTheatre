@@ -1,0 +1,19 @@
+AppBundle\Entity\RowsForSale:
+    rowsForSale1:
+        row: 1
+        venueSector: '@venueSector1'
+    rowsForSale2:
+        row: 1
+        venueSector: '@venueSector2'
+    rowsForSale3:
+        row: 2
+        venueSector: '@venueSector2'
+    rowsForSale4:
+        row: 3
+        venueSector: '@venueSector2'
+    rowsForSale5:
+        row: 4
+        venueSector: '@venueSector2'
+    rowsForSale6:
+        row: 5
+        venueSector: '@venueSector2'

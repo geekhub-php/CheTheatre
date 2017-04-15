@@ -4,7 +4,9 @@ security:
             memory:
               users: %users%
         api_key_user_provider:
-            id: api_key_user_provider
+            entity:
+                class: AppBundle:User
+                property: apiKey
 
     firewalls:
         dev:
@@ -26,9 +28,8 @@ security:
             pattern: ^/
             anonymous: ~
             stateless: true
-            simple_preauth:
-               authenticator: api_key_authenticator
-            provider: api_key_user_provider
+            guard:
+                authenticator: api_key_authenticator
 
     role_hierarchy:
             ROLE_SONATA_FOO_ADMIN:
@@ -44,10 +45,10 @@ security:
     access_control:
             - { path: ^%admin_dashboard_base_url%/, roles: ROLE_SUPER_ADMIN }
 
-            - { path: .*/customers/login/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: .*/customers/login/update, roles: ROLE_API }
-            - { path: .*/customers/login/social, roles: ROLE_API }
-            - { path: .*/customers/logout, roles: ROLE_API }
+            - { path: .*/users/login/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: .*/users/login/update, roles: ROLE_API }
+            - { path: .*/users/login/social, roles: ROLE_API }
+            - { path: .*/users/logout, roles: ROLE_API }
             - { path: .*/orders, roles: ROLE_API }
             - { path: .*/tickets/.*/free, roles: ROLE_API }
             - { path: .*/tickets/.*/reserve, roles: ROLE_API }

@@ -12,11 +12,11 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="customer_order")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerOrderRepository")
+ * @ORM\Table(name="user_order")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserOrderRepository")
  * @ExclusionPolicy("all")
  */
-class CustomerOrder
+class UserOrder
 {
     use TimestampableTrait;
 
@@ -56,21 +56,12 @@ class CustomerOrder
     protected $status;
 
     /**
-     * @var Customer
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="SET NULL")
+     * UserOrder constructor.
      */
-    protected $customer;
-
-    /**
-     * CustomerOrder constructor.
-     */
-    public function __construct(Customer $customer)
+    public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->status = self::STATUS_OPENED;
-        $this->customer = $customer;
         $this->tickets = new ArrayCollection();
     }
 
@@ -93,7 +84,7 @@ class CustomerOrder
     /**
      * @param Ticket[]|ArrayCollection $tickets
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function setTickets($tickets)
     {
@@ -113,7 +104,7 @@ class CustomerOrder
     /**
      * @param String $status
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function setStatus($status)
     {
@@ -123,31 +114,11 @@ class CustomerOrder
     }
 
     /**
-     * @return Customer
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
-     * @param $customer
-     *
-     * @return CustomerOrder
-     */
-    public function setCustomer($customer)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
      * Add Ticket
      *
      * @param Ticket $ticket
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function addTicket(Ticket $ticket)
     {
@@ -162,7 +133,7 @@ class CustomerOrder
     /**
      * @param Ticket $ticket
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function removeTicket(Ticket $ticket)
     {
@@ -181,6 +152,7 @@ class CustomerOrder
     {
         return $this->status === self::STATUS_PAID;
     }
+
     /**
      * @return array
      */

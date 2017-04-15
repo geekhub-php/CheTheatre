@@ -48,31 +48,14 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
 
-    app.event.ticket_status:
-        class: AppBundle\EventListener\TicketStatusListener
-        tags:
-          - { name: doctrine.event_listener, event: onFlush, connection: default  }
-
-    app.customer.manager:
-        class: AppBundle\Services\CustomerManager
-        arguments: ["@request_stack", "@doctrine"]
-
-    app.order.manager:
-        class: AppBundle\Services\OrderManager
-        arguments: ["@doctrine", "@app.customer.manager"]
-
-    api_key_user_provider:
-        class: AppBundle\Security\ApiKeyUserProvider
-        arguments: ["@doctrine"]
-
     api_key_authenticator:
         class:  AppBundle\Security\ApiKeyAuthenticator
         public: false
         arguments: ["@doctrine"]
 
-    customer_login:
-        class: AppBundle\Services\CustomerLogin
-        arguments: ["@doctrine", "@validator", "@serializer", "@facebook_user_provider"]
+    user_login:
+        class: AppBundle\Services\UserLogin
+        arguments: ["@doctrine", "@serializer", "@validator", "@facebook_user_provider"]
 
     facebook_user_provider:
         class: AppBundle\Services\FacebookUserProvider

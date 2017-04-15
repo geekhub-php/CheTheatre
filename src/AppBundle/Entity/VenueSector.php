@@ -13,10 +13,12 @@ use JMS\Serializer\Annotation\Type;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="venue_sector")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\VenueSectorRepository")
+ * @UniqueEntity(fields={"venue", "slug"})
  * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\VenueSectorTranslation")
  * @ExclusionPolicy("all")
  */
@@ -28,6 +30,8 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Type("integer")
+     * @Expose()
      */
     protected $id;
 
@@ -56,8 +60,6 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @var Venue
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Venue", inversedBy="venueSectors")
-     * @Type("AppBundle\Entity\Venue")
-     * @Expose()
      */
     protected $venue;
 
@@ -73,6 +75,7 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     protected $seats;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
      * @Expose
@@ -171,23 +174,10 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
     }
 
     /**
-     * Set slug
-     *
-     * @param  string      $slug
-     * @return VenueSector
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle().' '.$this->getVenue();
     }
 }
