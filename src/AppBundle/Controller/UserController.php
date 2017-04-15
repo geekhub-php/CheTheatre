@@ -19,11 +19,11 @@ class UserController extends Controller
     /**
      * @param Request $request
      *
-     * @Post("/users/login/new")
+     * @Post("/users/register")
      *
      * @return View
      */
-    public function loginNewAction(Request $request): View
+    public function registerAction(Request $request): View
     {
         $apiKey = $request->headers->get('API-Key-Token');
         $user = $this->getUser();
@@ -38,8 +38,8 @@ class UserController extends Controller
         }
 
         throw new HttpException(
-            403,
-            'Forbidden. You don\'t have necessary permissions for the resource'
+            409,
+            'You are already logged in. Logout first (/users/logout) and then login again'
         );
     }
 
