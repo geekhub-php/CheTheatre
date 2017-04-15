@@ -104,17 +104,6 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
     protected $venueSectors;
 
     /**
-     * @var Collection|PriceCategory[]
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\PriceCategory",
-     *     mappedBy="venue",
-     *     cascade={"persist", "remove"}
-     * )
-     */
-    protected $priceCategories;
-
-    /**
      * Venue constructor.
      */
     public function __construct()
@@ -122,7 +111,6 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
         parent::__construct();
         $this->performanceEvents = new ArrayCollection();
         $this->venueSectors = new ArrayCollection();
-        $this->priceCategories = new ArrayCollection();
     }
 
     /**
@@ -254,47 +242,11 @@ class Venue extends AbstractPersonalTranslatable implements TranslatableInterfac
         return $this->venueSectors;
     }
 
-
-    /**
-     * @param  PriceCategory $priceCategory
-     * @return Venue
-     */
-    public function addPriceCategory(PriceCategory $priceCategory)
-    {
-        $this->priceCategories[] = $priceCategory;
-
-        return $this;
-    }
-
-    /**
-     * @param PriceCategory $priceCategory
-     */
-    public function removePriceCategory(PriceCategory $priceCategory)
-    {
-        $this->priceCategories->removeElement($priceCategory);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPriceCategories()
-    {
-        return $this->priceCategories;
-    }
-
     /**
      * @return string
      */
     public function __toString()
     {
         return $this->getTitle();
-    }
-
-    /**
-     * @param PriceCategory[]|Collection $priceCategory
-     */
-    public function setPriceCategories($priceCategory)
-    {
-        $this->priceCategories = $priceCategory;
     }
 }

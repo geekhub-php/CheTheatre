@@ -11,48 +11,54 @@ use JMS\Serializer\Annotation\Type;
 /**
  * @ExclusionPolicy("all")
  */
-class CustomerRequest
+class UserRequest
 {
     const SOCIAL_NETWORK_FACEBOOK = 'facebook';
 
     /**
      * @var string
-     * @Type("string")
-     * @Accessor(getter="getFirstName")
+     *
      * @Assert\Regex(pattern="/\d/", match=false, groups={"update"})
      * @Assert\Type("string", groups={"update"})
      * @Assert\Length(min=2, max=100, groups={"update"})
      * @Assert\NotBlank(
      *     message="not.blank", groups={"update"}
      * )
+     *
+     * @Type("string")
+     * @Accessor(getter="getFirstName")
      * @Expose
      */
     protected $firstName;
 
     /**
      * @var string
-     * @Type("string")
-     * @Accessor(getter="getLastName")
+     *
      * @Assert\Regex(pattern="/\d/", match=false, groups={"update"})
      * @Assert\Type("string", groups={"update"})
      * @Assert\Length(min=2, max=100, groups={"update"})
      * @Assert\NotBlank(
      *     message="not.blank", groups={"update"}
      * )
+     *
+     * @Type("string")
+     * @Accessor(getter="getLastName")
      * @Expose
      */
     protected $lastName;
 
     /**
      * @var string
-     * @Type("string")
-     * @Accessor(getter="getEmail")
+     *
      * @Assert\Email(groups={"update"})
      * @Assert\Type("string", groups={"update"})
      * @Assert\Length(max=100, groups={"update"})
      * @Assert\NotBlank(
      *     message="not.blank", groups={"update"}
      * )
+     *
+     * @Type("string")
+     * @Accessor(getter="getEmail")
      * @Expose
      */
     protected $email;
@@ -69,10 +75,11 @@ class CustomerRequest
     /**
      * @var string
      *
-     * @Type("string")
-     * @Accessor(getter="getSocialNetwork")
      * @Assert\NotBlank(groups={"socialNetwork"})
      * @Assert\Choice(callback="getSocialNetworks", groups={"socialNetwork"})
+     *
+     * @Type("string")
+     * @Accessor(getter="getSocialNetwork")
      * @Expose
      */
     protected $socialNetwork;
@@ -80,39 +87,34 @@ class CustomerRequest
     /**
      * @var string
      *
+     * @Assert\NotBlank(groups={"socialNetwork"})
+     *
      * @Type("string")
      * @Accessor(getter="getSocialToken")
-     * @Assert\NotBlank(groups={"socialNetwork"})
      * @Expose
      */
     protected $socialToken;
 
     /**
-     * Get firstName.
-     *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
     /**
-     * Get lastName.
-     *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
     /**
-     * Get email.
-     *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -120,7 +122,7 @@ class CustomerRequest
     /**
      * @return string
      */
-    public function getSocialNetwork()
+    public function getSocialNetwork(): string
     {
         return $this->socialNetwork;
     }
@@ -128,7 +130,7 @@ class CustomerRequest
     /**
      * @return array
      */
-    public static function getSocialNetworks()
+    public static function getSocialNetworks(): ?array
     {
         return [
             self::SOCIAL_NETWORK_FACEBOOK,
@@ -138,19 +140,17 @@ class CustomerRequest
     /**
      * @return string
      */
-    public function getSocialToken()
+    public function getSocialToken(): ?string
     {
         return $this->socialToken;
     }
 
     /**
-     * Set apiKey.
-     *
      * @param string $apiKey
      *
-     * @return mixed
+     * @return UserRequest
      */
-    public function setApiKey($apiKey)
+    public function setApiKey(?string $apiKey): UserRequest
     {
         $this->apiKey = $apiKey;
 
@@ -160,7 +160,7 @@ class CustomerRequest
     /**
      * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): ?string
     {
         return $this->apiKey;
     }

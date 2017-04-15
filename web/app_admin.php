@@ -22,7 +22,7 @@ require_once __DIR__.'/../app/AdminKernel.php';
 //Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
 
-$kernel = new AdminKernel('admin', false);
+$kernel = new AdminKernel('admin', true);
 //$kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 

@@ -42,7 +42,7 @@ class FacebookResponse
     /**
      * @return string
      */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -50,7 +50,7 @@ class FacebookResponse
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -58,7 +58,7 @@ class FacebookResponse
     /**
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -66,48 +66,56 @@ class FacebookResponse
     /**
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
     /**
      * @param string $id
-     * @return $this
+     *
+     * @return FacebookResponse
      */
-    public function setId($id)
+    public function setId(?string $id): FacebookResponse
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
      * @param string $email
-     * @return $this
+     *
+     * @return FacebookResponse
      */
-    public function setEmail($email)
+    public function setEmail(?string $email): FacebookResponse
     {
         $this->email = $email;
+
         return $this;
     }
 
     /**
      * @param string $firstName
-     * @return $this
+     *
+     * @return FacebookResponse
      */
-    public function setFirstName($firstName)
+    public function setFirstName(?string $firstName): FacebookResponse
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
     /**
      * @param string $lastName
-     * @return $this
+     *
+     * @return FacebookResponse
      */
-    public function setLastName($lastName)
+    public function setLastName(?string $lastName): FacebookResponse
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 }

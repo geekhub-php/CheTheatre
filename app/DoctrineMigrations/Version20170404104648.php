@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170407024724 extends AbstractMigration
+class Version20170404104648 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,8 @@ class Version20170407024724 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_62534E21C912ED9D ON customers (api_key)');
+        $this->addSql('ALTER TABLE ticket CHANGE status status VARCHAR(15) NOT NULL');
+        $this->addSql('ALTER TABLE user_order CHANGE status status VARCHAR(15) NOT NULL');
     }
 
     /**
@@ -29,6 +30,7 @@ class Version20170407024724 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP INDEX UNIQ_62534E21C912ED9D ON customers');
+        $this->addSql('ALTER TABLE user_order CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('ALTER TABLE ticket CHANGE status status VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
     }
 }

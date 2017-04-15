@@ -143,7 +143,7 @@ class PerformanceEventsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->findOneById($id);
+        $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->find($id);
 
         if (!$performanceEvent) {
             throw $this->createNotFoundException('Unable to find '.$id.' entity');
@@ -190,5 +190,39 @@ class PerformanceEventsController extends Controller
             ->findBy(['performanceEvent' => $performanceEvent]);
 
         return $tickets;
+    }
+
+
+    /**
+     * @Get("/performanceevents/{id}/pricecategories", requirements={"id" = "\d+"})
+     * @RestView
+     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
+     * @QueryParam(
+     *     name="locale",
+     *     requirements="^[a-zA-Z]+",
+     *     default="uk",
+     *     description="Selects language of data you want to receive"
+     * )
+     * @QueryParam(
+     *     name="id",
+     *     requirements="\d+",
+     *     description="PerformanceEvent ID"
+     * )
+     */
+    public function getPriceCategoriesAction(ParamFetcher $paramFetcher, PerformanceEvent $performanceEvent)
+    {
+        $priceCategory = $performanceEvent->getPriceCategories();
+
+        $em = $this->getDoctrine()->getManager();
+
+        foreach ($priceCategory as $category) {
+            $category->getVenueSector()->setLocale($paramFetcher->get('locale'));
+            $em->refresh($category->getVenueSector());
+
+            if ($category->getVenueSector()->getTranslations()) {
+                $category->getVenueSector()->unsetTranslations();
+            }
+        }
+        return $priceCategory;
     }
 }

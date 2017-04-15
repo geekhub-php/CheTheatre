@@ -3,7 +3,7 @@
 namespace AppBundle\Tests\Controller;
 
 use AppBundle\Entity\Ticket;
-use AppBundle\Entity\Customer;
+use AppBundle\Entity\User;
 
 class TicketsControllerTest extends AbstractApiController
 {
@@ -16,45 +16,19 @@ class TicketsControllerTest extends AbstractApiController
         $this
             ->getEm()
             ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
+            ->delete('AppBundle:User', 'u')
+            ->where('u.apiKey = :apiKey')
             ->setParameter('apiKey', 'token_11111111')
             ->getQuery()
             ->execute();
-        $this
-            ->getEm()
-            ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
-            ->setParameter('apiKey', 'token_22222222')
-            ->getQuery()
-            ->execute();
-        $this
-            ->getEm()
-            ->createQueryBuilder()
-            ->delete('AppBundle:Customer', 'c')
-            ->where('c.apiKey = :apiKey')
-            ->setParameter('apiKey', 'token_33333333')
-            ->getQuery()
-            ->execute();
 
-        $customer1 = new Customer();
-        $customer1
-            ->setUsername('customer')
-            ->setApiKey('token_11111111');
-        $customer2 = new Customer();
-        $customer2
-            ->setUsername('customer')
-            ->setApiKey('token_22222222')
-            ->setFacebookId('fb_id_22222222');
-        $customer3 = new Customer();
-        $customer3
-            ->setUsername('customer')
-            ->setApiKey('token_33333333');
+        $user1 = new User();
+        $user1
+            ->setUsername('user')
+            ->setApiKey('token_11111111')
+            ->setRole('ROLE_API');
 
-        $this->getEm()->persist($customer1);
-        $this->getEm()->persist($customer2);
-        $this->getEm()->persist($customer3);
+        $this->getEm()->persist($user1);
         $this->getEm()->flush();
     }
 

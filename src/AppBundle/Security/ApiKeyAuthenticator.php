@@ -1,19 +1,18 @@
 <?php
 
 namespace AppBundle\Security;
-
-//use AppBundle\Services\CustomerLoggerSendMail;
 use Monolog\Logger;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
+class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {
     /**
      * @var ManagerRegistry
@@ -30,72 +29,80 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
     }
 
     /**
-     * @param Request $request
-     * @param string $providerKey
-     * @return PreAuthenticatedToken
+     * @inheritdoc
      */
-    public function createToken(Request $request, $providerKey)
+    public function getCredentials(Request $request)
     {
-        $apiKey = $request->headers->get('API-Key-Token');
-        if (!$apiKey) {
-            throw new BadCredentialsException();
+        if (!$token = $request->headers->get('API-Key-Token')) {
+            return null;
         }
 
-        return new PreAuthenticatedToken(
-            'customer',
-            $apiKey,
-            $providerKey
+        return array(
+            'token' => $token,
         );
     }
 
     /**
-     * @param TokenInterface $token
-     * @param string $providerKey
-     * @return bool
+     * @inheritdoc
      */
-    public function supportsToken(TokenInterface $token, $providerKey)
+    public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        return $token instanceof PreAuthenticatedToken && $token->getProviderKey() === $providerKey;
+        $apiKey = $credentials['token'];
+
+        $user = $this->registry->getRepository('AppBundle:User')
+            ->findOneBy(['apiKey' => $apiKey]);
+
+        return $user;
     }
 
     /**
-     * @param TokenInterface $token
-     * @param UserProviderInterface $userProvider
-     * @param string $providerKey
-     * @return PreAuthenticatedToken
+     * @inheritdoc
      */
-    public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
+    public function checkCredentials($credentials, UserInterface $user)
     {
-        if (!$userProvider instanceof ApiKeyUserProvider) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The user provider must be an instance of ApiKeyUserProvider (%s was given).',
-                    get_class($userProvider)
-                )
-            );
-        }
+        return true;
+    }
 
-        $apiKey = $token->getCredentials();
-        $username = $userProvider->getUsernameByApiKey($apiKey);
+    /**
+     * @inheritdoc
+     */
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    {
+        return null;
+    }
 
-        if (!$username) {
-           // $this->customerLoggerSendMail;
-           $this->logger->err('go. go. go');
-            // CAUTION: this message will be returned to the client
-            // (so don't put any un-trusted messages / error strings here)
-            throw new HttpException(
-                401,
-                sprintf('API Key "%s" does not exist.', $apiKey)
-            );
-        }
+    /**
+     * @inheritdoc
+     */
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    {
+        $this->logger->err('go. go. go');
+        $data = [
+            'code' => '403',
+            'message' => 'Forbidden. You don\'t have necessary permissions for the resource'
+        ];
 
-        $user = $userProvider->loadUserByUsername($username);
+        return new JsonResponse($data, Response::HTTP_FORBIDDEN);
+    }
 
-        return new PreAuthenticatedToken(
-            $user,
-            $apiKey,
-            $providerKey,
-            $user->getRoles()
-        );
+    /**
+     * @inheritdoc
+     */
+    public function start(Request $request, AuthenticationException $authException = null)
+    {
+        $data = [
+            'code' => '401',
+            'message' => 'Authentication required'
+        ];
+
+        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function supportsRememberMe()
+    {
+        return false;
     }
 }

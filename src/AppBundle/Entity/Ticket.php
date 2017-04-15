@@ -93,12 +93,12 @@ class Ticket
     protected $performanceEvent;
 
     /**
-     * @var CustomerOrder
+     * @var UserOrder
      *
-     * @ORM\ManyToOne(targetEntity="CustomerOrder", inversedBy="tickets")
-     * @ORM\Column(name="customer_order_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="UserOrder", inversedBy="tickets")
+     * @ORM\Column(name="user_order_id", type="integer", nullable=true)
      */
-    protected $customerOrder;
+    protected $userOrder;
 
     /**
      * @var string

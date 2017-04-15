@@ -48,19 +48,16 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
 
-    api_key_user_provider:
-        class: AppBundle\Security\ApiKeyUserProvider
-        arguments: ["@doctrine"]
-
     api_key_authenticator:
         class:  AppBundle\Security\ApiKeyAuthenticator
         public: false
         arguments: ["@doctrine", "@logger"]
         tags:
            - { name: monolog.logger, channel: invalid_api_key }
-    customer_login:
-        class: AppBundle\Services\CustomerLogin
-        arguments: ["@doctrine", "@validator", "@serializer", "@facebook_user_provider"]
+
+    user_login:
+        class: AppBundle\Services\UserLogin
+        arguments: ["@doctrine", "@serializer", "@validator", "@facebook_user_provider"]
 
     facebook_user_provider:
         class: AppBundle\Services\FacebookUserProvider

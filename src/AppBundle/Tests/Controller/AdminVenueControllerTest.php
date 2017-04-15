@@ -2,8 +2,13 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\Venue;
+
 class AdminVenueControllerTest extends AbstractAdminController
 {
+    /**
+     * @return Venue|null|object
+     */
     public function testVenueCreateAction()
     {
         $this->request('/admin/Venue/create', 'GET', 302);
@@ -12,6 +17,7 @@ class AdminVenueControllerTest extends AbstractAdminController
 
         $crawler = $this->request('/admin/Venue/create', 'GET', 200);
 
+        self::assertEquals(1, $crawler->filter('form')->count());
         $form = $crawler->selectButton('Create')->form();
 
         parse_str(parse_url($form->getUri(), PHP_URL_QUERY), $parameters);
@@ -32,6 +38,10 @@ class AdminVenueControllerTest extends AbstractAdminController
             'Item "Grand Opera" has been successfully created',
             $successMessage->text()
         );
+
+        $venue = $this->getEm()->getRepository('AppBundle:Venue')->findOneBy([], ['id' => 'DESC']);
+
+        return $venue;
     }
 
     /**
@@ -49,33 +59,32 @@ class AdminVenueControllerTest extends AbstractAdminController
 
     /**
      * @depends testVenueCreateAction
+     * @param Venue $venue
      */
-    public function testVenueDeleteAction()
+    public function testVenueDeleteAction(Venue $venue)
     {
-        $object = $this->getEm()->getRepository('AppBundle:Venue')->findOneBy([]);
-        if (count($object->getPerformanceEvents()) == 0) {
-            $this->assertFalse($this->getContainer()->get('sonata.admin.venue')->preRemove($object));
-            $this->processDeleteAction($object);
+        if (count($venue->getPerformanceEvents()) == 0) {
+            $this->assertFalse($this->getContainer()->get('sonata.admin.venue')->preRemove($venue));
+            $this->processDeleteAction($venue);
         }
     }
 
     /**
      * @depends testVenueCreateAction
+     * @param Venue $venue
      */
-    public function testVenuePreRemove()
+    public function testVenuePreRemove(Venue $venue)
     {
         $this->getEm()->clear();
-        $object = $this->getEm()->getRepository('AppBundle:Venue')->findOneBy([]);
-        if (count($object->getPerformanceEvents()) != 0) {
+        if (count($venue->getPerformanceEvents()) != 0) {
             try {
-                $this->getContainer()->get('sonata.admin.venue')->preRemove($object);
+                $this->getContainer()->get('sonata.admin.venue')->preRemove($venue);
             } catch (\Exception $e) {
-                $message = sprintf('An Error has occurred during deletion of item "%s".', $object->getTitle());
+                $message = sprintf('An Error has occurred during deletion of item "%s".', $venue->getTitle());
                 $this->assertEquals($e->getMessage(), $message);
                 $this->assertEquals($e->getCode(), 200);
                 return;
             }
-            $this->fail("Expected Exception has not been raised.");
         }
     }
 }

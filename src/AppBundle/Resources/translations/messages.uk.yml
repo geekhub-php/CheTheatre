@@ -78,4 +78,17 @@ Hall Template: Шаблон зала
 choose_an_option: Виберіть зі списку
 performance_must_have_a_date: Введіть дату проведення вистави
 pinned_or_not: Показувати вверху усіх новин?
+Venue Sector: Сектор
+Places: Місце
+Rows: Ряд
+Price: Ціна (грн.)
+Color: Колір
+PriceCategory: Цінові Категорії
+Series Number: Номер Комплекта
+Enable Sale: Включити продаж
+EnableSale: Продаж квитків
+Сan not generate the tickets. Price Categories is not all places: Неможливо згенерувати квитки. Цінові Категорії проставлені не для всіх місць.
+Series Date: Дата початку продажу квитків
+Rows For Sale: Доступні для продажу ряди
+Tickets generate: Квитки згенерованi
 Customers: Покупці
