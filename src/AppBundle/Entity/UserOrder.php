@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -56,6 +57,13 @@ class UserOrder
     protected $status;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="orders")
+     * @Type("AppBundle\Entity\User")
+     */
+    private $user;
+    /**
      * UserOrder constructor.
      */
     public function __construct()
@@ -72,7 +80,15 @@ class UserOrder
     {
         return $this->id;
     }
-
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
     /**
      * @return Ticket[]|ArrayCollection
      */

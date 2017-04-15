@@ -112,12 +112,12 @@ services:
         - [ setTranslationDomain, [messages]]
 
     sonata.admin.customer:
-            class: AppBundle\Admin\CustomerAdmin
+            class: AppBundle\Admin\UserAdmin
             tags:
                - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Customers" }
             arguments:
                - ~
-               - AppBundle\Entity\Customer
+               - AppBundle\Entity\User
                - ~
             calls:
             - [ setTranslationDomain, [messages]]

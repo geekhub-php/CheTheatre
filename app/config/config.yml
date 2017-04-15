@@ -184,37 +184,27 @@ doctrine_migrations:
     table_name: migration_versions
     name: Application Migrations
 
-#monolog:
-#    handlers:
-#        invalid_api_key:
-#            type:    stream
-#            level: info
-#            path:   "%kernel.logs_dir%/111.log"
-#            channels: [invalid_api_key]
 monolog:
     handlers:
-        invalid_api_key:
+        security_error:
             type:         fingers_crossed
-            #action_level: error
             handler:      grouped
-            channels: [invalid_api_key]
+            channels: [security_error]
         grouped:
             type:    group
-            members: [test, deduplicated]
-        test:
+            members: [streamed, deduplicated]
+        streamed:
             type:  stream
             path:   "%kernel.logs_dir%/111.log"
-            #channels: [invalid_api_key]
             level: error
         deduplicated:
             type:    deduplication
             handler: swift
         swift:
             type:       swift_mailer
-            from_email: 'nima.vova@gmail.com'
-            to_email:   'nima_nima@ukr.net'
-            subject:    'An Error Occurred! %%message%%'
+            from_email: '%swift_from_email%'
+            to_email:   '%swift_to_email%'
+            subject:    'An Error! %%message%%'
             level:      error
             formatter:  monolog.formatter.html
             content_type: text/html
-

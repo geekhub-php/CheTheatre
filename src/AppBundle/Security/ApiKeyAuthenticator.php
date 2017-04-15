@@ -76,7 +76,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $this->logger->err('go. go. go');
+        $this->logger->err('403. api_key not valid!');
         $data = [
             'code' => '403',
             'message' => 'Forbidden. You don\'t have necessary permissions for the resource'

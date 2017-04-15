@@ -53,7 +53,7 @@ services:
         public: false
         arguments: ["@doctrine", "@logger"]
         tags:
-           - { name: monolog.logger, channel: invalid_api_key }
+           - { name: monolog.logger, channel: security_error }
 
     user_login:
         class: AppBundle\Services\UserLogin
@@ -68,18 +68,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
-    #customer_app.monolog:
-    #     class: Symfony\Bridge\Monolog\Logger
-    #    tags:
-    #        - { name: monolog.logger, channel: invalid_api_key }
-
     customer_app.monolog_web_processor:
          class: Monolog\Processor\WebProcessor
          tags:
-            - { name: monolog.processor, channel: invalid_api_key}
-
-     #customer_logger_send_mail:
-      #    class: AppBundle\Services\CustomerLoggerSendMail
-       #   arguments: ["@logger", "@mailer"]
-        #  tags:
-         #    - { name: monolog.logger, channel: invalid_api_key }
+            - { name: monolog.processor, channel: security_error }

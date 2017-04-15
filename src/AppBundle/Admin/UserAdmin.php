@@ -2,16 +2,16 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Customer;
+use AppBundle\Entity\User;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class CustomerAdmin extends Admin
+class UserAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Customer';
-    protected $baseRoutePattern = 'Customer';
+    protected $baseRouteName = 'AppBundle\Entity\User';
+    protected $baseRoutePattern = 'User';
     protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'id',
@@ -23,7 +23,7 @@ class CustomerAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Customer', ['class' => 'col-lg-12'])
+            ->with('User', ['class' => 'col-lg-12'])
             ->add('firstName')
             ->add('lastName')
             ->add('email')

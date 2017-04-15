@@ -3,9 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Tests\Fixtures\Order;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
@@ -116,6 +118,18 @@ class User implements UserInterface
     private $facebookId;
 
     /**
+     * @var ArrayCollection|Order[]
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\UserOrder",
+     *     mappedBy="user",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
+     */
+    private $orders;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="role", type="string", length=50)
@@ -150,6 +164,39 @@ class User implements UserInterface
         return $this->apiKey;
     }
 
+    /**
+     * Add order.
+     *
+     * @param UserOrder $order
+     *
+     * @return User
+     */
+    public function addOrder(UserOrder $order)
+    {
+        $this->orders[] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Remove order.
+     *
+     * @param UserOrder $order
+     */
+    public function removeOrder(UserOrder $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * Get orders.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 
     /**
      * @param string $role
