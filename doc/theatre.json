@@ -1134,9 +1134,9 @@
                 }
             }
         },
-        "/users/login/new": {
+        "/users/register": {
             "post": {
-                "operationId": "login_user_new",
+                "operationId": "register_user",
                 "tags": [
                     "users"
                 ],
@@ -1150,23 +1150,15 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "user": {
-                                    "$ref": "#/definitions/User"
-                                },
+                                "user": {},
                                 "api_key": {
                                     "type": "string"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Validation error"
-                    },
-                    "401": {
-                        "description": "Authentication required"
-                    },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    "409": {
+                        "description": "You are already logged in. Logout first (/users/logout) and then login again"
                     }
                 }
             }
@@ -1228,13 +1220,13 @@
                         }
                     },
                     "400": {
-                        "description": "Validation error"
+                        "description": "Validation error (Properties in body 'email' or 'first_name' or 'last_name' are not valid)"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }
@@ -1293,13 +1285,13 @@
                         }
                     },
                     "400": {
-                        "description": "Validation error"
+                        "description": "Validation error (Properties in body 'social_network' or 'social_token' are not valid)"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }
@@ -1329,10 +1321,10 @@
                         "description": "Successful operation"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }

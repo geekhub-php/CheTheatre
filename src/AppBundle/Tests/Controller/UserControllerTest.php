@@ -60,12 +60,12 @@ class UserControllerTest extends AbstractApiController
         $this->getEm()->flush();
     }
 
-    public function testSuccessLoginNew()
+    public function testSuccessRegister()
     {
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/users/login/new',
+            '/users/register',
             [],
             [],
             [
@@ -201,12 +201,12 @@ class UserControllerTest extends AbstractApiController
         self::assertEquals('token_33333333', $content['api_key']);
     }
 
-    public function testFailLoginNew()
+    public function testFailRegister()
     {
         $client = $this->getClient();
         $client->request(
             'POST',
-            '/users/login/new',
+            '/users/register',
             [],
             [],
             [
