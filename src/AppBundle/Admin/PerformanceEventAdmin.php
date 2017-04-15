@@ -385,7 +385,9 @@ class PerformanceEventAdmin extends Admin
                     ->getFlashBag()
                     ->add(
                         'error',
-                        "Помилка. В секторі $venueSector ціна проставлена не на всі місця!"
+                        "Помилка. В залі 
+                        $venue в секторі 
+                        $venueSector ціна проставлена не на всі місця!"
                     );
                 throw new ModelManagerException('In the hall not all places have price!');
             }
