@@ -12,11 +12,11 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="customer_order")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerOrderRepository")
+ * @ORM\Table(name="user_order")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserOrderRepository")
  * @ExclusionPolicy("all")
  */
-class CustomerOrder
+class UserOrder
 {
     use TimestampableTrait;
 
@@ -56,7 +56,7 @@ class CustomerOrder
     protected $status;
 
     /**
-     * CustomerOrder constructor.
+     * UserOrder constructor.
      */
     public function __construct()
     {
@@ -84,7 +84,7 @@ class CustomerOrder
     /**
      * @param Ticket[]|ArrayCollection $tickets
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function setTickets($tickets)
     {
@@ -104,7 +104,7 @@ class CustomerOrder
     /**
      * @param String $status
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function setStatus($status)
     {
@@ -118,7 +118,7 @@ class CustomerOrder
      *
      * @param Ticket $ticket
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function addTicket(Ticket $ticket)
     {
@@ -133,7 +133,7 @@ class CustomerOrder
     /**
      * @param Ticket $ticket
      *
-     * @return CustomerOrder
+     * @return $this
      */
     public function removeTicket(Ticket $ticket)
     {
@@ -152,6 +152,7 @@ class CustomerOrder
     {
         return $this->status === self::STATUS_PAID;
     }
+
     /**
      * @return array
      */
