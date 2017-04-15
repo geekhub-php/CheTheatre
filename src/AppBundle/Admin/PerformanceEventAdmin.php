@@ -54,7 +54,7 @@ class PerformanceEventAdmin extends Admin
             ->findVenueSectorsByPerformanceEventQueryBuilder($this->getSubject());
 
         $formMapper
-            ->with('PerformanceEvents', ['class'=>'col-lg-12'])
+            ->with('PerformanceEvents', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
             ->add('performance', 'sonata_type_model')
             ->add(
                 'dateTime',
@@ -68,7 +68,7 @@ class PerformanceEventAdmin extends Admin
             )
             ->add('venue')
             ->end()
-            ->with('PriceCategory', ['class'=>'col-lg-12'])
+            ->with('PriceCategory', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
             ->add('priceCategories', 'sonata_type_collection', [
                 'by_reference' => true,
                 'required' => false,
@@ -86,7 +86,7 @@ class PerformanceEventAdmin extends Admin
                 ],
             ])
             ->end()
-            ->with('EnableSale', ['class'=>'col-lg-12'])
+            ->with('EnableSale', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
             ->add('seriesDate', 'sonata_type_datetime_picker', [
                 'dp_side_by_side'       => true,
                 'dp_use_current'        => true,
@@ -166,9 +166,6 @@ class PerformanceEventAdmin extends Admin
     {
         $this->seatPrice = [];
         if (!self::inspectPriceCategories($object)) {
-            return null;
-        }
-        if (!self::inspectSeatWithoutPrice($object->getVenue())) {
             return null;
         }
         if (!self::inspectSeriesNumber($object)) {
@@ -348,21 +345,23 @@ class PerformanceEventAdmin extends Admin
     public function inspectSeatMoreThanOnePrice($row, $place, VenueSector $venueSector)
     {
         $seats = $this->seatPrice;
-        foreach ($seats as $key) {
-            if ($key === $row.'-'.$place) {
-                $this
-                    ->getConfigurationPool()
-                    ->getContainer()
-                    ->get('session')
-                    ->getFlashBag()
-                    ->add(
-                        'error',
-                        "Помилка. $row - $place в секторі $venueSector вже має цiну!"
-                    );
-                throw new ModelManagerException('Error Seat with more than one price!');
+        foreach ($this->seatPrice as $sector => $key) {
+            if ($sector === $venueSector->getId()) {
+                if ($key === $row.'-'.$place) {
+                    $this
+                        ->getConfigurationPool()
+                        ->getContainer()
+                        ->get('session')
+                        ->getFlashBag()
+                        ->add(
+                            'error',
+                            "Помилка. $row - $place в секторі $venueSector вже має цiну!"
+                        );
+                    throw new ModelManagerException('Error Seat with more than one price!');
+                }
             }
         }
-        $seats[]= $row.'-'.$place;
+        $seats[$venueSector->getId()][] = $row.'-'.$place;
         $this->seatPrice = $seats;
     }
 
@@ -375,18 +374,21 @@ class PerformanceEventAdmin extends Admin
      */
     public function inspectSeatWithoutPrice(Venue $venue)
     {
-        $seat = $this->getEm()->getRepository('AppBundle:Seat')->findByVenue($venue);
-        if (count($seat) != count($this->seatPrice)) {
-             $this
-                ->getConfigurationPool()
-                ->getContainer()
-                ->get('session')
-                ->getFlashBag()
-                ->add(
-                    'error',
-                    "Помилка. В залi $venue ціна проставлена не на всі місця!"
-                );
-            throw new ModelManagerException('In the hall not all places have price!');
+        foreach ($this->seatPrice as $sector => $key) {
+            $venueSector = $this->getEm()->getRepository(VenueSector::class)->find($sector);
+            $seat = $this->getEm()->getRepository(Seat::class)->findBy(['venueSector' => $venueSector]);
+            if (count($seat) != count($key)) {
+                $this
+                    ->getConfigurationPool()
+                    ->getContainer()
+                    ->get('session')
+                    ->getFlashBag()
+                    ->add(
+                        'error',
+                        "Помилка. В секторі $venueSector ціна проставлена не на всі місця!"
+                    );
+                throw new ModelManagerException('In the hall not all places have price!');
+            }
         }
         return true;
     }
