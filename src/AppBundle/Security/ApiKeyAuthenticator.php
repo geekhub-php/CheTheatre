@@ -2,7 +2,8 @@
 
 namespace AppBundle\Security;
 
-use AppBundle\Services\CustomerLoggerSendMail;
+//use AppBundle\Services\CustomerLoggerSendMail;
+use Monolog\Logger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
@@ -22,10 +23,10 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
     /**
      * @param ManagerRegistry $registry
      */
-    public function __construct(ManagerRegistry $registry, CustomerLoggerSendMail $customerLoggerSendMail)
+    public function __construct(ManagerRegistry $registry, Logger $logger)
     {
         $this->registry = $registry;
-        $this->customerLoggerSendMail = $customerLoggerSendMail;
+        $this->logger = $logger;
     }
 
     /**
@@ -78,7 +79,8 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
         $username = $userProvider->getUsernameByApiKey($apiKey);
 
         if (!$username) {
-            $this->customerLoggerSendMail;
+           // $this->customerLoggerSendMail;
+           $this->logger->err('go. go. go');
             // CAUTION: this message will be returned to the client
             // (so don't put any un-trusted messages / error strings here)
             throw new HttpException(
