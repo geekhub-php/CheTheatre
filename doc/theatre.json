@@ -620,8 +620,7 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$",
-                        "default": "all"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",

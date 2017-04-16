@@ -70,13 +70,10 @@ class PerformanceEventsController extends Controller
             ->findByDateRangeAndSlug(
                 new \DateTime($paramFetcher->get('fromDate')),
                 new \DateTime($paramFetcher->get('toDate')),
+                $paramFetcher->get('limit'),
                 $paramFetcher->get('performance')
             )
         ;
-
-        if ('all' != $paramFetcher->get('limit')) {
-            $performanceEvents = array_slice($performanceEvents, 0, $paramFetcher->get('limit'));
-        }
 
         $performanceEventsTranslated = [];
 
@@ -103,7 +100,6 @@ class PerformanceEventsController extends Controller
             if ($performanceEvent->getVenue()->getTranslations()) {
                 $performanceEvent->getVenue()->unsetTranslations();
             }
-
             $performanceEventsTranslated[] = $performanceEvent;
         }
 

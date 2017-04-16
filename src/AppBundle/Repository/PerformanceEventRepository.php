@@ -4,8 +4,19 @@ namespace AppBundle\Repository;
 
 class PerformanceEventRepository extends AbstractRepository
 {
-    public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null)
-    {
+    /**
+     * @param \DateTime $fromDate
+     * @param \DateTime $toDate
+     * @param string $limit
+     * @param null $performanceSlug
+     * @return mixed
+     */
+    public function findByDateRangeAndSlug(
+        \DateTime $fromDate,
+        \DateTime $toDate,
+        $limit = 'all',
+        $performanceSlug = null
+    ) {
         $qb = $this->createQueryBuilder('u')
             ->WHERE('u.dateTime BETWEEN :from AND :to')
             ->setParameter('from', $fromDate->format('Y-m-d H:i'))
@@ -13,10 +24,12 @@ class PerformanceEventRepository extends AbstractRepository
             ->orderBy('u.dateTime', 'ASC')
         ;
 
+        if ('all' !== $limit) {
+            $qb->setMaxResults($limit);
+        }
+
         if ($performanceSlug) {
-            if ($performanceSlug != "all") {
-                $qb->join('u.performance', 'p')->andWhere('p.slug = :slug')->setParameter('slug', $performanceSlug);
-            }
+            $qb->join('u.performance', 'p')->andWhere('p.slug = :slug')->setParameter('slug', $performanceSlug);
         }
 
         $query = $qb->getQuery();
