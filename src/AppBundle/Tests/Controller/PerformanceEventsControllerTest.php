@@ -6,6 +6,22 @@ use AppBundle\Entity\Ticket;
 
 class PerformanceEventsControllerTest extends AbstractApiController
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->loadFixtures(
+            [
+                'Performance',
+                'Venue',
+                'PerformanceEvent',
+                'PriceCategory',
+                'Ticket',
+            ],
+            'Entity'
+        );
+    }
+
     public function testGetPerformanceEvents()
     {
         $this->request('/performanceevents');

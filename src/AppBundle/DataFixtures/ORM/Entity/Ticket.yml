@@ -1,0 +1,9 @@
+AppBundle\Entity\Ticket:
+    ticket{1..26}:
+        __construct:
+            - <current()>
+            - @performanceEvent1
+            - @priceCategory1
+            - @priceCategory1->price
+            - '2017-04-01 15:00:00'
+            - @performanceEvent1->seriesNumber

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\DataFixtures\ORM\FixturesLoader;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -161,5 +162,21 @@ abstract class AbstractController extends WebTestCase
         $client->submit($form, ['_username' => $username, '_password' => $password]);
 
         return $client;
+    }
+
+    /**
+     * @param array $fixtures
+     * @param string|null $dir
+     */
+    protected function loadFixtures(array $fixtures, $dir = null)
+    {
+        $loader = new FixturesLoader($dir);
+        $loader->setContainer($this->getContainer());
+
+        foreach ($fixtures as $fixture) {
+            $loader->addFixture($fixture);
+        }
+
+        $loader->load($this->getEm());
     }
 }
