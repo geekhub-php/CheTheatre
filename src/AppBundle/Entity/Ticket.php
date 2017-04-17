@@ -95,8 +95,8 @@ class Ticket
     /**
      * @var UserOrder
      *
-     * @ORM\ManyToOne(targetEntity="UserOrder", inversedBy="tickets")
-     * @ORM\Column(name="user_order_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="UserOrder", inversedBy="tickets", fetch="EAGER")
+     * @ORM\JoinColumn(name="user_order_id", referencedColumnName="id", nullable=true)
      */
     protected $userOrder;
 
@@ -245,5 +245,29 @@ class Ticket
     public function getSeriesNumber(): string
     {
         return $this->seriesNumber;
+    }
+
+    /**
+     * Set customerOrder
+     *
+     * @param UserOrder $userOrder
+     *
+     * @return Ticket
+     */
+    public function setUserOrder(UserOrder $userOrder = null)
+    {
+        $this->userOrder = $userOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get customerOrder
+     *
+     * @return UserOrder
+     */
+    public function getUserOrder()
+    {
+        return $this->userOrder;
     }
 }

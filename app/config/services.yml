@@ -48,6 +48,15 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
 
+    app.event.ticket_status:
+        class: AppBundle\EventListener\TicketStatusListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, connection: default  }
+
+    app.order.manager:
+          class: AppBundle\Services\OrderManager
+          arguments: ["@doctrine", "@security.token_storage"]
+
     api_key_authenticator:
         class:  AppBundle\Security\ApiKeyAuthenticator
         public: false

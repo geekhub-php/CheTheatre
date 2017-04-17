@@ -40,7 +40,6 @@ class TicketsController extends Controller
         $ticket = $id;
 
         $em = $this->getDoctrine()->getManager();
-        $ticket->setStatus(Ticket::STATUS_FREE);
         $this->get('app.order.manager')->removeOrderFromTicket($ticket);
         $em->flush();
     }

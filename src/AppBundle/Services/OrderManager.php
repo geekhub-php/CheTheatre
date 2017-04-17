@@ -2,50 +2,63 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
-use AppBundle\Repository\CustomerOrderRepository;
+use AppBundle\Entity\UserOrder;
+use AppBundle\Repository\UserOrderRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class OrderManager
 {
     protected $doctrine;
 
-    protected $customerManager;
+    protected $tokenStorage;
 
-    public function __construct(RegistryInterface $doctrine, CustomerManager $customerManager)
+    public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage)
     {
         $this->doctrine = $doctrine;
-        $this->customerManager = $customerManager;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function addOrderToTicket(Ticket $ticket)
     {
         $order = $this->getCustomerOrder();
-        $ticket->setCustomerOrder($order);
+        $ticket->setUserOrder($order);
     }
 
     public function removeOrderFromTicket(Ticket $ticket)
     {
-        $order = $this->getCustomerOrder();
-        if ($order === $ticket->getCustomerOrder()) {
-            $ticket->setCustomerOrder(null);
+        $em = $this->doctrine->getEntityManager();
+        $user = $this->tokenStorage->getToken()->getUser();
+        /** @var UserOrder $order */
+        $order = $em->getRepository('AppBundle:UserOrder')->findLastOpenOrder($user);
+        if ($ticket->getUserOrder() !== $order) {
+            throw new AccessDeniedHttpException('You cannot change status for this ticket');
         }
+
+        $ticket->setUserOrder(null);
+        $ticket->setStatus(Ticket::STATUS_FREE);
     }
 
-    private function getCustomerOrder(): CustomerOrder
+    /**
+     * Returns or creates UserOrder
+     *
+     * @return UserOrder
+     */
+    private function getCustomerOrder()
     {
         $em = $this->doctrine->getEntityManager();
-        $customer = $this->customerManager->getCurrentUserByApiKey();
-        /** @var CustomerOrderRepository $repository */
-        $customerOrderRepository = $em->getRepository('AppBundle:CustomerOrder');
-        $order = $customerOrderRepository->findLastOpenOrder($customer);
+        $user = $this->tokenStorage->getToken()->getUser();
+        /** @var UserOrderRepository $userOrderRepository */
+        $userOrderRepository = $em->getRepository('AppBundle:UserOrder');
+        $order = $userOrderRepository->findLastOpenOrder($user);
 
         /**
          * Creating order if isn't exist
          */
         if (!$order) {
-            $order = new CustomerOrder($customer);
+            $order = new UserOrder($user);
             $em->persist($order);
         }
 

@@ -56,12 +56,24 @@ class UserOrder
     protected $status;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", fetch="EAGER")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     *
+     * @Serializer\Type("AppBundle\Entity\User")
+     * @Expose()
+     */
+    protected $user;
+
+    /**
      * UserOrder constructor.
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->id = Uuid::uuid4();
         $this->status = self::STATUS_OPENED;
+        $this->user = $user;
         $this->tickets = new ArrayCollection();
     }
 
@@ -165,5 +177,25 @@ class UserOrder
             self::STATUS_PENDING,
             self::STATUS_REJECTED,
         ];
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param $user
+     *
+     * @return UserOrder
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
