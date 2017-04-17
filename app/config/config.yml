@@ -195,7 +195,7 @@ monolog:
             members: [streamed, deduplicated]
         streamed:
             type:  stream
-            path:   "%kernel.logs_dir%/111.log"
+            path:   "%kernel.logs_dir%/security_error.log"
             level: error
         deduplicated:
             type:    deduplication

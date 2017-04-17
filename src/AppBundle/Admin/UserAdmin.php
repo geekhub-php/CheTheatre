@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 class UserAdmin extends Admin
 {
@@ -26,13 +27,26 @@ class UserAdmin extends Admin
             ->with('User', ['class' => 'col-lg-12'])
             ->add('firstName')
             ->add('lastName')
-            ->add('email')
+             ->add('email')
+
             ->add('facebookId')
-            //->add('apiKey')
             ->add('apiKey', 'text', ['attr' => ['readonly' => true]])
             ->add('orders')
             ->end()
         ;
+    }
+
+    public function createQuery($context = 'list')
+    {
+        $em = $this->modelManager->getEntityManager('AppBundle:User');
+        $queryBuilder = $em
+            ->createQueryBuilder('u')
+            ->select('u')
+            ->from('AppBundle:User', 'u')
+            ->where('u.email IS NOT NULL');
+        $query = new ProxyQuery($queryBuilder);
+
+        return $query;
     }
 
     /**
@@ -41,8 +55,11 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('email')
             ->add('apiKey')
+            ->add('email')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('orders')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -64,8 +81,8 @@ class UserAdmin extends Admin
 
     public function toString($object)
     {
-        return $object instanceof Customer
+        return $object instanceof User
             ? $object->getEmail()
-            : 'Customer'; // shown in the breadcrumb on the create views
+            : 'User'; // shown in the breadcrumb on the create views
     }
 }

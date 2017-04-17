@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Security;
+
 use Monolog\Logger;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
