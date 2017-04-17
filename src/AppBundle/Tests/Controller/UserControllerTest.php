@@ -71,12 +71,7 @@ class UserControllerTest extends AbstractApiController
             [
                 'HTTP_API-Key-Token' => '',
                 'CONTENT_TYPE' => 'application/json',
-            ],
-            '{
-                "email": "",
-                "first_name": "",
-                "last_name": ""
-            }'
+            ]
         );
 
         $content = json_decode($client->getResponse()->getContent(), true);
@@ -100,9 +95,7 @@ class UserControllerTest extends AbstractApiController
             '{
                 "email": "john.doe@example.com",
                 "first_name": "John",
-                "last_name": "Doe",
-                "social_network": "",
-                "social_token": ""
+                "last_name": "Doe"
             }'
         );
 
@@ -144,9 +137,6 @@ class UserControllerTest extends AbstractApiController
                 'CONTENT_TYPE' => 'application/json',
             ],
             '{
-                "email": "",
-                "first_name": "",
-                "last_name": "",
                 "social_network": "facebook",
                 "social_token": "social_token_11111111"
             }'
@@ -187,9 +177,6 @@ class UserControllerTest extends AbstractApiController
                 'CONTENT_TYPE' => 'application/json',
             ],
             '{
-                "email": "",
-                "first_name": "",
-                "last_name": "",
                 "social_network": "facebook",
                 "social_token": "social_token_22222222"
             }'
@@ -199,119 +186,6 @@ class UserControllerTest extends AbstractApiController
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
         self::assertEquals('token_33333333', $content['api_key']);
-    }
-
-    public function testFailRegister()
-    {
-        $client = $this->getClient();
-        $client->request(
-            'POST',
-            '/users/register',
-            [],
-            [],
-            [
-                'HTTP_API-Key-Token' => 'token_11111111_invalid',
-                'CONTENT_TYPE' => 'application/json',
-            ],
-            '{
-                "email": "",
-                "first_name": "",
-                "last_name": "",
-                "social_network": "",
-                "social_token": ""
-            }'
-        );
-
-        self::assertEquals(403, $client->getResponse()->getStatusCode());
-    }
-
-    public function testFailLoginUpdate()
-    {
-        $client = $this->getClient();
-        $client->request(
-            'POST',
-            '/users/login/update',
-            [],
-            [],
-            [
-                'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json',
-            ],
-            '{
-                "email": "john.doe111example.com",
-                "first_name": "John111",
-                "last_name": "Doe111",
-                "social_network": "",
-                "social_token": ""
-            }'
-        );
-
-        self::assertEquals(400, $client->getResponse()->getStatusCode());
-    }
-
-    public function testFailLoginFacebook()
-    {
-        $client = $this->getClient();
-
-        $facebook = $this->createMock(FacebookUserProvider::class);
-
-        $facebook->expects($this->once())
-            ->method('getUser')
-            ->with('social_token_11111111_invalid')
-            ->will($this->throwException(new HttpException(400, 'Social login error')));
-
-        $client->getContainer()->set('facebook_user_provider', $facebook);
-
-        $client->request(
-            'POST',
-            '/users/login/social',
-            [],
-            [],
-            [
-                'HTTP_API-Key-Token' => 'token_11111111',
-                'CONTENT_TYPE' => 'application/json',
-            ],
-            '{
-                "email": "",
-                "first_name": "",
-                "last_name": "",
-                "social_network": "facebook",
-                "social_token": "social_token_11111111_invalid"
-            }'
-        );
-
-        self::assertEquals(400, $client->getResponse()->getStatusCode());
-    }
-
-    public function testFailLogoutApiKeyToken()
-    {
-        $client = $this->getClient();
-        $client->request(
-            'POST',
-            '/users/logout',
-            [],
-            [],
-            [
-                'HTTP_API-Key-Token' => 'token_11111111_invalid',
-                'CONTENT_TYPE' => 'application/json',
-            ]
-        );
-
-        self::assertEquals(403, $client->getResponse()->getStatusCode());
-    }
-
-    public function testFailLogoutWithoutApiKeyToken()
-    {
-        $client = $this->getClient();
-        $client->request(
-            'POST',
-            '/users/logout',
-            [],
-            [],
-            []
-        );
-
-        self::assertEquals(401, $client->getResponse()->getStatusCode());
     }
 
     public function testSuccessLogoutApiKeyToken()
@@ -349,5 +223,148 @@ class UserControllerTest extends AbstractApiController
             ]
         );
         self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testSuccessMe()
+    {
+        $this->testSuccessLoginUpdate();
+
+        $client = $this->getClient();
+        $client->request(
+            'GET',
+            '/users/me',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111',
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        $content = json_decode($client->getResponse()->getContent(), true);
+
+        self::assertEquals(200, $client->getResponse()->getStatusCode());
+        self::assertEquals('John', $content['user']['first_name']);
+        self::assertEquals('Doe', $content['user']['last_name']);
+        self::assertEquals('john.doe@example.com', $content['user']['email']);
+        self::assertEquals('token_11111111', $content['api_key']);
+    }
+
+    public function testFailRegister()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/register',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111_invalid',
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testFailRegisterLoggedInUser()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/register',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111',
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(409, $client->getResponse()->getStatusCode());
+    }
+
+    public function testFailLoginUpdate()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/login/update',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111',
+                'CONTENT_TYPE' => 'application/json',
+            ],
+            '{
+                "email": "john.doe111example.com",
+                "first_name": "John111",
+                "last_name": "Doe111"
+            }'
+        );
+
+        self::assertEquals(400, $client->getResponse()->getStatusCode());
+    }
+
+    public function testFailLoginFacebook()
+    {
+        $client = $this->getClient();
+
+        $facebook = $this->createMock(FacebookUserProvider::class);
+
+        $facebook->expects($this->once())
+            ->method('getUser')
+            ->with('social_token_11111111_invalid')
+            ->will($this->throwException(new HttpException(400, 'Social login error')));
+
+        $client->getContainer()->set('facebook_user_provider', $facebook);
+
+        $client->request(
+            'POST',
+            '/users/login/social',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111',
+                'CONTENT_TYPE' => 'application/json',
+            ],
+            '{
+                "social_network": "facebook",
+                "social_token": "social_token_11111111_invalid"
+            }'
+        );
+
+        self::assertEquals(400, $client->getResponse()->getStatusCode());
+    }
+
+    public function testFailLogoutApiKeyToken()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/logout',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111_invalid',
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testFailLogoutWithoutApiKeyToken()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/logout',
+            [],
+            [],
+            []
+        );
+
+        self::assertEquals(401, $client->getResponse()->getStatusCode());
     }
 }
