@@ -7,6 +7,9 @@ use AppBundle\Model\FacebookResponse;
 use AppBundle\Services\FacebookUserProvider;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class UserControllerTest extends AbstractApiController
 {
     public function setUp()
