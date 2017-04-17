@@ -45,6 +45,6 @@ after_failure:
   - cat app/logs/test.log
   - cat app/logs/dev.log
 after_success:
-  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]; then
+  - if [ "$TARGET" = "phpunit" ] && [ "$TRAVIS_BRANCH" = "master" ]; then
     ssh -i ./geekhub_travis_ci travis-ci@139.59.151.111 "echo 1 > /tmp/travis-deploy";
     fi

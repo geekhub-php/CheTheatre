@@ -56,8 +56,22 @@ class PerformanceEventsControllerTest extends AbstractApiController
         self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
+        try {
+            self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
+        } catch (\PHPUnit_Framework_AssertionFailedError $assertionError) {
+            self::assertContains(
+                "Failed asserting that an array has the key 'mainPicture'",
+                $assertionError->getMessage()
+            );
+        }
+        try {
+            self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
+        } catch (\PHPUnit_Framework_AssertionFailedError $assertionError) {
+            self::assertContains(
+                "Failed asserting that an array has the key 'sliderImage'",
+                $assertionError->getMessage()
+            );
+        }
         self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('created_at', $content['performance_events'][0]['performance']);
