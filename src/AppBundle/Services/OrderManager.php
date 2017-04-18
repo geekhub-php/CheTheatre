@@ -11,8 +11,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class OrderManager
 {
+    /**
+     * @var RegistryInterface
+     */
     protected $doctrine;
 
+    /**
+     * @var TokenStorageInterface
+     */
     protected $tokenStorage;
 
     public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage)
@@ -21,13 +27,19 @@ class OrderManager
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function addOrderToTicket(Ticket $ticket)
+    /**
+     * @param Ticket $ticket
+     */
+    public function addOrderToTicket(Ticket $ticket): void
     {
         $order = $this->getCustomerOrder();
         $ticket->setUserOrder($order);
     }
 
-    public function removeOrderFromTicket(Ticket $ticket)
+    /**
+     * @param Ticket $ticket
+     */
+    public function removeOrderFromTicket(Ticket $ticket): void
     {
         $em = $this->doctrine->getEntityManager();
         $user = $this->tokenStorage->getToken()->getUser();
@@ -46,7 +58,7 @@ class OrderManager
      *
      * @return UserOrder
      */
-    private function getCustomerOrder()
+    private function getCustomerOrder(): UserOrder
     {
         $em = $this->doctrine->getEntityManager();
         $user = $this->tokenStorage->getToken()->getUser();
