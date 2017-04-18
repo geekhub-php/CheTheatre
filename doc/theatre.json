@@ -1327,12 +1327,56 @@
                     }
                 }
             }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "operationId": "me_user",
+                "summary": "Retrieve information on the logged in user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "$ref": "#/definitions/User"
+                                },
+                                "api_key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
         "api_key": {
             "type": "apiKey",
-            "name": "api_key",
+            "name": "API-Key-Token",
             "in": "header"
         }
     },
@@ -1786,9 +1830,6 @@
         "User": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "first_name": {
                     "type": "string"
                 },

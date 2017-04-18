@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Model\UserResponse;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\View\View;
@@ -86,6 +87,8 @@ class UserController extends Controller
     /**
      * @param Request $request
      *
+     * @Post("/users/logout")
+     *
      * @return View
      */
     public function logoutAction(Request $request): View
@@ -100,5 +103,22 @@ class UserController extends Controller
         $em->flush();
 
         return View::create(null, 204);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @Get("/users/me")
+     *
+     * @return View
+     */
+    public function meAction(Request $request): View
+    {
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')
+            ->findOneBy(['apiKey' => $request->headers->get('API-Key-Token')]);
+
+        $userResponse = new UserResponse($user);
+
+        return View::create($userResponse);
     }
 }

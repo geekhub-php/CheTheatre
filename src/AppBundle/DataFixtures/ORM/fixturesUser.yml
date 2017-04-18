@@ -12,3 +12,7 @@ AppBundle\Entity\User:
         username: user
         apiKey: token_33333333
         role: ROLE_API
+    user4:
+        username: user
+        apiKey: token_44444444
+        role: ROLE_NONE
