@@ -36,6 +36,11 @@ class UserAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritdoc} annotation.
+     * @param string $context = 'list'
+     * @return \Sonata\AdminBundle\Datagrid\ProxyQueryInterface|ProxyQuery
+     */
     public function createQuery($context = 'list')
     {
         $em = $this->modelManager->getEntityManager('AppBundle:User');
