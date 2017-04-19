@@ -81,7 +81,7 @@ class Ticket
      * @Type("AppBundle\Entity\Seat")
      * @Expose()
      */
-    protected $seat;
+    private $seat;
 
     /**
      * @var PerformanceEvent
@@ -90,7 +90,7 @@ class Ticket
      * @ORM\JoinColumn(name="performance_event_id", referencedColumnName="id", nullable=false)
      * @Type("AppBundle\Entity\PerformanceEvent")
      */
-    protected $performanceEvent;
+    private $performanceEvent;
 
     /**
      * @var UserOrder
@@ -109,7 +109,7 @@ class Ticket
      * @Type("AppBundle\Entity\PriceCategory")
      * @Expose()
      */
-    protected $priceCategory;
+    private $priceCategory;
 
     /**
      * @var string
@@ -119,7 +119,7 @@ class Ticket
      * @Type("string")
      * @Expose()
      */
-    protected $status;
+    private $status;
 
     /**
      * Ticket constructor.
@@ -130,6 +130,7 @@ class Ticket
      * @param int $ticketPrice
      * @param \DateTime $seriesDate
      * @param string $seriesNumber
+     * @param $status string
      */
     public function __construct(
         Seat $seat,
@@ -137,16 +138,17 @@ class Ticket
         PriceCategory $priceCategory,
         int $ticketPrice,
         \DateTime $seriesDate,
-        string $seriesNumber
+        string $seriesNumber,
+        $status = self::STATUS_FREE
     ) {
         $this->id = Uuid::uuid4();
-        $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
         $this->priceCategory = $priceCategory;
         $this->price = $ticketPrice;
         $this->seriesDate = $seriesDate;
         $this->seriesNumber = $seriesNumber;
+        $this->status = $status;
     }
 
     /**

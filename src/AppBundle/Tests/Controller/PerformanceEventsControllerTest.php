@@ -13,7 +13,6 @@ class PerformanceEventsControllerTest extends AbstractApiController
         $this->loadFixtures(
             [
                 'Performance',
-                'Venue',
                 'PerformanceEvent',
                 'PriceCategory',
                 'Ticket',

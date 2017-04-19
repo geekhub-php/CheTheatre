@@ -1,5 +1,0 @@
-AppBundle\Entity\Venue:
-    venue1:
-        title: 'Черкаська Філармонія'
-        address: 'вулиця Хрещатик, 196, Черкаси, Черкаська область, 18000'
-        hallTemplate: ''

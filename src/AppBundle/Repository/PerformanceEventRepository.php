@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Exception\NotFoundException;
+
 class PerformanceEventRepository extends AbstractRepository
 {
     public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null)
@@ -20,5 +23,24 @@ class PerformanceEventRepository extends AbstractRepository
         $query = $qb->getQuery();
 
         return $query->execute();
+    }
+
+    /**
+     * Get PerformanceEvent by ID
+     *
+     * @param int $id
+     *
+     * @return PerformanceEvent
+     * @throws NotFoundException
+     */
+    public function getById(int $id): PerformanceEvent
+    {
+        /** @var PerformanceEvent $performanceEvent */
+        $performanceEvent = $this->find($id);
+        if (!$performanceEvent) {
+            throw new NotFoundException('Performance Event not found by ID: '.$id);
+        }
+
+        return $performanceEvent;
     }
 }

@@ -2,9 +2,10 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Domain\PerformanceEvent\PerformanceEventInterface;
-use AppBundle\Domain\Ticket\TicketInterface;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Repository\PerformanceEventRepository;
+use AppBundle\Repository\TicketRepository;
+use AppBundle\Services\Ticket\GenerateSetHandler;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,19 +15,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateTicketsCommand extends ContainerAwareCommand
 {
 
-    /** @var  PerformanceEventInterface */
-    public $performanceEventService;
+    /** @var  GenerateSetHandler */
+    private $ticketGenerateSet;
 
-    /** @var  TicketInterface */
-    public $ticketService;
+    /** @var  PerformanceEventRepository */
+    private $performanceEventRepository;
+
+    /** @var  TicketRepository */
+    private $ticketRepository;
 
     public function __construct(
-        PerformanceEventInterface $performanceEventService,
-        TicketInterface $ticketService
+        GenerateSetHandler $ticketGenerateSet,
+        PerformanceEventRepository $performanceEventRepository,
+        TicketRepository $ticketRepository
     ) {
-        $this->performanceEventService = $performanceEventService;
-        $this->ticketService = $ticketService;
         parent::__construct();
+        $this->ticketGenerateSet = $ticketGenerateSet;
+        $this->performanceEventRepository = $performanceEventRepository;
+        $this->ticketRepository = $ticketRepository;
     }
 
     protected function configure()
@@ -53,19 +59,22 @@ class GenerateTicketsCommand extends ContainerAwareCommand
     {
         try {
             $startTime = new \DateTime('now');
-
-            /** @var EntityManager $em */
             $output->writeln('<comment>Running Tickets Generation</comment>');
-
             $performanceEventId = (int) $input->getArgument('performanceEventId') ?: null;
             $force = (bool) $input->getOption('force')  ? true : false;
+            $performanceEvent = $this->performanceEventRepository->getById($performanceEventId);
 
-            $numberOfTickets = $this->ticketService->generateSet(
-                $this->performanceEventService->getById($performanceEventId),
-                $force
-            );
+            if ($force) {
+                //TODO remove existed tickets for PerformanceEvent if they exists
+            }
 
-            $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', $numberOfTickets));
+            if ($this->ticketsExists($performanceEvent)) {
+                throw new \Exception('Tickets already exist for: '. $performanceEvent);
+            }
+
+            $tickets = $this->ticketGenerateSet->handle($performanceEvent);
+            $this->ticketRepository->batchSave($tickets);
+            $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', count($tickets)));
         } catch (\Exception $e) {
             $output->writeln('<error>ERROR Generating Tickets: '.$e->getMessage().'</error>');
         } finally {
@@ -73,5 +82,17 @@ class GenerateTicketsCommand extends ContainerAwareCommand
             $interval = $startTime->diff($finishTime);
             $output->writeln(sprintf('<comment>DONE in %s seconds<comment>', $interval->s));
         }
+    }
+
+   /**
+     * @param PerformanceEvent $performanceEvent
+     *
+     * @return bool
+     */
+    protected function ticketsExists(PerformanceEvent $performanceEvent)
+    {
+        return (bool) count($this->ticketRepository->findBy([
+            'performanceEvent' => $performanceEvent
+        ]));
     }
 }

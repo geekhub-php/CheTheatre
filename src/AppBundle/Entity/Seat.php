@@ -147,4 +147,12 @@ class Seat extends AbstractPersonalTranslatable implements TranslatableInterface
     {
         return $this->venueSector->getId();
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 }
