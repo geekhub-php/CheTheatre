@@ -17,7 +17,7 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
         $this->logIn();
 
         $performance = $this->getEm()->getRepository('AppBundle:Performance')->findOneBy([]);
-        $venue = $this->getEm()->getRepository('AppBundle:Venue')->findOneBy([]);
+        $venue = $this->getEm()->getRepository('AppBundle:Venue')->find(2);
 
         $crawler = $this->request('/admin/PerformanceEvent/create', 'GET', 200);
 
@@ -77,7 +77,7 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
         $form->setValues([
             $formUniqId.'[venueSector]' => $venueSector->getId(),
             $formUniqId.'[color]' => '#0000FF',
-            $formUniqId.'[rows]' => '1',
+            $formUniqId.'[rows]' => '1-17',
             $formUniqId.'[places]' => '',
             $formUniqId.'[price]' => '100',
             $formUniqId.'[performanceEvent]' => $performanceEvent->getId(),
@@ -184,16 +184,16 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
      * @depends testPerformanceEventPriceCategoryCreateAction
      * @param PerformanceEvent $performanceEvent
      */
-//    public function testPerformanceEventUpdate(PerformanceEvent $performanceEvent)
-//    {
-//        $adminPerformanceEvent = $this->getContainer()->get('sonata.admin.performance.event');
-//
-//        $performanceEvent->setSeriesNumber('00000055');
-//        $this->getEm()->persist($performanceEvent);
-//
-//        self::assertNotFalse($adminPerformanceEvent->preUpdate($performanceEvent));
-//        self::assertNotFalse($adminPerformanceEvent->postUpdate($performanceEvent));
-//    }
+    public function testPerformanceEventUpdate(PerformanceEvent $performanceEvent)
+    {
+        $adminPerformanceEvent = $this->getContainer()->get('sonata.admin.performance.event');
+
+        $performanceEvent->setSeriesNumber('00000055');
+        $this->getEm()->persist($performanceEvent);
+
+        self::assertNotFalse($adminPerformanceEvent->preUpdate($performanceEvent));
+        self::assertNotFalse($adminPerformanceEvent->postUpdate($performanceEvent));
+    }
 
     /**
      * @depends testPerformanceEventCreateAction

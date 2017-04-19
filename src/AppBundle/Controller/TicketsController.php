@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Ticket;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -16,43 +17,46 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TicketsController extends Controller
 {
     /**
-     * @Get(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("id", class="AppBundle:Ticket")
+     * @Get(
+     *     "/tickets/{id}",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
+     * @ParamConverter("ticket", class="AppBundle:Ticket")
+     * @RequestParam(name="id", requirements="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
      * @RestView(serializerGroups={"get_ticket"})
      */
-    public function getAction(Ticket $id)
+    public function getAction(Ticket $ticket)
     {
-        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
-        $ticket = $id;
-
         return $ticket;
     }
 
     /**
+     * @Patch(
+     *     "/tickets/{id}/free",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
+     * @RequestParam(name="id", requirements="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+     * @ParamConverter("ticket", class="AppBundle:Ticket")
      * @RestView(statusCode=204)
-     * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function freeAction(Ticket $id)
+    public function freeAction(Ticket $ticket)
     {
-        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
-        $ticket = $id;
-
         $em = $this->getDoctrine()->getManager();
         $ticket->setStatus(Ticket::STATUS_FREE);
         $em->flush();
     }
 
     /**
+     * @Patch(
+     *     "/tickets/{id}/reserve",
+     *     requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"}
+     *     )
+     * @RequestParam(name="id", requirements="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+     * @ParamConverter("ticket", class="AppBundle:Ticket")
      * @RestView(statusCode=204)
-     * @Patch(requirements={"id" = "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"})
-     * @ParamConverter("id", class="AppBundle:Ticket")
      */
-    public function reserveAction(Ticket $id)
+    public function reserveAction(Ticket $ticket)
     {
-        //This done not in right way (Ticket $ticket) to have RESTfully looking route: /tickets/{id}
-        $ticket = $id;
-
         $em = $this->getDoctrine()->getManager();
         $ticket->setStatus(Ticket::STATUS_BOOKED);
         $em->flush();
