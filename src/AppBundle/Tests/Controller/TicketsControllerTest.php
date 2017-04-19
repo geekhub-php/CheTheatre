@@ -31,7 +31,9 @@ class TicketsControllerTest extends AbstractApiController
         );
 
         $this->ticketId     = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId();
-        $this->currentUser  = $this->getEm()->getRepository(User::class)->findOneBy([]);
+        $this->currentUser  = $this->getEm()->getRepository(User::class)->findOneBy([
+            'role' => 'ROLE_API'
+        ]);
     }
 
     public function testGetTicketsId()

@@ -156,7 +156,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
      *     cascade={"persist","detach","merge"}
      * )
      * @Serializer\Groups({"get_ticket"})
-     * @Type("array")
+     * @Type("AppBundle\Entity\RowsForSale")
      * @Expose
      */
     protected $rowsForSale;

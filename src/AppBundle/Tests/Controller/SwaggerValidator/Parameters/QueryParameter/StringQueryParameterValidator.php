@@ -10,7 +10,7 @@ class StringQueryParameterValidator extends AbstractParameterValidator
 {
     /**
      * @param AbstractParameter $parameterDoc
-     * @param string $parameterRequest
+     * @param string|null $parameterRequest
      */
     public function validate(AbstractParameter $parameterDoc, $parameterRequest)
     {
@@ -21,7 +21,10 @@ class StringQueryParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            self::assertNotFalse($parameterDoc->getDefault());
+        }
+
+        if ($parameterRequest !== null) {
+            self::assertInternalType(StringType::STRING_TYPE, $parameterRequest);
         }
 
         if ($parameterRequest != null && $parameterDoc->getPattern()) {

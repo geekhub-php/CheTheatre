@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Tests\Controller\SwaggerValidator\Parameters\PathParameter;
 
 use AppBundle\Tests\Controller\SwaggerValidator\Parameters\AbstractParameterValidator;
@@ -9,7 +10,7 @@ class IntegerPathParameterValidator extends AbstractParameterValidator
 {
     /**
      * @param AbstractParameter $parameterDoc
-     * @param $parameterRequest
+     * @param integer|null $parameterRequest
      */
     public function validate(AbstractParameter $parameterDoc, $parameterRequest)
     {
@@ -20,9 +21,10 @@ class IntegerPathParameterValidator extends AbstractParameterValidator
          */
         if ($parameterRequest === null) {
             self::assertFalse($parameterDoc->isRequired());
-            self::assertNotFalse($parameterDoc->getDefault());
-            $parameterRequest = $parameterDoc->getDefault();
         }
-        self::assertRegExp('/^\d+$/', $parameterRequest);
+
+        if ($parameterRequest !== null) {
+            self::assertRegExp('/^\d+$/', $parameterRequest);
+        }
     }
 }

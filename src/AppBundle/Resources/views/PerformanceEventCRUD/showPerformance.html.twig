@@ -1,21 +1,26 @@
 <div class="row" style="padding:10px;">
-    <div class="form-group col-md-12">
+    <div class="form-group col-lg-12 col-md-12">
         <label for="showPerformance">{{ 'Performance'|trans() }}:</label>
         <input type="text" class="form-control" id="showPerformance" disabled value="{{ performanceEvent.performance.title }}">
     </div>
-    <div class="form-group col-md-2">
+    <div class="form-group col-lg-12 col-md-2">
         <label for="showDateTime">{{ 'Date Time'|trans() }}:</label>
         <input type="text" class="form-control" id="showDateTime" disabled value="{{ performanceEvent.dateTime|date("d/M/y H:m") }}">
     </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-lg-12 col-md-12">
         <label for="showVenue">{{ 'Venue'|trans() }}:</label>
         <input type="text" class="form-control" id="showVenue" disabled value="{{ performanceEvent.venue.title }}, {{ performanceEvent.venue.address }}">
     </div>
-    <div class="form-group col-md-12">
-        <label class="col-md-12" for="showPriceCategory">{{ 'PriceCategory'|trans() }}:</label>
-        {% for priceCategory in performanceEvent.priceCategories %}
-            <p class="col-md-2"><span style="display:block;float: left;margin-right: 5px;height: 20px;width: 20px;background-color:{{ priceCategory.color }}"></span>{{ priceCategory.price }}грн.</p>
-            <p class="col-md-10"><strong>{{ 'Rows'|trans() }}:</strong> {{ priceCategory.rows }}{% if priceCategory.places %}, <strong>{{ 'Places'|trans() }}:</strong> {{ priceCategory.places }}{% endif %}</p>
-        {% endfor %}
+    <div class="form-group col-lg-12 col-md-12">
+        <label for="showPriceCategory">{{ 'PriceCategory'|trans() }}:</label>
+        <table class="col-lg-12 col-md-12 table  table-hover">
+            {% for priceCategory in performanceEvent.priceCategories %}
+                <tr>
+                    <td class="col-lg-2 col-md-2"><strong>{{ priceCategory.venueSector.title }}</strong></td>
+                    <td class="col-lg-2 col-md-2"><span style="display:block;float: left;margin-right: 5px;height: 20px;width: 20px;background-color:{{ priceCategory.color }}"></span>{{ priceCategory.price }}грн.</td>
+                    <td class="col-lg-8 col-md-8"><div class="col-lg-6 col-md-6"><strong>{{ 'Rows'|trans() }}:</strong> {{ priceCategory.rows }}{% if priceCategory.places %}</div> <div class="col-lg-6 col-md-6"><strong>{{ 'Places'|trans() }}:</strong> {{ priceCategory.places }}{% endif %}</div></td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
