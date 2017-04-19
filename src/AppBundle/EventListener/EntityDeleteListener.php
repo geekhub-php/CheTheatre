@@ -21,18 +21,19 @@ class EntityDeleteListener
     public function preSoftDelete(LifecycleEventArgs $args)
     {
         $token  = $this->tokenStorage->getToken();
-        $object = $args->getEntity();
-        $om     = $args->getEntityManager();
-        $uow    = $om->getUnitOfWork();
-
-        if (!method_exists($object, 'setDeletedBy')) {
-            return;
-        }
 
         if (null == $token) {
             throw new AccessDeniedException('Only authorized users can delete entities');
         }
 
+        $object = $args->getEntity();
+
+        if (!method_exists($object, 'setDeletedBy')) {
+            return;
+        }
+
+        $om     = $args->getEntityManager();
+        $uow    = $om->getUnitOfWork();
         $meta = $om->getClassMetadata(get_class($object));
         $reflProp = $meta->getReflectionProperty('deletedBy');
         $oldValue = $reflProp->getValue($object);
