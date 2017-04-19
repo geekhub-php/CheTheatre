@@ -610,9 +610,7 @@
                         "name": "limit",
                         "description": "Count of entities in collection",
                         "required": false,
-                        "pattern": "\\d+|all",
-                        "type": "string",
-                        "default": "all"
+                        "type": "integer"
                     },
                     {
                         "in": "query",
@@ -620,8 +618,7 @@
                         "description": "Performance slug",
                         "required": false,
                         "type": "string",
-                        "pattern": "^[a-z\\d-]+$",
-                        "default": "all"
+                        "pattern": "^[a-z\\d-]+$"
                     },
                     {
                         "in": "query",
@@ -1134,9 +1131,9 @@
                 }
             }
         },
-        "/users/login/new": {
+        "/users/register": {
             "post": {
-                "operationId": "login_user_new",
+                "operationId": "register_user",
                 "tags": [
                     "users"
                 ],
@@ -1150,23 +1147,15 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "user": {
-                                    "$ref": "#/definitions/User"
-                                },
+                                "user": {},
                                 "api_key": {
                                     "type": "string"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Validation error"
-                    },
-                    "401": {
-                        "description": "Authentication required"
-                    },
-                    "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                    "409": {
+                        "description": "You are already logged in. Logout first (/users/logout) and then login again"
                     }
                 }
             }
@@ -1228,13 +1217,13 @@
                         }
                     },
                     "400": {
-                        "description": "Validation error"
+                        "description": "Validation error (Properties in body 'email' or 'first_name' or 'last_name' are not valid)"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }
@@ -1293,13 +1282,13 @@
                         }
                     },
                     "400": {
-                        "description": "Validation error"
+                        "description": "Validation error (Properties in body 'social_network' or 'social_token' are not valid)"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }
@@ -1329,10 +1318,54 @@
                         "description": "Successful operation"
                     },
                     "401": {
-                        "description": "Authentication required"
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
                     },
                     "403": {
-                        "description": "Forbidden. You don't have necessary permissions for the resource"
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "operationId": "me_user",
+                "summary": "Retrieve information on the logged in user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "API-Key-Token",
+                        "description": "API Key Token",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "$ref": "#/definitions/User"
+                                },
+                                "api_key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication required (API-Key-Token in header doesn't exists)"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have necessary permissions for the resource (#1. API-Key-Token in header exists, but haven't found in database. #2. User doesn't have the required role (e.g. ROLE_API))"
                     }
                 }
             }
@@ -1341,7 +1374,7 @@
     "securityDefinitions": {
         "api_key": {
             "type": "apiKey",
-            "name": "api_key",
+            "name": "API-Key-Token",
             "in": "header"
         }
     },
@@ -1489,8 +1522,28 @@
                 "year": {
                     "type": "integer"
                 },
+                "series_date": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "series_number": {
+                    "type": "string"
+                },
+                "rows_for_sale": {
+                    "$ref": "#/definitions/RowsForSale"
+                },
                 "performance": {
                     "$ref": "#/definitions/Performance"
+                }
+            }
+        },
+        "RowsForSale": {
+            "type": "object",
+            "properties": {
+                "row": {
+                    "type": "integer"
+                },
+                "venue_sector_id": {
+                    "type": "integer"
                 }
             }
         },
@@ -1795,9 +1848,6 @@
         "User": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "first_name": {
                     "type": "string"
                 },

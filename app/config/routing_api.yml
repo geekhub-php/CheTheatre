@@ -30,10 +30,9 @@ history:
     type: rest
     resource: AppBundle\Controller\HistoryController
 
-logout_user:
+users:
     type: rest
     resource: AppBundle\Controller\UserController
-    methods: [POST]
 
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"
