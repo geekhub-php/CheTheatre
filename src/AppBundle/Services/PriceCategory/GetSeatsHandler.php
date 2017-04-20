@@ -4,6 +4,7 @@ namespace AppBundle\Services\PriceCategory;
 
 use AppBundle\Entity\PriceCategory;
 use AppBundle\Entity\Seat;
+use AppBundle\Exception\PriceCategory\PlaceArrangementException;
 use AppBundle\Repository\SeatRepository;
 
 class GetSeatsHandler
@@ -121,7 +122,7 @@ class GetSeatsHandler
     protected function validatePlaces(array $places)
     {
         if (count(array_unique($places)) < count($places)) {
-            throw new \Exception('Places arranged incorrectly. Duplicates appears.');
+            throw new PlaceArrangementException('Places arranged incorrectly. Duplicates appears.');
         }
     }
 }

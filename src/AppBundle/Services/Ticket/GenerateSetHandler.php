@@ -6,6 +6,8 @@ use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\Seat;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\VenueSector;
+use AppBundle\Exception\PriceCategory\PlaceArrangementException;
+use AppBundle\Exception\Ticket\NotEqualToSeatNumberException;
 use AppBundle\Repository\PriceCategoryRepository;
 use AppBundle\Repository\SeatRepository;
 use AppBundle\Repository\VenueSectorRepository;
@@ -45,8 +47,8 @@ class GenerateSetHandler
 
     /**
      * @param PerformanceEvent $performanceEvent
+     *
      * @return Ticket[]
-     * @throws \Exception
      */
     public function handle(PerformanceEvent $performanceEvent): array
     {
@@ -99,7 +101,9 @@ class GenerateSetHandler
             );
 
             /** @var Seat $seat */
-            foreach ($seats as $seat) {
+            foreach ($priceCategorySeats as $seat) {
+                // TODO ticket status From ROW for Sale
+
                 $tickets[] = new Ticket(
                     $seat,
                     $performanceEvent,
@@ -120,13 +124,13 @@ class GenerateSetHandler
     /**
      * @param VenueSector $venueSectors
      * @param Seat[] $seats
-     * @throws \Exception
+     * @throws PlaceArrangementException
      */
     protected function validateSeatsNumberForVenueSector(VenueSector $venueSectors, array $seats)
     {
         $venueSectorSeats = $this->seatRepository->getByVenueSector($venueSectors);
         if (count($venueSectorSeats) <> count($seats)) {
-            throw new \Exception(
+            throw new PlaceArrangementException(
                 sprintf(
                     'For %s number of seats: %s but should be: %s',
                     $venueSectors,
@@ -140,12 +144,12 @@ class GenerateSetHandler
     /**
      * @param VenueSector $venueSectors
      * @param Seat[] $seats
-     * @throws \Exception
+     * @throws PlaceArrangementException
      */
     protected function validateSeatsDuplicates(VenueSector $venueSectors, array $seats)
     {
         if (count(array_unique($seats)) < count($seats)) {
-            throw new \Exception(
+            throw new PlaceArrangementException(
                 sprintf('For %s PriceCategories arranged incorrectly. Duplicates appears.', $venueSectors)
             );
         }
@@ -154,13 +158,13 @@ class GenerateSetHandler
     /**
      * @param PerformanceEvent $performanceEvent
      * @param Ticket[] $ticket
-     * @throws \Exception
+     * @throws NotEqualToSeatNumberException
      */
     protected function validateTickets(PerformanceEvent $performanceEvent, array $ticket)
     {
         $venueSeats = $this->seatRepository->getByVenue($performanceEvent->getVenue());
         if (count($venueSeats) <> count($ticket)) {
-            throw new \Exception(
+            throw new NotEqualToSeatNumberException(
                 sprintf(
                     'For %s number of tickets not equal to seats number. Seats: %s. Tickets: %s.',
                     $performanceEvent,

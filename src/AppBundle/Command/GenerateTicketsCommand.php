@@ -3,6 +3,8 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\Ticket;
+use AppBundle\Exception\Ticket\DuplicateSetException;
 use AppBundle\Repository\PerformanceEventRepository;
 use AppBundle\Repository\TicketRepository;
 use AppBundle\Services\Ticket\GenerateSetHandler;
@@ -11,17 +13,17 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
 class GenerateTicketsCommand extends ContainerAwareCommand
 {
-
-    /** @var  GenerateSetHandler */
+    /** @var GenerateSetHandler */
     private $ticketGenerateSet;
 
-    /** @var  PerformanceEventRepository */
+    /** @var PerformanceEventRepository */
     private $performanceEventRepository;
 
-    /** @var  TicketRepository */
+    /** @var TicketRepository */
     private $ticketRepository;
 
     public function __construct(
@@ -59,19 +61,27 @@ class GenerateTicketsCommand extends ContainerAwareCommand
     {
         try {
             $startTime = new \DateTime('now');
+
+            $token = new AnonymousToken('console_user', 'console_user', ['ROLE_SUPER_ADMIN']);
+            $this->getContainer()->get('security.token_storage')->setToken($token);
+
             $output->writeln('<comment>Running Tickets Generation</comment>');
             $performanceEventId = (int) $input->getArgument('performanceEventId') ?: null;
             $force = (bool) $input->getOption('force')  ? true : false;
+
+            /** @var PerformanceEvent $performanceEvent */
             $performanceEvent = $this->performanceEventRepository->getById($performanceEventId);
 
             if ($force) {
-                //TODO remove existed tickets for PerformanceEvent if they exists
+                $tickets = $this->ticketRepository->getRemovableTicketSet($performanceEvent);
+                $this->ticketRepository->batchRemove($tickets);
             }
 
-            if ($this->ticketsExists($performanceEvent)) {
-                throw new \Exception('Tickets already exist for: '. $performanceEvent);
+            if ($this->ticketRepository->isGeneratedSet($performanceEvent)) {
+                throw new DuplicateSetException('Ticket Set already generated for: '. $performanceEvent);
             }
 
+            /** @var Ticket[] $tickets */
             $tickets = $this->ticketGenerateSet->handle($performanceEvent);
             $this->ticketRepository->batchSave($tickets);
             $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', count($tickets)));
@@ -82,17 +92,5 @@ class GenerateTicketsCommand extends ContainerAwareCommand
             $interval = $startTime->diff($finishTime);
             $output->writeln(sprintf('<comment>DONE in %s seconds<comment>', $interval->s));
         }
-    }
-
-   /**
-     * @param PerformanceEvent $performanceEvent
-     *
-     * @return bool
-     */
-    protected function ticketsExists(PerformanceEvent $performanceEvent)
-    {
-        return (bool) count($this->ticketRepository->findBy([
-            'performanceEvent' => $performanceEvent
-        ]));
     }
 }

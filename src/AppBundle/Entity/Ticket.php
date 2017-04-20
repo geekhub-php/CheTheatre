@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="ticket")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
 class Ticket
@@ -268,5 +270,13 @@ class Ticket
     public function getPriceCategory(): PriceCategory
     {
         return $this->priceCategory;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRemovable()
+    {
+        return $this->getStatus() != self::STATUS_PAID && $this->getStatus() != self::STATUS_BOOKED;
     }
 }
