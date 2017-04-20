@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Exception\TicketStatusConflictException;
 use AppBundle\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
@@ -213,6 +214,13 @@ class Ticket
      */
     public function setStatus($status)
     {
+        if ($this->getStatus() === Ticket::STATUS_PAID) {
+            throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
+        }
+        if (($this->getStatus()  === Ticket::STATUS_BOOKED) && ($status === Ticket::STATUS_BOOKED)) {
+            throw new TicketStatusConflictException('Ticket is already booked');
+        }
+
         $this->status = $status;
 
         return $this;
@@ -256,13 +264,16 @@ class Ticket
      */
     public function setUserOrder(UserOrder $userOrder = null)
     {
+        $status = $userOrder ? Ticket::STATUS_BOOKED : Ticket::STATUS_FREE;
+        $this->setStatus($status);
+
         $this->userOrder = $userOrder;
 
         return $this;
     }
 
     /**
-     * Get customerOrder
+     * Get userOrder
      *
      * @return UserOrder
      */

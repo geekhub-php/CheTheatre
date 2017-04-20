@@ -49,8 +49,7 @@ class OrderManager
             throw new AccessDeniedHttpException('You cannot change status for this ticket');
         }
 
-        $ticket->setUserOrder(null);
-        $ticket->setStatus(Ticket::STATUS_FREE);
+        $ticket->setUserOrder();
     }
 
     /**
