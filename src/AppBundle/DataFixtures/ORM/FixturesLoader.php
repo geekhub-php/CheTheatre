@@ -20,7 +20,6 @@ class FixturesLoader extends LoadData
 
     /**
      * @param string $fixtureName
-     * @param string:null $dir
      *
      * @throws \Exception
      */
