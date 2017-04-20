@@ -61,6 +61,9 @@ class PerformanceEventsControllerTest extends AbstractApiController
         $content = json_decode($client->getResponse()->getContent(), true);
         if (!empty($content['id'])) {
             self::assertArrayHasKey('rows', $content[0]);
+            if (!empty($content['places'])) {
+                self::assertArrayHasKey('places', $content[0]);
+            }
             self::assertArrayHasKey('color', $content[0]);
             self::assertArrayHasKey('price', $content[0]);
             self::assertArrayHasKey('venueSector_id', $content[0]);
@@ -125,7 +128,7 @@ class PerformanceEventsControllerTest extends AbstractApiController
         );
         $content = json_decode($client->getResponse()->getContent(), true);
 
-        if ($limit) {
+        if ($limit !== null) {
             self::assertInternalType('integer', $limit);
             self::assertLessThanOrEqual($limit, $content['count']);
         }
@@ -146,21 +149,11 @@ class PerformanceEventsControllerTest extends AbstractApiController
         self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
-        try {
+        if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
             self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
-        } catch (\PHPUnit_Framework_AssertionFailedError $assertionError) {
-            self::assertContains(
-                "Failed asserting that an array has the key 'mainPicture'",
-                $assertionError->getMessage()
-            );
         }
-        try {
+        if (!empty($content['performance_events'][0]['performance']['sliderImage'])) {
             self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
-        } catch (\PHPUnit_Framework_AssertionFailedError $assertionError) {
-            self::assertContains(
-                "Failed asserting that an array has the key 'sliderImage'",
-                $assertionError->getMessage()
-            );
         }
         self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
         self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);

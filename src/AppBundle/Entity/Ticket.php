@@ -141,7 +141,7 @@ class Ticket
         int $ticketPrice,
         \DateTime $seriesDate,
         string $seriesNumber,
-        $status = self::STATUS_FREE
+        $status = self::STATUS_OFFLINE
     ) {
         $this->id = Uuid::uuid4();
         $this->seat = $seat;

@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\Seat;
 use AppBundle\Entity\Ticket;
 use AppBundle\Exception\Ticket\NotRemovableSetException;
 
@@ -71,5 +72,72 @@ class TicketRepository extends AbstractRepository
             $this->remove($ticket, false);
         }
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Change Status in Ticket
+     * form STATUS_OFFLINE to STATUS_FREE if Ticket is in RowsForSale
+     * and vice versa
+     *
+     * @param PerformanceEvent $performanceEvent
+     * @return int
+     */
+    public function enableTicketsForSale(PerformanceEvent $performanceEvent)
+    {
+        $seats = $this->getEntityManager()->getRepository(Seat::class)->getByVenue($performanceEvent->getVenue());
+        foreach ($seats as $seat) {
+            $tickets[] = self::changeStatusInTicket(
+                $performanceEvent,
+                $seat,
+                Ticket::STATUS_FREE,
+                Ticket::STATUS_OFFLINE
+            );
+        }
+
+        $tickets = [];
+
+        foreach ($performanceEvent->getRowsForSale() as $forSale) {
+            $seats = $this
+                ->getEntityManager()
+                ->getRepository(Seat::class)
+                ->getByVenueSectorAndRow(
+                    $forSale->getVenueSector(),
+                    $forSale->getRow()
+                );
+            foreach ($seats as $seat) {
+                $tickets[] = self::changeStatusInTicket(
+                    $performanceEvent,
+                    $seat,
+                    Ticket::STATUS_OFFLINE,
+                    Ticket::STATUS_FREE
+                );
+            }
+        }
+
+        $count = count($tickets);
+        return $count;
+    }
+
+    /**
+     * @param PerformanceEvent $performanceEvent
+     * @param Seat $seat
+     * @param string $oldStatus
+     * @param string $newStatus
+     * @return object
+     */
+    public function changeStatusInTicket(PerformanceEvent $performanceEvent, Seat $seat, $oldStatus, $newStatus)
+    {
+        $ticket = $this->findOneBy([
+            'performanceEvent' => $performanceEvent,
+            'seat' => $seat,
+            'status' => $oldStatus,
+        ]);
+        if ($ticket) {
+            $ticket->setStatus($newStatus);
+            $this->getEntityManager()->persist($ticket);
+
+            $this->getEntityManager()->flush();
+        }
+        return $ticket;
     }
 }
