@@ -30,7 +30,7 @@ class OrderManager
     /**
      * @param Ticket $ticket
      */
-    public function addOrderToTicket(Ticket $ticket): void
+    public function addTicketToOrder(Ticket $ticket): void
     {
         $order = $this->getCustomerOrder();
         $ticket->setUserOrder($order);
@@ -39,7 +39,7 @@ class OrderManager
     /**
      * @param Ticket $ticket
      */
-    public function removeOrderFromTicket(Ticket $ticket): void
+    public function removeTicketFromOrder(Ticket $ticket): void
     {
         $em = $this->doctrine->getEntityManager();
         $user = $this->tokenStorage->getToken()->getUser();

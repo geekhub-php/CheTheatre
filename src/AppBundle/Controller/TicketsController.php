@@ -44,7 +44,7 @@ class TicketsController extends Controller
     {
         $this->denyAccessUnlessGranted('edit', $ticket);
         $em = $this->getDoctrine()->getManager();
-        $this->get('app.order.manager')->removeOrderFromTicket($ticket);
+        $this->get('app.order.manager')->removeTicketFromOrder($ticket);
         $em->flush();
     }
 
@@ -60,7 +60,7 @@ class TicketsController extends Controller
     public function reserveAction(Ticket $ticket)
     {
         $em = $this->getDoctrine()->getManager();
-        $this->get('app.order.manager')->addOrderToTicket($ticket);
+        $this->get('app.order.manager')->addTicketToOrder($ticket);
         $em->flush();
     }
 }
