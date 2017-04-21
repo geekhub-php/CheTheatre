@@ -50,10 +50,16 @@ class RowsForSale extends AbstractPersonalTranslatable implements TranslatableIn
      * @var VenueSector
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VenueSector")
-     * @Type("AppBundle\Entity\VenueSector")
-     * @Expose()
      */
     protected $venueSector;
+
+    /**
+     * @Serializer\SerializedName("venueSectorId")
+     * @Serializer\Accessor("getVenueSectorId")
+     * @Type("integer")
+     * @Expose()
+     */
+    protected $venueSectorId;
 
     /**
      * @var Collection
@@ -76,7 +82,6 @@ class RowsForSale extends AbstractPersonalTranslatable implements TranslatableIn
      * )
      */
     protected $translations;
-
 
     /**
      * @return Collection
@@ -129,5 +134,13 @@ class RowsForSale extends AbstractPersonalTranslatable implements TranslatableIn
     public function __toString()
     {
         return $this->getVenueSector()->getTitle().' '.$this->getRow().' ряд';
+    }
+
+    /**
+     * @return int
+     */
+    public function getVenueSectorId()
+    {
+        return $this->getVenueSector()->getId();
     }
 }

@@ -52,14 +52,14 @@ class TicketsControllerTest extends AbstractApiController
 
     public function testGetTicketsId()
     {
-        $id = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId();
+        $id = strval($this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId());
         $this->request('/tickets/'.$id);
         $this->request('/tickets/'.self::FAKE_TICKET_ID, 'GET', 404);
     }
 
     public function testPatchTicketsId()
     {
-        $id = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId();
+        $id = strval($this->getEm()->getRepository(Ticket::class)->findOneBy([])->getId());
         $headers = [
             'API-Key-Token' => 'token_11111111'
         ];
