@@ -72,11 +72,15 @@ class TicketsControllerTest extends AbstractApiController
         $user = $this->getEm()->getRepository(User::class)->findOneBy(['apiKey' => 'token_11111111']);
         $order = $this->getEm()->getRepository(UserOrder::class)->findLastOpenOrder($user);
         $ticket = $this->getEm()->getRepository(Ticket::class)->findOneBy([]);
+        $this->assertEquals($ticket->getStatus(), Ticket::STATUS_BOOKED);
         $this->assertEquals($ticket->getUserOrder(), $order);
         $this->request('/tickets/'.$id.'/reserve', 'PATCH', 409, $headers);
         $this->request('/tickets/'.self::FAKE_TICKET_ID.'/reserve', 'PATCH', 404, $headers);
         $this->request('/tickets/'.$id.'/free', 'PATCH', 403, $wrongHeaders);
         $this->request('/tickets/'.$id.'/free', 'PATCH', 204, $headers);
+        $this->getEm()->refresh($ticket);
+        $this->assertEquals($ticket->getStatus(), Ticket::STATUS_FREE);
+        $this->assertEquals($ticket->getUserOrder(), null);
     }
 
     public function testTicketsResponseFields()
