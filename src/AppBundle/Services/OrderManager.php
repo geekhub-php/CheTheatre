@@ -41,14 +41,6 @@ class OrderManager
      */
     public function removeTicketFromOrder(Ticket $ticket): void
     {
-        $em = $this->doctrine->getEntityManager();
-        $user = $this->tokenStorage->getToken()->getUser();
-        /** @var UserOrder $order */
-        $order = $em->getRepository('AppBundle:UserOrder')->findLastOpenOrder($user);
-        if ($ticket->getUserOrder() !== $order) {
-            throw new AccessDeniedHttpException('You cannot change status for this ticket');
-        }
-
         $ticket->setUserOrder();
     }
 
