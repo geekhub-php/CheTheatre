@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\Entity\CustomerOrder;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserOrder;
