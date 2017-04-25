@@ -297,7 +297,7 @@ class Ticket
      *
      * @return UserOrder
      */
-    public function getUserOrder()
+    public function getUserOrder(): ?UserOrder
     {
         return $this->userOrder;
     }
