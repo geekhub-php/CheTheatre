@@ -214,11 +214,16 @@ class Ticket
      */
     public function setStatus($status)
     {
+        if (!in_array($status, $this->getStatuses())) {
+            throw new TicketStatusConflictException('Invalid status');
+        }
+
         if ($this->getStatus() === Ticket::STATUS_PAID) {
             throw new TicketStatusConflictException("Invalid status. Ticket already paid.");
         }
-        if (($this->getStatus()  === Ticket::STATUS_BOOKED) && ($status === Ticket::STATUS_BOOKED)) {
-            throw new TicketStatusConflictException('Ticket is already booked');
+
+        if ($this->getStatus() === $status) {
+            return $this;
         }
 
         $this->status = $status;
@@ -256,18 +261,33 @@ class Ticket
     }
 
     /**
-     * Set customerOrder
+     * Set userOrder
      *
      * @param UserOrder $userOrder
      *
      * @return Ticket
      */
-    public function setUserOrder(UserOrder $userOrder = null)
+    public function setUserOrder(UserOrder $userOrder)
     {
-        $status = $userOrder ? Ticket::STATUS_BOOKED : Ticket::STATUS_FREE;
-        $this->setStatus($status);
+        if ($this->getStatus() !== Ticket::STATUS_FREE) {
+            throw new TicketStatusConflictException('Ticket is not free');
+        }
+        $this->setStatus(self::STATUS_BOOKED);
 
         $this->userOrder = $userOrder;
+
+        return $this;
+    }
+
+    /**
+     * Remove userOrder from ticket
+     *
+     * @return $this
+     */
+    public function removeUserOrder()
+    {
+        $this->userOrder = null;
+        $this->status = self::STATUS_FREE;
 
         return $this;
     }
@@ -277,7 +297,7 @@ class Ticket
      *
      * @return UserOrder
      */
-    public function getUserOrder()
+    public function getUserOrder(): UserOrder
     {
         return $this->userOrder;
     }

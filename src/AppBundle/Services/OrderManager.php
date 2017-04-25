@@ -41,7 +41,7 @@ class OrderManager
      */
     public function removeTicketFromOrder(Ticket $ticket): void
     {
-        $ticket->setUserOrder();
+        $ticket->removeUserOrder();
     }
 
     /**

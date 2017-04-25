@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Security\TicketVoter;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
@@ -41,7 +42,7 @@ class TicketsController extends Controller
      */
     public function freeAction(Ticket $ticket)
     {
-        $this->denyAccessUnlessGranted('edit', $ticket);
+        $this->denyAccessUnlessGranted(TicketVoter::EDIT, $ticket);
         $em = $this->getDoctrine()->getManager();
         $this->get('app.order.manager')->removeTicketFromOrder($ticket);
         $em->flush();
