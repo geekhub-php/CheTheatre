@@ -48,7 +48,9 @@ class UserAdmin extends Admin
             ->createQueryBuilder('u')
             ->select('u')
             ->from('AppBundle:User', 'u')
-            ->where('u.email IS NOT NULL');
+            ->where('u.email IS NOT NULL ')
+            ->andWhere('u.role = :param')
+        ->setParameter('param', "ROLE_API");
         $query = new ProxyQuery($queryBuilder);
 
         return $query;

@@ -1,0 +1,5 @@
+{% if object.banned == false %}
+<a class="btn btn-primary activated"  href="{{ admin.generateObjectUrl('lock', object) }}"> lock </a>
+{% else %}
+<a class="btn btn-primary activated"  href="{{ admin.generateObjectUrl('unlock', object) }}"> unlock </a>
+{% endif %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Security;
 
+use AppBundle\Entity\Swindler;
 use Monolog\Logger;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {
@@ -19,10 +21,11 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
      * @var ManagerRegistry
      */
     private $registry;
-
     /**
-     * @param ManagerRegistry $registry
+     * @var Logger
      */
+    private $logger;
+
     public function __construct(ManagerRegistry $registry, Logger $logger)
     {
         $this->registry = $registry;
@@ -30,10 +33,17 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getCredentials(Request $request)
     {
+        $swindler = $this->registry->getRepository('AppBundle:Swindler')
+            ->findSwindlerIsBanned($request->getClientIp());
+
+        if ($swindler) {
+            throw new HttpException(403, 'Forbidden. You\'re banned!');
+        }
+
         if (!$token = $request->headers->get('API-Key-Token')) {
             return null;
         }
@@ -44,7 +54,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
@@ -57,7 +67,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
@@ -65,7 +75,7 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
@@ -73,37 +83,63 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $this->logger->err('403. api_key not valid!');
+        $this->saveSwindler($request);
         $data = [
             'code' => '403',
-            'message' => 'Forbidden. You don\'t have necessary permissions for the resource'
+            'message' => 'Forbidden. You don\'t have necessary permissions for the resource',
         ];
 
         return new JsonResponse($data, Response::HTTP_FORBIDDEN);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
         $data = [
             'code' => '401',
-            'message' => 'Authentication required'
+            'message' => 'Authentication required',
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function supportsRememberMe()
     {
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function saveSwindler($request)
+    {
+        $swindler = $this->registry->getRepository('AppBundle:Swindler')
+            ->findOneBy(['ip' => $request->getClientIp()]);
+
+        if ($swindler) {
+            $countAttempts = $swindler->getCountAttempts();
+            $swindler->setCountAttempts(++$countAttempts);
+            $this->registry->getManager()->flush();
+        } else {
+            $swindler = new Swindler();
+            $swindler->setCountAttempts(1);
+            $swindler->setIp($request->getClientIp());
+            $swindler->setBanned(false);
+            $this->registry->getManager()->persist($swindler);
+            $this->registry->getManager()->flush();
+        }
+
+        if (($swindler->getCountAttempts() % 50 == 0) || $swindler->getCountAttempts() == 1) {
+            $this->logger->err('403. api_key not valid!');
+        }
     }
 }

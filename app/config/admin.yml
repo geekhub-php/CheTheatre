@@ -121,3 +121,15 @@ services:
                - ~
             calls:
             - [ setTranslationDomain, [messages]]
+
+    sonata.admin.swindler:
+            class: AppBundle\Admin\SwindlerAdmin
+            tags:
+               - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Swindlers" }
+            arguments:
+               - ~
+               - AppBundle\Entity\Swindler
+               #- ~
+               - 'AppBundle:Swindler'
+            calls:
+            - [ setTranslationDomain, [messages]]
