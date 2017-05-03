@@ -129,7 +129,9 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
             $countAttempts = $swindler->getCountAttempts();
             $swindler->setCountAttempts(++$countAttempts);
             $this->registry->getManager()->flush();
-        } else {
+        }
+
+        if (!$swindler) {
             $swindler = new Swindler();
             $swindler->setCountAttempts(1);
             $swindler->setIp($request->getClientIp());
