@@ -5,6 +5,7 @@ namespace AppBundle\Tests\Controller;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserOrder;
+use AppBundle\Exception\TicketStatusConflictException;
 
 class TicketsControllerTest extends AbstractApiController
 {
@@ -80,6 +81,8 @@ class TicketsControllerTest extends AbstractApiController
         $this->getEm()->refresh($ticket);
         $this->assertEquals($ticket->getStatus(), Ticket::STATUS_FREE);
         $this->assertEquals($ticket->getUserOrder(), null);
+        $this->expectException(TicketStatusConflictException::class);
+        $ticket->setStatus('fake_status');
     }
 
     public function testTicketsResponseFields()
