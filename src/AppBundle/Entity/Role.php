@@ -57,6 +57,7 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles")
+     * @Type("array")
      * @Expose()
      */
     private $performance;
@@ -65,7 +66,7 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles")
-     * @Type("AppBundle\Entity\Employee")
+     * @Type("array")
      * @Expose
      */
     private $employee;

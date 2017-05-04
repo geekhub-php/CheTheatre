@@ -39,7 +39,7 @@ class PerformanceEventsController extends Controller
      * @QueryParam(name="performance", description="Performance slug")
      * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
@@ -106,7 +106,7 @@ class PerformanceEventsController extends Controller
      * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
@@ -171,7 +171,7 @@ class PerformanceEventsController extends Controller
      * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
