@@ -2,17 +2,17 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Swindler;
+use AppBundle\Entity\Client;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-class SwindlerAdmin extends Admin
+class ClientAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Entity\Swindler';
-    protected $baseRoutePattern = 'Swindler';
+    protected $baseRouteName = 'AppBundle\Entity\Client';
+    protected $baseRoutePattern = 'Client';
     protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'id',

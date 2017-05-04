@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Swindler.
+ * Client.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SwindlerRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  */
-class Swindler
+class Client
 {
     /**
      * @var int
@@ -57,7 +57,7 @@ class Swindler
      *
      * @param string $ip
      *
-     * @return Swindler
+     * @return Client
      */
     public function setIp($ip)
     {
@@ -81,7 +81,7 @@ class Swindler
      *
      * @param int $countAttempts
      *
-     * @return Swindler
+     * @return Client
      */
     public function setCountAttempts($countAttempts)
     {
@@ -105,7 +105,7 @@ class Swindler
      *
      * @param bool $banned
      *
-     * @return Swindler
+     * @return Client
      */
     public function setBanned($banned)
     {

@@ -28,9 +28,6 @@ class UserAdmin extends Admin
             ->add('firstName')
             ->add('lastName')
              ->add('email')
-
-            ->add('facebookId')
-            ->add('apiKey', 'text', ['attr' => ['readonly' => true]])
             ->add('orders')
             ->end()
         ;
@@ -38,7 +35,9 @@ class UserAdmin extends Admin
 
     /**
      * {@inheritdoc} annotation.
+     *
      * @param string $context = 'list'
+     *
      * @return \Sonata\AdminBundle\Datagrid\ProxyQueryInterface|ProxyQuery
      */
     public function createQuery($context = 'list')
@@ -50,7 +49,7 @@ class UserAdmin extends Admin
             ->from('AppBundle:User', 'u')
             ->where('u.email IS NOT NULL ')
             ->andWhere('u.role = :param')
-        ->setParameter('param', "ROLE_API");
+        ->setParameter('param', 'ROLE_API');
         $query = new ProxyQuery($queryBuilder);
 
         return $query;
@@ -62,7 +61,6 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('apiKey')
             ->add('email')
             ->add('firstName')
             ->add('lastName')

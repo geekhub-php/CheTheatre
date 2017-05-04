@@ -2,7 +2,7 @@
 
 namespace AppBundle\Security;
 
-use AppBundle\Entity\Swindler;
+use AppBundle\Entity\Client;
 use Monolog\Logger;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,10 +37,10 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        $swindler = $this->registry->getRepository('AppBundle:Swindler')
-            ->findSwindlerIsBanned($request->getClientIp());
+        $client = $this->registry->getRepository('AppBundle:Client')
+            ->findIpBanned($request->getClientIp());
 
-        if ($swindler) {
+        if ($client) {
             throw new HttpException(403, 'Forbidden. You\'re banned!');
         }
 
@@ -87,11 +87,29 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $this->saveSwindler($request);
         $data = [
             'code' => '403',
             'message' => 'Forbidden. You don\'t have necessary permissions for the resource',
         ];
+        $client = $this->registry->getRepository('AppBundle:Client')
+            ->findOneBy(['ip' => $request->getClientIp()]);
+
+        if ($client) {
+            $countAttempts = $client->getCountAttempts();
+            $client->setCountAttempts(++$countAttempts);
+            $this->registry->getManager()->flush();
+            $this->writeLogger($client);
+
+            return new JsonResponse($data, Response::HTTP_FORBIDDEN);
+        }
+
+        $client = new Client();
+        $client->setCountAttempts(1);
+        $client->setIp($request->getClientIp());
+        $client->setBanned(false);
+        $this->registry->getManager()->persist($client);
+        $this->registry->getManager()->flush();
+        $this->writeLogger($client);
 
         return new JsonResponse($data, Response::HTTP_FORBIDDEN);
     }
@@ -120,27 +138,9 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      */
-    private function saveSwindler($request)
+    private function writeLogger($client)
     {
-        $swindler = $this->registry->getRepository('AppBundle:Swindler')
-            ->findOneBy(['ip' => $request->getClientIp()]);
-
-        if ($swindler) {
-            $countAttempts = $swindler->getCountAttempts();
-            $swindler->setCountAttempts(++$countAttempts);
-            $this->registry->getManager()->flush();
-        }
-
-        if (!$swindler) {
-            $swindler = new Swindler();
-            $swindler->setCountAttempts(1);
-            $swindler->setIp($request->getClientIp());
-            $swindler->setBanned(false);
-            $this->registry->getManager()->persist($swindler);
-            $this->registry->getManager()->flush();
-        }
-
-        if (($swindler->getCountAttempts() % 50 == 0) || $swindler->getCountAttempts() == 1) {
+        if ($client->getCountAttempts() % 50 == 0 || $client->getCountAttempts() == 1) {
             $this->logger->err('403. api_key not valid!');
         }
     }
