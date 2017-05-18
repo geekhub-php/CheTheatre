@@ -17,3 +17,39 @@ AppBundle\Entity\RowsForSale:
     rowsForSale6:
         row: 5
         venueSector: '@venueSector2'
+    rowsForSale7:
+        row: 6
+        venueSector: '@venueSector2'
+    rowsForSale8:
+        row: 7
+        venueSector: '@venueSector2'
+    rowsForSale9:
+        row: 8
+        venueSector: '@venueSector2'
+    rowsForSale10:
+        row: 9
+        venueSector: '@venueSector2'
+    rowsForSale11:
+        row: 10
+        venueSector: '@venueSector2'
+    rowsForSale12:
+        row: 11
+        venueSector: '@venueSector2'
+    rowsForSale13:
+        row: 12
+        venueSector: '@venueSector2'
+    rowsForSale14:
+        row: 13
+        venueSector: '@venueSector2'
+    rowsForSale15:
+        row: 14
+        venueSector: '@venueSector2'
+    rowsForSale16:
+        row: 15
+        venueSector: '@venueSector2'
+    rowsForSale17:
+        row: 16
+        venueSector: '@venueSector2'
+    rowsForSale18:
+        row: 17
+        venueSector: '@venueSector2'

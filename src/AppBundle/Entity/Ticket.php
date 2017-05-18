@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="ticket")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
 class Ticket
@@ -81,7 +83,7 @@ class Ticket
      * @Type("AppBundle\Entity\Seat")
      * @Expose()
      */
-    protected $seat;
+    private $seat;
 
     /**
      * @var PerformanceEvent
@@ -90,7 +92,7 @@ class Ticket
      * @ORM\JoinColumn(name="performance_event_id", referencedColumnName="id", nullable=false)
      * @Type("AppBundle\Entity\PerformanceEvent")
      */
-    protected $performanceEvent;
+    private $performanceEvent;
 
     /**
      * @var UserOrder
@@ -101,6 +103,17 @@ class Ticket
     protected $userOrder;
 
     /**
+     * @var PriceCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PriceCategory", fetch="EAGER")
+     * @ORM\JoinColumn(name="price_category_id", referencedColumnName="id", nullable=false)
+     *
+     * @Type("AppBundle\Entity\PriceCategory")
+     * @Expose()
+     */
+    private $priceCategory;
+
+    /**
      * @var string
      * @Assert\Choice(callback="getStatuses")
      * @ORM\Column(name="status", type="string", length=15)
@@ -108,31 +121,36 @@ class Ticket
      * @Type("string")
      * @Expose()
      */
-    protected $status;
+    private $status;
 
     /**
      * Ticket constructor.
      *
      * @param Seat $seat
      * @param PerformanceEvent $performanceEvent
+     * @param PriceCategory $priceCategory
      * @param int $ticketPrice
      * @param \DateTime $seriesDate
      * @param string $seriesNumber
+     * @param $status string
      */
     public function __construct(
         Seat $seat,
         PerformanceEvent $performanceEvent,
+        PriceCategory $priceCategory,
         int $ticketPrice,
         \DateTime $seriesDate,
-        string $seriesNumber
+        string $seriesNumber,
+        $status = self::STATUS_OFFLINE
     ) {
         $this->id = Uuid::uuid4();
-        $this->status = self::STATUS_FREE;
         $this->seat = $seat;
         $this->performanceEvent = $performanceEvent;
+        $this->priceCategory = $priceCategory;
         $this->price = $ticketPrice;
         $this->seriesDate = $seriesDate;
         $this->seriesNumber = $seriesNumber;
+        $this->status = $status;
     }
 
     /**
@@ -194,8 +212,7 @@ class Ticket
      */
     public function getPriceCategoryId(): int
     {
-        //TODO
-        return 0;
+        return empty($this->priceCategory) ? 0 : $this->priceCategory->getId();
     }
 
     /**
@@ -245,5 +262,21 @@ class Ticket
     public function getSeriesNumber(): string
     {
         return $this->seriesNumber;
+    }
+
+    /**
+     * @return PriceCategory
+     */
+    public function getPriceCategory(): PriceCategory
+    {
+        return $this->priceCategory;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRemovable()
+    {
+        return $this->getStatus() != self::STATUS_PAID && $this->getStatus() != self::STATUS_BOOKED;
     }
 }

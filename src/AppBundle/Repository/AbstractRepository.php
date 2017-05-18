@@ -31,4 +31,16 @@ abstract class AbstractRepository extends EntityRepository implements BasicRepos
             throw new DuplicateException('Entity has duplicate by one of unique field');
         }
     }
+
+    /**
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public function remove($entity, $doFlush = true)
+    {
+        $this->getEntityManager()->remove($entity);
+        if ($doFlush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 }

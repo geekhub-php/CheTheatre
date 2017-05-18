@@ -15,4 +15,22 @@ class RowsForSaleRepository extends AbstractRepository
         ;
         return $qb;
     }
+
+    /**
+     * @param PerformanceEvent $performanceEvent
+     * @return Query
+     */
+    public function findVenueSectorsByPerformanceEventQuery(PerformanceEvent $performanceEvent)
+    {
+        return $this->findVenueSectorsByPerformanceEventQueryBuilder($performanceEvent)->getQuery();
+    }
+
+    /**
+     * @param PerformanceEvent $performanceEvent
+     * @return array
+     */
+    public function findVenueSectorsByPerformanceEvent(PerformanceEvent $performanceEvent)
+    {
+        return $this->findVenueSectorsByPerformanceEventQuery($performanceEvent)->getResult();
+    }
 }

@@ -1,0 +1,6 @@
+services:
+    app.price_category.get_seats_handler:
+        class: AppBundle\Services\PriceCategory\GetSeatsHandler
+        public: false
+        arguments:
+            - @app.repository.seat
