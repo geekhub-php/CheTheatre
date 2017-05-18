@@ -80,26 +80,26 @@ class PerformanceEventsControllerTest extends AbstractApiController
     {
         return [
             'Inspect QueryParatemer default values'  => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+                date("d-m-Y", strtotime("now")),
+                date("d-m-Y", strtotime("+1 year")),
                 null,
                 null,
             ],
             'Inspect QueryParatemer "limit"'  => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 null,
             ],
             'Inspect QueryParatemer "performance"'  => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 true,
             ],
             'Inspect QueryParatemer interval "fromDate" "toDate"'  => [
-                mktime(0, 0, 0, date("m") - 6, date("d"), date("Y")),
-                mktime(0, 0, 0, date("m") + 6, date("d"), date("Y")),
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 true,
             ],
@@ -132,32 +132,35 @@ class PerformanceEventsControllerTest extends AbstractApiController
             self::assertInternalType('integer', $limit);
             self::assertLessThanOrEqual($limit, $content['count']);
         }
+
         self::assertArrayHasKey('performance_events', $content);
-        self::assertArrayHasKey('locale', $content['performance_events'][0]);
-        self::assertArrayHasKey('id', $content['performance_events'][0]);
-        self::assertArrayHasKey('performance', $content['performance_events'][0]);
-        self::assertArrayHasKey('date_time', $content['performance_events'][0]);
-        self::assertArrayHasKey('venue', $content['performance_events'][0]);
-        self::assertArrayHasKey('year', $content['performance_events'][0]);
-        self::assertArrayHasKey('month', $content['performance_events'][0]);
-        self::assertArrayHasKey('day', $content['performance_events'][0]);
-        self::assertArrayHasKey('time', $content['performance_events'][0]);
-        self::assertArrayHasKey('created_at', $content['performance_events'][0]);
-        self::assertArrayHasKey('updated_at', $content['performance_events'][0]);
-        self::assertArrayHasKey('locale', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('title', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
-        if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
-            self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
+        if (!empty($content['performance_events'])) {
+            self::assertArrayHasKey('locale', $content['performance_events'][0]);
+            self::assertArrayHasKey('id', $content['performance_events'][0]);
+            self::assertArrayHasKey('performance', $content['performance_events'][0]);
+            self::assertArrayHasKey('date_time', $content['performance_events'][0]);
+            self::assertArrayHasKey('venue', $content['performance_events'][0]);
+            self::assertArrayHasKey('year', $content['performance_events'][0]);
+            self::assertArrayHasKey('month', $content['performance_events'][0]);
+            self::assertArrayHasKey('day', $content['performance_events'][0]);
+            self::assertArrayHasKey('time', $content['performance_events'][0]);
+            self::assertArrayHasKey('created_at', $content['performance_events'][0]);
+            self::assertArrayHasKey('updated_at', $content['performance_events'][0]);
+            self::assertArrayHasKey('locale', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('title', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
+            if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
+                self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
+            }
+            if (!empty($content['performance_events'][0]['performance']['sliderImage'])) {
+                self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
+            }
+            self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('created_at', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('updated_at', $content['performance_events'][0]['performance']);
         }
-        if (!empty($content['performance_events'][0]['performance']['sliderImage'])) {
-            self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
-        }
-        self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('created_at', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('updated_at', $content['performance_events'][0]['performance']);
     }
 }

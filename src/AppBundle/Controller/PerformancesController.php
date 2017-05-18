@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Performance;
 use AppBundle\Model\Link;
 use AppBundle\Model\PaginationLinks;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Request\ParamFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -169,15 +172,8 @@ class PerformancesController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns Performance by unique property {slug}",
-     *  statusCodes={
-     *      200="Returned when Performance was found in database",
-     *      404="Returned when Performance was not found in database",
-     *  },
-     *  output = "AppBundle\Entity\Performance"
-     * )
+     * @Get("/performances/{slug}", requirements={"slug" = "^[a-z\d-]+$"})
+     * @ParamConverter("performance", class="AppBundle:Performance")
      *
      * @QueryParam(
      *     name="locale",
@@ -188,16 +184,9 @@ class PerformancesController extends Controller
      *
      * @RestView
      */
-    public function getAction(ParamFetcher $paramFetcher, $slug)
+    public function getAction(ParamFetcher $paramFetcher, Performance $performance)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $performance = $em
-            ->getRepository('AppBundle:Performance')->findOneByslug($slug);
-
-        if (!$performance) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $performance->setLocale($paramFetcher->get('locale'));
         $em->refresh($performance);
@@ -210,15 +199,8 @@ class PerformancesController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns Performance roles by his unique {slug}",
-     *  statusCodes={
-     *      200="Returned when Performance by slug was found in database",
-     *      404="Returned when Performance by slug was not found in database",
-     *  },
-     *  output = "array<AppBundle\Entity\Role>"
-     * )
+     * @Get("/performances/{slug}/roles", requirements={"slug" = "^[a-z\d-]+$"})
+     * @ParamConverter("performance", class="AppBundle:Performance")
      *
      * @QueryParam(
      *     name="locale",
@@ -227,18 +209,12 @@ class PerformancesController extends Controller
      *     description="Selects language of data you want to receive"
      * )
      *
+     * @return array
      * @RestView
      */
-    public function getRolesAction(ParamFetcher $paramFetcher, $slug)
+    public function getRolesAction(ParamFetcher $paramFetcher, Performance $performance)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $performance = $em
-            ->getRepository('AppBundle:Performance')->findOneByslug($slug);
-
-        if (!$performance) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $performance->setLocale($paramFetcher->get('locale'));
         $em->refresh($performance);
@@ -273,19 +249,8 @@ class PerformancesController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns Performance events by Performance {slug}",
-     *  statusCodes={
-     *      200="Returned when Performance by {slug} was found in database",
-     *      404="Returned when Performance by {slug} was not found in database",
-     *  },
-     *  parameters={
-     *      {"name"="slug", "dataType"="string", "required"=true, "description"="Performance unique name"}
-     *  },
-     *  output = "array<AppBundle\Entity\PerformanceEvent>",
-     * deprecated = true
-     * )
+     * @Get("/performances/{slug}/performanceevents", requirements={"slug" = "^[a-z\d-]+$"})
+     * @ParamConverter("performance", class="AppBundle:Performance")
      *
      * @QueryParam(
      *     name="locale",
@@ -294,17 +259,12 @@ class PerformancesController extends Controller
      *     description="Selects language of data you want to receive"
      * )
      *
+     * @return array
      * @RestView
      */
-    public function getPerformanceeventsAction(ParamFetcher $paramFetcher, $slug)
+    public function getPerformanceeventsAction(ParamFetcher $paramFetcher, Performance $performance)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $performance = $em->getRepository('AppBundle:Performance')->findOneByslug($slug);
-
-        if (!$performance) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $performance->setLocale($paramFetcher->get('locale'));
         $em->refresh($performance);

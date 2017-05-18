@@ -23,6 +23,16 @@ class AdminEmployeeControllerTest extends AbstractAdminController
         $this->request('/admin/Employee/create', 'GET', 200);
     }
 
+    public function testEmployeeShowAction()
+    {
+        $employeeId = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([])->getId();
+        $this->request("/admin/Employee/$employeeId/show", 'GET', 302);
+
+        $this->logIn();
+
+        $this->request("/admin/Employee/$employeeId/show", 'GET', 200);
+    }
+
     public function testEmployeeDeleteAction()
     {
         $employee = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([]);
