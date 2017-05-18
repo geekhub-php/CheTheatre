@@ -19,6 +19,13 @@ class StringPathParameterValidator extends AbstractParameterValidator
         /**
          * @var StringType $parameterDoc
          */
+        if ($parameterRequest === null) {
+            self::assertFalse($parameterDoc->isRequired());
+        }
+        if ($parameterRequest !== null) {
+            self::assertInternalType(StringType::STRING_TYPE, $parameterRequest);
+        }
+
         if ($parameterRequest != null && $parameterDoc->getPattern()) {
             self::assertRegExp('/'.$parameterDoc->getPattern().'/', $parameterRequest);
         }

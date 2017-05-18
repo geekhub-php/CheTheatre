@@ -610,9 +610,7 @@
                         "name": "limit",
                         "description": "Count of entities in collection",
                         "required": false,
-                        "pattern": "\\d+|all",
-                        "type": "string",
-                        "default": "all"
+                        "type": "integer"
                     },
                     {
                         "in": "query",
@@ -1524,8 +1522,28 @@
                 "year": {
                     "type": "integer"
                 },
+                "series_date": {
+                    "$ref": "#/definitions/DateTime"
+                },
+                "series_number": {
+                    "type": "string"
+                },
+                "rows_for_sale": {
+                    "$ref": "#/definitions/RowsForSale"
+                },
                 "performance": {
                     "$ref": "#/definitions/Performance"
+                }
+            }
+        },
+        "RowsForSale": {
+            "type": "object",
+            "properties": {
+                "row": {
+                    "type": "integer"
+                },
+                "venue_sector_id": {
+                    "type": "integer"
                 }
             }
         },

@@ -14,17 +14,17 @@ class PerformanceEventRepository extends AbstractRepository
     public function findByDateRangeAndSlug(
         \DateTime $fromDate,
         \DateTime $toDate,
-        $limit = 'all',
+        $limit = null,
         $performanceSlug = null
     ) {
         $qb = $this->createQueryBuilder('u')
-            ->WHERE('u.dateTime BETWEEN :from AND :to')
+            ->where('u.dateTime BETWEEN :from AND :to')
             ->setParameter('from', $fromDate->format('Y-m-d H:i'))
             ->setParameter('to', $toDate->format('Y-m-d H:i'))
             ->orderBy('u.dateTime', 'ASC')
         ;
 
-        if ('all' !== $limit) {
+        if ($limit) {
             $qb->setMaxResults($limit);
         }
 

@@ -11,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\PerformanceEventsResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -23,16 +22,7 @@ class PerformanceEventsController extends Controller
     const MAX_DAYS_PER_GET = 367;
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns a collection of theatre performanceEvents",
-     *  statusCodes={
-     *      200="Returned when all parameters were correct",
-     *      400="Returned when date diff more than 1 year",
-     * },
-     *  output = "array<AppBundle\Model\PerformanceEventsResponse>"
-     * )
-     *
+     * @Get("/performanceevents")
      * @QueryParam(
      *     name="fromDate",
      *     default="today",
@@ -45,7 +35,7 @@ class PerformanceEventsController extends Controller
      *     requirements="\d{2}-\d{2}-\d{4}|\+1 Year",
      *     description="Find entries to this date, fromat=dd-mm-yyyy"
      * )
-     * @QueryParam(name="limit", default="all", requirements="\d+|all" , description="Count of entities in collection")
+     * @QueryParam(name="limit", description="Count of entities in collection")
      * @QueryParam(name="performance", description="Performance slug")
      * @QueryParam(
      *     name="locale",
@@ -112,38 +102,24 @@ class PerformanceEventsController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Returns one PerformanceEvent by Id",
-     *  statusCodes={
-     *      200="Returned when PerformanceEvent by id was found in database",
-     *      404="Returned when PerformanceEvent by id was not found id database",
-     *  },
-     *  parameters={
-     *      {"name"="id", "dataType"="string", "required"=true, "description"="PerformanceEvent id"}
-     *  },
-     *  output = "AppBundle\Entity\PerformanceEvent",
-     * deprecated = true
-     * )
-     *
+     * @Get("/performanceevents/{id}", requirements={"id" = "\d+"})
+     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      * @QueryParam(
      *     name="locale",
      *     requirements="^[a-zA-Z]+",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
-     *
+     * @QueryParam(
+     *     name="id",
+     *     requirements="\d+",
+     *     description="PerformanceEvent ID"
+     * )
      * @RestView
      */
-    public function getAction(ParamFetcher $paramFetcher, $id)
+    public function getAction(ParamFetcher $paramFetcher, PerformanceEvent $performanceEvent)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $performanceEvent = $em->getRepository('AppBundle:PerformanceEvent')->find($id);
-
-        if (!$performanceEvent) {
-            throw $this->createNotFoundException('Unable to find '.$id.' entity');
-        }
 
         $performanceEvent->setLocale($paramFetcher->get('locale'));
         $em->refresh($performanceEvent);

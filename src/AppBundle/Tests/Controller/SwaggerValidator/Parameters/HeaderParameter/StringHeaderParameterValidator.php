@@ -23,7 +23,9 @@ class StringHeaderParameterValidator extends AbstractParameterValidator
             self::assertFalse($parameterDoc->isRequired());
         }
 
-        self::assertInternalType(StringType::STRING_TYPE, $parameterRequest);
+        if ($parameterRequest !== null) {
+            self::assertInternalType(StringType::STRING_TYPE, $parameterRequest);
+        }
 
         if ($parameterDoc->getPattern()) {
             self::assertRegExp('/'.$parameterDoc->getPattern().'/', $parameterRequest);
