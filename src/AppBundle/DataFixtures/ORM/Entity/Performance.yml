@@ -1,0 +1,11 @@
+AppBundle\Entity\Performance:
+    performance1:
+        title: 'test_title'
+        type: 'test_type'
+        description: 'test_description'
+        premiere: <(new \DateTime("2017-04-27 18:00"))>
+        mainPicture: <getMedia("performance-posters/default.jpg", "performance")>
+        sliderImage: <getMedia("performance-slider-images/default.jpg", "slider")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+        galleryHasMedia:

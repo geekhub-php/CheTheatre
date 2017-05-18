@@ -40,7 +40,7 @@ class RowsForSale extends AbstractPersonalTranslatable implements TranslatableIn
      *
      * @ORM\Column(name="row", type="integer")
      *
-     * @Serializer\Groups({"get_ticket", "cget_ticket"})
+     * @Serializer\Groups({"get_ticket"})
      * @Type("integer")
      * @Expose()
      */

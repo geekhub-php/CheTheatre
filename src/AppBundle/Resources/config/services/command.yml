@@ -1,8 +1,9 @@
 services:
-    artel_site.command.talent_file.get_content:
+    app.command.ticket.generate_set:
         class:  AppBundle\Command\GenerateTicketsCommand
         tags:
             - {name: console.command}
         arguments:
-            - @app.domain.performance_event
-            - @app.domain.ticket
+            - @app.ticket.generate_set_handler
+            - @app.repository.performance_event
+            - @app.repository.ticket

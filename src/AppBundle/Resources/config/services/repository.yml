@@ -2,22 +2,41 @@ parameters:
     app.entity.performance_event.class:     AppBundle\Entity\PerformanceEvent
     app.entity.seat.class:                  AppBundle\Entity\Seat
     app.entity.ticket.class:                AppBundle\Entity\Ticket
+    app.entity.venue_sector.class:          AppBundle\Entity\VenueSector
+    app.entity.price_category.class:        AppBundle\Entity\PriceCategory
 
 services:
     app.repository.performance_event:
         class: AppBundle\Repository\PerformanceEventRepository
         factory: doctrine.orm.default_entity_manager:getRepository
+        public: false
         arguments:
             - %app.entity.performance_event.class%
+
+    app.repository.price_category:
+        class: AppBundle\Repository\PriceCategoryRepository
+        factory: doctrine.orm.default_entity_manager:getRepository
+        public: false
+        arguments:
+            - %app.entity.price_category.class%
 
     app.repository.seat:
         class: AppBundle\Repository\SeatRepository
         factory: doctrine.orm.default_entity_manager:getRepository
+        public: false
         arguments:
             - %app.entity.seat.class%
 
     app.repository.ticket:
         class: AppBundle\Repository\TicketRepository
         factory: doctrine.orm.default_entity_manager:getRepository
+        public: false
         arguments:
             - %app.entity.ticket.class%
+
+    app.repository.venue_sector:
+        class: AppBundle\Repository\VenueSectorRepository
+        factory: doctrine.orm.default_entity_manager:getRepository
+        public: false
+        arguments:
+            - %app.entity.venue_sector.class%

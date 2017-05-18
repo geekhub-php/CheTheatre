@@ -1,4 +1,5 @@
 imports:
-    - { resource: services/domain.yml }
     - { resource: services/repository.yml }
     - { resource: services/command.yml }
+    - { resource: services/ticket.yml}
+    - { resource: services/price_category.yml}
