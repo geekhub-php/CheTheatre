@@ -146,16 +146,12 @@ class PerformanceEventsController extends Controller
     }
 
     /**
-     * @Get(requirements={"id" = "\d+"})
+     * @Get("/performanceevents/{id}/tickets", requirements={"id" = "\d+"})
      * @RestView(serializerGroups={"get_ticket"})
-     * @ParamConverter("id", class="AppBundle:PerformanceEvent")
+     * @ParamConverter("performanceEvent", class="AppBundle:PerformanceEvent")
      */
-    public function cgetTicketsAction(PerformanceEvent $id)
+    public function cgetTicketsAction(PerformanceEvent $performanceEvent)
     {
-        //This done not in right way (PerformanceEvent $performanceEvent)
-        // to have RESTfully looking route: /performanceevents/{id}/tickets
-        $performanceEvent = $id;
-
         $em = $this->getDoctrine()->getManager();
         $tickets = $em
             ->getRepository(Ticket::class)

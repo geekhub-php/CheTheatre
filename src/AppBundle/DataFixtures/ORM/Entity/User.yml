@@ -1,0 +1,10 @@
+AppBundle\Entity\User:
+    user1:
+        username: test_user1
+        apiKey: <generateUuidString()>
+        role: ROLE_API
+    user2:
+        username: test_user2
+        apiKey: <generateUuidString()>
+        facebookId: <generateUuidString()>
+        role: ROLE_API

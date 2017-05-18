@@ -1,0 +1,9 @@
+services:
+    app.ticket.generate_set_handler:
+        class: AppBundle\Services\Ticket\GenerateSetHandler
+        public: false
+        arguments:
+            - @app.price_category.get_seats_handler
+            - @app.repository.seat
+            - @app.repository.venue_sector
+            - @app.repository.price_category

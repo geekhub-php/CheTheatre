@@ -1,0 +1,7 @@
+AppBundle\Entity\PriceCategory:
+    priceCategory1:
+        color: '#FFC0CB'
+        performanceEvent: @performanceEvent1
+        rows: 1
+        price: 100
+        venueSector: 1

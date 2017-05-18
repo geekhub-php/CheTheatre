@@ -167,22 +167,12 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
             self::assertSame(1, count($e->getMessage()));
             self::assertEquals($e->getMessage(), $message);
         }
-
-        /**
-         *  Exception Seat with more than one price
-         */
-        try {
-            $adminPerformanceEvent->inspectSeriesNumber($performanceEvent);
-        } catch (ModelManagerException $e) {
-            $message = 'Error SeriesNumber blank!';
-            self::assertSame(1, count($e->getMessage()));
-            self::assertEquals($e->getMessage(), $message);
-        }
     }
 
     /**
      * @depends testPerformanceEventPriceCategoryCreateAction
      * @param PerformanceEvent $performanceEvent
+     * @return PerformanceEvent
      */
     public function testPerformanceEventUpdate(PerformanceEvent $performanceEvent)
     {
@@ -193,8 +183,26 @@ class AdminPerformanceEventControllerTest extends AbstractAdminController
 
         self::assertNotFalse($adminPerformanceEvent->preUpdate($performanceEvent));
         self::assertNotFalse($adminPerformanceEvent->postUpdate($performanceEvent));
+        return $performanceEvent;
     }
 
+    /**
+     * @depends testPerformanceEventUpdate
+     * @param PerformanceEvent $performanceEvent
+     */
+    public function testPerformanceEventEnableTicketsForSale(PerformanceEvent $performanceEvent)
+    {
+        $adminPerformanceEvent = $this->getContainer()->get('sonata.admin.performance.event');
+        $rowsForSale = $this
+            ->getEm()
+            ->getRepository('AppBundle:RowsForSale')
+            ->findVenueSectorsByPerformanceEvent($performanceEvent);
+        foreach ($rowsForSale as $row) {
+            $performanceEvent->addRowsForSale($row);
+            $this->getEm()->persist($performanceEvent);
+        }
+        self::assertSame(count($rowsForSale), $adminPerformanceEvent->enableTicketsForSale($performanceEvent));
+    }
     /**
      * @depends testPerformanceEventCreateAction
      * @param PerformanceEvent $performanceEvent

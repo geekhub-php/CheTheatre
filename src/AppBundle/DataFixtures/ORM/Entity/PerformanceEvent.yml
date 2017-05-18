@@ -1,0 +1,9 @@
+AppBundle\Entity\PerformanceEvent:
+    performanceEvent1:
+        performance: @performance1
+        dateTime: <dateTimeBetween("-61 days", "-31 days")>
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+        venue: 1
+        seriesNumber: '0000001'
+        enableSale: false

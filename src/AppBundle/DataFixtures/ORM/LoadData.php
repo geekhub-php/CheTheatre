@@ -4,6 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use Application\Sonata\MediaBundle\Entity\Media;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
+use Ramsey\Uuid\Uuid;
 
 class LoadData extends DataFixtureLoader
 {
@@ -33,7 +34,6 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesTagTranslation_en.yml',
             __DIR__.'/fixturesGalleryHasMediaTranslation_en.yml',
             __DIR__.'/fixturesUser.yml',
-            __DIR__.'/fixturesTicket.yml',
         ];
     }
 
@@ -48,5 +48,15 @@ class LoadData extends DataFixtureLoader
         $this->container->get('sonata.media.manager.media')->save($media, true);
 
         return $media;
+    }
+
+    /**
+     * Generate Uuid4 string
+     *
+     * @return string
+     */
+    public function generateUuidString()
+    {
+        return Uuid::uuid4()->toString();
     }
 }

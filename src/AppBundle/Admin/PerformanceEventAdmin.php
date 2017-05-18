@@ -6,8 +6,10 @@ use AppBundle\Entity\PerformanceEvent;
 use AppBundle\Entity\PriceCategory;
 use AppBundle\Entity\RowsForSale;
 use AppBundle\Entity\Seat;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Venue;
 use AppBundle\Entity\VenueSector;
+use AppBundle\Services\Ticket\GenerateSetHandler;
 use Doctrine\ORM\EntityManager;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -17,6 +19,9 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PerformanceEventAdmin extends Admin
 {
     protected $baseRouteName = 'AppBundle\Entity\PerformanceEvent';
@@ -26,6 +31,22 @@ class PerformanceEventAdmin extends Admin
         '_sort_by'    => 'dateTime',
     ];
     protected $seatPrice = [];
+
+    /** @var GenerateSetHandler */
+    protected $ticketGenerateSet;
+
+    /**
+     * PerformanceEventAdmin constructor.
+     * @param string $code
+     * @param string $class
+     * @param string $baseControllerName
+     * @param GenerateSetHandler $ticketGenerateSet
+     */
+    public function __construct($code, $class, $baseControllerName, GenerateSetHandler $ticketGenerateSet)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->ticketGenerateSet = $ticketGenerateSet;
+    }
 
     /**
      * @var EntityManager
@@ -54,7 +75,7 @@ class PerformanceEventAdmin extends Admin
             ->findVenueSectorsByPerformanceEventQueryBuilder($this->getSubject());
 
         $formMapper
-            ->with('PerformanceEvents', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
+            ->with('PerformanceEvents')
             ->add('performance', 'sonata_type_model')
             ->add(
                 'dateTime',
@@ -68,7 +89,7 @@ class PerformanceEventAdmin extends Admin
             )
             ->add('venue')
             ->end()
-            ->with('PriceCategory', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
+            ->with('PriceCategory')
             ->add('priceCategories', 'sonata_type_collection', [
                 'by_reference' => true,
                 'required' => false,
@@ -86,13 +107,13 @@ class PerformanceEventAdmin extends Admin
                 ],
             ])
             ->end()
-            ->with('EnableSale', ['class'=>'col-lg-12 col-md-12 col-sm-12 col-xs-12'])
+            ->with('EnableSale')
             ->add('seriesDate', 'sonata_type_datetime_picker', [
                 'dp_side_by_side'       => true,
                 'dp_use_current'        => true,
                 'dp_use_seconds'        => false,
                 'format' => "dd/MM/yyyy HH:mm",
-                'required' => false,
+                'required' => true,
             ])
             ->add('rowsForSale', 'sonata_type_model', [
                 'class' => RowsForSale::class,
@@ -104,7 +125,7 @@ class PerformanceEventAdmin extends Admin
         if ($this->getSubject()->isEnableSale() !== true) {
             $formMapper
                 ->add('seriesNumber', null, [
-                    'required' => false,
+                    'required' => true,
                 ])
                 ->add('sale', 'checkbox', [
                     'required' => false,
@@ -113,10 +134,10 @@ class PerformanceEventAdmin extends Admin
                 ->end()
             ;
         }
-        if ($this->getSubject()->isEnableSale() === true) {
+        if ($this->getSubject()->isEnableSale()) {
             $formMapper
                 ->add('seriesNumber', null, [
-                    'required' => false,
+                    'required' => true,
                     'attr' => ['class' => 'hidden'],
                     'label' => false,
                 ])
@@ -168,14 +189,14 @@ class PerformanceEventAdmin extends Admin
         if (!self::inspectPriceCategories($object)) {
             return null;
         }
-        if (!self::inspectSeriesNumber($object)) {
-            return null;
-        }
         if ($object->isEnableSale() === null) {
             $object->setEnableSale(false);
             $this->getEm()->persist($object);
         }
         if (($object->isEnableSale() === false) && ($object->isSale() === true)) {
+            /** @var Ticket[] $tickets */
+            $tickets = $this->ticketGenerateSet->handle($object);
+            $this->getEm()->getRepository(Ticket::class)->batchSave($tickets);
             $object->setEnableSale(true);
             $this->getEm()->persist($object);
         }
@@ -191,8 +212,8 @@ class PerformanceEventAdmin extends Admin
         if (!self::inspectSeatWithoutPrice($object->getVenue())) {
             return null;
         }
-        if (!self::inspectSeriesNumber($object)) {
-            return null;
+        if ($object->isEnableSale()) {
+            self::enableTicketsForSale($object);
         }
         return true;
     }
@@ -203,6 +224,29 @@ class PerformanceEventAdmin extends Admin
             $this->em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
         }
         return $this->em;
+    }
+
+    /**
+     * Change Status in Ticket
+     * form STATUS_OFFLINE to STATUS_FREE if Ticket is in RowsForSale
+     * and vice versa
+     *
+     * @param PerformanceEvent $performanceEvent
+     * @return int
+     */
+    public function enableTicketsForSale(PerformanceEvent $performanceEvent)
+    {
+        $count = $this->getEm()->getRepository(Ticket::class)->enableTicketsForSale($performanceEvent);
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->add(
+                    'success',
+                    "До продажу вiдкрито $count квиткiв!"
+                );
+        return $count;
     }
 
     /**
@@ -391,30 +435,6 @@ class PerformanceEventAdmin extends Admin
                     );
                 throw new ModelManagerException('In the hall not all places have price!');
             }
-        }
-        return true;
-    }
-
-    /**
-     * SeriesNumber can not be blank!
-     *
-     * @param PerformanceEvent $performanceEvent
-     * @return bool
-     * @throws ModelManagerException
-     */
-    public function inspectSeriesNumber(PerformanceEvent $performanceEvent)
-    {
-        if (!$performanceEvent->getSeriesNumber()) {
-            $this
-                ->getConfigurationPool()
-                ->getContainer()
-                ->get('session')
-                ->getFlashBag()
-                ->add(
-                    'error',
-                    "Помилка. Введіть номер комплекта квитків!"
-                );
-            throw new ModelManagerException('Error SeriesNumber blank!');
         }
         return true;
     }

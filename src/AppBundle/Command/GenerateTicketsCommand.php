@@ -2,31 +2,39 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Domain\PerformanceEvent\PerformanceEventInterface;
-use AppBundle\Domain\Ticket\TicketInterface;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\PerformanceEvent;
+use AppBundle\Entity\Ticket;
+use AppBundle\Exception\Ticket\DuplicateSetException;
+use AppBundle\Repository\PerformanceEventRepository;
+use AppBundle\Repository\TicketRepository;
+use AppBundle\Services\Ticket\GenerateSetHandler;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
 class GenerateTicketsCommand extends ContainerAwareCommand
 {
+    /** @var GenerateSetHandler */
+    private $ticketGenerateSet;
 
-    /** @var  PerformanceEventInterface */
-    public $performanceEventService;
+    /** @var PerformanceEventRepository */
+    private $performanceEventRepository;
 
-    /** @var  TicketInterface */
-    public $ticketService;
+    /** @var TicketRepository */
+    private $ticketRepository;
 
     public function __construct(
-        PerformanceEventInterface $performanceEventService,
-        TicketInterface $ticketService
+        GenerateSetHandler $ticketGenerateSet,
+        PerformanceEventRepository $performanceEventRepository,
+        TicketRepository $ticketRepository
     ) {
-        $this->performanceEventService = $performanceEventService;
-        $this->ticketService = $ticketService;
         parent::__construct();
+        $this->ticketGenerateSet = $ticketGenerateSet;
+        $this->performanceEventRepository = $performanceEventRepository;
+        $this->ticketRepository = $ticketRepository;
     }
 
     protected function configure()
@@ -54,18 +62,29 @@ class GenerateTicketsCommand extends ContainerAwareCommand
         try {
             $startTime = new \DateTime('now');
 
-            /** @var EntityManager $em */
-            $output->writeln('<comment>Running Tickets Generation</comment>');
+            $token = new AnonymousToken('console_user', 'console_user', ['ROLE_SUPER_ADMIN']);
+            $this->getContainer()->get('security.token_storage')->setToken($token);
 
+            $output->writeln('<comment>Running Tickets Generation</comment>');
             $performanceEventId = (int) $input->getArgument('performanceEventId') ?: null;
             $force = (bool) $input->getOption('force')  ? true : false;
 
-            $numberOfTickets = $this->ticketService->generateSet(
-                $this->performanceEventService->getById($performanceEventId),
-                $force
-            );
+            /** @var PerformanceEvent $performanceEvent */
+            $performanceEvent = $this->performanceEventRepository->getById($performanceEventId);
 
-            $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', $numberOfTickets));
+            if ($force) {
+                $tickets = $this->ticketRepository->getRemovableTicketSet($performanceEvent);
+                $this->ticketRepository->batchRemove($tickets);
+            }
+
+            if ($this->ticketRepository->isGeneratedSet($performanceEvent)) {
+                throw new DuplicateSetException('Ticket Set already generated for: '. $performanceEvent);
+            }
+
+            /** @var Ticket[] $tickets */
+            $tickets = $this->ticketGenerateSet->handle($performanceEvent);
+            $this->ticketRepository->batchSave($tickets);
+            $output->writeln(sprintf('<info>SUCCESS. %s tickets were generated</info>', count($tickets)));
         } catch (\Exception $e) {
             $output->writeln('<error>ERROR Generating Tickets: '.$e->getMessage().'</error>');
         } finally {
