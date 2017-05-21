@@ -68,6 +68,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
+    app.ip_client_listener:
+        class: AppBundle\EventListener\IpClientListener
+        arguments: ["@doctrine"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: 255 }
+
     customer_app.monolog_web_processor:
          class: Monolog\Processor\WebProcessor
          tags:

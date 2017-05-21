@@ -13,7 +13,6 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ApiKeyAuthenticator extends AbstractGuardAuthenticator
 {
@@ -37,13 +36,6 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        $client = $this->registry->getRepository('AppBundle:Client')
-            ->findIpBanned($request->getClientIp());
-
-        if ($client) {
-            throw new HttpException(403, 'Forbidden. You\'re banned!');
-        }
-
         if (!$token = $request->headers->get('API-Key-Token')) {
             return null;
         }
