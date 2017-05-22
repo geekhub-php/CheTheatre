@@ -150,7 +150,6 @@ class PerformanceEventsControllerTest extends AbstractApiController
             self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
             self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
             self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
-        }
         if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
             self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
         }
