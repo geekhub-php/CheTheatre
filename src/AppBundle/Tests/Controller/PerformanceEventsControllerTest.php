@@ -37,7 +37,7 @@ class PerformanceEventsControllerTest extends AbstractApiController
             ->getRepository('AppBundle:PerformanceEvent')
             ->findOneBy([], ['dateTime' => 'DESC']);
 
-        $this->request('/performanceevents/'.$performanceEvent->getId());
+        $this->request('/performanceevents/' . $performanceEvent->getId());
         $this->request('/performanceevents/100500', 'GET', 404);
 
         return $performanceEvent;
@@ -46,7 +46,7 @@ class PerformanceEventsControllerTest extends AbstractApiController
     public function testGetPerformanceEventsTicketsId()
     {
         $id = $this->getEm()->getRepository(Ticket::class)->findOneBy([])->getPerformanceEventId();
-        $this->request('/performanceevents/'.$id.'/tickets');
+        $this->request('/performanceevents/' . $id . '/tickets');
         $this->request('/performanceevents/100500/tickets', 'GET', 404);
     }
 
@@ -57,7 +57,7 @@ class PerformanceEventsControllerTest extends AbstractApiController
     public function testGetPerformanceEventsIdPriceCategories(PerformanceEvent $performanceEvent)
     {
         $client = $this->getClient();
-        $client->request('GET', '/performanceevents/'.$performanceEvent->getId().'/pricecategories');
+        $client->request('GET', '/performanceevents/' . $performanceEvent->getId() . '/pricecategories');
         $content = json_decode($client->getResponse()->getContent(), true);
         if (!empty($content['id'])) {
             self::assertArrayHasKey('rows', $content[0]);
@@ -79,25 +79,25 @@ class PerformanceEventsControllerTest extends AbstractApiController
     public function queryParatemerProvider()
     {
         return [
-            'Inspect QueryParatemer default values'  => [
+            'Inspect QueryParatemer default values' => [
                 mktime(0, 0, 0, date("m"), date("d"), date("Y")),
                 mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
                 null,
                 null,
             ],
-            'Inspect QueryParatemer "limit"'  => [
+            'Inspect QueryParatemer "limit"' => [
                 mktime(0, 0, 0, date("m"), date("d"), date("Y")),
                 mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
                 5,
                 null,
             ],
-            'Inspect QueryParatemer "performance"'  => [
+            'Inspect QueryParatemer "performance"' => [
                 mktime(0, 0, 0, date("m"), date("d"), date("Y")),
                 mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
                 5,
                 true,
             ],
-            'Inspect QueryParatemer interval "fromDate" "toDate"'  => [
+            'Inspect QueryParatemer interval "fromDate" "toDate"' => [
                 mktime(0, 0, 0, date("m") - 6, date("d"), date("Y")),
                 mktime(0, 0, 0, date("m") + 6, date("d"), date("Y")),
                 5,
@@ -150,15 +150,16 @@ class PerformanceEventsControllerTest extends AbstractApiController
             self::assertArrayHasKey('type', $content['performance_events'][0]['performance']);
             self::assertArrayHasKey('description', $content['performance_events'][0]['performance']);
             self::assertArrayHasKey('premiere', $content['performance_events'][0]['performance']);
-        if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
-            self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
+            if (!empty($content['performance_events'][0]['performance']['mainPicture'])) {
+                self::assertArrayHasKey('mainPicture', $content['performance_events'][0]['performance']);
+            }
+            if (!empty($content['performance_events'][0]['performance']['sliderImage'])) {
+                self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
+            }
+            self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('created_at', $content['performance_events'][0]['performance']);
+            self::assertArrayHasKey('updated_at', $content['performance_events'][0]['performance']);
         }
-        if (!empty($content['performance_events'][0]['performance']['sliderImage'])) {
-            self::assertArrayHasKey('sliderImage', $content['performance_events'][0]['performance']);
-        }
-        self::assertArrayHasKey('gallery', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('slug', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('created_at', $content['performance_events'][0]['performance']);
-        self::assertArrayHasKey('updated_at', $content['performance_events'][0]['performance']);
     }
 }
