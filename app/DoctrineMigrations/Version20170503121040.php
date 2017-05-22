@@ -19,7 +19,6 @@ class Version20170503121040 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE Client (id INT AUTO_INCREMENT NOT NULL, ip VARCHAR(20) NOT NULL, countAttempts INT NOT NULL, banned TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_C0E80163A5E3B32D (ip), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('DROP TABLE Swindler');
     }
 
     /**
