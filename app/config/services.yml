@@ -63,7 +63,7 @@ services:
 
     app.ip_client_listener:
         class: AppBundle\EventListener\ForbidByIpListener
-        arguments: ["@app.security.black_ip_voter"]
+        arguments: ["@app.security.ip_voter"]
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 255 }
 
