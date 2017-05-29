@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Controller;
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\User;
 use AppBundle\Model\FacebookResponse;
 use AppBundle\Services\FacebookUserProvider;
@@ -267,6 +266,23 @@ class UserControllerTest extends AbstractApiController
         self::assertEquals('Doe', $content['user']['last_name']);
         self::assertEquals('john.doe@example.com', $content['user']['email']);
         self::assertEquals('token_11111111', $content['api_key']);
+    }
+
+    public function testFailRegister()
+    {
+        $client = $this->getClient();
+        $client->request(
+            'POST',
+            '/users/register',
+            [],
+            [],
+            [
+                'HTTP_API-Key-Token' => 'token_11111111_invalid',
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(409, $client->getResponse()->getStatusCode());
     }
 
     public function testFailRegisterLoggedInUser()

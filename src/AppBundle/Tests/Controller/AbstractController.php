@@ -122,7 +122,7 @@ abstract class AbstractController extends WebTestCase
     /**
      * @return ContainerInterface
      */
-    public function getContainer()
+    protected function getContainer()
     {
         if (!$this->container) {
             $this->container = static::$kernel->getContainer();

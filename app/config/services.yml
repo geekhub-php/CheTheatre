@@ -48,13 +48,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preSoftDelete, connection: default }
 
-    api_key_authenticator:
-        class:  AppBundle\Security\ApiKeyAuthenticator
-        public: false
-        arguments: ["@doctrine", "@logger"]
-        tags:
-           - { name: monolog.logger, channel: security_error }
-
     user_login:
         class: AppBundle\Services\UserLogin
         arguments: ["@doctrine", "@serializer", "@validator", "@facebook_user_provider"]
@@ -69,10 +62,23 @@ services:
             - { name: kernel.event_listener, event: kernel.exception }
 
     app.ip_client_listener:
-        class: AppBundle\EventListener\IpClientListener
-        arguments: ["@doctrine"]
+        class: AppBundle\EventListener\ForbidByIpListener
+        arguments: ["@app.security.ip_voter"]
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 255 }
+
+    app.security.api_key_authenticator:
+        class:  AppBundle\Security\ApiKeyAuthenticator
+        public: false
+        arguments: ["@doctrine", "@logger"]
+        tags:
+           - { name: monolog.logger, channel: security_error }
+
+    app.security.ip_voter:
+        class: AppBundle\Security\IpVoter
+        public: false
+        arguments:
+            - "@doctrine"
 
     customer_app.monolog_web_processor:
          class: Monolog\Processor\WebProcessor

@@ -24,12 +24,17 @@ security:
                 path:   %admin_dashboard_base_url%/logout
                 target: /login
 
-        secured_area_api:
-            pattern: ^/
+        api_not_secured_area:
+            pattern: ^/(login|admin|doc|users/register|employees|posts|tags|performances|performanceevents|tickets/[^/]+$|histories)
+            stateless: true
             anonymous: ~
+
+        api_secured_area:
+            pattern: ^/
             stateless: true
             guard:
-                authenticator: api_key_authenticator
+                authenticator: app.security.api_key_authenticator
+            provider: api_key_user_provider
 
     role_hierarchy:
             ROLE_SONATA_FOO_ADMIN:

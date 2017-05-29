@@ -7,11 +7,11 @@ class ClientRepository extends \Doctrine\ORM\EntityRepository
     /**
      * @param string $ip
      *
-     * @return Client|null
+     * @return bool
      */
-    public function findIpBanned($ip)
+    public function isBanned($ip) : bool
     {
-        return $this->createQueryBuilder('c')
+        return null !== $this->createQueryBuilder('c')
             ->select('c')
             ->where('c.ip = :param')
             ->andWhere('c.banned = 1')
