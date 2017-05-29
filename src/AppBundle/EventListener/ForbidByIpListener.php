@@ -2,20 +2,25 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Security\IpVoter;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class IpClientListener
+/**
+ * It is used for forbid some clients by IP to access to the API
+ * That kind of cients should be seted by admin dashboard
+ */
+class ForbidByIpListener
 {
     /**
-     * @var ManagerRegistry
+     * @var IpVoter
      */
-    private $registry;
+    private $vouter;
 
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(IpVoter $vouter)
     {
-        $this->registry = $registry;
+        $this->vouter = $vouter;
     }
 
     /**
@@ -24,9 +29,7 @@ class IpClientListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-        $client = $this->registry->getRepository('AppBundle:Client')
-            ->findIpBanned($request->getClientIp());
-        if ($client) {
+        if (IpVoter::ACCESS_DENIED === $this->vouter->vote($request)) {
             $response = new JsonResponse([
                 'code' => 403,
                 'message' => 'Forbidden. You\'re banned!',

@@ -29,7 +29,7 @@ security:
             anonymous: ~
             stateless: true
             guard:
-                authenticator: api_key_authenticator
+                authenticator: app.security.api_key_authenticator
 
     role_hierarchy:
             ROLE_SONATA_FOO_ADMIN:
