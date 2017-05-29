@@ -74,7 +74,7 @@ services:
         tags:
            - { name: monolog.logger, channel: security_error }
 
-    app.security.black_ip_voter:
+    app.security.ip_voter:
         class: AppBundle\Security\IpVoter
         public: false
         arguments:
