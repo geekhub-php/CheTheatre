@@ -267,7 +267,7 @@ class UserControllerTest extends AbstractApiController
             ]
         );
 
-        self::assertEquals(403, $client->getResponse()->getStatusCode());
+        self::assertEquals(409, $client->getResponse()->getStatusCode());
     }
 
     public function testFailRegisterLoggedInUser()
