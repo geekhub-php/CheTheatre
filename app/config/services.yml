@@ -79,8 +79,6 @@ services:
         public: false
         arguments:
             - "@doctrine"
-            - "@request_stack"
-            - "%app.ip_blacklist_file%"
 
     customer_app.monolog_web_processor:
          class: Monolog\Processor\WebProcessor
