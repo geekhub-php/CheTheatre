@@ -114,6 +114,7 @@ class SecurityTest extends AbstractApiController
      */
     public function testInvalidApiKeyTokenInHeader($method, $url)
     {
+        $this->deleteClients();
         $client = static::createClient([], ['REMOTE_ADDR' => '11.11.11.11']);
         $logger = $this->createMock(Logger::class);
         $client->getContainer()->set('monolog.logger.security_error', $logger);
