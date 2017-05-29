@@ -2,9 +2,11 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\User;
 use AppBundle\Model\FacebookResponse;
 use AppBundle\Services\FacebookUserProvider;
+use Monolog\Logger;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -16,6 +18,12 @@ class UserControllerTest extends AbstractApiController
     {
         parent::setUp();
 
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Client', 'c')
+            ->getQuery()
+            ->execute();
         $this
             ->getEm()
             ->createQueryBuilder()
@@ -57,10 +65,16 @@ class UserControllerTest extends AbstractApiController
             ->setUsername('user')
             ->setApiKey('token_33333333')
             ->setRole('ROLE_API');
+
         $this->getEm()->persist($user1);
         $this->getEm()->persist($user2);
         $this->getEm()->persist($user3);
         $this->getEm()->flush();
+    }
+
+    public function createClientCustomIp()
+    {
+        return static::createClient([], ['REMOTE_ADDR' => '2.2.2.2']);
     }
 
     public function testSuccessRegister()
@@ -193,13 +207,11 @@ class UserControllerTest extends AbstractApiController
 
     public function testSuccessLogoutApiKeyToken()
     {
-        $client = $this->getClient();
-
+        $client = $this->createClientCustomIp();
         $user = $this->getEm()
             ->getRepository('AppBundle:User')
             ->findOneBy(['apiKey' => 'token_11111111']);
         self::assertNotNull($user->getApiKey());
-
         $client->request(
             'POST',
             '/users/logout',
@@ -215,6 +227,10 @@ class UserControllerTest extends AbstractApiController
             ->findOneBy(['apiKey' => 'token_11111111']);
         self::assertEquals(null, $user);
         self::assertEquals(204, $client->getResponse()->getStatusCode());
+
+        $client = $this->createClientCustomIp();
+        $logger = $this->createMock(Logger::class);
+        $client->getContainer()->set('monolog.logger.security_error', $logger);
         $client->request(
             'POST',
             '/users/logout',
@@ -251,23 +267,6 @@ class UserControllerTest extends AbstractApiController
         self::assertEquals('Doe', $content['user']['last_name']);
         self::assertEquals('john.doe@example.com', $content['user']['email']);
         self::assertEquals('token_11111111', $content['api_key']);
-    }
-
-    public function testFailRegister()
-    {
-        $client = $this->getClient();
-        $client->request(
-            'POST',
-            '/users/register',
-            [],
-            [],
-            [
-                'HTTP_API-Key-Token' => 'token_11111111_invalid',
-                'CONTENT_TYPE' => 'application/json',
-            ]
-        );
-
-        self::assertEquals(403, $client->getResponse()->getStatusCode());
     }
 
     public function testFailRegisterLoggedInUser()
@@ -342,7 +341,9 @@ class UserControllerTest extends AbstractApiController
 
     public function testFailLogoutApiKeyToken()
     {
-        $client = $this->getClient();
+        $client = $this->createClientCustomIp();
+        $logger = $this->createMock(Logger::class);
+        $client->getContainer()->set('monolog.logger.security_error', $logger);
         $client->request(
             'POST',
             '/users/logout',

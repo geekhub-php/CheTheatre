@@ -85,7 +85,6 @@ class ApiKeyAuthenticator extends AbstractGuardAuthenticator
         ];
         $client = $this->registry->getRepository('AppBundle:Client')
             ->findOneBy(['ip' => $request->getClientIp()]);
-
         if ($client) {
             $countAttempts = $client->getCountAttempts();
             $client->setCountAttempts(++$countAttempts);
