@@ -29,7 +29,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -55,7 +55,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -82,7 +82,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -108,10 +108,53 @@ class SecurityTest extends AbstractApiController
         );
     }
 
+    public function testApiDomainNotSecuredArea()
+    {
+        $client = $this->getClient([], [
+            'HTTP_HOST' => $this->getContainer()->getParameter('api_domain')
+        ]);
+        $client->request(
+            'GET',
+            '/'
+        );
+
+        self::assertNotEquals(
+            401,
+            $client->getResponse()->getStatusCode(),
+            $client->getResponse()->getContent()
+        );
+    }
+
+    /**
+     * @dataProvider apiNotSecuredUrlProvider
+     *
+     * @param array $method
+     * @param array $url
+     */
+    public function testApiNotSecuredArea($method, $url)
+    {
+        $client = $this->getClient();
+        $client->request(
+            $method,
+            $url,
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            $client->getResponse()->getContent()
+        );
+    }
+
     /**
      * @return array
      */
-    public function urlProvider()
+    public function apiSecuredUrlProvider()
     {
         return [
             // api: /users
@@ -121,6 +164,22 @@ class SecurityTest extends AbstractApiController
             ['GET', '/users/me'],
             // api: /orders
             ['GET', '/orders']
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function apiNotSecuredUrlProvider()
+    {
+        return [
+            ['GET', '/doc/'],
+            ['POST', '/users/register'],
+            ['GET', '/employees'],
+            ['GET', '/posts'],
+            ['GET', '/performances'],
+            ['GET', '/performanceevents'],
+            ['GET', '/histories']
         ];
     }
 }
