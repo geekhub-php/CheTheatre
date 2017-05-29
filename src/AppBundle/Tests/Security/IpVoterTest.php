@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Security;
 
-
 use AppBundle\Entity\Client;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -115,14 +114,5 @@ class IpVoterTest extends WebTestCase
         }
 
         return $this->container;
-    }
-
-    /**
-     * @param string $ip
-     * @param bool $isBanned
-     */
-    private function createClientEntity(string $ip, bool $isBanned): void
-    {
-
     }
 }
