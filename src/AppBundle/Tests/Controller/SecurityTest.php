@@ -28,16 +28,8 @@ class SecurityTest extends AbstractApiController
             ->setRole('ROLE_NONE');
         $this->getEm()->persist($user);
         $this->getEm()->flush();
-
-//        $this
-//            ->getEm()
-//            ->createQueryBuilder()
-//            ->delete('AppBundle:Client', 'c')
-//            ->where('c.ip = :ip')
-//            ->setParameter('ip', '11.11.11.11')
-//            ->getQuery()
-//            ->execute();
     }
+
     public function deleteClients()
     {
         $this
@@ -65,7 +57,8 @@ class SecurityTest extends AbstractApiController
             ->method('err');
         $client->getContainer()->set('monolog.logger.security_error', $logger);
         $client->request(
-            'POST', '/users/login/update',
+            'POST',
+            '/users/login/update',
             [],
             [],
             [
