@@ -38,6 +38,8 @@ class IpVoterTest extends WebTestCase
             ->getEm()
             ->createQueryBuilder()
             ->delete('AppBundle:Client', 'c')
+            ->where('c.ip = :ip')
+            ->setParameter('ip', '192.168.5.895')
             ->getQuery()
             ->execute();
     }

@@ -36,6 +36,8 @@ class SecurityTest extends AbstractApiController
             ->getEm()
             ->createQueryBuilder()
             ->delete('AppBundle:Client', 'c')
+            ->where('c.ip = :ip')
+            ->setParameter('ip', '33.33.33.33')
             ->getQuery()
             ->execute();
     }
@@ -115,7 +117,7 @@ class SecurityTest extends AbstractApiController
     public function testInvalidApiKeyTokenInHeader($method, $url)
     {
         $this->deleteClients();
-        $client = static::createClient([], ['REMOTE_ADDR' => '11.11.11.11']);
+        $client = static::createClient([], ['REMOTE_ADDR' => '33.33.33.33']);
         $logger = $this->createMock(Logger::class);
         $client->getContainer()->set('monolog.logger.security_error', $logger);
         $client->request(
