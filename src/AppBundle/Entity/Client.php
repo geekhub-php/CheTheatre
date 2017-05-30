@@ -2,16 +2,25 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Blameable\Traits\BlameableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
+use AppBundle\Traits\DeletedByTrait;
 
 /**
  * Client.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\RoleTranslation")
  */
-class Client
+class Client extends AbstractPersonalTranslatable implements TranslatableInterface
 {
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
     /**
      * @var int
      *
@@ -122,5 +131,10 @@ class Client
     public function isBanned()
     {
         return $this->banned;
+    }
+
+    public function __toString()
+    {
+        return $this->getIp();
     }
 }

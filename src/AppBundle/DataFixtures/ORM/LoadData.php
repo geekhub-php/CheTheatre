@@ -34,6 +34,8 @@ class LoadData extends DataFixtureLoader
             __DIR__.'/fixturesTagTranslation_en.yml',
             __DIR__.'/fixturesGalleryHasMediaTranslation_en.yml',
             __DIR__.'/fixturesUser.yml',
+            __DIR__.'/fixturesClient.yml',
+
         ];
     }
 

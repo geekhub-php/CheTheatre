@@ -1,0 +1,6 @@
+AppBundle\Entity\Client:
+    client1:
+        ip: 55.55.55.55
+        countAttempts: 1
+        banned: false
+

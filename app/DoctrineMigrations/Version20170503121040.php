@@ -18,7 +18,8 @@ class Version20170503121040 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE Client (id INT AUTO_INCREMENT NOT NULL, ip VARCHAR(20) NOT NULL, countAttempts INT NOT NULL, banned TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_C0E80163A5E3B32D (ip), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE Client (id INT AUTO_INCREMENT NOT NULL, ip VARCHAR(20) NOT NULL, countAttempts INT NOT NULL, banned TINYINT(1) NOT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME DEFAULT NULL, deletedAt DATETIME DEFAULT NULL, createdBy VARCHAR(255) DEFAULT NULL, updatedBy VARCHAR(255) DEFAULT NULL, deletedBy VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_C0E80163A5E3B32D (ip), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE client_translation (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_B5226054232D562B (object_id), UNIQUE INDEX lookup_unique_role_translation_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
     }
 
     /**
@@ -31,5 +32,6 @@ class Version20170503121040 extends AbstractMigration
 
         $this->addSql('CREATE TABLE Swindler (id INT AUTO_INCREMENT NOT NULL, ip VARCHAR(20) NOT NULL COLLATE utf8_unicode_ci, countAttempts INT NOT NULL, banned TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_34C3EDE3A5E3B32D (ip), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('DROP TABLE Client');
+        $this->addSql('DROP TABLE client_translation');
     }
 }

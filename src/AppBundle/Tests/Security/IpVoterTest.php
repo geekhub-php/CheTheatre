@@ -25,7 +25,7 @@ class IpVoterTest extends WebTestCase
     ];
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUp()
     {
@@ -34,22 +34,24 @@ class IpVoterTest extends WebTestCase
 
     public function tearDown()
     {
-        $clients = $this->getEm()->getRepository(Client::class)->findAll();
-        foreach ($clients as $client) {
-            $this->getEm()->remove($client);
-        }
-
-        $this->getEm()->flush();
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Client', 'c')
+            ->getQuery()
+            ->execute();
     }
 
     /**
      * @dataProvider voteProvider
+     *
      * @param $expectedStatusCode
      * @param $ip
      * @param null $clientData
      */
     public function testVote($expectedStatusCode, $ip, $clientData = null)
     {
+        $this->tearDown();
         if ($clientData) {
             $client = new Client();
             $client
