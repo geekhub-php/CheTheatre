@@ -6,6 +6,26 @@ use AppBundle\Entity\Client;
 
 class AdminClientControllerTest extends AbstractAdminController
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this
+            ->getEm()
+            ->createQueryBuilder()
+            ->delete('AppBundle:Client', 'c')
+            ->getQuery()
+            ->execute();
+
+        $clientDb = new Client();
+        $clientDb
+            ->setIp('10.10.10.10')
+            ->setCountAttempts(2)
+            ->setBanned(false);
+        $this->getEm()->persist($clientDb);
+        $this->getEm()->flush();
+    }
+
     public function testClientListAction()
     {
         $this->request('/admin/Client/list', 'GET', 302);
@@ -18,5 +38,6 @@ class AdminClientControllerTest extends AbstractAdminController
     {
         $object = $this->getEm()->getRepository('AppBundle:Client')->findOneBy([]);
         $this->processDeleteAction($object);
+        dump($object);
     }
 }

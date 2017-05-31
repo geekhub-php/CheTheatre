@@ -16,9 +16,8 @@ use AppBundle\Traits\DeletedByTrait;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
- * @Gedmo\TranslationEntity(class="AppBundle\Entity\Translations\RoleTranslation")
  */
-class Client extends AbstractPersonalTranslatable implements TranslatableInterface
+class Client
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
     /**
