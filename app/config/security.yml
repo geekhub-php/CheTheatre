@@ -25,7 +25,7 @@ security:
                 target: /login
 
         api_not_secured_area:
-            pattern: ^/(login|admin|doc|users/register|employees|posts|tags|performances|performanceevents|tickets/[^/]+$|histories)
+            pattern: ^/(login||admin|doc|users/register|employees|posts|tags|performances|performanceevents|tickets/[^/]+$|histories)
             stateless: true
             anonymous: ~
 
