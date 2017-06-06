@@ -1,0 +1,26 @@
+AppBundle\Entity\Client:
+    client1:
+        ip: '50.50.50.50'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    client2:
+        ip: '60.60.60.60'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+    client3:
+        ip: '70.70.70.70'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client4:
+        ip: '80.80.80.80'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
