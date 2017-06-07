@@ -18,8 +18,85 @@ AppBundle\Entity\Client:
         createdAt: <dateTimeBetween("-200 days", "now")>
         updatedAt: <dateTimeBetween($createdAt, "now")>
 
-    client4:
-        ip: '80.80.80.80'
+    client5:
+        ip: '90.90.90.90'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client6:
+        ip: '100.100.100.100'
+        countAttempts: '2'
+        banned: '1'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client7:
+        ip: '110.110.110.110'
+        countAttempts: '2'
+        banned: '1'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client8:
+        ip: '120.120.120.120'
+        countAttempts: '2'
+        banned: '1'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client9:
+        ip: '130.130.130.130'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client10:
+        ip: '140.140.140.140'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client11:
+        ip: '150.150.150.150'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client12:
+        ip: '160.160.160.160'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client13:
+        ip: '170.170.170.170'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client14:
+        ip: '180.180.180.180'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client15:
+        ip: '190.190.190.190'
+        countAttempts: '2'
+        banned: '0'
+        createdAt: <dateTimeBetween("-200 days", "now")>
+        updatedAt: <dateTimeBetween($createdAt, "now")>
+
+    client16:
+        ip: '200.200.200.200'
         countAttempts: '2'
         banned: '0'
         createdAt: <dateTimeBetween("-200 days", "now")>
