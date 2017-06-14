@@ -24,6 +24,11 @@ security:
                 path:   %admin_dashboard_base_url%/logout
                 target: /login
 
+        api_domain_not_secured_area:
+            host: '%api_domain%'
+            stateless: true
+            anonymous: ~
+
         api_not_secured_area:
             pattern: ^/(login||admin|doc|users/register|/users/login/*|/users/logout|employees|posts|tags|performances|performanceevents|tickets/[^/]+$|histories)
             stateless: true
