@@ -60,9 +60,3 @@ services:
     facebook_user_provider:
         class: AppBundle\Services\FacebookUserProvider
         arguments: ["@serializer", "@validator"]
-
-    app.exception_listener:
-        class: AppBundle\EventListener\ExceptionListener
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception }
-
