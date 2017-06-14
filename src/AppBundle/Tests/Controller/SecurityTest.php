@@ -29,7 +29,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredAreaUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -55,7 +55,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredAreaUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -82,7 +82,7 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
-     * @dataProvider urlProvider
+     * @dataProvider apiSecuredAreaUrlProvider
      *
      * @param array $method
      * @param array $url
@@ -109,10 +109,37 @@ class SecurityTest extends AbstractApiController
     }
 
     /**
+     * @dataProvider apiNotSecuredAreaUrlProvider
+     *
+     * @param array $method
+     * @param array $url
+     */
+    public function testApiNotSecuredArea($method, $url)
+    {
+        $client = $this->getClient();
+        $client->request(
+            $method,
+            $url,
+            [],
+            [],
+            [
+                'CONTENT_TYPE' => 'application/json',
+            ]
+        );
+
+        self::assertEquals(
+            200,
+            $client->getResponse()->getStatusCode(),
+            $client->getResponse()->getContent()
+        );
+    }
+
+    /**
      * @return array
      */
-    public function urlProvider()
+    public function apiSecuredAreaUrlProvider()
     {
+
         return [
             // api: /users
             ['POST', '/users/login/update'],
@@ -121,6 +148,24 @@ class SecurityTest extends AbstractApiController
             ['GET', '/users/me'],
             // api: /orders
             ['GET', '/orders']
+            // TODO: Add api_secured_area urls
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function apiNotSecuredAreaUrlProvider()
+    {
+        return [
+            ['GET', '/doc/'],
+            ['POST', '/users/register'],
+            ['GET', '/employees'],
+            ['GET', '/posts'],
+            ['GET', '/performances'],
+            ['GET', '/performanceevents'],
+            ['GET', '/histories']
+            // TODO: Add api_not_secured_area urls
         ];
     }
 }
