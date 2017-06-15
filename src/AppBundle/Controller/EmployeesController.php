@@ -181,7 +181,6 @@ class EmployeesController extends Controller
      *     description="Selects language of data you want to receive"
      * )
      *
-     * @return array
      * @RestView
      */
     public function getRolesAction(ParamFetcher $paramFetcher, Employee $employee)

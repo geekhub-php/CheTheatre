@@ -69,7 +69,8 @@ class VenueSector extends AbstractPersonalTranslatable implements TranslatableIn
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Seat",
      *     mappedBy="venueSector",
-     *     cascade={"persist", "remove"}
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
      * )
      */
     protected $seats;

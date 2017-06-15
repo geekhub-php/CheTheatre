@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -57,7 +58,6 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
      * @var Performance
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Performance", inversedBy="roles")
-     * @Type("array")
      * @Expose()
      */
     private $performance;
@@ -66,7 +66,7 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles")
-     * @Type("array")
+     * @Type("AppBundle\Entity\Employee")
      * @Expose
      */
     private $employee;
@@ -184,7 +184,7 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * Get performance
      *
-     * @return \AppBundle\Entity\Performance
+     * @return Performance
      */
     public function getPerformance()
     {
@@ -194,10 +194,10 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * Set performance
      *
-     * @param  \AppBundle\Entity\Performance $performance
+     * @param  Performance $performance
      * @return Role
      */
-    public function setPerformance(\AppBundle\Entity\Performance $performance = null)
+    public function setPerformance(Performance $performance = null)
     {
         $this->performance = $performance;
 
@@ -207,7 +207,7 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * Get employee
      *
-     * @return \AppBundle\Entity\Employee
+     * @return Employee
      */
     public function getEmployee()
     {
@@ -217,16 +217,19 @@ class Role extends AbstractPersonalTranslatable implements TranslatableInterface
     /**
      * Set employee
      *
-     * @param  \AppBundle\Entity\Employee $employee
+     * @param  Employee $employee
      * @return Role
      */
-    public function setEmployee(\AppBundle\Entity\Employee $employee = null)
+    public function setEmployee(Employee $employee = null)
     {
         $this->employee = $employee;
 
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getTitle();
