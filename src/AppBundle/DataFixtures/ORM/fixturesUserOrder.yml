@@ -1,0 +1,7 @@
+AppBundle\Entity\UserOrder:
+    userOrder1:
+        status: 'pending'
+        user: '@user5'
+    userOrder2:
+        status: 'pending'
+        user: '@user5'

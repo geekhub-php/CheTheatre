@@ -130,7 +130,6 @@ services:
             arguments:
                - ~
                - AppBundle\Entity\Client
-               #- ~
-               - 'AppBundle:Client'
+               - ~
             calls:
             - [ setTranslationDomain, [messages]]

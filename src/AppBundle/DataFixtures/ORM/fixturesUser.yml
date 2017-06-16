@@ -1,18 +1,31 @@
 AppBundle\Entity\User:
-    user1:
-        username: user
-        apiKey: token_11111111
+    #user1:
+    #    username: user
+    #    apiKey: token_11111111
+    #    role: ROLE_API
+   # user2:
+   #     username: user
+   #     apiKey: token_22222222
+   #     facebookId: fb_id_22222222
+   #     role: ROLE_API
+   # user3:
+   #     username: user
+  #      apiKey: token_33333333
+   #     role: ROLE_API
+    #    email: '<email()>'
+    #    firstName: '<firstName()>'
+     #   lastName: '<lastName()>'
+        #orders: '@userOrder1'
+ #   user4:
+  #      username: user
+  #      apiKey: token_44444444
+   #     role: ROLE_NONE
+
+    user{5..15}:
+        username: '<username()>'
+        apiKey (unique): '<numberBetween(300000, 1000000)>'
         role: ROLE_API
-    user2:
-        username: user
-        apiKey: token_22222222
-        facebookId: fb_id_22222222
-        role: ROLE_API
-    user3:
-        username: user
-        apiKey: token_33333333
-        role: ROLE_API
-    user4:
-        username: user
-        apiKey: token_44444444
-        role: ROLE_NONE
+        email: '<email()>'
+        firstName: '<firstName()>'
+        lastName: '<lastName()>'
+
