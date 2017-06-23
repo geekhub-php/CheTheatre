@@ -2,8 +2,42 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\Client;
+
 class AdminClientControllerTest extends AbstractAdminController
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this
+             ->getEm()
+             ->createQuery('DELETE AppBundle:Client')
+             ->execute();
+        $this
+             ->getEm()
+             ->createQueryBuilder()
+            ->delete('AppBundle:Client', 'c')
+             ->getQuery()
+            ->execute();
+
+        $clientDb = new Client();
+        $clientDb
+             ->setIp('200.200.200.200')
+             ->setCountAttempts(2)
+             ->setBanned(false);
+
+        $clientDb1 = new Client();
+        $clientDb1
+             ->setIp('201.201.201.201')
+             ->setCountAttempts(2)
+             ->setBanned(true);
+
+        $this->getEm()->persist($clientDb1);
+        $this->getEm()->persist($clientDb);
+        $this->getEm()->flush();
+    }
+
     public function countLockUnlockClients($banned)
     {
         return count(
@@ -46,11 +80,5 @@ class AdminClientControllerTest extends AbstractAdminController
 
         $this->assertEquals($resultNotBanned3, $resultNotBanned2 + 1);
         $this->assertEquals($resultIsBanned3, $resultIsBanned2 - 1);
-    }
-
-    public function testClientDeleteAction()
-    {
-        $object = $this->getEm()->getRepository('AppBundle:Client')->findOneBy([]);
-        $this->processDeleteAction($object);
     }
 }

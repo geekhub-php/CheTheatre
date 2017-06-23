@@ -125,8 +125,8 @@ class UserLogin
             ->findOneBy(['apiKey' => $apiKey]);
 
         if ($userFacebook && ($userFacebook->getApiKey() != $apiKey)) {
-            $this->registry->getManager()->remove($userFacebook);
-            $this->registry->getManager()->flush();
+            $this->registry->getRepository('AppBundle:User')
+                ->removeUserIntoSoftDeleTeable($userFacebook);
         }
 
         $user->setFacebookId($userSocialResponse->getId());
