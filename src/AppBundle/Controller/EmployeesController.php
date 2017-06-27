@@ -2,14 +2,17 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Employee;
+use AppBundle\Entity\Role;
 use AppBundle\Model\Link;
 use AppBundle\Model\PaginationLinks;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Request\ParamFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Model\EmployeesResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -19,21 +22,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class EmployeesController extends Controller
 {
     /**
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Returns a collection of theatre employees.",
-     *  statusCodes={
-     *      200="Returned when all parameters were correct",
-     *      404="Returned when the entities with given limit and offset are not found",
-     *  },
-     *  output = "array<AppBundle\Model\EmployeesResponse>"
-     * )
-     *
+     * @Get("/employees")
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
@@ -147,35 +141,21 @@ class EmployeesController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns an Employee by unique property {slug}",
-     *  statusCodes={
-     *      200="Returned when employee by {slug} found in database" ,
-     *      404="Returned when employee by {slug} not found in database",
-     *  },
-     *  output = "AppBundle\Entity\Employee"
-     * )
+     * @Get("/employees/{slug}", requirements={"slug" = "^[a-z\d-]+$"})
+     * @ParamConverter("employee", class="AppBundle:Employee")
      *
      * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
      *
      * @RestView
      */
-    public function getAction(ParamFetcher $paramFetcher, $slug)
+    public function getAction(ParamFetcher $paramFetcher, Employee $employee)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $employee = $em->
-                        getRepository('AppBundle:Employee')->findOneByslug($slug);
-
-        if (!$employee) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $employee->setLocale($paramFetcher->get('locale'));
         $em->refresh($employee);
@@ -191,35 +171,21 @@ class EmployeesController extends Controller
     }
 
     /**
-     * @ApiDoc(
-     * resource=true,
-     *  description="Returns Employee roles by his slug",
-     *  statusCodes={
-     *      200="Returned when employee by {slug} found in database" ,
-     *      404="Returned when employee by {slug} not found in database",
-     *  },
-     *  output = "array<AppBundle\Entity\Role>"
-     * )
+     * @Get("/employees/{slug}/roles", requirements={"slug" = "^[a-z\d-]+$"})
+     * @ParamConverter("employee", class="AppBundle:Employee")
      *
-     *  @QueryParam(
+     * @QueryParam(
      *     name="locale",
-     *     requirements="^[a-zA-Z]+",
+     *     requirements="uk|en",
      *     default="uk",
      *     description="Selects language of data you want to receive"
      * )
      *
      * @RestView
      */
-    public function getRolesAction(ParamFetcher $paramFetcher, $slug)
+    public function getRolesAction(ParamFetcher $paramFetcher, Employee $employee)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $employee = $em
-            ->getRepository('AppBundle:Employee')->findOneByslug($slug);
-
-        if (!$employee) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $employee->setLocale($paramFetcher->get('locale'));
         $em->refresh($employee);
@@ -236,6 +202,8 @@ class EmployeesController extends Controller
         $rolesTranslated = [];
 
         foreach ($roles as $role) {
+
+            /** @var Role $role */
             $role->setLocale($paramFetcher->get('locale'));
 
             $performance = $role->getPerformance();

@@ -7,6 +7,7 @@ class EmployeesControllerTest extends AbstractApiController
     public function testGetEmployees()
     {
         $this->request('/employees');
+        $this->request('/employees?page=2');
     }
 
     public function testGetEmployeesSlug()
@@ -18,7 +19,12 @@ class EmployeesControllerTest extends AbstractApiController
 
     public function testGetEmployeesSlugRoles()
     {
-        $slug = $this->getEm()->getRepository('AppBundle:Employee')->findOneBy([])->getSlug();
+        $slug = $this
+            ->getEm()
+            ->getRepository('AppBundle:Role')
+            ->findOneBy([])
+            ->getEmployee()
+            ->getSlug();
         $this->request('/employees/'.$slug.'/roles');
         $this->request('/employees/nonexistent-slug/roles', 'GET', 404);
     }

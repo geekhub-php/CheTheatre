@@ -178,10 +178,7 @@
                     "200": {
                         "description": "Successful operation",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Role"
-                            }
+                            "$ref": "#/definitions/Role"
                         }
                     },
                     "404": {

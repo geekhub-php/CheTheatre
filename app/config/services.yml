@@ -56,11 +56,6 @@ services:
         class: AppBundle\Services\FacebookUserProvider
         arguments: ["@serializer", "@validator"]
 
-    app.exception_listener:
-        class: AppBundle\EventListener\ExceptionListener
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception }
-
     app.ip_client_listener:
         class: AppBundle\EventListener\ForbidByIpListener
         arguments: ["@app.security.ip_voter"]

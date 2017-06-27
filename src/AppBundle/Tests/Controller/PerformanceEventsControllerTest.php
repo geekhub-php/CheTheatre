@@ -79,27 +79,27 @@ class PerformanceEventsControllerTest extends AbstractApiController
     public function queryParatemerProvider()
     {
         return [
-            'Inspect QueryParatemer default values' => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+            'Inspect QueryParatemer default values'  => [
+                date("d-m-Y", strtotime("now")),
+                date("d-m-Y", strtotime("+1 year")),
                 null,
                 null,
             ],
-            'Inspect QueryParatemer "limit"' => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+            'Inspect QueryParatemer "limit"'  => [
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 null,
             ],
-            'Inspect QueryParatemer "performance"' => [
-                mktime(0, 0, 0, date("m"), date("d"), date("Y")),
-                mktime(0, 0, 0, date("m"), date("d"), date("Y") + 1),
+            'Inspect QueryParatemer "performance"'  => [
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 true,
             ],
-            'Inspect QueryParatemer interval "fromDate" "toDate"' => [
-                mktime(0, 0, 0, date("m") - 6, date("d"), date("Y")),
-                mktime(0, 0, 0, date("m") + 6, date("d"), date("Y")),
+            'Inspect QueryParatemer interval "fromDate" "toDate"'  => [
+                date("d-m-Y", strtotime("-6 month")),
+                date("d-m-Y", strtotime("+6 month")),
                 5,
                 true,
             ],
@@ -132,8 +132,9 @@ class PerformanceEventsControllerTest extends AbstractApiController
             self::assertInternalType('integer', $limit);
             self::assertLessThanOrEqual($limit, $content['count']);
         }
+
+        self::assertArrayHasKey('performance_events', $content);
         if (!empty($content['performance_events'])) {
-            self::assertArrayHasKey('performance_events', $content);
             self::assertArrayHasKey('locale', $content['performance_events'][0]);
             self::assertArrayHasKey('id', $content['performance_events'][0]);
             self::assertArrayHasKey('performance', $content['performance_events'][0]);
