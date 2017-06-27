@@ -18,7 +18,7 @@ class Version20170627015129 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE rows_for_sale ADD CONSTRAINT FK_BB4AF581137F3880 FOREIGN KEY (venueSector_id) REFERENCES venue_sector (id)');
+       // $this->addSql('ALTER TABLE rows_for_sale ADD CONSTRAINT FK_BB4AF581137F3880 FOREIGN KEY (venueSector_id) REFERENCES venue_sector (id)');
         $this->addSql('ALTER TABLE ticket ADD userOrder_id VARCHAR(255) DEFAULT NULL, DROP user_order_id');
         $this->addSql('ALTER TABLE ticket ADD CONSTRAINT FK_97A0ADA358ACF019 FOREIGN KEY (userOrder_id) REFERENCES user_order (id)');
         $this->addSql('CREATE INDEX IDX_97A0ADA358ACF019 ON ticket (userOrder_id)');
@@ -34,7 +34,7 @@ class Version20170627015129 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE rows_for_sale DROP FOREIGN KEY FK_BB4AF581137F3880');
+       // $this->addSql('ALTER TABLE rows_for_sale DROP FOREIGN KEY FK_BB4AF581137F3880');
         $this->addSql('ALTER TABLE ticket DROP FOREIGN KEY FK_97A0ADA358ACF019');
         $this->addSql('DROP INDEX IDX_97A0ADA358ACF019 ON ticket');
         $this->addSql('ALTER TABLE ticket ADD user_order_id INT DEFAULT NULL, DROP userOrder_id');
