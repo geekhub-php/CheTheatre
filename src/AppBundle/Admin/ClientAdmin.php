@@ -43,7 +43,6 @@ class ClientAdmin extends Admin
             ->add('banned')
             ->add('_action', 'actions', [
                 'actions' => [
-                    'delete' => [],
                     'lock' => array(
                         'template' => 'AppBundle:SwindlerLocked:swindlerLock.html.twig',
                     ),

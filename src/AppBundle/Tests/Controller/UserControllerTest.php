@@ -21,6 +21,8 @@ class UserControllerTest extends AbstractApiController
             ->getEm()
             ->createQueryBuilder()
             ->delete('AppBundle:Client', 'c')
+            ->where('c.ip = :ip')
+            ->setParameter('ip', '2.2.2.2')
             ->getQuery()
             ->execute();
         $this

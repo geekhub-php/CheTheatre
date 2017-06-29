@@ -27,9 +27,9 @@ class UserAdmin extends Admin
             ->with('User', ['class' => 'col-lg-12'])
             ->add('firstName')
             ->add('lastName')
-             ->add('email')
+            ->add('email')
             ->add('orders')
-            ->end()
+           ->end()
         ;
     }
 
@@ -84,10 +84,11 @@ class UserAdmin extends Admin
         ;
     }
 
-    public function toString($object)
+    /**
+     * @return string
+     */
+    public function __toString()
     {
-        return $object instanceof User
-            ? $object->getEmail()
-            : 'User'; // shown in the breadcrumb on the create views
+        return (string) $this->getEmail();
     }
 }

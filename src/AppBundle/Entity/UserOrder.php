@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\AppBundle;
 use AppBundle\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,15 +12,19 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Blameable\Traits\BlameableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use AppBundle\Traits\DeletedByTrait;
 
 /**
  * @ORM\Table(name="user_order")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserOrderRepository")
  * @ExclusionPolicy("all")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class UserOrder
 {
-    use TimestampableTrait;
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
     const STATUS_OPENED   = 'opened';
     const STATUS_CLOSED   = 'closed';
@@ -28,11 +33,9 @@ class UserOrder
     const STATUS_REJECTED = 'rejected';
 
     /**
-     * @var Uuid
-     *
-     * @ORM\Column(name="id", type="uuid_binary")
+     * @var string
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
      */
     private $id;
 
@@ -41,8 +44,10 @@ class UserOrder
      *
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Ticket",
-     *     mappedBy="object",
-     *     cascade={"persist", "remove"}
+     *     mappedBy="userOrder",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     *
      * )
      */
     protected $tickets;
@@ -60,6 +65,7 @@ class UserOrder
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="orders")
+     *
      * @Type("AppBundle\Entity\User")
      */
     private $user;
@@ -68,15 +74,15 @@ class UserOrder
      */
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = Uuid::uuid4()->toString();
         $this->status = self::STATUS_OPENED;
         $this->tickets = new ArrayCollection();
     }
 
     /**
-     * @return Uuid
+     * @return string
      */
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }
@@ -88,6 +94,13 @@ class UserOrder
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
     }
     /**
      * @return Ticket[]|ArrayCollection
@@ -181,5 +194,10 @@ class UserOrder
             self::STATUS_PENDING,
             self::STATUS_REJECTED,
         ];
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 }

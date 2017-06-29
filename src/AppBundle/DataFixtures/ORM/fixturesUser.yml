@@ -16,3 +16,4 @@ AppBundle\Entity\User:
         username: user
         apiKey: token_44444444
         role: ROLE_NONE
+

@@ -98,7 +98,7 @@ class Ticket
      * @var UserOrder
      *
      * @ORM\ManyToOne(targetEntity="UserOrder", inversedBy="tickets")
-     * @ORM\Column(name="user_order_id", type="integer", nullable=true)
+     *
      */
     protected $userOrder;
 

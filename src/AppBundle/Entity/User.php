@@ -10,6 +10,10 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Tests\Fixtures\Order;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
+use AppBundle\Traits\TimestampableTrait;
+use Gedmo\Blameable\Traits\BlameableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use AppBundle\Traits\DeletedByTrait;
 
 /**
  * @ORM\Table(name="users")
@@ -27,9 +31,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
  * )
  *
  * @ExclusionPolicy("all")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class User implements UserInterface
 {
+    use TimestampableTrait, BlameableEntity, DeletedByTrait;
     /**
      * @var int
      *
@@ -137,9 +143,16 @@ class User implements UserInterface
     private $role;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+    /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -149,7 +162,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setApiKey(?string $apiKey): User
+    public function setApiKey($apiKey)
     {
         $this->apiKey = $apiKey;
 
@@ -159,7 +172,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getApiKey(): ?string
+    public function getApiKey()
     {
         return $this->apiKey;
     }
@@ -169,7 +182,7 @@ class User implements UserInterface
      *
      * @param UserOrder $order
      *
-     * @return User
+     * @return self
      */
     public function addOrder(UserOrder $order)
     {
@@ -182,10 +195,12 @@ class User implements UserInterface
      * Remove order.
      *
      * @param UserOrder $order
+     * @return User
      */
     public function removeOrder(UserOrder $order)
     {
         $this->orders->removeElement($order);
+        return $this;
     }
 
     /**
@@ -199,11 +214,19 @@ class User implements UserInterface
     }
 
     /**
+     * @param Order[]|ArrayCollection $oreder
+     */
+    public function setPriceCategories($order)
+    {
+        $this->orders[] = $order;
+    }
+
+    /**
      * @param string $role
      *
      * @return User
      */
-    public function setRole(?string $role): User
+    public function setRole($role)
     {
         $this->role = $role;
 
@@ -213,7 +236,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getRole(): ?string
+    public function getRole()
     {
         return $this->role;
     }
@@ -254,7 +277,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setFacebookId(?string $facebookId): User
+    public function setFacebookId($facebookId)
     {
         $this->facebookId = $facebookId;
 
@@ -264,7 +287,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getFacebookId(): ?string
+    public function getFacebookId()
     {
         return $this->facebookId;
     }
@@ -274,7 +297,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setUsername(?string $username): User
+    public function setUsername($username)
     {
         $this->username = $username;
 
@@ -284,7 +307,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getUsername(): ?string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -294,7 +317,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setFirstName(?string $firstName): User
+    public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
 
@@ -304,7 +327,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getFirstName(): ?string
+    public function getFirstName()
     {
         return $this->firstName;
     }
@@ -314,7 +337,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setLastName(?string $lastName): User
+    public function setLastName($lastName)
     {
         $this->lastName = $lastName;
 
@@ -324,7 +347,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getLastName(): ?string
+    public function getLastName()
     {
         return $this->lastName;
     }
@@ -334,7 +357,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setEmail(?string $email): User
+    public function setEmail($email)
     {
         $this->email = $email;
 
@@ -344,8 +367,13 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getEmail(): ?string
+    public function getEmail()
     {
         return $this->email;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 }
