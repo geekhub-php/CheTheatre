@@ -35,6 +35,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     const VENUE_PALAC_MOLODI = 'venue-palac_molodi';
     const VENUE_CENTER_OF_KIDS_ARTS = 'venue-center_of_kids_arts';
     const VENUE_CHERKASY_ART_MUSEUM = 'venue-cherkasy-art-museum';
+    const VENUE_NATIONS_FRIENDSHIP = 'venue-nations-friendship';
 
     public static $venues = [
         self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
@@ -44,6 +45,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
         self::VENUE_PALAC_MOLODI => self::VENUE_PALAC_MOLODI,
         self::VENUE_CENTER_OF_KIDS_ARTS => self::VENUE_CENTER_OF_KIDS_ARTS,
         self::VENUE_CHERKASY_ART_MUSEUM => self::VENUE_CHERKASY_ART_MUSEUM,
+        self::VENUE_NATIONS_FRIENDSHIP => self::VENUE_NATIONS_FRIENDSHIP,
     ];
 
     /**
