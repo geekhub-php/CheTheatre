@@ -66,6 +66,7 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee", inversedBy="roles")
      * @Type("AppBundle\Entity\Employee")
+     * @Assert\NotBlank()
      * @Expose
      */
     private $employee;
