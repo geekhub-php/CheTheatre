@@ -58,9 +58,9 @@ class History extends AbstractTranslateableStory
     protected $translations;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="history_galleryHasMedia",
      *     joinColumns={@ORM\JoinColumn(name="history_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
@@ -152,10 +152,10 @@ class History extends AbstractTranslateableStory
     /**
      * Add galleryHasMedia
      *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      * @return self
      */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -165,9 +165,9 @@ class History extends AbstractTranslateableStory
     /**
      * Remove galleryHasMedia
      *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }

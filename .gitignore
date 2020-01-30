@@ -1,21 +1,16 @@
-/web/bundles/
-web/uploads/*
-!web/uploads/.gitkeep
-/app/bootstrap.php.cache
-/app/cache/*
-/app/config/parameters.yml
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-/app/phpunit.xml
-/app/SymfonyRequirements.php
-/app/check.php
-/build/
-/vendor/
-/bin/
-!/bin/base_script.php
-!/bin/reload
-/composer.phar
-.idea/
-*~
 
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

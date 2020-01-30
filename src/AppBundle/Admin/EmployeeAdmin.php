@@ -83,7 +83,7 @@ class EmployeeAdmin extends Admin
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
-                'targetEntity' => 'Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
+                'targetEntity' => 'App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia',
                 'admin_code' => 'sonata.media.admin.gallery_has_media',
                 'link_parameters' => [
                     'context'  => 'employee',

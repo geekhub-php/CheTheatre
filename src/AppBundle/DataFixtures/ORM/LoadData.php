@@ -2,7 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Application\Sonata\MediaBundle\Entity\Media;
+use App\Application\Sonata\MediaBundle\Entity\Media;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 
 class LoadData extends DataFixtureLoader

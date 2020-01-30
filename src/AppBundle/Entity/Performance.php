@@ -80,7 +80,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      */
     private $mainPicture;
@@ -88,7 +88,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
      */
     private $sliderImage;
@@ -124,9 +124,9 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private $roles;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="performance_galleryHasMedia",
      *     joinColumns={@ORM\JoinColumn(name="performance_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
@@ -273,7 +273,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Get mainPicture
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
+     * @return \App\Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMainPicture()
     {
@@ -283,10 +283,10 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Set mainPicture
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\Media $mainPicture
+     * @param  \App\Application\Sonata\MediaBundle\Entity\Media $mainPicture
      * @return Performance
      */
-    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
+    public function setMainPicture(\App\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
     {
         $this->mainPicture = $mainPicture;
 
@@ -296,7 +296,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Get sliderImage
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
+     * @return \App\Application\Sonata\MediaBundle\Entity\Media
      */
     public function getSliderImage()
     {
@@ -306,10 +306,10 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Set sliderImage
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\Media $sliderImage
+     * @param  \App\Application\Sonata\MediaBundle\Entity\Media $sliderImage
      * @return Performance
      */
-    public function setSliderImage(\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
+    public function setSliderImage(\App\Application\Sonata\MediaBundle\Entity\Media $sliderImage = null)
     {
         $this->sliderImage = $sliderImage;
 
@@ -437,10 +437,10 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Add galleryHasMedia
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param  \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      * @return Performance
      */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -450,9 +450,9 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Remove galleryHasMedia
      *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }

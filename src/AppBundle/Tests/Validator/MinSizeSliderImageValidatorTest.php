@@ -80,7 +80,7 @@ class MinSizeSliderImageValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function getPerformanceEntityMock(array $performanceSliderImageSize)
     {
-        $sliderImage = $this->getMockBuilder('Application\Sonata\MediaBundle\Entity\Media')->disableOriginalConstructor()->getMock();
+        $sliderImage = $this->getMockBuilder('App\Application\Sonata\MediaBundle\Entity\Media')->disableOriginalConstructor()->getMock();
 
         $sliderImage
             ->method('getWidth')

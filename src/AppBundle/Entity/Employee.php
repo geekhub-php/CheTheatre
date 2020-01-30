@@ -113,9 +113,9 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private $roles;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+     * @var \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia", cascade={"persist"})
      * @ORM\JoinTable(name="employee_galleryHasMedia",
      *     joinColumns={@ORM\JoinColumn(name="employee_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}
@@ -142,7 +142,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
      */
     private $avatar;
@@ -426,10 +426,10 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Add galleryHasMedia
      *
-     * @param  \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param  \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      * @return Employee
      */
-    public function addGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -439,9 +439,9 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Remove galleryHasMedia
      *
-     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedia(\App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }

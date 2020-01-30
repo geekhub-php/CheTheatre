@@ -50,9 +50,9 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     protected $text;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @var \App\Application\Sonata\MediaBundle\Entity\Media
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
      */
     protected $mainPicture;
@@ -180,10 +180,10 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Set mainPicture
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $mainPicture
+     * @param \App\Application\Sonata\MediaBundle\Entity\Media $mainPicture
      * @return self
      */
-    public function setMainPicture(\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
+    public function setMainPicture(\App\Application\Sonata\MediaBundle\Entity\Media $mainPicture = null)
     {
         $this->mainPicture = $mainPicture;
 
@@ -193,7 +193,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
     /**
      * Get mainPicture
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \App\Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMainPicture()
     {

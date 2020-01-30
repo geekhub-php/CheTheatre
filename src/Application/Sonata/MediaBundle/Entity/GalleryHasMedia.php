@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\MediaBundle\Entity;
+namespace App\Application\Sonata\MediaBundle\Entity;
 
 use Sonata\MediaBundle\Entity\BaseGalleryHasMedia as BaseGalleryHasMedia;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Table(name="media__gallery_media")
  * @ORM\Entity
- * @Gedmo\TranslationEntity(class="Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation")
+ * @Gedmo\TranslationEntity(class="App\Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation")
  */
 class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterface
 {
@@ -46,7 +46,7 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
      * @var ArrayCollection
      *
      * @ORM\OneToMany(
-     *     targetEntity="Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation",
+     *     targetEntity="App\Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation",
      *     mappedBy="object",
      *     cascade={"persist", "remove"}
      * )

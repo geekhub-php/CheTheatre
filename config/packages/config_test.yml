@@ -1,0 +1,24 @@
+imports:
+    - { resource: config_dev.yml }
+
+parameters:
+    locale: en
+
+framework:
+    translator:      { fallback: "en" }
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+sonata_translation:
+    default_locale: en
+
+#domain_routing:
+#    include_routes:
+#        localhost: ['config/routing_api.yml', 'config/routing_sonata_admin.yml']

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\MediaBundle\Entity\Translations;
+namespace App\Application\Sonata\MediaBundle\Entity\Translations;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
@@ -16,7 +16,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 class GalleryHasMediaTranslation extends AbstractPersonalTranslation
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\GalleryHasMedia", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia", inversedBy="translations")
      * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $object;
