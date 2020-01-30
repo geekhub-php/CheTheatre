@@ -1,78 +1,78 @@
 services:
     sonata.admin.employee:
-        class: AppBundle\Admin\EmployeeAdmin
+        class: App\Admin\EmployeeAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Employees" }
         arguments:
            - ~
-           - AppBundle\Entity\Employee
+           - App\Entity\Employee
            - ~
         calls:
            - [ setTranslationDomain, [messages]]
 
     sonata.admin.role:
-        class: AppBundle\Admin\RoleAdmin
+        class: App\Admin\RoleAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "Hidden", label: "Roles" }
         arguments:
            - ~
-           - AppBundle\Entity\Role
+           - App\Entity\Role
            - ~
         calls:
            - [ setTranslationDomain, [messages]]
 
     sonata.admin.performance:
-        class: AppBundle\Admin\PerformanceAdmin
+        class: App\Admin\PerformanceAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Performances" }
         arguments:
            - ~
-           - AppBundle\Entity\Performance
+           - App\Entity\Performance
            - ~
         calls:
            - [ setTranslationDomain, [messages]]
 
     sonata.admin.performanceEvent:
-        class: AppBundle\Admin\PerformanceEventAdmin
+        class: App\Admin\PerformanceEventAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "PerformanceEvents" }
         arguments:
            - ~
-           - AppBundle\Entity\PerformanceEvent
+           - App\Entity\PerformanceEvent
            - ~
         calls:
            - [ setTranslationDomain, [messages]]
 
     sonata.admin.post:
-        class: AppBundle\Admin\PostAdmin
+        class: App\Admin\PostAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Posts" }
         arguments:
            - ~
-           - AppBundle\Entity\Post
+           - App\Entity\Post
            - ~
         calls:
         - [ setTranslationDomain, [messages]]
         - [ setParameters, ['%sonata_translation.default_locale%', '%sonata_translation.locales%']]
 
     sonata.admin.tag:
-        class: AppBundle\Admin\TagAdmin
+        class: App\Admin\TagAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Tags" }
         arguments:
             - ~
-            - AppBundle\Entity\Tag
+            - App\Entity\Tag
             - ~
         calls:
         - [ setTranslationDomain, [messages]]
 
     sonata.admin.history:
-        class: AppBundle\Admin\HistoryAdmin
+        class: App\Admin\HistoryAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "History" }
         arguments:
            - ~
-           - AppBundle\Entity\History
+           - App\Entity\History
            - ~
         calls:
         - [ setTranslationDomain, [messages]]

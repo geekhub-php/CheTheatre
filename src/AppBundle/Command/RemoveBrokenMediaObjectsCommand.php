@@ -94,7 +94,7 @@ class RemoveBrokenMediaObjectsCommand extends ContainerAwareCommand
 
         foreach ($appClassMetadata as $classMetadata) {
             foreach ($classMetadata->associationMappings as $propertyName => $associationMapping) {
-                if ('App\Application\Sonata\MediaBundle\Entity\Media' == $associationMapping['targetEntity']) {
+                if ('App\Entity\Media' == $associationMapping['targetEntity']) {
                     $mediaAssociationMappings[$classMetadata->name][] = $propertyName;
                 }
             }

@@ -1,30 +1,31 @@
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
 
-employees:
-    type: rest
-    resource: AppBundle\Controller\EmployeesController
-
-performances:
-    type: rest
-    resource: AppBundle\Controller\PerformancesController
-
-performance-events:
-    type: rest
-    resource: AppBundle\Controller\PerformanceEventsController
-
-posts:
-    type: rest
-    resource: AppBundle\Controller\PostsController
-
-tags:
-    type: rest
-    resource: AppBundle\Controller\TagsController
-
-history:
-    type: rest
-    resource: AppBundle\Controller\HistoryController
+#employees:
+#    type: rest
+#    resource: AppBundle\Controller\EmployeesController
+#
+#performances:
+#    type: rest
+#    resource: AppBundle\Controller\PerformancesController
+#
+#performance-events:
+#    type: rest
+#    resource: AppBundle\Controller\PerformanceEventsController
+#
+#posts:
+#    type: rest
+#    resource: AppBundle\Controller\PostsController
+#
+#tags:
+#    type: rest
+#    resource: AppBundle\Controller\TagsController
+#
+#history:
+#    type: rest
+#    resource: AppBundle\Controller\HistoryController
 
 _monitor:
     resource: "@LiipMonitorBundle/Resources/config/routing.xml"

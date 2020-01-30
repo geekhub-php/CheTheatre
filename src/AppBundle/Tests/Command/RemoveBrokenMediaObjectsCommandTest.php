@@ -6,7 +6,7 @@ use AppBundle\Command\RemoveBrokenMediaObjectsCommand;
 use AppBundle\Tests\Controller\AbstractController;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use App\Application\Sonata\MediaBundle\Entity\Media;
+use App\Entity\Media;
 
 class RemoveBrokenMediaObjectsCommandTest extends AbstractController
 {

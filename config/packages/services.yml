@@ -1,45 +1,45 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-     sonata.media.admin.gallery_has_media.class: AppBundle\Admin\GalleryHasMediaAdmin
+     sonata.media.admin.gallery_has_media.class: App\Admin\GalleryHasMediaAdmin
 
 services:
     app.event_listener.serializer_subscriber:
-        class: AppBundle\EventListener\SerializerSubscriber
+        class: App\EventListener\SerializerSubscriber
         arguments: ["@sonata.media.controller.api.media", "@router", "@translator"]
         tags:
             - { name: jms_serializer.event_subscriber }
 
     app.twig_extension:
-        class: AppBundle\Twig\AppExtension
+        class: App\Twig\AppExtension
         public: false
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
-    monitor.check.travis_check:
-        class: AppBundle\Check\TravisCheck
-        arguments:
-            - "geekhub-php"
-            - "CheTheatre"
-            - "master"
-        tags:
-            - { name: liip_monitor.check, alias: monitor_travis }
+#    monitor.check.travis_check:
+#        class: AppBundle\Check\TravisCheck
+#        arguments:
+#            - "geekhub-php"
+#            - "CheTheatre"
+#            - "master"
+#        tags:
+#            - { name: liip_monitor.check, alias: monitor_travis }
 
     two_performance_events_per_day_validator:
-        class: AppBundle\Validator\TwoPerformanceEventsPerDayValidator
+        class: App\Validator\TwoPerformanceEventsPerDayValidator
         arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
         tags:
             - { name: validator.constraint_validator, alias: two_performance_events_per_day }
 
     min_size_slider_image_validator:
-        class: AppBundle\Validator\MinSizeSliderImageValidator
+        class: App\Validator\MinSizeSliderImageValidator
         arguments: ["@translator"]
         tags:
             - { name: validator.constraint_validator, alias: min_size_slider_image }
 
     app.event.entity_delete:
-        class: AppBundle\EventListener\EntityDeleteListener
+        class: App\EventListener\EntityDeleteListener
         arguments:
             - "@security.token_storage"
         tags:
