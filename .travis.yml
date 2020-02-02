@@ -12,6 +12,7 @@ before_script:
   - bin/console doctrine:database:create --env=test
   - mysql -u root chetheatre_test < 2020-01-30-theatre-dump.sql
   - bin/console doctrine:migrations:migrate --no-interaction --env=test
+  - bin/phpunit --version
 
 script:
   - phpunit
