@@ -1,19 +1,13 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
-#  - 7
-
-env:
-  - SYMFONY_VERSION=2.6.*
+  - 7.2
 
 before_script:
     - composer self-update
     - composer install
-    - php bin/reload
+    - bin/console doctrine:database:import 2020-01-30-theatre-dump.sql --env=test
+    - bin/console doctrine:migrations:migrate --no-interaction --env=test
 
 script:
-  - phpunit -c app/
-  - phpunit -c app/
+  - phpunit
+  - phpunit
