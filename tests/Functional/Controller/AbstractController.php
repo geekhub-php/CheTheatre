@@ -20,7 +20,7 @@ abstract class AbstractController extends WebTestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         self::bootKernel(self::$options);
     }
