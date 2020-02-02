@@ -46,7 +46,6 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
-        "dama/doctrine-test-bundle": "^6.3",
         "hautelook/alice-bundle": "^2.7",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",

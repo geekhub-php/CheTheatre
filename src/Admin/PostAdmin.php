@@ -64,14 +64,17 @@ class PostAdmin extends AbstractAdmin
                 ]
             )
             ->add(
-                $formMapper->create('tags', TextType::class, ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
-                    ->addModelTransformer(
-                        new TagTransformer(
-                            $this->default_locale,
-                            $this->locales,
-                            $this->modelManager->getEntityManager(new Tag())
-                        )
+                $formMapper->create('tags', TextType::class, [
+                    'empty_data' => $this->subject ? $this->subject->getTags() : [],
+                    'attr' => ['class' => 'posts-tags']]
+                )
+                ->addModelTransformer(
+                    new TagTransformer(
+                        $this->default_locale,
+                        $this->locales,
+                        $this->modelManager->getEntityManager(new Tag())
                     )
+                )
             )
             ->add('pinned', CheckboxType::class, [
                 'label'    => 'pinned_or_not',

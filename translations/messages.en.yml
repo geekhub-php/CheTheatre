@@ -1,10 +1,8 @@
-you_cant_set_more_events_per_day: It cant be more then %count% performances per one day!
 login: Login
 password: Password
 submit: Sign in
 sing_in_message: Please sign in
 sing_in_title: Authorithation
-Image_must_be_minimum_size: Image size must have minimum %width% px width and %height% px height!
 employee.edit.position.label: Position
 
 ### positions start ###
@@ -43,12 +41,15 @@ Roles: Roles
 Biography: Biography
 Gallery: Gallery
 Employee List: Employee List
+Employee: Employee
+Employees: Employees
 Main Picture: Main Picture
 Title: Title
 Type: Type
 Premiere: Premiere
 Performance List: Performance List
 Description: Description
+History_Date: Year
 Slider Image: Slider Image
 Performance: Performance
 Date Time: Date Time
@@ -69,5 +70,5 @@ venue-center_of_kids_arts: Center for Children and Youth Arts
 venue-cherkasy-art-museum: Cherkasy Art Museum
 venue-nations-friendship: Palace of Culture "Friendship nations"
 choose_an_option: Choose an option
-performance_must_have_a_date: Performance must have a date
 pinned_or_not: Pinned post?
+Venue: Venue

@@ -12,8 +12,9 @@ fos_rest:
         view_response_listener: 'force'
         formats:
             json: true
+            html: false
     exception:
-        enabled: true
+        enabled: false
 #        exception_controller: fos_rest.exception.controller::showAction
 #        codes:
 #            App\Exception\MyException: 403

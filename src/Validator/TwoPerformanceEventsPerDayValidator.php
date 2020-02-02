@@ -4,14 +4,9 @@ namespace App\Validator;
 
 use App\Entity\PerformanceEvent;
 use App\Repository\PerformanceEventRepository;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
-/**
- * Class TwoPerformanceEventsPerDayValidator
- * @package App\Validator
- */
 class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 {
     const MAX_PERFORMANCE_EVENTS_PER_ONE_DAY = 2;
@@ -21,37 +16,32 @@ class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
      */
     private $repository;
 
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    public function __construct(PerformanceEventRepository $repository, TranslatorInterface $translator)
+    public function __construct(PerformanceEventRepository $repository)
     {
         $this->repository = $repository;
-        $this->translator = $translator;
     }
 
     /**
-     * @param \App\Entity\PerformanceEvent $performanceEvent
+     * @param PerformanceEvent $performanceEvent
      * @param Constraint                         $constraint
      */
     public function validate($performanceEvent, Constraint $constraint)
     {
         if (false === is_object($performanceEvent->getDateTime())) {
-            $this->context->addViolationAt(
-                'dateTime',
-                $this->translator->trans($constraint->performance_must_have_a_date)
-            );
+            $this->context->buildViolation($constraint->performance_must_have_a_date)
+                ->atPath('dateTime')
+                ->addViolation()
+            ;
 
             return;
         }
 
         if ($this->isMoreThanMax($performanceEvent)) {
-            $this->context->addViolationAt(
-                'dateTime',
-                $this->translator->trans($constraint->max_performances_per_day, ['%count%' => self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY])
-            );
+            $this->context->buildViolation($constraint->max_performances_per_day)
+                ->atPath('dateTime')
+                ->setParameter('{{count}}', self::MAX_PERFORMANCE_EVENTS_PER_ONE_DAY)
+                ->addViolation()
+            ;
         }
     }
 

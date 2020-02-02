@@ -33,6 +33,5 @@ return [
     FOS\HttpCacheBundle\FOSHttpCacheBundle::class => ['all' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
-    DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['test' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
 ];
