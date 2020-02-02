@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
+use App\Entity\History;
 use App\Model\HistoryResponse;
 use App\Model\Link;
 use App\Model\PaginationLinks;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @RouteResource("History")
+ * @Route("/api/histories")
  */
 class HistoryController extends AbstractController
 {
     /**
+     * @Route("", name="get_histories", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns a collection of History",
@@ -35,14 +36,12 @@ class HistoryController extends AbstractController
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $history = $em->getRepository('App:History')
+        $histories = $em->getRepository('App:History')
             ->findAllHistory(
                 $paramFetcher->get('limit'),
                 ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
@@ -51,21 +50,20 @@ class HistoryController extends AbstractController
 
         $historyTranslated = [];
 
-        foreach ($history as $hist) {
-            $hist->setLocale($paramFetcher->get('locale'));
-            $em->refresh($hist);
+        /** @var History $history */
+        foreach ($histories as $history) {
+            $history->setLocale($paramFetcher->get('locale'));
+            $em->refresh($history);
 
-            if ($hist->getTranslations()) {
-                $hist->unsetTranslations();
-            }
+            $history->unsetTranslations();
 
-            $historyTranslated[] = $hist;
+            $historyTranslated[] = $history;
         }
 
-        $history = $historyTranslated;
+        $histories = $historyTranslated;
 
         $historyResponse = new HistoryResponse();
-        $historyResponse->setHistory($history);
+        $historyResponse->setHistory($histories);
         $historyResponse->setTotalCount($this->getDoctrine()->getManager()->getRepository('App:History')->getCount());
         $historyResponse->setPageCount(ceil($historyResponse->getTotalCount() / $paramFetcher->get('limit')));
         $historyResponse->setPage($paramFetcher->get('page'));
@@ -120,6 +118,7 @@ class HistoryController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}", name="get_history", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns an History by unique property {slug}",
@@ -131,8 +130,6 @@ class HistoryController extends AbstractController
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getAction(ParamFetcher $paramFetcher, $slug)
     {

@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
+use App\Entity\Post;
 use App\Model\Link;
 use App\Model\PaginationLinks;
 use App\Model\PostsResponse;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @RouteResource("Post")
+ * @Route("/api/posts")
  */
-class PostsController extends Controller
+class PostsController extends AbstractController
 {
     /**
+     * @Route("", name="get_posts", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns a collection of Posts",
@@ -36,8 +37,6 @@ class PostsController extends Controller
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      * @QueryParam(name="tag", description="You can receive posts by Tag slug, without Tag you will receive all posts")
-     *
-     * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -138,6 +137,7 @@ class PostsController extends Controller
     }
 
     /**
+     * @Route("/{slug}", name="get_post", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns an Post by unique property {slug}",
@@ -149,15 +149,13 @@ class PostsController extends Controller
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getAction(ParamFetcher $paramFetcher, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $post = $em
-            ->getRepository('App:Post')->findOneByslug($slug);
+        /** @var Post $post */
+        $post = $em->getRepository('App:Post')->findOneByslug($slug);
 
         if (!$post) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');

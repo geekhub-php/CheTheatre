@@ -2,13 +2,18 @@
 
 namespace App\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
+use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\CollectionType;
+use Sonata\Form\Type\DateTimePickerType;
 
-class PerformanceAdmin extends Admin
+class PerformanceAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\Performance';
     protected $baseRoutePattern = 'Performance';
@@ -53,12 +58,12 @@ class PerformanceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('type')
-            ->add('festival', 'sonata_type_model', [
+            ->add('festival', ModelType::class, [
                 'required' => false,
                 'query' => $query,
             ])
             ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add('mainPicture', ModelListType::class,
                 [
                     'required' => false,
                 ], [
@@ -68,7 +73,7 @@ class PerformanceAdmin extends Admin
                     ],
                 ]
             )
-            ->add('sliderImage', 'sonata_type_model_list',
+            ->add('sliderImage', ModelListType::class,
                 [
                     'required' => false,
                 ], [
@@ -78,7 +83,7 @@ class PerformanceAdmin extends Admin
                     ],
                 ]
             )
-            ->add('premiere', 'sonata_type_datetime_picker',
+            ->add('premiere', DateTimePickerType::class,
                 [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,
@@ -86,7 +91,7 @@ class PerformanceAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
-            ->add('roles', 'sonata_type_collection',
+            ->add('roles', CollectionType::class,
                 [
                     'required' => false,
                     'by_reference' => false,
@@ -96,7 +101,7 @@ class PerformanceAdmin extends Admin
                     'sortable'  => 'position',
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add('galleryHasMedia', CollectionType::class,
                 [
                     'required' => false,
                     'label' => 'Gallery',
@@ -123,7 +128,7 @@ class PerformanceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
+            ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
             ->add('type')
             ->add('premiere')

@@ -3,12 +3,12 @@
 namespace App\Admin;
 
 use App\Entity\History;
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class HistoryAdmin extends Admin
+class HistoryAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\History';
     protected $baseRoutePattern = 'History';

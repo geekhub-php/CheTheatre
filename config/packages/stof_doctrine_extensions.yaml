@@ -2,7 +2,10 @@
 # See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
 stof_doctrine_extensions:
     default_locale: uk
+    translation_fallback: true
     orm:
         default:
             translatable: true
             softdeleteable: true
+            sluggable: true
+            timestampable: true

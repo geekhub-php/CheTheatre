@@ -14,7 +14,7 @@ fos_rest:
             json: true
     exception:
         enabled: true
-        exception_controller: fos_rest.exception.controller::showAction
+#        exception_controller: fos_rest.exception.controller::showAction
 #        codes:
 #            App\Exception\MyException: 403
 #        messages:

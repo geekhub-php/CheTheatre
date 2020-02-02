@@ -2,14 +2,15 @@
 
 namespace App\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use App\Entity\PerformanceEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class PerformanceEventAdmin extends Admin
+class PerformanceEventAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\PerformanceEvent';
     protected $baseRoutePattern = 'PerformanceEvent';
@@ -35,7 +36,7 @@ class PerformanceEventAdmin extends Admin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
-            ->add('venue', 'choice', [
+            ->add('venue', ChoiceType::class, [
                 'choices'     => PerformanceEvent::$venues,
                 'placeholder' => 'choose_an_option',
             ])
@@ -72,7 +73,7 @@ class PerformanceEventAdmin extends Admin
         $datagridMapper
             ->add('performance')
             ->add('venue', 'doctrine_orm_choice', [],
-                'choice',
+                ChoiceType::class,
                 [
                     'choices' => PerformanceEvent::$venues,
                     'expanded' => true,

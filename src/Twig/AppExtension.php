@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use App\Entity\Tag;
 use Doctrine\ORM\EntityManager;
 
 class AppExtension extends \Twig_Extension
@@ -38,11 +39,11 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
-     * @return \AppBundle\Entity\Tag[]|array
+     * @return Tag[]|array
      */
     protected function allTags()
     {
-        return $this->em->getRepository('AppBundle:Tag')->findAll();
+        return $this->em->getRepository(Tag::class)->findAll();
     }
 
     public function getName()

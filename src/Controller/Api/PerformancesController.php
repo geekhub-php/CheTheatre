@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Model\Link;
 use App\Model\PaginationLinks;
 use App\Model\PerformancesResponse;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @RouteResource("Performance")
+ * @Route("/api/performance")
  */
-class PerformancesController extends Controller
+class PerformancesController extends AbstractController
 {
     /**
+     * @Route("", name="get_performances", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns when all parameters were correct",
@@ -35,8 +35,6 @@ class PerformancesController extends Controller
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count entries at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -125,6 +123,7 @@ class PerformancesController extends Controller
     }
 
     /**
+     * @Route("/{slug}", name="get_performance", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns Performance by unique property {slug}",
@@ -136,8 +135,6 @@ class PerformancesController extends Controller
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getAction(ParamFetcher $paramFetcher, $slug)
     {
@@ -161,6 +158,7 @@ class PerformancesController extends Controller
     }
 
     /**
+     * @Route("/{slug}/roles", name="get_performance_roles", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns Performance roles by his unique {slug}",
@@ -175,8 +173,6 @@ class PerformancesController extends Controller
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getRolesAction(ParamFetcher $paramFetcher, $slug)
     {
@@ -222,6 +218,7 @@ class PerformancesController extends Controller
     }
 
     /**
+     * @Route("/{slug}/performanceevents", name="get_performance_performance_events", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns Performance events by Performance {slug}",
@@ -237,10 +234,8 @@ class PerformancesController extends Controller
      * @SWG\Get(deprecated=true)
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
-    public function getPerformanceeventsAction(ParamFetcher $paramFetcher, $slug)
+    public function getPerformanceEventsAction(ParamFetcher $paramFetcher, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 

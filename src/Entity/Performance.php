@@ -399,7 +399,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Role[]|\Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {

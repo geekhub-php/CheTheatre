@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
+use App\Entity\Post;
 use App\Entity\Tag;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @RouteResource("Tag")
+ * @Route("/api/tags")
  */
-class TagsController extends Controller
+class TagsController extends AbstractController
 {
     /**
+     * @Route("/{slug}/posts", name="get_tags_posts", methods={"GET"})
      * @SWG\Response(
      *     response=200,
-     *     description="Returns tags",
+     *     description="Returns posts by tag",
      *     @SWG\Schema(
      *         type="array",
-     *         @SWG\Items(ref=@Model(type=Tag::class))
+     *         @SWG\Items(ref=@Model(type=Post::class))
      *     )
      * )
      * @SWG\Response(
@@ -28,14 +29,13 @@ class TagsController extends Controller
      *     description="Returns when tag by {slug} not found in database",
      * )
      * @SWG\Get(deprecated=true)
-     *
-     * @RestView
      */
     public function getPostsAction($slug)
     {
+        /** @var Tag $tag */
         $tag = $this->getDoctrine()
                     ->getManager()
-                    ->getRepository('App:Tag')
+                    ->getRepository(Tag::class)
                     ->findOneBySlug($slug)
         ;
 

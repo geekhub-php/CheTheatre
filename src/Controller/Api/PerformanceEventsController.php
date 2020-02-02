@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Model\PerformanceEventsResponse;
 use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @RouteResource("PerformanceEvent")
+ * @Route("/api/performanceevents")
  */
-class PerformanceEventsController extends Controller
+class PerformanceEventsController extends AbstractController
 {
     const MAX_DAYS_PER_GET = 367;
 
     /**
+     * @Route("", name="get_performanceevents", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns a collection of theatre performanceEvents",
@@ -38,8 +38,6 @@ class PerformanceEventsController extends Controller
      * @QueryParam(name="limit", default="all", requirements="\d+|all" , description="Count of entities in collection")
      * @QueryParam(name="performance", description="Performance slug")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -92,6 +90,7 @@ class PerformanceEventsController extends Controller
     }
 
     /**
+     * @Route("/{id}", name="get_performance_event", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns one PerformanceEvent by Id",
@@ -104,8 +103,6 @@ class PerformanceEventsController extends Controller
      * @SWG\Get(deprecated=true)
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getAction(ParamFetcher $paramFetcher, $id)
     {

@@ -2,14 +2,20 @@
 
 namespace App\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use App\Entity\Employee;
+use Sonata\Form\Type\CollectionType;
+use Sonata\Form\Type\DateTimePickerType;
+use Sonata\FormatterBundle\Form\Type\FormatterType;
+use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class EmployeeAdmin extends Admin
+class EmployeeAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\Employee';
     protected $baseRoutePattern = 'Employee';
@@ -44,7 +50,7 @@ class EmployeeAdmin extends Admin
         $formMapper
             ->add('firstName')
             ->add('lastName')
-            ->add('avatar', 'sonata_type_model_list', [
+            ->add('avatar', ModelListType::class, [
                 'required' => false,
                 'btn_list' => false,
             ], [
@@ -53,7 +59,7 @@ class EmployeeAdmin extends Admin
                     'provider' => 'sonata.media.provider.image',
                 ],
             ])
-            ->add('dob', 'sonata_type_datetime_picker',
+            ->add('dob', DateTimePickerType::class,
                 [
                     'dp_side_by_side'       => false,
                     'dp_use_current'        => false,
@@ -62,21 +68,19 @@ class EmployeeAdmin extends Admin
                     'format' => "dd/MM/yyyy",
                 ]
             )
-            ->add('position', 'choice', [
+            ->add('position', ChoiceType::class, [
                 'label' => 'employee.position',
                 'choices' => employee::getPositions(),
                 'translation_domain' => 'messages',
                 ]
             )
-            ->add('biography', 'textarea',
+            ->add('biography', SimpleFormatterType::class,
                 [
-                    'attr' => [
-                        'class' => 'wysihtml5',
-                        'style' => 'height:200px',
-                    ],
+                    'format' => 'richhtml',
+//                    'ckeditor_context' => 'default',
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection', [
+            ->add('galleryHasMedia', CollectionType::class, [
                 'required' => false,
                 'label' => 'Gallery',
                 ], [
@@ -101,7 +105,7 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('avatar', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
+            ->add('avatar', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('firstName')
             ->add('lastName')
             ->add('dob', 'date')

@@ -23,7 +23,7 @@ doctrine:
                     gedmo_translatable:
                         type: annotation
                         prefix: Gedmo\Translatable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity/MappedSuperclass"
                         alias: GedmoTranslatable
                         is_bundle: false
                 filters:

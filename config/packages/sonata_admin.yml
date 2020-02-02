@@ -1,19 +1,19 @@
 sonata_admin:
-    title:      "%sonata_admin.title%"
-    title_logo: "%sonata_admin.logo_title%"
+    title:      "Черкаський Театр"
+    title_logo: "sonata-logo.png"
 
     security:
        handler: sonata.admin.security.handler.role
 
     templates:
-        layout: ::SonataAdmin/standard_layout.html.twig
-        edit: ::SonataAdmin/CRUD/edit.html.twig
+        layout: bundles/SonataAdmin/standard_layout.html.twig
+        edit: bundles/SonataAdmin/CRUD/edit.html.twig
 
     dashboard:
         groups:
             CheTheatre:
                 label: Головна панель
-                label_catalogue: AppBundle
+                label_catalogue: App
 #            sonata_media:
 #                label: Медіа (сховати в майбутньому)
 #                label_catalogue: AppBundle
@@ -43,22 +43,23 @@ sonata_admin:
 #                settings:
 #                    groups: [sonata_media, Hidden]
 
-    assets:
-        javascripts: # changed order of js assets loading
-            - js/jquery-2.1.0.min.js
-            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
-            - bundles/sonatacore/vendor/moment/min/moment.min.js
-            - bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
-            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
-            - bundles/sonataadmin/jquery/jquery.form.js
-            - bundles/sonataadmin/jquery/jquery.confirmExit.js
-            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
-            - bundles/sonataadmin/vendor/select2/select2.min.js
-            - bundles/sonataadmin/App.js
-            - bundles/sonataadmin/Admin.js
+#    assets:
+#        javascripts: # changed order of js assets loading
+#            - bundles/sonataadmin/vendor/jquery/dist/jquery.js
+#            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
+#            - bundles/sonatacore/vendor/moment/min/moment.min.js
+#            - bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js
+#            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
+#            - bundles/sonataadmin/vendor/jquery-form/jquery.form.js
+#            - bundles/sonataadmin/jquery/jquery.confirmExit.js
+#            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
+#            - bundles/sonatacore/vendor/select2/select2.min.js
+##            - bundles/sonataadmin/App.js
+#            - bundles/sonataadmin/Admin.js
 
 sonata_doctrine_orm_admin:
     templates:
-        form: [:SonataAdmin:form_admin_fields.html.twig]
+        form:
+            - 'bundles/SonataAdmin/form_admin_fields.html.twig'

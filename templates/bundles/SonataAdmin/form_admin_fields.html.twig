@@ -5,7 +5,7 @@
         <span id="field_actions_{{ id }}" class="field-actions">
             <span id="field_widget_{{ id }}" class="field-short-description">
                 {% if sonata_admin.field_description.associationadmin.id(sonata_admin.value) %}
-                    <a href="{{ url('admin_sonata_media_media_edit', {
+                    <a href="{{ url('admin_app_media_edit', {
                     'id': sonata_admin.field_description.associationadmin.id(sonata_admin.value),
                     }) }}" target="_blank">
                         {% thumbnail value, 'admin' with {'class': 'img-polaroid media-object'} %}

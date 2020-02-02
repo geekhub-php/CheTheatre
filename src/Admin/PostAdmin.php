@@ -4,12 +4,12 @@ namespace App\Admin;
 
 use App\Entity\Tag;
 use App\Form\DataTransformer\TagTransformer;
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PostAdmin extends Admin
+class PostAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\Post';
     protected $baseRoutePattern = 'Post';

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
+use App\Entity\Employee;
+use App\Entity\Performance;
 use App\Model\Link;
 use App\Entity\Role;
 use App\Model\PaginationLinks;
 use App\Model\EmployeesResponse;
 use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JMS\Serializer\SerializerInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
@@ -136,6 +136,7 @@ class EmployeesController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}", name="get_employee", methods={"GET"})
      * @SWG\Response(
      *     response=200,
      *     description="Returns an Employee by unique property {slug}",
@@ -147,15 +148,13 @@ class EmployeesController extends AbstractController
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getAction(ParamFetcher $paramFetcher, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $employee = $em->
-                        getRepository('App:Employee')->findOneByslug($slug);
+        /** @var Employee $employee */
+        $employee = $em->getRepository('App:Employee')->findOneByslug($slug);
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -175,9 +174,10 @@ class EmployeesController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}/roles", name="get_employee_roles", methods={"GET"})
      * @SWG\Response(
      *     response=200,
-     *     description="Returns employee by {slug}",
+     *     description="Returns employee roles by employee {slug}",
      *     @SWG\Schema(
      *         type="array",
      *         @SWG\Items(ref=@Model(type=Role::class))
@@ -189,15 +189,13 @@ class EmployeesController extends AbstractController
      * )
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     *
-     * @RestView
      */
     public function getRolesAction(ParamFetcher $paramFetcher, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $employee = $em
-            ->getRepository('App:Employee')->findOneByslug($slug);
+        /** @var Employee $employee */
+        $employee = $em->getRepository('App:Employee')->findOneByslug($slug);
 
         if (!$employee) {
             throw $this->createNotFoundException('Unable to find '.$slug.' entity');
@@ -206,9 +204,7 @@ class EmployeesController extends AbstractController
         $employee->setLocale($paramFetcher->get('locale'));
         $em->refresh($employee);
 
-        if ($employee->getTranslations()) {
-            $employee->unsetTranslations();
-        }
+        $employee->unsetTranslations();
 
         $this->translator->setLocale($paramFetcher->get('locale'));
         $employee->setPosition($this->translator->trans($employee->getPosition()));
@@ -218,20 +214,16 @@ class EmployeesController extends AbstractController
         $rolesTranslated = [];
 
         foreach ($roles as $role) {
-            $role->setLocale($paramFetcher->get('locale'));
-
+            /** @var Performance $performance */
             $performance = $role->getPerformance();
-            $performance->setLocale($paramFetcher->get('locale'));
 
+            $role->setLocale($paramFetcher->get('locale'));
             $em->refresh($role);
+            $performance->setLocale($paramFetcher->get('locale'));
             $em->refresh($performance);
 
-            if ($role->getTranslations()) {
-                $role->unsetTranslations();
-            }
-            if ($performance->getTranslations()) {
-                $performance->unsetTranslations();
-            }
+            $role->unsetTranslations();
+            $performance->unsetTranslations();
 
             $rolesTranslated[] = $role;
         }

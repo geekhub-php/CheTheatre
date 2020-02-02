@@ -3,10 +3,12 @@
 namespace App\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\Common\EventSubscriber;
+use Gedmo\SoftDeleteable\SoftDeleteableListener;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class EntityDeleteListener
+class EntityDeleteListener implements EventSubscriber
 {
     /**
      * @var TokenStorageInterface
@@ -16,6 +18,16 @@ class EntityDeleteListener
     public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSubscribedEvents()
+    {
+        return [
+            SoftDeleteableListener::PRE_SOFT_DELETE
+        ];
     }
 
     public function preSoftDelete(LifecycleEventArgs $args)

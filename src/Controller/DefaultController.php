@@ -3,22 +3,18 @@
 namespace App\Controller;
 
 use App\Form\Type\FormLoginType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
-    /**
-     * @param  Request                                    $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     */
     public function loginAction(Request $request)
     {
         $session = $this->get('session');
 
-        $form = $this->createForm(new FormLoginType());
+        $form = $this->createForm(FormLoginType::class);
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);

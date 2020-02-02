@@ -3,16 +3,16 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-    <link href="http://cdn.imnjb.me/libs/tag-it/2.0/css/jquery.tagit.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap3-wysihtml5.min.css') }}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
 
     {{ parent() }}
 
-    <script src="{{ asset('bundles/app/js/bootstrap3-wysihtml5.all.min.js') }}"></script>
-    <script src="{{ asset('bundles/app/js/bootstrap-wysihtml5.ua-UA.js') }}"></script>
+    <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -33,7 +33,7 @@
         });
     </script>
 
-    <script src="http://cdn.imnjb.me/libs/tag-it/2.0/js/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $(".posts-tags").tagit({
