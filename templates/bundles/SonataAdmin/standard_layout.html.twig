@@ -22,6 +22,11 @@
 
 {% block stylesheets %}
     {{  parent() }}
+    <style>
+        .skin-black .sidebar-menu>li:hover>a, .skin-black .sidebar-menu>li.active>a {
+            border-left: 0 !important;
+        }
+    </style>
 {# {% stylesheets#}
 {#    '@SonataTranslationBundle/Resources/public/css/sonata-translation.css'#}
 {#    %}#}

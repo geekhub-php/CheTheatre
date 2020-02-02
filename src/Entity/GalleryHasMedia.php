@@ -20,6 +20,12 @@ class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterfa
     use PersonalTranslatable;
 
     /**
+     * not mapped field
+     * @var bool
+     */
+    public $delete;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")

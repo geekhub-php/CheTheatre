@@ -118,7 +118,16 @@
         "version": "v0.4.1"
     },
     "friendsofsymfony/ckeditor-bundle": {
-        "version": "1.2.0"
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "8eb1cd0962ded6a6d6e1e5a9b6d3e888f9f94ff6"
+        },
+        "files": [
+            "config/packages/fos_ckeditor.yaml"
+        ]
     },
     "friendsofsymfony/http-cache": {
         "version": "2.8.0"
@@ -238,9 +247,6 @@
     "knplabs/knp-components": {
         "version": "v2.3.1"
     },
-    "knplabs/knp-markdown-bundle": {
-        "version": "1.8.1"
-    },
     "knplabs/knp-menu": {
         "version": "2.6.0"
     },
@@ -270,9 +276,6 @@
         "files": [
             "config/packages/monitor.yaml"
         ]
-    },
-    "michelf/php-markdown": {
-        "version": "1.9.0"
     },
     "monolog/monolog": {
         "version": "2.0.2"
@@ -463,9 +466,6 @@
     },
     "sonata-project/exporter": {
         "version": "2.0.1"
-    },
-    "sonata-project/formatter-bundle": {
-        "version": "4.1.3"
     },
     "sonata-project/media-bundle": {
         "version": "3.13",

@@ -13,7 +13,7 @@ services:
 
     two_performance_events_per_day_validator:
         class: App\Validator\TwoPerformanceEventsPerDayValidator
-        arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:PerformanceEvent')", "@translator"]
+        arguments: ["@=service('doctrine.orm.default_entity_manager').getRepository('App:PerformanceEvent')", "@translator"]
         tags:
             - { name: validator.constraint_validator, alias: two_performance_events_per_day }
 

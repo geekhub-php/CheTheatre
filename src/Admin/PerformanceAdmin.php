@@ -2,6 +2,7 @@
 
 namespace App\Admin;
 
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -62,7 +63,7 @@ class PerformanceAdmin extends AbstractAdmin
                 'required' => false,
                 'query' => $query,
             ])
-            ->add('description', null, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
+            ->add('description', CKEditorType::class, ['attr' => ['class' => 'wysihtml5', 'style' => 'height: 200px']])
             ->add('mainPicture', ModelListType::class,
                 [
                     'required' => false,

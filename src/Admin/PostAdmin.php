@@ -4,10 +4,16 @@ namespace App\Admin;
 
 use App\Entity\Tag;
 use App\Form\DataTransformer\TagTransformer;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\Form\Type\BooleanType;
+use Sonata\Form\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -38,7 +44,7 @@ class PostAdmin extends AbstractAdmin
         $formMapper
             ->add('title')
             ->add('shortDescription')
-            ->add('text', 'textarea',
+            ->add('text', CKEditorType::class,
                 [
                     'attr' => [
                             'class' => 'wysihtml5',
@@ -46,7 +52,7 @@ class PostAdmin extends AbstractAdmin
                     ],
                 ]
             )
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add('mainPicture', ModelListType::class,
                 [
                     'required' => false,
                     'btn_list' => false,
@@ -58,7 +64,7 @@ class PostAdmin extends AbstractAdmin
                 ]
             )
             ->add(
-                $formMapper->create('tags', 'text', ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
+                $formMapper->create('tags', TextType::class, ['empty_data' => $this->subject->getTags(), 'attr' => ['class' => 'posts-tags']])
                     ->addModelTransformer(
                         new TagTransformer(
                             $this->default_locale,
@@ -67,11 +73,11 @@ class PostAdmin extends AbstractAdmin
                         )
                     )
             )
-            ->add('pinned', 'checkbox', [
+            ->add('pinned', CheckboxType::class, [
                 'label'    => 'pinned_or_not',
                 'required' => false,
             ])
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add('galleryHasMedia', CollectionType::class,
                 [
                     'required' => false,
                     'label' => 'Gallery',
@@ -97,7 +103,7 @@ class PostAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
+            ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
             ->add('createdAt')
             ->add('_action', 'actions',

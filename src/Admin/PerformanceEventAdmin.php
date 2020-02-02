@@ -7,8 +7,9 @@ use App\Entity\PerformanceEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PerformanceEventAdmin extends AbstractAdmin
 {
@@ -27,8 +28,8 @@ class PerformanceEventAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('performance', 'sonata_type_model')
-            ->add('dateTime', 'sonata_type_datetime_picker',
+            ->add('performance', ModelType::class)
+            ->add('dateTime', DateTimePickerType::class,
                 [
                     'dp_side_by_side'       => true,
                     'dp_use_current'        => false,

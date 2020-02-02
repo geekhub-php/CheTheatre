@@ -3,10 +3,15 @@
 namespace App\Admin;
 
 use App\Entity\History;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\Form\Type\CollectionType;
+use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class HistoryAdmin extends AbstractAdmin
 {
@@ -26,17 +31,17 @@ class HistoryAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title')
-            ->add('type', 'choice', [
+            ->add('type', ChoiceType::class, [
                 'choices'  => History::getTypes()
             ])
-            ->add('dateTime', 'datetime',
+            ->add('dateTime', DateTimePickerType::class,
                 [
                     'label' => 'History_Date',
                     'widget' => 'single_text',
                     'format' => 'yyyy'
                 ]
             )
-            ->add('text', 'textarea',
+            ->add('text', CKEditorType::class,
                 [
                     'attr' => [
                             'class' => 'wysihtml5',
@@ -44,7 +49,7 @@ class HistoryAdmin extends AbstractAdmin
                     ],
                 ]
             )
-            ->add('mainPicture', 'sonata_type_model_list',
+            ->add('mainPicture', ModelListType::class,
                 [
                     'required' => false,
                     'btn_list' => false,
@@ -55,7 +60,7 @@ class HistoryAdmin extends AbstractAdmin
                     ],
                 ]
             )
-            ->add('galleryHasMedia', 'sonata_type_collection',
+            ->add('galleryHasMedia', CollectionType::class,
                 [
                     'required' => false,
                     'label' => 'Gallery'
@@ -81,7 +86,7 @@ class HistoryAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('mainPicture', 'string', ['template' => '::SonataAdmin/thumbnail.html.twig'])
+            ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
             ->add('year', null, ['label' => 'History_Date'])
             ->addIdentifier('title')
             ->add('type')

@@ -2,6 +2,7 @@
 
 namespace App\Admin;
 
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -11,8 +12,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use App\Entity\Employee;
 use Sonata\Form\Type\CollectionType;
 use Sonata\Form\Type\DateTimePickerType;
-use Sonata\FormatterBundle\Form\Type\FormatterType;
-use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EmployeeAdmin extends AbstractAdmin
@@ -74,9 +73,9 @@ class EmployeeAdmin extends AbstractAdmin
                 'translation_domain' => 'messages',
                 ]
             )
-            ->add('biography', SimpleFormatterType::class,
+            ->add('biography', CKEditorType::class,
                 [
-                    'format' => 'richhtml',
+//                    'format' => 'richhtml',
 //                    'ckeditor_context' => 'default',
                 ]
             )

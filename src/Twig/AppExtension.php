@@ -32,7 +32,7 @@ class AppExtension extends \Twig_Extension
         $tagsAsString = '';
 
         foreach ($this->allTags() as $tag) {
-            $tagsAsString .= sprintf('"%s",', $tag->getTitle());
+            $tagsAsString .= sprintf('"%s",', str_replace('"', '\"', $tag->getTitle()));
         }
 
         return trim($tagsAsString, ',');

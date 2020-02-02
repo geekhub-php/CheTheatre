@@ -1,7 +1,6 @@
 sonata_admin:
     title:      "Черкаський Театр"
     title_logo: "sonata-logo.png"
-
     security:
        handler: sonata.admin.security.handler.role
 

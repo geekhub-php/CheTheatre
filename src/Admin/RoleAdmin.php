@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use App\Entity\Role;
 
@@ -43,7 +44,7 @@ class RoleAdmin extends AbstractAdmin
         $formMapper
             ->add('title')
             ->add('description', null, ['required' => false])
-            ->add('employee', 'sonata_type_model', ['required' => false]);
+            ->add('employee', ModelType::class, ['required' => false]);
     }
 
     /**
