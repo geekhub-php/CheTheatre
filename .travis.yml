@@ -2,11 +2,16 @@ language: php
 php:
   - 7.2
 
+services:
+  - mysql
+
 before_script:
-    - composer self-update
-    - composer install
-    - bin/console doctrine:database:import 2020-01-30-theatre-dump.sql --env=test
-    - bin/console doctrine:migrations:migrate --no-interaction --env=test
+  - composer self-update
+  - composer install
+  - cp .env.test.travis .env.test.local
+  - bin/console doctrine:database:create --env=test
+  - mysql -u root chetheatre_test < 2020-01-30-theatre-dump.sql
+  - bin/console doctrine:migrations:migrate --no-interaction --env=test
 
 script:
   - phpunit
