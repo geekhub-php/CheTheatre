@@ -19,7 +19,7 @@ class EntityDeleteListenerTest extends WebTestCase
     /** @var EntityManager */
     protected $em;
 
-    public function setUp()
+    public function setUp(): void
     {
         static::bootKernel();
         $container = self::$container;
