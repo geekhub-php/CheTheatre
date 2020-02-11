@@ -1,4 +1,4 @@
-Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation:
+App\Entity\Translations\GalleryHasMediaTranslation:
     galleryHasMediaTranslation1:
         object: '@galleryHasMedia1'
         locale: en

@@ -1,0 +1,78 @@
+services:
+    sonata.admin.employee:
+        class: App\Admin\EmployeeAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Employees" }
+        arguments:
+           - ~
+           - App\Entity\Employee
+           - ~
+        calls:
+           - [ setTranslationDomain, [messages]]
+
+    sonata.admin.role:
+        class: App\Admin\RoleAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Hidden", label: "Roles" }
+        arguments:
+           - ~
+           - App\Entity\Role
+           - ~
+        calls:
+           - [ setTranslationDomain, [messages]]
+
+    sonata.admin.performance:
+        class: App\Admin\PerformanceAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Performances" }
+        arguments:
+           - ~
+           - App\Entity\Performance
+           - ~
+        calls:
+           - [ setTranslationDomain, [messages]]
+
+    sonata.admin.performanceEvent:
+        class: App\Admin\PerformanceEventAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "PerformanceEvents" }
+        arguments:
+           - ~
+           - App\Entity\PerformanceEvent
+           - ~
+        calls:
+           - [ setTranslationDomain, [messages]]
+
+    sonata.admin.post:
+        class: App\Admin\PostAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Posts" }
+        arguments:
+           - ~
+           - App\Entity\Post
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
+        - [ setParameters, ['uk', ['uk', 'en']]]
+
+    sonata.admin.tag:
+        class: App\Admin\TagAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Tags" }
+        arguments:
+            - ~
+            - App\Entity\Tag
+            - ~
+        calls:
+        - [ setTranslationDomain, [messages]]
+
+    sonata.admin.history:
+        class: App\Admin\HistoryAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "History" }
+        arguments:
+           - ~
+           - App\Entity\History
+           - ~
+        calls:
+        - [ setTranslationDomain, [messages]]

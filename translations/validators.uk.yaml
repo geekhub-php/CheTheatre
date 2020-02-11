@@ -1,0 +1,3 @@
+Image_must_be_minimum_size: Розмір зображення повиннен перевищувати {{width}} пікселів по довжині та {{height}} пікслеів по висоті!
+you_cant_set_more_events_per_day: В один день не може бути більше {{count}} вистав!
+performance_must_have_a_date: Введіть дату проведення вистави

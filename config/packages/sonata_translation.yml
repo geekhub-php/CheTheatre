@@ -1,0 +1,9 @@
+imports:
+    - { resource: '@SonataTranslationBundle/Resources/config/config.yml'}
+
+sonata_translation:
+    locales: ['uk', 'en']
+    default_locale: "uk"
+    # here enable the types you need
+    gedmo:
+        enabled: true

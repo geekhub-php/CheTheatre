@@ -1,5 +1,0 @@
-imports:
-    - { resource: sonata_block.yml }
-    - { resource: sonata_admin.yml }
-    - { resource: sonata_media.yml }
-    - { resource: sonata_translation.yml }

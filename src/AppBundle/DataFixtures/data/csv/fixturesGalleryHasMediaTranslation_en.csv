@@ -1,4 +1,4 @@
-Application\Sonata\MediaBundle\Entity\Translations\GalleryHasMediaTranslation,,,
+App\Entity\Translations\GalleryHasMediaTranslation,,,
 object,locale,field,content
 @galleryHasMedia1,en,title,No translation for this title
 @galleryHasMedia1,en,description,No translation for this text

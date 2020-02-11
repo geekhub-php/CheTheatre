@@ -1,0 +1,45 @@
+{% extends "SonataAdminBundle:CRUD:base_edit.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css') }}" />#}
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+{#    <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js') }}"></script>#}
+{#    <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js') }}"></script>#}
+
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function(){#}
+{#            $('.wysihtml5').wysihtml5({#}
+{#                        fa: true,#}
+{#                        locale: 'ua-UA',#}
+{#                        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true#}
+{#                        "emphasis": true, //Italics, bold, etc. Default true#}
+{#                        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true#}
+{#                        "html": true, //Button which allows you to edit the generated HTML. Default false#}
+{#                        "link": true, //Button to insert a link. Default true#}
+{#                        "image": false, //Button to insert an image. Default true,#}
+{#                        "color": true, //Button to change color of font#}
+{#                        "blockquote": true, //Blockquote#}
+{#                        "size": '<buttonsize>' //default: none, other options are xs, sm, lg#}
+{#                    }#}
+{#            );#}
+{#        });#}
+{#    </script>#}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".posts-tags").tagit({
+                availableTags: [{{ allTagsAsString()|raw }}],
+                allowSpaces: true
+            });
+        });
+    </script>
+{% endblock %}

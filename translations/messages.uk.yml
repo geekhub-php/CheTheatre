@@ -1,0 +1,82 @@
+login: Логін
+password: Пароль
+submit: Увійти
+sing_in_message: Будь-ласка, авторизуйтеся
+sing_in_title: Авторизація
+employee.edit.position.label: Посада
+
+### positions start ###
+actor: Актор
+actress: Актриса
+theatre_director: Директор
+theatre_director_art_director: Директор-художній керівник
+acting_artistic_director: Виконуючий обовязки художнього керівника
+production_director: Режисер-постановник
+main_artist: Головний художник
+costumer: Художник по костюмах
+artistic_director: Художній керівник
+main_choreographer: Головний хорегограф
+head_of_the_literary_and_dramatic_part: Керівник літературно-драматичної частини
+conductor: Диригент вищої категорії
+accompanist: Концертмейстер по класу балету
+head_choreographer: Головний балетмейстер
+art_director: Художник-постановник
+staged: Балетмейстер-постановник
+accompanist_singing_class: Концертмейстер по класу вокалу
+head_of_troupe: Завідуючий трупою
+head_of_artistic_staging_part: Завідуючий художньо-постановочною частиною
+stage_manager: Помічник режисера
+leading_artist_scene: Провідний майстер сцени
+actor_higher_category: Артист вищої категорії
+actor_first_category: Артист 1-ої категорії
+actor_singer_soloist_higher_category: Артист-вокаліст /соліст/ вищої категорії
+### positions end ###
+
+Avatar: Фотографія
+First Name: Ім’я
+Last Name: Прізвище
+Dob: Д/Н
+Position: Посада
+Roles: Ролі
+Biography: Біографія
+Gallery: Галерея
+Employee List: Перелік Працівників
+Main Picture: Банер
+Title: Назва
+Type: Жанр
+Premiere: Прем’єра
+Performance List: Перелік Вистав
+Description: Опис
+Slider Image: Зображення для Слайдера на головній сторінці
+Performance: Вистава
+Date Time: Дата та Час
+Performance Event List: Розклад Вистав
+Post List: Перелік Новин
+Action: Можливі дії
+Tags: Теги
+Short Description: Стислий Опис
+Text: Текст
+Posts: Новини
+Tag List: Перелік Тегів
+link_actions: Можливі Дії
+Employee: Працівник
+Role List: Перелік Ролей
+Employees: Працівники
+Performances: Вистави
+PerformanceEvents: Розклад Вистав
+employee.position: Посада (Це поле перекладається автоматично системою)
+History: Історія Театру
+History List: Історія Театру
+History_Date: Рік в Історії
+history: Історія
+venue-philharmonic: Черкаська Філармонія
+venue-kilic-house: Будинок культури ім. Кулика
+venue-theatre: Черкаський Театр
+venue-salut: Кінотеатр "Салют"
+venue-palac_molodi: Черкаський міський Палац молоді
+venue-center_of_kids_arts: Центр дитячої та юнацької творчості
+venue-cherkasy-art-museum: Черкаський обласний художній музей
+venue-nations-friendship: ПК Дружби Народів
+Venue: Місце проведення
+choose_an_option: Виберіть зі списку
+pinned_or_not: Показувати вверху усіх новин?

@@ -1,4 +1,4 @@
-Application\Sonata\MediaBundle\Entity\GalleryHasMedia,,,,
+App\Entity\GalleryHasMedia,,,,
 title,description,media,createdAt,updatedAt
 академія сміху,академія сміху,"<getMedia(""performance-galleries/академія сміху1.jpg"", ""performance"")>","<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"
 академія сміху,академія сміху,"<getMedia(""performance-galleries/академія сміху2.jpg"", ""performance"")>","<dateTimeBetween(""-200 days"", ""now"")>","<dateTimeBetween($createdAt, ""now"")>"

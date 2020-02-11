@@ -1,4 +1,4 @@
-Application\Sonata\MediaBundle\Entity\GalleryHasMedia:
+App\Entity\GalleryHasMedia:
     galleryHasMedia1:
         title: 'академія сміху'
         description: 'академія сміху'

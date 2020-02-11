@@ -1,84 +1,105 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
-    "autoload": {
-        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
-    },
+    "description": "Web api for Ukrainian Cherkasy State Theatre",
+    "license": "MIT",
     "require": {
-        "php": ">=5.4.0",
-        "symfony/symfony": "2.6.9",
-        "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
-        "symfony/yaml": "2.6.*@dev",
-        "symfony/event-dispatcher": "2.6.*@dev",
-        "doctrine/common": "2.5.1",
-        "doctrine/orm": "2.5.1",
-        "doctrine/doctrine-bundle": "1.5.2",
-        "doctrine/migrations": "1.0.*@dev",
-        "doctrine/doctrine-migrations-bundle": " 2.1.*@dev",
-        "doctrine/annotations": "1.2.7",
-        "doctrine/cache": "1.4.2",
-        "stof/doctrine-extensions-bundle": "1.2.*@dev",
-        "sensio/distribution-bundle": "~3.0",
-        "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "jms/serializer-bundle": "0.13.*",
-        "knplabs/knp-paginator-bundle": "2.4.*@dev",
-        "guzzlehttp/guzzle": "~5.0",
-        "twig/extensions": "~1.0",
-        "twig/twig": "1.22.1",
-        "nelmio/api-doc-bundle": "dev-master",
-        "sonata-project/admin-bundle": "~2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "~2.3",
-        "sonata-project/media-bundle": "~2.3",
-        "sonata-project/translation-bundle": "~1.0",
-        "nelmio/cors-bundle": "~1.4",
-        "geek-hub/domain-routing-bundle": "dev-master",
-        "liip/monitor-bundle": "~2.0",
-        "friendsofsymfony/rest-bundle": "~1.4",
-        "friendsofsymfony/http-cache-bundle": "~1.0"
+        "php": "^7.1.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "friendsofsymfony/http-cache-bundle": "^2.8",
+        "friendsofsymfony/rest-bundle": "^2.6",
+        "gedmo/doctrine-extensions": "^2.4",
+        "guzzlehttp/psr7": "^1.6",
+        "jms/serializer-bundle": "^3.5",
+        "knplabs/knp-paginator-bundle": "^5.1",
+        "liip/monitor-bundle": "^2.12",
+        "nelmio/api-doc-bundle": "^3.5",
+        "nelmio/cors-bundle": "^2.0",
+        "php-http/guzzle6-adapter": "^2.0",
+        "sensio/framework-extra-bundle": "^5.1",
+        "sensiolabs/security-checker": "^6.0",
+        "sonata-project/admin-bundle": "^3.58",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.13",
+        "sonata-project/media-bundle": "^3.23",
+        "sonata-project/translation-bundle": "^2.4",
+        "stof/doctrine-extensions-bundle": "^1.3",
+        "symfony/asset": "4.4.*",
+        "symfony/console": "4.4.*",
+        "symfony/dotenv": "4.4.*",
+        "symfony/expression-language": "4.4.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/form": "4.4.*",
+        "symfony/framework-bundle": "4.4.*",
+        "symfony/http-client": "4.4.*",
+        "symfony/intl": "4.4.*",
+        "symfony/mailer": "4.4.*",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/orm-pack": "*",
+        "symfony/process": "4.4.*",
+        "symfony/security-bundle": "4.4.*",
+        "symfony/serializer-pack": "*",
+        "symfony/translation": "4.4.*",
+        "symfony/twig-pack": "^1.0",
+        "symfony/validator": "4.4.*",
+        "symfony/web-link": "4.4.*",
+        "symfony/yaml": "4.4.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.6",
-        "sensio/generator-bundle": "~2.3",
-        "fabpot/php-cs-fixer": "~1.3",
-        "hautelook/alice-bundle": "~0.2",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "fabpot/goutte": "2.0.4"
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookRootPackageInstall"
-        ],
-        "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
-        ],
-        "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
-        ]
+        "hautelook/alice-bundle": "^2.7",
+        "symfony/debug-pack": "*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/profiler-pack": "^1.0",
+        "symfony/test-pack": "^1.0",
+        "symfony/web-server-bundle": "4.4.*"
     },
     "config": {
-        "bin-dir": "bin",
-        "discard-changes": true
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*",
+        "egeloen/ckeditor-bundle": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "ckeditor:install --clear=drop": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
+        },
+        "post-install-cmd": [
+            "@auto-scripts",
+            "cp public/bundles/sonatatranslation/img/flags/ua.png public/bundles/sonatatranslation/img/flags/uk.png"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
     },
     "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web",
-        "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.6-dev"
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.4.*"
         }
     }
 }
