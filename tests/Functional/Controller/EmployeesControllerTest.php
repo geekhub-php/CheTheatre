@@ -23,49 +23,49 @@ class EmployeesControllerTest extends AbstractController
         $this->restRequest('/api/employees/nonexistent-slug/roles', 'GET', 404);
     }
 
-    /**
-     * @dataProvider providerEmployeesResponseFields
-     */
-    public function testEmployeesResponseFields($field)
+    public function testEmployeesResponseFields()
     {
         $this->restRequest('/api/employees');
 
-        $this->assertContains($field, $this->getSessionClient()->getResponse()->getContent());
+        $content = $this->getSessionClient()->getResponse()->getContent();
+        foreach ($this->getFields() as $field) {
+            $this->assertContains($field, $content);
+        }
     }
 
-    public function providerEmployeesResponseFields()
+    public function getFields()
     {
         return [
-            ['employees'],
-            ['first_name'],
-            ['last_name'],
-            ['dob'],
-            ['position'],
-            ['biography'],
-            ['slug'],
-            ['avatar'],
-            ['reference'],
-            ['employee_small'],
-            ['employee_big'],
-            ['url'],
-            ['properties'],
-            ['alt'],
-            ['title'],
-            ['src'],
-            ['width'],
-            ['height'],
-            ['created_at'],
-            ['updated_at'],
-            ['page'],
-            ['count'],
-            ['total_count'],
-            ['_links'],
-            ['self'],
-            ['first'],
-            ['prev'],
-            ['next'],
-            ['last'],
-            ['href'],
+            'employees',
+            'first_name',
+            'last_name',
+            'dob',
+            'position',
+            'biography',
+            'slug',
+            'avatar',
+            'reference',
+            'employee_small',
+            'employee_big',
+            'url',
+            'properties',
+            'alt',
+            'title',
+            'src',
+            'width',
+            'height',
+            'created_at',
+            'updated_at',
+            'page',
+            'count',
+            'total_count',
+            '_links',
+            'self',
+            'first',
+            'prev',
+            'next',
+            'last',
+            'href',
         ];
     }
 }

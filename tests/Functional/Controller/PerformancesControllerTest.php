@@ -42,52 +42,52 @@ class PerformancesControllerTest extends AbstractController
         $this->restRequest('/api/performances/nonexistent-slug/performanceevents', 'GET', 404);
     }
 
-    /**
-     * @dataProvider providerPerformancesResponseFields
-     */
-    public function testPerformancesResponseFields($field)
+    public function testPerformancesResponseFields()
     {
         $this->restRequest('/api/performances');
-        $this->assertContains($field, $this->getSessionClient()->getResponse()->getContent());
+        $content = $this->getSessionClient()->getResponse()->getContent();
+        foreach ($this->getFields() as $field) {
+            $this->assertContains($field, $content);
+        }
     }
 
-    public function providerPerformancesResponseFields()
+    public function getFields()
     {
         return [
-            ['performances'],
-            ['title'],
-            ['type'],
-            ['description'],
-            ['premiere'],
-            ['mainPicture'],
-            ['sliderImage'],
-            ['performance_small'],
-            ['performance_big'],
-            ['slider_small'],
-            ['slider_slider'],
-            ['reference'],
-            ['url'],
-            ['properties'],
-            ['alt'],
-            ['title'],
-            ['src'],
-            ['width'],
-            ['height'],
-            ['slug'],
-            ['created_at'],
-            ['updated_at'],
-            ['links'],
-            ['rel'],
-            ['page'],
-            ['count'],
-            ['total_count'],
-            ['_links'],
-            ['self'],
-            ['first'],
-            ['prev'],
-            ['next'],
-            ['last'],
-            ['href'],
+            'performances',
+            'title',
+            'type',
+            'description',
+            'premiere',
+            'mainPicture',
+            'sliderImage',
+            'performance_small',
+            'performance_big',
+            'slider_small',
+            'slider_slider',
+            'reference',
+            'url',
+            'properties',
+            'alt',
+            'title',
+            'src',
+            'width',
+            'height',
+            'slug',
+            'created_at',
+            'updated_at',
+            'links',
+            'rel',
+            'page',
+            'count',
+            'total_count',
+            '_links',
+            'self',
+            'first',
+            'prev',
+            'next',
+            'last',
+            'href',
         ];
     }
 }

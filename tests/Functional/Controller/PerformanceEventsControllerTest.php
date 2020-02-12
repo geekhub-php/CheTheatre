@@ -16,48 +16,48 @@ class PerformanceEventsControllerTest extends AbstractController
         $this->restRequest('/api/performanceevents/100500', 'GET', 404);
     }
 
-    /**
-     * @dataProvider providerPerformanceEventsResponseFields
-     */
-    public function testPerformanceEventsResponseFields($field)
+    public function testPerformanceEventsResponseFields()
     {
         $this->restRequest('/api/performanceevents');
-        $this->assertContains($field, $this->getSessionClient()->getResponse()->getContent());
+        $content = $this->getSessionClient()->getResponse()->getContent();
+        foreach ($this->getFields() as $field) {
+            $this->assertContains($field, $content);
+        }
     }
 
-    public function providerPerformanceEventsResponseFields()
+    public function getFields()
     {
         return [
-            ['performance_events'],
-            ['id'],
-            ['performance'],
-            ['title'],
-            ['type'],
-            ['description'],
-            ['premiere'],
-            ['mainPicture'],
-            ['sliderImage'],
-            ['performance_small'],
-            ['performance_big'],
-            ['slider_small'],
-            ['slider_slider'],
-            ['reference'],
-            ['url'],
-            ['properties'],
-            ['alt'],
-            ['title'],
-            ['src'],
-            ['width'],
-            ['height'],
-            ['slug'],
-            ['created_at'],
-            ['updated_at'],
-            ['date_time'],
-            ['year'],
-            ['month'],
-            ['day'],
-            ['time'],
-            ['count']
+            'performance_events',
+            'id',
+            'performance',
+            'title',
+            'type',
+            'description',
+            'premiere',
+            'mainPicture',
+            'sliderImage',
+            'performance_small',
+            'performance_big',
+            'slider_small',
+            'slider_slider',
+            'reference',
+            'url',
+            'properties',
+            'alt',
+            'title',
+            'src',
+            'width',
+            'height',
+            'slug',
+            'created_at',
+            'updated_at',
+            'date_time',
+            'year',
+            'month',
+            'day',
+            'time',
+            'count',
         ];
     }
 }
