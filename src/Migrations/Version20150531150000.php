@@ -2,19 +2,13 @@
 
 namespace Application\Migrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\StringType;
+use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 class Version20150531150000 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
-    public function up(Schema $schema)
+    public function up(Schema $schema) : void
     {
         $schema->getTable('employees')->addColumn('createdBy', 'string', ['length' => 255, 'default' => NULL, 'notnull' => false]);
         $schema->getTable('employees')->addColumn('updatedBy', 'string', ['length' => 255, 'default' => NULL, 'notnull' => false]);
@@ -45,10 +39,7 @@ class Version20150531150000 extends AbstractMigration
         $schema->getTable('tags')->addColumn('deletedBy', 'string', ['length' => 255, 'default' => NULL, 'notnull' => false]);
     }
 
-    /**
-     * @param Schema $schema
-     */
-    public function down(Schema $schema)
+    public function down(Schema $schema) : void
     {
     }
 }

@@ -1,0 +1,14 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        {% if object.buyTicketLink %}
+            <a href="{{ qr_code_data_uri(object.buyTicketLink, { writer: 'svg', size: 1024 }) }}" download>
+                Download qr 1024
+            </a><br>
+            <a href="{{ qr_code_data_uri(object.buyTicketLink, { writer: 'svg', size: 512 }) }}" download>
+                Download qr 512
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
