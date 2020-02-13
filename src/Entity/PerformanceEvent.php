@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -119,6 +120,14 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @Accessor(getter="getTime")
      */
     private $time;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Type("string")
+     * @Expose
+     */
+    private $buyTicketLink;
 
     /**
      * @var ArrayCollection
@@ -286,5 +295,16 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     public function setVenue($venue)
     {
         $this->venue = $venue;
+    }
+
+    public function getBuyTicketLink(): ?string
+    {
+        return $this->buyTicketLink;
+    }
+
+    public function setBuyTicketLink(?string $buyTicketLink): self
+    {
+        $this->buyTicketLink = $buyTicketLink;
+        return $this;
     }
 }

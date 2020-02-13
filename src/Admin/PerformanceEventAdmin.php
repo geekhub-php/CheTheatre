@@ -41,6 +41,7 @@ class PerformanceEventAdmin extends AbstractAdmin
                 'choices'     => PerformanceEvent::$venues,
                 'placeholder' => 'choose_an_option',
             ])
+            ->add('buyTicketLink')
         ;
     }
 
@@ -55,6 +56,7 @@ class PerformanceEventAdmin extends AbstractAdmin
             ->add('performance')
             ->add('dateTime')
             ->add('venue', null, ['template' => "App:SonataAdmin:list_field.html.twig"])
+            ->add('buyTicketLink', 'string', ['template' => 'bundles/SonataAdmin/qr_list.html.twig'])
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],

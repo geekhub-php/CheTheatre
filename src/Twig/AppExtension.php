@@ -4,6 +4,7 @@ namespace App\Twig;
 
 use App\Entity\Tag;
 use Doctrine\ORM\EntityManager;
+use Twig\TwigFunction;
 
 class AppExtension extends \Twig_Extension
 {
@@ -20,7 +21,7 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('allTagsAsString', array($this, 'allTagsAsString')),
+            new TwigFunction('allTagsAsString', array($this, 'allTagsAsString')),
         );
     }
 
