@@ -26,7 +26,3 @@ app.swagger_ui:
 #history:
 #    type: rest
 #    resource: AppBundle\Controller\HistoryController
-
-_monitor:
-    resource: "@LiipMonitorBundle/Resources/config/routing.xml"
-    prefix: /monitor/health

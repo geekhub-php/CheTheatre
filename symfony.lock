@@ -265,24 +265,6 @@
     "kriswallsmith/buzz": {
         "version": "v0.16.1"
     },
-    "laminas/laminas-diagnostics": {
-        "version": "1.6.0"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.0.1"
-    },
-    "liip/monitor-bundle": {
-        "version": "2.6",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.6",
-            "ref": "02ad65038eceb5231c73a530b67beedd955c40ed"
-        },
-        "files": [
-            "config/packages/monitor.yaml"
-        ]
-    },
     "monolog/monolog": {
         "version": "2.0.2"
     },
