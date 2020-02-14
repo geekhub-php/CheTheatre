@@ -1,10 +1,4 @@
 # This file is a "template" of what your parameters.yml file should look like
 parameters:
-    admin_dashboard_base_url: /admin
-    sonata_admin.title: 'CheTheatre Project'
-    sonata_admin.logo_title: bundles/sonataadmin/logo_title.png
-    api_domain: api.chetheatre.local
-    nelmio_cors.origin: ['*']
-    cdn_domain: http://127.0.0.1:8000
     users:
         admin: { password: admin, roles: 'ROLE_SUPER_ADMIN'}

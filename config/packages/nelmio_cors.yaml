@@ -1,6 +1,6 @@
 nelmio_cors:
     defaults:
-        allow_origin: "%nelmio_cors.origin%"
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
         allow_headers: ['*']
         allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
         expose_headers: ['*']
