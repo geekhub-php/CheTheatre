@@ -92,6 +92,7 @@ class PerformanceAdmin extends AbstractAdmin
                     'format' => "dd/MM/yyyy HH:mm",
                 ]
             )
+            ->add('seasons')
             ->add('roles', CollectionType::class,
                 [
                     'required' => false,
@@ -132,6 +133,7 @@ class PerformanceAdmin extends AbstractAdmin
             ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
             ->addIdentifier('title')
             ->add('type')
+            ->add('seasons')
             ->add('premiere')
             ->add('festival')
         ;
@@ -148,6 +150,7 @@ class PerformanceAdmin extends AbstractAdmin
             ->add('title')
             ->add('type')
             ->add('festival')
+            ->add('seasons')
         ;
     }
 }
