@@ -49,6 +49,12 @@ class SeasonsController extends AbstractController
     /**
      * @Route("/{number}/performances", name="get_season_performances", methods={"GET"})
      * @Entity("season", expr="repository.findOneByNumber(number)")
+     * @SWG\Parameter(
+     *     name="number",
+     *     in="path",
+     *     type="number",
+     *     description="Season number. -1 for all performances for all seasons, 0 for most recent season"
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns performances for choosen season",

@@ -11,7 +11,7 @@ class AdminPerformanceControllerTest extends AbstractAdminController
         $this->logIn();
 
         $this->request('/admin/Performance/list', 'GET', 200);
-        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Type', 'Premiere', 'Festival']);
+        $this->assertAdminListPageHasColumns(['Main Picture', 'Title', 'Type', 'Seasons', 'Premiere', 'Festival']);
     }
 
     public function testPerformanceCreateAction()

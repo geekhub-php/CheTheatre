@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\RepertoireSeason;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * @method RepertoireSeason|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,9 +14,14 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class RepertoireSeasonRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    const MULTI_SEASON = -1;
+    const CURRENT_SEASON = 0;
+    private $performanceRepository;
+
+    public function __construct(ManagerRegistry $registry, PerformanceRepository $performanceRepository)
     {
         parent::__construct($registry, RepertoireSeason::class);
+        $this->performanceRepository = $performanceRepository;
     }
 
     /**
@@ -51,39 +55,20 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
         return array_shift($all);
     }
 
-    public function findOneByNumber($number)
+    public function getMultiSeason(): RepertoireSeason
     {
-        if ('current' === $number) return $this->findCurrentSeason();
+        $multiSeason = new RepertoireSeason();
+        $multiSeason->setNumber(self::MULTI_SEASON);
+        $multiSeason->setPerformances($this->performanceRepository->findAllWithinSeasons());
+
+        return $multiSeason;
+    }
+
+    public function findOneByNumber($number): ?RepertoireSeason
+    {
+        if (self::CURRENT_SEASON == $number) return $this->findCurrentSeason();
+        if (self::MULTI_SEASON == $number) return $this->getMultiSeason();
 
         return $this->findOneBy(['number' => $number]);
     }
-
-    // /**
-    //  * @return RepertoireSeason[] Returns an array of RepertoireSeason objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?RepertoireSeason
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

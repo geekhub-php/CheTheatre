@@ -40,7 +40,7 @@ class RepertoireSeason
     private $number;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Performance", mappedBy="seasons")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Performance", mappedBy="seasons", fetch="EAGER")
      */
     private $performances;
 
@@ -101,6 +101,13 @@ class RepertoireSeason
     public function getPerformances(): Collection
     {
         return $this->performances;
+    }
+
+    public function setPerformances(iterable $performances)
+    {
+        if (is_array($performances)) $this->performances = new ArrayCollection($performances);
+        elseif ($performances instanceof Collection) $this->performances = $performances;
+        else throw new \InvalidArgumentException('Argument must be array or Collection');
     }
 
     public function addPerformance(Performance $performance): self
