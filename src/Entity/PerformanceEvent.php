@@ -289,12 +289,10 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
         return $this->venue;
     }
 
-    /**
-     * @param string $venue
-     */
-    public function setVenue($venue)
+    public function setVenue(string $venue): self
     {
         $this->venue = $venue;
+        return $this;
     }
 
     public function getBuyTicketLink(): ?string

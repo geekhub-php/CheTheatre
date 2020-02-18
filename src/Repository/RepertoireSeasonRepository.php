@@ -48,8 +48,35 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
         }, $result);
     }
 
+    public function findSeasonByDate(\DateTime $dateTime): ?RepertoireSeason
+    {
+        $season = $this->createQueryBuilder('rs')
+            ->where('rs.startDate < :startDate')
+            ->andWhere('rs.endDate > :endDate')
+            ->setParameter('startDate', $dateTime)
+            ->setParameter('endDate', $dateTime)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult();
+
+        if ($season) return $season;
+
+        $season = $this->createQueryBuilder('rs')
+            ->where('rs.startDate > :startDate')
+            ->setParameter('startDate', $dateTime)
+            ->orderBy('rs.startDate', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult();
+
+        return $season;
+    }
+
     public function findCurrentSeason(): ?RepertoireSeason
     {
+        $season = $this->findSeasonByDate(new \DateTime());
+        if ($season) return $season;
+
         $all = $this->findAllNotEmpty();
         if (empty($all)) return null;
         return array_shift($all);
