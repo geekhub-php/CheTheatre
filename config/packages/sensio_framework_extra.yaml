@@ -2,4 +2,4 @@ sensio_framework_extra:
     view:    { annotations: true }
     request:
         converters: true
-        auto_convert: false
+        auto_convert: true

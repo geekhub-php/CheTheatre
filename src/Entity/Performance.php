@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Model\LinksTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -162,11 +164,16 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     protected $translations;
 
     /**
-     * @var \App\Entity\Festival
+     * @var \App\Entity\History
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\History", inversedBy="performances")
      */
     protected $festival;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\RepertoireSeason", inversedBy="performances")
+     */
+    private $seasons;
 
     /**
      * Constructor
@@ -174,9 +181,10 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function __construct()
     {
         parent::__construct();
-        $this->performanceEvents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performanceEvents = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
+        $this->seasons = new ArrayCollection();
     }
 
     /**
@@ -482,6 +490,32 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function setFestival($festival)
     {
         $this->festival = $festival;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RepertoireSeason[]
+     */
+    public function getSeasons(): Collection
+    {
+        return $this->seasons;
+    }
+
+    public function addSeason(RepertoireSeason $season): self
+    {
+        if (!$this->seasons->contains($season)) {
+            $this->seasons[] = $season;
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(RepertoireSeason $season): self
+    {
+        if ($this->seasons->contains($season)) {
+            $this->seasons->removeElement($season);
+        }
 
         return $this;
     }

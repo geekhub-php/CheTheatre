@@ -14,12 +14,6 @@
     <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px"><a href="http://geekhub.ck.ua/" rel="noreferrer" target="_blank">GeekHub project</a></p>
 {% endblock %}
 
-{% block sonata_sidebar_search %}
-{% endblock %}
-
-{% block sonata_page_content_nav %}
-{% endblock %}
-
 {% block stylesheets %}
     {{  parent() }}
     <style>
@@ -27,10 +21,4 @@
             border-left: 0 !important;
         }
     </style>
-{# {% stylesheets#}
-{#    '@SonataTranslationBundle/Resources/public/css/sonata-translation.css'#}
-{#    %}#}
-
-{#    <link rel="stylesheet" href="{{ asset_url }}" />#}
-{#    {% endstylesheets %}#}
 {% endblock %}

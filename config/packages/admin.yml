@@ -32,6 +32,13 @@ services:
         calls:
            - [ setTranslationDomain, [messages]]
 
+    admin.repertoire_season:
+      class: App\Admin\RepertoireSeasonAdmin
+      arguments: [~, App\Entity\RepertoireSeason, ~]
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: RepertoireSeason }
+      public: true
+
     sonata.admin.performanceEvent:
         class: App\Admin\PerformanceEventAdmin
         tags:

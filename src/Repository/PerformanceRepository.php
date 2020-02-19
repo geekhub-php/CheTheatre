@@ -11,4 +11,16 @@ class PerformanceRepository extends AbstractRepository
     {
         parent::__construct($registry, Performance::class);
     }
+
+    /**
+     * @return array|Performance[]
+     */
+    public function findAllWithinSeasons()
+    {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.seasons', 'ps')
+            ->groupBy('p.id')
+            ->getQuery()
+            ->execute();
+    }
 }

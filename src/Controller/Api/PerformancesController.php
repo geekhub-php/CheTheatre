@@ -36,13 +36,18 @@ class PerformancesController extends AbstractController
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      */
-    public function cgetAction(ParamFetcher $paramFetcher)
+    public function getList(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
 
         $performances = $em
-                        ->getRepository('App:Performance')
-                        ->findBy(['festival' => null], ['premiere' => 'DESC'], $paramFetcher->get('limit'), ($paramFetcher->get('page')-1) * $paramFetcher->get('limit'));
+            ->getRepository('App:Performance')
+            ->findBy(
+                ['festival' => null],
+                ['premiere' => 'DESC'],
+                $paramFetcher->get('limit'),
+                ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+            );
 
         $performancesTranslated = array();
 

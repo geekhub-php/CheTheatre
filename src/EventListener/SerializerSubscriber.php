@@ -72,6 +72,7 @@ class SerializerSubscriber implements EventSubscriberInterface
     {
         /** @var Performance $performance */
         $performance = $event->getObject();
+        if (!$performance instanceof Performance) return;
 
         if ($performance->getMainPicture()) {
             $mainImageLinks = $this->mediaController->getMediumFormatsAction($performance->getMainPicture());

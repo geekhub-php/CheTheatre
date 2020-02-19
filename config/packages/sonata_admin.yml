@@ -3,7 +3,8 @@ sonata_admin:
     title_logo: "sonata-logo.png"
     security:
        handler: sonata.admin.security.handler.role
-
+    options:
+        mosaic_background: '/logo.png'
     templates:
         layout: bundles/SonataAdmin/standard_layout.html.twig
         edit: bundles/SonataAdmin/CRUD/edit.html.twig
