@@ -36,6 +36,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->having('performanceCount > 0')
             ->orderBy('r.number', 'DESC')
             ->getQuery()
+            ->enableResultCache(60*60*24)
             ->execute()
         ;
 
@@ -57,6 +58,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->setParameter('endDate', $dateTime)
             ->setMaxResults(1)
             ->getQuery()
+            ->enableResultCache(60*60*24)
             ->getSingleResult();
 
         if ($season) return $season;
@@ -67,6 +69,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->orderBy('rs.startDate', 'ASC')
             ->setMaxResults(1)
             ->getQuery()
+            ->enableResultCache(60*60*24)
             ->getSingleResult();
 
         return $season;

@@ -1,20 +1,27 @@
 doctrine:
     orm:
         auto_generate_proxy_classes: false
-        metadata_cache_driver:
-            type: pool
-            pool: doctrine.system_cache_pool
-        query_cache_driver:
-            type: pool
-            pool: doctrine.system_cache_pool
-        result_cache_driver:
-            type: pool
-            pool: doctrine.result_cache_pool
+        entity_managers:
+            default:
+                second_level_cache:
+                    enabled: true
+                metadata_cache_driver:
+                    type: pool
+                    pool: doctrine.meta_cache_pool
+                query_cache_driver:
+                    type: pool
+                    pool: doctrine.query_cache_pool
+                result_cache_driver:
+                    type: pool
+                    pool: doctrine.result_cache_pool
 
 framework:
     cache:
+        default_memcached_provider: 'memcached://localhost'
         pools:
             doctrine.result_cache_pool:
-                adapter: cache.app
-            doctrine.system_cache_pool:
-                adapter: cache.system
+                adapter: cache.adapter.memcached
+            doctrine.query_cache_pool:
+                adapter: cache.adapter.memcached
+            doctrine.meta_cache_pool:
+                adapter: cache.adapter.memcached

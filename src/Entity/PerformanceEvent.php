@@ -18,7 +18,10 @@ use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
- * @ORM\Table(name="performance_schedule")
+ * @ORM\Table(name="performance_schedule", indexes={
+ *     @ORM\Index(name="date_time_idx", columns={"dateTime"}),
+ *     @ORM\Index(name="performance_dateTime_idx", columns={"performance_id", "dateTime"})
+ * })
  * @ORM\Entity(repositoryClass="App\Repository\PerformanceEventRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")

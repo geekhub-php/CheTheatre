@@ -25,6 +25,7 @@ class PostRepository extends AbstractRepository
             ->setFirstResult($page)
             ->orderBy('u.createdAt', 'DESC')
             ->getQuery()
+            ->enableResultCache(60*60*24)
             ->execute()
         ;
 
@@ -42,7 +43,7 @@ class PostRepository extends AbstractRepository
         $qb = $this->getTaggedPostsQuery($tagSlug);
         $qb->select($qb->expr()->count('u'));
 
-        $query = $qb->getQuery();
+        $query = $qb->getQuery()->enableResultCache(60*60*24);
 
         return $query->getSingleScalarResult();
     }

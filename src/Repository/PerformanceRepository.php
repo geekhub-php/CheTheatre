@@ -21,6 +21,7 @@ class PerformanceRepository extends AbstractRepository
             ->innerJoin('p.seasons', 'ps')
             ->groupBy('p.id')
             ->getQuery()
+            ->enableResultCache(60*60*24)
             ->execute();
     }
 }

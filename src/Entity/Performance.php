@@ -128,7 +128,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     /**
      * @var \App\Entity\GalleryHasMedia
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\GalleryHasMedia", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\GalleryHasMedia", cascade={"persist"}, fetch="EAGER")
      * @ORM\JoinTable(name="performance_galleryHasMedia",
      *     joinColumns={@ORM\JoinColumn(name="performance_id",referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="galleryHasMedia_id",referencedColumnName="id")}

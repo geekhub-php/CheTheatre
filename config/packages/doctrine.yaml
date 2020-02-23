@@ -10,6 +10,17 @@ doctrine:
         entity_managers:
             default:
                 auto_mapping: true
+                second_level_cache:
+                    enabled: true
+                metadata_cache_driver:
+                    type: pool
+                    pool: doctrine.meta_cache_pool
+                query_cache_driver:
+                    type: pool
+                    pool: doctrine.query_cache_pool
+                result_cache_driver:
+                    type: pool
+                    pool: doctrine.result_cache_pool
                 naming_strategy: doctrine.orm.naming_strategy.default
                 mappings:
                     App:
@@ -30,3 +41,13 @@ doctrine:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
+
+framework:
+    cache:
+        pools:
+            doctrine.result_cache_pool:
+                adapter: cache.adapter.array
+            doctrine.query_cache_pool:
+                adapter: cache.adapter.array
+            doctrine.meta_cache_pool:
+                adapter: cache.adapter.array

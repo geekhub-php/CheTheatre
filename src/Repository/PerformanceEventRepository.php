@@ -25,7 +25,7 @@ class PerformanceEventRepository extends AbstractRepository
             $qb->join('u.performance', 'p')->andWhere('p.slug = :slug')->setParameter('slug', $performanceSlug);
         }
 
-        $query = $qb->getQuery();
+        $query = $qb->getQuery()->enableResultCache(60*60);
 
         return $query->execute();
     }
