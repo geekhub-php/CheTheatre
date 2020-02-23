@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Migrations;
+namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\StringType;
@@ -8,6 +8,11 @@ use Doctrine\Migrations\AbstractMigration;
 
 class Version20150531150000 extends AbstractMigration
 {
+    public function getDescription() : string
+    {
+        return '';
+    }
+
     public function up(Schema $schema) : void
     {
         $schema->getTable('employees')->addColumn('createdBy', 'string', ['length' => 255, 'default' => NULL, 'notnull' => false]);

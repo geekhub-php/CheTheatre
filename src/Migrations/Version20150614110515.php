@@ -1,12 +1,17 @@
 <?php
 
-namespace Application\Migrations;
+namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 class Version20150614110515 extends AbstractMigration
 {
+    public function getDescription() : string
+    {
+        return '';
+    }
+
     public function up(Schema $schema) : void
     {
         $table = $schema->getTable('history');
