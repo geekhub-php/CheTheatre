@@ -65,9 +65,9 @@ abstract class AbstractController extends WebTestCase
         return $crawler;
     }
 
-    protected function restRequest(string $path, string $method = 'GET', int $expectedStatusCode = 200)
+    protected function restRequest(string $path, string $method = 'GET', int $expectedStatusCode = 200, array $headers = [])
     {
-        return $this->request($path, $method, $expectedStatusCode, ['HTTP_accept' => 'application/json']);
+        return $this->request($path, $method, $expectedStatusCode, array_merge(['HTTP_accept' => 'application/json'], $headers));
     }
 
     /**

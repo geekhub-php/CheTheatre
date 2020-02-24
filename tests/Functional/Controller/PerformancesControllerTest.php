@@ -25,6 +25,11 @@ class PerformancesControllerTest extends AbstractController
     {
         $slug = $this->getEm()->getRepository('App:Performance')->findOneBy([])->getSlug();
         $this->restRequest('/api/performances/'.$slug);
+
+        $eTag = $this->getSessionClient()->getResponse()->headers->get('Etag');
+        $this->assertNotNull($eTag);
+        $this->restRequest('/api/performances/'.$slug, 'GET', 304, ['HTTP_if_none_match' => $eTag]);
+
         $this->restRequest('/api/performances/nonexistent-slug', 'GET', 404);
     }
 
