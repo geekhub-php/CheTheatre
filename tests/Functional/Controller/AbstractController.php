@@ -31,7 +31,7 @@ abstract class AbstractController extends WebTestCase
     public function getEm()
     {
         if (!$this->em) {
-            $this->em = $this->getContainer()->get('doctrine')->getManager();
+            $this->em = $this->getContainer()->get('doctrine.orm.entity_manager');
         }
 
         return $this->em;
