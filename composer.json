@@ -3,7 +3,7 @@
     "description": "Web api for Ukrainian Cherkasy State Theatre",
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
