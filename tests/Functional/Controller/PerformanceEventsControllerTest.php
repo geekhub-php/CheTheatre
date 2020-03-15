@@ -18,7 +18,7 @@ class PerformanceEventsControllerTest extends AbstractController
 
     public function testPerformanceEventsResponseFields()
     {
-        $this->restRequest('/api/performanceevents');
+        $this->restRequest('/api/performanceevents?fromDate=01-02-2020&toDate=29-02-2020');
         $content = $this->getSessionClient()->getResponse()->getContent();
         foreach ($this->getFields() as $field) {
             $this->assertContains($field, $content);
