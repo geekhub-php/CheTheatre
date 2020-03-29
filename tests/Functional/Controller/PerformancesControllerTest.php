@@ -45,49 +45,54 @@ class PerformancesControllerTest extends AbstractController
     public function testPerformancesResponseFields()
     {
         $this->restRequest('/api/performances');
-        $content = $this->getSessionClient()->getResponse()->getContent();
-        foreach ($this->getFields() as $field) {
-            $this->assertContains($field, $content);
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+
+        $this->assertEquals(
+            count($this->getListFields()),
+            count(array_keys($response))
+        );
+
+        foreach ($this->getListFields() as $field) {
+            $this->assertArrayHasKey($field, $response);
+        }
+
+        $firstEntity = array_shift($response['performances']);
+
+        $this->assertEquals(
+            count($this->getEntityFields()),
+            count(array_keys($firstEntity))
+        );
+
+        foreach ($this->getEntityFields() as $field) {
+            $this->assertArrayHasKey($field, $firstEntity);
         }
     }
 
-    public function getFields()
+    private function getListFields()
     {
-        return [
+        return array (
+            '_links',
+            'page',
+            'total_count',
             'performances',
+            'count',
+        );
+    }
+
+    private function getEntityFields()
+    {
+        return array (
+            'locale',
             'title',
             'type',
             'description',
             'premiere',
             'mainPicture',
             'sliderImage',
-            'performance_small',
-            'performance_big',
-            'slider_small',
-            'slider_slider',
-            'reference',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
             'slug',
             'created_at',
             'updated_at',
             'links',
-            'rel',
-            'page',
-            'count',
-            'total_count',
-            '_links',
-            'self',
-            'first',
-            'prev',
-            'next',
-            'last',
-            'href',
-        ];
+        );
     }
 }

@@ -26,46 +26,54 @@ class EmployeesControllerTest extends AbstractController
     public function testEmployeesResponseFields()
     {
         $this->restRequest('/api/employees');
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
 
-        $content = $this->getSessionClient()->getResponse()->getContent();
-        foreach ($this->getFields() as $field) {
-            $this->assertContains($field, $content);
+        $this->assertEquals(
+            count($this->getListFields()),
+            count(array_keys($response))
+        );
+
+        foreach ($this->getListFields() as $field) {
+            $this->assertArrayHasKey($field, $response);
+        }
+
+        $firstEntity = array_shift($response['employees']);
+
+        $this->assertEquals(
+            count($this->getEntityFields()),
+            count(array_keys($firstEntity))
+        );
+
+        foreach ($this->getEntityFields() as $field) {
+            $this->assertArrayHasKey($field, $firstEntity);
         }
     }
 
-    public function getFields()
+    private function getEntityFields()
     {
-        return [
-            'employees',
+        return array (
+            'locale',
             'first_name',
             'last_name',
             'dob',
             'position',
             'biography',
+            'gallery',
             'slug',
             'avatar',
-            'reference',
-            'employee_small',
-            'employee_big',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
             'created_at',
             'updated_at',
-            'page',
-            'count',
-            'total_count',
+        );
+    }
+
+    private function getListFields()
+    {
+        return array (
             '_links',
-            'self',
-            'first',
-            'prev',
-            'next',
-            'last',
-            'href',
-        ];
+            'page',
+            'total_count',
+            'employees',
+            'count',
+        );
     }
 }

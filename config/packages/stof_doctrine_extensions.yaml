@@ -5,6 +5,7 @@ stof_doctrine_extensions:
     translation_fallback: true
     orm:
         default:
+            blameable: true
             translatable: true
             softdeleteable: true
             sluggable: true

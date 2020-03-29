@@ -19,45 +19,51 @@ class PerformanceEventsControllerTest extends AbstractController
     public function testPerformanceEventsResponseFields()
     {
         $this->restRequest('/api/performanceevents?fromDate=01-02-2020&toDate=29-02-2020');
-        $content = $this->getSessionClient()->getResponse()->getContent();
-        foreach ($this->getFields() as $field) {
-            $this->assertContains($field, $content);
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+
+        $this->assertEquals(
+            count($this->getListFields()),
+            count(array_keys($response))
+        );
+
+        foreach ($this->getListFields() as $field) {
+            $this->assertArrayHasKey($field, $response);
+        }
+
+        $firstEntity = array_shift($response['performance_events']);
+
+        $this->assertEquals(
+            count($this->getEntityFields()),
+            count(array_keys($firstEntity))
+        );
+
+        foreach ($this->getEntityFields() as $field) {
+            $this->assertArrayHasKey($field, $firstEntity);
         }
     }
 
-    public function getFields()
+    private function getEntityFields()
     {
-        return [
-            'performance_events',
+        return array (
+            'locale',
             'id',
             'performance',
-            'title',
-            'type',
-            'description',
-            'premiere',
-            'mainPicture',
-            'sliderImage',
-            'performance_small',
-            'performance_big',
-            'slider_small',
-            'slider_slider',
-            'reference',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
-            'slug',
-            'created_at',
-            'updated_at',
             'date_time',
+            'venue',
             'year',
             'month',
             'day',
             'time',
+            'created_at',
+            'updated_at',
+        );
+    }
+
+    private function getListFields()
+    {
+        return array (
+            'performance_events',
             'count',
-        ];
+        );
     }
 }
