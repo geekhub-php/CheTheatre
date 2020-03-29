@@ -71,28 +71,28 @@ class PerformancesControllerTest extends AbstractController
     private function getListFields()
     {
         return array (
-            0 => '_links',
-            1 => 'page',
-            2 => 'total_count',
-            3 => 'performances',
-            4 => 'count',
+            '_links',
+            'page',
+            'total_count',
+            'performances',
+            'count',
         );
     }
 
     private function getEntityFields()
     {
         return array (
-            0 => 'locale',
-            1 => 'title',
-            2 => 'type',
-            3 => 'description',
-            4 => 'premiere',
-            5 => 'mainPicture',
-            6 => 'sliderImage',
-            7 => 'slug',
-            8 => 'created_at',
-            9 => 'updated_at',
-            10 => 'links',
+            'locale',
+            'title',
+            'type',
+            'description',
+            'premiere',
+            'mainPicture',
+            'sliderImage',
+            'slug',
+            'created_at',
+            'updated_at',
+            'links',
         );
     }
 }
