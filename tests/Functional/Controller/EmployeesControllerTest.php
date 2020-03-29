@@ -76,42 +76,4 @@ class EmployeesControllerTest extends AbstractController
             'count',
         );
     }
-
-    public function getFields()
-    {
-        return [
-            'employees',
-            'first_name',
-            'last_name',
-            'dob',
-            'position',
-            'biography',
-            'slug',
-            'avatar',
-            'reference',
-            'employee_small',
-            'employee_big',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
-            'created_at',
-            'updated_at',
-            'created_by',
-            'updated_by',
-            'page',
-            'count',
-            'total_count',
-            '_links',
-            'self',
-            'first',
-            'prev',
-            'next',
-            'last',
-            'href',
-        ];
-    }
 }
