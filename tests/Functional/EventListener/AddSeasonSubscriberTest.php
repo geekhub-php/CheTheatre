@@ -37,7 +37,9 @@ class AddSeasonSubscriberTest extends WebTestCase
         $performanceEvent = (new PerformanceEvent())
             ->setPerformance($performance)
             ->setDateTime(new \DateTime('2199-06-01 00:00:00'))
-            ->setVenue('moon');
+            ->setVenue('moon')
+            ->setCreatedBy('evil')
+            ->setUpdatedBy('god');
         $em->persist($performanceEvent);
         $em->flush();
 

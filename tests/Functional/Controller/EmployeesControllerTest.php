@@ -56,6 +56,8 @@ class EmployeesControllerTest extends AbstractController
             'height',
             'created_at',
             'updated_at',
+            'created_by',
+            'updated_by',
             'page',
             'count',
             'total_count',
