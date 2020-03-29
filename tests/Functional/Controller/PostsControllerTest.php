@@ -16,11 +16,30 @@ class PostsControllerTest extends AbstractController
         $this->restRequest('/api/posts/nonexistent-slug', 'GET', 404);
     }
 
-    public function testPostsResponseFields()
+    public function testPostListResponseFields()
     {
         $this->restRequest('/api/posts');
-        foreach ($this->getFields() as $field) {
-            $this->assertContains($field, $this->getSessionClient()->getResponse()->getContent());
+
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+
+        $this->assertEquals(
+            count($this->getListFields()),
+            count(array_keys($response))
+        );
+
+        foreach ($this->getListFields() as $field) {
+            $this->assertArrayHasKey($field, $response);
+        }
+
+        $firstEntity = array_shift($response['posts']);
+
+        $this->assertEquals(
+            count($this->getEntityFields()),
+            count(array_keys($firstEntity))
+        );
+
+        foreach ($this->getEntityFields() as $field) {
+            $this->assertArrayHasKey($field, $firstEntity);
         }
     }
 
@@ -53,39 +72,33 @@ class PostsControllerTest extends AbstractController
         $em->flush($secondPost);
     }
 
-    public function getFields()
+    private function getListFields()
     {
-        return [
+        return array (
+            '_links',
+            'page',
+            'total_count',
             'posts',
+            'count',
+        );
+    }
+
+    private function getEntityFields()
+    {
+        return array (
+            'locale',
             'title',
             'short_description',
             'text',
+            'main_picture',
             'mainPicture',
-            'reference',
-            'post_small',
-            'post_big',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
             'slug',
-            'tags',
-            'id',
             'created_at',
             'updated_at',
-            'page',
-            'count',
-            'total_count',
-            '_links',
-            'self',
-            'first',
-            'prev',
-            'next',
-            'last',
-            'href',
-        ];
+            'created_by',
+            'updated_by',
+            'tags',
+            'pinned',
+        );
     }
 }
