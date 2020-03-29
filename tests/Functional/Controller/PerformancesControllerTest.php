@@ -45,49 +45,54 @@ class PerformancesControllerTest extends AbstractController
     public function testPerformancesResponseFields()
     {
         $this->restRequest('/api/performances');
-        $content = $this->getSessionClient()->getResponse()->getContent();
-        foreach ($this->getFields() as $field) {
-            $this->assertContains($field, $content);
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+
+        $this->assertEquals(
+            count($this->getListFields()),
+            count(array_keys($response))
+        );
+
+        foreach ($this->getListFields() as $field) {
+            $this->assertArrayHasKey($field, $response);
+        }
+
+        $firstEntity = array_shift($response['performances']);
+
+        $this->assertEquals(
+            count($this->getEntityFields()),
+            count(array_keys($firstEntity))
+        );
+
+        foreach ($this->getEntityFields() as $field) {
+            $this->assertArrayHasKey($field, $firstEntity);
         }
     }
 
-    public function getFields()
+    private function getListFields()
     {
-        return [
-            'performances',
-            'title',
-            'type',
-            'description',
-            'premiere',
-            'mainPicture',
-            'sliderImage',
-            'performance_small',
-            'performance_big',
-            'slider_small',
-            'slider_slider',
-            'reference',
-            'url',
-            'properties',
-            'alt',
-            'title',
-            'src',
-            'width',
-            'height',
-            'slug',
-            'created_at',
-            'updated_at',
-            'links',
-            'rel',
-            'page',
-            'count',
-            'total_count',
-            '_links',
-            'self',
-            'first',
-            'prev',
-            'next',
-            'last',
-            'href',
-        ];
+        return array (
+            0 => '_links',
+            1 => 'page',
+            2 => 'total_count',
+            3 => 'performances',
+            4 => 'count',
+        );
+    }
+
+    private function getEntityFields()
+    {
+        return array (
+            0 => 'locale',
+            1 => 'title',
+            2 => 'type',
+            3 => 'description',
+            4 => 'premiere',
+            5 => 'mainPicture',
+            6 => 'sliderImage',
+            7 => 'slug',
+            8 => 'created_at',
+            9 => 'updated_at',
+            10 => 'links',
+        );
     }
 }

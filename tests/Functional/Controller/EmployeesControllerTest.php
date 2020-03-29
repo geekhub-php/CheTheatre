@@ -66,7 +66,7 @@ class EmployeesControllerTest extends AbstractController
         );
     }
 
-    public function getListFields()
+    private function getListFields()
     {
         return array (
             '_links',
