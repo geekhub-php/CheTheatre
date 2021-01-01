@@ -33,13 +33,11 @@ class PostsControllerTest extends AbstractController
 
         $firstEntity = array_shift($response['posts']);
 
-        $this->assertEquals(
-            count($this->getEntityFields()),
-            count(array_keys($firstEntity))
-        );
-
-        foreach ($this->getEntityFields() as $field) {
-            $this->assertArrayHasKey($field, $firstEntity);
+        foreach (array_keys($firstEntity) as $field) {
+            $this->assertTrue(
+                in_array($field, $this->getEntityFields()),
+                sprintf('Unexpected "%s" field in Post fields: %s', $field, implode(', ', $this->getEntityFields()))
+            );
         }
     }
 
