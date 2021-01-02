@@ -10,7 +10,7 @@ before_script:
   - composer install
   - cp .env.test.travis .env.test.local
   - bin/console doctrine:database:create --env=test
-  - mysql -u root chetheatre_test < 2020-01-30-theatre-dump.sql
+  - mysql -u root chetheatre_test < 2021-01-01-theatre-dump.sql
   - bin/console doctrine:migrations:migrate --no-interaction --env=test
   - bin/phpunit --version
 
