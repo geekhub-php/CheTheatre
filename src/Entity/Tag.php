@@ -94,7 +94,7 @@ class Tag extends AbstractPersonalTranslatable  implements TranslatableInterface
 
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: '';
     }
 
     /**

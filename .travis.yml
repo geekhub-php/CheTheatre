@@ -2,6 +2,10 @@ language: php
 php:
   - 7.4
 
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
 services:
   - mysql
 
@@ -10,11 +14,11 @@ before_script:
   - composer install
   - cp .env.test.travis .env.test.local
   - bin/console doctrine:database:create --env=test
-  - mysql -u root chetheatre_test < 2020-01-30-theatre-dump.sql
+  - mysql -u root chetheatre_test < 2021-01-01-theatre-dump.sql
   - bin/console doctrine:migrations:migrate --no-interaction --env=test
   - bin/phpunit --version
 
 script:
-  - bin/phpunit --coverage-clover=coverage.clover
+  - XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover

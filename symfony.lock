@@ -96,6 +96,9 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
+    },
     "easycorp/easy-log-handler": {
         "version": "1.0",
         "recipe": {
@@ -122,6 +125,12 @@
     },
     "exsyst/swagger": {
         "version": "v0.4.1"
+    },
+    "fakerphp/faker": {
+        "version": "v1.13.0"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.1"
     },
     "friendsofsymfony/ckeditor-bundle": {
         "version": "2.0",
@@ -363,6 +372,9 @@
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "0.4.10"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -371,6 +383,9 @@
     },
     "psr/http-client": {
         "version": "1.0.0"
+    },
+    "psr/http-factory": {
+        "version": "1.0.1"
     },
     "psr/http-message": {
         "version": "1.0.1"
@@ -452,9 +467,6 @@
             "config/packages/sonata_core.yaml"
         ]
     },
-    "sonata-project/datagrid-bundle": {
-        "version": "2.5.0"
-    },
     "sonata-project/doctrine-extensions": {
         "version": "1.5.1"
     },
@@ -466,6 +478,18 @@
     },
     "sonata-project/exporter": {
         "version": "2.0.1"
+    },
+    "sonata-project/form-extensions": {
+        "version": "1.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.4",
+            "ref": "bfc222606aea5418345af70104d974a25dc7c441"
+        },
+        "files": [
+            "config/packages/sonata_form.yaml"
+        ]
     },
     "sonata-project/media-bundle": {
         "version": "3.13",
@@ -492,6 +516,9 @@
         "files": [
             "config/packages/sonata_translation.yaml"
         ]
+    },
+    "sonata-project/twig-extensions": {
+        "version": "1.4.2"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
@@ -556,6 +583,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v5.0.3"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v5.0.3"
@@ -700,11 +730,17 @@
             "tests/.gitignore"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.20.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.13.1"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.13.1"
@@ -714,6 +750,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.20.0"
     },
     "symfony/process": {
         "version": "v5.0.3"
@@ -726,6 +765,9 @@
     },
     "symfony/property-info": {
         "version": "v5.0.3"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v4.4.18"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -779,6 +821,9 @@
     },
     "symfony/stopwatch": {
         "version": "v5.0.3"
+    },
+    "symfony/string": {
+        "version": "v5.2.1"
     },
     "symfony/templating": {
         "version": "v4.4.3"
@@ -893,6 +938,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.0.1"
+    },
+    "twig/string-extra": {
+        "version": "v3.1.1"
     },
     "twig/twig": {
         "version": "v3.0.1"

@@ -66,6 +66,8 @@ sonata_media:
         cloudfront:
             path:       "http://d2m6zqv2ffku71.cloudfront.net"
             distribution_id: E3CM3AY2JR0BVO
+            region: eu-central-1
+            version: '2020-05-31' # https://docs.aws.amazon.com/aws-sdk-php/v3/api/index.html
             key: "%env(S3_ACCESS_KEY)%"
             secret: "%env(S3_SECRET_KEY)%"
 

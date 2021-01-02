@@ -416,7 +416,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
 
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: '';
     }
 
     /**
