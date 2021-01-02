@@ -2,6 +2,10 @@ language: php
 php:
   - 7.4
 
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
 services:
   - mysql
 
@@ -15,6 +19,6 @@ before_script:
   - bin/phpunit --version
 
 script:
-  - bin/phpunit --coverage-clover=coverage.clover
+  - XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
