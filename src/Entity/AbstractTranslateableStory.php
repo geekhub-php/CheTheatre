@@ -205,6 +205,6 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: '';
     }
 }

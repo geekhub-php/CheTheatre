@@ -229,6 +229,6 @@ class Role extends AbstractPersonalTranslatable  implements TranslatableInterfac
 
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: '';
     }
 }
