@@ -14,6 +14,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class RepertoireSeasonRepository extends ServiceEntityRepository
 {
+    const ARCHIVE_SEASON = -2;
     const MULTI_SEASON = -1;
     const CURRENT_SEASON = 0;
     private $performanceRepository;
@@ -94,8 +95,23 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
         return $multiSeason;
     }
 
-    public function findOneByNumber($number): ?RepertoireSeason
+    public function getArchiveSeason(): RepertoireSeason
     {
+        if (!$currentSeason = $this->findCurrentSeason()) {
+            return $this->getMultiSeason();
+        }
+
+        $performances = $this->performanceRepository->findAllWithinSeasonsExcept($currentSeason);
+        $multiSeason = new RepertoireSeason();
+        $multiSeason->setNumber(self::ARCHIVE_SEASON);
+        $multiSeason->setPerformances($performances);
+
+        return $multiSeason;
+    }
+
+    public function findOneByNumber(int $number): ?RepertoireSeason
+    {
+        if (self::ARCHIVE_SEASON == $number) return $this->getArchiveSeason();
         if (self::CURRENT_SEASON == $number) return $this->findCurrentSeason();
         if (self::MULTI_SEASON == $number) return $this->getMultiSeason();
 

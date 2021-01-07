@@ -53,7 +53,7 @@ class SeasonsController extends AbstractController
      *     name="number",
      *     in="path",
      *     type="number",
-     *     description="Season number. -1 for all performances for all seasons, 0 for most recent season"
+     *     description="Season number. -2 for all performances for not active seasons, -1 for all performances for all seasons, 0 for most recent season"
      * )
      * @SWG\Response(
      *     response=200,
