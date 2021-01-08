@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\RepertoireSeason;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
@@ -12,7 +11,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method RepertoireSeason[]    findAll()
  * @method RepertoireSeason[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RepertoireSeasonRepository extends ServiceEntityRepository
+class RepertoireSeasonRepository extends AbstractRepository
 {
     const ARCHIVE_SEASON = -2;
     const MULTI_SEASON = -1;
@@ -37,7 +36,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->having('performanceCount > 0')
             ->orderBy('r.number', 'DESC')
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->execute()
         ;
 
@@ -59,7 +58,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->setParameter('endDate', $dateTime)
             ->setMaxResults(1)
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->getSingleResult();
 
         if ($season) return $season;
@@ -70,7 +69,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->orderBy('rs.startDate', 'ASC')
             ->setMaxResults(1)
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->getSingleResult();
 
         return $season;

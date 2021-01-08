@@ -22,7 +22,7 @@ class PerformanceRepository extends AbstractRepository
             ->innerJoin('p.seasons', 'ps')
             ->groupBy('p.id')
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->execute();
     }
 
@@ -46,7 +46,7 @@ class PerformanceRepository extends AbstractRepository
 
         return $qb
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->getResult()
         ;
     }
