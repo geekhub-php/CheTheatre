@@ -93,6 +93,7 @@ class PerformanceAdmin extends AbstractAdmin
                 ]
             )
             ->add('seasons')
+            ->add('audience', null, ['required' => true])
             ->add('roles', CollectionType::class,
                 [
                     'required' => false,
