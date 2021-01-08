@@ -20,7 +20,7 @@ class HistoryRepository extends AbstractRepository
             ->orderBy('u.dateTime', 'DESC')
         ;
 
-        $query = $qb->getQuery()->enableResultCache(60*60*24);
+        $query = $qb->getQuery()->enableResultCache(self::CACHE_TTL);
 
         return $query->execute();
     }

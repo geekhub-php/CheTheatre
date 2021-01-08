@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\RepertoireSeason;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
@@ -12,8 +11,9 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method RepertoireSeason[]    findAll()
  * @method RepertoireSeason[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RepertoireSeasonRepository extends ServiceEntityRepository
+class RepertoireSeasonRepository extends AbstractRepository
 {
+    const ARCHIVE_SEASON = -2;
     const MULTI_SEASON = -1;
     const CURRENT_SEASON = 0;
     private $performanceRepository;
@@ -36,7 +36,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->having('performanceCount > 0')
             ->orderBy('r.number', 'DESC')
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->execute()
         ;
 
@@ -58,7 +58,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->setParameter('endDate', $dateTime)
             ->setMaxResults(1)
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->getSingleResult();
 
         if ($season) return $season;
@@ -69,7 +69,7 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
             ->orderBy('rs.startDate', 'ASC')
             ->setMaxResults(1)
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->getSingleResult();
 
         return $season;
@@ -94,8 +94,23 @@ class RepertoireSeasonRepository extends ServiceEntityRepository
         return $multiSeason;
     }
 
-    public function findOneByNumber($number): ?RepertoireSeason
+    public function getArchiveSeason(): RepertoireSeason
     {
+        if (!$currentSeason = $this->findCurrentSeason()) {
+            return $this->getMultiSeason();
+        }
+
+        $performances = $this->performanceRepository->findAllWithinSeasonsExcept($currentSeason);
+        $multiSeason = new RepertoireSeason();
+        $multiSeason->setNumber(self::ARCHIVE_SEASON);
+        $multiSeason->setPerformances($performances);
+
+        return $multiSeason;
+    }
+
+    public function findOneByNumber(int $number): ?RepertoireSeason
+    {
+        if (self::ARCHIVE_SEASON == $number) return $this->getArchiveSeason();
         if (self::CURRENT_SEASON == $number) return $this->findCurrentSeason();
         if (self::MULTI_SEASON == $number) return $this->getMultiSeason();
 

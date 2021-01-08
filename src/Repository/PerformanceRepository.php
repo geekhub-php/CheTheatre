@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Performance;
+use App\Entity\RepertoireSeason;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 class PerformanceRepository extends AbstractRepository
@@ -21,7 +22,32 @@ class PerformanceRepository extends AbstractRepository
             ->innerJoin('p.seasons', 'ps')
             ->groupBy('p.id')
             ->getQuery()
-            ->enableResultCache(60*60*24)
+            ->enableResultCache(self::CACHE_TTL)
             ->execute();
+    }
+
+    /**
+     * @return array|Performance[]
+     */
+    public function findAllWithinSeasonsExcept(RepertoireSeason $season): array
+    {
+        $ids = $season->getPerformances()
+            ->map(fn (Performance $performance) => $performance->getId())
+            ->toArray();
+
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->innerJoin('p.seasons', 'ps')
+            ->groupBy('p.id');
+
+        if (!empty($ids)) {
+            $qb->where($qb->expr()->notIn('p.id', $ids));
+        }
+
+        return $qb
+            ->getQuery()
+            ->enableResultCache(self::CACHE_TTL)
+            ->getResult()
+        ;
     }
 }
