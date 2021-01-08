@@ -177,10 +177,12 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private $seasons;
 
     /**
-     * @ORM\Column(type="AudienceEnum", nullable=true)
+     * @ORM\Column(type="AudienceEnum", options={"default":"adults"})
      * @DoctrineAssert\Enum(entity="App\Enum\AudienceEnum")
+     * @Type("string")
+     * @Expose
      */
-    private ?string $audience;
+    private string $audience;
 
     /**
      * Constructor
@@ -527,14 +529,14 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
         return $this;
     }
 
-    public function setAudience(?string $audience): self
+    public function setAudience(string $audience): self
     {
         $this->audience = $audience;
 
         return $this;
     }
 
-    public function getAudience(): ?string
+    public function getAudience(): string
     {
         return $this->audience;
     }
