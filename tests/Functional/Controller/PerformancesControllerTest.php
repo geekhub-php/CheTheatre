@@ -23,8 +23,21 @@ class PerformancesControllerTest extends AbstractController
 
     public function testGetPerformancesSlug()
     {
-        $slug = $this->getEm()->getRepository('App:Performance')->findOneBy([])->getSlug();
+        /** @var Performance $performance */
+        $performance = $this->getEm()->getRepository(Performance::class)->findOneBy([]);
+        $slug = $performance->getSlug();
         $this->restRequest('/api/performances/'.$slug);
+
+        $eTag = $this->getSessionClient()->getResponse()->headers->get('Etag');
+        $this->assertNotNull($eTag);
+        $this->restRequest('/api/performances/'.$slug, 'GET', 304, ['HTTP_if_none_match' => $eTag]);
+
+        /** @var Performance $performance */
+        $performance = $this->getEm()->find(Performance::class, $performance->getId());
+        $performance->setUpdatedAt(new \DateTime());
+        $this->getEm()->flush($performance);
+        $this->restRequest('/api/performances/'.$slug, 'GET', 200, ['HTTP_if_none_match' => $eTag]);
+
         $this->restRequest('/api/performances/nonexistent-slug', 'GET', 404);
     }
 

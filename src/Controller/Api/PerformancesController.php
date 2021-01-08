@@ -2,12 +2,14 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Performance;
 use App\Model\Link;
 use App\Model\PaginationLinks;
 use App\Model\PerformancesResponse;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\Model;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -129,6 +131,10 @@ class PerformancesController extends AbstractController
 
     /**
      * @Route("/{slug}", name="get_performance", methods={"GET"})
+     * @Cache(
+     *     lastModified="performance.getUpdatedAt()",
+     *     Etag="'Post' ~ performance.getId() ~ performance.getUpdatedAt().getTimestamp()"
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Returns Performance by unique property {slug}",
@@ -141,16 +147,9 @@ class PerformancesController extends AbstractController
      *
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      */
-    public function getAction(ParamFetcher $paramFetcher, $slug)
+    public function getAction(ParamFetcher $paramFetcher, Performance $performance)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $performance = $em
-            ->getRepository('App:Performance')->findOneByslug($slug);
-
-        if (!$performance) {
-            throw $this->createNotFoundException('Unable to find '.$slug.' entity');
-        }
 
         $performance->setLocale($paramFetcher->get('locale'));
         $em->refresh($performance);
