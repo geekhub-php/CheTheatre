@@ -63,6 +63,7 @@ class EmployeesControllerTest extends AbstractController
             'avatar',
             'created_at',
             'updated_at',
+            'staff',
         );
     }
 
