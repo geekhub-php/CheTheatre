@@ -8,6 +8,8 @@ doctrine:
 
         types:
             AudienceEnum: App\Enum\AudienceEnum
+            EmployeeStaffEnum: App\Enum\EmployeeStaffEnum
+
     orm:
         auto_generate_proxy_classes: true
         entity_managers:

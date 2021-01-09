@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {{ enum_readable_values('EmployeeStaffEnum')[value]|trans }}
+{% endblock %}
