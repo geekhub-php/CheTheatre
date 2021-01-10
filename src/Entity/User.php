@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User implements UserInterface, TwoFactorInterface
 {
     /**
      * @ORM\Id
@@ -23,6 +24,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100, unique=true)
      */
     private string $username;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private string $email;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private int $authCode;
 
     /**
      * @ORM\Column(type="json")
@@ -105,5 +116,25 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function isEmailAuthEnabled(): bool
+    {
+        return true;
+    }
+
+    public function getEmailAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getEmailAuthCode(): string
+    {
+        return $this->authCode;
+    }
+
+    public function setEmailAuthCode(string $authCode): void
+    {
+        $this->authCode = $authCode;
     }
 }
