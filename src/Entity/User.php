@@ -46,6 +46,11 @@ class User implements UserInterface, TwoFactorInterface
      */
     private string $password;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default":true})
+     */
+    private bool $emailAuthEnabled;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,7 +125,7 @@ class User implements UserInterface, TwoFactorInterface
 
     public function isEmailAuthEnabled(): bool
     {
-        return true;
+        return $this->emailAuthEnabled;
     }
 
     public function getEmailAuthRecipient(): string
