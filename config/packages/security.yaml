@@ -12,7 +12,7 @@ security:
             security: false
 
         main:
-            pattern:  ^/(admin|login)
+            pattern:  ^/(admin|login|two_factor_auth)
             anonymous: lazy
             guard:
                 authenticators:
@@ -45,7 +45,7 @@ security:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, roles: ROLE_SUPER_ADMIN }
         - { path: ^/logout, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/2fa, role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
+        - { path: ^/two_factor_auth, role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
 
     encoders:
         App\Entity\User:

@@ -1,4 +1,0 @@
-# This file is a "template" of what your parameters.yml file should look like
-parameters:
-    users:
-        admin: { password: admin, roles: 'ROLE_SUPER_ADMIN'}
