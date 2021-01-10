@@ -41,6 +41,7 @@ class RepertoireSeason
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Performance", mappedBy="seasons", fetch="EAGER")
+     * @ORM\OrderBy({"premiere" = "DESC"})
      */
     private $performances;
 
