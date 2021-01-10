@@ -64,7 +64,7 @@ sonata_media:
             master:     sonata.media.cdn.cloudfront
             fallback:   sonata.media.cdn.server
         cloudfront:
-            path:       "http://d2m6zqv2ffku71.cloudfront.net"
+            path:       "https://d2m6zqv2ffku71.cloudfront.net"
             distribution_id: E3CM3AY2JR0BVO
             key: "%env(S3_ACCESS_KEY)%"
             secret: "%env(S3_SECRET_KEY)%"
