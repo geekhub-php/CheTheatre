@@ -21,6 +21,7 @@ class PerformanceRepository extends AbstractRepository
         return $this->createQueryBuilder('p')
             ->innerJoin('p.seasons', 'ps')
             ->groupBy('p.id')
+            ->orderBy('p.premiere', 'DESC')
             ->getQuery()
             ->enableResultCache(self::CACHE_TTL)
             ->execute();
@@ -38,7 +39,8 @@ class PerformanceRepository extends AbstractRepository
         $qb = $this->createQueryBuilder('p');
 
         $qb->innerJoin('p.seasons', 'ps')
-            ->groupBy('p.id');
+            ->groupBy('p.id')
+            ->orderBy('p.premiere', 'DESC');
 
         if (!empty($ids)) {
             $qb->where($qb->expr()->notIn('p.id', $ids));
