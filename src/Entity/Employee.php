@@ -15,6 +15,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 /**
  * @ORM\Table(name="employees")
@@ -166,6 +167,14 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * )
      */
     protected $translations;
+
+    /**
+     * @ORM\Column(type="EmployeeStaffEnum", options={"default":"creative"})
+     * @DoctrineAssert\Enum(entity="App\Enum\EmployeeStaffEnum")
+     * @Type("string")
+     * @Expose
+     */
+    private string $staff;
 
     /**
      * Constructor
@@ -455,5 +464,17 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
+    }
+
+    public function getStaff(): string
+    {
+        return $this->staff;
+    }
+
+    public function setStaff(string $staff): self
+    {
+        $this->staff = $staff;
+
+        return $this;
     }
 }
