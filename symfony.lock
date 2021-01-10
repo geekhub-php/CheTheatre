@@ -5,6 +5,9 @@
     "bacon/bacon-qr-code": {
         "version": "2.0.0"
     },
+    "beberlei/assert": {
+        "version": "v3.3.0"
+    },
     "behat/transliterator": {
         "version": "v1.3.0"
     },
@@ -292,6 +295,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
     },
+    "lcobucci/jwt": {
+        "version": "3.4.2"
+    },
     "monolog/monolog": {
         "version": "2.0.2"
     },
@@ -350,6 +356,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "paragonie/constant_time_encoding": {
+        "version": "v2.4.0"
     },
     "php": {
         "version": "7.4"
@@ -410,6 +419,19 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "scheb/two-factor-bundle": {
+        "version": "3.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.16",
+            "ref": "b5789cd9710e2ee555bf361079b991068a0f640b"
+        },
+        "files": [
+            "config/packages/scheb_two_factor.yaml",
+            "config/routes/scheb_two_factor.yaml"
+        ]
     },
     "sebastian/comparator": {
         "version": "3.0.2"
@@ -531,6 +553,9 @@
     },
     "sonata-project/twig-extensions": {
         "version": "1.4.2"
+    },
+    "spomky-labs/otphp": {
+        "version": "v10.0.1"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
@@ -926,6 +951,9 @@
     },
     "symfony/yaml": {
         "version": "v5.0.3"
+    },
+    "thecodingmachine/safe": {
+        "version": "v1.3.3"
     },
     "theofidry/alice-data-fixtures": {
         "version": "1.0",
