@@ -27,17 +27,7 @@ class EmployeesControllerTest extends AbstractController
     {
         $this->restRequest('/api/employees');
         $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
-
-        $this->assertEquals(
-            count($this->getListFields()),
-            count(array_keys($response))
-        );
-
-        foreach ($this->getListFields() as $field) {
-            $this->assertArrayHasKey($field, $response);
-        }
-
-        $firstEntity = array_shift($response['employees']);
+        $firstEntity = array_shift($response);
 
         $this->assertEquals(
             count($this->getEntityFields()),
@@ -49,9 +39,9 @@ class EmployeesControllerTest extends AbstractController
         }
     }
 
-    private function getEntityFields()
+    private function getEntityFields(): array
     {
-        return array (
+        return [
             'locale',
             'first_name',
             'last_name',
@@ -63,17 +53,7 @@ class EmployeesControllerTest extends AbstractController
             'avatar',
             'created_at',
             'updated_at',
-        );
-    }
-
-    private function getListFields()
-    {
-        return array (
-            '_links',
-            'page',
-            'total_count',
-            'employees',
-            'count',
-        );
+            'staff',
+        ];
     }
 }
