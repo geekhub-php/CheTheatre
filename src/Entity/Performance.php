@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Traits\TimestampableTrait;
@@ -173,6 +174,8 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\RepertoireSeason", inversedBy="performances")
+     * @Expose
+     * @Serializer\MaxDepth(1)
      */
     private $seasons;
 

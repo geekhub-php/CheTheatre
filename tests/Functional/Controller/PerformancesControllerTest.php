@@ -94,6 +94,7 @@ class PerformancesControllerTest extends AbstractController
             'updated_at',
             'links',
             'audience',
+            'seasons',
         );
     }
 }
