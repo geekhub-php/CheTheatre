@@ -68,10 +68,11 @@ class SeasonsController extends AbstractController
      *     description="Returns when season number does not exists",
      * )
      * @Rest\QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @Rest\QueryParam(name="audience", requirements="adults|kids", description="Filter by given audience adults|kids")
      */
     public function getSeasonPerformances(RepertoireSeason $season, ParamFetcher $paramFetcher)
     {
-        $performances = $season->getPerformances()->toArray();
+        $performances = $this->getPerformancesFilteredByAudience($paramFetcher, $season);
         $em = $this->getDoctrine()->getManager();
         $performancesTranslated = [];
 
@@ -87,5 +88,23 @@ class SeasonsController extends AbstractController
         }
 
         return $performancesTranslated;
+    }
+
+    /**
+     * This is a hack.
+     * It probably should be filtered in db query
+     */
+    private function getPerformancesFilteredByAudience(ParamFetcher $paramFetcher, RepertoireSeason $season): array
+    {
+        if ('' === $paramFetcher->get('audience')) {
+            $performances = $season->getPerformances()->toArray();
+        } else {
+            $performances = $season->getPerformances()
+                ->filter(function (Performance $performance) use ($paramFetcher) {
+                    return $paramFetcher->get('audience') === $performance->getAudience();
+                })
+                ->toArray();
+        }
+        return $performances;
     }
 }
