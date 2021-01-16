@@ -1,0 +1,7 @@
+2fa_login:
+    path: /two_factor_auth
+    defaults:
+        _controller: "scheb_two_factor.form_controller:form"
+
+2fa_login_check:
+    path: /two_factor_auth_check
