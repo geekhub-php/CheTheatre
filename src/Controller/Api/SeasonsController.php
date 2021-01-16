@@ -68,7 +68,7 @@ class SeasonsController extends AbstractController
      *     description="Returns when season number does not exists",
      * )
      * @Rest\QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     * @Rest\QueryParam(name="audience", requirements="adults|kids", description="Filter by given audience")
+     * @Rest\QueryParam(name="audience", requirements="adults|kids", description="Filter by given audience adults|kids")
      */
     public function getSeasonPerformances(RepertoireSeason $season, ParamFetcher $paramFetcher)
     {
