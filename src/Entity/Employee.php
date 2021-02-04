@@ -439,7 +439,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @param  \App\Entity\GalleryHasMedia $galleryHasMedia
      * @return Employee
      */
-    public function addGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -451,7 +451,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      *
      * @param \App\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }

@@ -104,7 +104,7 @@ class Post extends AbstractTranslateableStory
      * @param \App\Entity\GalleryHasMedia $galleryHasMedia
      * @return self
      */
-    public function addGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -116,7 +116,7 @@ class Post extends AbstractTranslateableStory
      *
      * @param \App\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }
