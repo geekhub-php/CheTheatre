@@ -467,6 +467,11 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
         return $this;
     }
 
+    public function addGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    {
+        return $this->addGalleryHasMedion($galleryHasMedia);
+    }
+
     /**
      * Remove galleryHasMedia
      *
