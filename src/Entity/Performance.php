@@ -460,7 +460,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @param  \App\Entity\GalleryHasMedia $galleryHasMedia
      * @return Performance
      */
-    public function addGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function addGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia[] = $galleryHasMedia;
 
@@ -472,7 +472,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @param \App\Entity\GalleryHasMedia $galleryHasMedia
      */
-    public function removeGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
+    public function removeGalleryHasMedia(\App\Entity\GalleryHasMedia $galleryHasMedia)
     {
         $this->galleryHasMedia->removeElement($galleryHasMedia);
     }
