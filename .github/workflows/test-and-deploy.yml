@@ -1,0 +1,16 @@
+name: Test and Deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on: push
+
+jobs:
+  test:
+    name: Test code base
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: ctype, iconv, intl, json
