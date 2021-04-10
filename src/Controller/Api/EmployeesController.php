@@ -45,15 +45,25 @@ class EmployeesController extends AbstractController
      *     description="Returned when the entities with given limit and offset are not found",
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+|all", default="all", description="Count entries at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+        $limit = $paramFetcher->get('limit', $strict = true) == "all"
+            ? $em->getRepository('App:Employee')->count([])
+            : $paramFetcher->get('limit');
 
         $employees = $em
             ->getRepository('App:Employee')
-            ->findBy([], ['lastName' => 'ASC'])
+            ->findBy(
+                [],
+                ['lastName' => 'ASC'],
+                $limit,
+                ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+            )
         ;
 
         $employeesTranslated = array();
