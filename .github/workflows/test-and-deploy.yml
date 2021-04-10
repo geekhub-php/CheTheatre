@@ -33,4 +33,4 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist
       - name: Reload
-        run: bash bin/reload.sh
+        run: bash bin/reload.sh test
