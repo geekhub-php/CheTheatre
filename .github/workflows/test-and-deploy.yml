@@ -14,3 +14,8 @@ jobs:
         with:
           php-version: '7.4'
           extensions: ctype, iconv, intl, json
+  - uses: mirromutth/mysql-action@v1.1
+    with:
+      mysql version: '5.7' # Optional, default value is "latest". The version of the MySQL
+      mysql database: 'chetheatre_test' # Optional, default value is "test". The specified database which will be create
+      mysql root password: 'pass' # Required if "mysql user" is empty, default is empty. The root superuser password
