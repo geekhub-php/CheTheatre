@@ -36,3 +36,7 @@ jobs:
         run: bash bin/reload.sh test
       - name: Run tests
         run: XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
+      - name: Get Scrutinazer script
+        run: wget https://scrutinizer-ci.com/ocular.phar
+      - name: Upload coverage
+        run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
