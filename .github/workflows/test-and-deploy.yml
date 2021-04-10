@@ -20,4 +20,4 @@ jobs:
           mysql database: 'chetheatre_test' # Optional, default value is "test". The specified database which will be create
           mysql root password: 'pass' # Required if "mysql user" is empty, default is empty. The root superuser password
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
+      - uses: php-actions/composer@v2
