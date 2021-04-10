@@ -34,3 +34,5 @@ jobs:
         run: composer install --prefer-dist
       - name: Reload
         run: bash bin/reload.sh test
+      - name: Run tests
+        run: XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
