@@ -20,7 +20,16 @@ jobs:
           mysql database: 'chetheatre_test' # Optional, default value is "test". The specified database which will be create
           mysql root password: 'pass' # Required if "mysql user" is empty, default is empty. The root superuser password
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
-          php_version: 7.4
-          version: 2
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
