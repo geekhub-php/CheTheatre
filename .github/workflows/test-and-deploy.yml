@@ -35,8 +35,10 @@ jobs:
       - name: Reload
         run: bash bin/reload.sh test
       - name: Run tests
-        run: XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
-      - name: Upload Scrutinizer coverage
-        uses: sudo-bot/action-scrutinizer@latest
-        with:
-          cli-args: "--format=php-clover coverage.clover"
+        run: bin/phpunit
+#      - name: Run tests
+#        run: XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
+#      - name: Upload Scrutinizer coverage
+#        uses: sudo-bot/action-scrutinizer@latest
+#        with:
+#          cli-args: "--format=php-clover coverage.clover"
