@@ -27,7 +27,7 @@ class EmployeesControllerTest extends AbstractController
     {
         $this->restRequest('/api/employees');
         $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
-        $firstEntity = array_shift($response);
+        $firstEntity = array_shift($response['employees']);
 
         $this->assertEquals(
             count($this->getEntityFields()),

@@ -20,41 +20,29 @@ class EmployeesResponse extends AbstractPaginatedModel
      * @Type("array<App\Entity\Employee>")
      * @Expose
      */
-    protected $employees;
+    public $employees;
 
     /**
-     * @var int
-     *
      * @Type("integer")
      * @Accessor(getter="getCount")
      * @Expose
      */
-    protected $count;
+    public int $count;
 
     /**
-     * @return mixed
+     * @Type("integer")
+     * @Expose
      */
-    public function getEmployees()
-    {
-        return $this->employees;
-    }
+    public int $currentPage;
 
     /**
-     * @param  mixed $employees
-     * @return $this
+     * @Type("integer")
+     * @Expose
      */
-    public function setEmployees($employees)
-    {
-        $this->employees = $employees;
+    public int $overAllCount;
 
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCount()
+    public function getCount(): int
     {
-        return count($this->getEmployees());
+        return count($this->employees);
     }
 }
