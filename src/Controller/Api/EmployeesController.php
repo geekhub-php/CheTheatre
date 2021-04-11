@@ -62,7 +62,7 @@ class EmployeesController extends AbstractController
                 [],
                 ['lastName' => 'ASC'],
                 $limit,
-                ($paramFetcher->get('page')-1) * $paramFetcher->get('limit')
+                ($paramFetcher->get('page')-1) * $limit
             )
         ;
 
