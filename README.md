@@ -1,8 +1,7 @@
 CheTheatre 
 ===
  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/?branch=master)
- [![Build Status](https://travis-ci.org/geekhub-php/CheTheatre.svg?branch=develop)](https://travis-ci.org/geekhub-php/CheTheatre)
- [![Code Coverage](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/geekhub-php/CheTheatre/?branch=master)
+ ![test and deploy](https://github.com/geekhub-php/CheTheatre/actions/workflows/test-and-deploy.yml/badge.svg)
 
 ### Charity project for Cherkassy Drama Theatre 
 Theirs new outstanding website!
