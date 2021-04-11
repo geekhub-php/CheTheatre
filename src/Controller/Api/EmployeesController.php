@@ -5,6 +5,8 @@ namespace App\Controller\Api;
 use App\Entity\Employee;
 use App\Entity\Performance;
 use App\Entity\Role;
+use App\Model\EmployeesResponse;
+use App\Model\PerformancesResponse;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JMS\Serializer\SerializerInterface;
@@ -35,10 +37,7 @@ class EmployeesController extends AbstractController
      * @SWG\Response(
      *     response=200,
      *     description="Returns a collection of theatre employees.",
-     *     @SWG\Schema(
-     *         type="array",
-     *         @SWG\Items(ref=@Model(type=Employee::class))
-     *     )
+     *     @SWG\Schema(ref=@Model(type=EmployeesResponse::class))
      * )
      * @SWG\Response(
      *     response=404,
@@ -52,8 +51,10 @@ class EmployeesController extends AbstractController
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+        $page = $paramFetcher->get('page');
+        $overAllCount = $em->getRepository('App:Employee')->count([]);
         $limit = $paramFetcher->get('limit', $strict = true) == "all"
-            ? $em->getRepository('App:Employee')->count([])
+            ? $overAllCount
             : $paramFetcher->get('limit');
 
         $employees = $em
@@ -62,7 +63,7 @@ class EmployeesController extends AbstractController
                 [],
                 ['lastName' => 'ASC'],
                 $limit,
-                ($paramFetcher->get('page')-1) * $limit
+                ($page-1) * $limit
             )
         ;
 
@@ -82,7 +83,12 @@ class EmployeesController extends AbstractController
             $employeesTranslated[] = $employee;
         }
 
-        return $employeesTranslated;
+        $response = new EmployeesResponse();
+        $response->employees = $employeesTranslated;
+        $response->currentPage = $page;
+        $response->overAllCount = $overAllCount;
+
+        return $response;
     }
 
     /**
