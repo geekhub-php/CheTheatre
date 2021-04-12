@@ -15,6 +15,9 @@ doctrine:
         entity_managers:
             default:
                 auto_mapping: true
+                dql:
+                    numeric_functions:
+                        rand: DoctrineExtensions\Query\Mysql\Rand
                 second_level_cache:
                     enabled: true
                 metadata_cache_driver:
