@@ -20,6 +20,7 @@ use App\Validator\MinSizeSliderImage;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use App\Validator\ProducerConstraint;
 
 /**
  * @ORM\Table(name="performances")
@@ -28,6 +29,7 @@ use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
+ * @ProducerConstraint()
  */
 class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
