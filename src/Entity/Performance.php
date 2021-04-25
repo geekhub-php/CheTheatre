@@ -188,6 +188,14 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private string $audience;
 
     /**
+     * @ORM\Column(type="integer", nullable=false, options={"default":0})
+     * @Assert\PositiveOrZero
+     * @Type("integer")
+     * @Expose
+     */
+    private int $ageLimit;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -547,5 +555,16 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function getAudience(): string
     {
         return $this->audience;
+    }
+
+    public function getAgeLimit(): int
+    {
+        return $this->ageLimit;
+    }
+
+    public function setAgeLimit(int $ageLimit): Performance
+    {
+        $this->ageLimit = $ageLimit;
+        return $this;
     }
 }

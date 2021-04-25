@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Entity\Performance;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -15,7 +16,7 @@ use JMS\Serializer\Annotation\Type;
 class PerformancesResponse extends AbstractPaginatedModel
 {
     /**
-     * @var Array[]
+     * @var Performance[]
      * @Type("array")
      * @Expose
      */
@@ -39,7 +40,7 @@ class PerformancesResponse extends AbstractPaginatedModel
     }
 
     /**
-     * @param  mixed $performances
+     * @param  Performance[] $performances
      * @return $this
      */
     public function setPerformances($performances)
