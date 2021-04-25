@@ -41,6 +41,19 @@ final class Version20210425203036 extends AbstractMigration
             $producer = array_shift($performance);
             $len = array_shift($performance);
 
+            $inHouseProducer = $this->connection->fetchAssociative(
+                'SELECT id FROM employees WHERE lastName LIKE :lastName',
+                ['lastName' => '%'.trim(explode(' ', $producer)[0]).'%']
+            );
+
+            if ($inHouseProducer) {
+                $this->addSql(
+                    'UPDATE performances SET durationInMin=:len, ageLimit=:ageLimit, producer_id=:producer WHERE slug=:slug',
+                    ['len' => (int) $len, 'ageLimit' => (int) $ageLimit, 'producer' => $inHouseProducer['id'], 'slug' => $slug]
+                );
+                continue;
+            }
+
             $this->addSql(
                 'UPDATE performances SET durationInMin=:len, ageLimit=:ageLimit, extProducer=:producer WHERE slug=:slug',
                 ['len' => (int) $len, 'ageLimit' => (int) $ageLimit, 'producer' => $producer, 'slug' => $slug]
