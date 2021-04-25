@@ -55,7 +55,7 @@ final class Version20210425203036 extends AbstractMigration
 
                 if ($inHouseProducer['deletedAt']) {
                     $this->addSql(
-                        'UPDATE employees SET deletedAt=NULL, staff=:staff WHERE id=:id',
+                        'UPDATE employees SET deletedAt=NULL, deletedBy=NULL, staff=:staff WHERE id=:id',
                         ['staff' => EmployeeStaffEnum::EPOCH, 'id' => $inHouseProducer['id']]
                     );
                 }
