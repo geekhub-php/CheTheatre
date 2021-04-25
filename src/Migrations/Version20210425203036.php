@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
+use App\Enum\EmployeeStaffEnum;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -42,7 +43,7 @@ final class Version20210425203036 extends AbstractMigration
             $len = array_shift($performance);
 
             $inHouseProducer = $this->connection->fetchAssociative(
-                'SELECT id FROM employees WHERE lastName LIKE :lastName',
+                'SELECT id, deletedAt FROM employees WHERE lastName LIKE :lastName',
                 ['lastName' => '%'.trim(explode(' ', $producer)[0]).'%']
             );
 
@@ -51,6 +52,14 @@ final class Version20210425203036 extends AbstractMigration
                     'UPDATE performances SET durationInMin=:len, ageLimit=:ageLimit, producer_id=:producer WHERE slug=:slug',
                     ['len' => (int) $len, 'ageLimit' => (int) $ageLimit, 'producer' => $inHouseProducer['id'], 'slug' => $slug]
                 );
+
+                if ($inHouseProducer['deletedAt']) {
+                    $this->addSql(
+                        'UPDATE employees SET deletedAt=NULL, staff=:staff WHERE id=:id',
+                        ['staff' => EmployeeStaffEnum::EPOCH, 'id' => $inHouseProducer['id']]
+                    );
+                }
+
                 continue;
             }
 
