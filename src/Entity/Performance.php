@@ -86,6 +86,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
+     * @Assert\Valid()
      */
     private $mainPicture;
 
@@ -124,6 +125,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @var Role[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Role", mappedBy="performance", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @Assert\Valid()
      */
     private $roles;
 
@@ -169,6 +171,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @var \App\Entity\History
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\History", inversedBy="performances")
+     * @Assert\Valid()
      */
     protected $festival;
 
@@ -176,6 +179,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\ManyToMany(targetEntity="App\Entity\RepertoireSeason", inversedBy="performances")
      * @Expose
      * @Serializer\MaxDepth(1)
+     * @Assert\Valid()
      */
     private $seasons;
 
@@ -184,6 +188,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @DoctrineAssert\Enum(entity="App\Enum\AudienceEnum")
      * @Type("string")
      * @Expose
+     * @Assert\Valid()
      */
     private string $audience;
 
