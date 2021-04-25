@@ -14,7 +14,7 @@ class EmployeeStaffEnum extends AbstractEnumType
     public const INVITED_ACTOR = 'invited';
     public const EPOCH = 'epoch';
 
-    public static $choices = [
+    protected static $choices = [
         self::ADMINISTRATIVE => 'Administrative',
         self::ART_DIRECTOR => 'Art-director',
         self::ART_PRODUCTION => 'Art-production',
