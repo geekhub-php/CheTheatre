@@ -201,6 +201,24 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     private int $ageLimit;
 
     /**
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\PositiveOrZero
+     * @Type("integer")
+     * @Expose
+     */
+    private int $durationInMin;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="produce")
+     */
+    private ?Employee $producer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $extProducer;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -570,6 +588,39 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function setAgeLimit(int $ageLimit): Performance
     {
         $this->ageLimit = $ageLimit;
+        return $this;
+    }
+
+    public function getDurationInMin(): int
+    {
+        return $this->durationInMin;
+    }
+
+    public function setDurationInMin(int $durationInMin): Performance
+    {
+        $this->durationInMin = $durationInMin;
+        return $this;
+    }
+
+    public function getProducer(): ?Employee
+    {
+        return $this->producer;
+    }
+
+    public function setProducer(?Employee $producer): Performance
+    {
+        $this->producer = $producer;
+        return $this;
+    }
+
+    public function getExtProducer(): ?string
+    {
+        return $this->extProducer;
+    }
+
+    public function setExtProducer(?string $extProducer): Performance
+    {
+        $this->extProducer = $extProducer;
         return $this;
     }
 }
