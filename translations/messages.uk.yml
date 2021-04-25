@@ -53,6 +53,11 @@ Gallery: Галерея
 Employee List: Перелік Працівників
 Main Picture: Банер
 Title: Назва
+Age Limit: Вікове обмеження +[вік]
+Duration In Min: Тривалість вистави у хвилинах
+Ext Producer: Режисер/Постановник (заповнюється за відсутності працівника у базі данних)
+Producer: Режисер/Постановник
+Festival: Фестиваль
 Type: Жанр
 Premiere: Прем’єра
 Performance List: Перелік Вистав
