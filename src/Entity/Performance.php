@@ -212,11 +212,13 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="produce")
+     * @Expose
      */
     private ?Employee $producer;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Expose
      */
     private ?string $extProducer;
 
