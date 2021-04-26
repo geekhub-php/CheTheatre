@@ -41,6 +41,18 @@ class EmployeesResponse extends AbstractPaginatedModel
      */
     public int $overAllCount;
 
+    /**
+     * @Type("integer")
+     * @Expose
+     */
+    public int $seed;
+
+    /**
+     * @Type("bool")
+     * @Expose
+     */
+    public bool $rand;
+
     public function getCount(): int
     {
         return count($this->employees);

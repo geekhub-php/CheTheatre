@@ -21,15 +21,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class EmployeesController extends AbstractController
 {
-    private $translator;
-    private $serializer;
+    private TranslatorInterface $translator;
 
-    public function __construct(
-        TranslatorInterface $translator,
-        SerializerInterface $serializer
-    ) {
+    public function __construct(TranslatorInterface $translator)
+    {
         $this->translator = $translator;
-        $this->serializer = $serializer;
     }
 
     /**
@@ -45,7 +41,9 @@ class EmployeesController extends AbstractController
      * )
      *
      * @QueryParam(name="limit", requirements="\d+|all", default="all", description="Count entries at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="random", requirements="\d+", default=0, description="Should we suffle the order. Use seed in response to keep the same order")
+     * @QueryParam(name="seed", requirements="\d+", default=0, description="Ignored if random is 1")
+     * @QueryParam(name="page", requirements="\d+|middle", default="1", description="Number of page to be shown or 'middle' for middle page")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
@@ -57,36 +55,24 @@ class EmployeesController extends AbstractController
             ? $overAllCount
             : $paramFetcher->get('limit');
 
-        $employees = $em
-            ->getRepository('App:Employee')
-            ->findBy(
-                [],
-                ['lastName' => 'ASC'],
-                $limit,
-                ($page-1) * $limit
-            )
-        ;
-
-        $employeesTranslated = array();
-
-        foreach ($employees as $employee) {
-            $employee->setLocale($paramFetcher->get('locale'));
-            $em->refresh($employee);
-
-            if ($employee->getTranslations()) {
-                $employee->unsetTranslations();
-            }
-
-            $this->translator->setLocale($paramFetcher->get('locale'));
-            $employee->setPosition($this->translator->trans($employee->getPosition()));
-
-            $employeesTranslated[] = $employee;
+        $rand = 0 != $paramFetcher->get('random');
+        $seed = $paramFetcher->get('seed');
+        if ($rand) {
+            $seed = rand(1, 1000);
         }
+        if ('middle' == $page) {
+            $page = round($overAllCount/$limit/2);
+        }
+
+        $employeesTranslated = $em->getRepository('App:Employee')
+            ->rand($limit, $page, $seed, $paramFetcher->get('locale'));
 
         $response = new EmployeesResponse();
         $response->employees = $employeesTranslated;
         $response->currentPage = $page;
         $response->overAllCount = $overAllCount;
+        $response->seed = $seed;
+        $response->rand = $rand;
 
         return $response;
     }
