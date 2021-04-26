@@ -212,6 +212,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="produce")
+     * @ORM\JoinColumn(name="producer_id", referencedColumnName="id", onDelete="SET NULL")
      * @Expose
      */
     private ?Employee $producer;

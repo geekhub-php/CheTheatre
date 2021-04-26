@@ -20,7 +20,7 @@ final class Version20210425203036 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         $this->addSql('ALTER TABLE performances ADD producer_id INT DEFAULT NULL, ADD durationInMin INT NOT NULL, ADD extProducer VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE performances ADD CONSTRAINT FK_8133AB2B89B658FE FOREIGN KEY (producer_id) REFERENCES employees (id)');
+        $this->addSql('ALTER TABLE performances ADD CONSTRAINT FK_8133AB2B89B658FE FOREIGN KEY (producer_id) REFERENCES employees (id) ON DELETE SET NULL');
         $this->addSql('CREATE INDEX IDX_8133AB2B89B658FE ON performances (producer_id)');
         $this->insertData();
     }
