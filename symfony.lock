@@ -5,6 +5,9 @@
     "bacon/bacon-qr-code": {
         "version": "2.0.0"
     },
+    "beberlei/doctrineextensions": {
+        "version": "v1.3.0"
+    },
     "behat/transliterator": {
         "version": "v1.3.0"
     },

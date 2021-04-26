@@ -4,11 +4,55 @@ namespace App\Repository;
 
 use App\Entity\Employee;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EmployeeRepository extends AbstractRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private TranslatorInterface $translator;
+
+    public function __construct(ManagerRegistry $registry, TranslatorInterface $translator)
     {
         parent::__construct($registry, Employee::class);
+        $this->translator = $translator;
+    }
+
+    /**
+     * @return Employee[]
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function rand(int $limit, int $page, int $seed, string $locale): array
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->setFirstResult(($page-1) * $limit)
+            ->setMaxResults($limit);
+        if (0 != $seed) {
+            $qb->orderBy('RAND(:seed)')
+                ->setParameter('seed', $seed);
+        } else {
+            $qb->orderBy('e.lastName', 'ASC');
+        }
+
+        $employees = $qb
+            ->getQuery()
+            ->execute()
+        ;
+
+        $employeesTranslated = [];
+
+        foreach ($employees as $employee) {
+            $employee->setLocale($locale);
+            $this->_em->refresh($employee);
+
+            if ($employee->getTranslations()) {
+                $employee->unsetTranslations();
+            }
+
+            $this->translator->setLocale($locale);
+            $employee->setPosition($this->translator->trans($employee->getPosition()));
+
+            $employeesTranslated[] = $employee;
+        }
+
+        return $employeesTranslated;
     }
 }
