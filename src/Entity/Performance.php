@@ -20,6 +20,7 @@ use App\Validator\MinSizeSliderImage;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use App\Validator\ProducerConstraint;
 
 /**
  * @ORM\Table(name="performances")
@@ -28,6 +29,7 @@ use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\PerformanceTranslation")
  * @ExclusionPolicy("all")
  * @MinSizeSliderImage()
+ * @ProducerConstraint()
  */
 class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
 {
@@ -199,6 +201,27 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      */
     private int $ageLimit;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\PositiveOrZero
+     * @Type("integer")
+     * @Expose
+     */
+    private int $durationInMin;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="produce")
+     * @ORM\JoinColumn(name="producer_id", referencedColumnName="id", onDelete="SET NULL")
+     * @Expose
+     */
+    private ?Employee $producer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Expose
+     */
+    private ?string $extProducer;
 
     /**
      * Constructor
@@ -570,6 +593,39 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
     public function setAgeLimit(int $ageLimit): Performance
     {
         $this->ageLimit = $ageLimit;
+        return $this;
+    }
+
+    public function getDurationInMin(): int
+    {
+        return $this->durationInMin;
+    }
+
+    public function setDurationInMin(int $durationInMin): Performance
+    {
+        $this->durationInMin = $durationInMin;
+        return $this;
+    }
+
+    public function getProducer(): ?Employee
+    {
+        return $this->producer;
+    }
+
+    public function setProducer(?Employee $producer): Performance
+    {
+        $this->producer = $producer;
+        return $this;
+    }
+
+    public function getExtProducer(): ?string
+    {
+        return $this->extProducer;
+    }
+
+    public function setExtProducer(?string $extProducer): Performance
+    {
+        $this->extProducer = $extProducer;
         return $this;
     }
 }

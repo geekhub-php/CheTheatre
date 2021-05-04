@@ -1,3 +1,5 @@
 Image_must_be_minimum_size: Image size must have minimum {{width}} px width and {{height}} px height!
 you_cant_set_more_events_per_day: It cant be more then {{count}} performances per one day!
 performance_must_have_a_date: Performance must have a date
+performance_must_have_a_producer: Performance must have a Producer
+ambiguous_producer: Performance must have only one producer

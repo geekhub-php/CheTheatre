@@ -90,10 +90,13 @@ class PerformancesControllerTest extends AbstractController
             'mainPicture',
             'sliderImage',
             'slug',
+            'producer',
             'created_at',
             'updated_at',
             'links',
             'audience',
+            'age_limit',
+            'duration_in_min',
             'seasons',
         );
     }

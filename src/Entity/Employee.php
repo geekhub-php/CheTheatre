@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
@@ -177,13 +178,20 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private string $staff;
 
     /**
+     * @var Collection|Performance[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Performance", mappedBy="producer")
+     */
+    private Collection $produce;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         parent::__construct();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->galleryHasMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->galleryHasMedia = new ArrayCollection();
+        $this->produce = new ArrayCollection();
     }
 
     /**

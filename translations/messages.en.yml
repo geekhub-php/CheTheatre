@@ -46,6 +46,11 @@ Employee: Employee
 Employees: Employees
 Main Picture: Main Picture
 Title: Title
+Age Limit: Age Limit +[age]
+Duration In Min: Duration In Minutes
+Ext Producer: Producer (fill when no employees exists)
+Producer: Producer
+Festival: Festival
 Type: Type
 Premiere: Premiere
 Performance List: Performance List

@@ -59,6 +59,10 @@ class PerformanceAdmin extends AbstractAdmin
         $formMapper
             ->add('title')
             ->add('type')
+            ->add('ageLimit', null, ['required' => true])
+            ->add('durationInMin', null, ['required' => true])
+            ->add('extProducer')
+            ->add('producer')
             ->add('festival', ModelType::class, [
                 'required' => false,
                 'query' => $query,
