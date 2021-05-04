@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Employee;
+use App\Entity\EmployeeGroup;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -20,7 +21,7 @@ class EmployeeRepository extends AbstractRepository
      * @return Employee[]
      * @throws \Doctrine\ORM\ORMException
      */
-    public function rand(int $limit, int $page, int $seed, string $locale): array
+    public function rand(int $limit, int $page, int $seed, string $locale, ?EmployeeGroup $group = null): array
     {
         $qb = $this->createQueryBuilder('e')
             ->setFirstResult(($page-1) * $limit)
@@ -30,6 +31,11 @@ class EmployeeRepository extends AbstractRepository
                 ->setParameter('seed', $seed);
         } else {
             $qb->orderBy('e.lastName', 'ASC');
+        }
+
+        if ($group) {
+            $qb->andWhere('e.employeeGroup = :group')
+                ->setParameter('group', $group);
         }
 
         $employees = $qb
