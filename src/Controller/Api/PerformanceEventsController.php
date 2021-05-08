@@ -5,9 +5,13 @@ namespace App\Controller\Api;
 use App\Model\PerformanceEventsResponse;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\SerializerInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,6 +21,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PerformanceEventsController extends AbstractController
 {
     const MAX_DAYS_PER_GET = 367;
+
+    private SerializerInterface $serializer;
+
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
 
     /**
      * @Route("", name="get_performanceevents", methods={"GET"})
@@ -49,44 +60,28 @@ class PerformanceEventsController extends AbstractController
             throw new BadRequestHttpException(sprintf('You can\'t get more than "%s" days', self::MAX_DAYS_PER_GET));
         }
 
+        $limit = 'all' == $paramFetcher->get('limit')
+            ? null
+            : (int) $paramFetcher->get('limit');
+
         $performanceEvents = $em->getRepository('App:PerformanceEvent')
             ->findByDateRangeAndSlug(
                 new \DateTime($paramFetcher->get('fromDate')),
                 new \DateTime($paramFetcher->get('toDate')),
-                $paramFetcher->get('performance')
+                $paramFetcher->get('performance'),
+                $limit
             )
         ;
-
-        if ('all' != $paramFetcher->get('limit')) {
-            $performanceEvents = array_slice($performanceEvents, 0, $paramFetcher->get('limit'));
-        }
-
-        $performanceEventsTranslated = [];
-
-        foreach ($performanceEvents as $performanceEvent) {
-            $performanceEvent->setLocale($paramFetcher->get('locale'));
-            $em->refresh($performanceEvent);
-
-            $performanceEvent->getPerformance()->setLocale($paramFetcher->get('locale'));
-            $em->refresh($performanceEvent->getPerformance());
-
-            if ($performanceEvent->getTranslations()) {
-                $performanceEvent->unsetTranslations();
-            }
-
-            if ($performanceEvent->getPerformance()->getTranslations()) {
-                $performanceEvent->getPerformance()->unsetTranslations();
-            }
-
-            $performanceEventsTranslated[] = $performanceEvent;
-        }
-
-        $performanceEvents = $performanceEventsTranslated;
 
         $performanceEventsResponse = new PerformanceEventsResponse();
         $performanceEventsResponse->setPerformanceEvents($performanceEvents);
 
-        return $performanceEventsResponse;
+        return new Response(
+            $this->serializer->serialize(
+                $performanceEventsResponse,
+                'json',
+                SerializationContext::create()->setGroups(array('poster')))
+        );
     }
 
     /**
