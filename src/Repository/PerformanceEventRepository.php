@@ -12,7 +12,7 @@ class PerformanceEventRepository extends AbstractRepository
         parent::__construct($registry, PerformanceEvent::class);
     }
 
-    public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null)
+    public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null, int $limit=null)
     {
         $qb = $this->createQueryBuilder('u')
             ->WHERE('u.dateTime BETWEEN :from AND :to')
@@ -20,6 +20,10 @@ class PerformanceEventRepository extends AbstractRepository
             ->setParameter('to', $toDate->format('Y-m-d H:i'))
             ->orderBy('u.dateTime', 'ASC')
         ;
+
+        if ($limit) {
+            $qb->setMaxResults($limit);
+        }
 
         if ($performanceSlug) {
             $qb->join('u.performance', 'p')->andWhere('p.slug = :slug')->setParameter('slug', $performanceSlug);
