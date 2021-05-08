@@ -29,6 +29,28 @@ class EmployeesController extends AbstractController
     }
 
     /**
+     * @Route("/groups", name="get_employees_groups", methods={"GET"})
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns a collection of theatre employees.",
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=EmployeeGroup::class))
+     *     )
+     * )
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     */
+    public function getEmployeeGroups()
+    {
+        $employeeGroups = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(EmployeeGroup::class)
+            ->findBy([], ["position" => "ASC"]);
+
+        return $employeeGroups;
+    }
+
+    /**
      * @Route("", name="get_employees", methods={"GET"})
      * @SWG\Response(
      *     response=200,
