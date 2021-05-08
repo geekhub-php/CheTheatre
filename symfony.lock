@@ -390,6 +390,9 @@
     "phpstan/phpdoc-parser": {
         "version": "0.4.10"
     },
+    "pixassociates/sortable-behavior-bundle": {
+        "version": "v1.5"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
