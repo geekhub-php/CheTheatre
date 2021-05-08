@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
+use JMS\Serializer\Annotation\Groups;
 use App\Validator\TwoPerformanceEventsPerDay;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
@@ -71,6 +72,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @ORM\ManyToOne(targetEntity="App\Entity\Performance", inversedBy="performanceEvents")
      * @Type("App\Entity\Performance")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $performance;
 
@@ -81,6 +83,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @ORM\Column(type="datetime")
      * @Type("DateTime")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $dateTime;
 
@@ -90,6 +93,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @ORM\Column(type="string")
      * @Type("string")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $venue;
 
@@ -99,6 +103,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @Type("integer")
      * @Expose
      * @Accessor(getter="getYear")
+     * @Groups({"Default", "poster"})
      */
     private $year;
 
@@ -107,6 +112,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      *
      * @Expose
      * @Accessor(getter="getMonth")
+     * @Groups({"Default", "poster"})
      */
     private $month;
 
@@ -115,6 +121,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      *
      * @Expose
      * @Accessor(getter="getDay")
+     * @Groups({"Default", "poster"})
      */
     private $day;
 
@@ -123,6 +130,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      *
      * @Expose
      * @Accessor(getter="getTime")
+     * @Groups({"Default", "poster"})
      */
     private $time;
 
@@ -131,6 +139,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      * @ORM\Column(type="string", nullable=true)
      * @Type("string")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $buyTicketLink;
 

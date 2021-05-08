@@ -16,6 +16,7 @@ use App\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 use App\Validator\MinSizeSliderImage;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
@@ -51,6 +52,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\Column(type="string", length=255)
      * @Type("string")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $title;
 
@@ -89,6 +91,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id", nullable=true)
      * @Assert\Valid()
+     * @Groups({"Default", "poster"})
      */
     private $mainPicture;
 
@@ -97,6 +100,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="sliderImage_id", referencedColumnName="id", nullable=true)
+     * @Groups({"Default", "poster"})
      */
     private $sliderImage;
 
@@ -105,6 +109,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      * @Type("array")
      * @SerializedName("mainPicture")
+     * @Groups({"Default", "poster"})
      */
     public $mainPictureThumbnails;
 
@@ -113,6 +118,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Expose
      * @Type("array")
      * @SerializedName("sliderImage")
+     * @Groups({"Default", "poster"})
      */
     public $sliderImageThumbnails;
 
@@ -155,6 +161,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\Column(name="slug", type="string", length=255)
      * @Type("string")
      * @Expose
+     * @Groups({"Default", "poster"})
      */
     private $slug;
 
