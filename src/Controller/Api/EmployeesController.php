@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Employee;
+use App\Entity\EmployeeGroup;
 use App\Entity\Performance;
 use App\Entity\Role;
 use App\Model\EmployeesResponse;
@@ -67,6 +68,7 @@ class EmployeesController extends AbstractController
      * @QueryParam(name="seed", requirements="\d+", default=0, description="Ignored if random is 1")
      * @QueryParam(name="page", requirements="\d+|middle", default="1", description="Number of page to be shown or 'middle' for middle page")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(name="group", requirements="^[a-zA-Z]+", description="Group to filter employees")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -86,8 +88,14 @@ class EmployeesController extends AbstractController
             $page = round($overAllCount/$limit/2);
         }
 
+        $group = null;
+        if ($groupSlug = $paramFetcher->get('group')) {
+            $group = $em->getRepository(EmployeeGroup::class)
+                ->findOneBy(['slug' => $groupSlug]);
+        }
+
         $employeesTranslated = $em->getRepository('App:Employee')
-            ->rand($limit, $page, $seed, $paramFetcher->get('locale'));
+            ->rand($limit, $page, $seed, $paramFetcher->get('locale'), $group);
 
         $response = new EmployeesResponse();
         $response->employees = $employeesTranslated;
