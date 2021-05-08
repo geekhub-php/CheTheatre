@@ -14,6 +14,7 @@ use JMS\Serializer\SerializerInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -73,8 +74,10 @@ class EmployeesController extends AbstractController
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+        $group = $this->getGroup($paramFetcher);
         $page = $paramFetcher->get('page');
-        $overAllCount = $em->getRepository('App:Employee')->count([]);
+        $overAllCount = $em->getRepository('App:Employee')
+            ->count(['employeeGroup' => $group]);
         $limit = $paramFetcher->get('limit', $strict = true) == "all"
             ? $overAllCount
             : $paramFetcher->get('limit');
@@ -86,12 +89,9 @@ class EmployeesController extends AbstractController
         }
         if ('middle' == $page) {
             $page = round($overAllCount/$limit/2);
-        }
-
-        $group = null;
-        if ($groupSlug = $paramFetcher->get('group')) {
-            $group = $em->getRepository(EmployeeGroup::class)
-                ->findOneBy(['slug' => $groupSlug]);
+            if ($page === 0.0) {
+                $page = 1;
+            }
         }
 
         $employeesTranslated = $em->getRepository('App:Employee')
@@ -203,5 +203,24 @@ class EmployeesController extends AbstractController
         $roles = $rolesTranslated;
 
         return $roles;
+    }
+
+    private function getGroup(ParamFetcher $paramFetcher): ?EmployeeGroup
+    {
+        $group = null;
+        if ($groupSlug = $paramFetcher->get('group')) {
+            $group = $this->getDoctrine()
+                ->getManager()
+                ->getRepository(EmployeeGroup::class)
+                ->findOneBy(['slug' => $groupSlug]);
+
+            if (!$group) {
+                throw new NotFoundHttpException(sprintf(
+                    'There is no employee group with "%s" slug',
+                    $groupSlug
+                ));
+            }
+        }
+        return $group;
     }
 }
