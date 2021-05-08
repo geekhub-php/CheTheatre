@@ -43,22 +43,6 @@ class EmployeeRepository extends AbstractRepository
             ->execute()
         ;
 
-        $employeesTranslated = [];
-
-        foreach ($employees as $employee) {
-            $employee->setLocale($locale);
-            $this->_em->refresh($employee);
-
-            if ($employee->getTranslations()) {
-                $employee->unsetTranslations();
-            }
-
-            $this->translator->setLocale($locale);
-            $employee->setPosition($this->translator->trans($employee->getPosition()));
-
-            $employeesTranslated[] = $employee;
-        }
-
-        return $employeesTranslated;
+        return $employees;
     }
 }
