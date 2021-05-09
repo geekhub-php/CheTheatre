@@ -205,6 +205,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\Column(type="integer", nullable=false, options={"default":0})
      * @Assert\PositiveOrZero
      * @Type("integer")
+     * @Groups({"Default", "poster"})
      * @Expose
      */
     private int $ageLimit;
@@ -213,6 +214,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\Column(type="integer", nullable=false)
      * @Assert\PositiveOrZero
      * @Type("integer")
+     * @Groups({"Default", "poster"})
      * @Expose
      */
     private int $durationInMin;
