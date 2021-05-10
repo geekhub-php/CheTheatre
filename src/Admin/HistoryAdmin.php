@@ -51,7 +51,7 @@ class HistoryAdmin extends AbstractAdmin
             )
             ->add('mainPicture', ModelListType::class,
                 [
-                    'required' => false,
+                    'required' => true,
                     'btn_list' => false,
                 ], [
                     'link_parameters' => [
