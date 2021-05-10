@@ -15,4 +15,17 @@ abstract class AbstractRepository extends ServiceEntityRepository
 
         return $query->getSingleScalarResult();
     }
+
+    public function search(array $fields, string $query): array
+    {
+        $qb = $this->createQueryBuilder('e');
+
+        foreach ($fields as $field) {
+            $qb->orWhere("e.$field LIKE :query")
+                ->setParameter('query', "%$query%");
+        }
+
+
+        return $qb->getQuery()->getResult();
+    }
 }
