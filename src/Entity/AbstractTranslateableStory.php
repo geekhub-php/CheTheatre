@@ -54,6 +54,7 @@ abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable i
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist"})
      * @ORM\JoinColumn(name="mainPicture_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     protected $mainPicture;
 
