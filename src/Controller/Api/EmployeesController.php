@@ -69,7 +69,7 @@ class EmployeesController extends AbstractController
      * @QueryParam(name="seed", requirements="\d+", default=0, description="Ignored if random is 1")
      * @QueryParam(name="page", requirements="\d+|middle", default="1", description="Number of page to be shown or 'middle' for middle page")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
-     * @QueryParam(name="group", requirements="^[a-zA-Z]+", description="Group to filter employees")
+     * @QueryParam(name="group", description="Group to filter employees")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -77,7 +77,7 @@ class EmployeesController extends AbstractController
         $group = $this->getGroup($paramFetcher);
         $page = $paramFetcher->get('page');
         $overAllCount = $em->getRepository('App:Employee')
-            ->count(['employeeGroup' => $group]);
+            ->countByFilters($group);
         $limit = $paramFetcher->get('limit', $strict = true) == "all"
             ? $overAllCount
             : $paramFetcher->get('limit');
@@ -95,7 +95,7 @@ class EmployeesController extends AbstractController
         }
 
         $employeesTranslated = $em->getRepository('App:Employee')
-            ->rand($limit, $page, $seed, $paramFetcher->get('locale'), $group);
+            ->findByFilters($limit, $page, $seed, $paramFetcher->get('locale'), $group);
 
         $response = new EmployeesResponse();
         $response->employees = $employeesTranslated;

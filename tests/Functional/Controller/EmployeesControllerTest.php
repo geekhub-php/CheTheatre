@@ -23,6 +23,30 @@ class EmployeesControllerTest extends AbstractController
         $this->restRequest('/api/employees/nonexistent-slug/roles', 'GET', 404);
     }
 
+    public static function employeesGroupCount(): array
+    {
+        return [
+            ['actors', 37],
+            ['art-core', 11],
+            ['ballet', 8],
+            ['administrative-accounting', 4],
+            ['orchestra', 12],
+            ['art-production', 15],
+            ['deputies', 2],
+            ['epoch', 4],
+        ];
+    }
+
+    /**
+     * @dataProvider employeesGroupCount
+     */
+    public function testGetEmployeesFilteredByGroup(string $group, int $count)
+    {
+        $this->restRequest('/api/employees?group='.$group);
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+        $this->assertCount($count, $response['employees']);
+    }
+
     public function testEmployeesResponseFields()
     {
         $this->restRequest('/api/employees');

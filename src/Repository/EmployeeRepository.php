@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Employee;
 use App\Entity\EmployeeGroup;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EmployeeRepository extends AbstractRepository
@@ -17,11 +18,24 @@ class EmployeeRepository extends AbstractRepository
         $this->translator = $translator;
     }
 
+    public function countByFilters(?EmployeeGroup $group = null): int
+    {
+        $qb = $this
+            ->createQueryBuilder('e')
+            ->select('count(e.id)');
+        if ($group) {
+            $qb->andWhere('e.employeeGroup = :group')
+                ->setParameter('group', $group);
+        }
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
     /**
      * @return Employee[]
      * @throws \Doctrine\ORM\ORMException
      */
-    public function rand(int $limit, int $page, int $seed, string $locale, ?EmployeeGroup $group = null): array
+    public function findByFilters(int $limit, int $page, int $seed, string $locale, ?EmployeeGroup $group = null): array
     {
         $qb = $this->createQueryBuilder('e')
             ->setFirstResult(($page-1) * $limit)
@@ -38,11 +52,6 @@ class EmployeeRepository extends AbstractRepository
                 ->setParameter('group', $group);
         }
 
-        $employees = $qb
-            ->getQuery()
-            ->execute()
-        ;
-
-        return $employees;
+        return $qb->getQuery()->execute();
     }
 }
