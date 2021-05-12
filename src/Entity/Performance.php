@@ -61,6 +61,8 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=255, nullable=true)
      * @Type("string")
+     * @Assert\NotBlank()
+     * @Groups({"Default", "poster"})
      * @Expose
      */
     private $type;
