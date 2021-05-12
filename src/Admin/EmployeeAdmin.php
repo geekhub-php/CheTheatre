@@ -74,7 +74,7 @@ class EmployeeAdmin extends AbstractAdmin
                 'translation_domain' => 'messages',
                 ]
             )
-            ->add('staff', null, ['required' => true])
+            ->add('employeeGroup', null, ['required' => true])
             ->add('biography', CKEditorType::class,
                 [
 //                    'format' => 'richhtml',

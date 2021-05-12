@@ -3,3 +3,5 @@ doctrine_migrations:
     storage:
         table_storage:
             table_name: 'migration_versions'
+    services:
+        'Doctrine\Migrations\Version\MigrationFactory': 'App\Doctrine\MigrationFactory'

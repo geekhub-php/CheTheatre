@@ -1,0 +1,27 @@
+actors:
+  uk: Актори
+  en: Actors
+art-core:
+  uk: Художньо-керівний склад
+  en: Art core
+ballet:
+  uk: Балет
+  en: Ballet
+administrative-accounting:
+  uk: Адміністративно-бухгалтерська служба
+  en: Administrative-accounting
+orchestra:
+  uk: Оркестр
+  en: Orchestra
+art-production:
+  uk: Художньо-постановчий склад
+  en: Art-production
+director:
+  uk: Директор
+  en: Director
+deputies:
+  uk: Заступники
+  en: Deputies
+epoch:
+  uk: Епоха
+  en: Epoch

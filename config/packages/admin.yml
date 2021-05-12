@@ -73,6 +73,17 @@ services:
         calls:
         - [ setTranslationDomain, [messages]]
 
+    sonata.admin.employee_group:
+        class: App\Admin\EmployeeGroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "CheTheatre", label: "Employee Group" }
+        arguments:
+            - ~
+            - App\Entity\EmployeeGroup
+            - 'PixSortableBehaviorBundle:SortableAdmin'
+        calls:
+        - [ setTranslationDomain, [messages]]
+
     sonata.admin.history:
         class: App\Admin\HistoryAdmin
         tags:
