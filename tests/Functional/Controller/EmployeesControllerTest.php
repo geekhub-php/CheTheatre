@@ -34,6 +34,7 @@ class EmployeesControllerTest extends AbstractController
             ['art-production', 15],
             ['deputies', 2],
             ['epoch', 4],
+            ['', 95],
         ];
     }
 
