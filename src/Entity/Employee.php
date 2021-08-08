@@ -180,7 +180,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * @var integer
      * @Gedmo\SortablePosition
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default": 0 })
      * @Expose
      */
     private int $orderPosition;
