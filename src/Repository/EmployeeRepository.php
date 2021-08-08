@@ -44,7 +44,7 @@ class EmployeeRepository extends AbstractRepository
             $qb->orderBy('RAND(:seed)')
                 ->setParameter('seed', $seed);
         } else {
-            $qb->orderBy('e.lastName', 'ASC');
+            $qb->orderBy('e.orderPosition', 'ASC');
         }
 
         if ($group) {
