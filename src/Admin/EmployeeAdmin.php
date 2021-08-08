@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use App\Entity\Employee;
 use Sonata\Form\Type\CollectionType;
@@ -20,7 +21,7 @@ class EmployeeAdmin extends AbstractAdmin
     protected $baseRoutePattern = 'Employee';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_by'    => 'orderPosition',
     ];
 
     /**
@@ -117,6 +118,14 @@ class EmployeeAdmin extends AbstractAdmin
             )
             ->add('staff', 'string', ['template' => 'bundles/SonataAdmin/staff.html.twig'])
             ->add('roles')
+            ->add('orderPosition')
+            ->add('_action', null, [
+                'actions' => [
+                    'move' => [
+                        'template' => '@PixSortableBehavior/Default/_sort.html.twig'
+                    ],
+                ],
+            ])
         ;
     }
 
@@ -133,5 +142,10 @@ class EmployeeAdmin extends AbstractAdmin
             ->add('dob')
             ->add('roles')
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('move', $this->getRouterIdParameter().'/move/{position}');
     }
 }
