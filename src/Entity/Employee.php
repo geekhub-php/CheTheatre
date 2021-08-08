@@ -178,6 +178,14 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private string $staff;
 
     /**
+     * @var integer
+     * @Gedmo\SortablePosition
+     * @ORM\Column(type="integer")
+     * @Expose
+     */
+    private int $orderPosition;
+
+    /**
      * @var Collection|Performance[]
      * @ORM\OneToMany(targetEntity="App\Entity\Performance", mappedBy="producer")
      */
@@ -505,6 +513,18 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function setEmployeeGroup(?EmployeeGroup $employeeGroup): self
     {
         $this->employeeGroup = $employeeGroup;
+
+        return $this;
+    }
+
+    public function getOrder(): int
+    {
+        return $this->orderPosition;
+    }
+
+    public function setOrder(int $orderPosition): self
+    {
+        $this->orderPosition = $orderPosition;
 
         return $this;
     }
