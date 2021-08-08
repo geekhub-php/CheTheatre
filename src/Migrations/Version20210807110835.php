@@ -19,7 +19,7 @@ final class Version20210807110835 extends AbstractMigration
         $this->addSql('
             ALTER TABLE employees ADD `orderPosition` INT DEFAULT 0 NOT NULL
         ');
-        $this->addSql('SET @inc = 0');
+        $this->addSql('SET @inc = -1');
         $this->addSql('
             UPDATE employees 
             SET `orderPosition` = @inc := @inc + 1 
