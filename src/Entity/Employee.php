@@ -517,12 +517,12 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
         return $this;
     }
 
-    public function getOrder(): int
+    public function getOrderPosition(): int
     {
         return $this->orderPosition;
     }
 
-    public function setOrder(int $orderPosition): self
+    public function setOrderPosition(int $orderPosition): self
     {
         $this->orderPosition = $orderPosition;
 
