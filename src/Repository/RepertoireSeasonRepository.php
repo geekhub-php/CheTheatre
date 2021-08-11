@@ -51,14 +51,14 @@ class RepertoireSeasonRepository extends AbstractRepository
 
     public function findSeasonByDate(\DateTime $dateTime): ?RepertoireSeason
     {
-        $season = $this->createQueryBuilder('rs')
+        $qb = $this->createQueryBuilder('rs')
             ->where('rs.startDate < :startDate')
             ->andWhere('rs.endDate > :endDate')
             ->setParameter('startDate', $dateTime)
             ->setParameter('endDate', $dateTime)
             ->setMaxResults(1)
-            ->getQuery()
-            ->enableResultCache(self::CACHE_TTL)
+            ->getQuery();
+        $season = $qb->enableResultCache(self::CACHE_TTL)
             ->getSingleResult();
 
         if ($season) return $season;
