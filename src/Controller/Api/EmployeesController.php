@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Employee;
+use App\Entity\EmployeeGroup;
 use App\Entity\Performance;
 use App\Entity\Role;
 use App\Model\EmployeesResponse;
@@ -13,6 +14,7 @@ use JMS\Serializer\SerializerInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -26,6 +28,28 @@ class EmployeesController extends AbstractController
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
+    }
+
+    /**
+     * @Route("/groups", name="get_employees_groups", methods={"GET"})
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns a collection of theatre employees.",
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=EmployeeGroup::class))
+     *     )
+     * )
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     */
+    public function getEmployeeGroups()
+    {
+        $employeeGroups = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(EmployeeGroup::class)
+            ->findBy([], ["position" => "ASC"]);
+
+        return $employeeGroups;
     }
 
     /**
@@ -45,12 +69,15 @@ class EmployeesController extends AbstractController
      * @QueryParam(name="seed", requirements="\d+", default=0, description="Ignored if random is 1")
      * @QueryParam(name="page", requirements="\d+|middle", default="1", description="Number of page to be shown or 'middle' for middle page")
      * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     * @QueryParam(name="group", description="Group to filter employees")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $em = $this->getDoctrine()->getManager();
+        $group = $this->getGroup($paramFetcher);
         $page = $paramFetcher->get('page');
-        $overAllCount = $em->getRepository('App:Employee')->count([]);
+        $overAllCount = $em->getRepository('App:Employee')
+            ->countByFilters($group);
         $limit = $paramFetcher->get('limit', $strict = true) == "all"
             ? $overAllCount
             : $paramFetcher->get('limit');
@@ -62,10 +89,13 @@ class EmployeesController extends AbstractController
         }
         if ('middle' == $page) {
             $page = round($overAllCount/$limit/2);
+            if ($page === 0.0) {
+                $page = 1;
+            }
         }
 
         $employeesTranslated = $em->getRepository('App:Employee')
-            ->rand($limit, $page, $seed, $paramFetcher->get('locale'));
+            ->findByFilters($limit, $page, $seed, $paramFetcher->get('locale'), $group);
 
         $response = new EmployeesResponse();
         $response->employees = $employeesTranslated;
@@ -173,5 +203,24 @@ class EmployeesController extends AbstractController
         $roles = $rolesTranslated;
 
         return $roles;
+    }
+
+    private function getGroup(ParamFetcher $paramFetcher): ?EmployeeGroup
+    {
+        $group = null;
+        if ($groupSlug = $paramFetcher->get('group')) {
+            $group = $this->getDoctrine()
+                ->getManager()
+                ->getRepository(EmployeeGroup::class)
+                ->findOneBy(['slug' => $groupSlug]);
+
+            if (!$group) {
+                throw new NotFoundHttpException(sprintf(
+                    'There is no employee group with "%s" slug',
+                    $groupSlug
+                ));
+            }
+        }
+        return $group;
     }
 }

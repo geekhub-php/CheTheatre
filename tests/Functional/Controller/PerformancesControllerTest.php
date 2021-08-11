@@ -42,7 +42,7 @@ class PerformancesControllerTest extends AbstractController
         $this->restRequest('/api/performances/nonexistent-slug/performanceevents', 'GET', 404);
     }
 
-    public function testPerformancesResponseFields()
+    public function testPerformanceListResponseFields()
     {
         $this->restRequest('/api/performances');
         $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
@@ -55,20 +55,18 @@ class PerformancesControllerTest extends AbstractController
         foreach ($this->getListFields() as $field) {
             $this->assertArrayHasKey($field, $response);
         }
-
-        $firstEntity = array_shift($response['performances']);
-
-        $this->assertEquals(
-            count($this->getEntityFields()),
-            count(array_keys($firstEntity))
-        );
+    }
+    public function testOnePerformanceResponseFields()
+    {
+        $this->restRequest('/api/performances/sieried-ghromu-i-tishi');
+        $performance = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
 
         foreach ($this->getEntityFields() as $field) {
-            $this->assertArrayHasKey($field, $firstEntity);
+            $this->assertArrayHasKey($field, $performance);
         }
     }
 
-    private function getListFields()
+    private function getListFields(): array
     {
         return array (
             '_links',
@@ -79,7 +77,7 @@ class PerformancesControllerTest extends AbstractController
         );
     }
 
-    private function getEntityFields()
+    private function getEntityFields(): array
     {
         return array (
             'locale',
@@ -93,7 +91,7 @@ class PerformancesControllerTest extends AbstractController
             'producer',
             'created_at',
             'updated_at',
-            'links',
+//            'links',
             'audience',
             'age_limit',
             'duration_in_min',

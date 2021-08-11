@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\RepertoireSeason;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\NoResultException;
 
 /**
  * @method RepertoireSeason|null find($id, $lockMode = null, $lockVersion = null)
@@ -51,17 +52,21 @@ class RepertoireSeasonRepository extends AbstractRepository
 
     public function findSeasonByDate(\DateTime $dateTime): ?RepertoireSeason
     {
-        $season = $this->createQueryBuilder('rs')
+        $qb = $this->createQueryBuilder('rs')
             ->where('rs.startDate < :startDate')
             ->andWhere('rs.endDate > :endDate')
             ->setParameter('startDate', $dateTime)
             ->setParameter('endDate', $dateTime)
             ->setMaxResults(1)
-            ->getQuery()
-            ->enableResultCache(self::CACHE_TTL)
-            ->getSingleResult();
-
-        if ($season) return $season;
+            ->getQuery();
+        try {
+            return $qb->enableResultCache(self::CACHE_TTL)
+                ->getSingleResult();
+        } catch (NoResultException $e) {
+            // do nothing
+        } catch (\Throwable $e) {
+            throw $e;
+        }
 
         $season = $this->createQueryBuilder('rs')
             ->where('rs.startDate > :startDate')

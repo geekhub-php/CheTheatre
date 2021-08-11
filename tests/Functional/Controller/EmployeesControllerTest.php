@@ -23,16 +23,36 @@ class EmployeesControllerTest extends AbstractController
         $this->restRequest('/api/employees/nonexistent-slug/roles', 'GET', 404);
     }
 
+    public static function employeesGroupCount(): array
+    {
+        return [
+            ['actors'],
+            ['art-core'],
+            ['ballet'],
+            ['administrative-accounting'],
+            ['orchestra'],
+            ['art-production'],
+            ['deputies'],
+            ['epoch'],
+            [''],
+        ];
+    }
+
+    /**
+     * @dataProvider employeesGroupCount
+     */
+    public function testGetEmployeesFilteredByGroup(string $group)
+    {
+        $this->restRequest('/api/employees?group=' . $group);
+        $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
+        $this->assertGreaterThan(0, $response['employees']);
+    }
+
     public function testEmployeesResponseFields()
     {
         $this->restRequest('/api/employees');
         $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
         $firstEntity = array_shift($response['employees']);
-
-        $this->assertEquals(
-            count($this->getEntityFields()),
-            count(array_keys($firstEntity))
-        );
 
         foreach ($this->getEntityFields() as $field) {
             $this->assertArrayHasKey($field, $firstEntity);
@@ -48,12 +68,11 @@ class EmployeesControllerTest extends AbstractController
             'dob',
             'position',
             'biography',
-            'gallery',
             'slug',
             'avatar',
+            'staff',
             'created_at',
             'updated_at',
-            'staff',
         ];
     }
 }

@@ -22,3 +22,10 @@ services:
         arguments: ["@translator"]
         tags:
             - { name: validator.constraint_validator, alias: min_size_slider_image }
+
+    gedmo.listener.sortable:
+        class: Gedmo\Sortable\SortableListener
+        calls:
+            - [setAnnotationReader, ['@annotation_reader']]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

@@ -184,6 +184,12 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     private Collection $produce;
 
     /**
+     * @ORM\ManyToOne(targetEntity=EmployeeGroup::class, inversedBy="employees")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private ?EmployeeGroup $employeeGroup = null;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -487,6 +493,18 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     public function setStaff(string $staff): self
     {
         $this->staff = $staff;
+
+        return $this;
+    }
+
+    public function getEmployeeGroup(): ?EmployeeGroup
+    {
+        return $this->employeeGroup;
+    }
+
+    public function setEmployeeGroup(?EmployeeGroup $employeeGroup): self
+    {
+        $this->employeeGroup = $employeeGroup;
 
         return $this;
     }
