@@ -195,7 +195,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
      * @ORM\ManyToOne(targetEntity=EmployeeGroup::class, inversedBy="employees")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private EmployeeGroup $employeeGroup;
+    private ?EmployeeGroup $employeeGroup = null;
 
     /**
      * Constructor

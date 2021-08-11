@@ -21,32 +21,24 @@ class PerformanceEventsControllerTest extends AbstractController
         $this->restRequest('/api/performanceevents?fromDate=01-02-2020&toDate=29-02-2020');
         $response = json_decode($this->getSessionClient()->getResponse()->getContent(), true);
 
-        $this->assertEquals(
-            count($this->getListFields()),
-            count(array_keys($response))
-        );
-
         foreach ($this->getListFields() as $field) {
-            $this->assertArrayHasKey($field, $response);
+            $this->assertArrayHasKey($field, $response, sprintf(
+                'Field "%s" is not in list "%s"', $field, implode(", ", array_keys($response))
+            ));
         }
 
         $firstEntity = array_shift($response['performance_events']);
 
-        $this->assertEquals(
-            count($this->getEntityFields()),
-            count(array_keys($firstEntity))
-        );
-
         foreach ($this->getEntityFields() as $field) {
-            $this->assertArrayHasKey($field, $firstEntity);
+            $this->assertArrayHasKey($field, $firstEntity, sprintf(
+                'Field "%s" is not in list "%s"', $field, implode(", ", array_keys($firstEntity))
+            ));
         }
     }
 
     private function getEntityFields()
     {
         return array (
-            'locale',
-            'id',
             'performance',
             'date_time',
             'venue',
@@ -54,8 +46,6 @@ class PerformanceEventsControllerTest extends AbstractController
             'month',
             'day',
             'time',
-            'created_at',
-            'updated_at',
         );
     }
 
