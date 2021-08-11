@@ -31,6 +31,7 @@ final class Version20210504152021 extends AbstractMigration implements EntityMan
 
     public function up(Schema $schema) : void
     {
+        $this->em->getFilters()->disable('softdeleteable');
         $this->insertGroups();
     }
 
