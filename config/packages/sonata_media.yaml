@@ -64,7 +64,7 @@ sonata_media:
             master:     sonata.media.cdn.cloudfront
             fallback:   sonata.media.cdn.server
         cloudfront:
-            path:       "https://d2m6zqv2ffku71.cloudfront.net"
+            path:       "https://d19uvk3ouw5m5y.cloudfront.net"
             distribution_id: E3CM3AY2JR0BVO
             region: eu-central-1
             version: '2020-05-31' # https://docs.aws.amazon.com/aws-sdk-php/v3/api/index.html
