@@ -28,7 +28,7 @@ class BlameableEntitiesTest extends WebTestCase
         $this->em->getConnection()->beginTransaction();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->em->getConnection()->rollBack();
     }
