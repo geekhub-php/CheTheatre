@@ -35,7 +35,7 @@ jobs:
       - name: Reload
         run: bash bin/reload.sh test
       - name: Run tests
-        run: bin/phpunit
+        run: ./vendor/bin/phpunit
 #      - name: Run tests
 #        run: XDEBUG_MODE=coverage bin/phpunit --coverage-clover=coverage.clover
 #      - name: Upload Scrutinizer coverage

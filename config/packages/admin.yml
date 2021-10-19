@@ -1,3 +1,9 @@
+pix_sortable_behavior:
+    position_field:
+        default: position
+        entities:
+            App\Entity\Employee: orderPosition
+
 services:
     sonata.admin.employee:
         class: App\Admin\EmployeeAdmin
@@ -6,6 +12,7 @@ services:
         arguments:
            - ~
            - App\Entity\Employee
+           - 'PixSortableBehaviorBundle:SortableAdmin'
            - ~
         calls:
            - [ setTranslationDomain, [messages]]

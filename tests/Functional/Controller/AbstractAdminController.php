@@ -11,7 +11,7 @@ class AbstractAdminController extends AbstractController
         $expectedColumns = $columns;
         $page = $this->getSessionClient()->getCrawler();
 
-        $listPageColumns = $page->filter('.sonata-ba-list-field-header')->children()->each(function(Crawler $column, $i) {
+        $listPageColumns = $page->filter('.sonata-ba-list-field-header')->children()->each(function (Crawler $column, $i) {
             if (false == strpos($column->attr('class'), 'sonata-ba-list-field-header-batch')) {
                 return trim($column->text());
             }
@@ -44,9 +44,11 @@ class AbstractAdminController extends AbstractController
         $this->getSessionClient()->followRedirects(true);
         $listPage = $this->getSessionClient()->submit($form);
 
-        $this->assertContains(
-            'has been deleted successfully.',
-            trim($listPage->filter('.alert-success')->text())
+        $this->assertNotFalse(
+            strpos(
+                trim($listPage->filter('.alert-success')->text()),
+                'has been deleted successfully.'
+            )
         );
 
         // Tested softdeleteable and blameable
