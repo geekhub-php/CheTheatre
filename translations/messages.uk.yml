@@ -23,7 +23,7 @@ head_choreographer: Головний балетмейстер
 art_director: Художник-постановник
 staged: Балетмейстер-постановник
 accompanist_singing_class: Концертмейстер по класу вокалу
-head_of_troupe: Завідуючий трупою
+head_of_troupe: Завідувач трупи
 head_of_artistic_staging_part: Завідуючий художньо-постановочною частиною
 stage_manager: Помічник режисера
 leading_artist_scene: Провідний майстер сцени
@@ -50,7 +50,7 @@ Head of the sound shop: Начальник звукового цеху
 Head of the costume shop: Начальник костюмерного цеху
 Head of the machine shop: Начальник машинного цеху
 Head of the lighting shop: Начальник освітлювального цеху
-Head of the hairdressing shop: Начальник перукарського цеху
+Head of the hairdressing shop: Начальник гримерного цеху
 Head of the womens clothing sewing shop: Начальник пошивочного цеху жіночого одягу
 Head of the mens clothing sewing shop: Начальник пошивочного цеху чоловічого одягу
 Head of the props shop: Начальник реквізиторського цеху
@@ -60,6 +60,29 @@ Senior administrator: Старший адміністратор
 Costume designer: Художник з костюмів
 Lighting artist: Художник з освітлення
 Decorator: Художник-оформлювач
+Leading accountant: Провідний бухгалтер
+Senior Economist: Провідний економіст
+Stage engenier: Машиніст сцени
+Leading design engineer for particularly complex scenery: Провідний інженер-конструктор по особливо складній декорації
+Electric illuminator: Електроосвітлювач
+Soundman: Звукорежисер
+Recordist: Звукооператор
+Dummy: Бутафор
+Cutter: Закрійник
+Dresser: Костюмер
+Make-up artist: Гример-пастижер
+Painter on the scenery: Маляр з оброблення декорацій
+Leading energy engineer: Інженер-енергетик провідний
+The labor protection engineer is leading: Інженер з охорони праці провідний
+The head of the farm: Завідувач господарства
+Warehouse manager: Завідувач складу
+Head of the ticket office: Завідувач квиткового господарства
+Senior Personnel Inspector: Старший інспектор з кадрів
+Senior cashier: Старший касир
+Senior ticket controller: Старший контролер квитків
+Ticket controller: Контролер квитків
+Wardrobe: Гардеробник
+Senior firefighter: Старший пожежник
 ### positions end ###
 
 Avatar: Фотографія

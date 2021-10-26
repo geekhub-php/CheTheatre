@@ -25,7 +25,7 @@ use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\EmployeeTranslation")
  * @ExclusionPolicy("all")
  */
-class Employee extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Employee extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
@@ -243,7 +243,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set firstName
      *
-     * @param  string   $firstName
+     * @param string $firstName
      * @return Employee
      */
     public function setFirstName($firstName)
@@ -266,7 +266,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set lastName
      *
-     * @param  string   $lastName
+     * @param string $lastName
      * @return Employee
      */
     public function setLastName($lastName)
@@ -289,7 +289,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set dob
      *
-     * @param  \DateTime $dob
+     * @param \DateTime $dob
      * @return Employee
      */
     public function setDob($dob)
@@ -312,7 +312,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set position
      *
-     * @param  string   $position
+     * @param string $position
      * @return Employee
      */
     public function setPosition($position)
@@ -335,7 +335,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set biography
      *
-     * @param  string   $biography
+     * @param string $biography
      * @return Employee
      */
     public function setBiography($biography)
@@ -348,7 +348,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Add role
      *
-     * @param  \App\Entity\Role $role
+     * @param \App\Entity\Role $role
      * @return Employee
      */
     public function addRole(\App\Entity\Role $role)
@@ -380,7 +380,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
 
     public function __toString()
     {
-        return $this->getFirstName().' '.$this->getLastName();
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
     /**
@@ -396,7 +396,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     /**
      * Set slug
      *
-     * @param  string   $slug
+     * @param string $slug
      * @return Employee
      */
     public function setSlug($slug)
@@ -415,7 +415,7 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
     }
 
     /**
-     * @param  mixed $avatar
+     * @param mixed $avatar
      * @return $this
      */
     public function setAvatar($avatar)
@@ -452,13 +452,66 @@ class Employee extends AbstractPersonalTranslatable  implements TranslatableInte
             self::POSITION_ACTOR_HIGHER_CATEGORY => 'actor_higher_category',
             self::POSITION_ACTOR_FIRST_CATEGORY => 'actor_first_category',
             self::POSITION_ACTOR_SINGER_SOLOIST_HIGHER_CATEGORY => 'actor_singer_soloist_higher_category',
+            'Ballet dancer man' => 'Ballet dancer man',
+            'Orchestra artist man' => 'Orchestra artist man',
+            'Ballet dancer woman' => 'Ballet dancer woman',
+            'Orchestra artist woman' => 'Orchestra artist woman',
+            'Chief Administrator' => 'Chief Administrator',
+            'Chief Accountant' => 'Chief Accountant',
+            'Chief director' => 'Chief director',
+            'Chief Engineer' => 'Chief Engineer',
+            'Conductor' => 'Conductor',
+            'Head of the artistic and staging part' => 'Head of the artistic and staging part',
+            'Heads assistant' => 'Heads assistant',
+            'Head of the literary and dramatic part' => 'Head of the literary and dramatic part',
+            'Concertmaster' => 'Concertmaster',
+            'Head of the sham shop' => 'Head of the sham shop',
+            'Head of the bureau' => 'Head of the bureau',
+            'Head of the decoration shop' => 'Head of the decoration shop',
+            'Head of the sound shop' => 'Head of the sound shop',
+            'Head of the costume shop' => 'Head of the costume shop',
+            'Head of the machine shop' => 'Head of the machine shop',
+            'Head of the lighting shop' => 'Head of the lighting shop',
+            'Head of the hairdressing shop' => 'Head of the hairdressing shop',
+            'Head of the womens clothing sewing shop' => 'Head of the womens clothing sewing shop',
+            'Head of the mens clothing sewing shop' => 'Head of the mens clothing sewing shop',
+            'Head of the props shop' => 'Head of the props shop',
+            'Head of the carpentry shop' => 'Head of the carpentry shop',
+            'Property man' => 'Property man',
+            'Senior administrator' => 'Senior administrator',
+            'Costume designer' => 'Costume designer',
+            'Lighting artist' => 'Lighting artist',
+            'Decorator' => 'Decorator',
+            'Leading accountant' => 'Leading accountant',
+            'Senior Economist' => 'Senior Economist',
+            'Stage engenier' => 'Stage engenier',
+            'Leading design engineer for particularly complex scenery' => 'Leading design engineer for particularly complex scenery',
+            'Electric illuminator' => 'Electric illuminator',
+            'Soundman' => 'Soundman',
+            'Recordist' => 'Recordist',
+            'Dummy' => 'Dummy',
+            'Cutter' => 'Cutter',
+            'Dresser' => 'Dresser',
+            'Make-up artist' => 'Make-up artist',
+            'Painter on the scenery' => 'Painter on the scenery',
+            'Leading energy engineer' => 'Leading energy engineer',
+            'The labor protection engineer is leading' => 'The labor protection engineer is leading',
+            'The head of the farm' => 'The head of the farm',
+            'Warehouse manager' => 'Warehouse manager',
+            'Head of the ticket office' => 'Head of the ticket office',
+            'Senior Personnel Inspector' => 'Senior Personnel Inspector',
+            'Senior cashier' => 'Senior cashier',
+            'Senior ticket controller' => 'Senior ticket controller',
+            'Ticket controller' => 'Ticket controller',
+            'Wardrobe' => 'Wardrobe',
+            'Senior firefighter' => 'Senior firefighter',
         ];
     }
 
     /**
      * Add galleryHasMedia
      *
-     * @param  \App\Entity\GalleryHasMedia $galleryHasMedia
+     * @param \App\Entity\GalleryHasMedia $galleryHasMedia
      * @return Employee
      */
     public function addGalleryHasMedion(\App\Entity\GalleryHasMedia $galleryHasMedia)
