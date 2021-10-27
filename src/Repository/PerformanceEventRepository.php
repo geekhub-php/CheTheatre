@@ -14,6 +14,9 @@ class PerformanceEventRepository extends AbstractRepository
 
     public function findByDateRangeAndSlug(\DateTime $fromDate, \DateTime $toDate, $performanceSlug = null, int $limit=null)
     {
+        $toDate = clone $toDate;
+        $toDate->setTime(23, 59,59);
+
         $qb = $this->createQueryBuilder('u')
             ->WHERE('u.dateTime BETWEEN :from AND :to')
             ->setParameter('from', $fromDate->format('Y-m-d H:i'))
