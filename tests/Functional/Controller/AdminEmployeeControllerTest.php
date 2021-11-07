@@ -11,7 +11,7 @@ class AdminEmployeeControllerTest extends AbstractAdminController
         $this->logIn();
 
         $this->request('/admin/Employee/list', 'GET', 200);
-        $this->assertAdminListPageHasColumns(['Avatar', 'First Name', 'Last Name', 'Dob', 'Position', 'Staff', 'Roles', 'Порядок відображення', 'Action']);
+        $this->assertAdminListPageHasColumns(['Avatar', 'First Name', 'Last Name', 'Dob', 'Position', 'Roles', 'Порядок відображення', 'Action']);
     }
 
     public function testEmployeeCreateAction()

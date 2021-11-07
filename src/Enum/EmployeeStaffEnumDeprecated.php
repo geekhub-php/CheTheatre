@@ -4,7 +4,7 @@ namespace App\Enum;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
-class EmployeeStaffEnum extends AbstractEnumType
+class EmployeeStaffEnumDeprecated extends AbstractEnumType
 {
     public const ART_CORE = 'art-core';
     public const ART_PRODUCTION = 'art-production';
