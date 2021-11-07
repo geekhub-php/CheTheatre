@@ -43,7 +43,10 @@ sonata_admin:
 #                settings:
 #                    groups: [sonata_media, Hidden]
 
-#    assets:
+    assets:
+        extra_javascripts:
+            - bundles/pixsortablebehavior/js/jquery-ui.min.js
+            - bundles/pixsortablebehavior/js/init.js
 #        javascripts: # changed order of js assets loading
 #            - bundles/sonataadmin/vendor/jquery/dist/jquery.js
 #            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
