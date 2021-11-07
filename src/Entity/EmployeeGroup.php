@@ -24,6 +24,7 @@ use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 class EmployeeGroup extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, PersonalTranslatableTrait;
+    public const EPOCH_ID = 9;
 
     /**
      * @ORM\Id
