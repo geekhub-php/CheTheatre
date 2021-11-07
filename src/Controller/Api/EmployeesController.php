@@ -95,7 +95,7 @@ class EmployeesController extends AbstractController
         }
 
         $employeesTranslated = $em->getRepository('App:Employee')
-            ->findByFilters($limit, $page, $seed, $paramFetcher->get('locale'), $group);
+            ->findByFilters($limit, $page, $seed, $group);
 
         $response = new EmployeesResponse();
         $response->employees = $employeesTranslated;

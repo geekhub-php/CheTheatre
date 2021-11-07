@@ -10,12 +10,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EmployeeRepository extends AbstractRepository
 {
-    private TranslatorInterface $translator;
-
-    public function __construct(ManagerRegistry $registry, TranslatorInterface $translator)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Employee::class);
-        $this->translator = $translator;
     }
 
     public function countByFilters(?EmployeeGroup $group = null): int
@@ -26,6 +23,9 @@ class EmployeeRepository extends AbstractRepository
         if ($group) {
             $qb->andWhere('e.employeeGroup = :group')
                 ->setParameter('group', $group);
+        } else {
+            $qb->andWhere("e.employeeGroup != :group OR e.employeeGroup is NULL")
+                ->setParameter('group', EmployeeGroup::EPOCH_ID);
         }
 
         return (int) $qb->getQuery()->getSingleScalarResult();
@@ -35,7 +35,7 @@ class EmployeeRepository extends AbstractRepository
      * @return Employee[]
      * @throws \Doctrine\ORM\ORMException
      */
-    public function findByFilters(int $limit, int $page, int $seed, string $locale, ?EmployeeGroup $group = null): array
+    public function findByFilters(int $limit, int $page, int $seed, ?EmployeeGroup $group = null): array
     {
         $qb = $this->createQueryBuilder('e')
             ->setFirstResult(($page-1) * $limit)
@@ -50,6 +50,9 @@ class EmployeeRepository extends AbstractRepository
         if ($group) {
             $qb->andWhere('e.employeeGroup = :group')
                 ->setParameter('group', $group);
+        } else {
+            $qb->andWhere("e.employeeGroup != :group OR e.employeeGroup is NULL")
+                ->setParameter('group', EmployeeGroup::EPOCH_ID);
         }
 
         return $qb->getQuery()->execute();
