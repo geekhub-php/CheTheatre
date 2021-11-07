@@ -184,6 +184,7 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     private Collection $produce;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity=EmployeeGroup::class, inversedBy="employees")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
