@@ -170,14 +170,6 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     protected $translations;
 
     /**
-     * @ORM\Column(type="EmployeeStaffEnum", options={"default":"creative"})
-     * @DoctrineAssert\Enum(entity="App\Enum\EmployeeStaffEnum")
-     * @Type("string")
-     * @Expose
-     */
-    private string $staff;
-
-    /**
      * @var integer
      * @Gedmo\SortablePosition
      * @ORM\Column(type="integer", options={"default": 0 })
@@ -544,18 +536,6 @@ class Employee extends AbstractPersonalTranslatable implements TranslatableInter
     public function getGalleryHasMedia()
     {
         return $this->galleryHasMedia;
-    }
-
-    public function getStaff(): string
-    {
-        return $this->staff;
-    }
-
-    public function setStaff(string $staff): self
-    {
-        $this->staff = $staff;
-
-        return $this;
     }
 
     public function getEmployeeGroup(): ?EmployeeGroup

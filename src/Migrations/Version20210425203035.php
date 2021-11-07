@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
-use App\Enum\EmployeeStaffEnum;
+use App\Enum\EmployeeStaffEnumDeprecated;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 final class Version20210425203035 extends AbstractMigration
 {
     private const ENUM_STUFF = [
-        EmployeeStaffEnum::ART_CORE,
-        EmployeeStaffEnum::ART_PRODUCTION,
-        EmployeeStaffEnum::ART_DIRECTOR,
-        EmployeeStaffEnum::ADMINISTRATIVE,
-        EmployeeStaffEnum::CREATIVE_CORE,
-        EmployeeStaffEnum::INVITED_ACTOR,
-        EmployeeStaffEnum::EPOCH,
+        EmployeeStaffEnumDeprecated::ART_CORE,
+        EmployeeStaffEnumDeprecated::ART_PRODUCTION,
+        EmployeeStaffEnumDeprecated::ART_DIRECTOR,
+        EmployeeStaffEnumDeprecated::ADMINISTRATIVE,
+        EmployeeStaffEnumDeprecated::CREATIVE_CORE,
+        EmployeeStaffEnumDeprecated::INVITED_ACTOR,
+        EmployeeStaffEnumDeprecated::EPOCH,
     ];
 
     public function getDescription() : string

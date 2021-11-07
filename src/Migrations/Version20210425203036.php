@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
-use App\Enum\EmployeeStaffEnum;
+use App\Enum\EmployeeStaffEnumDeprecated;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -56,7 +56,7 @@ final class Version20210425203036 extends AbstractMigration
                 if ($inHouseProducer['deletedAt']) {
                     $this->addSql(
                         'UPDATE employees SET deletedAt=NULL, deletedBy=NULL, staff=:staff WHERE id=:id',
-                        ['staff' => EmployeeStaffEnum::EPOCH, 'id' => $inHouseProducer['id']]
+                        ['staff' => EmployeeStaffEnumDeprecated::EPOCH, 'id' => $inHouseProducer['id']]
                     );
                 }
 

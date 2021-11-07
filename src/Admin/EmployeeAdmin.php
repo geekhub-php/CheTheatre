@@ -36,7 +36,6 @@ class EmployeeAdmin extends AbstractAdmin
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
-            ->add('staff')
             ->add('roles')
         ;
     }
@@ -116,7 +115,6 @@ class EmployeeAdmin extends AbstractAdmin
                     'catalogue' => 'messages',
                 ]
             )
-            ->add('staff', 'string', ['template' => 'bundles/SonataAdmin/staff.html.twig'])
             ->add('roles')
             ->add('orderPosition')
             ->add('_action', null, [
