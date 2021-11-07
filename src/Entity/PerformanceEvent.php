@@ -81,7 +81,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="datetime")
-     * @Type("DateTime")
+     * @Type("DateTime<'Y-m-d\TH:i:s'>")
      * @Expose
      * @Groups({"Default", "poster"})
      */
