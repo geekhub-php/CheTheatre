@@ -139,9 +139,6 @@ class EmployeeAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstName')
-            ->add('lastName')
-            ->add('roles')
             ->add('employeeGroup')
         ;
     }
