@@ -19,9 +19,12 @@ class EmployeeAdmin extends AbstractAdmin
 {
     protected $baseRouteName = 'App\Entity\Employee';
     protected $baseRoutePattern = 'Employee';
+    protected $perPageOptions = [16, 32, 64, 128, 192, 'All'];
+    protected $maxPerPage = 'All';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
         '_sort_by'    => 'orderPosition',
+        '_per_page' => 'All',
     ];
 
     /**
@@ -36,6 +39,7 @@ class EmployeeAdmin extends AbstractAdmin
             ->add('lastName')
             ->add('dob', 'date')
             ->add('position')
+            ->add('employeeGroup')
             ->add('roles')
         ;
     }
@@ -116,11 +120,11 @@ class EmployeeAdmin extends AbstractAdmin
                 ]
             )
             ->add('roles')
-            ->add('orderPosition')
+            ->add('employeeGroup')
             ->add('_action', null, [
                 'actions' => [
                     'move' => [
-                        'template' => '@PixSortableBehavior/Default/_sort.html.twig'
+                        'template' => '@PixSortableBehavior/Default/_sort_drag_drop.html.twig'
                     ],
                 ],
             ])
@@ -135,10 +139,7 @@ class EmployeeAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstName')
-            ->add('lastName')
-            ->add('dob')
-            ->add('roles')
+            ->add('employeeGroup')
         ;
     }
 
