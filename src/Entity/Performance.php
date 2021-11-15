@@ -232,7 +232,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
      */
-    private ?string $extProducer;
+    private ?string $extProducer = null;
 
     /**
      * Constructor
