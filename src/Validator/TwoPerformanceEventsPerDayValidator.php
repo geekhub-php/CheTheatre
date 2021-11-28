@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
 
 class TwoPerformanceEventsPerDayValidator extends ConstraintValidator
 {
-    const MAX_PERFORMANCE_EVENTS_PER_ONE_DAY = 2;
+    const MAX_PERFORMANCE_EVENTS_PER_ONE_DAY = 10;
 
     /**
      * @var PerformanceEventRepository
