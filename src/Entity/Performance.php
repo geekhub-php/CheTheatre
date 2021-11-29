@@ -226,7 +226,7 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
      * @ORM\JoinColumn(name="producer_id", referencedColumnName="id", onDelete="SET NULL")
      * @Expose
      */
-    private ?Employee $producer;
+    private ?Employee $producer = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
