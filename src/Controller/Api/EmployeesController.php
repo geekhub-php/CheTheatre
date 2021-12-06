@@ -47,7 +47,7 @@ class EmployeesController extends AbstractController
         $employeeGroups = $this->getDoctrine()
             ->getManager()
             ->getRepository(EmployeeGroup::class)
-            ->findBy([], ["position" => "ASC"]);
+            ->findBy(['parent' => null], ["position" => "ASC"]);
 
         return $employeeGroups;
     }

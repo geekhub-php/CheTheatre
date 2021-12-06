@@ -40,6 +40,8 @@ class EmployeeGroupAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title')
+            ->add('slug')
+            ->add('parent')
         ;
     }
 
@@ -52,6 +54,8 @@ class EmployeeGroupAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('title')
+            ->add('slug')
+            ->add('parent')
             ->add('_action', null, [
                 'actions' => [
                     'move' => [

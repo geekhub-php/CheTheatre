@@ -56,6 +56,7 @@ class EmployeeGroup extends AbstractPersonalTranslatable implements Translatable
     private int $position;
 
     /**
+     * @Serializer\Exclude
      * @ORM\OneToMany(
      *     targetEntity="App\Entity\Translations\EmployeeGroupTranslation",
      *     mappedBy="object",
@@ -63,6 +64,24 @@ class EmployeeGroup extends AbstractPersonalTranslatable implements Translatable
      * )
      */
     protected $translations;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="App\Entity\EmployeeGroup"
+     * )
+     * @Serializer\Exclude
+     */
+    private ?EmployeeGroup $parent = null;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\EmployeeGroup",
+     *     mappedBy="parent",
+     *     fetch="EAGER"
+     * )
+     * @Serializer\Expose
+     */
+    private Collection $children;
 
     /**
      * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="employeeGroup")
@@ -73,6 +92,7 @@ class EmployeeGroup extends AbstractPersonalTranslatable implements Translatable
     {
         parent::__construct();
         $this->employees = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +169,34 @@ class EmployeeGroup extends AbstractPersonalTranslatable implements Translatable
             }
         }
 
+        return $this;
+    }
+
+    public function getParent(): ?EmployeeGroup
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?EmployeeGroup $parent): EmployeeGroup
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    public function addChild(EmployeeGroup $child): EmployeeGroup
+    {
+        $this->children->add($child);
+        return $this;
+    }
+
+    public function setChildren(Collection $children): EmployeeGroup
+    {
+        $this->children = $children;
         return $this;
     }
 
