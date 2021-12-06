@@ -2,6 +2,7 @@
 
 namespace App\Admin;
 
+use App\Validator\MinSizeSliderImageValidator;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -81,6 +82,10 @@ class PerformanceAdmin extends AbstractAdmin
             ->add('sliderImage', ModelListType::class,
                 [
                     'required' => false,
+                    'help' => sprintf(
+                        'Мінімальна ширина зображення %dpx, висота %dpx',
+                        MinSizeSliderImageValidator::MIN_WIDTH,
+                        MinSizeSliderImageValidator::MIN_HEIGHT),
                 ], [
                     'link_parameters' => [
                         'context'  => 'slider',
