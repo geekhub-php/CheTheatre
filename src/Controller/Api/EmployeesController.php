@@ -72,6 +72,10 @@ class EmployeesController extends AbstractController
             ->getRepository(EmployeeGroup::class)
             ->findOneBySlug($slug);
 
+        if (!$employeeGroup) {
+            throw $this->createNotFoundException('Unable to find "'.$slug.'" group');
+        }
+
         return $employeeGroup;
     }
 
