@@ -50,12 +50,12 @@ class TwoPerformanceEventsPerDayValidatorTest extends TestCase
         return [
             [$eventNoDate, 0, false, $constraint->performance_must_have_a_date],
             [$event, 0, true],
-            [$event, 1, true],
-            [$event, 2, false, $constraint->max_performances_per_day],
-            [$event, 3, false, $constraint->max_performances_per_day],
-            [$event, 4, false, $constraint->max_performances_per_day],
-            [$event, 5, false, $constraint->max_performances_per_day],
-            [$event, 6, false, $constraint->max_performances_per_day],
+            [$event, 9, true],
+            [$event, 10, false, $constraint->max_performances_per_day],
+            [$event, 11, false, $constraint->max_performances_per_day],
+            [$event, 12, false, $constraint->max_performances_per_day],
+            [$event, 13, false, $constraint->max_performances_per_day],
+            [$event, 20, false, $constraint->max_performances_per_day],
         ];
     }
 
