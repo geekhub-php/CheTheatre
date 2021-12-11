@@ -34,7 +34,7 @@ class EmployeesController extends AbstractController
      * @Route("/groups", name="get_employees_groups", methods={"GET"})
      * @SWG\Response(
      *     response=200,
-     *     description="Returns a collection of theatre employees.",
+     *     description="Returns a collection of theatre employees groups",
      *     @SWG\Schema(
      *         type="array",
      *         @SWG\Items(ref=@Model(type=EmployeeGroup::class))
@@ -50,6 +50,29 @@ class EmployeesController extends AbstractController
             ->findBy(['parent' => null], ["position" => "ASC"]);
 
         return $employeeGroups;
+    }
+
+    /**
+     * @Route("/groups/{slug}", name="get_employees_group", methods={"GET"})
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns an employees group ",
+     *     @SWG\Schema(@Model(type=EmployeeGroup::class))
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Returns when group by {slug} not found in database",
+     * )
+     * @QueryParam(name="locale", requirements="^[a-zA-Z]+", default="uk", description="Selects language of data you want to receive")
+     */
+    public function getEmployeeGroup($slug)
+    {
+        $employeeGroup = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(EmployeeGroup::class)
+            ->findOneBySlug($slug);
+
+        return $employeeGroup;
     }
 
     /**
