@@ -55,7 +55,6 @@ class PostAdmin extends AbstractAdmin
             ->add('mainPicture', ModelListType::class,
                 [
                     'required' => false,
-                    'btn_list' => false,
                 ], [
                     'link_parameters' => [
                         'context' => 'post',
