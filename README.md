@@ -35,15 +35,27 @@ as explained in the
 [installation chapter](https://getcomposer.org/doc/00-intro.md) 
 of the Composer documentation.
 
-2. Copy .env to .env.local and change it according to your env
-
-3. Import database
-
-```bash
-mysql -u root -p db_name < 2020-01-30-theatre-dump.sql
+2. Run and create mysql database: 
+```
+docker run --name mysql --rm -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=pass mysql:5.7
+docker exec mysql mysql -u root -ppass -e "create database theatre_dev"
 ```
 
-4. Run server
+3. Copy .env to .env.local and change it according to your env
+
+4. Import database
+
+```bash
+docker exec mysql mysql -u root -ppass theatre_dev < 2021-05-04.chetheatre_prod.dump.sql
+```
+
+4. Run migrations
+
+```
+bin/console doctrine:migrations:migrate
+```
+
+5. Run server
 ```bash
 symfony server:run
 ```
