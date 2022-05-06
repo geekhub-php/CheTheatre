@@ -29,30 +29,21 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\PerformanceEventTranslation")
  * @TwoPerformanceEventsPerDay()
  */
-class PerformanceEvent extends AbstractPersonalTranslatable  implements TranslatableInterface
+class PerformanceEvent extends AbstractPersonalTranslatable implements TranslatableInterface
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 
-    const VENUE_PHILHARMONIC = "venue-philharmonic";
-    const VENUE_KULIC_HOUSE  = "venue-kilic-house";
-    const AMBROS_HUB         = "venue-ambros-hub";
-    const VENUE_THEATRE      = "venue-theatre";
-    const VENUE_SALUT        = 'venue-salut';
-    const VENUE_PALAC_MOLODI = 'venue-palac_molodi';
-    const VENUE_CENTER_OF_KIDS_ARTS = 'venue-center_of_kids_arts';
-    const VENUE_CHERKASY_ART_MUSEUM = 'venue-cherkasy-art-museum';
-    const VENUE_NATIONS_FRIENDSHIP = 'venue-nations-friendship';
-
     public static $venues = [
-        self::VENUE_PHILHARMONIC => self::VENUE_PHILHARMONIC,
-        self::VENUE_KULIC_HOUSE  => self::VENUE_KULIC_HOUSE,
-        self::AMBROS_HUB         => self::AMBROS_HUB,
-        self::VENUE_THEATRE      => self::VENUE_THEATRE,
-        self::VENUE_SALUT        => self::VENUE_SALUT,
-        self::VENUE_PALAC_MOLODI => self::VENUE_PALAC_MOLODI,
-        self::VENUE_CENTER_OF_KIDS_ARTS => self::VENUE_CENTER_OF_KIDS_ARTS,
-        self::VENUE_CHERKASY_ART_MUSEUM => self::VENUE_CHERKASY_ART_MUSEUM,
-        self::VENUE_NATIONS_FRIENDSHIP => self::VENUE_NATIONS_FRIENDSHIP,
+        'venue-philharmonic' => 'venue-philharmonic',
+        'venue-kilic-house' => 'venue-kilic-house',
+        'venue-ambros-hub' => 'venue-ambros-hub',
+        'venue-theatre' => 'venue-theatre',
+        'venue-salut' => 'venue-salut',
+        'venue-palac_molodi' => 'venue-palac_molodi',
+        'venue-center_of_kids_arts' => 'venue-center_of_kids_arts',
+        'venue-cherkasy-art-museum' => 'venue-cherkasy-art-museum',
+        'venue-nations-friendship' => 'venue-nations-friendship',
+        'trc-pioner' => 'trc-pioner',
     ];
 
     /**
@@ -179,7 +170,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     /**
      * Set dateTime
      *
-     * @param  \DateTime        $dateTime
+     * @param \DateTime $dateTime
      * @return PerformanceEvent
      */
     public function setDateTime($dateTime)
@@ -202,7 +193,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable  implements Translat
     /**
      * Set performance
      *
-     * @param  \App\Entity\Performance $performance
+     * @param \App\Entity\Performance $performance
      * @return PerformanceEvent
      */
     public function setPerformance(\App\Entity\Performance $performance = null)
