@@ -1,4 +1,6 @@
 twig:
+    paths:
+        'vendor/sonata-project/admin-bundle/src/Resources/views': SonataAdminBundle
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
