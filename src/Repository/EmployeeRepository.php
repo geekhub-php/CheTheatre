@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Employee;
 use App\Entity\EmployeeGroup;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

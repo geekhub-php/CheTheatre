@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Performance;
 use App\Entity\RepertoireSeason;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class PerformanceRepository extends AbstractRepository
 {

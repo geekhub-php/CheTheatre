@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\PerformanceEvent;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class PerformanceEventRepository extends AbstractRepository
 {
