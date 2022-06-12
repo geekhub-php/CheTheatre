@@ -62,7 +62,7 @@ sonata_admin:
 ##            - bundles/sonataadmin/App.js
 #            - bundles/sonataadmin/Admin.js
 
-sonata_doctrine_orm_admin:
-    templates:
-        form:
-            - 'bundles/SonataAdmin/form_admin_fields.html.twig'
+#sonata_doctrine_orm_admin:
+#    templates:
+#        form:
+#            - 'bundles/SonataAdmin/form_admin_fields.html.twig'

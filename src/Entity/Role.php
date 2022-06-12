@@ -4,15 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Translations\AbstractPersonalTranslatable;
+use App\Traits\DeletedByTrait;
+use App\Traits\TimestampableTrait;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Traits\TimestampableTrait;
-use App\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="roles")
@@ -21,7 +20,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\RoleTranslation")
  * @ExclusionPolicy("all")
  */
-class Role extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Role extends AbstractPersonalTranslatable
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 

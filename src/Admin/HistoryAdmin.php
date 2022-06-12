@@ -27,7 +27,7 @@ class HistoryAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('title')
@@ -83,7 +83,7 @@ class HistoryAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
@@ -106,7 +106,7 @@ class HistoryAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('title')

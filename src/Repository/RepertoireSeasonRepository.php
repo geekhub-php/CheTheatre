@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\RepertoireSeason;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\NoResultException;
 
 /**

@@ -2,21 +2,20 @@
 
 namespace App\Entity;
 
+use App\Entity\Translations\AbstractPersonalTranslatable;
+use App\Traits\DeletedByTrait;
+use App\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Traits\TimestampableTrait;
-use App\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\Groups;
 use App\Validator\TwoPerformanceEventsPerDay;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\Table(name="performance_schedule", indexes={
@@ -29,7 +28,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\PerformanceEventTranslation")
  * @TwoPerformanceEventsPerDay()
  */
-class PerformanceEvent extends AbstractPersonalTranslatable implements TranslatableInterface
+class PerformanceEvent extends AbstractPersonalTranslatable
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait;
 

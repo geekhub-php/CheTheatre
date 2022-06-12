@@ -2,8 +2,6 @@
 
 namespace App\Enum;
 
-use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
-
 class EmployeeStaffEnumDeprecated extends AbstractEnumType
 {
     public const ART_CORE = 'art-core';
@@ -14,7 +12,7 @@ class EmployeeStaffEnumDeprecated extends AbstractEnumType
     public const INVITED_ACTOR = 'invited';
     public const EPOCH = 'epoch';
 
-    protected static $choices = [
+    protected static array $choices = [
         self::ADMINISTRATIVE => 'Administrative',
         self::ART_DIRECTOR => 'Art-director',
         self::ART_PRODUCTION => 'Art-production',

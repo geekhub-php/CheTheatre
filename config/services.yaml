@@ -29,10 +29,10 @@ services:
         Doctrine\Common\EventSubscriber:
             tags: ['doctrine.event_subscriber']
 
-    Sonata\MediaBundle\Controller\Api\MediaController:
-        alias: "sonata.media.controller.api.media"
+#    Sonata\MediaBundle\Controller\Api\MediaController:
+#        alias: "sonata.media.controller.api.media"
 
-    sonata.doctrine.model.adapter.chain:
-        class: Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter
-        arguments:
-            - '@doctrine'
+#    sonata.doctrine.model.adapter.chain:
+#        class: Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter
+#        arguments:
+#            - '@doctrine'

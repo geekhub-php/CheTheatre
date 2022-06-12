@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class PostRepository extends AbstractRepository
 {

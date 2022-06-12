@@ -2,19 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\Translations\AbstractPersonalTranslatable;
 use App\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Blameable\Traits\BlameableEntity;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 
 /**
  * @ORM\MappedSuperclass
  */
-abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable implements TranslatableInterface
+abstract class AbstractTranslateableStory extends AbstractPersonalTranslatable
 {
     use TimestampableTrait, BlameableEntity;
 

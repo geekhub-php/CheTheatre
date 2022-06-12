@@ -29,7 +29,7 @@ class PerformanceAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('title')
@@ -46,9 +46,9 @@ class PerformanceAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
-        $em = $this->modelManager->getEntityManager('App\Entity\History');
+        $em = $this->getModelManager()->getEntityManager('App\Entity\History');
 
         $query = $em->createQueryBuilder('h')
             ->select('h')
@@ -137,7 +137,7 @@ class PerformanceAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
@@ -154,7 +154,7 @@ class PerformanceAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('title')

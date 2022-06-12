@@ -2,11 +2,12 @@
 
 namespace App\Twig;
 
+use Twig\Extension\AbstractExtension;
 use App\Entity\Tag;
 use Doctrine\ORM\EntityManager;
 use Twig\TwigFunction;
 
-class AppExtension extends \Twig_Extension
+class AppExtension extends AbstractExtension
 {
     /**
      * @var EntityManager

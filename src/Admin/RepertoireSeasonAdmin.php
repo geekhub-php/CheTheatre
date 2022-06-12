@@ -31,7 +31,7 @@ final class RepertoireSeasonAdmin extends AbstractAdmin
             ->add('startDate')
             ->add('endDate')
             ->add('number')
-            ->add('_action', null, [
+            ->add('_action', 'actions', [
                 'actions' => [
                     'show' => [],
                     'edit' => [],

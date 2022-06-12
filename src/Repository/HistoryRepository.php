@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\History;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class HistoryRepository extends AbstractRepository
 {
