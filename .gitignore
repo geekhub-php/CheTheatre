@@ -21,3 +21,8 @@
 ###< symfony/web-server-bundle ###
 
 /config/packages/users.yml
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

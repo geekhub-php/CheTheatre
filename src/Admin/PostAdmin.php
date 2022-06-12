@@ -39,7 +39,7 @@ class PostAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('title')
@@ -64,14 +64,14 @@ class PostAdmin extends AbstractAdmin
             )
             ->add(
                 $formMapper->create('tags', TextType::class, [
-                    'empty_data' => $this->subject ? $this->subject->getTags() : [],
+                    'empty_data' => $this->getSubject() ? $this->getSubject()->getTags() : [],
                     'attr' => ['class' => 'posts-tags']]
                 )
                 ->addModelTransformer(
                     new TagTransformer(
                         $this->default_locale,
                         $this->locales,
-                        $this->modelManager->getEntityManager(new Tag())
+                        $this->getModelManager()->getEntityManager(new Tag())
                     )
                 )
             )
@@ -102,7 +102,7 @@ class PostAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('mainPicture', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
@@ -125,7 +125,7 @@ class PostAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('title')

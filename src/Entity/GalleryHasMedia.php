@@ -2,22 +2,21 @@
 
 namespace App\Entity;
 
-use Sonata\MediaBundle\Entity\BaseGalleryHasMedia as BaseGalleryHasMedia;
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+use App\Entity\Translations\PersonalTranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\MediaBundle\Entity\BaseGalleryItem as BaseGalleryHasMedia;
 
 /**
  * @ORM\Table(name="media__gallery_media")
  * @ORM\Entity
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\GalleryHasMediaTranslation")
  */
-class GalleryHasMedia extends BaseGalleryHasMedia implements TranslatableInterface
+class GalleryHasMedia extends BaseGalleryHasMedia
 {
-    use PersonalTranslatable;
+    use PersonalTranslatableTrait;
 
     /**
      * not mapped field

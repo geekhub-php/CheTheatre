@@ -3,7 +3,7 @@ sonata_media:
     class:
         media: App\Entity\Media
         gallery: App\Entity\Gallery
-        gallery_has_media: App\Entity\GalleryHasMedia
+        gallery_item: App\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -61,7 +61,7 @@ sonata_media:
         server:
             path: "%env(CDN_DOMAIN)%"
         fallback:
-            master:     sonata.media.cdn.cloudfront
+            primary:    sonata.media.cdn.cloudfront
             fallback:   sonata.media.cdn.server
         cloudfront:
             path:       "https://d19uvk3ouw5m5y.cloudfront.net"
@@ -81,7 +81,6 @@ sonata_media:
             secretKey:   "%env(S3_SECRET_KEY)%"
             region:      "%env(S3_REGION)%"
             version:     "latest"
-            sdk_version: 3
 
     providers:
         image:

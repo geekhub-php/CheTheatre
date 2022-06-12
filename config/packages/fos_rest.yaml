@@ -6,8 +6,8 @@ fos_rest:
         enabled: true
         validate: true
         validation_errors_argument: validationErrors
-    routing_loader:
-        default_format: json
+#    routing_loader:
+#        default_format: json
     view:
         view_response_listener: 'force'
         formats:

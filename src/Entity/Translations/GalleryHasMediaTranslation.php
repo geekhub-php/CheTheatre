@@ -3,7 +3,6 @@
 namespace App\Entity\Translations;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 
 /**
  * @ORM\Entity

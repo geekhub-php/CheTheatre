@@ -25,7 +25,7 @@ class PerformanceEventAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('performance', ModelType::class)
@@ -50,7 +50,7 @@ class PerformanceEventAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('performance')
@@ -71,7 +71,7 @@ class PerformanceEventAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('performance')

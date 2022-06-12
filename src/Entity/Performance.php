@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Translations\AbstractPersonalTranslatable;
 use App\Model\LinksTrait;
+use App\Traits\DeletedByTrait;
+use App\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,16 +14,11 @@ use Gedmo\Blameable\Traits\BlameableEntity;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Traits\TimestampableTrait;
-use App\Traits\DeletedByTrait;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Groups;
 use App\Validator\MinSizeSliderImage;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
-use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 use App\Validator\ProducerConstraint;
 
 /**
@@ -32,7 +30,7 @@ use App\Validator\ProducerConstraint;
  * @MinSizeSliderImage()
  * @ProducerConstraint()
  */
-class Performance extends AbstractPersonalTranslatable  implements TranslatableInterface
+class Performance extends AbstractPersonalTranslatable
 {
     use TimestampableTrait, LinksTrait, BlameableEntity, DeletedByTrait;
 
@@ -196,7 +194,6 @@ class Performance extends AbstractPersonalTranslatable  implements TranslatableI
 
     /**
      * @ORM\Column(type="AudienceEnum", options={"default":"adults"})
-     * @DoctrineAssert\Enum(entity="App\Enum\AudienceEnum")
      * @Type("string")
      * @Expose
      * @Assert\Valid()

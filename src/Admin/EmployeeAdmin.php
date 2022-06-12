@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
 use App\Entity\Employee;
 use Sonata\Form\Type\CollectionType;
@@ -32,7 +33,7 @@ class EmployeeAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('firstName')
@@ -49,7 +50,7 @@ class EmployeeAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('firstName')
@@ -107,7 +108,7 @@ class EmployeeAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('avatar', 'string', ['template' => 'bundles/SonataAdmin/thumbnail.html.twig'])
@@ -136,14 +137,14 @@ class EmployeeAdmin extends AbstractAdmin
      *
      * @return void
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('employeeGroup')
         ;
     }
 
-    protected function configureRoutes(RouteCollection $collection)
+    protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->add('move', $this->getRouterIdParameter().'/move/{position}');
     }

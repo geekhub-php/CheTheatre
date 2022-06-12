@@ -1,5 +1,5 @@
-imports:
-    - { resource: '@SonataTranslationBundle/Resources/config/config.yml'}
+#imports:
+#    - { resource: '@SonataTranslationBundle/Resources/config/routes.yaml'}
 
 sonata_translation:
     locales: ['uk', 'en']

@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployeeGroupRepository;
+use App\Entity\Translations\AbstractPersonalTranslatable;
+use App\Entity\Translations\PersonalTranslatableTrait;
 use App\Traits\DeletedByTrait;
 use App\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,9 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 
 /**
  * @ORM\Table(name="employees_group")
@@ -21,7 +19,7 @@ use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
  * @Gedmo\TranslationEntity(class="App\Entity\Translations\EmployeeGroupTranslation")
  * @Serializer\ExclusionPolicy("all")
  */
-class EmployeeGroup extends AbstractPersonalTranslatable implements TranslatableInterface
+class EmployeeGroup extends AbstractPersonalTranslatable
 {
     use TimestampableTrait, BlameableEntity, DeletedByTrait, PersonalTranslatableTrait;
     public const EPOCH_ID = 9;
