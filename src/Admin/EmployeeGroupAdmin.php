@@ -57,7 +57,7 @@ class EmployeeGroupAdmin extends AbstractAdmin
             ->addIdentifier('title')
             ->add('slug')
             ->add('parent')
-            ->add('_action', null, [
+            ->add('_action', 'actions', [
                 'actions' => [
                     'move' => [
                         'template' => '@PixSortableBehavior/Default/_sort.html.twig'

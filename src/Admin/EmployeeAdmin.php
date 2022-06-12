@@ -122,7 +122,7 @@ class EmployeeAdmin extends AbstractAdmin
             )
             ->add('roles')
             ->add('employeeGroup')
-            ->add('_action', null, [
+            ->add('_action', 'actions', [
                 'actions' => [
                     'move' => [
                         'template' => '@PixSortableBehavior/Default/_sort_drag_drop.html.twig'
