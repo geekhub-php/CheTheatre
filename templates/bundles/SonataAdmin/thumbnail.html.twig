@@ -1,5 +1,6 @@
-{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% extends '@SonataAdminBundle/CRUD/base_list_field.html.twig' %}
 
 {% block field%}
-    {% thumbnail attribute(object, field_description.name ), 'admin' with {'width': 60, 'height': 75} %}
+{#    {% thumbnail attribute(object, field_description.name ), 'admin' with {'width': 60, 'height': 75} %}#}
+    {{ dump(object) }}
 {% endblock %}
