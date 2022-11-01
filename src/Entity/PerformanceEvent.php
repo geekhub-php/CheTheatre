@@ -44,6 +44,7 @@ class PerformanceEvent extends AbstractPersonalTranslatable implements Translata
         'venue-cherkasy-art-museum' => 'venue-cherkasy-art-museum',
         'venue-nations-friendship' => 'venue-nations-friendship',
         'trc-pioner' => 'trc-pioner',
+        "venue-cherkasy-kobzar" => "venue-cherkasy-kobzar",
     ];
 
     /**
